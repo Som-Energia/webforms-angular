@@ -27,7 +27,10 @@
                 Choose user type
             </div>
             <div class="col-xs-6">
-                Choose language
+                <label for="language" class="sr-only">Idioma</label>
+                <select name="language" required="required" data-ng-model="language" data-ng-options="language.name for language in languages">
+                    <option value="">-- choose language --</option>
+                </select>
             </div>
         </div>
     </div>
@@ -45,6 +48,20 @@
             </div>
             <div class="col-xs-9">
                 Choose Rao Social
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <label for="province" class="sr-only">Provincia</label>
+                <select name="province" required="required" data-ng-model="province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity()">
+                    <option value="">-- choose province --</option>
+                </select>
+            </div>
+            <div class="col-xs-6">
+                <label for="city" class="sr-only">Ciutat</label>
+                <select name="city" required="required" data-ng-model="city" data-ng-options="city.name for city in cities">
+                    <option value="">-- choose city --</option>
+                </select>
             </div>
         </div>
     </div>
