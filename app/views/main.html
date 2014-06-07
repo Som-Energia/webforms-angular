@@ -71,6 +71,29 @@
                 </div>
             </div>
             <div class="row">
+                <div class="form-group col-xs-6">
+                    <label for="email1" class="sr-only">Email*:</label>
+                    <input type="text" name="email1" data-ng-model="email1" class="form-control" placeholder="Email*" required />
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.email1.$error.required">Required!</span>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label for="email2" class="sr-only">Repeteix email*:</label>
+                    <input type="text" name="email2" data-ng-model="email2" class="form-control" placeholder="Repeteix email*" required />
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.email2.$error.required">Required!</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-6">
+                    <label for="phone1" class="sr-only">Telèfon*:</label>
+                    <input type="text" name="phone1" data-ng-model="phone1" class="form-control" placeholder="Telèfon*" required />
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.phone1.$error.required">Required!</span>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label for="phone2" class="sr-only">Telèfon 2:</label>
+                    <input type="text" name="phone2" data-ng-model="phone2" class="form-control" placeholder="Telèfon 2" />
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-6">
                     <label for="province" class="sr-only">Provincia</label>
                     <select name="province" required="required" data-ng-model="province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity()">
