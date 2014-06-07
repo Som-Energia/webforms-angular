@@ -1,95 +1,99 @@
-<!--<div class="header">-->
-  <!--<ul class="nav nav-pills pull-right">-->
-    <!--<li class="active"><a ng-href="#">Home</a></li>-->
-    <!--<li><a ng-href="#">About</a></li>-->
-    <!--<li><a ng-href="#">Contact</a></li>-->
-  <!--</ul>-->
-  <!--<h3 class="text-muted">NewSomEnergiaWebforms</h3>-->
-<!--</div>-->
-
-<!--<div class="jumbotron">-->
-  <!--<h1>'Allo, 'Allo!</h1>-->
-  <!--<p class="lead">-->
-    <!--<img src="images/yeoman.png" alt="I'm Yeoman"><br>-->
-    <!--Always a pleasure scaffolding your apps.-->
-  <!--</p>-->
-  <!--<p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>-->
-<!--</div>-->
-
-<!--FIRST STEP-->
+<!--GLOBAL MESSAGES-->
 <div class="row">
-    <div class="col-xs-2">
-        <span class="badge">1</span>
-    </div>
-    <div class="col-xs-10">
-        <div class="row">
-            <div class="col-xs-6">
-                Choose user type
-            </div>
-            <div class="col-xs-6">
-                <label for="language" class="sr-only">Idioma</label>
-                <select name="language" required="required" data-ng-model="language" data-ng-options="language.name for language in languages">
-                    <option value="">-- choose language --</option>
-                </select>
-            </div>
-        </div>
+    <div class="col-xs-12">
+        <div id="messages" class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
     </div>
 </div>
 
-<!--SECOND STEP-->
+<!--PROMISE TRACKER-->
 <div class="row">
-    <div class="col-xs-2">
-        <span class="badge">2</span>
-    </div>
-    <div class="col-xs-10">
-        <div class="row">
-            <div class="col-xs-3">
-                Input CIF
-            </div>
-            <div class="col-xs-9">
-                Choose Rao Social
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6">
-                <label for="province" class="sr-only">Provincia</label>
-                <select name="province" required="required" data-ng-model="province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity()">
-                    <option value="">-- choose province --</option>
-                </select>
-            </div>
-            <div class="col-xs-6">
-                <label for="city" class="sr-only">Ciutat</label>
-                <select name="city" required="required" data-ng-model="city" data-ng-options="city.name for city in cities">
-                    <option value="">-- choose city --</option>
-                </select>
-            </div>
-        </div>
+    <div class="col-xs-12">
+        <div data-ng-show="progress.active()" style="color: red; font-size: 50px;">Sending&hellip;</div>
     </div>
 </div>
 
-<!--THIRD STEP-->
-<div class="row">
-    <div class="col-xs-2">
-        <span class="badge">3</span>
+<!-- BEGIN FORM-->
+<form name="partner" class="form-inline" novalidate role="form">
+    <!--FIRST STEP-->
+    <div class="row">
+        <div class="col-xs-2">
+            <span class="badge">1</span>
+        </div>
+        <div class="col-xs-10">
+            <div class="row">
+                <div class="form-group col-xs-6">
+                    <label for="usertype" class="radio-inline">
+                        <input type="radio" name="usertype" id="usertype1" value="option1" checked> Particular
+                    </label>
+                    <label for="usertype" class="radio-inline">
+                        <input type="radio" name="usertype" id="usertype2" value="option2" checked> Empresa
+                    </label>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label for="language">Idioma*:</label>
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.language.$error.required">Required!</span>
+                    <select class="form-control" name="language" required="required" data-ng-model="language" data-ng-options="language.name for language in languages">
+                        <option value="">-- choose language --</option>
+                    </select>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-xs-10">
-        <div class="row">
-            <div class="col-xs-12">
-                Choose payment method
-            </div>
+
+    <!--SECOND STEP-->
+    <div class="row">
+        <div class="col-xs-2">
+            <span class="badge">2</span>
         </div>
-        <div class="row">
-            <div class="col-xs-12">
-                Cost per a la cooperativa
+        <div class="col-xs-10">
+            <div class="row">
+                <div class="col-xs-3">
+                    Input CIF
+                </div>
+                <div class="col-xs-9">
+                    Choose Rao Social
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                Info warning about 100€
+            <div class="row">
+                <div class="col-xs-6">
+                    <label for="province" class="sr-only">Provincia</label>
+                    <select name="province" required="required" data-ng-model="province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity()">
+                        <option value="">-- choose province --</option>
+                    </select>
+                </div>
+                <div class="col-xs-6">
+                    <label for="city" class="sr-only">Ciutat</label>
+                    <select name="city" required="required" data-ng-model="city" data-ng-options="city.name for city in cities">
+                        <option value="">-- choose city --</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!--<div class="footer">-->
-  <!--<p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>-->
-<!--</div>-->
+
+    <!--THIRD STEP-->
+    <div class="row">
+        <div class="col-xs-2">
+            <span class="badge">3</span>
+        </div>
+        <div class="col-xs-10">
+            <div class="row">
+                <div class="col-xs-12">
+                    Choose payment method
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    Cost per a la cooperativa
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    Info warning about 100€
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- BEGIN FORM-->
+</form>
