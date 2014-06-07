@@ -31,10 +31,10 @@
                 </div>
                 <div class="form-group col-xs-6">
                     <label for="language">Idioma*:</label>
-                    <span class="label label-danger" data-ng-show="submitted && partnerForm.language.$error.required">Required!</span>
                     <select class="form-control" name="language" required="required" data-ng-model="language" data-ng-options="language.name for language in languages">
                         <option value="">-- choose language --</option>
                     </select>
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.language.$error.required">Required!</span>
                 </div>
             </div>
         </div>
@@ -47,11 +47,15 @@
         </div>
         <div class="col-xs-10">
             <div class="row">
-                <div class="col-xs-3">
-                    Input CIF
+                <div class="form-group col-xs-3">
+                    <label for="cif" class="sr-only">CIF*:</label>
+                    <input type="text" name="cif" data-ng-model="cif" class="form-control" placeholder="CIF*" required />
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.cif.$error.required">Required!</span>
                 </div>
-                <div class="col-xs-9">
-                    Choose Rao Social
+                <div class="form-group col-xs-9">
+                    <label for="reason" class="sr-only">Raó social*:</label>
+                    <input type="text" name="cif" data-ng-model="reason" class="form-control" placeholder="Raó social*" required />
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.reason.$error.required">Required!</span>
                 </div>
             </div>
             <div class="row">
