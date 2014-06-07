@@ -32,7 +32,7 @@
                 <div class="form-group col-xs-6">
                     <label for="language">Idioma*:</label>
                     <select class="form-control" name="language" required="required" data-ng-model="language" data-ng-options="language.name for language in languages">
-                        <option value="">-- choose language --</option>
+                        <option value="">Selecciona idioma</option>
                     </select>
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.language.$error.required">Required!</span>
                 </div>
@@ -109,14 +109,23 @@
                 <div class="form-group col-xs-6">
                     <label for="province" class="sr-only">Provincia</label>
                     <select class="form-control" name="province" required="required" data-ng-model="province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity()">
-                        <option value="">-- choose province --</option>
+                        <option value="">Provincia*</option>
                     </select>
                 </div>
                 <div class="form-group col-xs-6">
                     <label for="city" class="sr-only">Ciutat</label>
                     <select class="form-control" name="city" required="required" data-ng-model="city" data-ng-options="city.name for city in cities">
-                        <option value="">-- choose city --</option>
+                        <option value="">Municipi*</option>
                     </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group checkbox col-xs-12">
+                    <label for="accept">
+                        <input name="accept" type="checkbox" value="accept" required />
+                        Accepto la <a target="_blank" href="#">política de privacitat</a> de Som Energia
+                    </label>
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.accept.$error.required">Required!</span>
                 </div>
             </div>
         </div>
