@@ -94,15 +94,27 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-6">
+                <div class="form-group col-xs-9">
+                    <label for="address" class="sr-only">Adreça*:</label>
+                    <input type="text" name="address" data-ng-model="address" class="form-control" placeholder="Adreça*" required />
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.address.$error.required">Required!</span>
+                </div>
+                <div class="form-group col-xs-3">
+                    <label for="postalcode" class="sr-only">Codi postal*:</label>
+                    <input type="text" name="postalcode" data-ng-model="postalcode" class="form-control" placeholder="Codei Postal*" />
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.postalcode.$error.required">Required!</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-6">
                     <label for="province" class="sr-only">Provincia</label>
-                    <select name="province" required="required" data-ng-model="province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity()">
+                    <select class="form-control" name="province" required="required" data-ng-model="province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity()">
                         <option value="">-- choose province --</option>
                     </select>
                 </div>
-                <div class="col-xs-6">
+                <div class="form-group col-xs-6">
                     <label for="city" class="sr-only">Ciutat</label>
-                    <select name="city" required="required" data-ng-model="city" data-ng-options="city.name for city in cities">
+                    <select class="form-control" name="city" required="required" data-ng-model="city" data-ng-options="city.name for city in cities">
                         <option value="">-- choose city --</option>
                     </select>
                 </div>
