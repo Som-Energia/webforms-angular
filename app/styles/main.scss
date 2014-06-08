@@ -48,8 +48,22 @@ input[type="text"], select {
   border-radius: 2em;
   width: 2em;
   height: 2em;
+  display: table-cell;
+  vertical-align: middle;
   &.current {
     background-color: $green;
+  }
+}
+
+button {
+  &.btn {
+    &.btn-default {
+      &.green {
+        color: white;
+        background-color: $green;
+        border-color: $green;
+      }
+    }
   }
 }
 
