@@ -20,10 +20,18 @@ angular
     })
     .config(function($translateProvider) {
         $translateProvider
-            .translations('en', {
-                HEADLINE: 'Hello there, This is my awesome app!',
-                INTRO_TEXT: 'And it has i18n support!'
-            });
+            .translations('es', {
+                SELECCIONA: 'Selecciona',
+                SELECCIONA_PARTICULAR: 'Particular',
+                SELECCIONA_EMPRESA: 'Empresa'
+            })
+            .translations('ca', {
+                SELECCIONA: 'Sel·lecciona',
+                SELECCIONA_PARTICULAR: 'Particular',
+                SELECCIONA_EMPRESA: 'Empresa'
+            })
+            .preferredLanguage('ca')
+        ;
     })
     .constant('cfg', {
         API_BASE_URL: 'http://somenergia-api-webforms.gisce.net/',
