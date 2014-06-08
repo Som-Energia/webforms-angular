@@ -3,6 +3,7 @@
 angular.module('newSomEnergiaWebformsApp')
   .controller('MainCtrl', ['cfg', '$scope', '$http', '$log', function (cfg, $scope, $http, $log) {
 
+        // GET STATES
         $http.get(cfg.API_BASE_URL + 'data/provincies').success(function(response) {
                 $log.log('data/provinces response recived', response);
                 if (response.status === cfg.STATUS_ONLINE) {
@@ -19,6 +20,7 @@ angular.module('newSomEnergiaWebformsApp')
               }
         );
 
+        // GET LANGUAGES
         $http.get(cfg.API_BASE_URL + 'data/idiomes').success(function(response) {
                 $log.log('data/idiomes response recived', response);
                 if (response.status === cfg.STATUS_ONLINE) {
@@ -35,6 +37,8 @@ angular.module('newSomEnergiaWebformsApp')
               }
         );
 
+        // INIT
+        $scope.submitted = false;
         $scope.languages = [];
         $scope.provinces = [];
         $scope.cities = [];
@@ -42,7 +46,9 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.province = {};
         $scope.city = {};
 
+        // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
+            // GET CITIES
             $http.get(cfg.API_BASE_URL + 'data/municipis/' + $scope.province.id).success(function(response) {
                     $log.log('data/municipis/' + $scope.province.id + ' response recived', response);
                     if (response.status === cfg.STATUS_ONLINE) {
@@ -59,4 +65,18 @@ angular.module('newSomEnergiaWebformsApp')
                   }
             );
           };
+
+        // ON SUBMIT FORM
+        $scope.submit = function(form) {
+            // Trigger validation flag.
+            $scope.submitted = true;
+
+            // If form is invalid, return and let AngularJS show validation errors.
+            if (form.$invalid) {
+              return null;
+            }
+
+            return true;
+          };
+
       }]);
