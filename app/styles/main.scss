@@ -6,6 +6,15 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 @import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
+/* Variables */
+$green: #AEC122;
+$grey-light: #DFDFE0;
+$grey: #8A8990;
+$grey-dark: #5F5E63;
+$grey-darkest: #49494D;
+
+
+/* Browserhappy */
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -20,13 +29,12 @@ body {
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
+.header, .marketing, .footer {
     padding-left: 15px;
     padding-right: 15px;
 }
 
+/* Custom settings */
 .row {
   margin-bottom: 20px;
 }
@@ -40,7 +48,6 @@ input[type="text"], select {
     .container {
         max-width: 730px;
     }
-
     /* Remove the padding we set earlier */
     .header,
     .marketing,
