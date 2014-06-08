@@ -25,12 +25,14 @@
                     <span>Sel·lecciona:</span>
                 </div>
                 <div class="form-group col-xs-4">
-                    <label for="usertype" class="radio-inline">
-                        <input type="radio" name="usertype" id="usertype1" value="person" checked> Particular
-                    </label>
-                    <label for="usertype" class="radio-inline">
-                        <input type="radio" name="usertype" id="usertype2" value="company" checked> Empresa
-                    </label>
+                    <div class="btn-group" data-toggle="buttons">
+                        <label for="usertype" class="btn btn-default green">
+                            <input type="radio" name="usertype" id="usertype1" value="person" checked> Particular
+                        </label>
+                        <label for="usertype" class="btn btn-default green">
+                            <input type="radio" name="usertype" id="usertype2" value="company"> Empresa
+                        </label>
+                    </div>
                 </div>
                 <div class="form-group col-xs-6">
                     <label for="language" class="sr-only">Idioma*:</label>
@@ -42,6 +44,7 @@
             </div>
         </div>
     </div>
+    <hr>
 
     <!--SECOND STEP-->
     <div class="row">
@@ -133,6 +136,7 @@
             </div>
         </div>
     </div>
+    <hr>
 
     <!--THIRD STEP-->
     <div class="row">

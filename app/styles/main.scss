@@ -43,6 +43,10 @@ input[type="text"], select {
   width: 100% !important;
 }
 
+input, select {
+  background-color: $grey-light !important;
+}
+
 .badge {
   font-size: 30px;
   border-radius: 2em;
@@ -62,6 +66,22 @@ button {
         color: white;
         background-color: $green;
         border-color: $green;
+      }
+    }
+  }
+}
+
+label {
+  &.btn {
+    &.btn-default {
+      &.green {
+        color: white;
+        background-color: $grey-dark;
+        border-color: $grey-dark;
+        &.active {
+          background-color: $green;
+          border-color: $green;
+        }
       }
     }
   }
