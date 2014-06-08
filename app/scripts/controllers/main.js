@@ -38,6 +38,7 @@ angular.module('newSomEnergiaWebformsApp')
         );
 
         // INIT
+        $scope.currentStep = 1;
         $scope.submitted = false;
         $scope.languages = [];
         $scope.provinces = [];
@@ -83,7 +84,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.showErrorDialog = function(msg) {
           $scope.errorMsg = msg;
           jQuery('#api-server-offline-modal').modal({
-            backdrop: 'static',
+//            backdrop: 'static',
             keyboard: false,
             show: true
           });
