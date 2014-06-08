@@ -18,6 +18,25 @@ module.exports = function (grunt) {
     // Define the configuration for all the tasks
     grunt.initConfig({
 
+        // Deploy settings
+        secret: grunt.file.readJSON('secret.json'),
+        sftp: {
+            deploy: {
+                files: {
+                    "./": "dist/**"
+                },
+                options: {
+                    path: '/home/flux/webapps/somenergia-webforms/',
+                    host: '<%= secret.host %>',
+                    username: '<%= secret.username %>',
+                    password: '<%= secret.password %>',
+                    srcBasePath: "dist/",
+                    createDirectories: true,
+                    showProgress: true
+                }
+            }
+        },
+
         // Project settings
         yeoman: {
             // configurable paths
@@ -440,4 +459,6 @@ module.exports = function (grunt) {
         'test',
         'build'
     ]);
+
+    grunt.loadNpmTasks('grunt-ssh');
 };
