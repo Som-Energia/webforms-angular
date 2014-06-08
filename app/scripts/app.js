@@ -35,7 +35,10 @@ angular
                 CODI_POSTAL: 'Código postal',
                 PROVINCIA: 'Província',
                 POBLACIO: 'Población',
-                ACCEPTO_POLITICA_PRIVACITAT: 'Acepto la <strong><a target="_blank" href="#">política de privacidad</a></strong> de Som Energia'
+                ACCEPTO_POLITICA_PRIVACITAT: 'Acepto la <strong><a target="_blank" href="#">política de privacidad</a></strong> de Som Energia',
+                METODE_PAGAMENT: 'Forma de pago',
+                METODE_PAGAMENT_REBUT_BANCARI: 'Recibo bancario',
+                METODE_PAGAMENT_TARGETA_CREDIT: 'Tarjeta de crédito'
             })
             .translations('ca', {
                 SELECCIONA: 'Sel·lecciona',
@@ -52,7 +55,10 @@ angular
                 CODI_POSTAL: 'Codi postal',
                 PROVINCIA: 'Provincia',
                 POBLACIO: 'Població',
-                ACCEPTO_POLITICA_PRIVACITAT: 'Accepto la <strong><a target="_blank" href="#">política de privacitat</a></strong> de Som Energia'
+                ACCEPTO_POLITICA_PRIVACITAT: 'Accepto la <strong><a target="_blank" href="#">política de privacitat</a></strong> de Som Energia',
+                METODE_PAGAMENT: 'Mètode de pagament',
+                METODE_PAGAMENT_REBUT_BANCARI: 'Rebut bancari',
+                METODE_PAGAMENT_TARGETA_CREDIT: 'Targeta de crèdit'
             })
             .preferredLanguage('ca')
         ;

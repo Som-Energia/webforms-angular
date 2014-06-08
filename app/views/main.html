@@ -136,16 +136,16 @@
         </div>
         <div class="col-xs-11">
             <div class="row">
-                <div class="col-xs-2">
-                    <span>Mètode de pagament:</span>
-                </div>
-                <div class="form-group col-xs-10">
-                    <label for="paymentmethod1" class="radio-inline">
-                        <input type="radio" name="paymentmethod1" id="paymentmethod1" value="bankaccount" checked> Rebut bancari
-                    </label>
-                    <label for="paymentmethod2" class="radio-inline">
-                        <input type="radio" name="paymentmethod2" id="paymentmethod2" value="creditcard" checked> Targeta de crèdit
-                    </label>
+                <div class="form-group col-xs-12">
+                    <span>{{ 'METODE_PAGAMENT' | translate }}:</span>
+                    <div class="btn-group" data-toggle="buttons">
+                        <label for="paymentmethod1" class="btn btn-default green">
+                            <input type="radio" name="paymentmethod1" id="paymentmethod1" value="bankaccount"> {{ 'METODE_PAGAMENT_REBUT_BANCARI' | translate }}
+                        </label>
+                        <label for="paymentmethod2" class="btn btn-default green">
+                            <input type="radio" name="paymentmethod2" id="paymentmethod2" value="creditcard"> {{ 'METODE_PAGAMENT_TARGETA_CREDIT' | translate }}
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="row">
