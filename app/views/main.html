@@ -5,13 +5,6 @@
     </div>
 </div>
 
-<!--PROMISE TRACKER-->
-<div class="row">
-    <div class="col-xs-12">
-        <div data-ng-show="progress.active()" style="color: red; font-size: 50px;">Enviant&hellip;</div>
-    </div>
-</div>
-
 <!-- BEGIN FORM-->
 <form name="partnerForm" class="form-inline" role="form" novalidate>
     <!--FIRST STEP-->
@@ -21,25 +14,23 @@
         </div>
         <div class="col-xs-11">
             <div class="row">
-                <div class="col-xs-2">
+                <div class="form-group col-xs-6">
                     <span>{{ 'SELECCIONA' | translate }}</span>
-                </div>
-                <div class="form-group col-xs-4">
                     <div class="btn-group" data-toggle="buttons">
                         <label for="usertype" class="btn btn-default green">
-                            <input type="radio" name="usertype" id="usertype1" value="person" checked> Particular
+                            <input type="radio" name="usertype" id="usertype1" value="person"> {{ 'SELECCIONA_PARTICULAR' | translate }}
                         </label>
                         <label for="usertype" class="btn btn-default green">
-                            <input type="radio" name="usertype" id="usertype2" value="company"> Empresa
+                            <input type="radio" name="usertype" id="usertype2" value="company"> {{ 'SELECCIONA_EMPRESA' | translate }}
                         </label>
                     </div>
                 </div>
                 <div class="form-group col-xs-6">
-                    <label for="language" class="sr-only">Idioma*:</label>
+                    <label for="language" class="sr-only">{{ 'IDIOMA' | translate }}*:</label>
                     <select class="form-control" name="language" data-ng-model="language" data-ng-options="language.name for language in languages" required>
-                        <option value="">Selecciona idioma</option>
+                        <option value="">{{ 'SELECCIONA_IDIOMA' | translate }}</option>
                     </select>
-                    <span class="label label-danger" data-ng-show="submitted && partnerForm.language.$invalid">Required!</span>
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.language.$invalid">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
         </div>
@@ -56,43 +47,43 @@
                 <div class="form-group col-xs-3">
                     <label for="cif" class="sr-only">CIF*:</label>
                     <input type="text" name="cif" data-ng-model="cif" class="form-control" placeholder="CIF*" required />
-                    <span class="label label-danger" data-ng-show="submitted && partnerForm.cif.$error.required">Required!</span>
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.cif.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-9">
-                    <label for="reason" class="sr-only">Raó social*:</label>
-                    <input type="text" name="cif" data-ng-model="reason" class="form-control" placeholder="Raó social*" required />
-                    <span class="label label-danger" data-ng-show="submitted && partnerForm.reason.$error.required">Required!</span>
+                    <label for="reason" class="sr-only">{{ 'RAO_SOCIAL' | translate }}*:</label>
+                    <input type="text" name="cif" data-ng-model="reason" class="form-control" placeholder="{{ 'RAO_SOCIAL' | translate }}*" required />
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.reason.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-3">
                     <label for="dni" class="sr-only">DNI/NIE*:</label>
                     <input type="text" name="dni" data-ng-model="dni" class="form-control" placeholder="DNI/NIE*" required />
-                    <span class="label label-danger" data-ng-show="submitted && partnerForm.dni.$error.required">Required!</span>
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-9">
                     <label for="person" class="sr-only">Presona representant*:</label>
                     <input type="text" name="person" data-ng-model="person" class="form-control" placeholder="Persona representant*" required />
-                    <span class="label label-danger" data-ng-show="submitted && partnerForm.person.$error.required">Required!</span>
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.person.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-6">
                     <label for="email1" class="sr-only">Email*:</label>
                     <input type="text" name="email1" data-ng-model="email1" class="form-control" placeholder="Email*" required />
-                    <span class="label label-danger" data-ng-show="submitted && partnerForm.email1.$error.required">Required!</span>
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.email1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-6">
                     <label for="email2" class="sr-only">Repeteix email*:</label>
                     <input type="text" name="email2" data-ng-model="email2" class="form-control" placeholder="Repeteix email*" required />
-                    <span class="label label-danger" data-ng-show="submitted && partnerForm.email2.$error.required">Required!</span>
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.email2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-6">
                     <label for="phone1" class="sr-only">Telèfon*:</label>
                     <input type="text" name="phone1" data-ng-model="phone1" class="form-control" placeholder="Telèfon*" required />
-                    <span class="label label-danger" data-ng-show="submitted && partnerForm.phone1.$error.required">Required!</span>
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.phone1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-6">
                     <label for="phone2" class="sr-only">Telèfon 2:</label>
@@ -103,12 +94,12 @@
                 <div class="form-group col-xs-9">
                     <label for="address" class="sr-only">Adreça*:</label>
                     <input type="text" name="address" data-ng-model="address" class="form-control" placeholder="Adreça*" required />
-                    <span class="label label-danger" data-ng-show="submitted && partnerForm.address.$error.required">Required!</span>
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.address.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-3">
                     <label for="postalcode" class="sr-only">Codi postal*:</label>
                     <input type="text" name="postalcode" data-ng-model="postalcode" class="form-control" placeholder="Codi postal*" />
-                    <span class="label label-danger" data-ng-show="submitted && partnerForm.postalcode.$error.required">Required!</span>
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.postalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
@@ -131,7 +122,7 @@
                         <input name="accept" type="checkbox" value="accept" required />
                         Accepto la <a target="_blank" href="#">política de privacitat</a> de Som Energia
                     </label>
-                    <span class="label label-danger" data-ng-show="submitted && partnerForm.accept.$error.required">Required!</span>
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
         </div>

@@ -23,12 +23,20 @@ angular
             .translations('es', {
                 SELECCIONA: 'Selecciona',
                 SELECCIONA_PARTICULAR: 'Particular',
-                SELECCIONA_EMPRESA: 'Empresa'
+                SELECCIONA_EMPRESA: 'Empresa',
+                OBLIGATORI: 'Obligatorio',
+                IDIOMA: 'Idioma',
+                SELECCIONA_IDIOMA: 'Selecciona idioma',
+                RAO_SOCIAL: 'Razón social'
             })
             .translations('ca', {
                 SELECCIONA: 'Sel·lecciona',
                 SELECCIONA_PARTICULAR: 'Particular',
-                SELECCIONA_EMPRESA: 'Empresa'
+                SELECCIONA_EMPRESA: 'Empresa',
+                OBLIGATORI: 'Obligatori',
+                IDIOMA: 'Idioma',
+                SELECCIONA_IDIOMA: 'Sel·lecciona idioma',
+                RAO_SOCIAL: 'Raó social'
             })
             .preferredLanguage('ca')
         ;
