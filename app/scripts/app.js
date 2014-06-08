@@ -31,7 +31,11 @@ angular
                 PERSONA_REPRESENTANT: 'Persona representante',
                 REPETEIX_EMAIL: 'Repetir email',
                 TELEFON: 'Teléfono',
-                ADRECA: 'Dirección'
+                ADRECA: 'Dirección',
+                CODI_POSTAL: 'Código postal',
+                PROVINCIA: 'Província',
+                POBLACIO: 'Población',
+                ACCEPTO_POLITICA_PRIVACITAT: 'Acepto la <strong><a target="_blank" href="#">política de privacidad</a></strong> de Som Energia'
             })
             .translations('ca', {
                 SELECCIONA: 'Sel·lecciona',
@@ -44,7 +48,11 @@ angular
                 PERSONA_REPRESENTANT: 'Persona representant',
                 REPETEIX_EMAIL: 'Repeteix email',
                 TELEFON: 'Telèfon',
-                ADRECA: 'Adreça'
+                ADRECA: 'Adreça',
+                CODI_POSTAL: 'Codi postal',
+                PROVINCIA: 'Provincia',
+                POBLACIO: 'Població',
+                ACCEPTO_POLITICA_PRIVACITAT: 'Accepto la <strong><a target="_blank" href="#">política de privacitat</a></strong> de Som Energia'
             })
             .preferredLanguage('ca')
         ;

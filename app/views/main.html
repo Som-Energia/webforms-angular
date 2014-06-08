@@ -97,22 +97,22 @@
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.address.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-3">
-                    <label for="postalcode" class="sr-only">Codi postal*:</label>
-                    <input type="text" name="postalcode" data-ng-model="postalcode" class="form-control" placeholder="Codi postal*" />
+                    <label for="postalcode" class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
+                    <input type="text" name="postalcode" data-ng-model="postalcode" class="form-control" placeholder="{{ 'CODI_POSTAL' | translate }}*" />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.postalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-6">
-                    <label for="province" class="sr-only">Provincia</label>
+                    <label for="province" class="sr-only">{{ 'PROVINCIA' | translate }}</label>
                     <select class="form-control" name="province" required="required" data-ng-model="province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity()">
-                        <option value="">Provincia*</option>
+                        <option value="">{{ 'PROVINCIA' | translate }}*</option>
                     </select>
                 </div>
                 <div class="form-group col-xs-6">
-                    <label for="city" class="sr-only">Ciutat</label>
+                    <label for="city" class="sr-only">{{ 'POBLACIO' | translate }}</label>
                     <select class="form-control" name="city" required="required" data-ng-model="city" data-ng-options="city.name for city in cities">
-                        <option value="">Municipi*</option>
+                        <option value="">{{ 'POBLACIO' | translate }}*</option>
                     </select>
                 </div>
             </div>
@@ -120,7 +120,7 @@
                 <div class="form-group checkbox col-xs-12">
                     <label for="accept">
                         <input name="accept" type="checkbox" value="accept" required />
-                        Accepto la <a target="_blank" href="#">política de privacitat</a> de Som Energia
+                        <span data-ng-bind-html="'ACCEPTO_POLITICA_PRIVACITAT' | translate"></span>
                     </label>
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
