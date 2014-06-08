@@ -5,34 +5,34 @@ angular.module('newSomEnergiaWebformsApp')
 
         $http.get(cfg.API_BASE_URL + 'data/provincies').success(function(response) {
                 $log.log('data/provinces response recived', response);
-                if (response.status == cfg.STATUS_ONLINE) {
-                    if (response.state == cfg.STATE_TRUE) {
-                        $scope.provinces = response.data.provincies;
-                    } else {
+                if (response.status === cfg.STATUS_ONLINE) {
+                  if (response.state === cfg.STATE_TRUE) {
+                    $scope.provinces = response.data.provincies;
+                  } else {
                         // TODO throw get provinces exception
-                    }
-                } else if (response.status == cfg.STATUS_OFFLINE) {
+                  }
+                } else if (response.status === cfg.STATUS_OFFLINE) {
                     // TODO throw server down exception
                 } else {
                     // TODO throw unknow server status exception
                 }
-            }
+              }
         );
 
         $http.get(cfg.API_BASE_URL + 'data/idiomes').success(function(response) {
                 $log.log('data/idiomes response recived', response);
-                if (response.status == cfg.STATUS_ONLINE) {
-                    if (response.state == cfg.STATE_TRUE) {
-                        $scope.languages = response.data.idiomes;
-                    } else {
+                if (response.status === cfg.STATUS_ONLINE) {
+                  if (response.state === cfg.STATE_TRUE) {
+                    $scope.languages = response.data.idiomes;
+                  } else {
                         // TODO throw get languages exception
-                    }
-                } else if (response.status == cfg.STATUS_OFFLINE) {
+                  }
+                } else if (response.status === cfg.STATUS_OFFLINE) {
                     // TODO throw server down exception
                 } else {
                     // TODO throw unknow server status exception
                 }
-            }
+              }
         );
 
         $scope.languages = [];
@@ -45,18 +45,18 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.updateSelectedCity = function() {
             $http.get(cfg.API_BASE_URL + 'data/municipis/' + $scope.province.id).success(function(response) {
                     $log.log('data/municipis/' + $scope.province.id + ' response recived', response);
-                    if (response.status == cfg.STATUS_ONLINE) {
-                        if (response.state == cfg.STATE_TRUE) {
-                            $scope.cities = response.data.municipis;
-                        } else {
+                    if (response.status === cfg.STATUS_ONLINE) {
+                      if (response.state === cfg.STATE_TRUE) {
+                        $scope.cities = response.data.municipis;
+                      } else {
                             // TODO throw get municipi exception
-                        }
-                    } else if (response.status == cfg.STATUS_OFFLINE) {
+                      }
+                    } else if (response.status === cfg.STATUS_OFFLINE) {
                         // TODO throw server down exception
                     } else {
                         // TODO throw unknow server status exception
                     }
-                }
+                  }
             );
-        }
-  }]);
+          };
+      }]);

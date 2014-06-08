@@ -18,10 +18,10 @@ angular
       });
   })
     .constant('cfg', {
-        API_BASE_URL: 'http://somenergia-api-webforms.gisce.net/',
-        STATUS_OFFLINE: 'OFFLINE',
-        STATUS_ONLINE: 'ONLINE',
-        STATE_TRUE: true,
-        STATE_FALSE: false
-    })
+    API_BASE_URL: 'http://somenergia-api-webforms.gisce.net/',
+    STATUS_OFFLINE: 'OFFLINE',
+    STATUS_ONLINE: 'ONLINE',
+    STATE_TRUE: true,
+    STATE_FALSE: false
+  })
 ;
