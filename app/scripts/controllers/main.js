@@ -5,12 +5,12 @@ angular.module('newSomEnergiaWebformsApp')
 
         // GET STATES
         $http.get(cfg.API_BASE_URL + 'data/provincies').success(function(response) {
-                $log.log('data/provinces response recived', response);
                 if (response.status === cfg.STATUS_ONLINE) {
                   if (response.state === cfg.STATE_TRUE) {
                     $scope.provinces = response.data.provincies;
                   } else {
-                        // TODO throw get provinces exception
+                    $log.error('data/provinces error response recived', response);
+                    $scope.showErrorDialog('GET provincies return false state');
                   }
                 } else if (response.status === cfg.STATUS_OFFLINE) {
                   $scope.showErrorDialog('API server status offline');
@@ -22,12 +22,12 @@ angular.module('newSomEnergiaWebformsApp')
 
         // GET LANGUAGES
         $http.get(cfg.API_BASE_URL + 'data/idiomes').success(function(response) {
-                $log.log('data/idiomes response recived', response);
                 if (response.status === cfg.STATUS_ONLINE) {
                   if (response.state === cfg.STATE_TRUE) {
                     $scope.languages = response.data.idiomes;
                   } else {
-                        // TODO throw get languages exception
+                    $log.log('data/idiomes error response recived', response);
+                    $scope.showErrorDialog('GET idiomes return false state');
                   }
                 } else if (response.status === cfg.STATUS_OFFLINE) {
                   $scope.showErrorDialog('API server status offline');
@@ -50,12 +50,12 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.updateSelectedCity = function() {
             // GET CITIES
             $http.get(cfg.API_BASE_URL + 'data/municipis/' + $scope.province.id).success(function(response) {
-                    $log.log('data/municipis/' + $scope.province.id + ' response recived', response);
                     if (response.status === cfg.STATUS_ONLINE) {
                       if (response.state === cfg.STATE_TRUE) {
                         $scope.cities = response.data.municipis;
                       } else {
-                            // TODO throw get municipi exception
+                        $log.log('data/municipis/' + $scope.province.id + ' response recived', response);
+                        $scope.showErrorDialog('GET municipis return false state');
                       }
                     } else if (response.status === cfg.STATUS_OFFLINE) {
                       $scope.showErrorDialog('API server status offline');
