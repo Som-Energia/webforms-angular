@@ -94,6 +94,16 @@ a {
   }
 }
 
+div.alert {
+  &.alert-info {
+    &.grey {
+      color: white;
+      background-color: $grey;
+      border-color: $grey;
+    }
+  }
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {

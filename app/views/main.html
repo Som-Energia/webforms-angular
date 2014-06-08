@@ -140,39 +140,34 @@
                     <span>{{ 'METODE_PAGAMENT' | translate }}:</span>
                     <div class="btn-group" data-toggle="buttons">
                         <label for="paymentmethod1" class="btn btn-default green">
-                            <input type="radio" name="paymentmethod1" id="paymentmethod1" value="bankaccount"> {{ 'METODE_PAGAMENT_REBUT_BANCARI' | translate }}
+                            <input type="radio" name="paymentmethod1" id="paymentmethod1" value="bankaccount"> {{ 'REBUT_BANCARI' | translate }}
                         </label>
                         <label for="paymentmethod2" class="btn btn-default green">
-                            <input type="radio" name="paymentmethod2" id="paymentmethod2" value="creditcard"> {{ 'METODE_PAGAMENT_TARGETA_CREDIT' | translate }}
+                            <input type="radio" name="paymentmethod2" id="paymentmethod2" value="creditcard"> {{ 'TARGETA_CREDIT' | translate }}
                         </label>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-2">
-                    <span>Cost per a la cooperativa:</span>
+                    <span>{{ 'COST' | translate }}:</span>
                 </div>
                 <div class="col-xs-2">
-                    <strong>Rebut bancari: 0€</strong>
+                    <strong>{{ 'REBUT_BANCARI' | translate }}: 0€</strong>
                 </div>
                 <div class="col-xs-6">
-                    <strong>Targeta de crèdit: 1,8€</strong>
+                    <strong>{{ 'TARGETA_CREDIT' | translate }}: 1,8€</strong>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <p class="bg-info">
-                        L'aportació per a esdevenir soci/a sòn 100€<br/>
-                        Els 100€ es paguen una sola vegada, no hi ha quota anual i són retornables si et dones de baixa.
-                    </p>
-                </div>
+            <div class="alert alert-info grey">
+                <span data-ng-bind-html="'INFO_APORTACIO' | translate"></span>
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-12">
-            <button data-ng-disabled="!submitReady" data-ng-click="submit(partnerForm)" class="btn btn-default green">Finalitza el procés</button>
+            <button data-ng-disabled="!submitReady" data-ng-click="submit(partnerForm)" class="btn btn-default green">{{ 'FINALITZA_PROCES' | translate }}</button>
         </div>
     </div>
 <!-- END FORM-->
@@ -182,7 +177,7 @@
 <div id="api-server-offline-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="Webforms" data-aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-body">
-            <div class="alert alert-warning">Formulari no disponible, disculpeu les molèsties.</div>
+            <div class="alert alert-warning">{{ 'FORMULARI_NO_DISPONIBLE' | translate }}</div>
             <div class="alert alert-danger">ERROR: {{ errorMsg }}</div>
         </div>
     </div>

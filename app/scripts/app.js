@@ -37,8 +37,12 @@ angular
                 POBLACIO: 'Población',
                 ACCEPTO_POLITICA_PRIVACITAT: 'Acepto la <strong><a target="_blank" href="#">política de privacidad</a></strong> de Som Energia',
                 METODE_PAGAMENT: 'Forma de pago',
-                METODE_PAGAMENT_REBUT_BANCARI: 'Recibo bancario',
-                METODE_PAGAMENT_TARGETA_CREDIT: 'Tarjeta de crédito'
+                REBUT_BANCARI: 'Recibo bancario',
+                TARGETA_CREDIT: 'Tarjeta de crédito',
+                COST: 'Coste para la cooperativa',
+                INFO_APORTACIO: 'La aportación para ser socio/a son 100€<br/>Los 100€ se pagan una sola vez, no hay cuota anual y son retornables si te das de baja.',
+                FINALITZA_PROCES: 'Finaliza el proceso',
+                FORMULARI_NO_DISPONIBLE: 'Formulario no disponible, disculpen las moléstias.'
             })
             .translations('ca', {
                 SELECCIONA: 'Sel·lecciona',
@@ -57,8 +61,12 @@ angular
                 POBLACIO: 'Població',
                 ACCEPTO_POLITICA_PRIVACITAT: 'Accepto la <strong><a target="_blank" href="#">política de privacitat</a></strong> de Som Energia',
                 METODE_PAGAMENT: 'Mètode de pagament',
-                METODE_PAGAMENT_REBUT_BANCARI: 'Rebut bancari',
-                METODE_PAGAMENT_TARGETA_CREDIT: 'Targeta de crèdit'
+                REBUT_BANCARI: 'Rebut bancari',
+                TARGETA_CREDIT: 'Targeta de crèdit',
+                COST: 'Cost per a la cooperativa',
+                INFO_APORTACIO: 'L\'aportació per a esdevenir soci/a són 100€<br/>Els 100€ es paguen una sola vegada, no hi ha quota anual i són retornables si et dones de baixa.',
+                FINALITZA_PROCES: 'Finalitza el procés',
+                FORMULARI_NO_DISPONIBLE: 'Formulari no disponible, disculpeu les molèsties.'
             })
             .preferredLanguage('ca')
         ;
