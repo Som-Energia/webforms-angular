@@ -13,9 +13,9 @@ angular.module('newSomEnergiaWebformsApp')
                         // TODO throw get provinces exception
                   }
                 } else if (response.status === cfg.STATUS_OFFLINE) {
-                    // TODO throw server down exception
+                  $scope.showErrorDialog('API server status offline');
                 } else {
-                    // TODO throw unknow server status exception
+                  $scope.showErrorDialog('API server unknown status');
                 }
               }
         );
@@ -30,9 +30,9 @@ angular.module('newSomEnergiaWebformsApp')
                         // TODO throw get languages exception
                   }
                 } else if (response.status === cfg.STATUS_OFFLINE) {
-                    // TODO throw server down exception
+                  $scope.showErrorDialog('API server status offline');
                 } else {
-                    // TODO throw unknow server status exception
+                  $scope.showErrorDialog('API server unknown status');
                 }
               }
         );
@@ -58,9 +58,9 @@ angular.module('newSomEnergiaWebformsApp')
                             // TODO throw get municipi exception
                       }
                     } else if (response.status === cfg.STATUS_OFFLINE) {
-                        // TODO throw server down exception
+                      $scope.showErrorDialog('API server status offline');
                     } else {
-                        // TODO throw unknow server status exception
+                      $scope.showErrorDialog('API server unknown status');
                     }
                   }
             );
@@ -79,4 +79,13 @@ angular.module('newSomEnergiaWebformsApp')
             return true;
           };
 
+        // SHOW ERROR MODAL DIALOG
+        $scope.showErrorDialog = function(msg) {
+          $scope.errorMsg = msg;
+          jQuery('#api-server-offline-modal').modal({
+            backdrop: 'static',
+            keyboard: false,
+            show: true
+          });
+        };
       }]);

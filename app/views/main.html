@@ -180,5 +180,15 @@
             <button data-ng-disabled="progress.active()" data-ng-click="submit(partnerForm)" class="btn btn-default">Finalitza el procés</button>
         </div>
     </div>
-<!-- BEGIN FORM-->
+<!-- END FORM-->
 </form>
+
+<!--OFFLINE API MODAL-->
+<div id="api-server-offline-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="Webforms" data-aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-body">
+            <div class="alert alert-warning">Formulari no disponible, disculpeu les molèsties.</div>
+            <div class="alert alert-danger">ERROR: {{ errorMsg }}</div>
+        </div>
+    </div>
+</div>
