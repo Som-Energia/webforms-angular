@@ -27,7 +27,11 @@ angular
                 OBLIGATORI: 'Obligatorio',
                 IDIOMA: 'Idioma',
                 SELECCIONA_IDIOMA: 'Selecciona idioma',
-                RAO_SOCIAL: 'Razón social'
+                RAO_SOCIAL: 'Razón social',
+                PERSONA_REPRESENTANT: 'Persona representante',
+                REPETEIX_EMAIL: 'Repetir email',
+                TELEFON: 'Teléfono',
+                ADRECA: 'Dirección'
             })
             .translations('ca', {
                 SELECCIONA: 'Sel·lecciona',
@@ -36,7 +40,11 @@ angular
                 OBLIGATORI: 'Obligatori',
                 IDIOMA: 'Idioma',
                 SELECCIONA_IDIOMA: 'Sel·lecciona idioma',
-                RAO_SOCIAL: 'Raó social'
+                RAO_SOCIAL: 'Raó social',
+                PERSONA_REPRESENTANT: 'Persona representant',
+                REPETEIX_EMAIL: 'Repeteix email',
+                TELEFON: 'Telèfon',
+                ADRECA: 'Adreça'
             })
             .preferredLanguage('ca')
         ;

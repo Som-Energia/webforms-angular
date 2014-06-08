@@ -62,8 +62,8 @@
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-9">
-                    <label for="person" class="sr-only">Presona representant*:</label>
-                    <input type="text" name="person" data-ng-model="person" class="form-control" placeholder="Persona representant*" required />
+                    <label for="person" class="sr-only">{{ 'PERSONA_REPRESENTANT' | translate }}*:</label>
+                    <input type="text" name="person" data-ng-model="person" class="form-control" placeholder="{{ 'PERSONA_REPRESENTANT' | translate }}*" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.person.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
@@ -74,26 +74,26 @@
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.email1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-6">
-                    <label for="email2" class="sr-only">Repeteix email*:</label>
-                    <input type="text" name="email2" data-ng-model="email2" class="form-control" placeholder="Repeteix email*" required />
+                    <label for="email2" class="sr-only">{{ 'REPETEIX_EMAIL' | translate }}*:</label>
+                    <input type="text" name="email2" data-ng-model="email2" class="form-control" placeholder="{{ 'REPETEIX_EMAIL' | translate }}*" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.email2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-6">
-                    <label for="phone1" class="sr-only">Telèfon*:</label>
-                    <input type="text" name="phone1" data-ng-model="phone1" class="form-control" placeholder="Telèfon*" required />
+                    <label for="phone1" class="sr-only">{{ 'TELEFON' | translate }}*:</label>
+                    <input type="text" name="phone1" data-ng-model="phone1" class="form-control" placeholder="{{ 'TELEFON' | translate }}*" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.phone1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-6">
-                    <label for="phone2" class="sr-only">Telèfon 2:</label>
-                    <input type="text" name="phone2" data-ng-model="phone2" class="form-control" placeholder="Telèfon 2" />
+                    <label for="phone2" class="sr-only">{{ 'TELEFON' | translate }} 2:</label>
+                    <input type="text" name="phone2" data-ng-model="phone2" class="form-control" placeholder="{{ 'TELEFON' | translate }} 2" />
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-9">
-                    <label for="address" class="sr-only">Adreça*:</label>
-                    <input type="text" name="address" data-ng-model="address" class="form-control" placeholder="Adreça*" required />
+                    <label for="address" class="sr-only">{{ 'ADRECA' | translate }}*:</label>
+                    <input type="text" name="address" data-ng-model="address" class="form-control" placeholder="{{ 'ADRECA' | translate }}*" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.address.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-3">
