@@ -7,6 +7,7 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 // endbower
 
 /* Variables */
+$red: #F00;
 $green: #AEC122;
 $grey-light: #DFDFE0;
 $grey: #8A8990;
@@ -45,6 +46,21 @@ input[type="text"], select {
 
 input, select {
   background-color: $grey-light !important;
+  &.ng-dirty.ng-valid {
+    border-color: $green;
+  }
+  &.ng-dirty.ng-invalid {
+    border-color: $red;
+  }
+}
+
+select {
+  &.form-control {
+    &.custom-language-select {
+      float: right;
+      width: 90% !important;
+    }
+  }
 }
 
 .badge {
@@ -77,13 +93,20 @@ label {
       &.green {
         color: white;
         background-color: $grey-dark;
-        border-color: $grey-dark;
+        border-color: $grey;
         &.active {
           background-color: $green;
-          border-color: $green;
+          border-color: $grey;
         }
       }
     }
+  }
+}
+
+hr {
+  border-top: 3px solid $grey-light;
+  &.dotted {
+    border-top: 1px dashed $grey-light;
   }
 }
 

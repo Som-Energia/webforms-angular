@@ -52,11 +52,12 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.language = {};
         $scope.province = {};
         $scope.city = {};
+        $scope.messages = null;
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
 
-        // ON CHANGE SELECTED STATE
+        // ON CHANGE SELECTED PROVINCE
         $scope.updateSelectedCity = function (form) {
             // GET CITIES
             $http.get(cfg.API_BASE_URL + 'data/municipis/' + $scope.form.province.id).success(function (response) {
@@ -87,10 +88,11 @@ angular.module('newSomEnergiaWebformsApp')
                 return null;
             }
 
+            // Prepare request data
             var postData = {
                 tipuspersona: $scope.form.usertype === 'person' ? cfg.USER_TYPE_PERSON : cfg.USER_TYPE_COMPANY,
-                nom: $scope.form.social,
-                cognom: '',
+                nom: $scope.form.name,
+                cognom: $scope.form.surname,
                 dni: $scope.form.dni,
                 tel: $scope.form.phone1,
                 tel2: $scope.form.phone2,
@@ -110,7 +112,8 @@ angular.module('newSomEnergiaWebformsApp')
                             $log.log('POST form/soci/alta response recived', response);
                         } else {
                             $log.error('form/soci/alta error response recived', response);
-                            $scope.showResponseErrorDialog('POST alta soci return false state (ref.003-004)');
+                            $scope.messages = $scope.getHumanizedAPIResponse(response.data);
+//                            $scope.showResponseErrorDialog('POST alta soci return false state (ref.003-004)');
                         }
                     } else if (response.status === cfg.STATUS_OFFLINE) {
                         $scope.showErrorDialog('API server status offline (ref.002-004)');
@@ -126,10 +129,9 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.step2Ready = $scope.userTypeClicked && form.language !== undefined;
             $scope.step3Ready =
                 $scope.step2Ready &&
-                    form.cif !== undefined &&
-                    form.social !== undefined &&
+                    form.name !== undefined &&
+                    form.surname !== undefined &&
                     form.dni !== undefined &&
-                    form.person !== undefined &&
                     form.email1 !== undefined &&
                     form.email2 !== undefined &&
                     form.email1 === form.email2 &&
@@ -160,6 +162,19 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.showResponseErrorDialog = function (msg) {
             $scope.errorMsg = msg;
             jQuery('#api-server-response-modal').modal({show: true});
+        };
+
+        // GET HUMANIZED API RESPONSE
+        $scope.getHumanizedAPIResponse = function  (arrayResponse) {
+            var result = '';
+            if (arrayResponse.required_fields !== undefined) {
+                result = result; // + $translate.;
+                for (var i = 0; i < arrayResponse.required_fields.length; i++) {
+                    result = result + ' ' + arrayResponse.required_fields[i];
+                }
+            }
+
+            return result;
         };
 
     }]);
