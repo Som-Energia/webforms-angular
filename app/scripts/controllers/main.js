@@ -108,7 +108,8 @@ angular.module('newSomEnergiaWebformsApp')
                     form.postalcode !== undefined &&
                     form.province !== undefined &&
                     form.city !== undefined &&
-                    form.accept !== undefined
+                    form.accept !== undefined &&
+                    form.accept !== false
             ;
             $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready && $scope.paymentMethodClicked;
         };
