@@ -36,7 +36,7 @@
             </div>
         </div>
     </div>
-    <hr>
+    <hr data-ng-class="{green: step1Ready}">
 
     <!--SECOND STEP-->
     <div class="row">
@@ -125,7 +125,7 @@
             </div>
         </div>
     </div>
-    <hr>
+    <hr data-ng-class="{green: step2Ready}">
 
     <!--THIRD STEP-->
     <div class="row">
@@ -161,10 +161,10 @@
             </div>
         </div>
     </div>
-
+    <hr data-ng-class="{green: step3Ready}">
     <div class="row">
         <div class="col-xs-12">
-            <button data-ng-disabled="!submitReady" data-ng-click="submit(partnerForm)" class="btn btn-default green">{{ 'FINALITZA_PROCES' | translate }}</button>
+            <button data-ng-disabled="!submitReady" data-ng-click="submit(partnerForm)" class="btn btn-default green pull-right">{{ 'FINALITZA_PROCES' | translate }}</button>
         </div>
     </div>
 <!-- END FORM-->

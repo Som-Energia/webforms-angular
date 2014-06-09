@@ -105,6 +105,9 @@ label {
 
 hr {
   border-top: 3px solid $grey-light;
+  &.green {
+    border-top: 3px solid $green;
+  }
   &.dotted {
     border-top: 1px dashed $grey-light;
   }
