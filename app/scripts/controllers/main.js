@@ -114,7 +114,6 @@ angular.module('newSomEnergiaWebformsApp')
                         } else {
                             $log.error('form/soci/alta error response recived', response);
                             $scope.messages = $scope.getHumanizedAPIResponse(response.data);
-//                            $scope.showResponseErrorDialog('POST alta soci return false state (ref.003-004)');
                         }
                     } else if (response.status === cfg.STATUS_OFFLINE) {
                         $scope.showErrorDialog('API server status offline (ref.002-004)');
