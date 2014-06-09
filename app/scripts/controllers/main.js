@@ -85,26 +85,27 @@ angular.module('newSomEnergiaWebformsApp')
 
             // If form is invalid, return and let AngularJS show validation errors.
             if (form.$invalid) {
-                //return null;
+                return null;
             }
 
             var postData = {
-                tipuspersona: 'fisica',
-                nom: 'MyName',
-                cognom: 'MySurname',
-                dni: 'MyDNI',
-                tel: 'MyTel',
-                tel2: '',
-                email: 'david@flux.cat',
-                cp: 43870,
-                provincia: 1,
-                adreca: 'MyAddress',
-                municipi: 1,
-                idioma: 1,
-                payment_method: 'error'
+                tipuspersona: $scope.form.usertype === 'person' ? cfg.USER_TYPE_PERSON : cfg.USER_TYPE_COMPANY,
+                nom: $scope.form.social,
+                cognom: '',
+                dni: $scope.form.dni,
+                tel: $scope.form.phone1,
+                tel2: $scope.form.phone2,
+                email: $scope.form.email1,
+                cp: $scope.form.postalcode,
+                provincia: $scope.form.province.id,
+                adreca: $scope.form.address,
+                municipi: $scope.form.city.id,
+                idioma: $scope.form.language.id,
+                payment_method: $scope.form.usertype === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD
             };
+            $log.log(postData);
 
-            $http({method: 'POST', url: cfg.API_BASE_URL + 'form/soci/alta', data: postData, headers: { 'Content-Type': 'application/x-www-form-urlencoded' }}).success(function (response) {
+            $http.post(cfg.API_BASE_URL + 'form/soci/alta', postData).success(function (response) {
                     if (response.status === cfg.STATUS_ONLINE) {
                         if (response.state === cfg.STATE_TRUE) {
                             $log.log('POST form/soci/alta response recived', response);

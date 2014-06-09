@@ -142,10 +142,10 @@
                     <span>{{ 'METODE_PAGAMENT' | translate }}&nbsp;</span>
                     <div class="btn-group" data-toggle="buttons" data-ng-click="firstPaymentMethodClick(form)">
                         <label for="paymentmethod1" class="btn btn-default green" data-ng-disabled="!step3Ready">
-                            <input type="radio" name="paymentmethod1" id="paymentmethod1" value="bankaccount"> {{ 'REBUT_BANCARI' | translate }}
+                            <input type="radio" name="paymentmethod1" id="paymentmethod1" data-ng-model="form.payment" value="bankaccount"> {{ 'REBUT_BANCARI' | translate }}
                         </label>
                         <label for="paymentmethod2" class="btn btn-default green" data-ng-disabled="!step3Ready">
-                            <input type="radio" name="paymentmethod2" id="paymentmethod2" value="creditcard"> {{ 'TARGETA_CREDIT' | translate }}
+                            <input type="radio" name="paymentmethod2" id="paymentmethod2" data-ng-model="form.payment" value="creditcard"> {{ 'TARGETA_CREDIT' | translate }}
                         </label>
                     </div>
                 </div>
@@ -169,7 +169,7 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <button data-ng-disabled="submitReady" data-ng-click="submit(partnerForm)" class="btn btn-default green">{{ 'FINALITZA_PROCES' | translate }}</button>
+            <button data-ng-disabled="!submitReady" data-ng-click="submit(partnerForm)" class="btn btn-default green">{{ 'FINALITZA_PROCES' | translate }}</button>
         </div>
     </div>
 <!-- END FORM-->

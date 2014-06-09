@@ -8,6 +8,12 @@ angular
         'ngRoute',
         'pascalprecht.translate'
     ])
+    .config(function ($httpProvider) {
+        $httpProvider.defaults.headers.post = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
+        $httpProvider.defaults.transformRequest = function (data) {
+            return data === undefined ? data : jQuery.param(data);
+        };
+    })
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
@@ -80,6 +86,10 @@ angular
         STATUS_OFFLINE: 'OFFLINE',
         STATUS_ONLINE: 'ONLINE',
         STATE_TRUE: true,
-        STATE_FALSE: false
+        STATE_FALSE: false,
+        PAYMENT_METHOD_BANK_ACCOUNT: 'rebut',
+        PAYMENT_METHOD_CREDIT_CARD: 'tpv',
+        USER_TYPE_PERSON: 'fisica',
+        USER_TYPE_COMPANY: 'juridica'
     })
 ;
