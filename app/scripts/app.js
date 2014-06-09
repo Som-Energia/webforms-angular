@@ -96,4 +96,36 @@ angular
         USER_TYPE_PERSON: 'fisica',
         USER_TYPE_COMPANY: 'juridica'
     })
+    .directive('radioButtonUser', function() {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function(scope, element, attrs) {
+                element.bind('click', function () {
+                    jQuery('#form-user-type1').removeClass('active');
+                    jQuery('#form-user-type2').removeClass('active');
+                    jQuery('#' + element.id).addClass('active');
+                    scope.$apply(function () {
+                        scope.form.usertype = attrs.value;
+                    });
+                });
+            }
+        };
+    })
+    .directive('radioButtonPayment', function() {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function(scope, element, attrs) {
+                element.bind('click', function () {
+                    jQuery('#form-payment-type1').removeClass('active');
+                    jQuery('#form-payment-type2').removeClass('active');
+                    jQuery('#' + element.id).addClass('active');
+                    scope.$apply(function () {
+                        scope.form.payment = attrs.value;
+                    });
+                });
+            }
+        };
+    })
 ;

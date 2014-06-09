@@ -89,9 +89,6 @@ angular.module('newSomEnergiaWebformsApp')
             }
 
             // Prepare request data
-            $log.log('Prepareed input form', form);
-            $log.log('Prepare data form.usertype', $scope.form.usertype);
-            $log.log('Prepare data form.payment', $scope.form.payment);
             var postData = {
                 tipuspersona: $scope.form.usertype === 'person' ? cfg.USER_TYPE_PERSON : cfg.USER_TYPE_COMPANY,
                 nom: $scope.form.name,
@@ -129,8 +126,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON CHANGE FORM
         $scope.formListener = function (form) {
-            $log.log('form.usertype', $scope.form.usertype);
-            $log.log('form.payment', $scope.form.payment);
             $scope.step2Ready = $scope.userTypeClicked && form.language !== undefined;
             $scope.step3Ready =
                 $scope.step2Ready &&
