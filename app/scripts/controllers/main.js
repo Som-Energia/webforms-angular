@@ -10,12 +10,12 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.provinces = response.data.provincies;
                     } else {
                         $log.error('data/provinces error response recived', response);
-                        $scope.showErrorDialog('GET provincies return false state');
+                        $scope.showErrorDialog('GET provincies return false state (ref.003-001)');
                     }
                 } else if (response.status === cfg.STATUS_OFFLINE) {
-                    $scope.showErrorDialog('API server status offline');
+                    $scope.showErrorDialog('API server status offline (ref.002-001)');
                 } else {
-                    $scope.showErrorDialog('API server unknown status');
+                    $scope.showErrorDialog('API server unknown status (ref.001-001)');
                 }
             }
         );
@@ -27,20 +27,26 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.languages = response.data.idiomes;
                     } else {
                         $log.log('data/idiomes error response recived', response);
-                        $scope.showErrorDialog('GET idiomes return false state');
+                        $scope.showErrorDialog('GET idiomes return false state (ref.003-002)');
                     }
                 } else if (response.status === cfg.STATUS_OFFLINE) {
-                    $scope.showErrorDialog('API server status offline');
+                    $scope.showErrorDialog('API server status offline (ref.002-002)');
                 } else {
-                    $scope.showErrorDialog('API server unknown status');
+                    $scope.showErrorDialog('API server unknown status (ref.001-002)');
                 }
             }
         );
 
         // INIT
         $scope.currentStep = 1;
+        $scope.step1Ready = true;
+        $scope.step2Ready = false;
+        $scope.step3Ready = false;
         $scope.submitReady = false;
         $scope.submitted = false;
+        $scope.userTypeClicked = false;
+        $scope.paymentMethodClicked = false;
+        $scope.form = {};
         $scope.languages = [];
         $scope.provinces = [];
         $scope.cities = [];
@@ -60,12 +66,12 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.cities = response.data.municipis;
                         } else {
                             $log.log('data/municipis/' + $scope.province.id + ' response recived', response);
-                            $scope.showErrorDialog('GET municipis return false state');
+                            $scope.showErrorDialog('GET municipis return false state (ref.003-003)');
                         }
                     } else if (response.status === cfg.STATUS_OFFLINE) {
-                        $scope.showErrorDialog('API server status offline');
+                        $scope.showErrorDialog('API server status offline (ref.002-003)');
                     } else {
-                        $scope.showErrorDialog('API server unknown status');
+                        $scope.showErrorDialog('API server unknown status (ref.001-003)');
                     }
                 }
             );
@@ -84,11 +90,27 @@ angular.module('newSomEnergiaWebformsApp')
             return true;
         };
 
+        // ON CHANGE FORM
+        $scope.formListener = function (form) {
+            $log.log('formListener', form);
+            $scope.step2Ready = $scope.userTypeClicked && form.language !== undefined;
+            $scope.step3Ready = $scope.step2Ready && form.cif !== undefined;
+            $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready && $scope.paymentMethodClicked;
+        };
+        $scope.firstUserTypeClick = function (form) {
+            $scope.userTypeClicked = true;
+            $scope.formListener(form);
+        };
+        $scope.firstPaymentMethodClick = function (form) {
+            $scope.paymentMethodClicked = true;
+            $scope.formListener(form);
+        };
+
         // SHOW ERROR MODAL DIALOG
         $scope.showErrorDialog = function (msg) {
             $scope.errorMsg = msg;
             jQuery('#api-server-offline-modal').modal({
-//            backdrop: 'static', TODO uncomment this
+                backdrop: 'static',
                 keyboard: false,
                 show: true
             });
