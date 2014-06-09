@@ -23,14 +23,14 @@ module.exports = function (grunt) {
         sftp: {
             deploy: {
                 files: {
-                    "./": "dist/**"
+                    './': 'dist/**'
                 },
                 options: {
                     path: '/home/flux/webapps/somenergia-webforms/',
                     host: '<%= secret.host %>',
                     username: '<%= secret.username %>',
                     password: '<%= secret.password %>',
-                    srcBasePath: "dist/",
+                    srcBasePath: 'dist/',
                     createDirectories: true,
                     showProgress: true
                 }

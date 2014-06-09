@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('MainCtrl', ['cfg', '$scope', '$http', '$log', function (cfg, $scope, $http, $log) {
+    .controller('MainCtrl', ['cfg', '$scope', '$http', '$routeParams', '$translate', '$log', function (cfg, $scope, $http, $routeParams, $translate, $log) {
 
         // GET STATES
         $http.get(cfg.API_BASE_URL + 'data/provincies').success(function (response) {
@@ -47,6 +47,10 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.language = {};
         $scope.province = {};
         $scope.city = {};
+        if ($routeParams.locale !== undefined) {
+            $translate.use($routeParams.locale);
+        }
+        $log.log('locale route param', $routeParams.locale);
 
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function () {
