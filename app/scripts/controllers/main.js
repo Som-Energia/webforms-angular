@@ -50,7 +50,6 @@ angular.module('newSomEnergiaWebformsApp')
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
-        $log.log('locale route param', $routeParams.locale);
 
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function () {
