@@ -26,7 +26,7 @@ angular.module('newSomEnergiaWebformsApp')
                     if (response.state === cfg.STATE_TRUE) {
                         $scope.languages = response.data.idiomes;
                     } else {
-                        $log.log('data/idiomes error response recived', response);
+                        $log.error('data/idiomes error response recived', response);
                         $scope.showErrorDialog('GET idiomes return false state (ref.003-002)');
                     }
                 } else if (response.status === cfg.STATUS_OFFLINE) {
@@ -45,7 +45,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.submitReady = false;
         $scope.submitted = false;
         $scope.userTypeClicked = false;
-        $scope.paymentMethodClicked = false;
         $scope.form = {};
         $scope.languages = [];
         $scope.provinces = [];
@@ -65,7 +64,7 @@ angular.module('newSomEnergiaWebformsApp')
                         if (response.state === cfg.STATE_TRUE) {
                             $scope.cities = response.data.municipis;
                         } else {
-                            $log.log('data/municipis/' + $scope.form.province.id + ' response recived', response);
+                            $log.error('data/municipis/' + $scope.form.province.id + ' response recived', response);
                             $scope.showErrorDialog('GET municipis return false state (ref.003-003)');
                         }
                     } else if (response.status === cfg.STATUS_OFFLINE) {
@@ -103,24 +102,21 @@ angular.module('newSomEnergiaWebformsApp')
                 idioma: $scope.form.language.id,
                 payment_method: $scope.form.usertype === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD
             };
-            $log.log(postData);
+            $log.log(postData); // TODO remove this line
 
             $http.post(cfg.API_BASE_URL + 'form/soci/alta', postData).success(function (response) {
                     if (response.status === cfg.STATUS_ONLINE) {
                         if (response.state === cfg.STATE_TRUE) {
                             $log.log('POST form/soci/alta response recived', response);
                         } else {
-                            $log.log('form/soci/alta error response recived', response);
-                            $scope.showErrorDialog('POST alta soci return false state (ref.003-004)');
+                            $log.error('form/soci/alta error response recived', response);
+                            $scope.showResponseErrorDialog('POST alta soci return false state (ref.003-004)');
                         }
                     } else if (response.status === cfg.STATUS_OFFLINE) {
                         $scope.showErrorDialog('API server status offline (ref.002-004)');
                     } else {
                         $scope.showErrorDialog('API server unknown status (ref.001-004)');
                     }
-                }
-            ).error(function () {
-                    $log.log('error in ajax form/soci/alta submission');
                 }
             );
         };
@@ -136,6 +132,7 @@ angular.module('newSomEnergiaWebformsApp')
                     form.person !== undefined &&
                     form.email1 !== undefined &&
                     form.email2 !== undefined &&
+                    form.email1 === form.email2 &&
                     form.phone1 !== undefined &&
                     form.address !== undefined &&
                     form.postalcode !== undefined &&
@@ -144,18 +141,14 @@ angular.module('newSomEnergiaWebformsApp')
                     form.accept !== undefined &&
                     form.accept !== false
             ;
-            $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready && $scope.paymentMethodClicked;
+            $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready;
         };
         $scope.firstUserTypeClick = function (form) {
             $scope.userTypeClicked = true;
             $scope.formListener(form);
         };
-        $scope.firstPaymentMethodClick = function (form) {
-            $scope.paymentMethodClicked = true;
-            $scope.formListener(form);
-        };
 
-        // SHOW ERROR MODAL DIALOG
+        // SHOW MODAL DIALOGS
         $scope.showErrorDialog = function (msg) {
             $scope.errorMsg = msg;
             jQuery('#api-server-offline-modal').modal({
@@ -164,4 +157,9 @@ angular.module('newSomEnergiaWebformsApp')
                 show: true
             });
         };
+        $scope.showResponseErrorDialog = function (msg) {
+            $scope.errorMsg = msg;
+            jQuery('#api-server-response-modal').modal({show: true});
+        };
+
     }]);

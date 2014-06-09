@@ -140,9 +140,9 @@
             <div class="row">
                 <div class="form-group col-xs-12">
                     <span>{{ 'METODE_PAGAMENT' | translate }}&nbsp;</span>
-                    <div class="btn-group" data-toggle="buttons" data-ng-click="firstPaymentMethodClick(form)">
-                        <label for="paymentmethod1" class="btn btn-default green" data-ng-disabled="!step3Ready">
-                            <input type="radio" name="paymentmethod1" id="paymentmethod1" data-ng-model="form.payment" value="bankaccount"> {{ 'REBUT_BANCARI' | translate }}
+                    <div class="btn-group" data-toggle="buttons">
+                        <label for="paymentmethod1" class="btn btn-default green active" data-ng-disabled="!step3Ready">
+                            <input type="radio" name="paymentmethod1" id="paymentmethod1" data-ng-model="form.payment" value="bankaccount" checked> {{ 'REBUT_BANCARI' | translate }}
                         </label>
                         <label for="paymentmethod2" class="btn btn-default green" data-ng-disabled="!step3Ready">
                             <input type="radio" name="paymentmethod2" id="paymentmethod2" data-ng-model="form.payment" value="creditcard"> {{ 'TARGETA_CREDIT' | translate }}
@@ -181,6 +181,15 @@
         <div class="modal-body">
             <div class="alert alert-warning"><h3><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;{{ 'FORMULARI_NO_DISPONIBLE' | translate }}</h3></div>
             <div class="alert alert-danger">ERROR: {{ errorMsg }}</div>
+        </div>
+    </div>
+</div>
+
+<!--API RESPONSE ERRORS MODAL-->
+<div id="api-server-response-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="WebformErrors" data-aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-body">
+            <div class="alert alert-danger"><h3>{{ errorMsg }}</h3></div>
         </div>
     </div>
 </div>
