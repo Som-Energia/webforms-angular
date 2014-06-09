@@ -85,15 +85,47 @@ angular.module('newSomEnergiaWebformsApp')
 
             // If form is invalid, return and let AngularJS show validation errors.
             if (form.$invalid) {
-                return null;
+                //return null;
             }
 
-            return true;
+            var postData = {
+                tipuspersona: 'fisica',
+                nom: 'MyName',
+                cognom: 'MySurname',
+                dni: 'MyDNI',
+                tel: 'MyTel',
+                tel2: '',
+                email: 'david@flux.cat',
+                cp: 43870,
+                provincia: 1,
+                adreca: 'MyAddress',
+                municipi: 1,
+                idioma: 1,
+                payment_method: 'error'
+            };
+
+            $http({method: 'POST', url: cfg.API_BASE_URL + 'form/soci/alta', data: postData}).success(function (response) {
+                    if (response.status === cfg.STATUS_ONLINE) {
+                        if (response.state === cfg.STATE_TRUE) {
+                            $log.log('POST form/soci/alta response recived', response);
+                        } else {
+                            $log.log('form/soci/alta error response recived', response);
+                            $scope.showErrorDialog('POST alta soci return false state (ref.003-004)');
+                        }
+                    } else if (response.status === cfg.STATUS_OFFLINE) {
+                        $scope.showErrorDialog('API server status offline (ref.002-004)');
+                    } else {
+                        $scope.showErrorDialog('API server unknown status (ref.001-004)');
+                    }
+                }
+            ).error(function () {
+                    $log.log('error in ajax form/soci/alta submission');
+                }
+            );
         };
 
         // ON CHANGE FORM
         $scope.formListener = function (form) {
-            $log.log('formListener', form);
             $scope.step2Ready = $scope.userTypeClicked && form.language !== undefined;
             $scope.step3Ready =
                 $scope.step2Ready &&

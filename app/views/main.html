@@ -108,12 +108,14 @@
                     <select class="form-control" name="province" data-ng-model="form.province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity(form)" data-ng-disabled="!step2Ready" required>
                         <option value="">{{ 'PROVINCIA' | translate }}*</option>
                     </select>
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.province.$invalid">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-6">
                     <label for="city" class="sr-only">{{ 'POBLACIO' | translate }}</label>
                     <select class="form-control" name="city" data-ng-model="form.city" data-ng-options="city.name for city in cities" data-ng-change="formListener(form)" data-ng-disabled="!step2Ready" required >
                         <option value="">{{ 'POBLACIO' | translate }}*</option>
                     </select>
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.city.$invalid">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
@@ -167,7 +169,7 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <button data-ng-disabled="!submitReady" data-ng-click="submit(partnerForm)" class="btn btn-default green">{{ 'FINALITZA_PROCES' | translate }}</button>
+            <button data-ng-disabled="submitReady" data-ng-click="submit(partnerForm)" class="btn btn-default green">{{ 'FINALITZA_PROCES' | translate }}</button>
         </div>
     </div>
 <!-- END FORM-->
