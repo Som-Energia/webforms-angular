@@ -46,72 +46,72 @@
             <div class="row">
                 <div class="form-group col-xs-3">
                     <label for="cif" class="sr-only">CIF*:</label>
-                    <input type="text" name="cif" data-ng-model="form.cif" class="form-control" placeholder="CIF*" data-ng-change="formListener(form)" required />
+                    <input type="text" name="cif" data-ng-model="form.cif" class="form-control" placeholder="CIF*" data-ng-change="formListener(form)" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.cif.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-9">
                     <label for="reason" class="sr-only">{{ 'RAO_SOCIAL' | translate }}*:</label>
-                    <input type="text" name="cif" data-ng-model="reason" class="form-control" placeholder="{{ 'RAO_SOCIAL' | translate }}*" required />
+                    <input type="text" name="cif" data-ng-model="reason" class="form-control" placeholder="{{ 'RAO_SOCIAL' | translate }}*" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.reason.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-3">
                     <label for="dni" class="sr-only">DNI/NIE*:</label>
-                    <input type="text" name="dni" data-ng-model="dni" class="form-control" placeholder="DNI/NIE*" required />
+                    <input type="text" name="dni" data-ng-model="dni" class="form-control" placeholder="DNI/NIE*" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-9">
                     <label for="person" class="sr-only">{{ 'PERSONA_REPRESENTANT' | translate }}*:</label>
-                    <input type="text" name="person" data-ng-model="person" class="form-control" placeholder="{{ 'PERSONA_REPRESENTANT' | translate }}*" required />
+                    <input type="text" name="person" data-ng-model="person" class="form-control" placeholder="{{ 'PERSONA_REPRESENTANT' | translate }}*" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.person.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-6">
                     <label for="email1" class="sr-only">Email*:</label>
-                    <input type="text" name="email1" data-ng-model="email1" class="form-control" placeholder="Email*" required />
+                    <input type="text" name="email1" data-ng-model="email1" class="form-control" placeholder="Email*" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.email1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-6">
                     <label for="email2" class="sr-only">{{ 'REPETEIX_EMAIL' | translate }}*:</label>
-                    <input type="text" name="email2" data-ng-model="email2" class="form-control" placeholder="{{ 'REPETEIX_EMAIL' | translate }}*" required />
+                    <input type="text" name="email2" data-ng-model="email2" class="form-control" placeholder="{{ 'REPETEIX_EMAIL' | translate }}*" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.email2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-6">
                     <label for="phone1" class="sr-only">{{ 'TELEFON' | translate }}*:</label>
-                    <input type="text" name="phone1" data-ng-model="phone1" class="form-control" placeholder="{{ 'TELEFON' | translate }}*" required />
+                    <input type="text" name="phone1" data-ng-model="phone1" class="form-control" placeholder="{{ 'TELEFON' | translate }}*" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.phone1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-6">
                     <label for="phone2" class="sr-only">{{ 'TELEFON' | translate }} 2:</label>
-                    <input type="text" name="phone2" data-ng-model="phone2" class="form-control" placeholder="{{ 'TELEFON' | translate }} 2" />
+                    <input type="text" name="phone2" data-ng-model="phone2" class="form-control" placeholder="{{ 'TELEFON' | translate }} 2" data-ng-disabled="!step2Ready"/>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-9">
                     <label for="address" class="sr-only">{{ 'ADRECA' | translate }}*:</label>
-                    <input type="text" name="address" data-ng-model="address" class="form-control" placeholder="{{ 'ADRECA' | translate }}*" required />
+                    <input type="text" name="address" data-ng-model="address" class="form-control" placeholder="{{ 'ADRECA' | translate }}*" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.address.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-3">
                     <label for="postalcode" class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
-                    <input type="text" name="postalcode" data-ng-model="postalcode" class="form-control" placeholder="{{ 'CODI_POSTAL' | translate }}*" />
+                    <input type="text" name="postalcode" data-ng-model="postalcode" class="form-control" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.postalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-6">
                     <label for="province" class="sr-only">{{ 'PROVINCIA' | translate }}</label>
-                    <select class="form-control" name="province" required="required" data-ng-model="province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity()">
+                    <select class="form-control" name="province" data-ng-model="province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity()" data-ng-disabled="!step2Ready" required>
                         <option value="">{{ 'PROVINCIA' | translate }}*</option>
                     </select>
                 </div>
                 <div class="form-group col-xs-6">
                     <label for="city" class="sr-only">{{ 'POBLACIO' | translate }}</label>
-                    <select class="form-control" name="city" required="required" data-ng-model="city" data-ng-options="city.name for city in cities">
+                    <select class="form-control" name="city" data-ng-model="city" data-ng-options="city.name for city in cities" data-ng-disabled="!step2Ready" required >
                         <option value="">{{ 'POBLACIO' | translate }}*</option>
                     </select>
                 </div>
@@ -119,7 +119,7 @@
             <div class="row">
                 <div class="form-group checkbox col-xs-12">
                     <label for="accept">
-                        <input name="accept" type="checkbox" value="accept" required />
+                        <input name="accept" type="checkbox" value="accept" data-ng-disabled="!step2Ready" required />
                         <span data-ng-bind-html="'ACCEPTO_POLITICA_PRIVACITAT' | translate"></span>
                     </label>
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
@@ -140,10 +140,10 @@
                     <span>{{ 'METODE_PAGAMENT' | translate }}&nbsp;</span>
                     <div class="btn-group" data-toggle="buttons" data-ng-click="firstPaymentMethodClick(form)">
                         <label for="paymentmethod1" class="btn btn-default green">
-                            <input type="radio" name="paymentmethod1" id="paymentmethod1" value="bankaccount"> {{ 'REBUT_BANCARI' | translate }}
+                            <input type="radio" name="paymentmethod1" id="paymentmethod1" value="bankaccount" data-ng-disabled="!step3Ready"> {{ 'REBUT_BANCARI' | translate }}
                         </label>
                         <label for="paymentmethod2" class="btn btn-default green">
-                            <input type="radio" name="paymentmethod2" id="paymentmethod2" value="creditcard"> {{ 'TARGETA_CREDIT' | translate }}
+                            <input type="radio" name="paymentmethod2" id="paymentmethod2" value="creditcard" data-ng-disabled="!step3Ready"> {{ 'TARGETA_CREDIT' | translate }}
                         </label>
                     </div>
                 </div>
