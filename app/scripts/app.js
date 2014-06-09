@@ -24,6 +24,14 @@ angular
                 templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
+            .when('/:locale/soci', {
+                templateUrl: 'views/main.html',
+                controller: 'MainCtrl'
+            })
+            .when('/:locale/contractacio', {
+                templateUrl: 'views/order.html',
+                controller: 'OrderCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
