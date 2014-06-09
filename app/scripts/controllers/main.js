@@ -95,14 +95,14 @@ angular.module('newSomEnergiaWebformsApp')
                 cognom: $scope.form.surname,
                 dni: $scope.form.dni,
                 tel: $scope.form.phone1,
-                tel2: $scope.form.phone2,
+                tel2: $scope.form.phone2 === undefined ? '' : $scope.form.phone2,
                 email: $scope.form.email1,
                 cp: $scope.form.postalcode,
                 provincia: $scope.form.province.id,
                 adreca: $scope.form.address,
                 municipi: $scope.form.city.id,
-                idioma: $scope.form.language.id,
-                payment_method: $scope.form.usertype === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD
+                idioma: $scope.form.language.code,
+                payment_method: $scope.form.payment === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD
             };
             $log.log(postData); // TODO remove this line
 
