@@ -58,14 +58,14 @@ angular.module('newSomEnergiaWebformsApp')
         }
 
         // ON CHANGE SELECTED STATE
-        $scope.updateSelectedCity = function () {
+        $scope.updateSelectedCity = function (form) {
             // GET CITIES
-            $http.get(cfg.API_BASE_URL + 'data/municipis/' + $scope.province.id).success(function (response) {
+            $http.get(cfg.API_BASE_URL + 'data/municipis/' + $scope.form.province.id).success(function (response) {
                     if (response.status === cfg.STATUS_ONLINE) {
                         if (response.state === cfg.STATE_TRUE) {
                             $scope.cities = response.data.municipis;
                         } else {
-                            $log.log('data/municipis/' + $scope.province.id + ' response recived', response);
+                            $log.log('data/municipis/' + $scope.form.province.id + ' response recived', response);
                             $scope.showErrorDialog('GET municipis return false state (ref.003-003)');
                         }
                     } else if (response.status === cfg.STATUS_OFFLINE) {
@@ -75,6 +75,7 @@ angular.module('newSomEnergiaWebformsApp')
                     }
                 }
             );
+            $scope.formListener(form);
         };
 
         // ON SUBMIT FORM
@@ -94,7 +95,21 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.formListener = function (form) {
             $log.log('formListener', form);
             $scope.step2Ready = $scope.userTypeClicked && form.language !== undefined;
-            $scope.step3Ready = $scope.step2Ready && form.cif !== undefined;
+            $scope.step3Ready =
+                $scope.step2Ready &&
+                    form.cif !== undefined &&
+                    form.social !== undefined &&
+                    form.dni !== undefined &&
+                    form.person !== undefined &&
+                    form.email1 !== undefined &&
+                    form.email2 !== undefined &&
+                    form.phone1 !== undefined &&
+                    form.address !== undefined &&
+                    form.postalcode !== undefined &&
+                    form.province !== undefined &&
+                    form.city !== undefined &&
+                    form.accept !== undefined
+            ;
             $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready && $scope.paymentMethodClicked;
         };
         $scope.firstUserTypeClick = function (form) {
