@@ -53,6 +53,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.province = {};
         $scope.city = {};
         $scope.messages = null;
+        $scope.form.payment = 'bankaccount';
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
