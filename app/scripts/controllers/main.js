@@ -89,6 +89,9 @@ angular.module('newSomEnergiaWebformsApp')
             }
 
             // Prepare request data
+            $log.log('Prepareed input form', form);
+            $log.log('Prepare data form.usertype', $scope.form.usertype);
+            $log.log('Prepare data form.payment', $scope.form.payment);
             var postData = {
                 tipuspersona: $scope.form.usertype === 'person' ? cfg.USER_TYPE_PERSON : cfg.USER_TYPE_COMPANY,
                 nom: $scope.form.name,
@@ -126,6 +129,8 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON CHANGE FORM
         $scope.formListener = function (form) {
+            $log.log('form.usertype', $scope.form.usertype);
+            $log.log('form.payment', $scope.form.payment);
             $scope.step2Ready = $scope.userTypeClicked && form.language !== undefined;
             $scope.step3Ready =
                 $scope.step2Ready &&
@@ -159,16 +164,12 @@ angular.module('newSomEnergiaWebformsApp')
                 show: true
             });
         };
-        $scope.showResponseErrorDialog = function (msg) {
-            $scope.errorMsg = msg;
-            jQuery('#api-server-response-modal').modal({show: true});
-        };
 
         // GET HUMANIZED API RESPONSE
         $scope.getHumanizedAPIResponse = function  (arrayResponse) {
             var result = '';
             if (arrayResponse.required_fields !== undefined) {
-                result = result; // + $translate.;
+                result = result + 'ERROR:'; // + $translate.;
                 for (var i = 0; i < arrayResponse.required_fields.length; i++) {
                     result = result + ' ' + arrayResponse.required_fields[i];
                 }
