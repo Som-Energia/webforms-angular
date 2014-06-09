@@ -21,12 +21,12 @@ module.exports = function (grunt) {
         // Deploy settings
         secret: grunt.file.readJSON('secret.json'),
         sftp: {
-            deploy: {
+            production: {
                 files: {
                     './': 'dist/**'
                 },
                 options: {
-                    path: '/home/flux/webapps/somenergia-webforms/',
+                    path: '<%= secret.path %>',
                     host: '<%= secret.host %>',
                     username: '<%= secret.username %>',
                     password: '<%= secret.password %>',

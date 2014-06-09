@@ -104,7 +104,7 @@ angular.module('newSomEnergiaWebformsApp')
                 payment_method: 'error'
             };
 
-            $http({method: 'POST', url: cfg.API_BASE_URL + 'form/soci/alta', data: postData}).success(function (response) {
+            $http({method: 'POST', url: cfg.API_BASE_URL + 'form/soci/alta', data: postData, headers: { 'Content-Type': 'application/x-www-form-urlencoded' }}).success(function (response) {
                     if (response.status === cfg.STATUS_ONLINE) {
                         if (response.state === cfg.STATE_TRUE) {
                             $log.log('POST form/soci/alta response recived', response);
