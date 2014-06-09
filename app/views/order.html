@@ -1,9 +1,5 @@
 <!--GLOBAL MESSAGES-->
-<div class="row">
-    <div class="col-xs-12">
-        <div class="alert alert-danger" data-ng-show="messages">{{ messages }}</div>
-    </div>
-</div>
+<div class="row" data-ng-include data-src="'views/common/global-messages.html'"></div>
 
 <!--HEADER-->
 <div class="row">
@@ -31,6 +27,11 @@
         </div>
     </div>
 </form>
+
+<!--OFFLINE API MODAL-->
+<div id="api-server-offline-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="Webforms" data-aria-hidden="true">
+    <div class="modal-dialog modal-lg" data-ng-include data-src="'views/common/offline-api-modal.html'"></div>
+</div>
 
 <!--INITILIZE ONLOAD-->
 <script type="text/javascript">
