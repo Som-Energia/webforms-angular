@@ -73,6 +73,9 @@ select {
   &.current {
     background-color: $green;
   }
+  &.small {
+    font-size: 14px;
+  }
 }
 
 button {
@@ -82,6 +85,11 @@ button {
         color: white;
         background-color: $green;
         border-color: $green;
+      }
+      &.grey {
+        color: white;
+        background-color: $grey-dark;
+        border-color: $grey;
       }
     }
   }
