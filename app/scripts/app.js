@@ -1,7 +1,6 @@
 'use strict';
 
-angular
-    .module('newSomEnergiaWebformsApp', [
+angular.module('newSomEnergiaWebformsApp', [
         'ngCookies',
         'ngResource',
         'ngSanitize',
@@ -65,7 +64,9 @@ angular
                 FORMULARI_NO_DISPONIBLE: 'Formulario no disponible, disculpen las moléstias.',
                 INVALID: 'Inválido',
                 EMAIL_NO_IGUALS: 'Emails diferentes',
-                REGISTRE_EXISTENT: 'Este registro ya existe'
+                REGISTRE_EXISTENT: 'Este registro ya existe',
+                REGISTRE_OK: 'Felicidades!',
+                REGISTRE_OK_MSG: 'Has completado el registro correctamente'
             })
             .translations('ca', {
                 SELECCIONA: 'Sel·lecciona',
@@ -94,7 +95,9 @@ angular
                 FORMULARI_NO_DISPONIBLE: 'Formulari no disponible, disculpeu les molèsties.',
                 INVALID: 'Invàlid',
                 EMAIL_NO_IGUALS: 'Emails diferents',
-                REGISTRE_EXISTENT: 'Aquest registre ja existeix'
+                REGISTRE_EXISTENT: 'Aquest registre ja existeix',
+                REGISTRE_OK: 'Felicitats!',
+                REGISTRE_OK_MSG: 'Has completat el registre correctament'
             })
             .preferredLanguage('ca')
         ;

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('MainCtrl', ['cfg', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$log', function (cfg, $scope, $http, $routeParams, $translate, $timeout, $log) {
+    .controller('MainCtrl', ['ajaxHandler', 'cfg', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$log', function (ajaxHandler, cfg, $scope, $http, $routeParams, $translate, $timeout, $log) {
 
         // GET STATES
         $http.get(cfg.API_BASE_URL + 'data/provincies').success(function (response) {
@@ -21,21 +21,25 @@ angular.module('newSomEnergiaWebformsApp')
         );
 
         // GET LANGUAGES
-        $http.get(cfg.API_BASE_URL + 'data/idiomes').success(function (response) {
-                if (response.status === cfg.STATUS_ONLINE) {
-                    if (response.state === cfg.STATE_TRUE) {
-                        $scope.languages = response.data.idiomes;
-                    } else {
-                        $log.error('data/idiomes error response recived', response);
-                        $scope.showErrorDialog('GET idiomes return false state (ref.003-002)');
-                    }
-                } else if (response.status === cfg.STATUS_OFFLINE) {
-                    $scope.showErrorDialog('API server status offline (ref.002-002)');
-                } else {
-                    $scope.showErrorDialog('API server unknown status (ref.001-002)');
-                }
-            }
-        );
+        var result = ajaxHandler.getRequest(cfg.API_BASE_URL + 'data/idiomes', '002');
+        if (result !== null) {
+            $scope.languages = result.idiomes;
+        }
+//        $http.get(cfg.API_BASE_URL + 'data/idiomes').success(function (response) {
+//                if (response.status === cfg.STATUS_ONLINE) {
+//                    if (response.state === cfg.STATE_TRUE) {
+//                        $scope.languages = response.data.idiomes;
+//                    } else {
+//                        $log.error('data/idiomes error response recived', response);
+//                        $scope.showErrorDialog('GET idiomes return false state (ref.003-002)');
+//                    }
+//                } else if (response.status === cfg.STATUS_OFFLINE) {
+//                    $scope.showErrorDialog('API server status offline (ref.002-002)');
+//                } else {
+//                    $scope.showErrorDialog('API server unknown status (ref.001-002)');
+//                }
+//            }
+//        );
 
         // INIT
         $scope.currentStep = 1;
@@ -162,6 +166,7 @@ angular.module('newSomEnergiaWebformsApp')
                     if (response.status === cfg.STATUS_ONLINE) {
                         if (response.state === cfg.STATE_TRUE) {
                             $log.log('POST form/soci/alta response recived', response);
+                            $scope.showWellDoneDialog();
                         } else {
                             $log.error('form/soci/alta error response recived', response);
                             $scope.messages = $scope.getHumanizedAPIResponse(response.data);
@@ -213,6 +218,9 @@ angular.module('newSomEnergiaWebformsApp')
                 keyboard: false,
                 show: true
             });
+        };
+        $scope.showWellDoneDialog = function () {
+            jQuery('#well-done-modal').modal({show: true});
         };
 
         // GET HUMANIZED API RESPONSE
