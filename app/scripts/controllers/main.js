@@ -136,6 +136,7 @@ angular.module('newSomEnergiaWebformsApp')
         // ON SUBMIT FORM
         $scope.submit = function (form) {
             $scope.submitted = true;    // Trigger validation flag.
+            $scope.messages = null;
             if (form.$invalid) {        // If form is invalid, return and let AngularJS show validation errors.
                 return null;
             }
@@ -155,7 +156,7 @@ angular.module('newSomEnergiaWebformsApp')
                 idioma: $scope.form.language.code,
                 payment_method: $scope.form.payment === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD
             };
-            $log.log(postData); // TODO remove this line
+            // $log.log(postData);
 
             $http.post(cfg.API_BASE_URL + 'form/soci/alta', postData).success(function (response) {
                     if (response.status === cfg.STATUS_ONLINE) {
