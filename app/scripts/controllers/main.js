@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('MainCtrl', ['cfg', '$scope', '$http', '$routeParams', '$translate', '$log', function (cfg, $scope, $http, $routeParams, $translate, $log) {
+    .controller('MainCtrl', ['cfg', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$log', function (cfg, $scope, $http, $routeParams, $translate, $timeout, $log) {
 
         // GET STATES
         $http.get(cfg.API_BASE_URL + 'data/provincies').success(function (response) {
@@ -43,6 +43,9 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.step2Ready = false;
         $scope.step3Ready = false;
         $scope.submitReady = false;
+        $scope.dniIsInvalid = false;
+        $scope.emailIsInvalid = false;
+        $scope.emailNoIguals = false;
         $scope.submitted = false;
         $scope.userTypeClicked = false;
         $scope.form = {};
@@ -53,10 +56,57 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.province = {};
         $scope.city = {};
         $scope.messages = null;
+        $scope.form.usertype = 'person';
         $scope.form.payment = 'bankaccount';
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
+
+        // DNI VALIDATION
+        var checkDniTimer = false;
+        $scope.$watch('form.dni', function(newValue) {
+            if (checkDniTimer) {
+                $timeout.cancel(checkDniTimer);
+            }
+            checkDniTimer = $timeout(function() {
+                if (newValue !== undefined) {
+                    $http.get(cfg.API_BASE_URL + 'check/vat/' + newValue).success(function (response) {
+                            if (response.status === cfg.STATUS_ONLINE) {
+                                $scope.dniIsInvalid = response.state === cfg.STATE_FALSE;
+                            } else if (response.status === cfg.STATUS_OFFLINE) {
+                                $scope.showErrorDialog('API server status offline (ref.002-005)');
+                            } else {
+                                $scope.showErrorDialog('API server unknown status (ref.001-005)');
+                            }
+                        }
+                    );
+                }
+            }, 400);
+        });
+
+        // EMAIL VALIDATION
+        var checkEmail1Timer = false;
+        $scope.$watch('form.email1', function(newValue) {
+            if (checkEmail1Timer) {
+                $timeout.cancel(checkEmail1Timer);
+            }
+            checkEmail1Timer = $timeout(function() {
+                if (newValue !== undefined) {
+                    $scope.emailNoIguals = newValue !== $scope.form.email2;
+                }
+            }, 400);
+        });
+        var checkEmail2Timer = false;
+        $scope.$watch('form.email2', function(newValue) {
+            if (checkEmail2Timer) {
+                $timeout.cancel(checkEmail2Timer);
+            }
+            checkEmail2Timer = $timeout(function() {
+                if (newValue !== undefined) {
+                    $scope.emailNoIguals = newValue !== $scope.form.email1;
+                }
+            }, 400);
+        });
 
         // ON CHANGE SELECTED PROVINCE
         $scope.updateSelectedCity = function (form) {
@@ -81,14 +131,10 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON SUBMIT FORM
         $scope.submit = function (form) {
-            // Trigger validation flag.
-            $scope.submitted = true;
-
-            // If form is invalid, return and let AngularJS show validation errors.
-            if (form.$invalid) {
+            $scope.submitted = true;    // Trigger validation flag.
+            if (form.$invalid) {        // If form is invalid, return and let AngularJS show validation errors.
                 return null;
             }
-
             // Prepare request data
             var postData = {
                 tipuspersona: $scope.form.usertype === 'person' ? cfg.USER_TYPE_PERSON : cfg.USER_TYPE_COMPANY,
@@ -122,6 +168,8 @@ angular.module('newSomEnergiaWebformsApp')
                     }
                 }
             );
+
+            return true;
         };
 
         // ON CHANGE FORM

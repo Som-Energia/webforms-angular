@@ -62,7 +62,9 @@ angular
                 COST: 'Coste para la cooperativa',
                 INFO_APORTACIO: 'La aportación para ser socio/a son 100€<br/>Los 100€ se pagan una sola vez, no hay cuota anual y son retornables si te das de baja.',
                 FINALITZA_PROCES: 'Continuar el proceso',
-                FORMULARI_NO_DISPONIBLE: 'Formulario no disponible, disculpen las moléstias.'
+                FORMULARI_NO_DISPONIBLE: 'Formulario no disponible, disculpen las moléstias.',
+                INVALID: 'Inválido',
+                EMAIL_NO_IGUALS: 'Emails diferentes'
             })
             .translations('ca', {
                 SELECCIONA: 'Sel·lecciona',
@@ -88,7 +90,9 @@ angular
                 COST: 'Cost per a la cooperativa',
                 INFO_APORTACIO: 'L\'aportació per a esdevenir soci/a són 100€<br/>Els 100€ es paguen una sola vegada, no hi ha quota anual i són retornables si et dones de baixa.',
                 FINALITZA_PROCES: 'Continuar el procés',
-                FORMULARI_NO_DISPONIBLE: 'Formulari no disponible, disculpeu les molèsties.'
+                FORMULARI_NO_DISPONIBLE: 'Formulari no disponible, disculpeu les molèsties.',
+                INVALID: 'Invàlid',
+                EMAIL_NO_IGUALS: 'Emails diferents'
             })
             .preferredLanguage('ca')
         ;

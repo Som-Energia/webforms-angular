@@ -40,7 +40,8 @@
             <span class="badge" data-ng-class="{current: step2Ready}">2</span>
         </div>
         <div class="col-xs-11">
-            <div class="row">
+            <!--PARTICULAR-->
+            <div class="row" data-ng-if="form.usertype == 'person'">
                 <div class="form-group col-xs-3">
                     <label for="name" class="sr-only">{{ 'NOM' | translate }}*:</label>
                     <input type="text" name="name" data-ng-model="form.name" class="form-control" placeholder="{{ 'NOM' | translate }}*" data-ng-change="formListener(form)" data-ng-disabled="!step2Ready" required />
@@ -52,24 +53,54 @@
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
-            <hr class="dotted">
-            <div class="row">
+            <hr class="dotted" data-ng-if="form.usertype == 'person'">
+            <div class="row" data-ng-if="form.usertype == 'person'">
                 <div class="form-group col-xs-4">
                     <label for="dni" class="sr-only">DNI/NIE*:</label>
                     <input type="text" name="dni" data-ng-model="form.dni" class="form-control" placeholder="DNI/NIE*" data-ng-change="formListener(form)" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="dniIsInvalid">{{ 'INVALID' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-4">
                     <label for="email1" class="sr-only">Email*:</label>
                     <input type="text" name="email1" data-ng-model="form.email1" class="form-control" placeholder="Email*" data-ng-change="formListener(form)" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.email1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="emailIsInvalid">{{ 'INVALID' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-4">
                     <label for="email2" class="sr-only">{{ 'REPETEIX_EMAIL' | translate }}*:</label>
                     <input type="text" name="email2" data-ng-model="form.email2" class="form-control" placeholder="{{ 'REPETEIX_EMAIL' | translate }}*" data-ng-change="formListener(form)" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.email2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="emailNoIguals">{{ 'EMAIL_NO_IGUALS' | translate }}</span>
                 </div>
             </div>
+            <!--EMPRESA-->
+            <div class="row" data-ng-if="form.usertype == 'company'">
+                <div class="form-group col-xs-3">
+                    <label for="cif" class="sr-only">CIF*:</label>
+                    <input type="text" name="cif" data-ng-model="form.cif" class="form-control" placeholder="CIF*" data-ng-change="formListener(form)" data-ng-disabled="!step2Ready" required />
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.cif.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+                <div class="form-group col-xs-9">
+                    <label for="name" class="sr-only">{{ 'RAO_SOCIAL' | translate }}*:</label>
+                    <input type="text" name="name" data-ng-model="form.name" class="form-control" placeholder="{{ 'RAO_SOCIAL' | translate }}*" data-ng-change="formListener(form)" data-ng-disabled="!step2Ready" required />
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.name.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+            </div>
+            <hr class="dotted" data-ng-if="form.usertype == 'company'">
+            <div class="row" data-ng-if="form.usertype == 'company'">
+                <div class="form-group col-xs-6">
+                    <label for="email1" class="sr-only">Email*:</label>
+                    <input type="text" name="email1" data-ng-model="form.email1" class="form-control" placeholder="Email*" data-ng-change="formListener(form)" data-ng-disabled="!step2Ready" required />
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.email1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label for="email2" class="sr-only">{{ 'REPETEIX_EMAIL' | translate }}*:</label>
+                    <input type="text" name="email2" data-ng-model="form.email2" class="form-control" placeholder="{{ 'REPETEIX_EMAIL' | translate }}*" data-ng-change="formListener(form)" data-ng-disabled="!step2Ready" required />
+                    <span class="label label-danger" data-ng-show="submitted && partnerForm.email2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+            </div>
+            <!--COMMON PARTS-->
             <div class="row">
                 <div class="form-group col-xs-6">
                     <label for="phone1" class="sr-only">{{ 'TELEFON' | translate }}*:</label>

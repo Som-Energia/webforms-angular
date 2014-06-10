@@ -3,7 +3,6 @@
 angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', ['cfg', '$scope', '$http', '$routeParams', '$translate', '$log', function (cfg, $scope, $http, $routeParams, $translate, $log) {
 
-
         // INIT
         $scope.initSubmitReady = false;
         $scope.initFormSubmitted = false;
@@ -12,8 +11,8 @@ angular.module('newSomEnergiaWebformsApp')
         }
 
         // ON CHANGE FORMS
-        $scope.initFormListener = function () {
-            $scope.initSubmitReady = $scope.form.init.dni !== undefined && $scope.form.init.socinumber !== undefined;
+        $scope.initFormListener = function (form) {
+            $scope.initSubmitReady = form.dni !== undefined && form.socinumber !== undefined;
         };
 
         // ON SUBMIT FORM
