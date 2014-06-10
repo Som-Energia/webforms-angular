@@ -44,6 +44,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.step3Ready = false;
         $scope.submitReady = false;
         $scope.dniIsInvalid = false;
+        $scope.dniDuplicated = false;
 //        $scope.emailIsInvalid = false;
         $scope.emailNoIguals = false;
         $scope.submitted = false;
@@ -163,6 +164,7 @@ angular.module('newSomEnergiaWebformsApp')
                         } else {
                             $log.error('form/soci/alta error response recived', response);
                             $scope.messages = $scope.getHumanizedAPIResponse(response.data);
+                            $scope.submitReady = false;
                         }
                     } else if (response.status === cfg.STATUS_OFFLINE) {
                         $scope.showErrorDialog('API server status offline (ref.002-004)');
@@ -217,9 +219,18 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.getHumanizedAPIResponse = function  (arrayResponse) {
             var result = '';
             if (arrayResponse.required_fields !== undefined) {
-                result = result + 'ERROR:'; // + $translate.;
+                result = result + 'ERROR:'; // TODO $translate it
                 for (var i = 0; i < arrayResponse.required_fields.length; i++) {
                     result = result + ' ' + arrayResponse.required_fields[i];
+                }
+            }
+            if (arrayResponse.invalid_fields !== undefined) {
+                result = result + ' ERROR:'; // TODO $translate it
+                for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
+                    result = result + ' ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error;
+                    if (arrayResponse.invalid_fields[j].field === 'dni' && arrayResponse.invalid_fields[j].error === 'exist') {
+                        $scope.dniDuplicated = true;
+                    }
                 }
             }
 

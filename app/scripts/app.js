@@ -64,7 +64,8 @@ angular
                 FINALITZA_PROCES: 'Continuar el proceso',
                 FORMULARI_NO_DISPONIBLE: 'Formulario no disponible, disculpen las moléstias.',
                 INVALID: 'Inválido',
-                EMAIL_NO_IGUALS: 'Emails diferentes'
+                EMAIL_NO_IGUALS: 'Emails diferentes',
+                REGISTRE_EXISTENT: 'Este registro ya existe'
             })
             .translations('ca', {
                 SELECCIONA: 'Sel·lecciona',
@@ -92,7 +93,8 @@ angular
                 FINALITZA_PROCES: 'Continuar el procés',
                 FORMULARI_NO_DISPONIBLE: 'Formulari no disponible, disculpeu les molèsties.',
                 INVALID: 'Invàlid',
-                EMAIL_NO_IGUALS: 'Emails diferents'
+                EMAIL_NO_IGUALS: 'Emails diferents',
+                REGISTRE_EXISTENT: 'Aquest registre ja existeix'
             })
             .preferredLanguage('ca')
         ;

@@ -60,6 +60,7 @@
                     <input type="text" name="dni" data-ng-model="form.dni" class="form-control" placeholder="DNI/NIE*" data-ng-change="formListener(form)" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     <span class="label label-danger" data-ng-show="dniIsInvalid">{{ 'INVALID' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="dniDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-4">
                     <label for="email1" class="sr-only">Email*:</label>
