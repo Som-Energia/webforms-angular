@@ -86,10 +86,6 @@ angular.module('newSomEnergiaWebformsApp')
             }, 400);
         });
 
-        function reusableCheckEmail() {
-
-        }
-
         // EMAIL VALIDATION
         var checkEmail1Timer = false;
         $scope.$watch('form.email1', function(newValue) {
@@ -186,7 +182,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.step2Ready = $scope.userTypeClicked && form.language !== undefined;
             $scope.step3Ready = $scope.step2Ready &&
                 form.name !== undefined &&
-                form.surname !== undefined &&
+                (form.surname !== undefined && form.usertype === 'person' || form.usertype === 'company') &&
                 form.dni !== undefined &&
                 form.email1 !== undefined &&
                 form.email2 !== undefined &&
