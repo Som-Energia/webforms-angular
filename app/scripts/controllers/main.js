@@ -44,7 +44,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.step3Ready = false;
         $scope.submitReady = false;
         $scope.dniIsInvalid = false;
-        $scope.emailIsInvalid = false;
+//        $scope.emailIsInvalid = false;
         $scope.emailNoIguals = false;
         $scope.submitted = false;
         $scope.userTypeClicked = false;
@@ -73,6 +73,7 @@ angular.module('newSomEnergiaWebformsApp')
                     $http.get(cfg.API_BASE_URL + 'check/vat/' + newValue).success(function (response) {
                             if (response.status === cfg.STATUS_ONLINE) {
                                 $scope.dniIsInvalid = response.state === cfg.STATE_FALSE;
+                                $scope.formListener($scope.form);
                             } else if (response.status === cfg.STATUS_OFFLINE) {
                                 $scope.showErrorDialog('API server status offline (ref.002-005)');
                             } else {
@@ -93,6 +94,7 @@ angular.module('newSomEnergiaWebformsApp')
             checkEmail1Timer = $timeout(function() {
                 if (newValue !== undefined) {
                     $scope.emailNoIguals = newValue !== $scope.form.email2;
+                    $scope.formListener($scope.form);
                 }
             }, 400);
         });
@@ -104,6 +106,7 @@ angular.module('newSomEnergiaWebformsApp')
             checkEmail2Timer = $timeout(function() {
                 if (newValue !== undefined) {
                     $scope.emailNoIguals = newValue !== $scope.form.email1;
+                    $scope.formListener($scope.form);
                 }
             }, 400);
         });
@@ -189,7 +192,9 @@ angular.module('newSomEnergiaWebformsApp')
                     form.province !== undefined &&
                     form.city !== undefined &&
                     form.accept !== undefined &&
-                    form.accept !== false
+                    form.accept !== false &&
+                    $scope.dniIsInvalid === false &&
+                    $scope.emailNoIguals === false
             ;
             $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready;
         };
