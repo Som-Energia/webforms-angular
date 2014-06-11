@@ -5,6 +5,8 @@ angular.module('newSomEnergiaWebformsApp')
 
         // INIT
         $scope.dniIsInvalid = false;
+        $scope.showUnknownSociWarning = false;
+        $scope.showStep1Form = false;
         $scope.initSubmitReady = false;
         $scope.initFormSubmitted = false;
         if ($routeParams.locale !== undefined) {
@@ -51,9 +53,11 @@ angular.module('newSomEnergiaWebformsApp')
             sociPromise.then(
                 function (response) {
                     if (response.state === cfg.STATE_TRUE) {
-                        $log.log('POST data/soci response recived', response);
+                        $scope.soci = response.data.soci;
+                        $scope.showStep1Form = true;
+                        $scope.showUnknownSociWarning = false;
                     } else {
-                        $log.error('data/soci error response recived', response);
+                        $scope.showUnknownSociWarning = true;
                     }
                 },
                 function (reason) { $log.error('Failed', reason); }

@@ -30,6 +30,12 @@
             <button data-ng-disabled="!initSubmitReady" data-ng-click="initSubmit(initForm)" class="btn btn-default grey pull-right">{{ 'CARREGAR_DADES_SOCI_VINCULAT' | translate }}</button>
         </div>
     </div>
+    <div class="row" data-ng-if="showUnknownSociWarning">
+        <div class="col-xs-12">
+            <h3><span class="label label-danger">{{ 'NO_TROBEM_CAP_SOCI_VINCULAT' | translate }}</span></h3>
+            <p>{{ 'NO_ETS_SOCI_FES_TE_AQUI' | translate }}</p>
+        </div>
+    </div>
 </form>
 
 <!--OFFLINE API MODAL-->
