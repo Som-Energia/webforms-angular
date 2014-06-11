@@ -3,46 +3,6 @@
 angular.module('newSomEnergiaWebformsApp')
     .controller('MainCtrl', ['cfg', 'AjaxHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$log', function (cfg, AjaxHandler, $scope, $http, $routeParams, $translate, $timeout, $log) {
 
-        // GET STATES
-        $http.get(cfg.API_BASE_URL + 'data/provincies').success(function (response) {
-                if (response.status === cfg.STATUS_ONLINE) {
-                    if (response.state === cfg.STATE_TRUE) {
-                        $scope.provinces = response.data.provincies;
-                    } else {
-                        $log.error('data/provinces error response recived', response);
-                        $scope.showErrorDialog('GET provincies return false state (ref.003-001)');
-                    }
-                } else if (response.status === cfg.STATUS_OFFLINE) {
-                    $scope.showErrorDialog('API server status offline (ref.002-001)');
-                } else {
-                    $scope.showErrorDialog('API server unknown status (ref.001-001)');
-                }
-            }
-        );
-
-        // GET LANGUAGES
-        var promise = AjaxHandler.getRequest($scope, cfg.API_BASE_URL + 'data/idiomes', '002');
-        promise.then(
-            function (response) { $scope.languages = response.idiomes; },
-            function(reason) { $log.error('Failed', reason); }
-        );
-
-//        $http.get(cfg.API_BASE_URL + 'data/idiomes').success(function (response) {
-//                if (response.status === cfg.STATUS_ONLINE) {
-//                    if (response.state === cfg.STATE_TRUE) {
-//                        $scope.languages = response.data.idiomes;
-//                    } else {
-//                        $log.error('data/idiomes error response recived', response);
-//                        $scope.showErrorDialog('GET idiomes return false state (ref.003-002)');
-//                    }
-//                } else if (response.status === cfg.STATUS_OFFLINE) {
-//                    $scope.showErrorDialog('API server status offline (ref.002-002)');
-//                } else {
-//                    $scope.showErrorDialog('API server unknown status (ref.001-002)');
-//                }
-//            }
-//        );
-
         // INIT
         $scope.currentStep = 1;
         $scope.step1Ready = true;
@@ -69,6 +29,20 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.use($routeParams.locale);
         }
 
+        // GET LANGUAGES
+        var languagesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/idiomes', '002');
+        languagesPromise.then(
+            function (response) { $scope.languages = response.idiomes; },
+            function(reason) { $log.error('Failed', reason); }
+        );
+
+        // GET STATES
+        var statesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/provincies', '001');
+        statesPromise.then(
+            function (response) { $scope.provinces = response.provincies; },
+            function(reason) { $log.error('Failed', reason); }
+        );
+
         // DNI VALIDATION
         var checkDniTimer = false;
         $scope.$watch('form.dni', function(newValue) {
@@ -77,16 +51,13 @@ angular.module('newSomEnergiaWebformsApp')
             }
             checkDniTimer = $timeout(function() {
                 if (newValue !== undefined) {
-                    $http.get(cfg.API_BASE_URL + 'check/vat/' + newValue).success(function (response) {
-                            if (response.status === cfg.STATUS_ONLINE) {
-                                $scope.dniIsInvalid = response.state === cfg.STATE_FALSE;
-                                $scope.formListener($scope.form);
-                            } else if (response.status === cfg.STATUS_OFFLINE) {
-                                $scope.showErrorDialog('API server status offline (ref.002-005)');
-                            } else {
-                                $scope.showErrorDialog('API server unknown status (ref.001-005)');
-                            }
-                        }
+                    var dniPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
+                    dniPromise.then(
+                        function (response) {
+                            $scope.dniIsInvalid = response === cfg.STATE_FALSE;
+                            $scope.formListener($scope.form);
+                        },
+                        function(reason) { $log.error('Failed', reason); }
                     );
                 }
             }, 400);
