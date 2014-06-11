@@ -1,7 +1,8 @@
-<div class="row">
-    <h1>{{ 'ACCEDINT_SERVEI_PAGAMENT' | translate }}</h1>
+<div class="row" data-ng-init="getOperationIdEscape()">
+    <h1>{{ 'ACCEDINT_SERVEI_PAGAMENT' | translate }}...</h1>
     <pre>{{ data }}</pre>
     <pre>{{ getTrustPostAction() }}</pre>
+    <pre>{{ getOperationIdEscape() }}</pre>
     <form id="rebut-form" action="{{ getTrustPostAction() }}" method="post">
         <input type="text" name="{{ key }}" value="{{ value }}" data-ng-repeat="(key, value) in data.payment_data"/>
     </form>

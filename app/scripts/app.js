@@ -70,7 +70,8 @@ angular.module('newSomEnergiaWebformsApp', [
                 EMAIL_NO_IGUALS: 'Emails diferentes',
                 REGISTRE_EXISTENT: 'Este registro ya existe',
                 REGISTRE_OK: 'Felicidades!',
-                REGISTRE_OK_MSG: 'Has completado el registro correctamente'
+                REGISTRE_OK_MSG: 'Has completado el registro correctamente',
+                ACCEDINT_SERVEI_PAGAMENT: 'Acediendo al servicio de pago'
             })
             .translations('ca', {
                 SELECCIONA: 'Sel·lecciona',
@@ -101,7 +102,8 @@ angular.module('newSomEnergiaWebformsApp', [
                 EMAIL_NO_IGUALS: 'Emails diferents',
                 REGISTRE_EXISTENT: 'Aquest registre ja existeix',
                 REGISTRE_OK: 'Felicitats!',
-                REGISTRE_OK_MSG: 'Has completat el registre correctament'
+                REGISTRE_OK_MSG: 'Has completat el registre correctament',
+                ACCEDINT_SERVEI_PAGAMENT: 'Accedint al servei de pagament'
             })
             .preferredLanguage('ca')
         ;
