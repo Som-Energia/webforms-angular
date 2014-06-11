@@ -63,8 +63,8 @@
     <div class="row">
         <div class="col-xs-12">
             <label for="address" class="sr-only">{{ 'ADRECA' | translate }}*:</label>
-            <input type="text" name="address" data-ng-model="soci.adreca" class="form-control" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener(form)" required />
-            <span class="label label-danger" data-ng-show="submitted && orderForm.address.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            <input type="text" name="address" data-ng-model="form.address" class="form-control" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener(form)" required />
+            <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.address.$error.required">{{ 'OBLIGATORI' | translate }}</span>
         </div>
     </div>
     <div class="row">
@@ -75,19 +75,39 @@
             <select class="form-control" name="province" data-ng-model="form.province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity(form)" required>
                 <option value="">{{ 'PROVINCIA' | translate }}*</option>
             </select>
-            <span class="label label-danger" data-ng-show="submitted && partnerForm.province.$invalid">{{ 'OBLIGATORI' | translate }}</span>
+            <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.province.$error.required">{{ 'OBLIGATORI' | translate }}</span>
         </div>
         <div class="col-xs-1">
             <label for="city">{{ 'POBLACIO' | translate }}</label>
         </div>
         <div class="form-group col-xs-5">
-            <select class="form-control" name="city" data-ng-model="form.city" data-ng-options="city.name for city in cities" data-ng-change="formListener(form)" data-ng-disabled="!step2Ready" required >
+            <select class="form-control" name="city" data-ng-model="form.city" data-ng-options="city.name for city in cities" data-ng-change="formListener(form)" required >
                 <option value="">{{ 'POBLACIO' | translate }}*</option>
             </select>
-            <span class="label label-danger" data-ng-show="submitted && partnerForm.city.$invalid">{{ 'OBLIGATORI' | translate }}</span>
+            <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.city.$error.required">{{ 'OBLIGATORI' | translate }}</span>
         </div>
     </div>
     <hr>
+    <div class="row">
+        <div class="col-xs-7">
+            <label for="cups" class="sr-only">{{ 'NUMERO_DE_CUPS' | translate }}*</label>
+            <input type="text" name="cups" data-ng-model="form.cups" class="form-control" placeholder="{{ 'NUMERO_DE_CUPS' | translate }}*" data-ng-change="formListener(form)" required />
+            <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.cups.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            <span class="label label-danger" data-ng-show="cupsIsInvalid">{{ 'INVALID' | translate }}</span>
+        </div>
+        <div class="col-xs-1">
+            <span id="helpPopoverCUPS" class="badge current small" data-container="body" data-toggle="popover" data-placement="top" data-content="{{ 'HELP_POPOVER_CUPS' | translate }}">?</span>
+        </div>
+        <div class="col-xs-3">
+            <label for="cnae" class="sr-only">CNAE*</label>
+            <input type="text" name="cnae" data-ng-model="form.cnae" class="form-control" placeholder="CNAE*" data-ng-change="formListener(form)" required />
+            <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.cnae.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            <span class="label label-danger" data-ng-show="cnaeIsInvalid">{{ 'INVALID' | translate }}</span>
+        </div>
+        <div class="col-xs-1">
+            <span id="helpPopoverCNAE" class="badge current small" data-container="body" data-toggle="popover" data-placement="top" data-content="{{ 'HELP_POPOVER_CNAE' | translate }}">?</span>
+        </div>
+    </div>
 </form>
 
 <!--OFFLINE API MODAL-->
@@ -98,6 +118,8 @@
 <!--INITILIZE ONLOAD-->
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('#helpPopover').popover()
+        jQuery('#helpPopover').popover();
+        jQuery('#helpPopoverCUPS').popover();
+        jQuery('#helpPopoverCNAE').popover();
     });
 </script>
