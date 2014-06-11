@@ -11,7 +11,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.submitReady = false;
         $scope.dniIsInvalid = false;
         $scope.dniDuplicated = false;
-//        $scope.emailIsInvalid = false;
+        $scope.emailIsInvalid = false;
         $scope.emailNoIguals = false;
         $scope.submitted = false;
         $scope.userTypeClicked = false;
@@ -72,6 +72,8 @@ angular.module('newSomEnergiaWebformsApp')
             checkEmail1Timer = $timeout(function() {
                 if (newValue !== undefined) {
                     $scope.emailNoIguals = newValue !== $scope.form.email2;
+                    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    $scope.emailIsInvalid = !re.test(newValue);
                     $scope.formListener($scope.form);
                 }
             }, 400);
@@ -128,32 +130,13 @@ angular.module('newSomEnergiaWebformsApp')
             var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData);
             postPromise.then(
                 function (response) {
-                    if (response.state === cfg.STATE_TRUE) {
-
-                    } else {
+                    if (response.state === cfg.STATE_FALSE) {
                         $scope.messages = $scope.getHumanizedAPIResponse(response.data);
                         $scope.submitReady = false;
                     }
                 },
                 function (reason) { $log.error('Failed', reason); }
             );
-//            $http.post(cfg.API_BASE_URL + 'form/soci/alta', postData).success(function (response) {
-//                    if (response.status === cfg.STATUS_ONLINE) {
-//                        if (response.state === cfg.STATE_TRUE) {
-//                            $log.log('POST form/soci/alta response recived', response);
-//                            $scope.showWellDoneDialog();
-//                        } else {
-//                            $log.error('form/soci/alta error response recived', response);
-//                            $scope.messages = $scope.getHumanizedAPIResponse(response.data);
-//                            $scope.submitReady = false;
-//                        }
-//                    } else if (response.status === cfg.STATUS_OFFLINE) {
-//                        $scope.showErrorDialog('API server status offline (ref.002-004)');
-//                    } else {
-//                        $scope.showErrorDialog('API server unknown status (ref.001-004)');
-//                    }
-//                }
-//            );
 
             return true;
         };
@@ -176,6 +159,7 @@ angular.module('newSomEnergiaWebformsApp')
                 form.accept !== undefined &&
                 form.accept !== false &&
                 $scope.dniIsInvalid === false &&
+                $scope.emailIsInvalid === false &&
                 $scope.emailNoIguals === false
             ;
             $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready;
