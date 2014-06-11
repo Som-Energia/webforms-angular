@@ -154,7 +154,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.submitReady = false;
                     } else if (response.state === cfg.STATE_TRUE) {
                         prepaymentService.setData(response.data);
-                        // TODO $window.open($route.get('/prepagament'));
+                        $window.open('#/prepagament');
                     }
                 },
                 function (reason) { $log.error('Failed', reason); }
