@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('MainCtrl', ['cfg', 'AjaxHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$log', function (cfg, AjaxHandler, $scope, $http, $routeParams, $translate, $timeout, $log) {
+    .controller('MainCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$log', function (cfg, AjaxHandler, ValidateHandler, $scope, $http, $routeParams, $translate, $timeout, $log) {
 
         // INIT
         $scope.currentStep = 1;
@@ -72,8 +72,7 @@ angular.module('newSomEnergiaWebformsApp')
             checkEmail1Timer = $timeout(function() {
                 if (newValue !== undefined) {
                     $scope.emailNoIguals = newValue !== $scope.form.email2;
-                    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                    $scope.emailIsInvalid = !re.test(newValue);
+                    $scope.emailIsInvalid = !ValidateHandler.isEmailValid(newValue);
                     $scope.formListener($scope.form);
                 }
             }, 400);
