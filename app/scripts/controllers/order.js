@@ -68,17 +68,14 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.initSubmitReady = form.dni !== undefined && form.socinumber !== undefined && $scope.dniIsInvalid === false;
         };
 
-        // ON SUBMIT FORM
+        // ON INIT SUBMIT FORM
         $scope.initSubmit = function (form) {
-            // Trigger validation flag.
+            // Trigger validation flags
             $scope.initFormSubmitted = true;
-
-            // If form is invalid, return and let AngularJS show validation errors.
             if (form.$invalid) {
                 return null;
             }
-
-            // Get soci values
+            // GET SOCI VALUES
             var sociPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/soci/' + $scope.form.init.socinumber + '/' + $scope.form.init.dni, '001');
             sociPromise.then(
                 function (response) {
@@ -86,14 +83,20 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
+                        $scope.showStep1Form = false;
                     } else {
                         $scope.showUnknownSociWarning = true;
+                        $scope.showStep1Form = false;
                     }
                 },
                 function (reason) { $log.error('Failed', reason); }
             );
 
             return true;
+        };
+
+        $scope.initOrderForm = function() {
+            $scope.showStep1Form = true;
         };
 
     }]);

@@ -44,7 +44,7 @@
             <p>{{ 'NO_ETS_SOCI_FES_TE_AQUI' | translate }}</p>
         </div>
     </div>
-    <div class="row" data-ng-if="showBeginOrderForm">
+    <div class="row" data-ng-if="showBeginOrderForm && !showUnknownSociWarning">
         <div class="col-xs-12">
             <button data-ng-click="initOrderForm()" class="btn btn-default green pull-right">{{ 'INICIAR_CONTRACTACIO' | translate }}</button>
         </div>
@@ -53,7 +53,7 @@
 
 
 <!-- BEGIN INIT FORM-->
-<form name="orderForm" class="form-inline" role="form" data-nf-if="!showStep1Form" novalidate>
+<form name="orderForm" class="form-inline" role="form" data-ng-if="showStep1Form" novalidate>
     <!--SECOND STEP-->
     <div class="row">
         <div class="col-xs-12">
