@@ -92,20 +92,10 @@ angular.module('newSomEnergiaWebformsApp')
         // ON CHANGE SELECTED PROVINCE
         $scope.updateSelectedCity = function (form) {
             // GET CITIES
-            $http.get(cfg.API_BASE_URL + 'data/municipis/' + $scope.form.province.id).success(function (response) {
-                    if (response.status === cfg.STATUS_ONLINE) {
-                        if (response.state === cfg.STATE_TRUE) {
-                            $scope.cities = response.data.municipis;
-                        } else {
-                            $log.error('data/municipis/' + $scope.form.province.id + ' response recived', response);
-                            $scope.showErrorDialog('GET municipis return false state (ref.003-003)');
-                        }
-                    } else if (response.status === cfg.STATUS_OFFLINE) {
-                        $scope.showErrorDialog('API server status offline (ref.002-003)');
-                    } else {
-                        $scope.showErrorDialog('API server unknown status (ref.001-003)');
-                    }
-                }
+            var citiesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  $scope.form.province.id, '003');
+            citiesPromise.then(
+                function (response) { $scope.cities = response.municipis; },
+                function(reason) { $log.error('Failed', reason); }
             );
             $scope.formListener(form);
         };
