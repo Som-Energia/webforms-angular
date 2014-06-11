@@ -38,6 +38,43 @@
     </div>
 </form>
 
+<!-- BEGIN INIT FORM-->
+<form name="orderForm" class="form-inline" role="form" data-nf-if="!showStep1Form" novalidate>
+    <!--SECOND STEP-->
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <label for="address" class="sr-only">{{ 'ADRECA' | translate }}*:</label>
+            <input type="text" name="address" data-ng-model="soci.adreca" class="form-control" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener(form)" required />
+            <span class="label label-danger" data-ng-show="submitted && orderForm.address.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1">
+            <label for="province">{{ 'PROVINCIA' | translate }}</label>
+        </div>
+        <div class="col-xs-5">
+            <select class="form-control" name="province" data-ng-model="form.province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity(form)" required>
+                <option value="">{{ 'PROVINCIA' | translate }}*</option>
+            </select>
+            <span class="label label-danger" data-ng-show="submitted && partnerForm.province.$invalid">{{ 'OBLIGATORI' | translate }}</span>
+        </div>
+        <div class="col-xs-1">
+            <label for="city">{{ 'POBLACIO' | translate }}</label>
+        </div>
+        <div class="form-group col-xs-5">
+            <select class="form-control" name="city" data-ng-model="form.city" data-ng-options="city.name for city in cities" data-ng-change="formListener(form)" data-ng-disabled="!step2Ready" required >
+                <option value="">{{ 'POBLACIO' | translate }}*</option>
+            </select>
+            <span class="label label-danger" data-ng-show="submitted && partnerForm.city.$invalid">{{ 'OBLIGATORI' | translate }}</span>
+        </div>
+    </div>
+</form>
+
 <!--OFFLINE API MODAL-->
 <div id="api-server-offline-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="Webforms" data-aria-hidden="true">
     <div class="modal-dialog modal-lg" data-ng-include data-src="'views/common/offline-api-modal.html'"></div>
