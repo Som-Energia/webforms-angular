@@ -18,9 +18,4 @@ angular.module('newSomEnergiaWebformsApp')
             jQuery('#well-done-modal').modal({show: true});
         };
 
-        // EMAIL VALIDATOR
-        this.validateEmail = function (email) {
-
-        }
-
     });

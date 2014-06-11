@@ -8,6 +8,6 @@ angular.module('newSomEnergiaWebformsApp')
         // EMAIL VALIDATOR
         this.isEmailValid = function (email) {
             return re.test(email);
-        }
+        };
 
     });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('MainCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$log', function (cfg, AjaxHandler, ValidateHandler, $scope, $http, $routeParams, $translate, $timeout, $log) {
+    .controller('MainCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // INIT
         $scope.currentStep = 1;
@@ -32,14 +32,26 @@ angular.module('newSomEnergiaWebformsApp')
         // GET LANGUAGES
         var languagesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/idiomes', '002');
         languagesPromise.then(
-            function (response) { $scope.languages = response.idiomes; },
+            function (response) {
+                if (response.state === cfg.STATE_TRUE) {
+                    $scope.languages = response.data.idiomes;
+                } else {
+                    uiHandler.showErrorDialog('GET response state false recived (ref.003-002)');
+                }
+            },
             function (reason) { $log.error('Failed', reason); }
         );
 
         // GET STATES
         var statesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/provincies', '001');
         statesPromise.then(
-            function (response) { $scope.provinces = response.provincies; },
+            function (response) {
+                if (response.state === cfg.STATE_TRUE) {
+                    $scope.provinces = response.data.provincies;
+                } else {
+                    uiHandler.showErrorDialog('GET response state false recived (ref.003-001)');
+                }
+            },
             function (reason) { $log.error('Failed', reason); }
         );
 
@@ -95,7 +107,13 @@ angular.module('newSomEnergiaWebformsApp')
             // GET CITIES
             var citiesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  $scope.form.province.id, '003');
             citiesPromise.then(
-                function (response) { $scope.cities = response.municipis; },
+                function (response) {
+                    if (response.state === cfg.STATE_TRUE) {
+                        $scope.cities = response.data.municipis;
+                    } else {
+                        uiHandler.showErrorDialog('GET response state false recived (ref.003-003)');
+                    }
+                },
                 function (reason) { $log.error('Failed', reason); }
             );
             $scope.formListener(form);
@@ -132,12 +150,32 @@ angular.module('newSomEnergiaWebformsApp')
                     if (response.state === cfg.STATE_FALSE) {
                         $scope.messages = $scope.getHumanizedAPIResponse(response.data);
                         $scope.submitReady = false;
+                    } else if (response.state === cfg.STATE_TRUE) {
+                        $scope.openPaymentWindow();
                     }
                 },
                 function (reason) { $log.error('Failed', reason); }
             );
 
             return true;
+        };
+
+        $scope.openPaymentWindow = function () {
+            var data = {
+                endpoint: 'https://www.arquia.es/ArquiaRed/pgateway.aspx',
+                payment_data: {
+                    CONC1: 'QUOTA SOCI',
+                    CONF: '0100',
+                    DNI_CLI: '13572468F',
+                    ID_OPERACION: 'dggokFcmcdq27D6f0A9ssJLzfZzYUH3b',
+                    ID_USU: 'ARQUIA_USER',
+                    IMPORTE: '100',
+                    NOMBRE_CLI: 'USUARIO DE PRUEBAS',
+                    REF: '2014f9d5b0d7'
+                },
+                payment_type: 'rebut'
+            };
+            $window.open(data.endpoint);
         };
 
         // CONTROL READY STEPS ON CHANGE FORM

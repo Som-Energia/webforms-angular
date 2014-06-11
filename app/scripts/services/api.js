@@ -9,12 +9,10 @@ angular.module('newSomEnergiaWebformsApp')
             $http.get(URL)
                 .success(function (response) {
                     if (response.status === cfg.STATUS_ONLINE) {
-                        if (response.state === cfg.STATE_TRUE) {
-                            deferred.resolve(response.data);
-                        } else {
+                        if (response.state !== cfg.STATE_TRUE) {
                             $log.error('AjaxHandler GET request ' + URL + ' error response recived', response);
-                            uiHandler.showErrorDialog('GET response state false recived (ref.003-' + errorCode + ')');
                         }
+                        deferred.resolve(response);
                     } else if (response.status === cfg.STATUS_OFFLINE) {
                         uiHandler.showErrorDialog('API server response status offline recived (ref.002-' + errorCode + ')');
                     } else {

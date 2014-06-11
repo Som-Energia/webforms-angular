@@ -10,16 +10,18 @@
 
 <!-- BEGIN INIT FORM-->
 <form name="initForm" class="form-inline" role="form" novalidate>
+    <!--FIRST STEP-->
     <div class="row">
         <div class="form-group col-xs-2">
             <label for="socinumber" class="sr-only">{{ 'NUMERO_SOCI' | translate }}*</label>
-            <input type="text" name="socinumber" data-ng-model="form.init.socinumber" class="form-control" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-change="initFormListener(form.init)" required />
+            <input type="text" name="socinumber" data-ng-model="form.init.socinumber" class="form-control" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-change="formListener(form.init)" required />
             <span class="label label-danger" data-ng-show="initFormSubmitted && initForm.socinumber.$error.required">{{ 'OBLIGATORI' | translate }}</span>
         </div>
         <div class="col-xs-2">
             <label for="dni" class="sr-only">DNI/NIE/CIF*</label>
-            <input type="text" name="dni" data-ng-model="form.init.dni" class="form-control" placeholder="DNI/NIE/CIF*" data-ng-change="initFormListener(form.init)" required />
+            <input type="text" name="dni" data-ng-model="form.init.dni" class="form-control" placeholder="DNI/NIE/CIF*" data-ng-change="formListener(form.init)" required />
             <span class="label label-danger" data-ng-show="initFormSubmitted && initForm.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            <span class="label label-danger" data-ng-show="dniIsInvalid">{{ 'INVALID' | translate }}</span>
         </div>
         <div class="col-xs-1">
             <span id="helpPopover" class="badge current small" data-container="body" data-toggle="popover" data-placement="top" data-content="{{ 'HELP_POPOVER' | translate }}">?</span>

@@ -1,18 +1,39 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('OrderCtrl', ['cfg', '$scope', '$http', '$routeParams', '$translate', '$log', function (cfg, $scope, $http, $routeParams, $translate, $log) {
+    .controller('OrderCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, AjaxHandler, ValidateHandler,  $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // INIT
+        $scope.dniIsInvalid = false;
         $scope.initSubmitReady = false;
         $scope.initFormSubmitted = false;
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
 
+        // DNI VALIDATION
+        var checkDniTimer = false;
+        $scope.$watch('form.init.dni', function(newValue) {
+            if (checkDniTimer) {
+                $timeout.cancel(checkDniTimer);
+            }
+            checkDniTimer = $timeout(function() {
+                if (newValue !== undefined) {
+                    var dniPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
+                    dniPromise.then(
+                        function (response) {
+                            $scope.dniIsInvalid = response === cfg.STATE_FALSE;
+                            $scope.formListener($scope.form.init);
+                        },
+                        function (reason) { $log.error('Failed', reason); }
+                    );
+                }
+            }, 400);
+        });
+
         // ON CHANGE FORMS
-        $scope.initFormListener = function (form) {
-            $scope.initSubmitReady = form.dni !== undefined && form.socinumber !== undefined;
+        $scope.formListener = function (form) {
+            $scope.initSubmitReady = form.dni !== undefined && form.socinumber !== undefined && $scope.dniIsInvalid === false;
         };
 
         // ON SUBMIT FORM
@@ -25,32 +46,22 @@ angular.module('newSomEnergiaWebformsApp')
                 return null;
             }
 
-            // Get soci data
-            $http.get(cfg.API_BASE_URL + 'data/soci/' + $scope.form.init.socinumber + '/' + $scope.form.init.dni).success(function (response) {
-                    if (response.status === cfg.STATUS_ONLINE) {
-                        if (response.state === cfg.STATE_TRUE) {
-                            $log.log('POST data/soci response recived', response);
-                        } else {
-                            $log.error('data/soci error response recived', response);
-//                            $scope.messages = $scope.getHumanizedAPIResponse(response.data);
-                        }
-                    } else if (response.status === cfg.STATUS_OFFLINE) {
-                        $scope.showErrorDialog('API server status offline (ref.102-001)');
+            // Get soci values
+            var sociPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/soci/' + $scope.form.init.socinumber + '/' + $scope.form.init.dni, '001');
+            sociPromise.then(
+                function (response) {
+                    if (response.state === cfg.STATE_TRUE) {
+                        $log.log('POST data/soci response recived', response);
                     } else {
-                        $scope.showErrorDialog('API server unknown status (ref.101-001)');
+                        $log.error('data/soci error response recived', response);
                     }
-                }
+                },
+                function (reason) { $log.error('Failed', reason); }
             );
+
+            return true;
         };
 
-        // SHOW MODAL DIALOGS
-        $scope.showErrorDialog = function (msg) {
-            $scope.errorMsg = msg;
-            jQuery('#api-server-offline-modal').modal({
-                backdrop: 'static',
-                keyboard: false,
-                show: true
-            });
-        };
+
 
     }]);
