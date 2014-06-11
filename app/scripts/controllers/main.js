@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('MainCtrl', ['ajaxHandler', 'cfg', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$log', function (ajaxHandler, cfg, $scope, $http, $routeParams, $translate, $timeout, $log) {
+    .controller('MainCtrl', ['cfg', 'AjaxHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$log', function (cfg, AjaxHandler, $scope, $http, $routeParams, $translate, $timeout, $log) {
 
         // GET STATES
         $http.get(cfg.API_BASE_URL + 'data/provincies').success(function (response) {
@@ -21,10 +21,12 @@ angular.module('newSomEnergiaWebformsApp')
         );
 
         // GET LANGUAGES
-        var result = ajaxHandler.getRequest(cfg.API_BASE_URL + 'data/idiomes', '002');
-        if (result !== null) {
-            $scope.languages = result.idiomes;
-        }
+        var promise = AjaxHandler.getRequest($scope, cfg.API_BASE_URL + 'data/idiomes', '002');
+        promise.then(
+            function (response) { $scope.languages = response.idiomes; },
+            function(reason) { $log.error('Failed', reason); }
+        );
+
 //        $http.get(cfg.API_BASE_URL + 'data/idiomes').success(function (response) {
 //                if (response.status === cfg.STATUS_ONLINE) {
 //                    if (response.state === cfg.STATE_TRUE) {

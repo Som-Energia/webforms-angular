@@ -1,24 +1,29 @@
 'use strict';
 
-angular.module('newSomEnergiaWebformsApp', [])
-    .service('ajaxHandler', function($scope, $http, $log, cfg) {
-        this.getRequest = function(URL, errorCode) {
-            $http.get(URL).success(function (response) {
+angular.module('newSomEnergiaWebformsApp')
+    .service('AjaxHandler', function(cfg, $http, $q, $log) {
+        // Async GET call
+        this.getRequest = function($scope, URL, errorCode) {
+            var deferred = $q.defer();
+            $http.get(URL)
+                .success(function (response) {
                     if (response.status === cfg.STATUS_ONLINE) {
                         if (response.state === cfg.STATE_TRUE) {
-                            return response.data;
+                            deferred.resolve(response.data);
                         } else {
-                            $log.error('data/idiomes error response recived', response);
-                            $scope.showErrorDialog('GET idiomes return false state (ref.003-' + errorCode + ')');
+                            $log.error('AjaxHandler GET request error response recived', response);
+                            $scope.showErrorDialog('GET response state false recived (ref.003-' + errorCode + ')');
                         }
                     } else if (response.status === cfg.STATUS_OFFLINE) {
-                        $scope.showErrorDialog('API server status offline (ref.002-' + errorCode + ')');
+                        $scope.showErrorDialog('API server response status offline recived (ref.002-' + errorCode + ')');
                     } else {
-                        $scope.showErrorDialog('API server unknown status (ref.001-' + errorCode + ')');
+                        $scope.showErrorDialog('API server response unknown status recived (ref.001-' + errorCode + ')');
                     }
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
 
-                    return false;
-                }
-            );
+            return deferred.promise;
         };
     });
