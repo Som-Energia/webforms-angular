@@ -6,6 +6,7 @@ angular.module('newSomEnergiaWebformsApp')
         // INIT
         $scope.dniIsInvalid = false;
         $scope.showUnknownSociWarning = false;
+        $scope.showBeginOrderForm = false;
         $scope.showStep1Form = false;
         $scope.initSubmitReady = false;
         $scope.initFormSubmitted = false;
@@ -83,7 +84,7 @@ angular.module('newSomEnergiaWebformsApp')
                 function (response) {
                     if (response.state === cfg.STATE_TRUE) {
                         $scope.soci = response.data.soci;
-                        $scope.showStep1Form = true;
+                        $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
                     } else {
                         $scope.showUnknownSociWarning = true;
