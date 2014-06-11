@@ -1,11 +1,14 @@
 <div class="row" data-ng-init="getOperationIdEscape()">
     <div class="col-xs-12">
-        <h1>{{ 'ACCEDINT_SERVEI_PAGAMENT' | translate }}...</h1>
-        <form id="rebut-form" action="{{ getTrustPostAction() }}" method="post">
-            <input type="hidden" name="{{ key }}" value="{{ value }}" data-ng-repeat="(key, value) in data.payment_data"/>
-        </form>
+        <div class="alert alert-warning">
+            <h4>{{ 'ACCEDINT_SERVEI_PAGAMENT' | translate }}...</h4>
+        </div>
     </div>
 </div>
+
+<form action="{{ getTrustPostAction() }}" method="post">
+    <input type="hidden" name="{{ key }}" value="{{ value }}" data-ng-repeat="(key, value) in data.payment_data"/>
+</form>
 
 <script type="text/javascript">
     jQuery(document).ready(function () {

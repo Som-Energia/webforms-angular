@@ -3,7 +3,7 @@
 angular.module('newSomEnergiaWebformsApp')
     .service('prepaymentService', function() {
 
-        // FAKE DATA TODO: remove in production
+        // TODO: remove fake data in production
         var data = {
             endpoint: 'https://www.arquia.es/ArquiaRed/pgateway.aspx',
             payment_data: {
