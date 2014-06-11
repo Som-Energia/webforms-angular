@@ -33,14 +33,14 @@ angular.module('newSomEnergiaWebformsApp')
         var languagesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/idiomes', '002');
         languagesPromise.then(
             function (response) { $scope.languages = response.idiomes; },
-            function(reason) { $log.error('Failed', reason); }
+            function (reason) { $log.error('Failed', reason); }
         );
 
         // GET STATES
         var statesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/provincies', '001');
         statesPromise.then(
             function (response) { $scope.provinces = response.provincies; },
-            function(reason) { $log.error('Failed', reason); }
+            function (reason) { $log.error('Failed', reason); }
         );
 
         // DNI VALIDATION
@@ -57,13 +57,13 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.dniIsInvalid = response === cfg.STATE_FALSE;
                             $scope.formListener($scope.form);
                         },
-                        function(reason) { $log.error('Failed', reason); }
+                        function (reason) { $log.error('Failed', reason); }
                     );
                 }
             }, 400);
         });
 
-        // EMAIL VALIDATION
+        // EMAIL VALIDATIONS
         var checkEmail1Timer = false;
         $scope.$watch('form.email1', function(newValue) {
             if (checkEmail1Timer) {
@@ -95,16 +95,17 @@ angular.module('newSomEnergiaWebformsApp')
             var citiesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  $scope.form.province.id, '003');
             citiesPromise.then(
                 function (response) { $scope.cities = response.municipis; },
-                function(reason) { $log.error('Failed', reason); }
+                function (reason) { $log.error('Failed', reason); }
             );
             $scope.formListener(form);
         };
 
         // ON SUBMIT FORM
         $scope.submit = function (form) {
-            $scope.submitted = true;    // Trigger validation flag.
+            // Trigger validation flags
+            $scope.submitted = true;
             $scope.messages = null;
-            if (form.$invalid) {        // If form is invalid, return and let AngularJS show validation errors.
+            if (form.$invalid) {
                 return null;
             }
             // Prepare request data
@@ -122,31 +123,42 @@ angular.module('newSomEnergiaWebformsApp')
                 municipi: $scope.form.city.id,
                 idioma: $scope.form.language.code,
                 payment_method: $scope.form.payment === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD
-            };
-            // $log.log(postData);
+            };      // $log.log(postData);
+            // Send POST request data
+            var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData);
+            postPromise.then(
+                function (response) {
+                    if (response.state === cfg.STATE_TRUE) {
 
-            $http.post(cfg.API_BASE_URL + 'form/soci/alta', postData).success(function (response) {
-                    if (response.status === cfg.STATUS_ONLINE) {
-                        if (response.state === cfg.STATE_TRUE) {
-                            $log.log('POST form/soci/alta response recived', response);
-                            $scope.showWellDoneDialog();
-                        } else {
-                            $log.error('form/soci/alta error response recived', response);
-                            $scope.messages = $scope.getHumanizedAPIResponse(response.data);
-                            $scope.submitReady = false;
-                        }
-                    } else if (response.status === cfg.STATUS_OFFLINE) {
-                        $scope.showErrorDialog('API server status offline (ref.002-004)');
                     } else {
-                        $scope.showErrorDialog('API server unknown status (ref.001-004)');
+                        $scope.messages = $scope.getHumanizedAPIResponse(response.data);
+                        $scope.submitReady = false;
                     }
-                }
+                },
+                function (reason) { $log.error('Failed', reason); }
             );
+//            $http.post(cfg.API_BASE_URL + 'form/soci/alta', postData).success(function (response) {
+//                    if (response.status === cfg.STATUS_ONLINE) {
+//                        if (response.state === cfg.STATE_TRUE) {
+//                            $log.log('POST form/soci/alta response recived', response);
+//                            $scope.showWellDoneDialog();
+//                        } else {
+//                            $log.error('form/soci/alta error response recived', response);
+//                            $scope.messages = $scope.getHumanizedAPIResponse(response.data);
+//                            $scope.submitReady = false;
+//                        }
+//                    } else if (response.status === cfg.STATUS_OFFLINE) {
+//                        $scope.showErrorDialog('API server status offline (ref.002-004)');
+//                    } else {
+//                        $scope.showErrorDialog('API server unknown status (ref.001-004)');
+//                    }
+//                }
+//            );
 
             return true;
         };
 
-        // ON CHANGE FORM
+        // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function (form) {
             $scope.step2Ready = $scope.userTypeClicked && form.language !== undefined;
             $scope.step3Ready = $scope.step2Ready &&
@@ -173,21 +185,8 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.formListener(form);
         };
 
-        // SHOW MODAL DIALOGS
-        $scope.showErrorDialog = function (msg) {
-            $scope.errorMsg = msg;
-            jQuery('#api-server-offline-modal').modal({
-                backdrop: 'static',
-                keyboard: false,
-                show: true
-            });
-        };
-        $scope.showWellDoneDialog = function () {
-            jQuery('#well-done-modal').modal({show: true});
-        };
-
         // GET HUMANIZED API RESPONSE
-        $scope.getHumanizedAPIResponse = function  (arrayResponse) {
+        $scope.getHumanizedAPIResponse = function (arrayResponse) {
             var result = '';
             if (arrayResponse.required_fields !== undefined) {
                 result = result + 'ERROR:'; // TODO $translate it

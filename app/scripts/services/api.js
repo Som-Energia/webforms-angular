@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .service('AjaxHandler', function(cfg, $http, $q, $log) {
+    .service('AjaxHandler', function(cfg, uiHandler, $http, $q, $log) {
+
         // Async GET data call
         this.getDataRequest = function($scope, URL, errorCode) {
             var deferred = $q.defer();
@@ -11,13 +12,13 @@ angular.module('newSomEnergiaWebformsApp')
                         if (response.state === cfg.STATE_TRUE) {
                             deferred.resolve(response.data);
                         } else {
-                            $log.error('AjaxHandler GET request error response recived', response);
-                            $scope.showErrorDialog('GET response state false recived (ref.003-' + errorCode + ')');
+                            $log.error('AjaxHandler GET request ' + URL + ' error response recived', response);
+                            uiHandler.showErrorDialog('GET response state false recived (ref.003-' + errorCode + ')');
                         }
                     } else if (response.status === cfg.STATUS_OFFLINE) {
-                        $scope.showErrorDialog('API server response status offline recived (ref.002-' + errorCode + ')');
+                        uiHandler.showErrorDialog('API server response status offline recived (ref.002-' + errorCode + ')');
                     } else {
-                        $scope.showErrorDialog('API server response unknown status recived (ref.001-' + errorCode + ')');
+                        uiHandler.showErrorDialog('API server response unknown status recived (ref.001-' + errorCode + ')');
                     }
                 })
                 .error(function (data) {
@@ -26,6 +27,7 @@ angular.module('newSomEnergiaWebformsApp')
 
             return deferred.promise;
         };
+
         // Async GET state call
         this.getSateRequest = function($scope, URL, errorCode) {
             var deferred = $q.defer();
@@ -35,9 +37,9 @@ angular.module('newSomEnergiaWebformsApp')
                         deferred.resolve(response.state);
                         $scope.formListener($scope.form);
                     } else if (response.status === cfg.STATUS_OFFLINE) {
-                        $scope.showErrorDialog('API server response status offline recived (ref.002-' + errorCode + ')');
+                        uiHandler.showErrorDialog('API server response status offline recived (ref.002-' + errorCode + ')');
                     } else {
-                        $scope.showErrorDialog('API server unknown status (ref.001-' + errorCode + ')');
+                        uiHandler.showErrorDialog('API server unknown status (ref.001-' + errorCode + ')');
                     }
                 })
                 .error(function (data) {
@@ -46,4 +48,31 @@ angular.module('newSomEnergiaWebformsApp')
 
             return deferred.promise;
         };
+
+        // Async POST call
+        this.postRequest = function($scope, URL, postData) {
+            var deferred = $q.defer();
+            $http.post(URL, postData)
+                .success(function (response) {
+                    if (response.status === cfg.STATUS_ONLINE) {
+                        if (response.state === cfg.STATE_TRUE) {
+                            $log.log('AjaxHandler POST request ' + URL + ' response recived', response);
+                            uiHandler.showWellDoneDialog();
+                        } else {
+                            $log.error('AjaxHandler POST request ' + URL + ' error response recived', response);
+                        }
+                        deferred.resolve(response);
+                    } else if (response.status === cfg.STATUS_OFFLINE) {
+                        $scope.showErrorDialog('API server status offline (ref.002-004)');
+                    } else {
+                        $scope.showErrorDialog('API server unknown status (ref.001-004)');
+                    }
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+
+            return deferred.promise;
+        };
+
     });
