@@ -96,6 +96,4 @@ angular.module('newSomEnergiaWebformsApp')
             return true;
         };
 
-
-
     }]);

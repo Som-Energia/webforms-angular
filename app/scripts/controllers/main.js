@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('MainCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
+    .controller('MainCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', 'prepaymentService', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, AjaxHandler, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // INIT
         $scope.currentStep = 1;
@@ -153,31 +153,14 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.messages = $scope.getHumanizedAPIResponse(response.data);
                         $scope.submitReady = false;
                     } else if (response.state === cfg.STATE_TRUE) {
-                        $scope.openPaymentWindow();
+                        prepaymentService.setData(response.data);
+                        // TODO $window.open($route.get('/prepagament'));
                     }
                 },
                 function (reason) { $log.error('Failed', reason); }
             );
 
             return true;
-        };
-
-        $scope.openPaymentWindow = function () {
-            var data = {
-                endpoint: 'https://www.arquia.es/ArquiaRed/pgateway.aspx',
-                payment_data: {
-                    CONC1: 'QUOTA SOCI',
-                    CONF: '0100',
-                    DNI_CLI: '13572468F',
-                    ID_OPERACION: 'dggokFcmcdq27D6f0A9ssJLzfZzYUH3b',
-                    ID_USU: 'ARQUIA_USER',
-                    IMPORTE: '100',
-                    NOMBRE_CLI: 'USUARIO DE PRUEBAS',
-                    REF: '2014f9d5b0d7'
-                },
-                payment_type: 'rebut'
-            };
-            $window.open(data.endpoint);
         };
 
         // CONTROL READY STEPS ON CHANGE FORM

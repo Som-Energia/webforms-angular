@@ -19,6 +19,10 @@ angular.module('newSomEnergiaWebformsApp', [
                 templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
+            .when('/prepagament', {
+                templateUrl: 'views/prepayment.html',
+                controller: 'PrepaymentCtrl'
+            })
             .when('/:locale', {
                 templateUrl: 'views/main.html',
                 controller: 'MainCtrl'

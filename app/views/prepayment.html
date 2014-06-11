@@ -1,0 +1,14 @@
+<div class="row">
+    <h1>{{ 'ACCEDINT_SERVEI_PAGAMENT' | translate }}</h1>
+    <pre>{{ data }}</pre>
+    <pre>{{ getTrustPostAction() }}</pre>
+    <form id="rebut-form" action="{{ getTrustPostAction() }}" method="post">
+        <input type="text" name="{{ key }}" value="{{ value }}" data-ng-repeat="(key, value) in data.payment_data"/>
+    </form>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        setTimeout(function () { document.forms[0].submit(); }, 1000);
+    });
+</script>
