@@ -6,8 +6,15 @@
     </div>
 </div>
 
-<form action="{{ getTrustPostAction() }}" method="post">
-    <input type="hidden" name="{{ key }}" value="{{ value }}" data-ng-repeat="(key, value) in data.payment_data"/>
+<form action="{{ getTrustPostAction() }}" method="post" class="form-inline">
+    <div class="row" data-ng-repeat="(key, value) in data.payment_data">
+        <div class="col-xs-2 sr-only">
+            <label for="{{ key }}">{{ key }}</label>
+        </div>
+        <div class="form-group col-xs-4">
+            <input type="hidden" name="{{ key }}" value="{{ value }}" class="form-control"/>
+        </div>
+    </div>
 </form>
 
 <script type="text/javascript">

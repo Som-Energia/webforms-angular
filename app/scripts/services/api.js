@@ -48,7 +48,7 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // Async POST call
-        this.postRequest = function($scope, URL, postData) {
+        this.postRequest = function($scope, URL, postData, errorMsg) {
             var deferred = $q.defer();
             $http.post(URL, postData)
                 .success(function (response) {
@@ -61,9 +61,9 @@ angular.module('newSomEnergiaWebformsApp')
                         }
                         deferred.resolve(response);
                     } else if (response.status === cfg.STATUS_OFFLINE) {
-                        $scope.showErrorDialog('API server status offline (ref.002-004)');
+                        $scope.showErrorDialog('API server status offline (ref.002-' + errorMsg + ')');
                     } else {
-                        $scope.showErrorDialog('API server unknown status (ref.001-004)');
+                        $scope.showErrorDialog('API server unknown status (ref.001-' + errorMsg + ')');
                     }
                 })
                 .error(function (data) {
