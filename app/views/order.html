@@ -134,6 +134,22 @@
             <span class="badge current small" data-popover="{{ 'HELP_POPOVER_RATE' | translate }}">?</span>
         </div>
     </div>
+    <hr>
+    <div class="row">
+        <div class="col-xs-12">
+            <strong>{{ 'INFORMACIO_OPCIONAL' | translate }}</strong>&nbsp;<span class="badge current small" data-popover="{{ 'HELP_POPOVER_OPTIONAL_INFO' | translate }}">?</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <label for="estimation" class="sr-only">{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}:</label>
+            <input type="text" name="estimation" data-ng-model="form.estimation" class="form-control" placeholder="{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}" data-ng-change="formListener(form)" />
+        </div>
+        <div class="col-xs-8">
+            <label for="catastre" class="sr-only">{{ 'REFERENCIA_CATASTRAL' | translate }}:</label>
+            <input type="text" name="catastre" data-ng-model="form.catastre" class="form-control" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener(form)" />
+        </div>
+    </div>
 </form>
 
 <!--OFFLINE API MODAL-->
