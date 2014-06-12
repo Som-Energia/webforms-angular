@@ -5,7 +5,8 @@ angular.module('newSomEnergiaWebformsApp', [
         'ngResource',
         'ngSanitize',
         'ngRoute',
-        'pascalprecht.translate'
+        'pascalprecht.translate',
+        'ui.bootstrap'
     ])
     .config(function ($httpProvider) {
         $httpProvider.defaults.headers.post = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};

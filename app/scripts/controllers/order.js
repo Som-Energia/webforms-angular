@@ -17,6 +17,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.provinces = [];
         $scope.cities = [];
         $scope.form = {};
+        $scope.rates = ['2.0A', '2.0DHA', '2.1A', '2.1DHA', '3.0A'];
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }

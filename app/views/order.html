@@ -24,7 +24,7 @@
             <span class="label label-danger" data-ng-show="dniIsInvalid">{{ 'INVALID' | translate }}</span>
         </div>
         <div class="col-xs-1">
-            <span id="helpPopover" class="badge current small" data-container="body" data-toggle="popover" data-placement="top" data-content="{{ 'HELP_POPOVER' | translate }}">?</span>
+            <span class="badge current small" data-popover="{{ 'HELP_POPOVER' | translate }}">?</span>
         </div>
         <div class="col-xs-7">
             <button data-ng-disabled="!initSubmitReady" data-ng-click="initSubmit(initForm)" class="btn btn-default grey pull-right">{{ 'CARREGAR_DADES_SOCI_VINCULAT' | translate }}</button>
@@ -96,7 +96,7 @@
             <span class="label label-danger" data-ng-show="cupsIsInvalid">{{ 'INVALID' | translate }}</span>
         </div>
         <div class="col-xs-1">
-            <span id="helpPopoverCUPS" class="badge current small" data-container="body" data-toggle="popover" data-placement="top" data-content="{{ 'HELP_POPOVER_CUPS' | translate }}">?</span>
+            <span class="badge current small" data-popover="{{ 'HELP_POPOVER_CUPS' | translate }}">?</span>
         </div>
         <div class="col-xs-3">
             <label for="cnae" class="sr-only">CNAE*</label>
@@ -105,7 +105,33 @@
             <span class="label label-danger" data-ng-show="cnaeIsInvalid">{{ 'INVALID' | translate }}</span>
         </div>
         <div class="col-xs-1">
-            <span id="helpPopoverCNAE" class="badge current small" data-container="body" data-toggle="popover" data-placement="top" data-content="{{ 'HELP_POPOVER_CNAE' | translate }}">?</span>
+            <span class="badge current small" data-popover="{{ 'HELP_POPOVER_CNAE' | translate }}">?</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <label for="power">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}?*</label>
+        </div>
+        <div class="col-xs-4">
+            <input type="text" name="power" data-ng-model="form.power" class="form-control" data-ng-change="formListener(form)" required />&nbsp;kW
+            <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+        </div>
+        <div class="col-xs-1">
+            <span class="badge current small" data-popover="{{ 'HELP_POPOVER_POWER' | translate }}">?</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <label for="rate">{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}?*</label>
+        </div>
+        <div class="col-xs-4">
+            <select class="form-control" name="rate" data-ng-model="form.rate" required>
+                <option value="">{{ 'SELECCIONAR' | translate }}</option>
+                <option data-ng-repeat="rate in rates" value="{{ rate }}" data-ng-selected="{{ rate == form.rate }}">{{ rate }}</option>
+            </select>
+        </div>
+        <div class="col-xs-1">
+            <span class="badge current small" data-popover="{{ 'HELP_POPOVER_RATE' | translate }}">?</span>
         </div>
     </div>
 </form>
@@ -116,10 +142,10 @@
 </div>
 
 <!--INITILIZE ONLOAD-->
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        jQuery('#helpPopover').popover();
-        jQuery('#helpPopoverCUPS').popover();
-        jQuery('#helpPopoverCNAE').popover();
-    });
-</script>
+<!--<script type="text/javascript">-->
+    <!--jQuery(document).ready(function() {-->
+        <!--jQuery('#helpPopover').popover();-->
+        <!--jQuery('#helpPopoverCUPS').popover();-->
+        <!--jQuery('#helpPopoverCNAE').popover();-->
+    <!--});-->
+<!--</script>-->
