@@ -12,13 +12,9 @@
             <div class="row">
                 <div class="form-group col-xs-6">
                     <span>{{ 'SELECCIONA' | translate }}:&nbsp;</span>
-                    <div class="btn-group" data-toggle="buttons" data-ng-click="firstUserTypeClick(form)">
-                        <label id="form-user-type1" class="btn btn-default green" data-radio-button-user data-ng-model="form.usertype" data-value="person">
-                            {{ 'SELECCIONA_PARTICULAR' | translate }}
-                        </label>
-                        <label id="form-user-type2" class="btn btn-default green" data-radio-button-user data-ng-model="form.usertype" data-value="company">
-                            {{ 'SELECCIONA_EMPRESA' | translate }}
-                        </label>
+                    <div class="btn-group" data-ng-click="firstUserTypeClick(form)">
+                        <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'person'">{{ 'SELECCIONA_PARTICULAR' | translate }}</label>
+                        <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'company'">{{ 'SELECCIONA_EMPRESA' | translate }}</label>
                     </div>
                 </div>
                 <div class="form-group col-xs-6">
@@ -170,13 +166,9 @@
                     <span>{{ 'METODE_PAGAMENT' | translate }}:</span>
                 </div>
                 <div class="form-group col-xs-10">
-                    <div class="btn-group" data-toggle="buttons">
-                        <label id="form-payment-type1" class="btn btn-default green active" data-radio-button-payment data-ng-model="form.payment" data-value="bankaccount">
-                            {{ 'REBUT_BANCARI' | translate }}
-                        </label>
-                        <label id="form-payment-type2" class="btn btn-default green" data-radio-button-payment data-ng-model="form.payment" data-value="creditcard">
-                            {{ 'TARGETA_CREDIT' | translate }}
-                        </label>
+                    <div class="btn-group">
+                        <label data-ng-disabled="!step3Ready" class="btn btn-default green" data-ng-model="form.payment" data-btn-radio="'bankaccount'">{{ 'REBUT_BANCARI' | translate }}</label>
+                        <label data-ng-disabled="!step3Ready" class="btn btn-default green" data-ng-model="form.payment" data-btn-radio="'creditcard'">{{ 'TARGETA_CREDIT' | translate }}</label>
                     </div>
                 </div>
             </div>
