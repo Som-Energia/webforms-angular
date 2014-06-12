@@ -139,6 +139,10 @@ div.alert {
   }
 }
 
+.my-drop-zone { border: dotted 3px lightgray; }
+.ng-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+.another-file-over-class { border: dotted 3px green; }
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {

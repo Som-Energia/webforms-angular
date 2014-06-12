@@ -10,8 +10,8 @@ angular.module('newSomEnergiaWebformsApp')
                 CONC1: 'QUOTA SOCI',
                 CONF: '0100',
                 DNI_CLI: '13572468F',
-                ID_OPERACION: 'dggokFcmcdq27D6f0A9ssJLzfZzYUH3b',
-                ID_USU: 'ARQUIA_USER',
+                ID_OPERACION: 'dggokFcmcdq27D6f0A9ssJLzfZzYUH3',
+                ID_USU: '37',
                 IMPORTE: '100',
                 NOMBRE_CLI: 'USUARIO DE PRUEBAS',
                 REF: '2014f9d5b0d7'
@@ -36,3 +36,4 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
     });
+

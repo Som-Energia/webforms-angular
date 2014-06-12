@@ -50,10 +50,10 @@
         </div>
     </div>
 </form>
+<!--END INIT FORM-->
 
-
-<!-- BEGIN INIT FORM-->
-<form name="orderForm" class="form-inline" role="form" data-ng-if="showStep1Form" novalidate>
+<!-- BEGIN ORDER FORM-->
+<form name="orderForm" class="form-inline" role="form" data-ng-if="!showStep1Form" enctype="multipart/form-data" novalidate>
     <!--SECOND STEP-->
     <div class="row">
         <div class="col-xs-12">
@@ -150,18 +150,17 @@
             <input type="text" name="catastre" data-ng-model="form.catastre" class="form-control" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener(form)" />
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-5">
+            <label for="file">{{ 'ADJUNTAR_ULTIMA_FACTURA' | translate }}</label>
+        </div>
+        <div class="col-xs-7">
+            <input type="file" name="file" data-ng-model="form.file" class="form-control" />
+        </div>
+    </div>
 </form>
 
 <!--OFFLINE API MODAL-->
 <div id="api-server-offline-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="Webforms" data-aria-hidden="true">
     <div class="modal-dialog modal-lg" data-ng-include data-src="'views/common/offline-api-modal.html'"></div>
 </div>
-
-<!--INITILIZE ONLOAD-->
-<!--<script type="text/javascript">-->
-    <!--jQuery(document).ready(function() {-->
-        <!--jQuery('#helpPopover').popover();-->
-        <!--jQuery('#helpPopoverCUPS').popover();-->
-        <!--jQuery('#helpPopoverCNAE').popover();-->
-    <!--});-->
-<!--</script>-->
