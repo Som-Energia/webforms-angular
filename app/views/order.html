@@ -202,6 +202,29 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <label for="isownerlink">{{ 'EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE' | translate }}?</label>
+        </div>
+        <div class="col-xs-3">
+            <select class="form-control" name="isownerlink" data-ng-model="form.isownerlink">
+                <option value="">{{ 'SELECCIONAR' | translate }}</option>
+                <option value="1">{{ 'SI' | translate }}</option>
+                <option value="0">{{ 'NO' | translate }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <input type="text" name="ownername" data-ng-model="form.ownername" class="form-control" placeholder="{{ soci.nom }}" value="{{ soci.nom }}" disabled />
+        </div>
+        <div class="col-xs-4">
+            <input type="text" name="ownersurname" data-ng-model="form.ownersurname" class="form-control" placeholder="{{ soci.cognom }}" value="{{ soci.cognom }}" disabled />
+        </div>
+        <div class="col-xs-4">
+            <input type="text" name="ownerdni" data-ng-model="form.ownerdni" class="form-control" placeholder="{{ soci.dni }}" value="{{ soci.dni }}" disabled />
+        </div>
+    </div>
 </form>
 
 <!--OFFLINE API MODAL-->

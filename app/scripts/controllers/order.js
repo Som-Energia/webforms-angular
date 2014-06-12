@@ -17,6 +17,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.provinces = [];
         $scope.cities = [];
         $scope.form = {};
+        $scope.form.init = {};
         $scope.rates = ['2.0A', '2.0DHA', '2.1A', '2.1DHA', '3.0A'];
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
@@ -121,21 +122,7 @@ angular.module('newSomEnergiaWebformsApp')
                 return null;
             }
             // GET SOCI VALUES
-            var sociPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/soci/' + $scope.form.init.socinumber + '/' + $scope.form.init.dni, '001');
-            sociPromise.then(
-                function (response) {
-                    if (response.state === cfg.STATE_TRUE) {
-                        $scope.soci = response.data.soci;
-                        $scope.showBeginOrderForm = true;
-                        $scope.showUnknownSociWarning = false;
-                        $scope.showStep1Form = false;
-                    } else {
-                        $scope.showUnknownSociWarning = true;
-                        $scope.showStep1Form = false;
-                    }
-                },
-                function (reason) { $log.error('Failed', reason); }
-            );
+            $scope.executeGetSociValues();
 
             return true;
         };
@@ -162,5 +149,28 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.formListener(form);
             }
         };
+
+        $scope.executeGetSociValues = function () {
+            var sociPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/soci/' + $scope.form.init.socinumber + '/' + $scope.form.init.dni, '001');
+            sociPromise.then(
+                function (response) {
+                    if (response.state === cfg.STATE_TRUE) {
+                        $scope.soci = response.data.soci;
+                        $scope.showBeginOrderForm = true;
+                        $scope.showUnknownSociWarning = false;
+                        $scope.showStep1Form = false;
+                    } else {
+                        $scope.showUnknownSociWarning = true;
+                        $scope.showStep1Form = false;
+                    }
+                },
+                function (reason) { $log.error('Failed', reason); }
+            );
+        };
+
+        // DEBUG
+        $scope.form.init.socinumber = 1706;
+        $scope.form.init.dni = '52608510N';
+        $scope.executeGetSociValues();
 
     }]);
