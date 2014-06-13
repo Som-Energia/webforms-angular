@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('PrepaymentCtrl', ['cfg', 'prepaymentService', '$scope', '$sce', function (cfg, prepaymentService, $scope, $sce) {
+    .controller('PrepaymentCtrl', ['cfg', 'prepaymentService', '$http', '$scope', '$sce', function (cfg, prepaymentService, $http, $scope, $sce) {
 
         $scope.data = prepaymentService.getData();
 
@@ -14,5 +14,9 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.data.payment_data.ID_OPERACION = escape($scope.data.payment_data.ID_OPERACION);
             }
         };
+
+        // TODO enable on production to avoid prepayment template render
+        // $scope.getOperationIdEscape();
+        // $http.post($scope.data.endpoint, $scope.data.payment_data);
 
     }]);

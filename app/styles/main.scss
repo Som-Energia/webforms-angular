@@ -1,6 +1,6 @@
-$icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+$icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 
-@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import '../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 
 // bower:scss
 @import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
@@ -9,6 +9,7 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 /* Variables */
 $red: #F00;
 $green: #AEC122;
+$white: #FFF;
 $grey-light: #DFDFE0;
 $grey: #8A8990;
 $grey-dark: #5F5E63;
@@ -83,12 +84,12 @@ button {
   &.btn {
     &.btn-default {
       &.green {
-        color: white;
+        color: $white;
         background-color: $green;
         border-color: $green;
       }
       &.grey {
-        color: white;
+        color: $white;
         background-color: $grey-dark;
         border-color: $grey;
       }
@@ -100,7 +101,7 @@ label {
   &.btn {
     &.btn-default {
       &.green {
-        color: white;
+        color: $white;
         background-color: $grey-dark;
         border-color: $grey;
         &.active {
@@ -132,16 +133,20 @@ a {
 div.alert {
   &.alert-info {
     &.grey {
-      color: white;
+      color: $white;
       background-color: $grey;
       border-color: $grey;
     }
   }
 }
 
-.my-drop-zone { border: dotted 3px lightgray; }
-.ng-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
-.another-file-over-class { border: dotted 3px green; }
+.color-bg-green {
+  background-color: $green;
+}
+
+.color-fg-white {
+  color: $white;
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
