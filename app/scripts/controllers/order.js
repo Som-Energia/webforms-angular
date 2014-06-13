@@ -16,6 +16,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.showStep1Form = false;
         $scope.initSubmitReady = false;
         $scope.initFormSubmitted = false;
+        $scope.isStep2ButtonReady = false;
         $scope.orderFormSubmitted = false;
         $scope.languages = [];
         $scope.provinces = [];
@@ -114,8 +115,16 @@ angular.module('newSomEnergiaWebformsApp')
         });
 
         // ON CHANGE FORMS
-        $scope.formListener = function (form) {
-            $scope.initSubmitReady = form.dni !== undefined && form.socinumber !== undefined && $scope.dniIsInvalid === false;
+        $scope.formListener = function () {
+            $scope.initSubmitReady = $scope.form.init.dni !== undefined && $scope.form.init.socinumber !== undefined && $scope.dniIsInvalid === false;
+            $scope.isStep2ButtonReady = $scope.initSubmitReady &&
+                $scope.form.address !== undefined &&
+                $scope.form.province !== undefined &&
+                $scope.form.city !== undefined &&
+                $scope.form.cups !== undefined &&
+                $scope.form.cnae !== undefined &&
+                $scope.form.power !== undefined &&
+                $scope.form.rate !== undefined;
         };
 
         // ON INIT SUBMIT FORM
@@ -177,6 +186,11 @@ angular.module('newSomEnergiaWebformsApp')
         // DEBUG
         $scope.form.init.socinumber = 1706;
         $scope.form.init.dni = '52608510N';
+        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
+        $scope.form.cups = 'ES0031406222973003LE0F';
+        $scope.form.cnae = '0520';
+        $scope.form.power = '5.5';
+        $scope.form.rate = '2.0A';
         $scope.executeGetSociValues();
         $scope.showStep1Form = true;
         $scope.step0Ready = false;

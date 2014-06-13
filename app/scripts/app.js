@@ -104,7 +104,8 @@ angular.module('newSomEnergiaWebformsApp', [
                 NO: 'No',
                 HELP_POPOVER_OWNER: '',
                 EL_TITULAR_ES: '',
-                EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE: ''
+                EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE: '',
+                DADES_PAGAMENT: ''
             })
             .translations('ca', {
                 SELECCIONA: 'Sel·lecciona',
@@ -168,7 +169,8 @@ angular.module('newSomEnergiaWebformsApp', [
                 NO: 'No',
                 HELP_POPOVER_OWNER: '?',
                 EL_TITULAR_ES: 'El titular és',
-                EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE: 'El titular és el soci vinculat a aquest contracte'
+                EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE: 'El titular és el soci vinculat a aquest contracte',
+                DADES_PAGAMENT: 'Dades de pagament'
             })
             .preferredLanguage('ca')
         ;
