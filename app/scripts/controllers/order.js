@@ -171,6 +171,6 @@ angular.module('newSomEnergiaWebformsApp')
         // DEBUG
         $scope.form.init.socinumber = 1706;
         $scope.form.init.dni = '52608510N';
-        $scope.executeGetSociValues();
+//        $scope.executeGetSociValues();
 
     }]);
