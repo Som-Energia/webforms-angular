@@ -3,13 +3,13 @@
 
 <!--HEADER-->
 <div class="row">
-    <div class="col-xs-12 color-bg-green">
-        <h1 class="color-fg-white">{{ 'FORMULARI_CONTRACTACIO' | translate }}</h1>
+    <div class="col-xs-12 heading" data-ng-class="{active: step0Ready}">
+        <h1 class="extra-margin">{{ 'FORMULARI_CONTRACTACIO' | translate }}</h1>
     </div>
 </div>
 
 <!-- BEGIN INIT FORM-->
-<form name="initForm" class="form-inline" role="form" novalidate>
+<form name="initForm" class="form-inline" role="form" data-ng-show="step0Ready" novalidate>
     <!--FIRST STEP-->
     <div class="row">
         <div class="form-group col-xs-2">
@@ -53,11 +53,11 @@
 <!--END INIT FORM-->
 
 <!-- BEGIN ORDER FORM-->
-<form name="orderForm" class="form-inline" role="form" data-ng-if="!showStep1Form" enctype="multipart/form-data" novalidate>
+<form name="orderForm" class="form-inline" role="form" data-ng-if="showStep1Form" enctype="multipart/form-data" novalidate>
     <!--SECOND STEP-->
     <div class="row">
-        <div class="col-xs-12">
-            <h2>1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}</h2>
+        <div class="col-xs-12 heading" data-ng-class="{active: step1Ready}">
+            <h2 class="extra-margin">1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}</h2>
         </div>
     </div>
     <div class="row">

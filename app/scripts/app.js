@@ -146,7 +146,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 NO_ETS_SOCI_FES_TE_AQUI: 'No ets soci/a? Fes-te soci/a aquí!',
                 INICIAR_CONTRACTACIO: 'Iniciar contractació',
                 DADES_PUNT_SUBMINISTRAMENT: 'Dades del punt de subministrament',
-                DADES_PUNT_SUBMINISTRAMENT_HELPER: '?',
+                DADES_PUNT_SUBMINISTRAMENT_HELPER: 'Lorem ipsum...',
                 NUMERO_DE_CUPS: 'Número de CUPS',
                 HELP_POPOVER_CUPS: '?',
                 HELP_POPOVER_CNAE: '?',

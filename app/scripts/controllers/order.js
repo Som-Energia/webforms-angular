@@ -4,6 +4,10 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // INIT
+        $scope.step0Ready = true;
+        $scope.step1Ready = false;
+        $scope.step2Ready = false;
+        $scope.step3Ready = false;
         $scope.dniIsInvalid = false;
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
@@ -129,6 +133,8 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.initOrderForm = function() {
             $scope.showStep1Form = true;
+            $scope.step0Ready = false;
+            $scope.step1Ready = true;
         };
 
         // ON CHANGE SELECTED PROVINCE
@@ -158,7 +164,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
-                        $scope.showStep1Form = false;
+                        $scope.showStep1Form = false; // uncomment on debug
                     } else {
                         $scope.showUnknownSociWarning = true;
                         $scope.showStep1Form = false;
@@ -172,5 +178,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.form.init.socinumber = 1706;
         $scope.form.init.dni = '52608510N';
 //        $scope.executeGetSociValues();
+//        $scope.showStep1Form = true;
 
     }]);
