@@ -140,10 +140,17 @@ angular.module('newSomEnergiaWebformsApp')
             return true;
         };
 
+        // MOVE TO STEP 1 FORM
         $scope.initOrderForm = function() {
             $scope.showStep1Form = true;
             $scope.step0Ready = false;
             $scope.step1Ready = true;
+        };
+
+        // MOVE TO STEP 2 FORM
+        $scope.moveToStep2Form = function() {
+            $scope.step1Ready = false;
+            $scope.step2Ready = true;
         };
 
         // ON CHANGE SELECTED PROVINCE
@@ -173,7 +180,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
-//                        $scope.showStep1Form = false; // uncomment on debug
+                        $scope.showStep1Form = false; // uncomment on debug
                     } else {
                         $scope.showUnknownSociWarning = true;
                         $scope.showStep1Form = false;
@@ -184,16 +191,16 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // DEBUG
-        $scope.form.init.socinumber = 1706;
-        $scope.form.init.dni = '52608510N';
-        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
-        $scope.form.cups = 'ES0031406222973003LE0F';
-        $scope.form.cnae = '0520';
-        $scope.form.power = '5.5';
-        $scope.form.rate = '2.0A';
-        $scope.executeGetSociValues();
-        $scope.showStep1Form = true;
-        $scope.step0Ready = false;
-        $scope.step1Ready = true;
-        $scope.step2Ready = false;
+//        $scope.form.init.socinumber = 1706;
+//        $scope.form.init.dni = '52608510N';
+//        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
+//        $scope.form.cups = 'ES0031406222973003LE0F';
+//        $scope.form.cnae = '0520';
+//        $scope.form.power = '5.5';
+//        $scope.form.rate = '2.0A';
+//        $scope.executeGetSociValues();
+//        $scope.showStep1Form = true;
+//        $scope.step0Ready = false;
+//        $scope.step1Ready = true;
+//        $scope.step2Ready = false;
     }]);
