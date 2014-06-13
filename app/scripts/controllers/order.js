@@ -164,7 +164,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
-                        $scope.showStep1Form = false; // uncomment on debug
+//                        $scope.showStep1Form = false; // uncomment on debug
                     } else {
                         $scope.showUnknownSociWarning = true;
                         $scope.showStep1Form = false;
@@ -177,7 +177,9 @@ angular.module('newSomEnergiaWebformsApp')
         // DEBUG
         $scope.form.init.socinumber = 1706;
         $scope.form.init.dni = '52608510N';
-//        $scope.executeGetSociValues();
-//        $scope.showStep1Form = true;
-
+        $scope.executeGetSociValues();
+        $scope.showStep1Form = true;
+        $scope.step0Ready = false;
+        $scope.step1Ready = true;
+        $scope.step2Ready = false;
     }]);

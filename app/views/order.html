@@ -74,7 +74,7 @@
     </div>
     <div class="row">
         <div class="col-xs-1">
-            <label for="province">{{ 'PROVINCIA' | translate }}</label>
+            <label for="province">{{ 'PROVINCIA' | translate }}*:</label>
         </div>
         <div class="col-xs-5">
             <select class="form-control" name="province" data-ng-model="form.province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity(form)" required>
@@ -83,7 +83,7 @@
             <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.province.$error.required">{{ 'OBLIGATORI' | translate }}</span>
         </div>
         <div class="col-xs-1">
-            <label for="city">{{ 'POBLACIO' | translate }}</label>
+            <label for="city">{{ 'POBLACIO' | translate }}*:</label>
         </div>
         <div class="form-group col-xs-5">
             <select class="form-control" name="city" data-ng-model="form.city" data-ng-options="city.name for city in cities" data-ng-change="formListener(form)" required >
@@ -170,59 +170,71 @@
     </div>
     <!--THIRD STEP-->
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 heading" data-ng-class="{active: step2Ready}">
             <h2>2 {{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}</h2>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_HELPER' | translate }}</p>
+    <div data-ng-show="step2Ready">
+        <div class="row">
+            <div class="col-xs-12">
+                <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_HELPER' | translate }}</p>
+            </div>
         </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-xs-3">
-            <label for="changeowner">{{ 'VOLS_FER_CANVI_TITULAR' | translate }}?*</label>
+        <hr>
+        <div class="row">
+            <div class="col-xs-3">
+                <label for="changeowner">{{ 'VOLS_FER_CANVI_TITULAR' | translate }}?*</label>
+            </div>
+            <div class="col-xs-4">
+                <select class="form-control" name="changeowner" data-ng-model="form.changeowner">
+                    <option value="">{{ 'SELECCIONAR' | translate }}</option>
+                    <option value="0">{{ 'NO' | translate }}</option>
+                    <option value="1">{{ 'SI' | translate }}</option>
+                </select>
+            </div>
+            <div class="col-xs-1">
+                <span class="badge current small" data-popover="{{ 'HELP_POPOVER_OWNER' | translate }}">?</span>
+            </div>
+            <div class="form-group col-xs-4">
+                <span>{{ 'EL_TITULAR_ES' | translate }}:&nbsp;</span>
+                <div class="btn-group">
+                    <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'person'">{{ 'PARTICULAR' | translate }}</label>
+                    <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'company'">{{ 'EMPRESA' | translate }}</label>
+                </div>
+            </div>
         </div>
-        <div class="col-xs-4">
-            <select class="form-control" name="changeowner" data-ng-model="form.changeowner">
-                <option value="">{{ 'SELECCIONAR' | translate }}</option>
-                <option value="0">{{ 'NO' | translate }}</option>
-                <option value="1">{{ 'SI' | translate }}</option>
-            </select>
+        <div class="row">
+            <div class="col-xs-4">
+                <label for="isownerlink">{{ 'EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE' | translate }}?</label>
+            </div>
+            <div class="col-xs-3">
+                <select class="form-control" name="isownerlink" data-ng-model="form.isownerlink">
+                    <option value="">{{ 'SELECCIONAR' | translate }}</option>
+                    <option value="1">{{ 'SI' | translate }}</option>
+                    <option value="0">{{ 'NO' | translate }}</option>
+                </select>
+            </div>
         </div>
-        <div class="col-xs-1">
-            <span class="badge current small" data-popover="{{ 'HELP_POPOVER_OWNER' | translate }}">?</span>
-        </div>
-        <div class="form-group col-xs-4">
-            <span>{{ 'EL_TITULAR_ES' | translate }}:&nbsp;</span>
-            <div class="btn-group">
-                <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'person'">{{ 'PARTICULAR' | translate }}</label>
-                <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'company'">{{ 'EMPRESA' | translate }}</label>
+        <div class="row">
+            <div class="col-xs-4">
+                <input type="text" name="ownername" data-ng-model="form.ownername" class="form-control" placeholder="{{ soci.nom }}" value="{{ soci.nom }}" disabled />
+            </div>
+            <div class="col-xs-4">
+                <input type="text" name="ownersurname" data-ng-model="form.ownersurname" class="form-control" placeholder="{{ soci.cognom }}" value="{{ soci.cognom }}" disabled />
+            </div>
+            <div class="col-xs-4">
+                <input type="text" name="ownerdni" data-ng-model="form.ownerdni" class="form-control" placeholder="{{ soci.dni }}" value="{{ soci.dni }}" disabled />
             </div>
         </div>
     </div>
+    <!--FORTH STEP-->
     <div class="row">
-        <div class="col-xs-4">
-            <label for="isownerlink">{{ 'EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE' | translate }}?</label>
-        </div>
-        <div class="col-xs-3">
-            <select class="form-control" name="isownerlink" data-ng-model="form.isownerlink">
-                <option value="">{{ 'SELECCIONAR' | translate }}</option>
-                <option value="1">{{ 'SI' | translate }}</option>
-                <option value="0">{{ 'NO' | translate }}</option>
-            </select>
+        <div class="col-xs-12 heading" data-ng-class="{active: step3Ready}">
+            <h2>3 {{ 'DADES_PAGAMENT' | translate }}</h2>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-4">
-            <input type="text" name="ownername" data-ng-model="form.ownername" class="form-control" placeholder="{{ soci.nom }}" value="{{ soci.nom }}" disabled />
-        </div>
-        <div class="col-xs-4">
-            <input type="text" name="ownersurname" data-ng-model="form.ownersurname" class="form-control" placeholder="{{ soci.cognom }}" value="{{ soci.cognom }}" disabled />
-        </div>
-        <div class="col-xs-4">
-            <input type="text" name="ownerdni" data-ng-model="form.ownerdni" class="form-control" placeholder="{{ soci.dni }}" value="{{ soci.dni }}" disabled />
+    <div data-ng-show="step3Ready">
+        <div>
         </div>
     </div>
 </form>
