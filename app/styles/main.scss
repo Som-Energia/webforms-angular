@@ -82,6 +82,9 @@ button {
         color: $white;
         background-color: $green;
         border-color: $green;
+        &.submit {
+          font-size: 24px;
+        }
       }
       &.grey {
         color: $white;
