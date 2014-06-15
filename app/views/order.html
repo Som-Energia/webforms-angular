@@ -119,11 +119,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-3">
-                <label for="rate">{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}?*</label>
-            </div>
-            <div class="col-xs-4">
-                <select class="form-control" name="rate" data-ng-model="form.rate" data-ng-change="formListener()" required>
+            <div class="form-group col-xs-4">
+                <label>{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}?*</label>
+                <select class="form-control width-50-percent" name="rate" data-ng-model="form.rate" data-ng-change="formListener()" required>
                     <option value="">{{ 'SELECCIONAR' | translate }}</option>
                     <option data-ng-repeat="rate in rates" value="{{ rate }}" data-ng-selected="{{ rate == form.rate }}">{{ rate }}</option>
                 </select>
@@ -161,7 +159,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <button data-ng-click="moveToStep2Form()" class="btn btn-default green pull-right" data-ng-disabled="!isStep2ButtonReady">{{ 'SEGUENT_PAS' | translate }}</button>
+                <button data-ng-click="moveToStep2Form()" class="btn btn-default green pull-right submit" data-ng-disabled="!isStep2ButtonReady">{{ 'SEGUENT_PAS' | translate }}</button>
             </div>
         </div>
     </div>
