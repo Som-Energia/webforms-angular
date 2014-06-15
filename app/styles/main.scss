@@ -43,6 +43,12 @@ body {
 
 input[type="text"], select {
   width: 100% !important;
+  &.inherit-width    { width: inherit !important; }
+  &.width-50-percent { width: 50%     !important; }
+  &.width-60-percent { width: 60%     !important; }
+  &.width-70-percent { width: 70%     !important; }
+  &.width-80-percent { width: 80%     !important; }
+  &.width-90-percent { width: 90%     !important; }
 }
 
 input, select {
@@ -53,10 +59,6 @@ input, select {
   &.ng-dirty.ng-invalid {
     border-color: $red;
   }
-}
-
-.inherit-width {
-  width: inherit !important;
 }
 
 .badge {

@@ -72,20 +72,16 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-1">
-                <label for="province">{{ 'PROVINCIA' | translate }}*:</label>
-            </div>
-            <div class="col-xs-5">
-                <select class="form-control" name="province" data-ng-model="form.province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity(form)" required>
+            <div class="form-group col-xs-4">
+                <label>{{ 'PROVINCIA' | translate }}*:</label>
+                <select class="form-control width-70-percent" name="province" data-ng-model="form.province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity(form)" required>
                     <option value="">{{ 'PROVINCIA' | translate }}*</option>
                 </select>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.province.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
-            <div class="col-xs-1">
-                <label for="city">{{ 'POBLACIO' | translate }}*:</label>
-            </div>
-            <div class="form-group col-xs-5">
-                <select class="form-control" name="city" data-ng-model="form.city" data-ng-options="city.name for city in cities" data-ng-change="formListener()" required >
+            <div class="form-group col-xs-4">
+                <label>{{ 'POBLACIO' | translate }}*:</label>
+                <select class="form-control width-70-percent" name="city" data-ng-model="form.city" data-ng-options="city.name for city in cities" data-ng-change="formListener()" required>
                     <option value="">{{ 'POBLACIO' | translate }}*</option>
                 </select>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.city.$error.required">{{ 'OBLIGATORI' | translate }}</span>
@@ -94,8 +90,8 @@
         <hr>
         <div class="row">
             <div class="col-xs-7">
-                <label for="cups" class="sr-only">{{ 'NUMERO_DE_CUPS' | translate }}*</label>
-                <input type="text" name="cups" data-ng-model="form.cups" class="form-control" placeholder="{{ 'NUMERO_DE_CUPS' | translate }}*" data-ng-change="formListener()" required />
+                <label class="sr-only">{{ 'NUMERO_DE_CUPS' | translate }}*</label>
+                <input type="text" name="cups" class="form-control" placeholder="{{ 'NUMERO_DE_CUPS' | translate }}*" data-ng-model="form.cups" data-ng-change="formListener()" data-ng-class="{'ng-invalid': cupsIsInvalid}" required/>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.cups.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 <span class="label label-danger" data-ng-show="cupsIsInvalid">{{ 'INVALID' | translate }}</span>
             </div>
@@ -103,8 +99,8 @@
                 <span class="badge current small" data-popover="{{ 'HELP_POPOVER_CUPS' | translate }}">?</span>
             </div>
             <div class="col-xs-3">
-                <label for="cnae" class="sr-only">CNAE*</label>
-                <input type="text" name="cnae" data-ng-model="form.cnae" class="form-control" placeholder="CNAE*" data-ng-change="formListener()" required />
+                <label class="sr-only">CNAE*</label>
+                <input type="text" name="cnae" class="form-control" placeholder="CNAE*" data-ng-model="form.cnae" data-ng-change="formListener()" data-ng-class="{'ng-invalid': cnaeIsInvalid}" required/>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.cnae.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 <span class="label label-danger" data-ng-show="cnaeIsInvalid">{{ 'INVALID' | translate }}</span>
             </div>
@@ -113,14 +109,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-3">
-                <label for="power">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}?*</label>
-            </div>
-            <div class="col-xs-4">
-                <input type="text" name="power" data-ng-model="form.power" class="form-control" data-ng-change="formListener()" required />&nbsp;kW
+            <div class="form-group col-xs-9">
+                <label>{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}?*</label>
+                <input type="text" name="power" class="form-control width-70-percent" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;kW
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
-            <div class="col-xs-1">
+            <div class="col-cs-1">
                 <span class="badge current small" data-popover="{{ 'HELP_POPOVER_POWER' | translate }}">?</span>
             </div>
         </div>
