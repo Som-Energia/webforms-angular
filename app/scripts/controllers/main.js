@@ -82,7 +82,7 @@ angular.module('newSomEnergiaWebformsApp')
             }
             checkEmail1Timer = $timeout(function() {
                 if (newValue !== undefined) {
-                    $scope.emailNoIguals = newValue !== $scope.form.email2;
+                    $scope.emailNoIguals = $scope.form.email2 !== undefined && newValue !== $scope.form.email2;
                     $scope.emailIsInvalid = !ValidateHandler.isEmailValid(newValue);
                     $scope.formListener();
                 }
@@ -95,7 +95,7 @@ angular.module('newSomEnergiaWebformsApp')
             }
             checkEmail2Timer = $timeout(function() {
                 if (newValue !== undefined) {
-                    $scope.emailNoIguals = newValue !== $scope.form.email1;
+                    $scope.emailNoIguals = ($scope.form.email1 !== undefined || $scope.form.email1 !== '') && newValue !== $scope.form.email1;
                     $scope.formListener();
                 }
             }, 400);
