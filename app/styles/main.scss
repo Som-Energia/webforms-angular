@@ -14,6 +14,7 @@ $grey-light: #DFDFE0;
 $grey: #8A8990;
 $grey-dark: #5F5E63;
 $grey-darkest: #49494D;
+$my-border-radius: 4px;
 
 
 /* Browserhappy */
@@ -94,10 +95,15 @@ button {
 }
 
 label {
+  font-weight: normal;
   margin-right: 10px;
   &.btn {
+    &:first-child:not(:last-child):not(.dropdown-toggle), &:last-child:not(:first-child):not(.dropdown-toggle) {
+      border-radius: $my-border-radius !important;
+    }
     &.btn-default {
       &.green {
+        font-weight: bold;
         color: $white;
         background-color: $grey-dark;
         border-color: $grey;

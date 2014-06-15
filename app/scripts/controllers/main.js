@@ -14,7 +14,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.emailIsInvalid = false;
         $scope.emailNoIguals = false;
         $scope.submitted = false;
-        $scope.userTypeClicked = false;
         $scope.form = {};
         $scope.languages = [];
         $scope.provinces = [];
@@ -165,7 +164,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function (form) {
-            $scope.step2Ready = $scope.userTypeClicked && form.language !== undefined;
+            $scope.step2Ready = form.language !== undefined;
             $scope.step3Ready = $scope.step2Ready &&
                 form.name !== undefined &&
                 (form.surname !== undefined && form.usertype === 'person' || form.usertype === 'company') &&
@@ -185,10 +184,6 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.emailNoIguals === false
             ;
             $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready;
-        };
-        $scope.firstUserTypeClick = function (form) {
-            $scope.userTypeClicked = true;
-            $scope.formListener(form);
         };
 
         // GET HUMANIZED API RESPONSE
