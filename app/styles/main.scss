@@ -26,8 +26,9 @@ $grey-darkest: #49494D;
 
 /* Space out content a bit */
 body {
-    padding-top: 20px;
-    padding-bottom: 20px;
+  color: $grey-dark;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -55,13 +56,8 @@ input, select {
   }
 }
 
-select {
-  &.form-control {
-    &.custom-language-select {
-      float: right;
-      width: 90% !important;
-    }
-  }
+.inherit-width {
+  width: inherit !important;
 }
 
 .badge {
@@ -98,6 +94,7 @@ button {
 }
 
 label {
+  margin-right: 10px;
   &.btn {
     &.btn-default {
       &.green {

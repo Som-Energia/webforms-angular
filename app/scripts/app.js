@@ -109,8 +109,8 @@ angular.module('newSomEnergiaWebformsApp', [
             })
             .translations('ca', {
                 SELECCIONA: 'Sel·lecciona',
-                SELECCIONA_PARTICULAR: 'Particular',
-                SELECCIONA_EMPRESA: 'Empresa',
+                PARTICULAR: 'Particular',
+                EMPRESA: 'Empresa',
                 OBLIGATORI: 'Obligatori',
                 IDIOMA: 'Idioma',
                 SELECCIONA_IDIOMA: 'Sel·lecciona idioma',

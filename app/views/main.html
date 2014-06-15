@@ -11,16 +11,15 @@
         <div class="col-xs-11">
             <div class="row">
                 <div class="form-group col-xs-6">
-                    <span>{{ 'SELECCIONA' | translate }}:&nbsp;</span>
+                    <label>{{ 'SELECCIONA' | translate }}:</label>
                     <div class="btn-group" data-ng-click="firstUserTypeClick(form)">
                         <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'person'">{{ 'PARTICULAR' | translate }}</label>
                         <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'company'">{{ 'EMPRESA' | translate }}</label>
                     </div>
                 </div>
                 <div class="form-group col-xs-6">
-                    <span>{{ 'IDIOMA' | translate }}*:&nbsp;</span>
-                    <label for="language" class="sr-only">{{ 'IDIOMA' | translate }}*:</label>
-                    <select class="form-control custom-language-select" name="language" data-ng-model="form.language" data-ng-options="language.name for language in languages" data-ng-change="formListener(form)" required>
+                    <label>{{ 'IDIOMA' | translate }}*:</label>
+                    <select class="form-control inherit-width" name="language" data-ng-model="form.language" data-ng-options="language.name for language in languages" data-ng-change="formListener(form)" required>
                         <option value="">{{ 'SELECCIONA_IDIOMA' | translate }}</option>
                     </select>
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.language.$invalid">{{ 'OBLIGATORI' | translate }}</span>
