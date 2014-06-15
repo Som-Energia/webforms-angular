@@ -73,29 +73,29 @@
             <!--EMPRESA-->
             <div class="row" data-ng-if="form.usertype == 'company'">
                 <div class="form-group col-xs-3">
-                    <label for="dni" class="sr-only">CIF*:</label>
-                    <input type="text" name="dni" data-ng-model="form.dni" class="form-control" placeholder="CIF*" data-ng-change="formListener()" data-ng-disabled="!step2Ready" required />
+                    <label class="sr-only">CIF*:</label>
+                    <input type="text" name="dni" class="form-control" placeholder="CIF*" data-ng-model="form.dni" data-ng-change="formListener()" data-ng-disabled="!step2Ready" data-ng-class="{'ng-invalid': dniIsInvalid || dniDuplicated}" required/>
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     <span class="label label-danger" data-ng-show="dniIsInvalid">{{ 'INVALID' | translate }}</span>
                     <span class="label label-danger" data-ng-show="dniDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-9">
-                    <label for="name" class="sr-only">{{ 'RAO_SOCIAL' | translate }}*:</label>
-                    <input type="text" name="name" data-ng-model="form.name" class="form-control" placeholder="{{ 'RAO_SOCIAL' | translate }}*" data-ng-change="formListener()" data-ng-disabled="!step2Ready" required />
+                    <label class="sr-only">{{ 'RAO_SOCIAL' | translate }}*:</label>
+                    <input type="text" name="name" class="form-control" placeholder="{{ 'RAO_SOCIAL' | translate }}*" data-ng-model="form.name" data-ng-change="formListener()" data-ng-disabled="!step2Ready" required/>
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.name.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <hr class="dotted" data-ng-if="form.usertype == 'company'">
             <div class="row" data-ng-if="form.usertype == 'company'">
                 <div class="form-group col-xs-6">
-                    <label for="email1" class="sr-only">Email*:</label>
-                    <input type="text" name="email1" data-ng-model="form.email1" class="form-control" placeholder="Email*" data-ng-change="formListener()" data-ng-disabled="!step2Ready" required />
+                    <label class="sr-only">Email*:</label>
+                    <input type="text" name="email1" class="form-control" placeholder="Email*" data-ng-model="form.email1" data-ng-change="formListener()" data-ng-disabled="!step2Ready" data-ng-class="{'ng-invalid': emailIsInvalid}" required/>
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.email1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     <span class="label label-danger" data-ng-show="emailIsInvalid">{{ 'INVALID' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-6">
-                    <label for="email2" class="sr-only">{{ 'REPETEIX_EMAIL' | translate }}*:</label>
-                    <input type="text" name="email2" data-ng-model="form.email2" class="form-control" placeholder="{{ 'REPETEIX_EMAIL' | translate }}*" data-ng-change="formListener()" data-ng-disabled="!step2Ready" required />
+                    <label class="sr-only">{{ 'REPETEIX_EMAIL' | translate }}*:</label>
+                    <input type="text" name="email2" class="form-control" placeholder="{{ 'REPETEIX_EMAIL' | translate }}*" data-ng-model="form.email2" data-ng-change="formListener()" data-ng-disabled="!step2Ready" data-ng-class="{'ng-invalid': emailNoIguals}" required/>
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.email2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     <span class="label label-danger" data-ng-show="emailNoIguals">{{ 'EMAIL_NO_IGUALS' | translate }}</span>
                 </div>
