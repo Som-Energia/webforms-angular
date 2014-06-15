@@ -98,13 +98,13 @@ angular.module('newSomEnergiaWebformsApp', [
                 ADJUNTAR_ULTIMA_FACTURA: 'Adjuntar la última factura eléctrica',
                 SEGUENT_PAS: 'Siguiente paso',
                 DADES_TITULAR_NOU_CONTRACTE: 'Datos del titular del contrato',
-                DADES_TITULAR_NOU_CONTRACTE_HELPER: '?',
+                DADES_TITULAR_NOU_CONTRACTE_HELPER: 'Lorem ipsum...',
                 VOLS_FER_CANVI_TITULAR: '¿Quieres hacer un cambio de titular',
                 SI: 'Si',
                 NO: 'No',
                 HELP_POPOVER_OWNER: '?',
                 EL_TITULAR_ES: 'El titular es',
-                EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE: '',
+                EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE: '¿El titular es socio/a vinculado al contrato',
                 DADES_PAGAMENT: 'Datos de pago'
             })
             .translations('ca', {

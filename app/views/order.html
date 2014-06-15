@@ -177,15 +177,12 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-xs-3">
-                <label for="changeowner">{{ 'VOLS_FER_CANVI_TITULAR' | translate }}?*</label>
-            </div>
-            <div class="col-xs-4">
-                <select class="form-control" name="changeowner" data-ng-model="form.changeowner">
-                    <option value="">{{ 'SELECCIONAR' | translate }}</option>
-                    <option value="0">{{ 'NO' | translate }}</option>
-                    <option value="1">{{ 'SI' | translate }}</option>
-                </select>
+            <div class="form-group col-xs-4">
+                <label>{{ 'VOLS_FER_CANVI_TITULAR' | translate }}?*</label>
+                <div class="btn-group">
+                    <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'yes'">{{ 'SI' | translate }}</label>
+                    <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'no'">{{ 'NO' | translate }}</label>
+                </div>
             </div>
             <div class="col-xs-1">
                 <span class="badge current small" data-popover="{{ 'HELP_POPOVER_OWNER' | translate }}">?</span>
@@ -199,15 +196,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-4">
-                <label for="isownerlink">{{ 'EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE' | translate }}?</label>
-            </div>
-            <div class="col-xs-3">
-                <select class="form-control" name="isownerlink" data-ng-model="form.isownerlink">
-                    <option value="">{{ 'SELECCIONAR' | translate }}</option>
-                    <option value="1">{{ 'SI' | translate }}</option>
-                    <option value="0">{{ 'NO' | translate }}</option>
-                </select>
+            <div class="form-group col-xs-4">
+                <label>{{ 'EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE' | translate }}?</label>
+                <div class="btn-group">
+                    <label class="btn btn-default green" data-ng-model="form.isownerlink" data-btn-radio="'yes'">{{ 'SI' | translate }}</label>
+                    <label class="btn btn-default green" data-ng-model="form.isownerlink" data-btn-radio="'no'">{{ 'NO' | translate }}</label>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -225,7 +219,7 @@
     <!--FORTH STEP-->
     <div class="row">
         <div class="col-xs-12 heading" data-ng-class="{active: step3Ready}">
-            <h2>3 {{ 'DADES_PAGAMENT' | translate }}</h2>
+            <h2 class="extra-margin">3 {{ 'DADES_PAGAMENT' | translate }}</h2>
         </div>
     </div>
     <div data-ng-show="step3Ready">
