@@ -13,13 +13,13 @@
     <!--FIRST STEP-->
     <div class="row">
         <div class="form-group col-xs-2">
-            <label for="socinumber" class="sr-only">{{ 'NUMERO_SOCI' | translate }}*</label>
-            <input type="text" name="socinumber" data-ng-model="form.init.socinumber" class="form-control" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-change="formListener()" required />
+            <label class="sr-only">{{ 'NUMERO_SOCI' | translate }}*</label>
+            <input type="text" name="socinumber" class="form-control" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="form.init.socinumber" data-ng-change="formListener()" required/>
             <span class="label label-danger" data-ng-show="initFormSubmitted && initForm.socinumber.$error.required">{{ 'OBLIGATORI' | translate }}</span>
         </div>
         <div class="col-xs-2">
-            <label for="dni" class="sr-only">DNI/NIE/CIF*</label>
-            <input type="text" name="dni" data-ng-model="form.init.dni" class="form-control" placeholder="DNI/NIE/CIF*" data-ng-change="formListener()" required />
+            <label class="sr-only">DNI/NIE/CIF*</label>
+            <input type="text" name="dni" class="form-control" placeholder="DNI/NIE/CIF*" data-ng-model="form.init.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': dniIsInvalid}" required/>
             <span class="label label-danger" data-ng-show="initFormSubmitted && initForm.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             <span class="label label-danger" data-ng-show="dniIsInvalid">{{ 'INVALID' | translate }}</span>
         </div>
@@ -27,15 +27,13 @@
             <span class="badge current small" data-popover="{{ 'HELP_POPOVER' | translate }}">?</span>
         </div>
         <div class="col-xs-7">
-            <button data-ng-disabled="!initSubmitReady" data-ng-click="initSubmit(initForm)" class="btn btn-default grey pull-right">{{ 'CARREGAR_DADES_SOCI_VINCULAT' | translate }}</button>
+            <button class="btn btn-default grey pull-right" data-ng-disabled="!initSubmitReady" data-ng-click="initSubmit(initForm)">{{ 'CARREGAR_DADES_SOCI_VINCULAT' | translate }}</button>
         </div>
     </div>
     <div class="row" data-ng-if="showBeginOrderForm">
-        <div class="col-xs-2">
-            {{ 'SOCI_VINCULAT' | translate }}:
-        </div>
-        <div class="col-xs-10">
-            <input type="text" name="address" class="form-control" placeholder="{{ soci.nom + ' ' + soci.cognom }}" disabled />
+        <div class="form-group col-xs-12">
+            <label>{{ 'SOCI_VINCULAT' | translate }}:</label>
+            <input type="text" name="address" class="form-control" placeholder="{{ soci.nom + ' ' + soci.cognom }}" disabled/>
         </div>
     </div>
     <div class="row" data-ng-if="showUnknownSociWarning">
@@ -46,7 +44,7 @@
     </div>
     <div class="row" data-ng-if="showBeginOrderForm && !showUnknownSociWarning">
         <div class="col-xs-12">
-            <button data-ng-click="initOrderForm()" class="btn btn-default green pull-right">{{ 'INICIAR_CONTRACTACIO' | translate }}</button>
+            <button class="btn btn-default green pull-right submit" data-ng-click="initOrderForm()">{{ 'INICIAR_CONTRACTACIO' | translate }}</button>
         </div>
     </div>
 </form>
