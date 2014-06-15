@@ -143,8 +143,8 @@
             </div>
             <div class="row">
                 <div class="form-group checkbox col-xs-12">
-                    <label for="accept">
-                        <input name="accept" type="checkbox" value="accept" data-ng-model="form.accept" data-ng-change="formListener()" data-ng-disabled="!step2Ready" required />
+                    <label>
+                        <input type="checkbox" name="accept" value="accept" data-ng-model="form.accept" data-ng-change="formListener()" data-ng-disabled="!step2Ready" required/>
                         <span data-ng-bind-html="'ACCEPTO_POLITICA_PRIVACITAT' | translate"></span>
                     </label>
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
