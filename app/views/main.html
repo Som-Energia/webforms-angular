@@ -103,31 +103,31 @@
             <!--COMMON PARTS-->
             <div class="row">
                 <div class="form-group col-xs-6">
-                    <label for="phone1" class="sr-only">{{ 'TELEFON' | translate }}*:</label>
+                    <label class="sr-only">{{ 'TELEFON' | translate }}*:</label>
                     <input type="text" name="phone1" data-ng-model="form.phone1" class="form-control" placeholder="{{ 'TELEFON' | translate }}*" data-ng-change="formListener()" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.phone1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-6">
-                    <label for="phone2" class="sr-only">{{ 'TELEFON' | translate }} 2:</label>
+                    <label class="sr-only">{{ 'TELEFON' | translate }} 2:</label>
                     <input type="text" name="phone2" data-ng-model="form.phone2" class="form-control" placeholder="{{ 'TELEFON' | translate }} 2" data-ng-disabled="!step2Ready"/>
                 </div>
             </div>
             <hr class="dotted">
             <div class="row">
                 <div class="form-group col-xs-9">
-                    <label for="address" class="sr-only">{{ 'ADRECA' | translate }}*:</label>
+                    <label class="sr-only">{{ 'ADRECA' | translate }}*:</label>
                     <input type="text" name="address" data-ng-model="form.address" class="form-control" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener()" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.address.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-3">
-                    <label for="postalcode" class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
+                    <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
                     <input type="text" name="postalcode" data-ng-model="form.postalcode" class="form-control" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" data-ng-disabled="!step2Ready" required />
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.postalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-6">
-                    <label for="province" class="sr-only">{{ 'PROVINCIA' | translate }}</label>
+                    <label class="sr-only">{{ 'PROVINCIA' | translate }}</label>
                     <select class="form-control" name="province" data-ng-model="form.province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity(form)" data-ng-disabled="!step2Ready" required>
                         <option value="">{{ 'PROVINCIA' | translate }}*</option>
                     </select>
