@@ -66,7 +66,7 @@ angular.module('newSomEnergiaWebformsApp')
                     dniPromise.then(
                         function (response) {
                             $scope.dniIsInvalid = response === cfg.STATE_FALSE;
-                            $scope.formListener($scope.form);
+                            $scope.formListener();
                         },
                         function (reason) { $log.error('Failed', reason); }
                     );
@@ -84,7 +84,7 @@ angular.module('newSomEnergiaWebformsApp')
                 if (newValue !== undefined) {
                     $scope.emailNoIguals = newValue !== $scope.form.email2;
                     $scope.emailIsInvalid = !ValidateHandler.isEmailValid(newValue);
-                    $scope.formListener($scope.form);
+                    $scope.formListener();
                 }
             }, 400);
         });
@@ -96,13 +96,13 @@ angular.module('newSomEnergiaWebformsApp')
             checkEmail2Timer = $timeout(function() {
                 if (newValue !== undefined) {
                     $scope.emailNoIguals = newValue !== $scope.form.email1;
-                    $scope.formListener($scope.form);
+                    $scope.formListener();
                 }
             }, 400);
         });
 
         // ON CHANGE SELECTED PROVINCE
-        $scope.updateSelectedCity = function (form) {
+        $scope.updateSelectedCity = function () {
             if ($scope.form.province !== undefined) {
                 // GET CITIES
                 var citiesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  $scope.form.province.id, '003');
@@ -116,7 +116,7 @@ angular.module('newSomEnergiaWebformsApp')
                     },
                     function (reason) { $log.error('Failed', reason); }
                 );
-                $scope.formListener(form);
+                $scope.formListener();
             }
         };
 
@@ -163,22 +163,22 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // CONTROL READY STEPS ON CHANGE FORM
-        $scope.formListener = function (form) {
-            $scope.step2Ready = form.language !== undefined;
+        $scope.formListener = function () {
+            $scope.step2Ready = $scope.form.language !== undefined;
             $scope.step3Ready = $scope.step2Ready &&
-                form.name !== undefined &&
-                (form.surname !== undefined && form.usertype === 'person' || form.usertype === 'company') &&
-                form.dni !== undefined &&
-                form.email1 !== undefined &&
-                form.email2 !== undefined &&
-                form.email1 === form.email2 &&
-                form.phone1 !== undefined &&
-                form.address !== undefined &&
-                form.postalcode !== undefined &&
-                form.province !== undefined &&
-                form.city !== undefined &&
-                form.accept !== undefined &&
-                form.accept !== false &&
+                $scope.form.name !== undefined &&
+                ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
+                $scope.form.dni !== undefined &&
+                $scope.form.email1 !== undefined &&
+                $scope.form.email2 !== undefined &&
+                $scope.form.email1 === $scope.form.email2 &&
+                $scope.form.phone1 !== undefined &&
+                $scope.form.address !== undefined &&
+                $scope.form.postalcode !== undefined &&
+                $scope.form.province !== undefined &&
+                $scope.form.city !== undefined &&
+                $scope.form.accept !== undefined &&
+                $scope.form.accept !== false &&
                 $scope.dniIsInvalid === false &&
                 $scope.emailIsInvalid === false &&
                 $scope.emailNoIguals === false
