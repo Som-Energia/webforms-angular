@@ -195,7 +195,7 @@
                 </div>
             </div>
         </div>
-        <div class="row" data-ng-show="form.changeowner == 'no' && form.usertype == 'person'">
+        <div class="row" data-ng-show="form.changeowner == 'no'">
             <div class="form-group col-xs-4">
                 <label>{{ 'EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE' | translate }}?</label>
                 <div class="btn-group">
@@ -214,6 +214,22 @@
                 </div>
                 <div class="col-xs-4">
                     <input type="text" name="ownerdni" data-ng-model="form.ownerdni" class="form-control" placeholder="{{ soci.dni }}" value="{{ soci.dni }}" disabled/>
+                </div>
+            </div>
+            <hr class="dotted">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button data-ng-click="moveToStep3Form()" class="btn btn-default green pull-right submit" data-ng-disabled="!isStep3ButtonReady">{{ 'SEGUENT_PAS' | translate }}</button>
+                </div>
+            </div>
+        </div>
+        <div data-ng-show="form.changeowner == 'no' && form.usertype == 'company' && form.isownerlink == 'yes'">
+            <div class="row">
+                <div class="col-xs-2">
+                    <input type="text" name="ownerdni" data-ng-model="form.ownerdni" class="form-control" placeholder="{{ soci.dni }}" value="{{ soci.dni }}" disabled/>
+                </div>
+                <div class="col-xs-10">
+                    <input type="text" name="ownername" data-ng-model="form.ownername" class="form-control" placeholder="{{ soci.nom }}" value="{{ soci.nom }}" disabled/>
                 </div>
             </div>
             <hr class="dotted">

@@ -175,7 +175,7 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.power !== undefined &&
                 $scope.form.rate !== undefined;
             $scope.isStep3ButtonReady = $scope.isStep2ButtonReady &&
-                (($scope.form.changeowner === 'no' && $scope.form.usertype === 'person' && $scope.form.isownerlink === 'yes') ||
+                (($scope.form.changeowner === 'no' && $scope.form.isownerlink === 'yes') ||
                     ($scope.form.changeowner === 'no' && $scope.form.usertype === 'person' && $scope.form.isownerlink === 'no' &&
                         $scope.form.language !== undefined &&
                         $scope.form.name !== undefined &&
