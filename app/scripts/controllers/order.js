@@ -21,6 +21,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.languages = [];
         $scope.provinces = [];
         $scope.cities = [];
+        $scope.language = {};
         $scope.form = {};
         $scope.form.init = {};
         $scope.rates = ['2.0A', '2.0DHA', '2.1A', '2.1DHA', '3.0A'];
@@ -47,6 +48,7 @@ angular.module('newSomEnergiaWebformsApp')
             function (response) {
                 if (response.state === cfg.STATE_TRUE) {
                     $scope.provinces = response.data.provincies;
+                    $scope.provinces2 = response.data.provincies;
                 } else {
                     uiHandler.showErrorDialog('GET response state false recived (ref.003-001)');
                 }
@@ -156,7 +158,7 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // ON CHANGE SELECTED PROVINCE
-        $scope.updateSelectedCity = function (form) {
+        $scope.updateSelectedCity = function() {
             if ($scope.form.province !== undefined) {
                 // GET CITIES
                 var citiesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  $scope.form.province.id, '003');
@@ -170,7 +172,24 @@ angular.module('newSomEnergiaWebformsApp')
                     },
                     function (reason) { $log.error('Failed', reason); }
                 );
-                $scope.formListener(form);
+                $scope.formListener();
+            }
+        };
+        $scope.updateSelectedCity2 = function() {
+            if ($scope.form.province2 !== undefined) {
+                // GET CITIES
+                var citiesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  $scope.form.province2.id, '004');
+                citiesPromise.then(
+                    function (response) {
+                        if (response.state === cfg.STATE_TRUE) {
+                            $scope.cities2 = response.data.municipis;
+                        } else {
+                            uiHandler.showErrorDialog('GET response state false recived (ref.003-004)');
+                        }
+                    },
+                    function(reason) { $log.error('Failed', reason); }
+                );
+                $scope.formListener();
             }
         };
 
