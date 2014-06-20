@@ -180,8 +180,8 @@
             <div class="form-group col-xs-4">
                 <label>{{ 'VOLS_FER_CANVI_TITULAR' | translate }}?</label>
                 <div class="btn-group">
-                    <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'yes'">{{ 'SI' | translate }}</label>
-                    <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'no'">{{ 'NO' | translate }}</label>
+                    <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>
+                    <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>
                 </div>
             </div>
             <div class="col-xs-1">
@@ -190,8 +190,8 @@
             <div class="form-group col-xs-4">
                 <span>{{ 'EL_TITULAR_ES' | translate }}:&nbsp;</span>
                 <div class="btn-group">
-                    <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'person'">{{ 'PARTICULAR' | translate }}</label>
-                    <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'company'">{{ 'EMPRESA' | translate }}</label>
+                    <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
+                    <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'company'" data-ng-change="formListener()">{{ 'EMPRESA' | translate }}</label>
                 </div>
             </div>
         </div>
@@ -199,21 +199,21 @@
             <div class="form-group col-xs-4">
                 <label>{{ 'EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE' | translate }}?</label>
                 <div class="btn-group">
-                    <label class="btn btn-default green" data-ng-model="form.isownerlink" data-btn-radio="'yes'">{{ 'SI' | translate }}</label>
-                    <label class="btn btn-default green" data-ng-model="form.isownerlink" data-btn-radio="'no'">{{ 'NO' | translate }}</label>
+                    <label class="btn btn-default green" data-ng-model="form.isownerlink" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>
+                    <label class="btn btn-default green" data-ng-model="form.isownerlink" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>
                 </div>
             </div>
         </div>
         <div data-ng-show="form.changeowner == 'no' && form.usertype == 'person' && form.isownerlink == 'yes'">
             <div class="row">
                 <div class="col-xs-4">
-                    <input type="text" name="ownername" data-ng-model="form.ownername" class="form-control" placeholder="{{ soci.nom }}" value="{{ soci.nom }}" disabled />
+                    <input type="text" name="ownername" data-ng-model="form.ownername" class="form-control" placeholder="{{ soci.nom }}" value="{{ soci.nom }}" disabled/>
                 </div>
                 <div class="col-xs-4">
-                    <input type="text" name="ownersurname" data-ng-model="form.ownersurname" class="form-control" placeholder="{{ soci.cognom }}" value="{{ soci.cognom }}" disabled />
+                    <input type="text" name="ownersurname" data-ng-model="form.ownersurname" class="form-control" placeholder="{{ soci.cognom }}" value="{{ soci.cognom }}" disabled/>
                 </div>
                 <div class="col-xs-4">
-                    <input type="text" name="ownerdni" data-ng-model="form.ownerdni" class="form-control" placeholder="{{ soci.dni }}" value="{{ soci.dni }}" disabled />
+                    <input type="text" name="ownerdni" data-ng-model="form.ownerdni" class="form-control" placeholder="{{ soci.dni }}" value="{{ soci.dni }}" disabled/>
                 </div>
             </div>
             <hr class="dotted">
@@ -246,9 +246,9 @@
                 </div>
                 <div class="form-group col-xs-4">
                     <label class="sr-only">DNI/NIE*:</label>
-                    <input type="text" name="dni" class="form-control" placeholder="DNI/NIE*" data-ng-model="form.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': dniIsInvalid || dniDuplicated}" required/>
+                    <input type="text" name="dni" class="form-control" placeholder="DNI/NIE*" data-ng-model="form.dni" data-ng-change="formListener()" required/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                    <span class="label label-danger" data-ng-show="dniIsInvalid">{{ 'INVALID' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="dni2IsInvalid">{{ 'INVALID' | translate }}</span>
                 </div>
             </div>
             <hr class="dotted">

@@ -68,10 +68,55 @@ angular.module('newSomEnergiaWebformsApp')
                     dniPromise.then(
                         function (response) {
                             $scope.dniIsInvalid = response === cfg.STATE_FALSE;
-                            $scope.formListener($scope.form.init);
+                            $scope.formListener();
                         },
                         function (reason) { $log.error('Failed', reason); }
                     );
+                }
+            }, 400);
+        });
+        var checkDni2Timer = false;
+        $scope.$watch('form.dni', function(newValue) {
+            if (checkDni2Timer) {
+                $timeout.cancel(checkDni2Timer);
+            }
+            checkDni2Timer = $timeout(function() {
+                if (newValue !== undefined) {
+                    var dniPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
+                    dniPromise.then(
+                        function (response) {
+                            $scope.dni2IsInvalid = response === cfg.STATE_FALSE;
+                            $scope.formListener();
+                        },
+                        function (reason) { $log.error('Failed', reason); }
+                    );
+                }
+            }, 400);
+        });
+
+        // EMAIL VALIDATIONS
+        var checkEmail1Timer = false;
+        $scope.$watch('form.email1', function(newValue) {
+            if (checkEmail1Timer) {
+                $timeout.cancel(checkEmail1Timer);
+            }
+            checkEmail1Timer = $timeout(function() {
+                if (newValue !== undefined) {
+                    $scope.emailNoIguals = $scope.form.email2 !== undefined && newValue !== $scope.form.email2;
+                    $scope.emailIsInvalid = !ValidateHandler.isEmailValid(newValue);
+                    $scope.formListener();
+                }
+            }, 400);
+        });
+        var checkEmail2Timer = false;
+        $scope.$watch('form.email2', function(newValue) {
+            if (checkEmail2Timer) {
+                $timeout.cancel(checkEmail2Timer);
+            }
+            checkEmail2Timer = $timeout(function() {
+                if (newValue !== undefined) {
+                    $scope.emailNoIguals = ($scope.form.email1 !== undefined || $scope.form.email1 !== '') && newValue !== $scope.form.email1;
+                    $scope.formListener();
                 }
             }, 400);
         });
@@ -129,6 +174,29 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.cnaeIsInvalid === false &&
                 $scope.form.power !== undefined &&
                 $scope.form.rate !== undefined;
+            $scope.isStep3ButtonReady = $scope.isStep2ButtonReady &&
+                (($scope.form.changeowner === 'no' && $scope.form.usertype === 'person' && $scope.form.isownerlink === 'yes') ||
+                    ($scope.form.changeowner === 'no' && $scope.form.usertype === 'person' && $scope.form.isownerlink === 'no' &&
+                        $scope.form.language !== undefined &&
+                        $scope.form.name !== undefined &&
+                        $scope.form.surname !== undefined &&
+                        $scope.form.dni !== undefined &&
+                        $scope.form.email1 !== undefined &&
+                        $scope.form.email2 !== undefined &&
+                        $scope.form.email1 === $scope.form.email2 &&
+                        $scope.form.phone1 !== undefined &&
+                        $scope.form.address2 !== undefined &&
+                        $scope.form.postalcode !== undefined &&
+                        $scope.form.province2 !== undefined &&
+                        $scope.form.city2 !== undefined &&
+                        $scope.form.accept !== undefined &&
+                        $scope.form.accept !== false &&
+                        $scope.dni2IsInvalid === false &&
+                        $scope.emailIsInvalid === false &&
+                        $scope.emailNoIguals === false
+                        )
+                    );
+//            $log.log($scope.form.changeowner, $scope.form.usertype, $scope.form.isownerlink);
         };
 
         // ON INIT SUBMIT FORM
