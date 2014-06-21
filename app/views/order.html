@@ -484,6 +484,15 @@
             </div>
         </div>
         <div class="row">
+            <div class="form-group checkbox col-xs-12">
+                <label>
+                    <input type="checkbox" name="acceptaccountowner" value="accept" data-ng-model="form.acceptaccountowner" data-ng-change="formListener()" required/>
+                    <span data-ng-bind-html="'CONFIRMO_TITULAR_COMPTE_ACCEPTA_DOMICILIACIO' | translate"></span>
+                </label>
+                <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-xs-12">
                 <button data-ng-click="moveToFinalStepForm()" class="btn btn-default green pull-right submit" data-ng-disabled="!isFinalStepButtonReady">{{ 'CONFIRMAR_CONTRACTACIO' | translate }}</button>
             </div>

@@ -218,7 +218,10 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.emailNoIguals === false
                         )
                     );
-//            $log.log($scope.form.changeowner, $scope.form.usertype, $scope.form.isownerlink);
+            $scope.isFinalStepButtonReady = $scope.isStep3ButtonReady &&
+                !$scope.accountIsInvalid &&
+                $scope.form.acceptaccountowner;
+            $log.log($scope.form.acceptaccountowner, $scope.accountIsInvalid);
         };
         $scope.formAccountListener = function () {
             if ($scope.form.accountbank !== undefined && $scope.form.accountoffice !== undefined && $scope.form.accountchecksum !== undefined && $scope.form.accountnumber !== undefined) {
