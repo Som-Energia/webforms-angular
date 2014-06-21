@@ -204,7 +204,7 @@
                 </div>
             </div>
         </div>
-        <!-- CANVI_TITULAR_NO & TITULAR_PARTICULAR & SOCI_VINCULAT_SI (page 06 & 12) -->
+        <!-- TITULAR_PARTICULAR & SOCI_VINCULAT_SI (page 06 & 12) -->
         <div data-ng-show="form.usertype == 'person' && form.isownerlink == 'yes'">
             <div class="row">
                 <div class="col-xs-4">
@@ -224,7 +224,7 @@
                 </div>
             </div>
         </div>
-        <!-- CANVI_TITULAR_NO & TITULAR_EMPRESA & SOCI_VINCULAT_YES (page 09 & 15) -->
+        <!-- TITULAR_EMPRESA & SOCI_VINCULAT_YES (page 09 & 15) -->
         <div data-ng-show="form.usertype == 'company' && form.isownerlink == 'yes'">
             <div class="row">
                 <div class="col-xs-2">
@@ -241,7 +241,7 @@
                 </div>
             </div>
         </div>
-        <!-- CANVI_TITULAR_NO & TITULAR_PARTICULAR & SOCI_VINCULAT_NO (page 07 & 13) -->
+        <!-- TITULAR_PARTICULAR & SOCI_VINCULAT_NO (page 07 & 13) -->
         <div data-ng-if="form.usertype == 'person' && form.isownerlink == 'no'">
             <div class="row">
                 <div class="form-group col-xs-6">
@@ -336,8 +336,8 @@
                 </div>
             </div>
         </div>
-        <!-- CANVI_TITULAR_NO & TITULAR_EMPRESA & SOCI_VINCULAT_NO (page 10) -->
-        <div data-ng-if="form.changeowner == 'no' && form.usertype == 'company' && form.isownerlink == 'no'">
+        <!-- TITULAR_EMPRESA & SOCI_VINCULAT_NO (page 10 & 16) -->
+        <div data-ng-if="form.usertype == 'company' && form.isownerlink == 'no'">
             <div class="row">
                 <div class="form-group col-xs-6">
                     <label>{{ 'IDIOMA' | translate }}*:</label>
