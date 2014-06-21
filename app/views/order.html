@@ -452,7 +452,7 @@
     </div>
     <div data-ng-show="step3Ready">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-7">
                 <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}?:</label>
                 <select class="form-control width-50-percent" name="choosepayer" data-ng-model="form.choosepayer">
                     <option value="titular">{{ 'TITULAR_CONTRACTE_ELECTRICITAT' | translate }}</option>
@@ -586,6 +586,27 @@
                 </label>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="well">
+                    <h6>{{ 'SOM_UNA_COOPERATIVA_SENSE_ANIM_DE_LUCRE' | translate }}.</h6>
+                    <h5>{{ 'VOLS_PARTICIPAR_AMB_LA_TEVA_ENERGIA' | translate }}?</h5>
+                </div>
+                <div class="row">
+                    <div class="col-xs-5">
+                        <div class="well">
+                            <h4>{{ 'DONATIU_VOLUNTARI' | translate }}</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="well">
+                            <p>{{ 'ELS_SOCIS_I_SOCIES_QUE_HO_DESITGIN_PODEN_REALITZAR_UN_DONATIU_VOLUNTARI' | translate }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="row">
             <div class="col-xs-12">
