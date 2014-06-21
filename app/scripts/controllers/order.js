@@ -27,6 +27,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.language = {};
         $scope.form = {};
         $scope.form.choosepayer = 'titular';
+        $scope.completeAccountNumber = '';
         $scope.form.init = {};
         $scope.rates = ['2.0A', '2.0DHA', '2.1A', '2.1DHA', '3.0A'];
         if ($routeParams.locale !== undefined) {
@@ -263,13 +264,39 @@ angular.module('newSomEnergiaWebformsApp')
                         )
                     );
             $scope.isFinalStepButtonReady = $scope.isStep3ButtonReady &&
-                !$scope.accountIsInvalid &&
-                $scope.form.acceptaccountowner;
-            $log.log($scope.form.acceptaccountowner, $scope.accountIsInvalid);
+                ($scope.form.choosepayer !== 'altre' &&
+                    !$scope.accountIsInvalid &&
+                    $scope.completeAccountNumber.length > 0 &&
+                    $scope.form.acceptaccountowner &&
+                    $scope.form.voluntary !== undefined) ||
+                    ($scope.form.choosepayer === 'altre' &&
+                        !$scope.accountIsInvalid &&
+                        $scope.completeAccountNumber.length > 0 &&
+                        $scope.form.acceptaccountowner &&
+                        $scope.form.voluntary !== undefined &&
+                        $scope.form.accountname !== undefined &&
+                        $scope.form.accountsurname !== undefined &&
+                        $scope.form.accountdni !== undefined &&
+                        $scope.form.accountemail1 !== undefined &&
+                        $scope.form.accountemail2 !== undefined &&
+                        $scope.form.accountemail1 === $scope.form.accountemail2 &&
+                        $scope.form.accountphone1 !== undefined &&
+                        $scope.form.accountaddress !== undefined &&
+                        $scope.form.accountpostalcode !== undefined &&
+                        $scope.form.province3 !== undefined &&
+                        $scope.form.city3 !== undefined &&
+                        $scope.form.accept2 !== undefined &&
+                        $scope.form.accept2 !== false &&
+                        $scope.dni2IsInvalid === false &&
+                        $scope.emailIsInvalid === false &&
+                        $scope.emailNoIguals === false)
+            ;
+            $log.log($scope.form.acceptaccountowner, !$scope.accountIsInvalid, $scope.completeAccountNumber.length > 0, $scope.form.voluntary !== undefined);
         };
         $scope.formAccountListener = function () {
             if ($scope.form.accountbank !== undefined && $scope.form.accountoffice !== undefined && $scope.form.accountchecksum !== undefined && $scope.form.accountnumber !== undefined) {
-                var accountPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/bank/' + $scope.form.accountbank + $scope.form.accountoffice + $scope.form.accountchecksum + $scope.form.accountnumber, '017');
+                $scope.completeAccountNumber = $scope.form.accountbank + $scope.form.accountoffice + $scope.form.accountchecksum + $scope.form.accountnumber;
+                var accountPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/bank/' + $scope.completeAccountNumber, '017');
                 accountPromise.then(
                     function (response) {
                         $scope.accountIsInvalid = response === cfg.STATE_FALSE;
@@ -373,7 +400,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
-//                        $scope.showStep1Form = false; // uncomment on production
+                        $scope.showStep1Form = false; // uncomment on production
                     } else {
                         $scope.showUnknownSociWarning = true;
                         $scope.showStep1Form = false;
@@ -384,16 +411,16 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // DEBUG (comment on production)
-        $scope.form.init.socinumber = 1706;
-        $scope.form.init.dni = '52608510N';
-        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
-        $scope.form.cups = 'ES0031406222973003LE0F';
-        $scope.form.cnae = '0520';
-        $scope.form.power = '5.5';
-        $scope.form.rate = '2.0A';
-        $scope.executeGetSociValues();
-        $scope.showStep1Form = true;
-        $scope.step0Ready = false;
-        $scope.step1Ready = true;
-        $scope.step2Ready = false;
+//        $scope.form.init.socinumber = 1706;
+//        $scope.form.init.dni = '52608510N';
+//        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
+//        $scope.form.cups = 'ES0031406222973003LE0F';
+//        $scope.form.cnae = '0520';
+//        $scope.form.power = '5.5';
+//        $scope.form.rate = '2.0A';
+//        $scope.executeGetSociValues();
+//        $scope.showStep1Form = true;
+//        $scope.step0Ready = false;
+//        $scope.step1Ready = true;
+//        $scope.step2Ready = false;
     }]);
