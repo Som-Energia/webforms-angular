@@ -173,6 +173,15 @@ angular.module('newSomEnergiaWebformsApp', [
                 EL_TITULAR_ES: 'El titular és',
                 EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE: 'El titular és el soci vinculat a aquest contracte',
                 DADES_PAGAMENT: 'Dades de pagament',
+                QUI_ES_TITULAR_COMPTE_BANCARI: 'Qui és el titular del compte bancari',
+                TITULAR_CONTRACTE_ELECTRICITAT: 'Titular del contracte d\'electricitat',
+                SOCI_SOM_ENERGIA: 'Soci/a de Som Energia',
+                ALTRE_TITULAR: 'Un altre titular',
+                NUM_COMPTE: 'Número de compte bancari',
+                BANC: 'Banc',
+                OFICINA: 'Oficina',
+                COMPTE: 'Número compte',
+                CONFIRMO_TITULAR_COMPTE_ACCEPTA_DOMICILIACIO: 'Confirmo que el titular del compte bancari autoritza la dominicilació de les factures d\'electricitat',
                 CONFIRMAR_CONTRACTACIO: 'Confirmar contractació'
             })
             .preferredLanguage('ca')
