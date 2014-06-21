@@ -53,6 +53,7 @@ angular.module('newSomEnergiaWebformsApp')
                 if (response.state === cfg.STATE_TRUE) {
                     $scope.provinces = response.data.provincies;
                     $scope.provinces2 = response.data.provincies;
+                    $scope.provinces3 = response.data.provincies;
                 } else {
                     uiHandler.showErrorDialog('GET response state false recived (ref.003-001)');
                 }
@@ -115,6 +116,24 @@ angular.module('newSomEnergiaWebformsApp')
                 }
             }, 400);
         });
+        var checkDni4Timer = false;
+        $scope.$watch('form.accountdni', function(newValue) {
+            if (checkDni4Timer) {
+                $timeout.cancel(checkDni4Timer);
+            }
+            checkDni4Timer = $timeout(function() {
+                if (newValue !== undefined) {
+                    var dniPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '008');
+                    dniPromise.then(
+                        function (response) {
+                            $scope.dni4IsInvalid = response === cfg.STATE_FALSE;
+                            $scope.formListener();
+                        },
+                        function (reason) { $log.error('Failed', reason); }
+                    );
+                }
+            }, 400);
+        });
 
         // EMAIL VALIDATIONS
         var checkEmail1Timer = false;
@@ -138,6 +157,31 @@ angular.module('newSomEnergiaWebformsApp')
             checkEmail2Timer = $timeout(function() {
                 if (newValue !== undefined) {
                     $scope.emailNoIguals = ($scope.form.email1 !== undefined || $scope.form.email1 !== '') && newValue !== $scope.form.email1;
+                    $scope.formListener();
+                }
+            }, 400);
+        });
+        var checkAccountEmail1Timer = false;
+        $scope.$watch('form.accountemail1', function(newValue) {
+            if (checkAccountEmail1Timer) {
+                $timeout.cancel(checkAccountEmail1Timer);
+            }
+            checkAccountEmail1Timer = $timeout(function() {
+                if (newValue !== undefined) {
+                    $scope.accountEmailNoIguals = $scope.form.accountemail2 !== undefined && newValue !== $scope.form.accountemail2;
+                    $scope.accountEmailIsInvalid = !ValidateHandler.isEmailValid(newValue);
+                    $scope.formListener();
+                }
+            }, 400);
+        });
+        var checkAccountEmail2Timer = false;
+        $scope.$watch('form.accountemail2', function(newValue) {
+            if (checkAccountEmail2Timer) {
+                $timeout.cancel(checkAccountEmail2Timer);
+            }
+            checkAccountEmail2Timer = $timeout(function() {
+                if (newValue !== undefined) {
+                    $scope.accountEmailNoIguals = ($scope.form.accountemail1 !== undefined || $scope.form.accountemail1 !== '') && newValue !== $scope.form.accountemail1;
                     $scope.formListener();
                 }
             }, 400);
@@ -262,6 +306,12 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.step2Ready = true;
         };
 
+        // MOVE TO STEP 3 FORM
+        $scope.moveToStep3Form = function() {
+            $scope.step2Ready = false;
+            $scope.step3Ready = true;
+        };
+
         // ON CHANGE SELECTED PROVINCE
         $scope.updateSelectedCity = function() {
             if ($scope.form.province !== undefined) {
@@ -290,6 +340,23 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.cities2 = response.data.municipis;
                         } else {
                             uiHandler.showErrorDialog('GET response state false recived (ref.003-004)');
+                        }
+                    },
+                    function(reason) { $log.error('Failed', reason); }
+                );
+                $scope.formListener();
+            }
+        };
+        $scope.updateSelectedCity3 = function() {
+            if ($scope.form.province3 !== undefined) {
+                // GET CITIES
+                var citiesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  $scope.form.province3.id, '005');
+                citiesPromise.then(
+                    function (response) {
+                        if (response.state === cfg.STATE_TRUE) {
+                            $scope.cities3 = response.data.municipis;
+                        } else {
+                            uiHandler.showErrorDialog('GET response state false recived (ref.003-005)');
                         }
                     },
                     function(reason) { $log.error('Failed', reason); }

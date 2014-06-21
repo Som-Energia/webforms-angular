@@ -596,7 +596,13 @@
                 <div class="row">
                     <div class="col-xs-5">
                         <div class="well">
-                            <h4>{{ 'DONATIU_VOLUNTARI' | translate }}</h4>
+                            <div class="form-group col-xs-4">
+                                <label>{{ 'DONATIU_VOLUNTARI' | translate }}?</label>
+                                <div class="btn-group">
+                                    <label class="btn btn-default green" data-ng-model="form.voluntary" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>
+                                    <label class="btn btn-default green" data-ng-model="form.voluntary" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-xs-7">
@@ -606,7 +612,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="row">
             <div class="col-xs-12">
