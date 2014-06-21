@@ -93,6 +93,24 @@ angular.module('newSomEnergiaWebformsApp')
                 }
             }, 400);
         });
+        var checkDni3Timer = false;
+        $scope.$watch('form.representantdni', function(newValue) {
+            if (checkDni3Timer) {
+                $timeout.cancel(checkDni3Timer);
+            }
+            checkDni3Timer = $timeout(function() {
+                if (newValue !== undefined) {
+                    var dniPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '006');
+                    dniPromise.then(
+                        function (response) {
+                            $scope.dni3IsInvalid = response === cfg.STATE_FALSE;
+                            $scope.formListener();
+                        },
+                        function (reason) { $log.error('Failed', reason); }
+                    );
+                }
+            }, 400);
+        });
 
         // EMAIL VALIDATIONS
         var checkEmail1Timer = false;
@@ -176,10 +194,10 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.rate !== undefined;
             $scope.isStep3ButtonReady = $scope.isStep2ButtonReady &&
                 (($scope.form.changeowner === 'no' && $scope.form.isownerlink === 'yes') ||
-                    ($scope.form.changeowner === 'no' && $scope.form.usertype === 'person' && $scope.form.isownerlink === 'no' &&
+                    ($scope.form.changeowner === 'no' && $scope.form.isownerlink === 'no' &&
                         $scope.form.language !== undefined &&
                         $scope.form.name !== undefined &&
-                        $scope.form.surname !== undefined &&
+                        ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
                         $scope.form.dni !== undefined &&
                         $scope.form.email1 !== undefined &&
                         $scope.form.email2 !== undefined &&
