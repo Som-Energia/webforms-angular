@@ -106,7 +106,21 @@ angular.module('newSomEnergiaWebformsApp', [
                 HELP_POPOVER_OWNER: '?',
                 EL_TITULAR_ES: 'El titular es',
                 EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE: '¿El titular es socio/a vinculado al contrato',
-                DADES_PAGAMENT: 'Datos de pago'
+                DADES_PAGAMENT: 'Datos de pago',
+                QUI_ES_TITULAR_COMPTE_BANCARI: 'Quien es el titular de la cuenta bancaria',
+                TITULAR_CONTRACTE_ELECTRICITAT: 'Titular del contrato de electricidad',
+                SOCI_SOM_ENERGIA: 'Socio/a de Som Energia',
+                ALTRE_TITULAR: 'Otro titular',
+                NUM_COMPTE: 'Número de cuenta bancaria',
+                BANC: 'Banco',
+                OFICINA: 'Oficina',
+                COMPTE: 'Número cuenta',
+                CONFIRMO_TITULAR_COMPTE_ACCEPTA_DOMICILIACIO: 'Confirmo que el titular de la cuenta bancaria autoriza la domicilación de las facturas de electricidad',
+                SOM_UNA_COOPERATIVA_SENSE_ANIM_DE_LUCRE: 'Somos una Cooperativa sin ánimo de lucro con el objetivo firme de canviar el modelo energético',
+                VOLS_PARTICIPAR_AMB_LA_TEVA_ENERGIA: '¿Quieres participar con tu energia a hacerlo posible',
+                DONATIU_VOLUNTARI: 'Donativo voluntario',
+                ELS_SOCIS_I_SOCIES_QUE_HO_DESITGIN_PODEN_REALITZAR_UN_DONATIU_VOLUNTARI: '...',
+                CONFIRMAR_CONTRACTACIO: 'Confirmar contratación'
             })
             .translations('ca', {
                 SELECCIONA: 'Sel·lecciona',
