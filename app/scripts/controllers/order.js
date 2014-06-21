@@ -7,22 +7,26 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.step0Ready = true;
         $scope.step1Ready = false;
         $scope.step2Ready = false;
-        $scope.step3Ready = false;
+        $scope.step3Ready = true;
         $scope.dniIsInvalid = false;
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
+        $scope.accountIsInvalid = false;
         $scope.showUnknownSociWarning = false;
         $scope.showBeginOrderForm = false;
         $scope.showStep1Form = false;
         $scope.initSubmitReady = false;
         $scope.initFormSubmitted = false;
         $scope.isStep2ButtonReady = false;
+        $scope.isStep3ButtonReady = false;
+        $scope.isFinalStepButtonReady = false;
         $scope.orderFormSubmitted = false;
         $scope.languages = [];
         $scope.provinces = [];
         $scope.cities = [];
         $scope.language = {};
         $scope.form = {};
+        $scope.form.choosepayer = 'titular';
         $scope.form.init = {};
         $scope.rates = ['2.0A', '2.0DHA', '2.1A', '2.1DHA', '3.0A'];
         if ($routeParams.locale !== undefined) {
@@ -173,14 +177,14 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.cnaeIsInvalid = response === cfg.STATE_FALSE;
                             $scope.formListener($scope.form);
                         },
-                        function (reason) { $log.error('Failed', reason); }
+                        function(reason) { $log.error('Failed', reason); }
                     );
                 }
             }, 400);
         });
 
         // ON CHANGE FORMS
-        $scope.formListener = function () {
+        $scope.formListener = function() {
             $scope.initSubmitReady = $scope.form.init.dni !== undefined && $scope.form.init.socinumber !== undefined && $scope.dniIsInvalid === false;
             $scope.isStep2ButtonReady = $scope.initSubmitReady &&
                 $scope.form.address !== undefined &&
@@ -215,6 +219,18 @@ angular.module('newSomEnergiaWebformsApp')
                         )
                     );
 //            $log.log($scope.form.changeowner, $scope.form.usertype, $scope.form.isownerlink);
+        };
+        $scope.formAccountListener = function () {
+            if ($scope.form.accountbank !== undefined && $scope.form.accountoffice !== undefined && $scope.form.accountchecksum !== undefined && $scope.form.accountnumber !== undefined) {
+                var accountPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/bank/' + $scope.form.accountbank + $scope.form.accountoffice + $scope.form.accountchecksum + $scope.form.accountnumber, '017');
+                accountPromise.then(
+                    function (response) {
+                        $scope.accountIsInvalid = response === cfg.STATE_FALSE;
+                        $scope.formListener($scope.form);
+                    },
+                    function(reason) { $log.error('Failed', reason); }
+                );
+            }
         };
 
         // ON INIT SUBMIT FORM

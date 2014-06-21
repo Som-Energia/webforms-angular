@@ -172,7 +172,8 @@ angular.module('newSomEnergiaWebformsApp', [
                 HELP_POPOVER_OWNER: '?',
                 EL_TITULAR_ES: 'El titular és',
                 EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE: 'El titular és el soci vinculat a aquest contracte',
-                DADES_PAGAMENT: 'Dades de pagament'
+                DADES_PAGAMENT: 'Dades de pagament',
+                CONFIRMAR_CONTRACTACIO: 'Confirmar contractació'
             })
             .preferredLanguage('ca')
         ;

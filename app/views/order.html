@@ -451,7 +451,42 @@
         </div>
     </div>
     <div data-ng-show="step3Ready">
-        <div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}?:</label>
+                <select class="form-control width-50-percent" name="choosepayer" data-ng-model="form.choosepayer">
+                    <option value="titular">{{ 'TITULAR_CONTRACTE_ELECTRICITAT' | translate }}</option>
+                    <option value="soci">{{ 'SOCI_SOM_ENERGIA' | translate }}</option>
+                    <option value="altre">{{ 'ALTRE_TITULAR' | translate }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">
+                <label>{{ 'NUM_COMPTE' | translate }}</label>
+                <span class="label label-danger" data-ng-show="accountIsInvalid">{{ 'INVALID' | translate }}</span>
+            </div>
+            <div class="col-xs-2">
+                <input type="text" name="accountbank" class="form-control" data-ng-model="form.accountbank" placeholder="{{ 'BANC' | translate }}*" data-ng-change="formAccountListener()" required/>
+                <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountbank.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            </div>
+            <div class="col-xs-2">
+                <input type="text" name="accountoffice" class="form-control" data-ng-model="form.accountoffice" placeholder="{{ 'OFICINA' | translate }}*" data-ng-change="formAccountListener()" required/>
+                <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountoffice.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            </div>
+            <div class="col-xs-1">
+                <input type="text" name="accountchecksum" class="form-control" data-ng-model="form.accountchecksum" placeholder="D.C.*" data-ng-change="formAccountListener()" required/>
+                <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountchecksum.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            </div>
+            <div class="col-xs-4">
+                <input type="text" name="accountnumber" class="form-control" data-ng-model="form.accountnumber" placeholder="{{ 'COMPTE' | translate }}*" data-ng-change="formAccountListener()" required/>
+                <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountnumber.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button data-ng-click="moveToFinalStepForm()" class="btn btn-default green pull-right submit" data-ng-disabled="!isFinalStepButtonReady">{{ 'CONFIRMAR_CONTRACTACIO' | translate }}</button>
+            </div>
         </div>
     </div>
 </form>
