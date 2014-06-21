@@ -204,6 +204,7 @@
                 </div>
             </div>
         </div>
+        <!-- CANVI_TITULAR_NO & TITULAR_PARTICULAR & SOCI_VINCULAT_SI (page 06) -->
         <div data-ng-show="form.changeowner == 'no' && form.usertype == 'person' && form.isownerlink == 'yes'">
             <div class="row">
                 <div class="col-xs-4">
@@ -223,6 +224,7 @@
                 </div>
             </div>
         </div>
+        <!-- CANVI_TITULAR_NO & TITULAR_EMPRESA & SOCI_VINCULAT_YES (page 09) -->
         <div data-ng-show="form.changeowner == 'no' && form.usertype == 'company' && form.isownerlink == 'yes'">
             <div class="row">
                 <div class="col-xs-2">
@@ -239,14 +241,15 @@
                 </div>
             </div>
         </div>
-        <div data-ng-show="form.changeowner == 'no' && form.usertype == 'person' && form.isownerlink == 'no'">
+        <!-- CANVI_TITULAR_NO & TITULAR_PARTICULAR & SOCI_VINCULAT_NO (page 07) -->
+        <div data-ng-if="form.changeowner == 'no' && form.usertype == 'person' && form.isownerlink == 'no'">
             <div class="row">
                 <div class="form-group col-xs-6">
                     <label>{{ 'IDIOMA' | translate }}*:</label>
                     <select class="form-control width-70-percent" name="language" data-ng-model="form.language" data-ng-options="language.name for language in languages" data-ng-change="formListener()" required>
                         <option value="">{{ 'SELECCIONA_IDIOMA' | translate }}</option>
                     </select>
-                    <span class="label label-danger" data-ng-show="submitted && partnerForm.language.$invalid">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.language.$invalid">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
@@ -311,6 +314,113 @@
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.province2.$invalid">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-3">
+                    <label for="city" class="sr-only">{{ 'POBLACIO' | translate }}</label>
+                    <select class="form-control" name="city2" data-ng-model="form.city2" data-ng-options="city.name for city in cities2" data-ng-change="formListener()" required >
+                        <option value="">{{ 'POBLACIO' | translate }}*</option>
+                    </select>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.city2.$invalid">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group checkbox col-xs-12">
+                    <label>
+                        <input type="checkbox" name="accept" value="accept" data-ng-model="form.accept" data-ng-change="formListener()" required/>
+                        <span data-ng-bind-html="'ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT' | translate"></span>
+                    </label>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button data-ng-click="moveToStep3Form()" class="btn btn-default green pull-right submit" data-ng-disabled="!isStep3ButtonReady">{{ 'SEGUENT_PAS' | translate }}</button>
+                </div>
+            </div>
+        </div>
+        <!-- CANVI_TITULAR_NO & TITULAR_EMPRESA & SOCI_VINCULAT_NO (page 10) -->
+        <div data-ng-if="form.changeowner == 'no' && form.usertype == 'company' && form.isownerlink == 'no'">
+            <div class="row">
+                <div class="form-group col-xs-6">
+                    <label>{{ 'IDIOMA' | translate }}*:</label>
+                    <select class="form-control width-70-percent" name="language" data-ng-model="form.language" data-ng-options="language.name for language in languages" data-ng-change="formListener()" required>
+                        <option value="">{{ 'SELECCIONA_IDIOMA' | translate }}</option>
+                    </select>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.language.$invalid">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-4">
+                    <label class="sr-only">CIF*:</label>
+                    <input type="text" name="dni" class="form-control" placeholder="CIF*" data-ng-model="form.dni" data-ng-change="formListener()" required/>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="dni2IsInvalid">{{ 'INVALID' | translate }}</span>
+                </div>
+                <div class="form-group col-xs-8">
+                    <label class="sr-only">{{ 'RAO_SOCIAL' | translate }}*:</label>
+                    <input type="text" name="name" class="form-control" placeholder="{{ 'RAO_SOCIAL' | translate }}*" data-ng-model="form.name" data-ng-change="formListener()" required/>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.name.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-4">
+                    <label class="sr-only">DNI/NIE*:</label>
+                    <input type="text" name="representantdni" class="form-control" placeholder="DNI/NIE*" data-ng-model="form.representantdni" data-ng-change="formListener()" required/>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.representantdni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="dni3IsInvalid">{{ 'INVALID' | translate }}</span>
+                </div>
+                <div class="form-group col-xs-8">
+                    <label class="sr-only">{{ 'PERSONA_REPRESENTANT' | translate }}*:</label>
+                    <input type="text" name="representantname" class="form-control" placeholder="{{ 'PERSONA_REPRESENTANT' | translate }}*" data-ng-model="form.representantname" data-ng-change="formListener()" required/>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.representantname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+            </div>
+            <hr class="dotted">
+            <div class="row">
+                <div class="form-group col-xs-6">
+                    <label class="sr-only">Email*:</label>
+                    <input type="text" name="email1" class="form-control" placeholder="Email*" data-ng-model="form.email1" data-ng-change="formListener()" data-ng-class="{'ng-invalid': emailIsInvalid}" required/>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.email1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="emailIsInvalid">{{ 'INVALID' | translate }}</span>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label class="sr-only">{{ 'REPETEIX_EMAIL' | translate }}*:</label>
+                    <input type="text" name="email2" class="form-control" placeholder="{{ 'REPETEIX_EMAIL' | translate }}*" data-ng-model="form.email2" data-ng-change="formListener()" data-ng-class="{'ng-invalid': emailNoIguals}" required/>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.email2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="emailNoIguals">{{ 'EMAIL_NO_IGUALS' | translate }}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-6">
+                    <label class="sr-only">{{ 'TELEFON' | translate }}*:</label>
+                    <input type="text" name="phone1" class="form-control" placeholder="{{ 'TELEFON' | translate }}*" data-ng-model="form.phone1" data-ng-change="formListener()" required />
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.phone1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+                <div class="form-group col-xs-6">
+                    <label class="sr-only">{{ 'TELEFON' | translate }} 2:</label>
+                    <input type="text" name="phone2" class="form-control" placeholder="{{ 'TELEFON' | translate }} 2" data-ng-model="form.phone2"/>
+                </div>
+            </div>
+            <hr class="dotted">
+            <div class="row">
+                <div class="form-group col-xs-10">
+                    <label class="sr-only">{{ 'ADRECA' | translate }}*:</label>
+                    <input type="text" name="address2" class="form-control" data-ng-model="form.address2" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener()" required/>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.address2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+                <div class="form-group col-xs-2">
+                    <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
+                    <input type="text" name="postalcode" class="form-control" data-ng-model="form.postalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.postalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-6">
+                    <label class="sr-only">{{ 'PROVINCIA' | translate }}</label>
+                    <select class="form-control" name="province2" data-ng-model="form.province2" data-ng-options="province.name for province in provinces2" data-ng-change="updateSelectedCity2()" required>
+                        <option value="">{{ 'PROVINCIA' | translate }}*</option>
+                    </select>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.province2.$invalid">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+                <div class="form-group col-xs-6">
                     <label for="city" class="sr-only">{{ 'POBLACIO' | translate }}</label>
                     <select class="form-control" name="city2" data-ng-model="form.city2" data-ng-options="city.name for city in cities2" data-ng-change="formListener()" required >
                         <option value="">{{ 'POBLACIO' | translate }}*</option>
