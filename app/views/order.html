@@ -195,7 +195,7 @@
                 </div>
             </div>
         </div>
-        <div class="row" data-ng-show="form.changeowner == 'no'">
+        <div class="row">
             <div class="form-group col-xs-4">
                 <label>{{ 'EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE' | translate }}?</label>
                 <div class="btn-group">
@@ -204,8 +204,8 @@
                 </div>
             </div>
         </div>
-        <!-- CANVI_TITULAR_NO & TITULAR_PARTICULAR & SOCI_VINCULAT_SI (page 06) -->
-        <div data-ng-show="form.changeowner == 'no' && form.usertype == 'person' && form.isownerlink == 'yes'">
+        <!-- CANVI_TITULAR_NO & TITULAR_PARTICULAR & SOCI_VINCULAT_SI (page 06 & 12) -->
+        <div data-ng-show="form.usertype == 'person' && form.isownerlink == 'yes'">
             <div class="row">
                 <div class="col-xs-4">
                     <input type="text" name="ownername" data-ng-model="form.ownername" class="form-control" placeholder="{{ soci.nom }}" value="{{ soci.nom }}" disabled/>
@@ -224,8 +224,8 @@
                 </div>
             </div>
         </div>
-        <!-- CANVI_TITULAR_NO & TITULAR_EMPRESA & SOCI_VINCULAT_YES (page 09) -->
-        <div data-ng-show="form.changeowner == 'no' && form.usertype == 'company' && form.isownerlink == 'yes'">
+        <!-- CANVI_TITULAR_NO & TITULAR_EMPRESA & SOCI_VINCULAT_YES (page 09 & 15) -->
+        <div data-ng-show="form.usertype == 'company' && form.isownerlink == 'yes'">
             <div class="row">
                 <div class="col-xs-2">
                     <input type="text" name="ownerdni" data-ng-model="form.ownerdni" class="form-control" placeholder="{{ soci.dni }}" value="{{ soci.dni }}" disabled/>
