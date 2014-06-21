@@ -454,7 +454,7 @@
         <div class="row">
             <div class="col-xs-7">
                 <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}?:</label>
-                <select class="form-control width-50-percent" name="choosepayer" data-ng-model="form.choosepayer">
+                <select class="form-control width-50-percent" name="choosepayer" data-ng-model="form.choosepayer" data-ng-change="formListener()">
                     <option value="titular">{{ 'TITULAR_CONTRACTE_ELECTRICITAT' | translate }}</option>
                     <option value="soci">{{ 'SOCI_SOM_ENERGIA' | translate }}</option>
                     <option value="altre">{{ 'ALTRE_TITULAR' | translate }}</option>
@@ -466,8 +466,8 @@
                 <div class="form-group col-xs-6">
                     <label>{{ 'SELECCIONA' | translate }}:</label>
                     <div class="btn-group">
-                        <label class="btn btn-default green" data-ng-model="form.payertype" data-btn-radio="'person'">{{ 'PARTICULAR' | translate }}</label>
-                        <label class="btn btn-default green" data-ng-model="form.payertype" data-btn-radio="'company'">{{ 'EMPRESA' | translate }}</label>
+                        <label class="btn btn-default green" data-ng-model="form.payertype" data-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
+                        <label class="btn btn-default green" data-ng-model="form.payertype" data-btn-radio="'company'" data-ng-change="formListener()">{{ 'EMPRESA' | translate }}</label>
                     </div>
                 </div>
             </div>

@@ -263,17 +263,13 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.emailNoIguals === false
                         )
                     );
-            $scope.isFinalStepButtonReady = $scope.isStep3ButtonReady &&
-                ($scope.form.choosepayer !== 'altre' &&
-                    !$scope.accountIsInvalid &&
-                    $scope.completeAccountNumber.length > 0 &&
-                    $scope.form.acceptaccountowner &&
-                    $scope.form.voluntary !== undefined) ||
-                    ($scope.form.choosepayer === 'altre' &&
-                        !$scope.accountIsInvalid &&
-                        $scope.completeAccountNumber.length > 0 &&
-                        $scope.form.acceptaccountowner &&
-                        $scope.form.voluntary !== undefined &&
+            $scope.isFinalStepButtonReady = //$scope.isStep3ButtonReady &&
+                !$scope.accountIsInvalid &&
+                $scope.completeAccountNumber.length > 0 &&
+                $scope.form.acceptaccountowner &&
+                $scope.form.voluntary !== undefined && ($scope.form.choosepayer !== 'altre' ||
+                ($scope.form.choosepayer === 'altre' &&
+                        $scope.form.payertype !== undefined &&
                         $scope.form.accountname !== undefined &&
                         $scope.form.accountsurname !== undefined &&
                         $scope.form.accountdni !== undefined &&
@@ -287,11 +283,10 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.city3 !== undefined &&
                         $scope.form.accept2 !== undefined &&
                         $scope.form.accept2 !== false &&
-                        $scope.dni2IsInvalid === false &&
-                        $scope.emailIsInvalid === false &&
-                        $scope.emailNoIguals === false)
+                        $scope.dni4IsInvalid === false &&
+                        $scope.accountEmailIsInvalid === false &&
+                        $scope.accountEmailNoIguals === false))
             ;
-            $log.log($scope.form.acceptaccountowner, !$scope.accountIsInvalid, $scope.completeAccountNumber.length > 0, $scope.form.voluntary !== undefined);
         };
         $scope.formAccountListener = function () {
             if ($scope.form.accountbank !== undefined && $scope.form.accountoffice !== undefined && $scope.form.accountchecksum !== undefined && $scope.form.accountnumber !== undefined) {
@@ -400,7 +395,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
-                        $scope.showStep1Form = false; // uncomment on production
+//                        $scope.showStep1Form = false; // uncomment on production
                     } else {
                         $scope.showUnknownSociWarning = true;
                         $scope.showStep1Form = false;
@@ -411,16 +406,16 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // DEBUG (comment on production)
-//        $scope.form.init.socinumber = 1706;
-//        $scope.form.init.dni = '52608510N';
-//        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
-//        $scope.form.cups = 'ES0031406222973003LE0F';
-//        $scope.form.cnae = '0520';
-//        $scope.form.power = '5.5';
-//        $scope.form.rate = '2.0A';
-//        $scope.executeGetSociValues();
-//        $scope.showStep1Form = true;
-//        $scope.step0Ready = false;
-//        $scope.step1Ready = true;
-//        $scope.step2Ready = false;
+        $scope.form.init.socinumber = 1706;
+        $scope.form.init.dni = '52608510N';
+        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
+        $scope.form.cups = 'ES0031406222973003LE0F';
+        $scope.form.cnae = '0520';
+        $scope.form.power = '5.5';
+        $scope.form.rate = '2.0A';
+        $scope.executeGetSociValues();
+        $scope.showStep1Form = true;
+        $scope.step0Ready = false;
+        $scope.step1Ready = true;
+        $scope.step2Ready = false;
     }]);
