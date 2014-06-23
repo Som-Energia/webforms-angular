@@ -374,13 +374,13 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON SUBMIT FORM
         $scope.submitOrder = function(form) {
-            $log.log('submitOrder', form);
             // Trigger validation flags
             $scope.orderFormSubmitted = true;
             $scope.messages = null;
             if (form.$invalid) {
                 return null;
             }
+
             // Prepare request data
             var postData = {
                 id_soci: $scope.form.init.socinumber,
@@ -402,7 +402,7 @@ angular.module('newSomEnergiaWebformsApp')
                 tarifa: $scope.form.rate,
                 cups: $scope.form.cups,
                 consum: $scope.form.estimation,
-                potencia: $scope.form.power,
+                potencia: $scope.form.power * 1000,
                 cnae: $scope.form.cnae,
                 cups_adreca: $scope.form.address,
                 cups_provincia: $scope.form.province.id,
@@ -428,11 +428,28 @@ angular.module('newSomEnergiaWebformsApp')
                 condicions_titular: 1,
                 donatiu: $scope.form.voluntary === 'yes' ? 1 : 0
             };
-            $log.log('request post data', postData);
+
+            var formData = new FormData();
+            formData.append('id_soci', postData.id_soci);
+            formData.append('dni', postData.dni);
+            formData.append('tipus_persona', postData.tipus_persona);
+            formData.append('soci_titular', postData.soci_titular);
+            formData.append('representant_nom', postData.representant_nom);
+            formData.append('fitxer', postData.fitxer);
+
+            $log.log('request post formData', formData);
             // Send POST request data
-            var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/contractacio', postData, '066');
-            postPromise.then(
-                function (response) {
+            $http({
+                method: 'POST',
+                url: cfg.API_BASE_URL + 'form/contractacio',
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                data: formData,
+                transformRequest: function(data) { return data; }
+            }).then(
+                function(response) {
+                    $log.log('response recived', response);
                     if (response.state === cfg.STATE_FALSE) {
                         $scope.messages = $scope.getHumanizedAPIResponse(response.data);
                         $scope.submitReady = false;
@@ -442,6 +459,19 @@ angular.module('newSomEnergiaWebformsApp')
                 },
                 function(reason) { $log.error('Failed', reason); }
             );
+//            var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/contractacio', postData, '066');
+//            postPromise.then(
+//                function(response) {
+//                    $log.log('response recived', response);
+//                    if (response.state === cfg.STATE_FALSE) {
+//                        $scope.messages = $scope.getHumanizedAPIResponse(response.data);
+//                        $scope.submitReady = false;
+//                    } else if (response.state === cfg.STATE_TRUE) {
+//                        $log.log('response data', response.data); // TODO make welldone
+//                    }
+//                },
+//                function(reason) { $log.error('Failed', reason); }
+//            );
 
             return true;
         };
