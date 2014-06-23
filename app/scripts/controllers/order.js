@@ -74,7 +74,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         // POWER VALIDATION
         $scope.$watch('form.power', function(newValue, oldValue) {
-            $log.log(newValue, oldValue, newValue !== undefined, !isNaN(newValue));
             if (newValue !== undefined && isNaN(newValue)) {
                 $scope.form.power = oldValue;
             }
@@ -251,6 +250,22 @@ angular.module('newSomEnergiaWebformsApp')
             }, 400);
         });
 
+        // POSTAL CODE VALIDATIONS
+        $scope.$watch('form.postalcode', function(newValue, oldValue) {
+            if (newValue !== undefined) {
+                if (!$scope.numberRegex.test(newValue) || newValue.length > 5) {
+                    $scope.form.postalcode = oldValue;
+                }
+            }
+        });
+        $scope.$watch('form.accountpostalcode', function(newValue, oldValue) {
+            if (newValue !== undefined) {
+                if (!$scope.numberRegex.test(newValue) || newValue.length > 5) {
+                    $scope.form.accountpostalcode = oldValue;
+                }
+            }
+        });
+
         // ON CHANGE FORMS
         $scope.formListener = function() {
             $scope.initSubmitReady = $scope.form.init.dni !== undefined && $scope.form.init.socinumber !== undefined && $scope.dniIsInvalid === false;
@@ -374,16 +389,16 @@ angular.module('newSomEnergiaWebformsApp')
                 soci_titular: $scope.form.isownerlink === 'yes' ? 1 : 0,
                 representant_nom: $scope.form.usertype === 'company' ? $scope.form.representantname : '',
                 representant_dni: $scope.form.usertype === 'company' ? $scope.form.representantdni : '',
-                titular_nom: $scope.form.name,
-                titular_cognom: $scope.form.surname === undefined ? '' : $scope.form.surname,
-                titular_dni: $scope.form.dni,
-                titular_email: $scope.form.email1,
-                titular_tel: $scope.form.phone1,
-                titular_tel2: $scope.form.phone2 === undefined ? '' : $scope.form.phone2,
-                titular_adreca: $scope.form.address2,
-                titular_municipi: $scope.form.city2.id,
-                titular_cp: $scope.form.postalcode,
-                titular_provincia: $scope.form.province2.id,
+                titular_nom: $scope.form.isownerlink === 'yes' ? $scope.soci.nom : $scope.form.name,
+                titular_cognom: $scope.form.isownerlink === 'yes' ? $scope.soci.cognom : $scope.form.surname === undefined ? '' : $scope.form.surname,
+                titular_dni: $scope.form.isownerlink === 'yes' ? $scope.soci.dni : $scope.form.dni,
+                titular_email: $scope.form.isownerlink === 'yes' ? $scope.soci.email : $scope.form.email1,
+                titular_tel: $scope.form.isownerlink === 'yes' ? $scope.soci.tel : $scope.form.phone1,
+                titular_tel2: $scope.form.isownerlink === 'yes' ? $scope.soci.tel2 : $scope.form.phone2 === undefined ? '' : $scope.form.phone2,
+                titular_adreca: $scope.form.isownerlink === 'yes' ? $scope.soci.adreca : $scope.form.address2,
+                titular_municipi: $scope.form.isownerlink === 'yes' ? $scope.soci.municipi : $scope.form.city2.id,
+                titular_cp: $scope.form.isownerlink === 'yes' ? $scope.soci.cp : $scope.form.postalcode,
+                titular_provincia: $scope.form.isownerlink === 'yes' ? $scope.soci.provincia : $scope.form.province2.id,
                 tarifa: $scope.form.rate,
                 cups: $scope.form.cups,
                 consum: $scope.form.estimation,
@@ -408,9 +423,9 @@ angular.module('newSomEnergiaWebformsApp')
                 compte_tel: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountphone1,
                 compte_tel2: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountphone2,
                 compte_cp: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountpostalcode,
-                condicions: $scope.form.accept === 'accept' ? 1 : 0,
-                condicions_privacitat: $scope.form.accept2 === 'accept' ? 1 : 0,
-                condicions_titular: $scope.form.acceptaccountowner === 'accept' ? 1 : 0,
+                condicions: 1,
+                condicions_privacitat: 1,
+                condicions_titular: 1,
                 donatiu: $scope.form.voluntary === 'yes' ? 1 : 0
             };
             $log.log('request post data', postData);
