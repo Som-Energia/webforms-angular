@@ -226,10 +226,15 @@ angular.module('newSomEnergiaWebformsApp')
             }
             cnaeCupsTimer = $timeout(function() {
                 if (newValue !== undefined) {
-                    var cnaePromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/cnae/' + newValue, '007');
+                    var cnaePromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'check/cnae/' + newValue, '007');
                     cnaePromise.then(
-                        function (response) {
-                            $scope.cnaeIsInvalid = response === cfg.STATE_FALSE;
+                        function(response) {
+                            $scope.cnaeIsInvalid = response.state === cfg.STATE_FALSE;
+                            if (!$scope.cnaeIsInvalid && response.data !== undefined) {
+                                $scope.cnaeDescription = response.data.description;
+                            } else {
+                                $scope.cnaeDescription = null;
+                            }
                             $scope.formListener($scope.form);
                         },
                         function(reason) { $log.error('Failed', reason); }

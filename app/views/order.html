@@ -103,6 +103,7 @@
                 <input type="text" name="cnae" class="form-control" placeholder="CNAE*" data-ng-model="form.cnae" data-ng-change="formListener()" data-ng-class="{'ng-invalid': cnaeIsInvalid}" required/>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.cnae.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 <span class="label label-danger" data-ng-show="cnaeIsInvalid">{{ 'INVALID' | translate }}</span>
+                <span class="label label-success" data-ng-show="!cnaeIsInvalid && cnaeDescription">{{ cnaeDescription }}</span>
             </div>
             <div class="col-xs-1">
                 <span class="badge current small" data-popover="{{ 'HELP_POPOVER_CNAE' | translate }}">?</span>
