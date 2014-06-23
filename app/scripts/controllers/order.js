@@ -30,6 +30,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.completeAccountNumber = '';
         $scope.form.init = {};
         $scope.rates = ['2.0A', '2.0DHA', '2.1A', '2.1DHA', '3.0A'];
+        $scope.numberRegex = new RegExp('^\\d+$');
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
@@ -61,6 +62,15 @@ angular.module('newSomEnergiaWebformsApp')
             },
             function (reason) { $log.error('Failed', reason); }
         );
+
+        // SOCI NUMBER VALIDATION
+        $scope.$watch('form.init.socinumber', function(newValue, oldValue) {
+            if (newValue !== undefined) {
+                if (!$scope.numberRegex.test(newValue)) {
+                    $scope.form.init.socinumber = oldValue;
+                }
+            }
+        });
 
         // DNI VALIDATION
         var checkDniTimer = false;
@@ -376,15 +386,15 @@ angular.module('newSomEnergiaWebformsApp')
                 control: $scope.form.accountchecksum,
                 ncompte: $scope.form.accountnumber,
                 escull_pagador: $scope.form.choosepayer,
-                compte_nom: $scope.form.accountname === undefined ? '' : $scope.form.accountname,
-                compte_dni: $scope.form.accountdni === undefined ? '' : $scope.form.accountdni,
-                compte_adreca: $scope.form.accountaddress === undefined ? '' : $scope.form.accountaddress,
-                compte_provincia: $scope.form.province3 === undefined ? '' : $scope.form.province3.id,
-                compte_municipi: $scope.form.city3 === undefined ? '' : $scope.form.city3.id,
-                compte_email: $scope.form.accountemail1 === undefined ? '' : $scope.form.accountemail1,
-                compte_tel: $scope.form.accountphone1 === undefined ? '' : $scope.form.accountphone1,
-                compte_tel2: $scope.form.accountphone2 === undefined ? '' : $scope.form.accountphone2,
-                compte_cp: $scope.form.accountpostalcode === undefined ? '' : $scope.form.accountpostalcode,
+                compte_nom: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountname,
+                compte_dni: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountdni,
+                compte_adreca: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountaddress,
+                compte_provincia: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.province3.id,
+                compte_municipi: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.city3.id,
+                compte_email: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountemail1,
+                compte_tel: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountphone1,
+                compte_tel2: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountphone2,
+                compte_cp: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountpostalcode,
                 condicions: $scope.form.accept === 'accept' ? 1 : 0,
                 condicions_privacitat: $scope.form.accept2 === 'accept' ? 1 : 0,
                 condicions_titular: $scope.form.acceptaccountowner === 'accept' ? 1 : 0,

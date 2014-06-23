@@ -578,7 +578,7 @@
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
         </div>
-        <div class="row" data-ng-show="form.choosepayer == 'altre'">
+        <div class="row" data-ng-if="form.choosepayer == 'altre'">
             <div class="form-group checkbox col-xs-12">
                 <label>
                     <input type="checkbox" name="accept2" value="accept" data-ng-model="form.accept2" data-ng-change="formListener()" required/>

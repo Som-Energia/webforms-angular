@@ -24,6 +24,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.messages = null;
         $scope.form.usertype = 'person';
         $scope.form.payment = 'bankaccount';
+        $scope.numberRegex = new RegExp('^\\d+$');
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
@@ -53,6 +54,15 @@ angular.module('newSomEnergiaWebformsApp')
             },
             function (reason) { $log.error('Failed', reason); }
         );
+
+        // POSTAL CODE VALIDATION
+        $scope.$watch('form.postalcode', function(newValue, oldValue) {
+            if (newValue !== undefined) {
+                if (!$scope.numberRegex.test(newValue) || newValue.length > 5) {
+                    $scope.form.postalcode = oldValue;
+                }
+            }
+        });
 
         // DNI VALIDATION
         var checkDniTimer = false;
