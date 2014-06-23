@@ -72,6 +72,14 @@ angular.module('newSomEnergiaWebformsApp')
             }
         });
 
+        // POWER VALIDATION
+        $scope.$watch('form.power', function(newValue, oldValue) {
+            $log.log(newValue, oldValue, newValue !== undefined, !isNaN(newValue));
+            if (newValue !== undefined && isNaN(newValue)) {
+                $scope.form.power = oldValue;
+            }
+        });
+
         // DNI VALIDATION
         var checkDniTimer = false;
         $scope.$watch('form.init.dni', function(newValue) {
