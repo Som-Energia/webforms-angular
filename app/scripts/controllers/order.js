@@ -7,7 +7,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.step0Ready = true;
         $scope.step1Ready = false;
         $scope.step2Ready = false;
-        $scope.step3Ready = true;
+        $scope.step3Ready = false;
         $scope.dniIsInvalid = false;
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
@@ -303,7 +303,7 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // ON INIT SUBMIT FORM
-        $scope.initSubmit = function (form) {
+        $scope.initSubmit = function(form) {
             // Trigger validation flags
             $scope.initFormSubmitted = true;
             if (form.$invalid) {
@@ -332,6 +332,80 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.moveToStep3Form = function() {
             $scope.step2Ready = false;
             $scope.step3Ready = true;
+        };
+
+        // ON SUBMIT FORM
+        $scope.submitOrder = function(form) {
+            $log.log('submitOrder', form);
+            // Trigger validation flags
+            $scope.orderFormSubmitted = true;
+            $scope.messages = null;
+            if (form.$invalid) {
+                return null;
+            }
+            // Prepare request data
+            var postData = {
+                id_soci: $scope.form.init.socinumber,
+                dni: $scope.form.init.dni,
+                tipus_persona: $scope.form.usertype === 'person' ? 0 : 1,
+                soci_titular: $scope.form.isownerlink === 'yes' ? 1 : 0,
+                representant_nom: $scope.form.usertype === 'company' ? $scope.form.representantname : '',
+                representant_dni: $scope.form.usertype === 'company' ? $scope.form.representantdni : '',
+                titular_nom: $scope.form.name,
+                titular_cognom: $scope.form.surname === undefined ? '' : $scope.form.surname,
+                titular_dni: $scope.form.dni,
+                titular_email: $scope.form.email1,
+                titular_tel: $scope.form.phone1,
+                titular_tel2: $scope.form.phone2 === undefined ? '' : $scope.form.phone2,
+                titular_adreca: $scope.form.address2,
+                titular_municipi: $scope.form.city2.id,
+                titular_cp: $scope.form.postalcode,
+                titular_provincia: $scope.form.province2.id,
+                tarifa: $scope.form.rate,
+                cups: $scope.form.cups,
+                consum: $scope.form.estimation,
+                potencia: $scope.form.power,
+                cnae: $scope.form.cnae,
+                cups_adreca: $scope.form.address,
+                cups_provincia: $scope.form.province.id,
+                cups_municipi: $scope.form.city.id,
+                referencia: $scope.form.catastre,
+                fitxer: $scope.form.file,
+                entitat: $scope.form.accountbank,
+                sucursal: $scope.form.accountoffice,
+                control: $scope.form.accountchecksum,
+                ncompte: $scope.form.accountnumber,
+                escull_pagador: $scope.form.choosepayer,
+                compte_nom: $scope.form.accountname === undefined ? '' : $scope.form.accountname,
+                compte_dni: $scope.form.accountdni === undefined ? '' : $scope.form.accountdni,
+                compte_adreca: $scope.form.accountaddress === undefined ? '' : $scope.form.accountaddress,
+                compte_provincia: $scope.form.province3 === undefined ? '' : $scope.form.province3.id,
+                compte_municipi: $scope.form.city3 === undefined ? '' : $scope.form.city3.id,
+                compte_email: $scope.form.accountemail1 === undefined ? '' : $scope.form.accountemail1,
+                compte_tel: $scope.form.accountphone1 === undefined ? '' : $scope.form.accountphone1,
+                compte_tel2: $scope.form.accountphone2 === undefined ? '' : $scope.form.accountphone2,
+                compte_cp: $scope.form.accountpostalcode === undefined ? '' : $scope.form.accountpostalcode,
+                condicions: $scope.form.accept === 'accept' ? 1 : 0,
+                condicions_privacitat: $scope.form.accept2 === 'accept' ? 1 : 0,
+                condicions_titular: $scope.form.acceptaccountowner === 'accept' ? 1 : 0,
+                donatiu: $scope.form.voluntary === 'yes' ? 1 : 0
+            };
+            $log.log('request post data', postData);
+            // Send POST request data
+            var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/contractacio', postData, '066');
+            postPromise.then(
+                function (response) {
+                    if (response.state === cfg.STATE_FALSE) {
+                        $scope.messages = $scope.getHumanizedAPIResponse(response.data);
+                        $scope.submitReady = false;
+                    } else if (response.state === cfg.STATE_TRUE) {
+                        $log.log('response data', response.data); // TODO make welldone
+                    }
+                },
+                function(reason) { $log.error('Failed', reason); }
+            );
+
+            return true;
         };
 
         // ON CHANGE SELECTED PROVINCE
@@ -395,7 +469,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
-//                        $scope.showStep1Form = false; // uncomment on production
+                        $scope.showStep1Form = false; // uncomment on production
                     } else {
                         $scope.showUnknownSociWarning = true;
                         $scope.showStep1Form = false;
@@ -405,17 +479,36 @@ angular.module('newSomEnergiaWebformsApp')
             );
         };
 
+        // GET HUMANIZED API RESPONSE
+        $scope.getHumanizedAPIResponse = function(arrayResponse) {
+            var result = '';
+            if (arrayResponse.required_fields !== undefined) {
+                result = result + 'ERROR:'; // TODO $translate it
+                for (var i = 0; i < arrayResponse.required_fields.length; i++) {
+                    result = result + ' ' + arrayResponse.required_fields[i];
+                }
+            }
+            if (arrayResponse.invalid_fields !== undefined) {
+                result = result + ' ERROR:'; // TODO $translate it
+                for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
+                    result = result + ' ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error;
+                }
+            }
+
+            return result;
+        };
+
         // DEBUG (comment on production)
-        $scope.form.init.socinumber = 1706;
-        $scope.form.init.dni = '52608510N';
-        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
-        $scope.form.cups = 'ES0031406222973003LE0F';
-        $scope.form.cnae = '0520';
-        $scope.form.power = '5.5';
-        $scope.form.rate = '2.0A';
-        $scope.executeGetSociValues();
-        $scope.showStep1Form = true;
-        $scope.step0Ready = false;
-        $scope.step1Ready = true;
-        $scope.step2Ready = false;
+//        $scope.form.init.socinumber = 1706;
+//        $scope.form.init.dni = '52608510N';
+//        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
+//        $scope.form.cups = 'ES0031406222973003LE0F';
+//        $scope.form.cnae = '0520';
+//        $scope.form.power = '5.5';
+//        $scope.form.rate = '2.0A';
+//        $scope.executeGetSociValues();
+//        $scope.showStep1Form = true;
+//        $scope.step0Ready = false;
+//        $scope.step1Ready = true;
+//        $scope.step2Ready = false;
     }]);
