@@ -10,7 +10,7 @@ angular.module('newSomEnergiaWebformsApp', [
     ])
     .config(function ($httpProvider) {
         $httpProvider.defaults.headers.post = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
-        $httpProvider.defaults.transformRequest = function (data) {
+        $httpProvider.defaults.transformRequest = function(data) {
             return data === undefined ? data : jQuery.param(data);
         };
     })
@@ -120,7 +120,8 @@ angular.module('newSomEnergiaWebformsApp', [
                 VOLS_PARTICIPAR_AMB_LA_TEVA_ENERGIA: '¿Quieres participar con tu energia a hacerlo posible',
                 DONATIU_VOLUNTARI: 'Donativo voluntario',
                 ELS_SOCIS_I_SOCIES_QUE_HO_DESITGIN_PODEN_REALITZAR_UN_DONATIU_VOLUNTARI: '...',
-                CONFIRMAR_CONTRACTACIO: 'Confirmar contratación'
+                CONFIRMAR_CONTRACTACIO: 'Confirmar contratación',
+                LOADING: 'Enviando datos...'
             })
             .translations('ca', {
                 SELECCIONA: 'Sel·lecciona',
@@ -200,7 +201,8 @@ angular.module('newSomEnergiaWebformsApp', [
                 VOLS_PARTICIPAR_AMB_LA_TEVA_ENERGIA: 'Vols participar amb la teva energia a fer-ho possible',
                 DONATIU_VOLUNTARI: 'Donatiu voluntari',
                 ELS_SOCIS_I_SOCIES_QUE_HO_DESITGIN_PODEN_REALITZAR_UN_DONATIU_VOLUNTARI: 'Els socis i sòcies que ho desitgin poden realitzar un donatiu voluntari de 0,01€/kWh destinat a recolzar i facilitar l\'acció social i voluntària dels més de 50 Grups Locals repartits pel territori. Per un consum mitjà d\'una família (aproximadament 300kWh/mes) això representa un increment de 3€ mensuals. Sempre que ho vulguis podràs activar o desactivar aquest donatiu a l\'instant des de l\'Oficinal Virtual.',
-                CONFIRMAR_CONTRACTACIO: 'Confirmar contractació'
+                CONFIRMAR_CONTRACTACIO: 'Confirmar contractació',
+                LOADING: 'Enviant dades...'
             })
             .preferredLanguage('ca')
         ;

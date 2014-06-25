@@ -380,103 +380,54 @@ angular.module('newSomEnergiaWebformsApp')
             if (form.$invalid) {
                 return null;
             }
+            uiHandler.showLoadingDialog();
 
             // Prepare request data
-            var postData = {
-                id_soci: $scope.form.init.socinumber,
-                dni: $scope.form.init.dni,
-                tipus_persona: $scope.form.usertype === 'person' ? 0 : 1,
-                soci_titular: $scope.form.isownerlink === 'yes' ? 1 : 0,
-                representant_nom: $scope.form.usertype === 'company' ? $scope.form.representantname : '',
-                representant_dni: $scope.form.usertype === 'company' ? $scope.form.representantdni : '',
-                titular_nom: $scope.form.isownerlink === 'yes' ? $scope.soci.nom : $scope.form.name,
-                titular_cognom: $scope.form.isownerlink === 'yes' ? $scope.soci.cognom : $scope.form.surname === undefined ? '' : $scope.form.surname,
-                titular_dni: $scope.form.isownerlink === 'yes' ? $scope.soci.dni : $scope.form.dni,
-                titular_email: $scope.form.isownerlink === 'yes' ? $scope.soci.email : $scope.form.email1,
-                titular_tel: $scope.form.isownerlink === 'yes' ? $scope.soci.tel : $scope.form.phone1,
-                titular_tel2: $scope.form.isownerlink === 'yes' ? $scope.soci.tel2 : $scope.form.phone2 === undefined ? '' : $scope.form.phone2,
-                titular_adreca: $scope.form.isownerlink === 'yes' ? $scope.soci.adreca : $scope.form.address2,
-                titular_municipi: $scope.form.isownerlink === 'yes' ? $scope.soci.municipi : $scope.form.city2.id,
-                titular_cp: $scope.form.isownerlink === 'yes' ? $scope.soci.cp : $scope.form.postalcode,
-                titular_provincia: $scope.form.isownerlink === 'yes' ? $scope.soci.provincia : $scope.form.province2.id,
-                tarifa: $scope.form.rate,
-                cups: $scope.form.cups,
-                consum: $scope.form.estimation === undefined ? '' : $scope.form.estimation,
-                potencia: $scope.form.power * 1000,
-                cnae: $scope.form.cnae,
-                cups_adreca: $scope.form.address,
-                cups_provincia: $scope.form.province.id,
-                cups_municipi: $scope.form.city.id,
-                referencia: $scope.form.catastre === undefined ? '' : $scope.form.catastre,
-                fitxer: jQuery('#fileuploaderinput')[0].files[0],
-                entitat: $scope.form.accountbank,
-                sucursal: $scope.form.accountoffice,
-                control: $scope.form.accountchecksum,
-                ncompte: $scope.form.accountnumber,
-                escull_pagador: $scope.form.choosepayer,
-                compte_nom: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountname,
-                compte_dni: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountdni,
-                compte_adreca: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountaddress,
-                compte_provincia: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.province3.id,
-                compte_municipi: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.city3.id,
-                compte_email: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountemail1,
-                compte_tel: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountphone1,
-                compte_tel2: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountphone2,
-                compte_cp: $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountpostalcode,
-                condicions: 1,
-                condicions_privacitat: 1,
-                condicions_titular: 1,
-                donatiu: $scope.form.voluntary === 'yes' ? 1 : 0
-            };
-
             var formData = new FormData();
-            formData.append('id_soci', postData.id_soci);
-            formData.append('dni', postData.dni);
-            formData.append('tipus_persona', postData.tipus_persona);
-            formData.append('soci_titular', postData.soci_titular);
-            formData.append('representant_nom', postData.representant_nom);
-            formData.append('representant_dni', postData.representant_dni);
-            formData.append('titular_nom', postData.titular_nom);
-            formData.append('titular_cognom', postData.titular_cognom);
-            formData.append('titular_dni', postData.titular_dni);
-            formData.append('titular_email', postData.titular_email);
-            formData.append('titular_tel', postData.titular_tel);
-            formData.append('titular_tel2', postData.titular_tel2);
-            formData.append('titular_adreca', postData.titular_adreca);
-            formData.append('titular_municipi', postData.titular_municipi);
-            formData.append('titular_cp', postData.titular_cp);
-            formData.append('titular_provincia', postData.titular_provincia);
-            formData.append('tarifa', postData.tarifa);
-            formData.append('cups', postData.cups);
-            formData.append('consum', postData.consum);
-            formData.append('potencia', postData.potencia);
-            formData.append('cnae', postData.cnae);
-            formData.append('cups_adreca', postData.cups_adreca);
-            formData.append('cups_provincia', postData.cups_provincia);
-            formData.append('cups_municipi', postData.cups_municipi);
-            formData.append('referencia', postData.referencia);
-            formData.append('fitxer', postData.fitxer);
-            formData.append('entitat', postData.entitat);
-            formData.append('sucursal', postData.sucursal);
-            formData.append('control', postData.control);
-            formData.append('ncompte', postData.ncompte);
-            formData.append('escull_pagador', postData.escull_pagador);
-            formData.append('compte_nom', postData.compte_nom);
-            formData.append('compte_dni', postData.compte_dni);
-            formData.append('compte_adreca', postData.compte_adreca);
-            formData.append('compte_provincia', postData.compte_provincia);
-            formData.append('compte_municipi', postData.compte_municipi);
-            formData.append('compte_email', postData.compte_email);
-            formData.append('compte_tel', postData.compte_tel);
-            formData.append('compte_tel2', postData.compte_tel2);
-            formData.append('compte_cp', postData.compte_cp);
-            formData.append('condicions', postData.condicions);
-            formData.append('condicions_privacitat', postData.condicions_privacitat);
-            formData.append('condicions_titular', postData.condicions_titular);
-            formData.append('donatiu', postData.donatiu);
-
-            $log.log('request pre post data', postData);
-            $log.log('request post formData', formData);
+            formData.append('id_soci', $scope.form.init.socinumber);
+            formData.append('dni', $scope.form.init.dni);
+            formData.append('tipus_persona', $scope.form.usertype === 'person' ? 0 : 1);
+            formData.append('soci_titular', $scope.form.isownerlink === 'yes' ? 1 : 0);
+            formData.append('representant_nom', $scope.form.usertype === 'company' ? $scope.form.representantname : '');
+            formData.append('representant_dni', $scope.form.usertype === 'company' ? $scope.form.representantdni : '');
+            formData.append('titular_nom', $scope.form.isownerlink === 'yes' ? $scope.soci.nom : $scope.form.name);
+            formData.append('titular_cognom', $scope.form.isownerlink === 'yes' ? $scope.soci.cognom : $scope.form.surname === undefined ? '' : $scope.form.surname);
+            formData.append('titular_dni', $scope.form.isownerlink === 'yes' ? $scope.soci.dni : $scope.form.dni);
+            formData.append('titular_email', $scope.form.isownerlink === 'yes' ? $scope.soci.email : $scope.form.email1);
+            formData.append('titular_tel', $scope.form.isownerlink === 'yes' ? $scope.soci.tel : $scope.form.phone1);
+            formData.append('titular_tel2', $scope.form.isownerlink === 'yes' ? $scope.soci.tel2 : $scope.form.phone2 === undefined ? '' : $scope.form.phone2);
+            formData.append('titular_adreca', $scope.form.isownerlink === 'yes' ? $scope.soci.adreca : $scope.form.address2);
+            formData.append('titular_municipi', $scope.form.isownerlink === 'yes' ? $scope.soci.municipi : $scope.form.city2.id);
+            formData.append('titular_cp', $scope.form.isownerlink === 'yes' ? $scope.soci.cp : $scope.form.postalcode);
+            formData.append('titular_provincia', $scope.form.isownerlink === 'yes' ? $scope.soci.provincia : $scope.form.province2.id);
+            formData.append('tarifa', $scope.form.rate);
+            formData.append('cups', $scope.form.cups);
+            formData.append('consum', $scope.form.estimation === undefined ? '' : $scope.form.estimation);
+            formData.append('potencia', $scope.form.power * 1000);
+            formData.append('cnae', $scope.form.cnae);
+            formData.append('cups_adreca', $scope.form.address);
+            formData.append('cups_provincia', $scope.form.province.id);
+            formData.append('cups_municipi', $scope.form.city.id);
+            formData.append('referencia', $scope.form.catastre === undefined ? '' : $scope.form.catastre);
+            formData.append('fitxer', jQuery('#fileuploaderinput')[0].files[0]);
+            formData.append('entitat', $scope.form.accountbank);
+            formData.append('sucursal', $scope.form.accountoffice);
+            formData.append('control', $scope.form.accountchecksum);
+            formData.append('ncompte', $scope.form.accountnumber);
+            formData.append('escull_pagador', $scope.form.choosepayer);
+            formData.append('compte_nom', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountname);
+            formData.append('compte_dni', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountdni);
+            formData.append('compte_adreca', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountaddress);
+            formData.append('compte_provincia', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.province3.id);
+            formData.append('compte_municipi', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.city3.id);
+            formData.append('compte_email', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountemail1);
+            formData.append('compte_tel', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountphone1);
+            formData.append('compte_tel2', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountphone2);
+            formData.append('compte_cp', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountpostalcode);
+            formData.append('condicions', 1);
+            formData.append('condicions_privacitat', 1);
+            formData.append('condicions_titular', 1);
+            formData.append('donatiu', $scope.form.voluntary === 'yes' ? 1 : 0);
 
             // Send POST request data
             $http({
@@ -487,6 +438,7 @@ angular.module('newSomEnergiaWebformsApp')
                 transformRequest: angular.identity
             }).then(
                 function(response) {
+                    uiHandler.hideLoadingDialog();
                     $log.log('response recived', response);
                     if (response.data.status === cfg.STATUS_ONLINE) {
                         if (response.data.state === cfg.STATE_TRUE) {
@@ -531,7 +483,6 @@ angular.module('newSomEnergiaWebformsApp')
 //                        $log.error('error in ajax form submission');
 //                    }
 //                });
-
 
             return true;
         };
