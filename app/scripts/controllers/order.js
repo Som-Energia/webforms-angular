@@ -401,14 +401,14 @@ angular.module('newSomEnergiaWebformsApp')
                 titular_provincia: $scope.form.isownerlink === 'yes' ? $scope.soci.provincia : $scope.form.province2.id,
                 tarifa: $scope.form.rate,
                 cups: $scope.form.cups,
-                consum: $scope.form.estimation,
+                consum: $scope.form.estimation === undefined ? '' : $scope.form.estimation,
                 potencia: $scope.form.power * 1000,
                 cnae: $scope.form.cnae,
                 cups_adreca: $scope.form.address,
                 cups_provincia: $scope.form.province.id,
                 cups_municipi: $scope.form.city.id,
-                referencia: $scope.form.catastre,
-                fitxer: $scope.form.file,
+                referencia: $scope.form.catastre === undefined ? '' : $scope.form.catastre,
+                fitxer: jQuery('#fileuploaderinput')[0].files[0],
                 entitat: $scope.form.accountbank,
                 sucursal: $scope.form.accountoffice,
                 control: $scope.form.accountchecksum,
@@ -435,43 +435,103 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('tipus_persona', postData.tipus_persona);
             formData.append('soci_titular', postData.soci_titular);
             formData.append('representant_nom', postData.representant_nom);
+            formData.append('representant_dni', postData.representant_dni);
+            formData.append('titular_nom', postData.titular_nom);
+            formData.append('titular_cognom', postData.titular_cognom);
+            formData.append('titular_dni', postData.titular_dni);
+            formData.append('titular_email', postData.titular_email);
+            formData.append('titular_tel', postData.titular_tel);
+            formData.append('titular_tel2', postData.titular_tel2);
+            formData.append('titular_adreca', postData.titular_adreca);
+            formData.append('titular_municipi', postData.titular_municipi);
+            formData.append('titular_cp', postData.titular_cp);
+            formData.append('titular_provincia', postData.titular_provincia);
+            formData.append('tarifa', postData.tarifa);
+            formData.append('cups', postData.cups);
+            formData.append('consum', postData.consum);
+            formData.append('potencia', postData.potencia);
+            formData.append('cnae', postData.cnae);
+            formData.append('cups_adreca', postData.cups_adreca);
+            formData.append('cups_provincia', postData.cups_provincia);
+            formData.append('cups_municipi', postData.cups_municipi);
+            formData.append('referencia', postData.referencia);
             formData.append('fitxer', postData.fitxer);
+            formData.append('entitat', postData.entitat);
+            formData.append('sucursal', postData.sucursal);
+            formData.append('control', postData.control);
+            formData.append('ncompte', postData.ncompte);
+            formData.append('escull_pagador', postData.escull_pagador);
+            formData.append('compte_nom', postData.compte_nom);
+            formData.append('compte_dni', postData.compte_dni);
+            formData.append('compte_adreca', postData.compte_adreca);
+            formData.append('compte_provincia', postData.compte_provincia);
+            formData.append('compte_municipi', postData.compte_municipi);
+            formData.append('compte_email', postData.compte_email);
+            formData.append('compte_tel', postData.compte_tel);
+            formData.append('compte_tel2', postData.compte_tel2);
+            formData.append('compte_cp', postData.compte_cp);
+            formData.append('condicions', postData.condicions);
+            formData.append('condicions_privacitat', postData.condicions_privacitat);
+            formData.append('condicions_titular', postData.condicions_titular);
+            formData.append('donatiu', postData.donatiu);
 
+            $log.log('request pre post data', postData);
             $log.log('request post formData', formData);
+
             // Send POST request data
             $http({
                 method: 'POST',
                 url: cfg.API_BASE_URL + 'form/contractacio',
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
+                headers: {'Content-Type': undefined},
                 data: formData,
-                transformRequest: function(data) { return data; }
+                transformRequest: angular.identity
             }).then(
                 function(response) {
                     $log.log('response recived', response);
-                    if (response.state === cfg.STATE_FALSE) {
-                        $scope.messages = $scope.getHumanizedAPIResponse(response.data);
-                        $scope.submitReady = false;
-                    } else if (response.state === cfg.STATE_TRUE) {
-                        $log.log('response data', response.data); // TODO make welldone
+                    if (response.data.status === cfg.STATUS_ONLINE) {
+                        if (response.data.state === cfg.STATE_TRUE) {
+                            uiHandler.showWellDoneDialog();
+                        } else {
+                            $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
+                            $scope.submitReady = false;
+                        }
+                    } else if (response.data.status === cfg.STATUS_OFFLINE) {
+                        uiHandler.showErrorDialog('API server status offline (ref.022-022)');
+                    } else {
+                        uiHandler.showErrorDialog('API server unknown status (ref.021-021)');
                     }
                 },
                 function(reason) { $log.error('Failed', reason); }
             );
-//            var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/contractacio', postData, '066');
-//            postPromise.then(
-//                function(response) {
-//                    $log.log('response recived', response);
-//                    if (response.state === cfg.STATE_FALSE) {
-//                        $scope.messages = $scope.getHumanizedAPIResponse(response.data);
-//                        $scope.submitReady = false;
-//                    } else if (response.state === cfg.STATE_TRUE) {
-//                        $log.log('response data', response.data); // TODO make welldone
+
+//            jQuery.ajax(
+//                {
+//                    url : cfg.API_BASE_URL + 'form/contractacio',
+//                    type: 'POST',
+//                    data : formData,
+//                    async: false,
+//                    cache: false,
+//                    contentType: false,
+//                    processData: false,
+//                    success: function(response) {
+//                        $log.log('response recived', response);
+//                        if (response.state === cfg.STATE_FALSE) {
+//                            $scope.messages = $scope.getHumanizedAPIResponse(response.data);
+//                            $scope.submitReady = false;
+//                        } else if (response.state === cfg.STATE_TRUE) {
+//                            $log.log('response data', response.data); // TODO remove this
+//                            jQuery('#well-done-modal').modal({
+//                                backdrop: 'static',
+//                                keyboard: false,
+//                                show: true
+//                            });
+//                        }
+//                    },
+//                    error: function(){
+//                        $log.error('error in ajax form submission');
 //                    }
-//                },
-//                function(reason) { $log.error('Failed', reason); }
-//            );
+//                });
+
 
             return true;
         };
@@ -537,7 +597,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
-                        $scope.showStep1Form = false; // uncomment on production
+//                        $scope.showStep1Form = false; // uncomment on production
                     } else {
                         $scope.showUnknownSociWarning = true;
                         $scope.showStep1Form = false;
@@ -562,21 +622,26 @@ angular.module('newSomEnergiaWebformsApp')
                     result = result + ' ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error;
                 }
             }
+            $log.log('result', result);
 
             return result;
         };
 
         // DEBUG (comment on production)
-//        $scope.form.init.socinumber = 1706;
-//        $scope.form.init.dni = '52608510N';
-//        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
-//        $scope.form.cups = 'ES0031406222973003LE0F';
-//        $scope.form.cnae = '0520';
-//        $scope.form.power = '5.5';
-//        $scope.form.rate = '2.0A';
-//        $scope.executeGetSociValues();
-//        $scope.showStep1Form = true;
-//        $scope.step0Ready = false;
-//        $scope.step1Ready = true;
-//        $scope.step2Ready = false;
+        $scope.form.init.socinumber = 1706;
+        $scope.form.init.dni = '52608510N';
+        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
+        $scope.form.cups = 'ES0031406222973003LE0F';
+        $scope.form.cnae = '0520';
+        $scope.form.power = '5.5';
+        $scope.form.rate = '2.0A';
+        $scope.executeGetSociValues();
+        $scope.showStep1Form = true;
+        $scope.step0Ready = false;
+        $scope.step1Ready = true;
+        $scope.step2Ready = false;
+        $scope.form.accountbank = '1491';
+        $scope.form.accountoffice = '0001';
+        $scope.form.accountchecksum = '20';
+        $scope.form.accountnumber = '20363698';
     }]);

@@ -61,9 +61,9 @@ angular.module('newSomEnergiaWebformsApp')
                         }
                         deferred.resolve(response);
                     } else if (response.status === cfg.STATUS_OFFLINE) {
-                        $scope.showErrorDialog('API server status offline (ref.002-' + errorMsg + ')');
+                        uiHandler.showErrorDialog('API server status offline (ref.002-' + errorMsg + ')');
                     } else {
-                        $scope.showErrorDialog('API server unknown status (ref.001-' + errorMsg + ')');
+                        uiHandler.showErrorDialog('API server unknown status (ref.001-' + errorMsg + ')');
                     }
                 })
                 .error(function (data) {

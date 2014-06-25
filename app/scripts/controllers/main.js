@@ -197,7 +197,7 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // GET HUMANIZED API RESPONSE
-        $scope.getHumanizedAPIResponse = function (arrayResponse) {
+        $scope.getHumanizedAPIResponse = function(arrayResponse) {
             var result = '';
             if (arrayResponse.required_fields !== undefined) {
                 result = result + 'ERROR:'; // TODO $translate it
