@@ -99,15 +99,15 @@
                 <span class="label label-danger" data-ng-show="cupsIsInvalid">{{ 'INVALID' | translate }}</span>
                 <span class="label label-danger" data-ng-show="cupsIsDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
             </div>
-            <div class="col-xs-3">
-                <label class="sr-only">CNAE*</label>
-                <input type="text" name="cnae" class="form-control" placeholder="CNAE*" data-ng-model="form.cnae" data-ng-change="formListener()" data-ng-class="{'ng-invalid': cnaeIsInvalid}" required/>
+            <div class="col-xs-4">
+                <div class="wrapper">
+                    <label class="sr-only">CNAE*</label>
+                    <input type="text" name="cnae" class="form-control width-80-percent" placeholder="CNAE*" data-ng-model="form.cnae" data-ng-change="formListener()" data-ng-class="{'ng-invalid': cnaeIsInvalid}" required/>
+                    <span class="badge current small" data-container="body" data-popover="{{ 'HELP_POPOVER_CNAE' | translate }}" data-placement="left">?</span>
+                </div>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.cnae.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 <span class="label label-danger" data-ng-show="cnaeIsInvalid">{{ 'INVALID' | translate }}</span>
                 <span class="label label-success" data-ng-show="!cnaeIsInvalid && cnaeDescription">{{ cnaeDescription }}</span>
-            </div>
-            <div class="col-xs-1">
-                <span class="badge current small" data-popover="{{ 'HELP_POPOVER_CNAE' | translate }}">?</span>
             </div>
         </div>
         <div class="row">
@@ -134,10 +134,8 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-xs-4">
-                <h3>{{ 'INFORMACIO_OPCIONAL' | translate }}</h3>
-            </div>
-            <div class="cols-xs-1">
+            <div class="col-xs-12">
+                <span class="optional-info">{{ 'INFORMACIO_OPCIONAL' | translate }}</span>
                 <span class="badge current small" data-popover="{{ 'HELP_POPOVER_OPTIONAL_INFO' | translate }}">?</span>
             </div>
         </div>
