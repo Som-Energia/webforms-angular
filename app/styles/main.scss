@@ -46,6 +46,17 @@ body {
   }
 }
 
+.popover {
+  background: $grey-darkest;
+  border-color: $grey-darkest;
+  color: $white;
+  border-radius: 0;
+}
+
+.popover.top > .arrow:after {
+  border-top-color: $grey-darkest;
+}
+
 input[type="checkbox"] { margin-right: 5px; }
 
 input[type="text"], select {
