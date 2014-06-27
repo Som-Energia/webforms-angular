@@ -170,14 +170,14 @@
         </div>
     </div>
     <div data-ng-show="step2Ready">
-        <div class="row">
+        <div class="row extra-margin-top">
             <div class="col-xs-12">
                 <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_HELPER' | translate }}</p>
             </div>
         </div>
         <hr>
         <div class="row">
-            <div class="form-group col-xs-4">
+            <div class="form-group col-xs-3">
                 <label>{{ 'VOLS_FER_CANVI_TITULAR' | translate }}?</label>
                 <div class="btn-group">
                     <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>
@@ -462,7 +462,7 @@
         </div>
     </div>
     <div data-ng-show="step3Ready">
-        <div class="row">
+        <div class="row extra-margin-top">
             <div class="col-xs-7">
                 <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}?:</label>
                 <select class="form-control width-50-percent" name="choosepayer" data-ng-model="form.choosepayer" data-ng-change="formListener()">
@@ -600,14 +600,14 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <div class="well">
+                <div class="well custom-ad-top">
                     <h6>{{ 'SOM_UNA_COOPERATIVA_SENSE_ANIM_DE_LUCRE' | translate }}.</h6>
                     <h5>{{ 'VOLS_PARTICIPAR_AMB_LA_TEVA_ENERGIA' | translate }}?</h5>
                 </div>
                 <div class="row">
                     <div class="col-xs-5">
-                        <div class="well">
-                            <div class="form-group col-xs-4">
+                        <div class="well custom-ad-bottom-left">
+                            <div class="form-group">
                                 <label>{{ 'DONATIU_VOLUNTARI' | translate }}?</label>
                                 <div class="btn-group">
                                     <label class="btn btn-default green" data-ng-model="form.voluntary" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>
@@ -617,7 +617,7 @@
                         </div>
                     </div>
                     <div class="col-xs-7">
-                        <div class="well">
+                        <div class="well custom-ad-bottom-right">
                             <p>{{ 'ELS_SOCIS_I_SOCIES_QUE_HO_DESITGIN_PODEN_REALITZAR_UN_DONATIU_VOLUNTARI' | translate }}</p>
                         </div>
                     </div>
