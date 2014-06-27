@@ -2,7 +2,7 @@
 <div class="row" data-ng-include data-src="'views/common/global-messages.html'"></div>
 
 <!--HEADER-->
-<div class="row">
+<div class="row no-margin-bottom">
     <div class="col-xs-12 heading" data-ng-class="{active: step0Ready}">
         <h1 class="extra-margin">{{ 'FORMULARI_CONTRACTACIO' | translate }}</h1>
     </div>
@@ -11,7 +11,7 @@
 <!-- BEGIN INIT FORM-->
 <form name="initForm" class="form-inline" role="form" data-ng-show="step0Ready" novalidate>
     <!--FIRST STEP-->
-    <div class="row">
+    <div class="row extra-margin-top">
         <div class="form-group col-xs-2">
             <label class="sr-only">{{ 'NUMERO_SOCI' | translate }}*</label>
             <input type="text" name="socinumber" class="form-control" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="form.init.socinumber" data-ng-change="formListener()" required/>
@@ -33,7 +33,7 @@
     <div class="row" data-ng-if="showBeginOrderForm">
         <div class="form-group col-xs-12">
             <label>{{ 'SOCI_VINCULAT' | translate }}:</label>
-            <input type="text" name="address" class="form-control" placeholder="{{ soci.nom + ' ' + soci.cognom }}" disabled/>
+            <input type="text" name="address" class="form-control width-70-percent" placeholder="{{ soci.nom + ' ' + soci.cognom }}" disabled/>
         </div>
     </div>
     <div class="row" data-ng-if="showUnknownSociWarning">

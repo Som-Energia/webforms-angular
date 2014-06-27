@@ -41,9 +41,15 @@ body {
   margin-bottom: 20px;
   &.no-margin-bottom {
     margin-bottom: 0;
-    border-top: solid 1px $grey;
+    & > .heading {
+      border-top: solid 1px $grey;
+      &.active {
+        border-top: solid 1px $grey;
+      }
+    }
     &.last { border-bottom: solid 1px $grey; }
   }
+  &.extra-margin-top { margin-top: 20px; }
 }
 
 .popover {
