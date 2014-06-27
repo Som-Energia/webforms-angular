@@ -59,7 +59,7 @@
         </div>
     </div>
     <div data-ng-show="step1Ready">
-        <div class="row">
+        <div class="row extra-margin-top">
             <div class="col-xs-12">
                 <p>{{ 'DADES_PUNT_SUBMINISTRAMENT_HELPER' | translate }}</p>
             </div>
@@ -89,15 +89,15 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-xs-7">
-                <label class="sr-only">{{ 'NUMERO_DE_CUPS' | translate }}*</label>
-                <input type="text" name="cups" class="form-control" placeholder="{{ 'NUMERO_DE_CUPS' | translate }}*" data-ng-model="form.cups" data-ng-change="formListener()" data-ng-class="{'ng-invalid': cupsIsInvalid || cupsIsDuplicated}" required/>
+            <div class="col-xs-8">
+                <div class="wrapper">
+                    <label class="sr-only">{{ 'NUMERO_DE_CUPS' | translate }}*</label>
+                    <input type="text" name="cups" class="form-control width-80-percent" placeholder="{{ 'NUMERO_DE_CUPS' | translate }}*" data-ng-model="form.cups" data-ng-change="formListener()" data-ng-class="{'ng-invalid': cupsIsInvalid || cupsIsDuplicated}" required/>
+                    <span class="badge current small" data-popover="{{ 'HELP_POPOVER_CUPS' | translate }}">?</span>
+                </div>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.cups.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 <span class="label label-danger" data-ng-show="cupsIsInvalid">{{ 'INVALID' | translate }}</span>
                 <span class="label label-danger" data-ng-show="cupsIsDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
-            </div>
-            <div class="col-xs-1">
-                <span class="badge current small" data-popover="{{ 'HELP_POPOVER_CUPS' | translate }}">?</span>
             </div>
             <div class="col-xs-3">
                 <label class="sr-only">CNAE*</label>

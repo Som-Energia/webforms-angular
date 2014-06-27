@@ -50,6 +50,10 @@ body {
     &.last { border-bottom: solid 1px $grey; }
   }
   &.extra-margin-top { margin-top: 20px; }
+  div > div.wrapper {
+    width: 100%;
+    float: left;
+  }
 }
 
 .popover {
@@ -71,7 +75,7 @@ input[type="text"], select {
   &.width-50-percent { width: 50%     !important; }
   &.width-60-percent { width: 60%     !important; }
   &.width-70-percent { width: 70%     !important; }
-  &.width-80-percent { width: 80%     !important; }
+  &.width-80-percent { width: 80%     !important; float: left; margin-right: 5px; }
   &.width-90-percent { width: 90%     !important; }
 }
 
@@ -86,6 +90,7 @@ input, select {
 }
 
 .badge {
+  margin-left: 5px;
   font-size: 30px;
   border-radius: 2em;
   width: 2em;
