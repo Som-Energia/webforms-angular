@@ -215,11 +215,12 @@ angular.module('newSomEnergiaWebformsApp')
                 if (newValue !== undefined) {
                     var cupsPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/cups/' + newValue, '006');
                     cupsPromise.then(
-                        function (response) {
+                        function(response) {
                             $scope.cupsIsInvalid = response === cfg.STATE_FALSE;
+                            $scope.cupsIsDuplicated = false;
                             $scope.formListener($scope.form);
                         },
-                        function (reason) { $log.error('Failed', reason); }
+                        function(reason) { $log.error('Failed', reason); }
                     );
                 }
             }, 400);
@@ -280,7 +281,8 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.power !== undefined &&
                 $scope.form.rate !== undefined;
             $scope.isStep3ButtonReady = $scope.isStep2ButtonReady &&
-                ($scope.form.isownerlink === 'yes' ||
+                ($scope.form.isownerlink === 'yes' &&
+                    (($scope.form.usertype === 'company' && $scope.form.representantdni !== undefined && $scope.form.representantname !== undefined) || $scope.form.usertype === 'person') ||
                     ($scope.form.isownerlink === 'no' &&
                         $scope.form.language !== undefined &&
                         $scope.form.name !== undefined &&
@@ -376,6 +378,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.submitOrder = function(form) {
             // Trigger validation flags
             $scope.orderFormSubmitted = true;
+            $scope.cupsIsDuplicated = false;
             $scope.messages = null;
             if (form.$invalid) {
                 return null;
@@ -512,7 +515,7 @@ angular.module('newSomEnergiaWebformsApp')
             }
         };
 
-        $scope.executeGetSociValues = function () {
+        $scope.executeGetSociValues = function() {
             var sociPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/soci/' + $scope.form.init.socinumber + '/' + $scope.form.init.dni, '001');
             sociPromise.then(
                 function (response) {

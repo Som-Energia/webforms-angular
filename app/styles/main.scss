@@ -39,7 +39,14 @@ body {
 /* Custom settings */
 .row {
   margin-bottom: 20px;
+  &.no-margin-bottom {
+    margin-bottom: 0;
+    border-top: solid 1px $grey;
+    &.last { border-bottom: solid 1px $grey; }
+  }
 }
+
+input[type="checkbox"] { margin-right: 5px; }
 
 input[type="text"], select {
   width: 100% !important;
@@ -194,9 +201,5 @@ select[disabled] { color: $grey; }
     /* Space out the masthead */
     .header {
         margin-bottom: 30px;
-    }
-    /* Remove the bottom border on the jumbotron for visual effect */
-    .jumbotron {
-        border-bottom: 0;
     }
 }

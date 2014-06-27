@@ -51,9 +51,9 @@
 <!--END INIT FORM-->
 
 <!-- BEGIN ORDER FORM-->
-<form name="orderForm" class="form-inline" role="form" data-ng-if="showStep1Form" enctype="multipart/form-data" novalidate>
+<form name="orderForm" class="form-inline" role="form" enctype="multipart/form-data" novalidate>
     <!--SECOND STEP-->
-    <div class="row">
+    <div class="row no-margin-bottom">
         <div class="col-xs-12 heading" data-ng-class="{active: step1Ready}">
             <h2 class="extra-margin">1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}</h2>
         </div>
@@ -91,7 +91,7 @@
         <div class="row">
             <div class="col-xs-7">
                 <label class="sr-only">{{ 'NUMERO_DE_CUPS' | translate }}*</label>
-                <input type="text" name="cups" class="form-control" placeholder="{{ 'NUMERO_DE_CUPS' | translate }}*" data-ng-model="form.cups" data-ng-change="formListener()" data-ng-class="{'ng-invalid': cupsIsInvalid}" required/>
+                <input type="text" name="cups" class="form-control" placeholder="{{ 'NUMERO_DE_CUPS' | translate }}*" data-ng-model="form.cups" data-ng-change="formListener()" data-ng-class="{'ng-invalid': cupsIsInvalid || cupsIsDuplicated}" required/>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.cups.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 <span class="label label-danger" data-ng-show="cupsIsInvalid">{{ 'INVALID' | translate }}</span>
                 <span class="label label-danger" data-ng-show="cupsIsDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
@@ -166,7 +166,7 @@
         </div>
     </div>
     <!--THIRD STEP-->
-    <div class="row">
+    <div class="row no-margin-bottom">
         <div class="col-xs-12 heading" data-ng-class="{active: step2Ready}">
             <h2 class="extra-margin">2 {{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}</h2>
         </div>
@@ -227,12 +227,23 @@
             </div>
         </div>
         <!-- TITULAR_EMPRESA & SOCI_VINCULAT_YES (page 09 & 15) -->
-        <div data-ng-show="form.usertype == 'company' && form.isownerlink == 'yes'">
+        <div data-ng-if="form.usertype == 'company' && form.isownerlink == 'yes'">
             <div class="row">
-                <div class="col-xs-2">
+                <div class="form-group col-xs-2">
+                    <input type="text" name="representantdni" class="form-control" placeholder="DNI/NIE*" data-ng-model="form.representantdni" data-ng-change="formListener()" required/>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.representantdni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="dni3IsInvalid">{{ 'INVALID' | translate }}</span>
+                </div>
+                <div class="form-group col-xs-10">
+                    <input type="text" name="representantname" class="form-control" placeholder="{{ 'PERSONA_REPRESENTANT' | translate }}*" data-ng-model="form.representantname" data-ng-change="formListener()" required/>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.representantname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-2">
                     <input type="text" name="ownerdni" data-ng-model="form.ownerdni" class="form-control" placeholder="{{ soci.dni }}" value="{{ soci.dni }}" disabled/>
                 </div>
-                <div class="col-xs-10">
+                <div class="form-group col-xs-10">
                     <input type="text" name="ownername" data-ng-model="form.ownername" class="form-control" placeholder="{{ soci.nom }}" value="{{ soci.nom }}" disabled/>
                 </div>
             </div>
@@ -447,7 +458,7 @@
         </div>
     </div>
     <!--FORTH STEP-->
-    <div class="row">
+    <div class="row no-margin-bottom last">
         <div class="col-xs-12 heading" data-ng-class="{active: step3Ready}">
             <h2 class="extra-margin">3 {{ 'DADES_PAGAMENT' | translate }}</h2>
         </div>
