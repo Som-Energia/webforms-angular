@@ -10,6 +10,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.step3Ready = false;
         $scope.submitReady = false;
         $scope.dniIsInvalid = false;
+        $scope.dniRepresentantIsInvalid = false;
         $scope.dniDuplicated = false;
         $scope.emailIsInvalid = false;
         $scope.emailNoIguals = false;
@@ -76,6 +77,24 @@ angular.module('newSomEnergiaWebformsApp')
                     dniPromise.then(
                         function (response) {
                             $scope.dniIsInvalid = response === cfg.STATE_FALSE;
+                            $scope.formListener();
+                        },
+                        function (reason) { $log.error('Failed', reason); }
+                    );
+                }
+            }, 400);
+        });
+        var checkDniRepresentantTimer = false;
+        $scope.$watch('form.representantdni', function(newValue) {
+            if (checkDniRepresentantTimer) {
+                $timeout.cancel(checkDniRepresentantTimer);
+            }
+            checkDniRepresentantTimer = $timeout(function() {
+                if (newValue !== undefined) {
+                    var dniPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '055');
+                    dniPromise.then(
+                        function (response) {
+                            $scope.dniRepresentantIsInvalid = response === cfg.STATE_FALSE;
                             $scope.formListener();
                         },
                         function (reason) { $log.error('Failed', reason); }
@@ -178,6 +197,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.step3Ready = $scope.step2Ready &&
                 $scope.form.name !== undefined &&
                 ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
+                ($scope.form.usertype === 'person' || $scope.form.usertype === 'company' && $scope.form.representantdni !== undefined && $scope.form.representantname !== undefined) &&
                 $scope.form.dni !== undefined &&
                 $scope.form.email1 !== undefined &&
                 $scope.form.email2 !== undefined &&
@@ -190,6 +210,7 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.accept !== undefined &&
                 $scope.form.accept !== false &&
                 $scope.dniIsInvalid === false &&
+                $scope.dniRepresentantIsInvalid === false &&
                 $scope.emailIsInvalid === false &&
                 $scope.emailNoIguals === false
             ;
