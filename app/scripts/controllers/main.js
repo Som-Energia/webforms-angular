@@ -77,6 +77,7 @@ angular.module('newSomEnergiaWebformsApp')
                     dniPromise.then(
                         function (response) {
                             $scope.dniIsInvalid = response === cfg.STATE_FALSE;
+                            $scope.dniDuplicated = false;
                             $scope.formListener();
                         },
                         function (reason) { $log.error('Failed', reason); }
