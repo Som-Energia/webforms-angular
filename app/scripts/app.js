@@ -59,7 +59,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 CODI_POSTAL: 'Código postal',
                 PROVINCIA: 'Provincia',
                 POBLACIO: 'Población',
-                ACCEPTO_POLITICA_PRIVACITAT: 'Acepto la <strong><a target="_blank" href="http://www.somenergia.coop/politica-de-privacitat">política de privacidad</a></strong> de Som Energia',
+                ACCEPTO_POLITICA_PRIVACITAT: 'Acepto la <strong><a target="_blank" href="http://www.somenergia.coop/es/politica-de-privacidad">política de privacidad</a></strong> de Som Energia',
                 ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT: 'Acepto las <strong><a target="_blank" href="#">condiciones generales del contrato</a></strong> i la <strong><a target="_blank" href="#">política de privacidad</a></strong>',
                 METODE_PAGAMENT: 'Forma de pago',
                 REBUT_BANCARI: 'Recibo bancario',

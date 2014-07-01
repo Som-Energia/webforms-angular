@@ -83,7 +83,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function (reason) { $log.error('Failed', reason); }
                     );
                 }
-            }, 400);
+            }, 1000);
         });
         var checkDniRepresentantTimer = false;
         $scope.$watch('form.representantdni', function(newValue) {
@@ -101,7 +101,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function (reason) { $log.error('Failed', reason); }
                     );
                 }
-            }, 400);
+            }, 1000);
         });
 
         // EMAIL VALIDATIONS
@@ -116,7 +116,7 @@ angular.module('newSomEnergiaWebformsApp')
                     $scope.emailIsInvalid = !ValidateHandler.isEmailValid(newValue);
                     $scope.formListener();
                 }
-            }, 400);
+            }, 1000);
         });
         var checkEmail2Timer = false;
         $scope.$watch('form.email2', function(newValue) {
@@ -128,7 +128,7 @@ angular.module('newSomEnergiaWebformsApp')
                     $scope.emailNoIguals = ($scope.form.email1 !== undefined || $scope.form.email1 !== '') && newValue !== $scope.form.email1;
                     $scope.formListener();
                 }
-            }, 400);
+            }, 1000);
         });
 
         // ON CHANGE SELECTED PROVINCE
@@ -176,7 +176,7 @@ angular.module('newSomEnergiaWebformsApp')
                 idioma: $scope.form.language.code,
                 payment_method: $scope.form.payment === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD
             };
-            $log.log('postData', postData);
+            $log.log('request postData', postData);
             // Send POST request data
             var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData, '004');
             postPromise.then(
@@ -185,8 +185,9 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.messages = $scope.getHumanizedAPIResponse(response.data);
                         $scope.submitReady = false;
                     } else if (response.state === cfg.STATE_TRUE) {
+                        $log.log('response recived', response);
                         prepaymentService.setData(response.data);
-                        $window.open('#/prepagament');
+                        $location.path('/prepagament');
                     }
                 },
                 function (reason) { $log.error('Failed', reason); }
