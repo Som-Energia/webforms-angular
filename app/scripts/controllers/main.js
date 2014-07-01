@@ -8,7 +8,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.step1Ready = true;
         $scope.step2Ready = false;
         $scope.step3Ready = false;
-        $scope.submitReady = true;
+        $scope.submitReady = false;
         $scope.dniIsInvalid = false;
         $scope.dniRepresentantIsInvalid = false;
         $scope.dniDuplicated = false;
@@ -175,7 +175,8 @@ angular.module('newSomEnergiaWebformsApp')
                 municipi: $scope.form.city.id,
                 idioma: $scope.form.language.code,
                 payment_method: $scope.form.payment === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD
-            };      // $log.log(postData);
+            };
+            $log.log('postData', postData);
             // Send POST request data
             var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData, '004');
             postPromise.then(
