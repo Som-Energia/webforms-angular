@@ -55,7 +55,7 @@ angular.module('newSomEnergiaWebformsApp')
                     if (response.status === cfg.STATUS_ONLINE) {
                         if (response.state === cfg.STATE_TRUE) {
                             $log.log('AjaxHandler POST request ' + URL + ' response recived', response);
-                            uiHandler.showWellDoneDialog();
+                            //uiHandler.showWellDoneDialog();
                         } else {
                             $log.error('AjaxHandler POST request ' + URL + ' error response recived', response);
                         }
