@@ -8,7 +8,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.step1Ready = true;
         $scope.step2Ready = false;
         $scope.step3Ready = false;
-        $scope.submitReady = false;
+        $scope.submitReady = true;
         $scope.dniIsInvalid = false;
         $scope.dniRepresentantIsInvalid = false;
         $scope.dniDuplicated = false;
@@ -164,6 +164,8 @@ angular.module('newSomEnergiaWebformsApp')
                 nom: $scope.form.name,
                 cognom: $scope.form.surname,
                 dni: $scope.form.dni,
+                representant_nom: $scope.form.usertype === 'company' ? $scope.form.representantname : '',
+                representant_dni: $scope.form.usertype === 'company' ? $scope.form.representantdni : '',
                 tel: $scope.form.phone1,
                 tel2: $scope.form.phone2 === undefined ? '' : $scope.form.phone2,
                 email: $scope.form.email1,
