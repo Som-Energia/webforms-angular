@@ -116,18 +116,24 @@ span.optional-info {
 button {
   &.btn {
     &.btn-default {
+      &.transparent {
+        color: $white;
+        background-color: transparent;
+        border-color: transparent;
+        margin-right: 20px;
+      }
       &.green {
         color: $white;
         background-color: $green;
         border-color: $green;
-        &.submit {
-          font-size: 24px;
-        }
       }
       &.grey {
         color: $white;
         background-color: $grey-dark;
         border-color: $grey;
+      }
+      &.submit {
+        font-size: 23px;
       }
     }
   }
@@ -164,8 +170,7 @@ hr {
     border-top: 1px dashed $grey-light;
   }
   &.continue-process {
-    background: url("../images/continue-process.png") no-repeat 100% -2px;
-    height: 50px;
+    margin-bottom: 0;
   }
 }
 
@@ -184,6 +189,12 @@ div.alert {
       border-color: $grey;
     }
   }
+}
+
+div.wrapper-continue-process {
+  background: url("../images/continue-process.png") no-repeat 100% -2px;
+  height: 50px;
+  margin-top: -3px;
 }
 
 div.well.custom-ad-top {

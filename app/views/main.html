@@ -195,7 +195,9 @@
     <hr class="continue-process" data-ng-class="{green: step3Ready}">
     <div class="row">
         <div class="col-xs-12">
-            <button data-ng-disabled="!submitReady" data-ng-click="submit(partnerForm)" class="btn btn-default green pull-right submit">{{ 'FINALITZA_PROCES' | translate }}</button>
+            <div class="wrapper-continue-process">
+                <button data-ng-disabled="!submitReady" data-ng-click="submit(partnerForm)" class="btn btn-default transparent pull-right submit">{{ 'FINALITZA_PROCES' | translate }}</button>
+            </div>
         </div>
     </div>
 <!-- END FORM-->
