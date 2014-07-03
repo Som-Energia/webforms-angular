@@ -380,6 +380,12 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.step3Ready = true;
         };
 
+        // BACK TO STEP 3 FORM
+        $scope.backToStep3Form = function() {
+            $scope.step3Ready = false;
+            $scope.moveToStep2Form();
+        };
+
         // ON SUBMIT FORM
         $scope.submitOrder = function(form) {
             // Trigger validation flags
