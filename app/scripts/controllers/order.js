@@ -45,7 +45,7 @@ angular.module('newSomEnergiaWebformsApp')
                     uiHandler.showErrorDialog('GET response state false recived (ref.003-002)');
                 }
             },
-            function (reason) { $log.error('Failed', reason); }
+            function (reason) { $log.error('Get languages failed', reason); }
         );
 
         // GET STATES
@@ -60,7 +60,7 @@ angular.module('newSomEnergiaWebformsApp')
                     uiHandler.showErrorDialog('GET response state false recived (ref.003-001)');
                 }
             },
-            function (reason) { $log.error('Failed', reason); }
+            function (reason) { $log.error('Get states failed', reason); }
         );
 
         // SOCI NUMBER VALIDATION
@@ -93,7 +93,7 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.dniIsInvalid = response === cfg.STATE_FALSE;
                             $scope.formListener();
                         },
-                        function (reason) { $log.error('Failed', reason); }
+                        function (reason) { $log.error('Check DNI failed', reason); }
                     );
                 }
             }, 1000);
@@ -111,7 +111,7 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.dni2IsInvalid = response === cfg.STATE_FALSE;
                             $scope.formListener();
                         },
-                        function (reason) { $log.error('Failed', reason); }
+                        function (reason) { $log.error('Check DNI2 failed', reason); }
                     );
                 }
             }, 1000);
@@ -129,7 +129,7 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.dni3IsInvalid = response === cfg.STATE_FALSE;
                             $scope.formListener();
                         },
-                        function (reason) { $log.error('Failed', reason); }
+                        function (reason) { $log.error('Check DNI3 failed', reason); }
                     );
                 }
             }, 1000);
@@ -147,7 +147,7 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.dni4IsInvalid = response === cfg.STATE_FALSE;
                             $scope.formListener();
                         },
-                        function (reason) { $log.error('Failed', reason); }
+                        function (reason) { $log.error('Check DNI4 failed', reason); }
                     );
                 }
             }, 1000);
@@ -220,7 +220,7 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.cupsIsDuplicated = false;
                             $scope.formListener($scope.form);
                         },
-                        function(reason) { $log.error('Failed', reason); }
+                        function(reason) { $log.error('Check CUPS failed', reason); }
                     );
                 }
             }, 1000);
@@ -245,7 +245,7 @@ angular.module('newSomEnergiaWebformsApp')
                             }
                             $scope.formListener($scope.form);
                         },
-                        function(reason) { $log.error('Failed', reason); }
+                        function(reason) { $log.error('Check CNAE failed', reason); }
                     );
                 }
             }, 1000);
@@ -337,7 +337,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.accountIsInvalid = response === cfg.STATE_FALSE;
                         $scope.formListener($scope.form);
                     },
-                    function(reason) { $log.error('Failed', reason); }
+                    function(reason) { $log.error('Check account number failed', reason); }
                 );
             }
         };
@@ -387,14 +387,12 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // ON SUBMIT FORM
-        $scope.submitOrder = function(form) {
+        $scope.submitOrder = function() {
             // Trigger validation flags
             $scope.orderFormSubmitted = true;
             $scope.cupsIsDuplicated = false;
             $scope.messages = null;
-            if (form.$invalid) {
-                return null;
-            }
+            $scope.orderForm.cups.$setValidity('exist', true);
             uiHandler.showLoadingDialog();
 
             // Prepare request data
@@ -468,7 +466,7 @@ angular.module('newSomEnergiaWebformsApp')
                         uiHandler.showErrorDialog('API server unknown status (ref.021-021)');
                     }
                 },
-                function(reason) { $log.error('Failed', reason); }
+                function(reason) { $log.error('Send POST failed', reason); }
             );
 
             return true;
@@ -487,7 +485,7 @@ angular.module('newSomEnergiaWebformsApp')
                             uiHandler.showErrorDialog('GET response state false recived (ref.003-003)');
                         }
                     },
-                    function (reason) { $log.error('Failed', reason); }
+                    function (reason) { $log.error('Change city select failed', reason); }
                 );
                 $scope.formListener();
             }
@@ -504,7 +502,7 @@ angular.module('newSomEnergiaWebformsApp')
                             uiHandler.showErrorDialog('GET response state false recived (ref.003-004)');
                         }
                     },
-                    function(reason) { $log.error('Failed', reason); }
+                    function(reason) { $log.error('Change city2 select failed', reason); }
                 );
                 $scope.formListener();
             }
@@ -521,7 +519,7 @@ angular.module('newSomEnergiaWebformsApp')
                             uiHandler.showErrorDialog('GET response state false recived (ref.003-005)');
                         }
                     },
-                    function(reason) { $log.error('Failed', reason); }
+                    function(reason) { $log.error('Change city3 select failed', reason); }
                 );
                 $scope.formListener();
             }
@@ -541,7 +539,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.showStep1Form = false;
                     }
                 },
-                function (reason) { $log.error('Failed', reason); }
+                function (reason) { $log.error('Get partner info failed', reason); }
             );
         };
 
@@ -549,17 +547,18 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.getHumanizedAPIResponse = function(arrayResponse) {
             var result = '';
             if (arrayResponse.required_fields !== undefined) {
-                result = result + 'ERROR:'; // TODO $translate it
+                result = result + 'ERROR:';
                 for (var i = 0; i < arrayResponse.required_fields.length; i++) {
                     result = result + ' ' + arrayResponse.required_fields[i];
                 }
             }
             if (arrayResponse.invalid_fields !== undefined) {
-                result = result + ' ERROR:'; // TODO $translate it
+                result = result + ' ERROR:';
                 for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
                     result = result + ' ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error;
                     if (arrayResponse.invalid_fields[j].field === 'cups' && arrayResponse.invalid_fields[j].error === 'exist') {
                         $scope.cupsIsDuplicated = true;
+                        $scope.orderForm.cups.$setValidity('exist', false);
                     }
                 }
             }
