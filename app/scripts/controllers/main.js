@@ -23,7 +23,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.province = {};
         $scope.city = {};
         $scope.messages = null;
-        $scope.form.usertype = 'person';
+//        $scope.form.usertype = 'person';
         $scope.form.payment = 'bankaccount';
         $scope.numberRegex = new RegExp('^\\d+$');
         if ($routeParams.locale !== undefined) {
