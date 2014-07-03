@@ -135,6 +135,24 @@ button {
       &.submit {
         font-size: 23px;
       }
+      &.next-step-submit {
+        color: $white;
+        border-color: transparent;
+        font-size: 18px;
+        width: 174px;
+        height: 38px;
+        text-align: left;
+        background: url("../images/next-step-right.png") no-repeat;
+      }
+      &.previous-step-submit {
+        color: $white;
+        border-color: transparent;
+        font-size: 18px;
+        width: 174px;
+        height: 38px;
+        text-align: right;
+        background: url("../images/next-step-left.png") no-repeat;
+      }
     }
   }
 }
