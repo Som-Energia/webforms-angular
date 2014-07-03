@@ -98,6 +98,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 REFERENCIA_CATASTRAL: 'Referencia cadastral del inmueble',
                 ADJUNTAR_ULTIMA_FACTURA: 'Adjuntar la última factura eléctrica',
                 SEGUENT_PAS: 'Siguiente paso',
+                PAS_ANTERIOR: 'Paso anterior',
                 DADES_TITULAR_NOU_CONTRACTE: 'Datos del titular del contrato',
                 DADES_TITULAR_NOU_CONTRACTE_HELPER: 'Lorem ipsum...',
                 VOLS_FER_CANVI_TITULAR: '¿Quieres hacer un cambio de titular',
@@ -121,7 +122,8 @@ angular.module('newSomEnergiaWebformsApp', [
                 DONATIU_VOLUNTARI: 'Donativo voluntario',
                 ELS_SOCIS_I_SOCIES_QUE_HO_DESITGIN_PODEN_REALITZAR_UN_DONATIU_VOLUNTARI: '...',
                 CONFIRMAR_CONTRACTACIO: 'Confirmar contratación',
-                LOADING: 'Enviando datos...'
+                LOADING: 'Enviando datos...',
+                ENVIANT_DADES: 'Si has adjuntado una factura este proceso puede tardar un tiempo y este tiempo dependerà del peso del archivo y de tu conexión a internet. Ánimo, ya casi lo has conseguido! :)'
             })
             .translations('ca', {
                 SELECCIONA: 'Sel·lecciona',
@@ -179,6 +181,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 REFERENCIA_CATASTRAL: 'Referència cadestral de l\'immoble',
                 ADJUNTAR_ULTIMA_FACTURA: 'Adjuntar última factura elèctrica (PDF o JPG) - 10Mb màxim',
                 SEGUENT_PAS: 'Següent pas',
+                PAS_ANTERIOR: 'Pas anterior',
                 DADES_TITULAR_NOU_CONTRACTE: 'Dades del/la titular del nou contracte amb Som Energia',
                 DADES_TITULAR_NOU_CONTRACTE_HELPER: '?',
                 VOLS_FER_CANVI_TITULAR: 'Vols fer un canvi de titular',
@@ -202,7 +205,8 @@ angular.module('newSomEnergiaWebformsApp', [
                 DONATIU_VOLUNTARI: 'Donatiu voluntari',
                 ELS_SOCIS_I_SOCIES_QUE_HO_DESITGIN_PODEN_REALITZAR_UN_DONATIU_VOLUNTARI: 'Els socis i sòcies que ho desitgin poden realitzar un donatiu voluntari de 0,01€/kWh destinat a recolzar i facilitar l\'acció social i voluntària dels més de 50 Grups Locals repartits pel territori. Per un consum mitjà d\'una família (aproximadament 300kWh/mes) això representa un increment de 3€ mensuals. Sempre que ho vulguis podràs activar o desactivar aquest donatiu a l\'instant des de l\'Oficinal Virtual.',
                 CONFIRMAR_CONTRACTACIO: 'Confirmar contractació',
-                LOADING: 'Enviant dades...'
+                LOADING: 'Enviant dades...',
+                ENVIANT_DADES: 'Si has adjuntat una factura aquest procès pot tardar una estona i aquesta estona dependrà del pes de l\'arxiu i de la teva connexió a internet. Ànims, que ja gairebé ho has aconseguit! :)'
             })
             .preferredLanguage('ca')
         ;

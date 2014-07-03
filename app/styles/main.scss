@@ -135,6 +135,26 @@ button {
       &.submit {
         font-size: 23px;
       }
+      &.next-step-submit {
+        border-radius: 0;
+        color: $white;
+        border-color: transparent;
+        font-size: 18px;
+        width: 174px;
+        height: 38px;
+        text-align: left;
+        background: url("../images/next-step-right.png") no-repeat;
+      }
+      &.previous-step-submit {
+        border-radius: 0;
+        color: $white;
+        border-color: transparent;
+        font-size: 18px;
+        width: 174px;
+        height: 38px;
+        text-align: right;
+        background: url("../images/next-step-left.png") no-repeat;
+      }
     }
   }
 }
@@ -244,6 +264,11 @@ div.well.custom-ad-bottom-right {
 .extra-margin {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.no-horitzontal-padding {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .heading {

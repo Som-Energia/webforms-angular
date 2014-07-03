@@ -96,7 +96,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function (reason) { $log.error('Failed', reason); }
                     );
                 }
-            }, 400);
+            }, 1000);
         });
         var checkDni2Timer = false;
         $scope.$watch('form.dni', function(newValue) {
@@ -114,7 +114,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function (reason) { $log.error('Failed', reason); }
                     );
                 }
-            }, 400);
+            }, 1000);
         });
         var checkDni3Timer = false;
         $scope.$watch('form.representantdni', function(newValue) {
@@ -132,7 +132,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function (reason) { $log.error('Failed', reason); }
                     );
                 }
-            }, 400);
+            }, 1000);
         });
         var checkDni4Timer = false;
         $scope.$watch('form.accountdni', function(newValue) {
@@ -150,7 +150,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function (reason) { $log.error('Failed', reason); }
                     );
                 }
-            }, 400);
+            }, 1000);
         });
 
         // EMAIL VALIDATIONS
@@ -165,7 +165,7 @@ angular.module('newSomEnergiaWebformsApp')
                     $scope.emailIsInvalid = !ValidateHandler.isEmailValid(newValue);
                     $scope.formListener();
                 }
-            }, 400);
+            }, 1000);
         });
         var checkEmail2Timer = false;
         $scope.$watch('form.email2', function(newValue) {
@@ -177,7 +177,7 @@ angular.module('newSomEnergiaWebformsApp')
                     $scope.emailNoIguals = ($scope.form.email1 !== undefined || $scope.form.email1 !== '') && newValue !== $scope.form.email1;
                     $scope.formListener();
                 }
-            }, 400);
+            }, 1000);
         });
         var checkAccountEmail1Timer = false;
         $scope.$watch('form.accountemail1', function(newValue) {
@@ -190,7 +190,7 @@ angular.module('newSomEnergiaWebformsApp')
                     $scope.accountEmailIsInvalid = !ValidateHandler.isEmailValid(newValue);
                     $scope.formListener();
                 }
-            }, 400);
+            }, 1000);
         });
         var checkAccountEmail2Timer = false;
         $scope.$watch('form.accountemail2', function(newValue) {
@@ -202,7 +202,7 @@ angular.module('newSomEnergiaWebformsApp')
                     $scope.accountEmailNoIguals = ($scope.form.accountemail1 !== undefined || $scope.form.accountemail1 !== '') && newValue !== $scope.form.accountemail1;
                     $scope.formListener();
                 }
-            }, 400);
+            }, 1000);
         });
 
         // CUPS VALIDATION
@@ -223,7 +223,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function(reason) { $log.error('Failed', reason); }
                     );
                 }
-            }, 400);
+            }, 1000);
         });
 
         // CNAE VALIDATION
@@ -248,7 +248,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function(reason) { $log.error('Failed', reason); }
                     );
                 }
-            }, 400);
+            }, 1000);
         });
 
         // POSTAL CODE VALIDATIONS
@@ -368,10 +368,22 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.step2Ready = true;
         };
 
+        // BACK TO STEP 2 FORM
+        $scope.backToStep2Form = function() {
+            $scope.step2Ready = false;
+            $scope.initOrderForm();
+        };
+
         // MOVE TO STEP 3 FORM
         $scope.moveToStep3Form = function() {
             $scope.step2Ready = false;
             $scope.step3Ready = true;
+        };
+
+        // BACK TO STEP 3 FORM
+        $scope.backToStep3Form = function() {
+            $scope.step3Ready = false;
+            $scope.moveToStep2Form();
         };
 
         // ON SUBMIT FORM
@@ -523,7 +535,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
-                        $scope.showStep1Form = false; // uncomment on production
+//                        $scope.showStep1Form = false; // uncomment on production
                     } else {
                         $scope.showUnknownSociWarning = true;
                         $scope.showStep1Form = false;
@@ -559,20 +571,20 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // DEBUG (comment on production)
-//        $scope.form.init.socinumber = 1706;
-//        $scope.form.init.dni = '52608510N';
-//        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
-//        $scope.form.cups = 'ES0031406222973003LE0F';
-//        $scope.form.cnae = '0520';
-//        $scope.form.power = '5.5';
-//        $scope.form.rate = '2.0A';
-//        $scope.executeGetSociValues();
-//        $scope.showStep1Form = true;
-//        $scope.step0Ready = false;
-//        $scope.step1Ready = true;
-//        $scope.step2Ready = false;
-//        $scope.form.accountbank = '1491';
-//        $scope.form.accountoffice = '0001';
-//        $scope.form.accountchecksum = '20';
-//        $scope.form.accountnumber = '20363698';
+        $scope.form.init.socinumber = 1706;
+        $scope.form.init.dni = '52608510N';
+        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
+        $scope.form.cups = 'ES0031406222973003LE0F';
+        $scope.form.cnae = '0520';
+        $scope.form.power = '5.5';
+        $scope.form.rate = '2.0A';
+        $scope.executeGetSociValues();
+        $scope.showStep1Form = true;
+        $scope.step0Ready = false;
+        $scope.step1Ready = true;
+        $scope.step2Ready = false;
+        $scope.form.accountbank = '1491';
+        $scope.form.accountoffice = '0001';
+        $scope.form.accountchecksum = '20';
+        $scope.form.accountnumber = '20363698';
     }]);
