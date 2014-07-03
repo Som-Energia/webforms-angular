@@ -96,7 +96,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function (reason) { $log.error('Failed', reason); }
                     );
                 }
-            }, 400);
+            }, 1000);
         });
         var checkDni2Timer = false;
         $scope.$watch('form.dni', function(newValue) {
@@ -114,7 +114,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function (reason) { $log.error('Failed', reason); }
                     );
                 }
-            }, 400);
+            }, 1000);
         });
         var checkDni3Timer = false;
         $scope.$watch('form.representantdni', function(newValue) {
@@ -132,7 +132,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function (reason) { $log.error('Failed', reason); }
                     );
                 }
-            }, 400);
+            }, 1000);
         });
         var checkDni4Timer = false;
         $scope.$watch('form.accountdni', function(newValue) {
@@ -150,7 +150,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function (reason) { $log.error('Failed', reason); }
                     );
                 }
-            }, 400);
+            }, 1000);
         });
 
         // EMAIL VALIDATIONS
@@ -165,7 +165,7 @@ angular.module('newSomEnergiaWebformsApp')
                     $scope.emailIsInvalid = !ValidateHandler.isEmailValid(newValue);
                     $scope.formListener();
                 }
-            }, 400);
+            }, 1000);
         });
         var checkEmail2Timer = false;
         $scope.$watch('form.email2', function(newValue) {
@@ -177,7 +177,7 @@ angular.module('newSomEnergiaWebformsApp')
                     $scope.emailNoIguals = ($scope.form.email1 !== undefined || $scope.form.email1 !== '') && newValue !== $scope.form.email1;
                     $scope.formListener();
                 }
-            }, 400);
+            }, 1000);
         });
         var checkAccountEmail1Timer = false;
         $scope.$watch('form.accountemail1', function(newValue) {
@@ -190,7 +190,7 @@ angular.module('newSomEnergiaWebformsApp')
                     $scope.accountEmailIsInvalid = !ValidateHandler.isEmailValid(newValue);
                     $scope.formListener();
                 }
-            }, 400);
+            }, 1000);
         });
         var checkAccountEmail2Timer = false;
         $scope.$watch('form.accountemail2', function(newValue) {
@@ -202,7 +202,7 @@ angular.module('newSomEnergiaWebformsApp')
                     $scope.accountEmailNoIguals = ($scope.form.accountemail1 !== undefined || $scope.form.accountemail1 !== '') && newValue !== $scope.form.accountemail1;
                     $scope.formListener();
                 }
-            }, 400);
+            }, 1000);
         });
 
         // CUPS VALIDATION
@@ -223,7 +223,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function(reason) { $log.error('Failed', reason); }
                     );
                 }
-            }, 400);
+            }, 1000);
         });
 
         // CNAE VALIDATION
@@ -248,7 +248,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function(reason) { $log.error('Failed', reason); }
                     );
                 }
-            }, 400);
+            }, 1000);
         });
 
         // POSTAL CODE VALIDATIONS
