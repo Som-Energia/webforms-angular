@@ -34,7 +34,7 @@
         <div class="col-xs-1">
             <span class="badge" data-ng-class="{current: step2Ready}">2</span>
         </div>
-        <div class="col-xs-11">
+        <div class="col-xs-11" data-ng-if="step2Ready">
             <!--PARTICULAR-->
             <div class="row" data-ng-if="form.usertype == 'person'">
                 <div class="form-group col-xs-3">
@@ -172,7 +172,7 @@
         <div class="col-xs-1">
             <span class="badge" data-ng-class="{current: step3Ready}">3</span>
         </div>
-        <div class="col-xs-11">
+        <div class="col-xs-11" data-ng-if="step3Ready">
             <div class="row">
                 <div class="form-group col-xs-12">
                     <label>{{ 'METODE_PAGAMENT' | translate }}:</label>
@@ -195,7 +195,7 @@
     <hr class="continue-process" data-ng-class="{green: step3Ready}">
     <div class="row">
         <div class="col-xs-12">
-            <div class="wrapper-continue-process">
+            <div class="wrapper-continue-process" data-ng-class="{ready: step3Ready}">
                 <button data-ng-disabled="!submitReady" data-ng-click="submit(partnerForm)" class="btn btn-default transparent pull-right submit">{{ 'FINALITZA_PROCES' | translate }}</button>
             </div>
         </div>
