@@ -23,7 +23,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.province = {};
         $scope.city = {};
         $scope.messages = null;
-//        $scope.form.usertype = 'person';
         $scope.form.payment = 'bankaccount';
         $scope.numberRegex = new RegExp('^\\d+$');
         if ($routeParams.locale !== undefined) {
@@ -40,7 +39,7 @@ angular.module('newSomEnergiaWebformsApp')
                     uiHandler.showErrorDialog('GET response state false recived (ref.003-002)');
                 }
             },
-            function (reason) { $log.error('Failed', reason); }
+            function (reason) { $log.error('Get languages failed', reason); }
         );
 
         // GET STATES
@@ -53,7 +52,7 @@ angular.module('newSomEnergiaWebformsApp')
                     uiHandler.showErrorDialog('GET response state false recived (ref.003-001)');
                 }
             },
-            function (reason) { $log.error('Failed', reason); }
+            function (reason) { $log.error('Get states failed', reason); }
         );
 
         // POSTAL CODE VALIDATION
@@ -80,7 +79,7 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.dniDuplicated = false;
                             $scope.formListener();
                         },
-                        function (reason) { $log.error('Failed', reason); }
+                        function (reason) { $log.error('Check DNI failed', reason); }
                     );
                 }
             }, 1000);
@@ -98,7 +97,7 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.dniRepresentantIsInvalid = response === cfg.STATE_FALSE;
                             $scope.formListener();
                         },
-                        function (reason) { $log.error('Failed', reason); }
+                        function (reason) { $log.error('Check DNI2 failed', reason); }
                     );
                 }
             }, 1000);
@@ -144,20 +143,20 @@ angular.module('newSomEnergiaWebformsApp')
                             uiHandler.showErrorDialog('GET response state false recived (ref.003-003)');
                         }
                     },
-                    function (reason) { $log.error('Failed', reason); }
+                    function (reason) { $log.error('Update city select failed', reason); }
                 );
                 $scope.formListener();
             }
         };
 
         // ON SUBMIT FORM
-        $scope.submit = function (form) {
+        $scope.submit = function() {
             // Trigger validation flags
             $scope.submitted = true;
             $scope.messages = null;
-            if (form.$invalid) {
-                return null;
-            }
+            $scope.partnerForm.province.$setValidity('requiredp', true);
+            $scope.partnerForm.city.$setValidity('requiredm', true);
+            $scope.partnerForm.dni.$setValidity('exist', true);
             // Prepare request data
             var postData = {
                 tipuspersona: $scope.form.usertype === 'person' ? cfg.USER_TYPE_PERSON : cfg.USER_TYPE_COMPANY,
@@ -176,7 +175,7 @@ angular.module('newSomEnergiaWebformsApp')
                 idioma: $scope.form.language.code,
                 payment_method: $scope.form.payment === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD
             };
-            $log.log('request postData', postData);
+//            $log.log('request postData', postData);
             // Send POST request data
             var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData, '004');
             postPromise.then(
@@ -185,12 +184,12 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.messages = $scope.getHumanizedAPIResponse(response.data);
                         $scope.submitReady = false;
                     } else if (response.state === cfg.STATE_TRUE) {
-                        $log.log('response recived', response);
+//                        $log.log('response recived', response);
                         prepaymentService.setData(response.data);
                         $location.path('/prepagament');
                     }
                 },
-                function (reason) { $log.error('Failed', reason); }
+                function (reason) { $log.error('Post data failed', reason); }
             );
 
             return true;
@@ -226,17 +225,23 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.getHumanizedAPIResponse = function(arrayResponse) {
             var result = '';
             if (arrayResponse.required_fields !== undefined) {
-                result = result + 'ERROR:'; // TODO $translate it
+                result = result + 'ERROR:';
                 for (var i = 0; i < arrayResponse.required_fields.length; i++) {
                     result = result + ' ' + arrayResponse.required_fields[i];
+                    if (arrayResponse.required_fields[i] === 'provincia') {
+                        $scope.partnerForm.province.$setValidity('requiredp', false);
+                    } else if (arrayResponse.required_fields[i] === 'municipi') {
+                        $scope.partnerForm.city.$setValidity('requiredm', false);
+                    }
                 }
             }
             if (arrayResponse.invalid_fields !== undefined) {
-                result = result + ' ERROR:'; // TODO $translate it
+                result = result + ' ERROR:';
                 for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
                     result = result + ' ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error;
                     if (arrayResponse.invalid_fields[j].field === 'dni' && arrayResponse.invalid_fields[j].error === 'exist') {
                         $scope.dniDuplicated = true;
+                        $scope.partnerForm.dni.$setValidity('exist', false);
                     }
                 }
             }
