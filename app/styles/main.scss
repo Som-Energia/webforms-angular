@@ -136,6 +136,7 @@ button {
         font-size: 23px;
       }
       &.next-step-submit {
+        border-radius: 0;
         color: $white;
         border-color: transparent;
         font-size: 18px;
@@ -145,6 +146,7 @@ button {
         background: url("../images/next-step-right.png") no-repeat;
       }
       &.previous-step-submit {
+        border-radius: 0;
         color: $white;
         border-color: transparent;
         font-size: 18px;
