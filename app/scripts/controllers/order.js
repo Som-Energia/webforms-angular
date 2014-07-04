@@ -40,8 +40,27 @@ angular.module('newSomEnergiaWebformsApp')
         // GET STATES
         AjaxHandler.getStates($scope);
 
-        // SOCI NUMBER VALIDATION
+        // PARTNER NUMBER VALIDATION
         ValidateHandler.validateInteger($scope, 'form.init.socinumber');
+
+        // GET PARTNER DATA
+        $scope.executeGetSociValues = function() {
+            var sociPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/soci/' + $scope.form.init.socinumber + '/' + $scope.form.init.dni, '001');
+            sociPromise.then(
+                function (response) {
+                    if (response.state === cfg.STATE_TRUE) {
+                        $scope.soci = response.data.soci;
+                        $scope.showBeginOrderForm = true;
+                        $scope.showUnknownSociWarning = false;
+//                        $scope.showStep1Form = false; // uncomment on production
+                    } else {
+                        $scope.showUnknownSociWarning = true;
+                        $scope.showStep1Form = false;
+                    }
+                },
+                function (reason) { $log.error('Get partner info failed', reason); }
+            );
+        };
 
         // POWER VALIDATION
         ValidateHandler.validatePower($scope, 'form.power');
@@ -56,7 +75,7 @@ angular.module('newSomEnergiaWebformsApp')
         var checkDni4Timer = false;
         ValidateHandler.validateDni($scope, 'form.accountdni', checkDni4Timer);
 
-        // EMAIL VALIDATIONS
+        // EMAIL VALIDATION
         var checkEmail1Timer = false;
         ValidateHandler.validateEmail1($scope, 'form.email1', checkEmail1Timer);
         var checkEmail2Timer = false;
@@ -74,7 +93,7 @@ angular.module('newSomEnergiaWebformsApp')
         var cnaeCupsTimer = false;
         ValidateHandler.validateCnae($scope, 'form.cnae', cnaeCupsTimer);
 
-        // POSTAL CODE VALIDATIONS
+        // POSTAL CODE VALIDATION
         ValidateHandler.validatePostalCode($scope, 'form.postalcode');
         ValidateHandler.validatePostalCode($scope, 'form.accountpostalcode');
 
@@ -89,7 +108,7 @@ angular.module('newSomEnergiaWebformsApp')
             AjaxHandler.getCities($scope, 3);
         };
 
-        // ON CHANGE FORMS
+        // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function() {
             $scope.initSubmitReady = $scope.form.init.dni !== undefined && $scope.form.init.socinumber !== undefined && $scope.dniIsInvalid === false;
             $scope.isStep2ButtonReady = $scope.initSubmitReady &&
@@ -164,18 +183,6 @@ angular.module('newSomEnergiaWebformsApp')
             }
         };
 
-        // ON INIT SUBMIT FORM
-        $scope.initSubmit = function(form) {
-            $scope.initFormSubmitted = true;
-            if (form.$invalid) {
-                return null;
-            }
-            // GET SOCI VALUES
-            $scope.executeGetSociValues();
-
-            return true;
-        };
-
         // MOVE TO STEP 1 FORM
         $scope.initOrderForm = function() {
             $scope.showStep1Form = true;
@@ -205,6 +212,18 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.backToStep3Form = function() {
             $scope.step3Ready = false;
             $scope.moveToStep2Form();
+        };
+
+        // ON INIT SUBMIT FORM
+        $scope.initSubmit = function(form) {
+            $scope.initFormSubmitted = true;
+            if (form.$invalid) {
+                return null;
+            }
+            // GET SOCI VALUES
+            $scope.executeGetSociValues();
+
+            return true;
         };
 
         // ON SUBMIT FORM
@@ -290,24 +309,6 @@ angular.module('newSomEnergiaWebformsApp')
             );
 
             return true;
-        };
-
-        $scope.executeGetSociValues = function() {
-            var sociPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/soci/' + $scope.form.init.socinumber + '/' + $scope.form.init.dni, '001');
-            sociPromise.then(
-                function (response) {
-                    if (response.state === cfg.STATE_TRUE) {
-                        $scope.soci = response.data.soci;
-                        $scope.showBeginOrderForm = true;
-                        $scope.showUnknownSociWarning = false;
-//                        $scope.showStep1Form = false; // uncomment on production
-                    } else {
-                        $scope.showUnknownSociWarning = true;
-                        $scope.showStep1Form = false;
-                    }
-                },
-                function (reason) { $log.error('Get partner info failed', reason); }
-            );
         };
 
         // GET HUMANIZED API RESPONSE
