@@ -4,9 +4,20 @@ angular.module('newSomEnergiaWebformsApp')
     .service('ValidateHandler', ['$timeout', '$log', 'AjaxHandler', 'cfg', function($timeout, $log, AjaxHandler, cfg) {
 
         var emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        var postalCodeRE = /^\d+$/;
+        var integerRE = /^\d+$/;
         var DELAY = 1000; // in milliseconds
 
+        // INTEGER VALIDATOR
+        this.validateInteger = function($scope, element) {
+            $scope.$watch(element, function(newValue, oldValue) {
+                if (newValue !== undefined) {
+                    if (!integerRE.test(newValue)) {
+                        $scope.form.init.socinumber = oldValue;
+                    }
+                }
+            });
+        };
+        
         // DNI VALIDATOR
         this.validateDni = function($scope, element, timer) {
             $scope.$watch(element, function(newValue) {
@@ -71,7 +82,7 @@ angular.module('newSomEnergiaWebformsApp')
         // POSTAL CODE VALIDATOR
         this.validatePostalCode = function($scope, element) {
             $scope.$watch(element, function(newValue, oldValue) {
-                if (newValue !== undefined && (!postalCodeRE.test(newValue) || newValue.length > 5)) {
+                if (newValue !== undefined && (!integerRE.test(newValue) || newValue.length > 5)) {
                     if (element === 'form.postalcode') {
                         $scope.form.postalcode = oldValue;
                     } else if (element === 'form.accountpostalcode') {

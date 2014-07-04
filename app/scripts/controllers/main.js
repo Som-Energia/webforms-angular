@@ -43,7 +43,7 @@ angular.module('newSomEnergiaWebformsApp')
         var checkDniRepresentantTimer = false;
         ValidateHandler.validateDni($scope, 'form.representantdni', checkDniRepresentantTimer);
 
-        // EMAIL VALIDATIONS
+        // EMAIL VALIDATION
         var checkEmail1Timer = false;
         ValidateHandler.validateEmail1($scope, 'form.email1', checkEmail1Timer);
         var checkEmail2Timer = false;

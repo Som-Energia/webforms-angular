@@ -42,13 +42,7 @@ angular.module('newSomEnergiaWebformsApp')
         AjaxHandler.getStates($scope);
 
         // SOCI NUMBER VALIDATION
-        $scope.$watch('form.init.socinumber', function(newValue, oldValue) {
-            if (newValue !== undefined) {
-                if (!$scope.numberRegex.test(newValue)) {
-                    $scope.form.init.socinumber = oldValue;
-                }
-            }
-        });
+        ValidateHandler.validateInteger($scope, 'form.init.socinumber');
 
         // POWER VALIDATION
         $scope.$watch('form.power', function(newValue, oldValue) {
