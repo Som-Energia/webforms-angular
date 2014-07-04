@@ -24,7 +24,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.city = {};
         $scope.messages = null;
         $scope.form.payment = 'bankaccount';
-        $scope.numberRegex = new RegExp('^\\d+$');
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
@@ -56,13 +55,7 @@ angular.module('newSomEnergiaWebformsApp')
         );
 
         // POSTAL CODE VALIDATION
-        $scope.$watch('form.postalcode', function(newValue, oldValue) {
-            if (newValue !== undefined) {
-                if (!$scope.numberRegex.test(newValue) || newValue.length > 5) {
-                    $scope.form.postalcode = oldValue;
-                }
-            }
-        });
+        ValidateHandler.validatePostalCode($scope, 'form.postalcode');
 
         // DNI VALIDATION
         var checkDniTimer = false;
@@ -105,30 +98,9 @@ angular.module('newSomEnergiaWebformsApp')
 
         // EMAIL VALIDATIONS
         var checkEmail1Timer = false;
-        $scope.$watch('form.email1', function(newValue) {
-            if (checkEmail1Timer) {
-                $timeout.cancel(checkEmail1Timer);
-            }
-            checkEmail1Timer = $timeout(function() {
-                if (newValue !== undefined) {
-                    $scope.emailNoIguals = $scope.form.email2 !== undefined && newValue !== $scope.form.email2;
-                    $scope.emailIsInvalid = !ValidateHandler.isEmailValid(newValue);
-                    $scope.formListener();
-                }
-            }, 1000);
-        });
+        ValidateHandler.validateEmail1($scope, 'form.email1', checkEmail1Timer);
         var checkEmail2Timer = false;
-        $scope.$watch('form.email2', function(newValue) {
-            if (checkEmail2Timer) {
-                $timeout.cancel(checkEmail2Timer);
-            }
-            checkEmail2Timer = $timeout(function() {
-                if (newValue !== undefined) {
-                    $scope.emailNoIguals = ($scope.form.email1 !== undefined || $scope.form.email1 !== '') && newValue !== $scope.form.email1;
-                    $scope.formListener();
-                }
-            }, 1000);
-        });
+        ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
 
         // ON CHANGE SELECTED PROVINCE
         $scope.updateSelectedCity = function () {

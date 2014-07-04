@@ -79,7 +79,6 @@ angular.module('newSomEnergiaWebformsApp')
                 var match = re.exec(newValue);
                 var result = match[0].replace(',', '.');
                 result = result.replace('\'', '.');
-                $log.log(result);
                 if (result > 250) {
                     $scope.form.power = oldValue;
                 } else {
@@ -164,30 +163,9 @@ angular.module('newSomEnergiaWebformsApp')
 
         // EMAIL VALIDATIONS
         var checkEmail1Timer = false;
-        $scope.$watch('form.email1', function(newValue) {
-            if (checkEmail1Timer) {
-                $timeout.cancel(checkEmail1Timer);
-            }
-            checkEmail1Timer = $timeout(function() {
-                if (newValue !== undefined) {
-                    $scope.emailNoIguals = $scope.form.email2 !== undefined && newValue !== $scope.form.email2;
-                    $scope.emailIsInvalid = !ValidateHandler.isEmailValid(newValue);
-                    $scope.formListener();
-                }
-            }, 1000);
-        });
+        ValidateHandler.validateEmail1($scope, 'form.email1', checkEmail1Timer);
         var checkEmail2Timer = false;
-        $scope.$watch('form.email2', function(newValue) {
-            if (checkEmail2Timer) {
-                $timeout.cancel(checkEmail2Timer);
-            }
-            checkEmail2Timer = $timeout(function() {
-                if (newValue !== undefined) {
-                    $scope.emailNoIguals = ($scope.form.email1 !== undefined || $scope.form.email1 !== '') && newValue !== $scope.form.email1;
-                    $scope.formListener();
-                }
-            }, 1000);
-        });
+        ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
         var checkAccountEmail1Timer = false;
         $scope.$watch('form.accountemail1', function(newValue) {
             if (checkAccountEmail1Timer) {

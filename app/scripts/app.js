@@ -44,8 +44,8 @@ angular.module('newSomEnergiaWebformsApp', [
         $translateProvider
             .translations('es', {
                 SELECCIONA: 'Selecciona',
-                PARTICULAR: 'Particular',
-                EMPRESA: 'Empresa',
+                PARTICULAR: 'Persona física',
+                EMPRESA: 'Persona jurídica',
                 OBLIGATORI: 'Obligatorio',
                 IDIOMA: 'Idioma',
                 SELECCIONA_IDIOMA: 'Selecciona idioma',
@@ -66,7 +66,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 TARGETA_CREDIT: 'Tarjeta de crédito',
                 COST: 'Coste para la cooperativa',
                 INFO_APORTACIO: 'La aportación para ser socio/a es de 100€<br/>Los 100€ se pagan una sola vez, no hay cuota anual y son retornables si te das de baja.',
-                FINALITZA_PROCES: 'Continuar el proceso',
+                FINALITZA_PROCES: 'Finalizar el proceso',
                 FORMULARI_NO_DISPONIBLE: 'Formulario no disponible, disculpen las moléstias.',
                 INVALID: 'Inválido',
                 EMAIL_NO_IGUALS: 'Emails diferentes',
@@ -127,8 +127,8 @@ angular.module('newSomEnergiaWebformsApp', [
             })
             .translations('ca', {
                 SELECCIONA: 'Sel·lecciona',
-                PARTICULAR: 'Particular',
-                EMPRESA: 'Empresa',
+                PARTICULAR: 'Persona física',
+                EMPRESA: 'Persona jurídica',
                 OBLIGATORI: 'Obligatori',
                 IDIOMA: 'Idioma',
                 SELECCIONA_IDIOMA: 'Sel·lecciona idioma',
@@ -149,7 +149,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 TARGETA_CREDIT: 'Targeta de crèdit',
                 COST: 'Cost per a la cooperativa',
                 INFO_APORTACIO: 'L\'aportació per a esdevenir soci/a és de 100€<br/>Els 100€ es paguen una sola vegada, no hi ha quota anual i són retornables si et dones de baixa.',
-                FINALITZA_PROCES: 'Continuar el procés',
+                FINALITZA_PROCES: 'Finalitzar el procés',
                 FORMULARI_NO_DISPONIBLE: 'Formulari no disponible, disculpeu les molèsties.',
                 INVALID: 'Invàlid',
                 EMAIL_NO_IGUALS: 'Emails diferents',
