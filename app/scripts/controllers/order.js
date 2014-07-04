@@ -239,20 +239,8 @@ angular.module('newSomEnergiaWebformsApp')
         });
 
         // POSTAL CODE VALIDATIONS
-        $scope.$watch('form.postalcode', function(newValue, oldValue) {
-            if (newValue !== undefined) {
-                if (!$scope.numberRegex.test(newValue) || newValue.length > 5) {
-                    $scope.form.postalcode = oldValue;
-                }
-            }
-        });
-        $scope.$watch('form.accountpostalcode', function(newValue, oldValue) {
-            if (newValue !== undefined) {
-                if (!$scope.numberRegex.test(newValue) || newValue.length > 5) {
-                    $scope.form.accountpostalcode = oldValue;
-                }
-            }
-        });
+        ValidateHandler.validatePostalCode($scope, 'form.postalcode');
+        ValidateHandler.validatePostalCode($scope, 'form.accountpostalcode');
 
         // ON CHANGE FORMS
         $scope.formListener = function() {

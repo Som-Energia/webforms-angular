@@ -40,9 +40,11 @@ angular.module('newSomEnergiaWebformsApp')
         // POSTAL CODE VALIDATOR
         this.validatePostalCode = function($scope, element) {
             $scope.$watch(element, function(newValue, oldValue) {
-                if (newValue !== undefined) {
-                    if (!postalCodeRE.test(newValue) || newValue.length > 5) {
+                if (newValue !== undefined && (!postalCodeRE.test(newValue) || newValue.length > 5)) {
+                    if (element === 'form.postalcode') {
                         $scope.form.postalcode = oldValue;
+                    } else if (element === 'form.accountpostalcode') {
+                        $scope.form.accountpostalcode = oldValue;
                     }
                 }
             });
