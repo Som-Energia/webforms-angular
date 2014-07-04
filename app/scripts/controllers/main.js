@@ -36,6 +36,10 @@ angular.module('newSomEnergiaWebformsApp')
         // POSTAL CODE VALIDATION
         ValidateHandler.validatePostalCode($scope, 'form.postalcode');
 
+        // TELEPHONE VALIDATION
+        ValidateHandler.validateTelephoneNumber($scope, 'form.phone1');
+        ValidateHandler.validateTelephoneNumber($scope, 'form.phone2');
+
         // DNI VALIDATION
         var checkDniTimer = false;
         ValidateHandler.validateDni($scope, 'form.dni', checkDniTimer);
