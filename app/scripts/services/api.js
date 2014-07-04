@@ -1,7 +1,63 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .service('AjaxHandler', function(cfg, uiHandler, $http, $q, $log) {
+    .service('AjaxHandler', ['cfg', 'uiHandler', '$http', '$q', '$log', function(cfg, uiHandler, $http, $q, $log) {
+
+        // Get languages
+        this.getLanguages = function($scope) {
+            var languagesPromise = this.getDataRequest($scope, cfg.API_BASE_URL + 'data/idiomes', '002');
+            languagesPromise.then(
+                function (response) {
+                    if (response.state === cfg.STATE_TRUE) {
+                        $scope.languages = response.data.idiomes;
+                    } else {
+                        uiHandler.showErrorDialog('GET response state false recived (ref.003-002)');
+                    }
+                },
+                function (reason) { $log.error('Get languages failed', reason); }
+            );
+        };
+
+        // Get states
+        this.getStates = function($scope) {
+            var statesPromise = this.getDataRequest($scope, cfg.API_BASE_URL + 'data/provincies', '001');
+            statesPromise.then(
+                function (response) {
+                    if (response.state === cfg.STATE_TRUE) {
+                        $scope.provinces  = response.data.provincies;
+                        $scope.provinces2 = response.data.provincies;
+                        $scope.provinces3 = response.data.provincies;
+                    } else {
+                        uiHandler.showErrorDialog('GET response state false recived (ref.003-001)');
+                    }
+                },
+                function (reason) { $log.error('Get states failed', reason); }
+            );
+        };
+
+        // Get cities
+        this.getCities = function($scope, selector) {
+            if ($scope.form.province !== undefined) {
+                var citiesPromise = this.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  $scope.form.province.id, '003');
+                citiesPromise.then(
+                    function (response) {
+                        if (response.state === cfg.STATE_TRUE) {
+                            if (selector === 1) {
+                                $scope.cities = response.data.municipis;
+                            } else if (selector === 2) {
+                                $scope.cities2 = response.data.municipis;
+                            } else if (selector === 3) {
+                                $scope.cities3 = response.data.municipis;
+                            }
+                        } else {
+                            uiHandler.showErrorDialog('GET response state false recived (ref.003-003)');
+                        }
+                    },
+                    function (reason) { $log.error('Update city select failed', reason); }
+                );
+                $scope.formListener();
+            }
+        };
 
         // Async GET data call
         this.getDataRequest = function($scope, URL, errorCode) {
@@ -27,7 +83,7 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // Async GET state call
-        this.getSateRequest = function($scope, URL, errorCode) {
+        this.getStateRequest = function($scope, URL, errorCode) {
             var deferred = $q.defer();
             $http.get(URL)
                 .success(function (response) {
@@ -73,4 +129,4 @@ angular.module('newSomEnergiaWebformsApp')
             return deferred.promise;
         };
 
-    });
+    }]);
