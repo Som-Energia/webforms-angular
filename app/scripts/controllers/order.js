@@ -74,8 +74,17 @@ angular.module('newSomEnergiaWebformsApp')
 
         // POWER VALIDATION
         $scope.$watch('form.power', function(newValue, oldValue) {
-            if (newValue !== undefined && isNaN(newValue)) {
-                $scope.form.power = oldValue;
+            if (newValue !== undefined) {
+                var re = /^\d*([.,'])?\d*/g;
+                var match = re.exec(newValue);
+                var result = match[0].replace(',', '.');
+                result = result.replace('\'', '.');
+                $log.log(result);
+                if (result > 250) {
+                    $scope.form.power = oldValue;
+                } else {
+                    $scope.form.power = result;
+                }
             }
         });
 
@@ -533,7 +542,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
-                        $scope.showStep1Form = false; // uncomment on production
+//                        $scope.showStep1Form = false; // uncomment on production
                     } else {
                         $scope.showUnknownSociWarning = true;
                         $scope.showStep1Form = false;
@@ -570,20 +579,20 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // DEBUG (comment on production)
-//        $scope.form.init.socinumber = 1706;
-//        $scope.form.init.dni = '52608510N';
-//        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
-//        $scope.form.cups = 'ES0031406222973003LE0F';
-//        $scope.form.cnae = '0520';
-//        $scope.form.power = '5.5';
-//        $scope.form.rate = '2.0A';
-//        $scope.executeGetSociValues();
-//        $scope.showStep1Form = true;
-//        $scope.step0Ready = false;
-//        $scope.step1Ready = true;
-//        $scope.step2Ready = false;
-//        $scope.form.accountbank = '1491';
-//        $scope.form.accountoffice = '0001';
-//        $scope.form.accountchecksum = '20';
-//        $scope.form.accountnumber = '20363698';
+        $scope.form.init.socinumber = 1706;
+        $scope.form.init.dni = '52608510N';
+        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
+        $scope.form.cups = 'ES0031406222973003LE0F';
+        $scope.form.cnae = '0520';
+        $scope.form.power = '5.5';
+        $scope.form.rate = '2.0A';
+        $scope.executeGetSociValues();
+        $scope.showStep1Form = true;
+        $scope.step0Ready = false;
+        $scope.step1Ready = true;
+        $scope.step2Ready = false;
+        $scope.form.accountbank = '1491';
+        $scope.form.accountoffice = '0001';
+        $scope.form.accountchecksum = '20';
+        $scope.form.accountnumber = '20363698';
     }]);
