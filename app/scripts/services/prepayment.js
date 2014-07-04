@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .service('prepaymentService', function($log) {
+    .service('prepaymentService', ['$log', function($log) {
 
         // TODO: remove fake data in production
         var data = {
@@ -35,5 +35,5 @@ angular.module('newSomEnergiaWebformsApp')
             getData: getData
         };
 
-    });
+    }]);
 

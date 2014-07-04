@@ -103,7 +103,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON SUBMIT FORM
         $scope.submit = function() {
-            // Trigger validation flags
             $scope.submitted = true;
             $scope.messages = null;
             $scope.partnerForm.province.$setValidity('requiredp', true);
@@ -128,14 +127,16 @@ angular.module('newSomEnergiaWebformsApp')
                 payment_method: $scope.form.payment === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD
             };
 //            $log.log('request postData', postData);
-            // Send POST request data
+            // Send request data POST
             var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData, '004');
             postPromise.then(
                 function (response) {
                     if (response.state === cfg.STATE_FALSE) {
+                        // error
                         $scope.messages = $scope.getHumanizedAPIResponse(response.data);
                         $scope.submitReady = false;
                     } else if (response.state === cfg.STATE_TRUE) {
+                        // well done
 //                        $log.log('response recived', response);
                         prepaymentService.setData(response.data);
                         $location.path('/prepagament');

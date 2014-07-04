@@ -1,11 +1,34 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .service('ValidateHandler', function($timeout) {
+    .service('ValidateHandler', ['$timeout', '$log', 'AjaxHandler', 'cfg', function($timeout, $log, AjaxHandler, cfg) {
 
         var emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var postalCodeRE = /^\d+$/;
+        var DELAY = 1000; // in milliseconds
 
+        // DNI 1 VALIDATOR
+        this.validateDni1 = function($scope, element, timer) {
+            $scope.$watch(element, function(newValue) {
+                if (timer) {
+                    $timeout.cancel(timer);
+                }
+                timer = $timeout(function() {
+                    if (newValue !== undefined) {
+                        var dniPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
+                        dniPromise.then(
+                            function (response) {
+                                $scope.dniIsInvalid = response === cfg.STATE_FALSE;
+                                $scope.dniDuplicated = false;
+                                $scope.formListener();
+                            },
+                            function (reason) { $log.error('Check DNI failed', reason); }
+                        );
+                    }
+                }, DELAY);
+            });
+        };
+        
         // EMAIL 1 VALIDATOR
         this.validateEmail1 = function($scope, element, timer) {
             $scope.$watch(element, function(newValue) {
@@ -18,7 +41,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.emailIsInvalid = !emailRE.test(newValue);
                         $scope.formListener();
                     }
-                }, 1000);
+                }, DELAY);
             });
         };
 
@@ -33,7 +56,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.emailNoIguals = ($scope.form.email1 !== undefined || $scope.form.email1 !== '') && newValue !== $scope.form.email1;
                         $scope.formListener();
                     }
-                }, 1000);
+                }, DELAY);
             });
         };
 
@@ -50,4 +73,4 @@ angular.module('newSomEnergiaWebformsApp')
             });
         };
 
-    });
+    }]);

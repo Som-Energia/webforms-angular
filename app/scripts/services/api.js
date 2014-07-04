@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .service('AjaxHandler', function(cfg, uiHandler, $http, $q, $log) {
+    .service('AjaxHandler', ['cfg', 'uiHandler', '$http', '$q', '$log', function(cfg, uiHandler, $http, $q, $log) {
 
         // Get languages
         this.getLanguages = function($scope) {
@@ -105,4 +105,4 @@ angular.module('newSomEnergiaWebformsApp')
             return deferred.promise;
         };
 
-    });
+    }]);
