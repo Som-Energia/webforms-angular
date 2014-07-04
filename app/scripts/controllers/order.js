@@ -45,19 +45,7 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateInteger($scope, 'form.init.socinumber');
 
         // POWER VALIDATION
-        $scope.$watch('form.power', function(newValue, oldValue) {
-            if (newValue !== undefined) {
-                var re = /^\d*([.,'])?\d*/g;
-                var match = re.exec(newValue);
-                var result = match[0].replace(',', '.');
-                result = result.replace('\'', '.');
-                if (result > 250) {
-                    $scope.form.power = oldValue;
-                } else {
-                    $scope.form.power = result;
-                }
-            }
-        });
+        ValidateHandler.validatePower($scope, 'form.power');
 
         // DNI VALIDATION
         var checkDniTimer = false;
@@ -75,30 +63,9 @@ angular.module('newSomEnergiaWebformsApp')
         var checkEmail2Timer = false;
         ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
         var checkAccountEmail1Timer = false;
-        $scope.$watch('form.accountemail1', function(newValue) {
-            if (checkAccountEmail1Timer) {
-                $timeout.cancel(checkAccountEmail1Timer);
-            }
-            checkAccountEmail1Timer = $timeout(function() {
-                if (newValue !== undefined) {
-                    $scope.accountEmailNoIguals = $scope.form.accountemail2 !== undefined && newValue !== $scope.form.accountemail2;
-                    $scope.accountEmailIsInvalid = !ValidateHandler.isEmailValid(newValue);
-                    $scope.formListener();
-                }
-            }, 1000);
-        });
+        ValidateHandler.validateEmail1($scope, 'form.accountemail1', checkAccountEmail1Timer);
         var checkAccountEmail2Timer = false;
-        $scope.$watch('form.accountemail2', function(newValue) {
-            if (checkAccountEmail2Timer) {
-                $timeout.cancel(checkAccountEmail2Timer);
-            }
-            checkAccountEmail2Timer = $timeout(function() {
-                if (newValue !== undefined) {
-                    $scope.accountEmailNoIguals = ($scope.form.accountemail1 !== undefined || $scope.form.accountemail1 !== '') && newValue !== $scope.form.accountemail1;
-                    $scope.formListener();
-                }
-            }, 1000);
-        });
+        ValidateHandler.validateEmail2($scope, 'form.accountemail2', checkAccountEmail2Timer);
 
         // CUPS VALIDATION
         var checkCupsTimer = false;
@@ -227,7 +194,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON INIT SUBMIT FORM
         $scope.initSubmit = function(form) {
-            // Trigger validation flags
             $scope.initFormSubmitted = true;
             if (form.$invalid) {
                 return null;
@@ -271,13 +237,11 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON SUBMIT FORM
         $scope.submitOrder = function() {
-            // Trigger validation flags
             $scope.orderFormSubmitted = true;
             $scope.cupsIsDuplicated = false;
             $scope.messages = null;
             $scope.orderForm.cups.$setValidity('exist', true);
             uiHandler.showLoadingDialog();
-
             // Prepare request data
             var formData = new FormData();
             formData.append('id_soci', $scope.form.init.socinumber);
@@ -324,8 +288,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('condicions_privacitat', 1);
             formData.append('condicions_titular', 1);
             formData.append('donatiu', $scope.form.voluntary === 'yes' ? 1 : 0);
-
-            // Send POST request data
+            // Send request data POST
             $http({
                 method: 'POST',
                 url: cfg.API_BASE_URL + 'form/contractacio',
@@ -338,8 +301,10 @@ angular.module('newSomEnergiaWebformsApp')
                     $log.log('response recived', response);
                     if (response.data.status === cfg.STATUS_ONLINE) {
                         if (response.data.state === cfg.STATE_TRUE) {
+                            // well done
                             uiHandler.showWellDoneDialog();
                         } else {
+                            // error
                             $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
                             $scope.submitReady = false;
                         }
@@ -416,7 +381,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
-                        $scope.showStep1Form = false; // uncomment on production
+//                        $scope.showStep1Form = false; // uncomment on production
                     } else {
                         $scope.showUnknownSociWarning = true;
                         $scope.showStep1Form = false;
@@ -453,20 +418,20 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // DEBUG (comment on production)
-//        $scope.form.init.socinumber = 1706;
-//        $scope.form.init.dni = '52608510N';
-//        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
-//        $scope.form.cups = 'ES0031406222973003LE0F';
-//        $scope.form.cnae = '0520';
-//        $scope.form.power = '5.5';
-//        $scope.form.rate = '2.0A';
-//        $scope.executeGetSociValues();
-//        $scope.showStep1Form = true;
-//        $scope.step0Ready = false;
-//        $scope.step1Ready = true;
-//        $scope.step2Ready = false;
-//        $scope.form.accountbank = '1491';
-//        $scope.form.accountoffice = '0001';
-//        $scope.form.accountchecksum = '20';
-//        $scope.form.accountnumber = '20363698';
+        $scope.form.init.socinumber = 1706;
+        $scope.form.init.dni = '52608510N';
+        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
+        $scope.form.cups = 'ES0031406222973003LE0F';
+        $scope.form.cnae = '0520';
+        $scope.form.power = '5.5';
+        $scope.form.rate = '2.0A';
+        $scope.executeGetSociValues();
+        $scope.showStep1Form = true;
+        $scope.step0Ready = false;
+        $scope.step1Ready = true;
+        $scope.step2Ready = false;
+        $scope.form.accountbank = '1491';
+        $scope.form.accountoffice = '0001';
+        $scope.form.accountchecksum = '20';
+        $scope.form.accountnumber = '20363698';
     }]);

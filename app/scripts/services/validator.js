@@ -17,6 +17,23 @@ angular.module('newSomEnergiaWebformsApp')
                 }
             });
         };
+
+        // POWER VALIDATOR
+        this.validatePower = function($scope, element) {
+            $scope.$watch(element, function(newValue, oldValue) {
+                if (newValue !== undefined) {
+                    var re = /^\d*([.,'])?\d*/g;
+                    var match = re.exec(newValue);
+                    var result = match[0].replace(',', '.');
+                    result = result.replace('\'', '.');
+                    if (result > 250) {
+                        $scope.form.power = oldValue;
+                    } else {
+                        $scope.form.power = result;
+                    }
+                }
+            });
+        };
         
         // DNI VALIDATOR
         this.validateDni = function($scope, element, timer) {
@@ -56,8 +73,13 @@ angular.module('newSomEnergiaWebformsApp')
                 }
                 timer = $timeout(function() {
                     if (newValue !== undefined) {
-                        $scope.emailNoIguals = $scope.form.email2 !== undefined && newValue !== $scope.form.email2;
-                        $scope.emailIsInvalid = !emailRE.test(newValue);
+                        if (element === 'form.email1') {
+                            $scope.emailNoIguals = $scope.form.email2 !== undefined && newValue !== $scope.form.email2;
+                            $scope.emailIsInvalid = !emailRE.test(newValue);
+                        } else if (element === 'form.accountemail1') {
+                            $scope.accountEmailNoIguals = $scope.form.accountemail2 !== undefined && newValue !== $scope.form.accountemail2;
+                            $scope.accountEmailIsInvalid = !emailRE.test(newValue);
+                        }
                         $scope.formListener();
                     }
                 }, DELAY);
@@ -72,7 +94,11 @@ angular.module('newSomEnergiaWebformsApp')
                 }
                 timer = $timeout(function() {
                     if (newValue !== undefined) {
-                        $scope.emailNoIguals = ($scope.form.email1 !== undefined || $scope.form.email1 !== '') && newValue !== $scope.form.email1;
+                        if (element === 'form.email2') {
+                            $scope.emailNoIguals = ($scope.form.email1 !== undefined || $scope.form.email1 !== '') && newValue !== $scope.form.email1;
+                        } else if (element === 'form.accountemail2') {
+                            $scope.accountEmailNoIguals = ($scope.form.accountemail1 !== undefined || $scope.form.accountemail1 !== '') && newValue !== $scope.form.accountemail1;
+                        }
                         $scope.formListener();
                     }
                 }, DELAY);
