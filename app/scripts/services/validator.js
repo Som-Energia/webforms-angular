@@ -126,6 +126,10 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.phone1 = oldValue;
                     } else if (element === 'form.phone2') {
                         $scope.form.phone2 = oldValue;
+                    } else if (element === 'form.accountphone1') {
+                        $scope.form.accountphone1 = oldValue;
+                    } else if (element === 'form.accountphone2') {
+                        $scope.form.accountphone2 = oldValue;
                     }
                 }
             });

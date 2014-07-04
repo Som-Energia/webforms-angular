@@ -97,6 +97,12 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validatePostalCode($scope, 'form.postalcode');
         ValidateHandler.validatePostalCode($scope, 'form.accountpostalcode');
 
+        // TELEPHONE VALIDATION
+        ValidateHandler.validateTelephoneNumber($scope, 'form.phone1');
+        ValidateHandler.validateTelephoneNumber($scope, 'form.phone2');
+        ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone1');
+        ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone2');
+
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
             AjaxHandler.getCities($scope, 1);
