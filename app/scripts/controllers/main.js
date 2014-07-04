@@ -29,17 +29,7 @@ angular.module('newSomEnergiaWebformsApp')
         }
 
         // GET LANGUAGES
-        var languagesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/idiomes', '002');
-        languagesPromise.then(
-            function (response) {
-                if (response.state === cfg.STATE_TRUE) {
-                    $scope.languages = response.data.idiomes;
-                } else {
-                    uiHandler.showErrorDialog('GET response state false recived (ref.003-002)');
-                }
-            },
-            function (reason) { $log.error('Get languages failed', reason); }
-        );
+        AjaxHandler.getLanguages($scope);
 
         // GET STATES
         var statesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/provincies', '001');

@@ -3,6 +3,21 @@
 angular.module('newSomEnergiaWebformsApp')
     .service('AjaxHandler', function(cfg, uiHandler, $http, $q, $log) {
 
+        // Get languages
+        this.getLanguages = function($scope) {
+            var languagesPromise = this.getDataRequest($scope, cfg.API_BASE_URL + 'data/idiomes', '002');
+            languagesPromise.then(
+                function (response) {
+                    if (response.state === cfg.STATE_TRUE) {
+                        $scope.languages = response.data.idiomes;
+                    } else {
+                        uiHandler.showErrorDialog('GET response state false recived (ref.003-002)');
+                    }
+                },
+                function (reason) { $log.error('Get languages failed', reason); }
+            );
+        };
+
         // Async GET data call
         this.getDataRequest = function($scope, URL, errorCode) {
             var deferred = $q.defer();
