@@ -18,7 +18,7 @@ angular.module('newSomEnergiaWebformsApp')
                         var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
                         dniPromise.then(
                             function (response) {
-                                if (element === 'form.dni') {
+                                if (element === 'form.dni' || element === 'form.init.dni') {
                                     $scope.dniIsInvalid = response === cfg.STATE_FALSE;
                                     $scope.dniDuplicated = false;
                                 } else if (element === 'form.representantdni') {

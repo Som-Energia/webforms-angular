@@ -67,23 +67,24 @@ angular.module('newSomEnergiaWebformsApp')
 
         // DNI VALIDATION
         var checkDniTimer = false;
-        $scope.$watch('form.init.dni', function(newValue) {
-            if (checkDniTimer) {
-                $timeout.cancel(checkDniTimer);
-            }
-            checkDniTimer = $timeout(function() {
-                if (newValue !== undefined) {
-                    var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
-                    dniPromise.then(
-                        function (response) {
-                            $scope.dniIsInvalid = response === cfg.STATE_FALSE;
-                            $scope.formListener();
-                        },
-                        function (reason) { $log.error('Check DNI failed', reason); }
-                    );
-                }
-            }, 1000);
-        });
+        ValidateHandler.validateDni($scope, 'form.init.dni', checkDniTimer);
+//        $scope.$watch('form.init.dni', function(newValue) {
+//            if (checkDniTimer) {
+//                $timeout.cancel(checkDniTimer);
+//            }
+//            checkDniTimer = $timeout(function() {
+//                if (newValue !== undefined) {
+//                    var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
+//                    dniPromise.then(
+//                        function (response) {
+//                            $scope.dniIsInvalid = response === cfg.STATE_FALSE;
+//                            $scope.formListener();
+//                        },
+//                        function (reason) { $log.error('Check DNI failed', reason); }
+//                    );
+//                }
+//            }, 1000);
+//        });
         var checkDni2Timer = false;
         $scope.$watch('form.dni', function(newValue) {
             if (checkDni2Timer) {
@@ -486,7 +487,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
-//                        $scope.showStep1Form = false; // uncomment on production
+                        $scope.showStep1Form = false; // uncomment on production
                     } else {
                         $scope.showUnknownSociWarning = true;
                         $scope.showStep1Form = false;
@@ -523,20 +524,20 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // DEBUG (comment on production)
-        $scope.form.init.socinumber = 1706;
-        $scope.form.init.dni = '52608510N';
-        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
-        $scope.form.cups = 'ES0031406222973003LE0F';
-        $scope.form.cnae = '0520';
-        $scope.form.power = '5.5';
-        $scope.form.rate = '2.0A';
-        $scope.executeGetSociValues();
-        $scope.showStep1Form = true;
-        $scope.step0Ready = false;
-        $scope.step1Ready = true;
-        $scope.step2Ready = false;
-        $scope.form.accountbank = '1491';
-        $scope.form.accountoffice = '0001';
-        $scope.form.accountchecksum = '20';
-        $scope.form.accountnumber = '20363698';
+//        $scope.form.init.socinumber = 1706;
+//        $scope.form.init.dni = '52608510N';
+//        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
+//        $scope.form.cups = 'ES0031406222973003LE0F';
+//        $scope.form.cnae = '0520';
+//        $scope.form.power = '5.5';
+//        $scope.form.rate = '2.0A';
+//        $scope.executeGetSociValues();
+//        $scope.showStep1Form = true;
+//        $scope.step0Ready = false;
+//        $scope.step1Ready = true;
+//        $scope.step2Ready = false;
+//        $scope.form.accountbank = '1491';
+//        $scope.form.accountoffice = '0001';
+//        $scope.form.accountchecksum = '20';
+//        $scope.form.accountnumber = '20363698';
     }]);
