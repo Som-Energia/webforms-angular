@@ -36,13 +36,19 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // Get cities
-        this.getCities = function($scope) {
+        this.getCities = function($scope, selector) {
             if ($scope.form.province !== undefined) {
                 var citiesPromise = this.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  $scope.form.province.id, '003');
                 citiesPromise.then(
                     function (response) {
                         if (response.state === cfg.STATE_TRUE) {
-                            $scope.cities = response.data.municipis;
+                            if (selector === 1) {
+                                $scope.cities = response.data.municipis;
+                            } else if (selector === 2) {
+                                $scope.cities2 = response.data.municipis;
+                            } else if (selector === 3) {
+                                $scope.cities3 = response.data.municipis;
+                            }
                         } else {
                             uiHandler.showErrorDialog('GET response state false recived (ref.003-003)');
                         }

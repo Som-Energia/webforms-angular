@@ -30,7 +30,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.completeAccountNumber = '';
         $scope.form.init = {};
         $scope.rates = ['2.0A', '2.0DHA', '2.1A', '2.1DHA', '3.0A'];
-        $scope.numberRegex = new RegExp('^\\d+$');
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
@@ -78,6 +77,17 @@ angular.module('newSomEnergiaWebformsApp')
         // POSTAL CODE VALIDATIONS
         ValidateHandler.validatePostalCode($scope, 'form.postalcode');
         ValidateHandler.validatePostalCode($scope, 'form.accountpostalcode');
+
+        // ON CHANGE SELECTED STATE
+        $scope.updateSelectedCity = function() {
+            AjaxHandler.getCities($scope, 1);
+        };
+        $scope.updateSelectedCity2 = function() {
+            AjaxHandler.getCities($scope, 2);
+        };
+        $scope.updateSelectedCity3 = function() {
+            AjaxHandler.getCities($scope, 3);
+        };
 
         // ON CHANGE FORMS
         $scope.formListener = function() {
@@ -280,59 +290,6 @@ angular.module('newSomEnergiaWebformsApp')
             );
 
             return true;
-        };
-
-        // ON CHANGE SELECTED PROVINCE
-        $scope.updateSelectedCity = function() {
-            if ($scope.form.province !== undefined) {
-                // GET CITIES
-                var citiesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  $scope.form.province.id, '003');
-                citiesPromise.then(
-                    function (response) {
-                        if (response.state === cfg.STATE_TRUE) {
-                            $scope.cities = response.data.municipis;
-                        } else {
-                            uiHandler.showErrorDialog('GET response state false recived (ref.003-003)');
-                        }
-                    },
-                    function (reason) { $log.error('Change city select failed', reason); }
-                );
-                $scope.formListener();
-            }
-        };
-        $scope.updateSelectedCity2 = function() {
-            if ($scope.form.province2 !== undefined) {
-                // GET CITIES
-                var citiesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  $scope.form.province2.id, '004');
-                citiesPromise.then(
-                    function (response) {
-                        if (response.state === cfg.STATE_TRUE) {
-                            $scope.cities2 = response.data.municipis;
-                        } else {
-                            uiHandler.showErrorDialog('GET response state false recived (ref.003-004)');
-                        }
-                    },
-                    function(reason) { $log.error('Change city2 select failed', reason); }
-                );
-                $scope.formListener();
-            }
-        };
-        $scope.updateSelectedCity3 = function() {
-            if ($scope.form.province3 !== undefined) {
-                // GET CITIES
-                var citiesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  $scope.form.province3.id, '005');
-                citiesPromise.then(
-                    function (response) {
-                        if (response.state === cfg.STATE_TRUE) {
-                            $scope.cities3 = response.data.municipis;
-                        } else {
-                            uiHandler.showErrorDialog('GET response state false recived (ref.003-005)');
-                        }
-                    },
-                    function(reason) { $log.error('Change city3 select failed', reason); }
-                );
-                $scope.formListener();
-            }
         };
 
         $scope.executeGetSociValues = function() {

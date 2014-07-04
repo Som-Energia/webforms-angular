@@ -4,7 +4,6 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('MainCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', 'prepaymentService', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$location', '$log', function (cfg, AjaxHandler, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
 
         // INIT
-        $scope.currentStep = 1;
         $scope.step1Ready = true;
         $scope.step2Ready = false;
         $scope.step3Ready = false;
@@ -51,7 +50,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
-            AjaxHandler.getCities($scope);
+            AjaxHandler.getCities($scope, 1);
         };
 
         // CONTROL READY STEPS ON CHANGE FORM
@@ -79,7 +78,7 @@ angular.module('newSomEnergiaWebformsApp')
             ;
             $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready;
         };
-        
+
         // ON SUBMIT FORM
         $scope.submit = function() {
             $scope.submitted = true;
