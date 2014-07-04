@@ -39,42 +39,9 @@ angular.module('newSomEnergiaWebformsApp')
 
         // DNI VALIDATION
         var checkDniTimer = false;
-        $scope.$watch('form.dni', function(newValue) {
-            if (checkDniTimer) {
-                $timeout.cancel(checkDniTimer);
-            }
-            checkDniTimer = $timeout(function() {
-                if (newValue !== undefined) {
-                    var dniPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
-                    dniPromise.then(
-                        function (response) {
-                            $scope.dniIsInvalid = response === cfg.STATE_FALSE;
-                            $scope.dniDuplicated = false;
-                            $scope.formListener();
-                        },
-                        function (reason) { $log.error('Check DNI failed', reason); }
-                    );
-                }
-            }, 1000);
-        });
+        ValidateHandler.validateDni($scope, 'form.dni', checkDniTimer);
         var checkDniRepresentantTimer = false;
-        $scope.$watch('form.representantdni', function(newValue) {
-            if (checkDniRepresentantTimer) {
-                $timeout.cancel(checkDniRepresentantTimer);
-            }
-            checkDniRepresentantTimer = $timeout(function() {
-                if (newValue !== undefined) {
-                    var dniPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '055');
-                    dniPromise.then(
-                        function (response) {
-                            $scope.dniRepresentantIsInvalid = response === cfg.STATE_FALSE;
-                            $scope.formListener();
-                        },
-                        function (reason) { $log.error('Check DNI2 failed', reason); }
-                    );
-                }
-            }, 1000);
-        });
+        ValidateHandler.validateDni($scope, 'form.representantdni', checkDniRepresentantTimer);
 
         // EMAIL VALIDATIONS
         var checkEmail1Timer = false;

@@ -59,7 +59,7 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // Async GET state call
-        this.getSateRequest = function($scope, URL, errorCode) {
+        this.getStateRequest = function($scope, URL, errorCode) {
             var deferred = $q.defer();
             $http.get(URL)
                 .success(function (response) {

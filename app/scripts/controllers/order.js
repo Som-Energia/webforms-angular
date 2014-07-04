@@ -73,7 +73,7 @@ angular.module('newSomEnergiaWebformsApp')
             }
             checkDniTimer = $timeout(function() {
                 if (newValue !== undefined) {
-                    var dniPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
+                    var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
                     dniPromise.then(
                         function (response) {
                             $scope.dniIsInvalid = response === cfg.STATE_FALSE;
@@ -91,7 +91,7 @@ angular.module('newSomEnergiaWebformsApp')
             }
             checkDni2Timer = $timeout(function() {
                 if (newValue !== undefined) {
-                    var dniPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
+                    var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
                     dniPromise.then(
                         function (response) {
                             $scope.dni2IsInvalid = response === cfg.STATE_FALSE;
@@ -109,7 +109,7 @@ angular.module('newSomEnergiaWebformsApp')
             }
             checkDni3Timer = $timeout(function() {
                 if (newValue !== undefined) {
-                    var dniPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '006');
+                    var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '006');
                     dniPromise.then(
                         function (response) {
                             $scope.dni3IsInvalid = response === cfg.STATE_FALSE;
@@ -127,7 +127,7 @@ angular.module('newSomEnergiaWebformsApp')
             }
             checkDni4Timer = $timeout(function() {
                 if (newValue !== undefined) {
-                    var dniPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '008');
+                    var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '008');
                     dniPromise.then(
                         function (response) {
                             $scope.dni4IsInvalid = response === cfg.STATE_FALSE;
@@ -178,7 +178,7 @@ angular.module('newSomEnergiaWebformsApp')
             }
             checkCupsTimer = $timeout(function() {
                 if (newValue !== undefined) {
-                    var cupsPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/cups/' + newValue, '006');
+                    var cupsPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/cups/' + newValue, '006');
                     cupsPromise.then(
                         function(response) {
                             $scope.cupsIsInvalid = response === cfg.STATE_FALSE;
@@ -284,7 +284,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.formAccountListener = function () {
             if ($scope.form.accountbank !== undefined && $scope.form.accountoffice !== undefined && $scope.form.accountchecksum !== undefined && $scope.form.accountnumber !== undefined) {
                 $scope.completeAccountNumber = $scope.form.accountbank + $scope.form.accountoffice + $scope.form.accountchecksum + $scope.form.accountnumber;
-                var accountPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/bank/' + $scope.completeAccountNumber, '017');
+                var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/bank/' + $scope.completeAccountNumber, '017');
                 accountPromise.then(
                     function (response) {
                         $scope.accountIsInvalid = response === cfg.STATE_FALSE;

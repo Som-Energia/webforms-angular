@@ -7,19 +7,23 @@ angular.module('newSomEnergiaWebformsApp')
         var postalCodeRE = /^\d+$/;
         var DELAY = 1000; // in milliseconds
 
-        // DNI 1 VALIDATOR
-        this.validateDni1 = function($scope, element, timer) {
+        // DNI VALIDATOR
+        this.validateDni = function($scope, element, timer) {
             $scope.$watch(element, function(newValue) {
                 if (timer) {
                     $timeout.cancel(timer);
                 }
                 timer = $timeout(function() {
                     if (newValue !== undefined) {
-                        var dniPromise = AjaxHandler.getSateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
+                        var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
                         dniPromise.then(
                             function (response) {
-                                $scope.dniIsInvalid = response === cfg.STATE_FALSE;
-                                $scope.dniDuplicated = false;
+                                if (element === 'form.dni') {
+                                    $scope.dniIsInvalid = response === cfg.STATE_FALSE;
+                                    $scope.dniDuplicated = false;
+                                } else if (element === 'form.representantdni') {
+                                    $scope.dniRepresentantIsInvalid = response === cfg.STATE_FALSE;
+                                }
                                 $scope.formListener();
                             },
                             function (reason) { $log.error('Check DNI failed', reason); }
