@@ -49,25 +49,37 @@ angular.module('newSomEnergiaWebformsApp')
         var checkEmail2Timer = false;
         ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
 
-        // ON CHANGE SELECTED PROVINCE
-        $scope.updateSelectedCity = function () {
-            if ($scope.form.province !== undefined) {
-                // GET CITIES
-                var citiesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  $scope.form.province.id, '003');
-                citiesPromise.then(
-                    function (response) {
-                        if (response.state === cfg.STATE_TRUE) {
-                            $scope.cities = response.data.municipis;
-                        } else {
-                            uiHandler.showErrorDialog('GET response state false recived (ref.003-003)');
-                        }
-                    },
-                    function (reason) { $log.error('Update city select failed', reason); }
-                );
-                $scope.formListener();
-            }
+        // ON CHANGE SELECTED STATE
+        $scope.updateSelectedCity = function() {
+            AjaxHandler.getCities($scope);
         };
 
+        // CONTROL READY STEPS ON CHANGE FORM
+        $scope.formListener = function () {
+            $scope.step2Ready = $scope.form.language !== undefined;
+            $scope.step3Ready = $scope.step2Ready &&
+                $scope.form.name !== undefined &&
+                ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
+                ($scope.form.usertype === 'person' || $scope.form.usertype === 'company' && $scope.form.representantdni !== undefined && $scope.form.representantname !== undefined) &&
+                $scope.form.dni !== undefined &&
+                $scope.form.email1 !== undefined &&
+                $scope.form.email2 !== undefined &&
+                $scope.form.email1 === $scope.form.email2 &&
+                $scope.form.phone1 !== undefined &&
+                $scope.form.address !== undefined &&
+                $scope.form.postalcode !== undefined &&
+                $scope.form.province !== undefined &&
+                $scope.form.city !== undefined &&
+                $scope.form.accept !== undefined &&
+                $scope.form.accept !== false &&
+                $scope.dniIsInvalid === false &&
+                $scope.dniRepresentantIsInvalid === false &&
+                $scope.emailIsInvalid === false &&
+                $scope.emailNoIguals === false
+            ;
+            $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready;
+        };
+        
         // ON SUBMIT FORM
         $scope.submit = function() {
             $scope.submitted = true;
@@ -113,32 +125,6 @@ angular.module('newSomEnergiaWebformsApp')
             );
 
             return true;
-        };
-
-        // CONTROL READY STEPS ON CHANGE FORM
-        $scope.formListener = function () {
-            $scope.step2Ready = $scope.form.language !== undefined;
-            $scope.step3Ready = $scope.step2Ready &&
-                $scope.form.name !== undefined &&
-                ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
-                ($scope.form.usertype === 'person' || $scope.form.usertype === 'company' && $scope.form.representantdni !== undefined && $scope.form.representantname !== undefined) &&
-                $scope.form.dni !== undefined &&
-                $scope.form.email1 !== undefined &&
-                $scope.form.email2 !== undefined &&
-                $scope.form.email1 === $scope.form.email2 &&
-                $scope.form.phone1 !== undefined &&
-                $scope.form.address !== undefined &&
-                $scope.form.postalcode !== undefined &&
-                $scope.form.province !== undefined &&
-                $scope.form.city !== undefined &&
-                $scope.form.accept !== undefined &&
-                $scope.form.accept !== false &&
-                $scope.dniIsInvalid === false &&
-                $scope.dniRepresentantIsInvalid === false &&
-                $scope.emailIsInvalid === false &&
-                $scope.emailNoIguals === false
-            ;
-            $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready;
         };
 
         // GET HUMANIZED API RESPONSE

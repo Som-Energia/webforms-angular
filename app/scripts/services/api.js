@@ -35,6 +35,24 @@ angular.module('newSomEnergiaWebformsApp')
             );
         };
 
+        // Get cities
+        this.getCities = function($scope) {
+            if ($scope.form.province !== undefined) {
+                var citiesPromise = this.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  $scope.form.province.id, '003');
+                citiesPromise.then(
+                    function (response) {
+                        if (response.state === cfg.STATE_TRUE) {
+                            $scope.cities = response.data.municipis;
+                        } else {
+                            uiHandler.showErrorDialog('GET response state false recived (ref.003-003)');
+                        }
+                    },
+                    function (reason) { $log.error('Update city select failed', reason); }
+                );
+                $scope.formListener();
+            }
+        };
+
         // Async GET data call
         this.getDataRequest = function($scope, URL, errorCode) {
             var deferred = $q.defer();
