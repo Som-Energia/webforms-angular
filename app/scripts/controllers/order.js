@@ -73,28 +73,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // CNAE VALIDATION
         var cnaeCupsTimer = false;
-        $scope.$watch('form.cnae', function(newValue) {
-            if (cnaeCupsTimer) {
-                $timeout.cancel(cnaeCupsTimer);
-            }
-            cnaeCupsTimer = $timeout(function() {
-                if (newValue !== undefined) {
-                    var cnaePromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'check/cnae/' + newValue, '007');
-                    cnaePromise.then(
-                        function(response) {
-                            $scope.cnaeIsInvalid = response.state === cfg.STATE_FALSE;
-                            if (!$scope.cnaeIsInvalid && response.data !== undefined) {
-                                $scope.cnaeDescription = response.data.description;
-                            } else {
-                                $scope.cnaeDescription = null;
-                            }
-                            $scope.formListener($scope.form);
-                        },
-                        function(reason) { $log.error('Check CNAE failed', reason); }
-                    );
-                }
-            }, 1000);
-        });
+        ValidateHandler.validateCnae($scope, 'form.cnae', cnaeCupsTimer);
 
         // POSTAL CODE VALIDATIONS
         ValidateHandler.validatePostalCode($scope, 'form.postalcode');
