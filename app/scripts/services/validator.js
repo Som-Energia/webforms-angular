@@ -19,10 +19,14 @@ angular.module('newSomEnergiaWebformsApp')
                         dniPromise.then(
                             function (response) {
                                 if (element === 'form.dni' || element === 'form.init.dni') {
-                                    $scope.dniIsInvalid = response === cfg.STATE_FALSE;
+                                    $scope.dniIsInvalid  = response === cfg.STATE_FALSE;
+                                    $scope.dni2IsInvalid = response === cfg.STATE_FALSE;
                                     $scope.dniDuplicated = false;
                                 } else if (element === 'form.representantdni') {
                                     $scope.dniRepresentantIsInvalid = response === cfg.STATE_FALSE;
+                                    $scope.dni3IsInvalid = response === cfg.STATE_FALSE;
+                                } else if (element === 'form.accountdni') {
+                                    $scope.dni4IsInvalid = response === cfg.STATE_FALSE;
                                 }
                                 $scope.formListener();
                             },

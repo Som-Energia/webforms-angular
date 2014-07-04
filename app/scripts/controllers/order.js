@@ -68,77 +68,12 @@ angular.module('newSomEnergiaWebformsApp')
         // DNI VALIDATION
         var checkDniTimer = false;
         ValidateHandler.validateDni($scope, 'form.init.dni', checkDniTimer);
-//        $scope.$watch('form.init.dni', function(newValue) {
-//            if (checkDniTimer) {
-//                $timeout.cancel(checkDniTimer);
-//            }
-//            checkDniTimer = $timeout(function() {
-//                if (newValue !== undefined) {
-//                    var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
-//                    dniPromise.then(
-//                        function (response) {
-//                            $scope.dniIsInvalid = response === cfg.STATE_FALSE;
-//                            $scope.formListener();
-//                        },
-//                        function (reason) { $log.error('Check DNI failed', reason); }
-//                    );
-//                }
-//            }, 1000);
-//        });
         var checkDni2Timer = false;
-        $scope.$watch('form.dni', function(newValue) {
-            if (checkDni2Timer) {
-                $timeout.cancel(checkDni2Timer);
-            }
-            checkDni2Timer = $timeout(function() {
-                if (newValue !== undefined) {
-                    var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
-                    dniPromise.then(
-                        function (response) {
-                            $scope.dni2IsInvalid = response === cfg.STATE_FALSE;
-                            $scope.formListener();
-                        },
-                        function (reason) { $log.error('Check DNI2 failed', reason); }
-                    );
-                }
-            }, 1000);
-        });
+        ValidateHandler.validateDni($scope, 'form.dni', checkDni2Timer);
         var checkDni3Timer = false;
-        $scope.$watch('form.representantdni', function(newValue) {
-            if (checkDni3Timer) {
-                $timeout.cancel(checkDni3Timer);
-            }
-            checkDni3Timer = $timeout(function() {
-                if (newValue !== undefined) {
-                    var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '006');
-                    dniPromise.then(
-                        function (response) {
-                            $scope.dni3IsInvalid = response === cfg.STATE_FALSE;
-                            $scope.formListener();
-                        },
-                        function (reason) { $log.error('Check DNI3 failed', reason); }
-                    );
-                }
-            }, 1000);
-        });
+        ValidateHandler.validateDni($scope, 'form.representantdni', checkDni3Timer);
         var checkDni4Timer = false;
-        $scope.$watch('form.accountdni', function(newValue) {
-            if (checkDni4Timer) {
-                $timeout.cancel(checkDni4Timer);
-            }
-            checkDni4Timer = $timeout(function() {
-                if (newValue !== undefined) {
-                    var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '008');
-                    dniPromise.then(
-                        function (response) {
-                            $scope.dni4IsInvalid = response === cfg.STATE_FALSE;
-                            $scope.formListener();
-                        },
-                        function (reason) { $log.error('Check DNI4 failed', reason); }
-                    );
-                }
-            }, 1000);
-        });
+        ValidateHandler.validateDni($scope, 'form.accountdni', checkDni4Timer);
 
         // EMAIL VALIDATIONS
         var checkEmail1Timer = false;
