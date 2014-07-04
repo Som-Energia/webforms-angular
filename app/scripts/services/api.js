@@ -18,6 +18,23 @@ angular.module('newSomEnergiaWebformsApp')
             );
         };
 
+        // Get states
+        this.getStates = function($scope) {
+            var statesPromise = this.getDataRequest($scope, cfg.API_BASE_URL + 'data/provincies', '001');
+            statesPromise.then(
+                function (response) {
+                    if (response.state === cfg.STATE_TRUE) {
+                        $scope.provinces  = response.data.provincies;
+                        $scope.provinces2 = response.data.provincies;
+                        $scope.provinces3 = response.data.provincies;
+                    } else {
+                        uiHandler.showErrorDialog('GET response state false recived (ref.003-001)');
+                    }
+                },
+                function (reason) { $log.error('Get states failed', reason); }
+            );
+        };
+
         // Async GET data call
         this.getDataRequest = function($scope, URL, errorCode) {
             var deferred = $q.defer();
