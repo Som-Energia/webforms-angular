@@ -69,24 +69,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // CUPS VALIDATION
         var checkCupsTimer = false;
-        $scope.$watch('form.cups', function(newValue) {
-            if (checkCupsTimer) {
-                $timeout.cancel(checkCupsTimer);
-            }
-            checkCupsTimer = $timeout(function() {
-                if (newValue !== undefined) {
-                    var cupsPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/cups/' + newValue, '006');
-                    cupsPromise.then(
-                        function(response) {
-                            $scope.cupsIsInvalid = response === cfg.STATE_FALSE;
-                            $scope.cupsIsDuplicated = false;
-                            $scope.formListener($scope.form);
-                        },
-                        function(reason) { $log.error('Check CUPS failed', reason); }
-                    );
-                }
-            }, 1000);
-        });
+        ValidateHandler.validateCups($scope, 'form.cups', checkCupsTimer);
 
         // CNAE VALIDATION
         var cnaeCupsTimer = false;

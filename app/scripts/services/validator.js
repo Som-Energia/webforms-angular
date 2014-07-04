@@ -118,4 +118,26 @@ angular.module('newSomEnergiaWebformsApp')
             });
         };
 
+        // CUPS VALIDATOR
+        this.validateCups = function($scope, element, timer) {
+            $scope.$watch(element, function(newValue) {
+                if (timer) {
+                    $timeout.cancel(timer);
+                }
+                timer = $timeout(function() {
+                    if (newValue !== undefined) {
+                        var cupsPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/cups/' + newValue, '006');
+                        cupsPromise.then(
+                            function(response) {
+                                $scope.cupsIsInvalid = response === cfg.STATE_FALSE;
+                                $scope.cupsIsDuplicated = false;
+                                $scope.formListener($scope.form);
+                            },
+                            function(reason) { $log.error('Check CUPS failed', reason); }
+                        );
+                    }
+                }, DELAY);
+            });
+        };
+
     }]);
