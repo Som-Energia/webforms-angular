@@ -55,6 +55,8 @@ angular.module('newSomEnergiaWebformsApp')
                                     $scope.dni3IsInvalid = response === cfg.STATE_FALSE;
                                 } else if (element === 'form.accountdni') {
                                     $scope.dni4IsInvalid = response === cfg.STATE_FALSE;
+                                } else if (element === 'form.accountrepresentantdni') {
+                                    $scope.dni5IsInvalid = response === cfg.STATE_FALSE;
                                 }
                                 $scope.formListener();
                             },
@@ -118,7 +120,7 @@ angular.module('newSomEnergiaWebformsApp')
             });
         };
 
-        // TELEFONE NUMBER VALIDATOR
+        // TELEPHONE NUMBER VALIDATOR
         this.validateTelephoneNumber = function($scope, element) {
             $scope.$watch(element, function(newValue, oldValue) {
                 if (newValue !== undefined && (!integerRE.test(newValue) || newValue.length > 9)) {
