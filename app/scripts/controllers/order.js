@@ -52,7 +52,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
-//                        $scope.showStep1Form = false; // uncomment on production
+                        $scope.showStep1Form = false; // uncomment on production
                     } else {
                         $scope.showUnknownSociWarning = true;
                         $scope.showStep1Form = false;
@@ -133,6 +133,7 @@ angular.module('newSomEnergiaWebformsApp')
                     ($scope.form.isownerlink === 'no' &&
                         $scope.form.language !== undefined &&
                         $scope.form.name !== undefined &&
+                        $scope.form.changeowner !== undefined &&
                         ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
                         $scope.form.dni !== undefined &&
                         $scope.form.email1 !== undefined &&
@@ -245,6 +246,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('dni', $scope.form.init.dni);
             formData.append('tipus_persona', $scope.form.usertype === 'person' ? 0 : 1);
             formData.append('soci_titular', $scope.form.isownerlink === 'yes' ? 1 : 0);
+            formData.append('canvi_titular', $scope.form.changeowner === 'yes' ? 1 : 0);
             formData.append('representant_nom', $scope.form.usertype === 'company' ? $scope.form.representantname : '');
             formData.append('representant_dni', $scope.form.usertype === 'company' ? $scope.form.representantdni : '');
             formData.append('titular_nom', $scope.form.isownerlink === 'yes' ? $scope.soci.nom : $scope.form.name);
@@ -344,20 +346,20 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // DEBUG (comment on production)
-        $scope.form.init.socinumber = 1706;
-        $scope.form.init.dni = '52608510N';
-        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
-        $scope.form.cups = 'ES0031406222973003LE0F';
-        $scope.form.cnae = '0520';
-        $scope.form.power = '5.5';
-        $scope.form.rate = '2.0A';
-        $scope.executeGetSociValues();
-        $scope.showStep1Form = true;
-        $scope.step0Ready = false;
-        $scope.step1Ready = true;
-        $scope.step2Ready = false;
-        $scope.form.accountbank = '1491';
-        $scope.form.accountoffice = '0001';
-        $scope.form.accountchecksum = '20';
-        $scope.form.accountnumber = '20363698';
+//        $scope.form.init.socinumber = 1706;
+//        $scope.form.init.dni = '52608510N';
+//        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
+//        $scope.form.cups = 'ES0031406222973003LE0F';
+//        $scope.form.cnae = '0520';
+//        $scope.form.power = '5.5';
+//        $scope.form.rate = '2.0A';
+//        $scope.executeGetSociValues();
+//        $scope.showStep1Form = true;
+//        $scope.step0Ready = false;
+//        $scope.step1Ready = true;
+//        $scope.step2Ready = false;
+//        $scope.form.accountbank = '1491';
+//        $scope.form.accountoffice = '0001';
+//        $scope.form.accountchecksum = '20';
+//        $scope.form.accountnumber = '20363698';
     }]);
