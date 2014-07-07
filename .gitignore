@@ -5,3 +5,6 @@ dist/index.html
 .sass-cache
 app/bower_components
 secret.json
+!.bowerrc
+!.editorconfig
+!.jshintrc
