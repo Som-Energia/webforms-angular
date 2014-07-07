@@ -184,9 +184,6 @@
                     <label class="btn btn-default green" data-ng-model="form.isownerlink" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>
                 </div>
             </div>
-            <div class="col-xs-1">
-                <span class="badge current small" data-popover="{{ 'HELP_POPOVER_OWNER' | translate }}">?</span>
-            </div>
             <div class="form-group col-xs-4">
                 <span>{{ 'EL_TITULAR_ES' | translate }}:&nbsp;</span>
                 <div class="btn-group">
@@ -202,6 +199,9 @@
                     <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>
                     <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>
                 </div>
+            </div>
+            <div class="col-xs-1">
+                <span class="badge current small" data-popover="{{ 'HELP_POPOVER_OWNER' | translate }}">?</span>
             </div>
         </div>
         <!-- TITULAR_PARTICULAR & SOCI_VINCULAT_SI (page 06 & 12) -->
