@@ -74,6 +74,8 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateDni($scope, 'form.representantdni', checkDni3Timer);
         var checkDni4Timer = false;
         ValidateHandler.validateDni($scope, 'form.accountdni', checkDni4Timer);
+        var checkDni5Timer = false;
+        ValidateHandler.validateDni($scope, 'form.accountrepresentantdni', checkDni5Timer);
 
         // EMAIL VALIDATION
         var checkEmail1Timer = false;
@@ -283,11 +285,14 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('compte_tel', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountphone1);
             formData.append('compte_tel2', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountphone2);
             formData.append('compte_cp', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountpostalcode);
+            formData.append('compte_representant_nom', $scope.form.choosepayer === 'altre' && $scope.form.payertype === 'company' ? $scope.form.accountrepresentantname : '');
+            formData.append('compte_representant_dni', $scope.form.choosepayer === 'altre' && $scope.form.payertype === 'company' ? $scope.form.accountrepresentantdni : '');
             formData.append('condicions', 1);
             formData.append('condicions_privacitat', 1);
             formData.append('condicions_titular', 1);
             formData.append('donatiu', $scope.form.voluntary === 'yes' ? 1 : 0);
             // Send request data POST
+            $log.log('request formData', formData);
             $http({
                 method: 'POST',
                 url: cfg.API_BASE_URL + 'form/contractacio',
@@ -358,7 +363,6 @@ angular.module('newSomEnergiaWebformsApp')
 //        $scope.step0Ready = false;
 //        $scope.step1Ready = true;
 //        $scope.step2Ready = false;
-//        $scope.form.accountbank = '1491';
 //        $scope.form.accountoffice = '0001';
 //        $scope.form.accountchecksum = '20';
 //        $scope.form.accountnumber = '20363698';
