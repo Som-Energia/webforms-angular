@@ -467,7 +467,7 @@
                 </div>
             </div>
             <!-- PAYER_OTHER & PERSON (page 20) -->
-            <div data-ng-if="form.payertype != 'company'">
+            <div data-ng-if="form.payertype == 'person'">
                 <div class="row">
                     <div class="form-group col-xs-5">
                         <label class="sr-only">{{ 'NOM' | translate }}*:</label>
@@ -696,7 +696,7 @@
         <div class="row no-margin-bottom">
             <div class="col-xs-12 no-horitzontal-padding">
                 <button data-ng-click="backToStep3Form()" class="btn btn-default pull-left previous-step-submit">{{ 'PAS_ANTERIOR' | translate }}</button>
-                <button data-ng-click="submitOrder(orderForm)" class="btn btn-default pull-right next-step-submit" data-ng-disabled="!isFinalStepButtonReady">{{ 'CONFIRMAR_CONTRACTACIO' | translate }}</button>
+                <button data-ng-click="submitOrder(orderForm)" class="btn btn-default pull-right final-step-submit" data-ng-disabled="!isFinalStepButtonReady">{{ 'CONFIRMAR_CONTRACTACIO' | translate }}</button>
             </div>
         </div>
     </div>

@@ -14,6 +14,15 @@ $grey-dark: #5F5E63;
 $grey-darkest: #49494D;
 $my-border-radius: 4px;
 
+/* Mixins */
+@mixin common-button-mixin {
+  border-radius: 0;
+  color: $white;
+  border-color: transparent;
+  font-size: 18px;
+  width: 174px;
+  height: 38px;
+}
 
 /* Browserhappy */
 .browsehappy {
@@ -136,22 +145,18 @@ button {
         font-size: 23px;
       }
       &.next-step-submit {
-        border-radius: 0;
-        color: $white;
-        border-color: transparent;
-        font-size: 18px;
-        width: 174px;
-        height: 38px;
+        @include common-button-mixin;
         text-align: left;
         background: url("../images/next-step-right.png") no-repeat;
       }
+      &.final-step-submit {
+        @include common-button-mixin;
+        width: 180px;
+        text-align: left;
+        background: url("../images/iniciar-contractacio.png") no-repeat;
+      }
       &.previous-step-submit {
-        border-radius: 0;
-        color: $white;
-        border-color: transparent;
-        font-size: 18px;
-        width: 174px;
-        height: 38px;
+        @include common-button-mixin;
         text-align: right;
         background: url("../images/next-step-left.png") no-repeat;
       }
