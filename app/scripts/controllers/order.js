@@ -14,6 +14,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.dniIsInvalid = false;
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
+        $scope.invalidAttachFileExtension = false;
         $scope.accountIsInvalid = false;
         $scope.showUnknownSociWarning = false;
         $scope.showBeginOrderForm = false;
