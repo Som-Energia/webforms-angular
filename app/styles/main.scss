@@ -151,7 +151,7 @@ button {
       }
       &.final-step-submit {
         @include common-button-mixin;
-        width: 180px;
+        width: 240px;
         text-align: left;
         background: url("../images/iniciar-contractacio.png") no-repeat;
       }

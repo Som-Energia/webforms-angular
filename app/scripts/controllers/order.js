@@ -3,6 +3,9 @@
 angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
+        // DEBUG MODE
+        var debugEnabled = false;
+
         // INIT
         $scope.step0Ready = true;
         $scope.step1Ready = false;
@@ -11,6 +14,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.dniIsInvalid = false;
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
+        $scope.invalidAttachFileExtension = false;
         $scope.accountIsInvalid = false;
         $scope.showUnknownSociWarning = false;
         $scope.showBeginOrderForm = false;
@@ -52,7 +56,9 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
-                        $scope.showStep1Form = false; // uncomment on production
+                        if (debugEnabled) {
+                            $scope.showStep1Form = false;
+                        }
                     } else {
                         $scope.showUnknownSociWarning = true;
                         $scope.showStep1Form = false;
@@ -292,7 +298,6 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('condicions_titular', 1);
             formData.append('donatiu', $scope.form.voluntary === 'yes' ? 1 : 0);
             // Send request data POST
-            $log.log('request formData', formData);
             $http({
                 method: 'POST',
                 url: cfg.API_BASE_URL + 'form/contractacio',
@@ -351,19 +356,21 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // DEBUG (comment on production)
-//        $scope.form.init.socinumber = 1706;
-//        $scope.form.init.dni = '52608510N';
-//        $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
-//        $scope.form.cups = 'ES0031406222973003LE0F';
-//        $scope.form.cnae = '0520';
-//        $scope.form.power = '5.5';
-//        $scope.form.rate = '2.0A';
-//        $scope.executeGetSociValues();
-//        $scope.showStep1Form = true;
-//        $scope.step0Ready = false;
-//        $scope.step1Ready = true;
-//        $scope.step2Ready = false;
-//        $scope.form.accountoffice = '0001';
-//        $scope.form.accountchecksum = '20';
-//        $scope.form.accountnumber = '20363698';
+        if (debugEnabled) {
+            $scope.form.init.socinumber = 1706;
+            $scope.form.init.dni = '52608510N';
+            $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
+            $scope.form.cups = 'ES0031406222973003LE0F';
+            $scope.form.cnae = '0520';
+            $scope.form.power = '5.5';
+            $scope.form.rate = '2.0A';
+            $scope.executeGetSociValues();
+            $scope.showStep1Form = true;
+            $scope.step0Ready = false;
+            $scope.step1Ready = true;
+            $scope.step2Ready = false;
+            $scope.form.accountoffice = '0001';
+            $scope.form.accountchecksum = '20';
+            $scope.form.accountnumber = '20363698';
+        }
     }]);

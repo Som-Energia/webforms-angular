@@ -15,7 +15,11 @@ angular.module('newSomEnergiaWebformsApp')
 
         // SHOW WELL DONE MODAL DIALOG
         this.showWellDoneDialog = function() {
-            jQuery('#well-done-modal').modal({show: true});
+            jQuery('#well-done-modal').modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+            });
         };
 
         // LOADING DIALOG
