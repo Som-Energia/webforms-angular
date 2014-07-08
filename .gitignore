@@ -8,3 +8,4 @@ secret.json
 !.bowerrc
 !.editorconfig
 !.jshintrc
+!.travis.yml
