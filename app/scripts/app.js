@@ -92,7 +92,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 HELP_POPOVER_POWER: 'Anota la poténcia ACTUAL de tu contrato',
                 QUINA_TARIFA_TENS_CONTRACTADA: '¿Qué tarifa tienes contratada?',
                 SELECCIONAR: 'Seleccionar',
-                HELP_POPOVER_RATE: '?',
+                HELP_POPOVER_RATE: 'Lo encontraréis en vuestra factura actual. Para más información consultar el apartado de Ayuda de la web.',
                 INFORMACIO_OPCIONAL: 'Información opcional',
                 HELP_POPOVER_OPTIONAL_INFO: 'No es obligatoria, pero si muy recomendable',
                 CONSUM_ANUAL_ESTIMAT: 'Consumo anual estimado',
