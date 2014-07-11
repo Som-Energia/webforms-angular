@@ -7,6 +7,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.step1Ready = true;
         $scope.step2Ready = false;
         $scope.step3Ready = false;
+        $scope.showAgreeCheckbox = false;
         $scope.submitReady = false;
         $scope.dniIsInvalid = false;
         $scope.dniRepresentantIsInvalid = false;
@@ -60,7 +61,7 @@ angular.module('newSomEnergiaWebformsApp')
         // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function () {
             $scope.step2Ready = $scope.form.language !== undefined;
-            $scope.step3Ready = $scope.step2Ready &&
+            $scope.showAgreeCheckbox = $scope.step2Ready &&
                 $scope.form.name !== undefined &&
                 ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
                 ($scope.form.usertype === 'person' || $scope.form.usertype === 'company' && $scope.form.representantdni !== undefined && $scope.form.representantname !== undefined) &&
@@ -73,13 +74,12 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.postalcode !== undefined &&
                 $scope.form.province !== undefined &&
                 $scope.form.city !== undefined &&
-                $scope.form.accept !== undefined &&
-                $scope.form.accept !== false &&
                 $scope.dniIsInvalid === false &&
                 $scope.dniRepresentantIsInvalid === false &&
                 $scope.emailIsInvalid === false &&
                 $scope.emailNoIguals === false
             ;
+            $scope.step3Ready = $scope.showAgreeCheckbox && $scope.form.accept !== undefined && $scope.form.accept !== false;
             $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready;
         };
 

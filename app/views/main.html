@@ -159,7 +159,7 @@
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.city.$invalid">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" data-ng-show="showAgreeCheckbox">
                 <div class="form-group checkbox col-xs-12">
                     <label>
                         <input type="checkbox" name="accept" value="accept" data-ng-model="form.accept" data-ng-change="formListener()" data-ng-disabled="!step2Ready" required/>
