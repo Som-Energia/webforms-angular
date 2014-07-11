@@ -44,9 +44,6 @@ angular.module('newSomEnergiaWebformsApp')
         // GET STATES
         AjaxHandler.getStates($scope);
 
-        // PARTNER NUMBER VALIDATION
-        ValidateHandler.validateInteger($scope, 'form.init.socinumber');
-
         // GET PARTNER DATA
         $scope.executeGetSociValues = function() {
             var sociPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/soci/' + $scope.form.init.socinumber + '/' + $scope.form.init.dni, '001');
@@ -68,8 +65,12 @@ angular.module('newSomEnergiaWebformsApp')
             );
         };
 
+        // PARTNER NUMBER VALIDATION
+        ValidateHandler.validateInteger($scope, 'form.init.socinumber');
+
         // POWER VALIDATION
         ValidateHandler.validatePower($scope, 'form.power');
+        ValidateHandler.validateInteger($scope, 'form.estimation');
 
         // DNI VALIDATION
         var checkDniTimer = false;
@@ -110,6 +111,12 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateTelephoneNumber($scope, 'form.phone2');
         ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone1');
         ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone2');
+
+        // BANK ACCOUNT VALIDATION
+        ValidateHandler.validateBankAccountInteger($scope, 'form.accountbank');
+        ValidateHandler.validateBankAccountInteger($scope, 'form.accountoffice');
+        ValidateHandler.validateBankAccountInteger($scope, 'form.accountchecksum');
+        ValidateHandler.validateBankAccountInteger($scope, 'form.accountnumber');
 
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
@@ -191,6 +198,10 @@ angular.module('newSomEnergiaWebformsApp')
                 accountPromise.then(
                     function (response) {
                         $scope.accountIsInvalid = response === cfg.STATE_FALSE;
+                        $scope.orderForm.accountbank.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.orderForm.accountoffice.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.orderForm.accountchecksum.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.orderForm.accountnumber.$setValidity('invalid', !$scope.accountIsInvalid);
                         $scope.formListener($scope.form);
                     },
                     function(reason) { $log.error('Check account number failed', reason); }
@@ -203,6 +214,13 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.showStep1Form = true;
             $scope.step0Ready = false;
             $scope.step1Ready = true;
+        };
+
+        // BACK TO STEP 1 FORM
+        $scope.backToStep1Form = function() {
+            $scope.step0Ready = true;
+            $scope.step1Ready = false;
+            $scope.step2Ready = false;
         };
 
         // MOVE TO STEP 2 FORM
@@ -230,16 +248,47 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // ON INIT SUBMIT FORM
-        $scope.initSubmit = function(form) {
-            $scope.initFormSubmitted = true;
-            if (form.$invalid) {
-                return null;
+        var checkEnableInitSubmit1 = false;
+        $scope.$watch('form.init.socinumber', function(newValue) {
+            if (checkEnableInitSubmit1) {
+                $timeout.cancel(checkEnableInitSubmit1);
             }
-            // GET SOCI VALUES
-            $scope.executeGetSociValues();
-
-            return true;
-        };
+            checkEnableInitSubmit1 = $timeout(function() {
+                if (newValue !== undefined && !$scope.dniIsInvalid && $scope.form.init.dni !== undefined) {
+                    $scope.executeGetSociValues();
+                }
+            }, 1000);
+        });
+        var checkEnableInitSubmit2 = false;
+        $scope.$watch('form.init.dni', function(newValue) {
+            if (checkEnableInitSubmit2) {
+                $timeout.cancel(checkEnableInitSubmit2);
+            }
+            checkEnableInitSubmit2 = $timeout(function() {
+                if (newValue !== undefined) {
+                    var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
+                    dniPromise.then(
+                        function (response) {
+                            $scope.dniIsInvalid  = response === cfg.STATE_FALSE;
+                            if (!$scope.dniIsInvalid && $scope.form.init.socinumber !== undefined) {
+                                $scope.executeGetSociValues();
+                            }
+                        },
+                        function (reason) { $log.error('Check DNI failed', reason); }
+                    );
+                }
+            }, 1000);
+        });
+//        $scope.initSubmit = function(form) {
+//            $scope.initFormSubmitted = true;
+//            if (form.$invalid) {
+//                return null;
+//            }
+//            // GET SOCI VALUES
+//            $scope.executeGetSociValues();
+//
+//            return true;
+//        };
 
         // ON SUBMIT FORM
         $scope.submitOrder = function() {

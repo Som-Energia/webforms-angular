@@ -11,8 +11,10 @@ angular.module('newSomEnergiaWebformsApp')
         this.validateInteger = function($scope, element) {
             $scope.$watch(element, function(newValue, oldValue) {
                 if (newValue !== undefined) {
-                    if (!integerRE.test(newValue)) {
+                    if (element === 'form.init.socinumber' && !integerRE.test(newValue)) {
                         $scope.form.init.socinumber = oldValue;
+                    } else if (element === 'form.estimation' && !integerRE.test(newValue)) {
+                        $scope.form.estimation = oldValue;
                     }
                 }
             });
@@ -132,6 +134,23 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.accountphone1 = oldValue;
                     } else if (element === 'form.accountphone2') {
                         $scope.form.accountphone2 = oldValue;
+                    }
+                }
+            });
+        };
+
+        // BANK ACCOUNT INTEGER VALIDATOR
+        this.validateBankAccountInteger = function($scope, element) {
+            $scope.$watch(element, function(newValue, oldValue) {
+                if (newValue !== undefined) {
+                    if (element === 'form.accountbank' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                        $scope.form.accountbank = oldValue;
+                    } else if (element === 'form.accountoffice' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                        $scope.form.accountoffice = oldValue;
+                    } else if (element === 'form.accountchecksum' && (!integerRE.test(newValue) || newValue.length > 2)) {
+                        $scope.form.accountchecksum = oldValue;
+                    } else if (element === 'form.accountnumber' && (!integerRE.test(newValue) || newValue.length > 10)) {
+                        $scope.form.accountnumber = oldValue;
                     }
                 }
             });
