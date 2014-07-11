@@ -197,6 +197,10 @@ angular.module('newSomEnergiaWebformsApp')
                 accountPromise.then(
                     function (response) {
                         $scope.accountIsInvalid = response === cfg.STATE_FALSE;
+                        $scope.orderForm.accountbank.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.orderForm.accountoffice.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.orderForm.accountchecksum.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.orderForm.accountnumber.$setValidity('invalid', !$scope.accountIsInvalid);
                         $scope.formListener($scope.form);
                     },
                     function(reason) { $log.error('Check account number failed', reason); }
