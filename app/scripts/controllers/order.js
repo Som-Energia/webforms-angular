@@ -4,7 +4,7 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
-        var debugEnabled = true;
+        var debugEnabled = false;
 
         // INIT
         $scope.step0Ready = true;
@@ -44,9 +44,6 @@ angular.module('newSomEnergiaWebformsApp')
         // GET STATES
         AjaxHandler.getStates($scope);
 
-        // PARTNER NUMBER VALIDATION
-        ValidateHandler.validateInteger($scope, 'form.init.socinumber');
-
         // GET PARTNER DATA
         $scope.executeGetSociValues = function() {
             var sociPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/soci/' + $scope.form.init.socinumber + '/' + $scope.form.init.dni, '001');
@@ -68,8 +65,12 @@ angular.module('newSomEnergiaWebformsApp')
             );
         };
 
+        // PARTNER NUMBER VALIDATION
+        ValidateHandler.validateInteger($scope, 'form.init.socinumber');
+
         // POWER VALIDATION
         ValidateHandler.validatePower($scope, 'form.power');
+        ValidateHandler.validateInteger($scope, 'form.estimation');
 
         // DNI VALIDATION
         var checkDniTimer = false;

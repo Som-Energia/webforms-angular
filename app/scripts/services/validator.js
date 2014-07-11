@@ -11,8 +11,10 @@ angular.module('newSomEnergiaWebformsApp')
         this.validateInteger = function($scope, element) {
             $scope.$watch(element, function(newValue, oldValue) {
                 if (newValue !== undefined) {
-                    if (!integerRE.test(newValue)) {
+                    if (element === 'form.init.socinumber' && !integerRE.test(newValue)) {
                         $scope.form.init.socinumber = oldValue;
+                    } else if (element === 'form.estimation' && !integerRE.test(newValue)) {
+                        $scope.form.estimation = oldValue;
                     }
                 }
             });

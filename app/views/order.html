@@ -30,7 +30,7 @@
             <!--<button class="btn btn-default grey pull-right" data-ng-disabled="!initSubmitReady" data-ng-click="initSubmit(initForm)">{{ 'CARREGAR_DADES_SOCI_VINCULAT' | translate }}</button>-->
         <!--</div>-->
     </div>
-    <div class="row" data-ng-if="showBeginOrderForm && !dniIsInvalid">
+    <div class="row" data-ng-if="showBeginOrderForm && !showUnknownSociWarning && !dniIsInvalid">
         <div class="form-group col-xs-12">
             <label>{{ 'SOCI_VINCULAT' | translate }}:</label>
             <input type="text" name="address" class="form-control width-70-percent" placeholder="{{ soci.nom + ' ' + soci.cognom }}" disabled/>
