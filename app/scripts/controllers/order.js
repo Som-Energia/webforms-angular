@@ -205,6 +205,13 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.step1Ready = true;
         };
 
+        // BACK TO STEP 1 FORM
+        $scope.backToStep1Form = function() {
+            $scope.step0Ready = true;
+            $scope.step1Ready = false;
+            $scope.step2Ready = false;
+        };
+
         // MOVE TO STEP 2 FORM
         $scope.moveToStep2Form = function() {
             $scope.step1Ready = false;

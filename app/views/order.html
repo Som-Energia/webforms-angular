@@ -160,6 +160,7 @@
         </div>
         <div class="row no-margin-bottom">
             <div class="col-xs-12 no-horitzontal-padding">
+                <button data-ng-click="backToStep1Form()" class="btn btn-default pull-left previous-step-submit">{{ 'PAS_ANTERIOR' | translate }}</button>
                 <button data-ng-click="moveToStep2Form()" class="btn btn-default pull-right next-step-submit" data-ng-disabled="!isStep2ButtonReady">{{ 'SEGUENT_PAS' | translate }}</button>
             </div>
         </div>
