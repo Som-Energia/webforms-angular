@@ -137,6 +137,23 @@ angular.module('newSomEnergiaWebformsApp')
             });
         };
 
+        // BANK ACCOUNT INTEGER VALIDATOR
+        this.validateBankAccountInteger = function($scope, element) {
+            $scope.$watch(element, function(newValue, oldValue) {
+                if (newValue !== undefined) {
+                    if (element === 'form.accountbank' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                        $scope.form.accountbank = oldValue;
+                    } else if (element === 'form.accountoffice' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                        $scope.form.accountoffice = oldValue;
+                    } else if (element === 'form.accountchecksum' && (!integerRE.test(newValue) || newValue.length > 2)) {
+                        $scope.form.accountchecksum = oldValue;
+                    } else if (element === 'form.accountnumber' && (!integerRE.test(newValue) || newValue.length > 10)) {
+                        $scope.form.accountnumber = oldValue;
+                    }
+                }
+            });
+        };
+
         // CUPS VALIDATOR
         this.validateCups = function($scope, element, timer) {
             $scope.$watch(element, function(newValue) {

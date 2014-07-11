@@ -4,7 +4,7 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
-        var debugEnabled = false;
+        var debugEnabled = true;
 
         // INIT
         $scope.step0Ready = true;
@@ -110,6 +110,12 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateTelephoneNumber($scope, 'form.phone2');
         ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone1');
         ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone2');
+
+        // BANK ACCOUNT VALIDATION
+        ValidateHandler.validateBankAccountInteger($scope, 'form.accountbank');
+        ValidateHandler.validateBankAccountInteger($scope, 'form.accountoffice');
+        ValidateHandler.validateBankAccountInteger($scope, 'form.accountchecksum');
+        ValidateHandler.validateBankAccountInteger($scope, 'form.accountnumber');
 
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
