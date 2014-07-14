@@ -111,18 +111,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-xs-9">
-                <label>{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}?*</label>
-                <input type="text" name="power" class="form-control width-70-percent" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;kW
-                <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-            </div>
-            <div class="col-cs-1">
-                <span class="badge current small" data-popover="{{ 'HELP_POPOVER_POWER' | translate }}">?</span>
-            </div>
-        </div>
-        <div class="row">
             <div class="form-group col-xs-4">
-                <label>{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}?*</label>
+                <label>{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}*</label>
                 <select class="form-control width-50-percent" name="rate" data-ng-model="form.rate" data-ng-change="formListener()" required>
                     <option value="">{{ 'SELECCIONAR' | translate }}</option>
                     <option data-ng-repeat="rate in rates" value="{{ rate }}" data-ng-selected="{{ rate == form.rate }}">{{ rate }}</option>
@@ -130,6 +120,38 @@
             </div>
             <div class="col-xs-1">
                 <span class="badge current small" data-popover="{{ 'HELP_POPOVER_RATE' | translate }}">?</span>
+            </div>
+        </div>
+        <!--3.0A power rate NOT selected-->
+        <div class="row" data-ng-if="form.rate != '3.0A'">
+            <div class="form-group col-xs-9">
+                <label>{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
+                <input type="text" name="power" class="form-control width-70-percent" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;kW
+                <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            </div>
+            <div class="col-xs-1">
+                <span class="badge current small" data-popover="{{ 'HELP_POPOVER_POWER' | translate }}">?</span>
+            </div>
+        </div>
+        <!--3.0A power rate selected-->
+        <div class="row" data-ng-if="form.rate == '3.0A'">
+            <div class="form-group col-xs-3">
+                <label>P1*</label>
+                <input type="text" name="power" class="form-control width-70-percent" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;kW
+                <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            </div>
+            <div class="form-group col-xs-3">
+                <label>P2*</label>
+                <input type="text" name="power2" class="form-control width-70-percent" data-ng-model="form.power2" data-ng-change="formListener()" required/>&nbsp;kW
+                <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            </div>
+            <div class="form-group col-xs-3">
+                <label>P3*</label>
+                <input type="text" name="power3" class="form-control width-70-percent" data-ng-model="form.power3" data-ng-change="formListener()" required/>&nbsp;kW
+                <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power3.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            </div>
+            <div class="col-xs-1">
+                <span class="badge current small" data-popover="{{ 'HELP_POPOVER_POWER' | translate }}">?</span>
             </div>
         </div>
         <hr>
@@ -144,9 +166,13 @@
                 <label for="estimation" class="sr-only">{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}:</label>
                 <input type="text" name="estimation" data-ng-model="form.estimation" class="form-control" placeholder="{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}" data-ng-change="formListener()" />
             </div>
-            <div class="col-xs-8">
+            <div class="col-xs-7">
                 <label for="catastre" class="sr-only">{{ 'REFERENCIA_CATASTRAL' | translate }}:</label>
                 <input type="text" name="catastre" data-ng-model="form.catastre" class="form-control" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener()" />
+            </div>
+            <div class="col-xs-1">
+                <span class="badge current small" data-popover="{{ 'HELP_POPOVER_REFERENCIA_CATASTRAL' | translate }}">?</span>
+                <span data-ng-bind-html="'ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT' | translate"></span>
             </div>
         </div>
         <div class="row">
@@ -180,7 +206,7 @@
         <hr>
         <div class="row">
             <div class="form-group col-xs-4">
-                <label>{{ 'EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE' | translate }}?</label>
+                <label>{{ 'EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE' | translate }}</label>
                 <div class="btn-group">
                     <label class="btn btn-default green" data-ng-model="form.isownerlink" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>
                     <label class="btn btn-default green" data-ng-model="form.isownerlink" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>
@@ -195,8 +221,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-xs-4" data-ng-show="form.isownerlink == 'no'">
-                <label>{{ 'VOLS_FER_CANVI_TITULAR' | translate }}?</label>
+            <div class="form-group col-xs-4">
+                <label>{{ 'VOLS_FER_CANVI_TITULAR' | translate }}</label>
                 <div class="btn-group">
                     <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>
                     <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>
@@ -450,7 +476,7 @@
     <div data-ng-show="step3Ready">
         <div class="row extra-margin-top">
             <div class="col-xs-7">
-                <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}?:</label>
+                <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}</label>
                 <select class="form-control width-50-percent" name="choosepayer" data-ng-model="form.choosepayer" data-ng-change="formListener()">
                     <option value="titular">{{ 'TITULAR_CONTRACTE_ELECTRICITAT' | translate }}</option>
                     <option value="soci">{{ 'SOCI_SOM_ENERGIA' | translate }}</option>
@@ -673,7 +699,7 @@
             <div class="col-xs-12">
                 <div class="well custom-ad-top">
                     <h6>{{ 'SOM_UNA_COOPERATIVA_SENSE_ANIM_DE_LUCRE' | translate }}.</h6>
-                    <h5>{{ 'VOLS_PARTICIPAR_AMB_LA_TEVA_ENERGIA' | translate }}?</h5>
+                    <h5>{{ 'VOLS_PARTICIPAR_AMB_LA_TEVA_ENERGIA' | translate }}</h5>
                 </div>
                 <div class="row">
                     <div class="col-xs-5">
