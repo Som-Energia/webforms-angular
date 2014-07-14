@@ -129,7 +129,7 @@
                 <input type="text" name="power" class="form-control width-70-percent" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;kW
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
-            <div class="col-cs-1">
+            <div class="col-xs-1">
                 <span class="badge current small" data-popover="{{ 'HELP_POPOVER_POWER' | translate }}">?</span>
             </div>
         </div>
@@ -150,7 +150,7 @@
                 <input type="text" name="power3" class="form-control width-70-percent" data-ng-model="form.power3" data-ng-change="formListener()" required/>&nbsp;kW
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power3.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
-            <div class="col-cs-1">
+            <div class="col-xs-1">
                 <span class="badge current small" data-popover="{{ 'HELP_POPOVER_POWER' | translate }}">?</span>
             </div>
         </div>
@@ -166,9 +166,13 @@
                 <label for="estimation" class="sr-only">{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}:</label>
                 <input type="text" name="estimation" data-ng-model="form.estimation" class="form-control" placeholder="{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}" data-ng-change="formListener()" />
             </div>
-            <div class="col-xs-8">
+            <div class="col-xs-7">
                 <label for="catastre" class="sr-only">{{ 'REFERENCIA_CATASTRAL' | translate }}:</label>
                 <input type="text" name="catastre" data-ng-model="form.catastre" class="form-control" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener()" />
+            </div>
+            <div class="col-xs-1">
+                <span class="badge current small" data-popover="{{ 'HELP_POPOVER_REFERENCIA_CATASTRAL' | translate }}">?</span>
+                <span data-ng-bind-html="'ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT' | translate"></span>
             </div>
         </div>
         <div class="row">
