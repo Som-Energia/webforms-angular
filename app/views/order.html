@@ -111,16 +111,6 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-xs-9">
-                <label>{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}?*</label>
-                <input type="text" name="power" class="form-control width-70-percent" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;kW
-                <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-            </div>
-            <div class="col-cs-1">
-                <span class="badge current small" data-popover="{{ 'HELP_POPOVER_POWER' | translate }}">?</span>
-            </div>
-        </div>
-        <div class="row">
             <div class="form-group col-xs-4">
                 <label>{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}?*</label>
                 <select class="form-control width-50-percent" name="rate" data-ng-model="form.rate" data-ng-change="formListener()" required>
@@ -130,6 +120,16 @@
             </div>
             <div class="col-xs-1">
                 <span class="badge current small" data-popover="{{ 'HELP_POPOVER_RATE' | translate }}">?</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-9">
+                <label>{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}?*</label>
+                <input type="text" name="power" class="form-control width-70-percent" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;kW
+                <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            </div>
+            <div class="col-cs-1">
+                <span class="badge current small" data-popover="{{ 'HELP_POPOVER_POWER' | translate }}">?</span>
             </div>
         </div>
         <hr>
