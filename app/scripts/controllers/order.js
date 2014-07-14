@@ -70,6 +70,8 @@ angular.module('newSomEnergiaWebformsApp')
 
         // POWER VALIDATION
         ValidateHandler.validatePower($scope, 'form.power');
+        ValidateHandler.validatePower($scope, 'form.power2');
+        ValidateHandler.validatePower($scope, 'form.power3');
         ValidateHandler.validateInteger($scope, 'form.estimation');
 
         // DNI VALIDATION

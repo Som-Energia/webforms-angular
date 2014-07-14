@@ -122,11 +122,33 @@
                 <span class="badge current small" data-popover="{{ 'HELP_POPOVER_RATE' | translate }}">?</span>
             </div>
         </div>
-        <div class="row">
+        <!--3.0A power rate NOT selected-->
+        <div class="row" data-ng-if="form.rate != '3.0A'">
             <div class="form-group col-xs-9">
                 <label>{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
                 <input type="text" name="power" class="form-control width-70-percent" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;kW
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            </div>
+            <div class="col-cs-1">
+                <span class="badge current small" data-popover="{{ 'HELP_POPOVER_POWER' | translate }}">?</span>
+            </div>
+        </div>
+        <!--3.0A power rate selected-->
+        <div class="row" data-ng-if="form.rate == '3.0A'">
+            <div class="form-group col-xs-3">
+                <label>P1*</label>
+                <input type="text" name="power" class="form-control width-70-percent" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;kW
+                <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            </div>
+            <div class="form-group col-xs-3">
+                <label>P2*</label>
+                <input type="text" name="power2" class="form-control width-70-percent" data-ng-model="form.power2" data-ng-change="formListener()" required/>&nbsp;kW
+                <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            </div>
+            <div class="form-group col-xs-3">
+                <label>P3*</label>
+                <input type="text" name="power3" class="form-control width-70-percent" data-ng-model="form.power3" data-ng-change="formListener()" required/>&nbsp;kW
+                <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power3.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
             <div class="col-cs-1">
                 <span class="badge current small" data-popover="{{ 'HELP_POPOVER_POWER' | translate }}">?</span>
