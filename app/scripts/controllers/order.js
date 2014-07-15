@@ -4,7 +4,7 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
-        var debugEnabled = false;
+        var debugEnabled = true;
 
         // INIT
         $scope.step0Ready = true;
@@ -294,10 +294,12 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON SUBMIT FORM
         $scope.submitOrder = function() {
+            $scope.messages = null;
             $scope.orderFormSubmitted = true;
             $scope.cupsIsDuplicated = false;
-            $scope.messages = null;
+            $scope.invalidAttachFileExtension = false;
             $scope.orderForm.cups.$setValidity('exist', true);
+            $scope.orderForm.file.$setValidity('exist', true);
             uiHandler.showLoadingDialog();
             // Prepare request data
             var formData = new FormData();
@@ -394,9 +396,13 @@ angular.module('newSomEnergiaWebformsApp')
                 result = result + ' ERROR:';
                 for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
                     result = result + ' ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error;
+                    $log.log(result);
                     if (arrayResponse.invalid_fields[j].field === 'cups' && arrayResponse.invalid_fields[j].error === 'exist') {
                         $scope.cupsIsDuplicated = true;
                         $scope.orderForm.cups.$setValidity('exist', false);
+                    } else if (arrayResponse.invalid_fields[j].field === 'fitxer' && arrayResponse.invalid_fields[j].error === 'bad_extension') {
+                        $scope.invalidAttachFileExtension = true;
+                        $scope.orderForm.file.$setValidity('exist', false);
                     }
                 }
             }
