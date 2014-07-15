@@ -334,6 +334,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('ncompte', $scope.form.accountnumber);
             formData.append('escull_pagador', $scope.form.choosepayer);
             formData.append('compte_nom', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountname);
+            formData.append('compte_cognom', $scope.form.choosepayer === 'altre' && $scope.form.payertype === 'person' ? $scope.form.accountsurname : '' );
             formData.append('compte_dni', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountdni);
             formData.append('compte_adreca', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountaddress);
             formData.append('compte_provincia', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.province3.id);
