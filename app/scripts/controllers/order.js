@@ -294,10 +294,12 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON SUBMIT FORM
         $scope.submitOrder = function() {
+            $scope.messages = null;
             $scope.orderFormSubmitted = true;
             $scope.cupsIsDuplicated = false;
-            $scope.messages = null;
+            $scope.invalidAttachFileExtension = false;
             $scope.orderForm.cups.$setValidity('exist', true);
+            $scope.orderForm.file.$setValidity('exist', true);
             uiHandler.showLoadingDialog();
             // Prepare request data
             var formData = new FormData();
@@ -322,6 +324,8 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('cups', $scope.form.cups);
             formData.append('consum', $scope.form.estimation === undefined ? '' : $scope.form.estimation);
             formData.append('potencia', $scope.form.power * 1000);
+            formData.append('potencia_p2', $scope.form.rate === '3.0A' ? $scope.form.power2 * 1000 : '');
+            formData.append('potencia_p3', $scope.form.rate === '3.0A' ? $scope.form.power3 * 1000 : '');
             formData.append('cnae', $scope.form.cnae);
             formData.append('cups_adreca', $scope.form.address);
             formData.append('cups_provincia', $scope.form.province.id);
@@ -334,6 +338,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('ncompte', $scope.form.accountnumber);
             formData.append('escull_pagador', $scope.form.choosepayer);
             formData.append('compte_nom', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountname);
+            formData.append('compte_cognom', $scope.form.choosepayer === 'altre' && $scope.form.payertype === 'person' ? $scope.form.accountsurname : '' );
             formData.append('compte_dni', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountdni);
             formData.append('compte_adreca', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountaddress);
             formData.append('compte_provincia', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.province3.id);
@@ -393,9 +398,13 @@ angular.module('newSomEnergiaWebformsApp')
                 result = result + ' ERROR:';
                 for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
                     result = result + ' ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error;
+                    $log.log(result);
                     if (arrayResponse.invalid_fields[j].field === 'cups' && arrayResponse.invalid_fields[j].error === 'exist') {
                         $scope.cupsIsDuplicated = true;
                         $scope.orderForm.cups.$setValidity('exist', false);
+                    } else if (arrayResponse.invalid_fields[j].field === 'fitxer' && arrayResponse.invalid_fields[j].error === 'bad_extension') {
+                        $scope.invalidAttachFileExtension = true;
+                        $scope.orderForm.file.$setValidity('exist', false);
                     }
                 }
             }
