@@ -324,6 +324,8 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('cups', $scope.form.cups);
             formData.append('consum', $scope.form.estimation === undefined ? '' : $scope.form.estimation);
             formData.append('potencia', $scope.form.power * 1000);
+            formData.append('potencia_p2', $scope.form.rate === '3.0A' ? $scope.form.power2 * 1000 : '');
+            formData.append('potencia_p3', $scope.form.rate === '3.0A' ? $scope.form.power3 * 1000 : '');
             formData.append('cnae', $scope.form.cnae);
             formData.append('cups_adreca', $scope.form.address);
             formData.append('cups_provincia', $scope.form.province.id);
