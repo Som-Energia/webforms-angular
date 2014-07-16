@@ -398,13 +398,11 @@ angular.module('newSomEnergiaWebformsApp')
                 result = result + ' ERROR:';
                 for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
                     result = result + ' ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error;
-//                    $log.log(result);
                     if (arrayResponse.invalid_fields[j].field === 'cups' && arrayResponse.invalid_fields[j].error === 'exist') {
                         $scope.cupsIsDuplicated = true;
                         $scope.orderForm.cups.$setValidity('exist', false);
                     } else if (arrayResponse.invalid_fields[j].field === 'fitxer' && arrayResponse.invalid_fields[j].error === 'bad_extension') {
                         $scope.invalidAttachFileExtension = true;
-//                        $log.log('hit');
                         $scope.orderForm.file.$setValidity('exist', false);
                     }
                 }
