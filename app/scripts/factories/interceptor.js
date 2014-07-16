@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .factory('fileInterceptor', ['$q', '$injector', '$log', function($q) { //, $injector, $log) {
+    .factory('fileInterceptor', ['$q', '$injector', '$log', function($q, $injector, $log) {
         return {
             responseError: function(response) {
-//                $log.log('fileInterceptor responseError', response);
+                $log.log('fileInterceptor responseError', response);
                 if (response.status === 413) {
+                    $log.log('413 error recived');
 //                    var SessionService = $injector.get('SessionService');
 //                    var $http = $injector.get('$http');
 //                    var deferred = $q.defer();
