@@ -15,6 +15,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
         $scope.invalidAttachFileExtension = false;
+        $scope.overflowAttachFile = false;
         $scope.accountIsInvalid = false;
         $scope.showUnknownSociWarning = false;
         $scope.showBeginOrderForm = false;
@@ -298,6 +299,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.orderFormSubmitted = true;
             $scope.cupsIsDuplicated = false;
             $scope.invalidAttachFileExtension = false;
+            $scope.overflowAttachFile = false;
             $scope.orderForm.cups.$setValidity('exist', true);
             $scope.orderForm.file.$setValidity('exist', true);
             uiHandler.showLoadingDialog();
@@ -379,7 +381,19 @@ angular.module('newSomEnergiaWebformsApp')
                         uiHandler.showErrorDialog('API server unknown status (ref.021-021)');
                     }
                 },
-                function(reason) { $log.error('Send POST failed', reason); }
+                function(reason) {
+                    $log.error('Send POST failed', reason);
+                    uiHandler.hideLoadingDialog();
+                    if (reason.status === 413) {
+                        $scope.messages = 'ERROR 413';
+                    } else {
+                        $scope.messages = 'ERROR';
+                    }
+                    $scope.overflowAttachFile = true;
+                    $scope.step1Ready = true;
+                    $scope.step2Ready = true;
+                    $scope.step3Ready = true;
+                }
             );
 
             return true;
