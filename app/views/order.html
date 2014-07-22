@@ -124,9 +124,9 @@
         </div>
         <!--3.0A power rate NOT selected-->
         <div class="row" data-ng-if="form.rate != '3.0A'">
-            <div class="form-group col-xs-9">
+            <div class="form-group col-xs-5">
                 <label>{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
-                <input type="text" name="power" class="form-control width-70-percent" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;kW
+                <input type="text" name="power" class="form-control width-50-percent" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;kW
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
             <div class="col-xs-1">
