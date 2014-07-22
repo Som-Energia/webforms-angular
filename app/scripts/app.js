@@ -130,12 +130,12 @@ angular.module('newSomEnergiaWebformsApp', [
                 ENVIANT_DADES: 'Si has adjuntado una factura este proceso puede tardar un tiempo y este tiempo dependerá del peso del archivo y de tu conexión a internet. Ánimos y buenas energías, que ya casi lo has conseguido! :)'
             })
             .translations('ca', {
-                SELECCIONA: 'Sel·lecciona',
+                SELECCIONA: 'Selecciona',
                 PARTICULAR: 'Persona física',
                 EMPRESA: 'Persona jurídica',
                 OBLIGATORI: 'Obligatori',
                 IDIOMA: 'Idioma',
-                SELECCIONA_IDIOMA: 'Sel·lecciona idioma',
+                SELECCIONA_IDIOMA: 'Selecciona idioma',
                 NOM: 'Nom',
                 COGNOMS: 'Cognoms',
                 RAO_SOCIAL: 'Raó social',
