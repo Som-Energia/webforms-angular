@@ -5,6 +5,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         var emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var integerRE = /^\d+$/;
+        var dniRE = /^[a-zA-Z]?\d*[a-zA-Z]?$/;
         var DELAY = 1000; // in milliseconds
 
         // INTEGER VALIDATOR
@@ -61,12 +62,27 @@ angular.module('newSomEnergiaWebformsApp')
         
         // DNI VALIDATOR
         this.validateDni = function($scope, element, timer) {
-            $scope.$watch(element, function(newValue) {
+            $scope.$watch(element, function(newValue, oldValue) {
+                var makeApiAsyncCheck = true;
+                if (newValue !== undefined && !dniRE.test(newValue)) {
+                    if (element === 'form.dni') {
+                        $scope.form.dni = oldValue;
+                    } else if (element === 'form.init.dni') {
+                        $scope.form.init.dni = oldValue;
+                    } else if (element === 'form.representantdni') {
+                        $scope.form.representantdni = oldValue;
+                    } else if (element === 'form.accountdni') {
+                        $scope.form.accountdni = oldValue;
+                    } else if (element === 'form.accountrepresentantdni') {
+                        $scope.form.accountrepresentantdni = oldValue;
+                    }
+                    makeApiAsyncCheck = false;
+                }
                 if (timer) {
                     $timeout.cancel(timer);
                 }
                 timer = $timeout(function() {
-                    if (newValue !== undefined) {
+                    if (newValue !== undefined && makeApiAsyncCheck) {
                         var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
                         dniPromise.then(
                             function (response) {
