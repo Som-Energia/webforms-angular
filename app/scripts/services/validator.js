@@ -163,7 +163,9 @@ angular.module('newSomEnergiaWebformsApp')
         // TELEPHONE NUMBER VALIDATOR
         this.validateTelephoneNumber = function($scope, element) {
             $scope.$watch(element, function(newValue, oldValue) {
-                if (newValue !== undefined && (!integerRE.test(newValue) || newValue.length > 9)) {
+                $log.log(oldValue, newValue);
+                $log.log('integerRE.test(newValue)', integerRE.test(newValue));
+                if (newValue !== undefined && newValue !== '' && (!integerRE.test(newValue) || newValue.length > 9)) {
                     if (element === 'form.phone1') {
                         $scope.form.phone1 = oldValue;
                     } else if (element === 'form.phone2') {
