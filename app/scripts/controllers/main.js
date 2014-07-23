@@ -14,6 +14,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.dniDuplicated = false;
         $scope.emailIsInvalid = false;
         $scope.emailNoIguals = false;
+        $scope.postalCodeIsInvalid = false;
         $scope.submitted = false;
         $scope.form = {};
         $scope.languages = [];
@@ -35,7 +36,8 @@ angular.module('newSomEnergiaWebformsApp')
         AjaxHandler.getStates($scope);
 
         // POSTAL CODE VALIDATION
-        ValidateHandler.validatePostalCode($scope, 'form.postalcode');
+        var checkPostalCodeTimer = false;
+        ValidateHandler.validatePostalCode($scope, 'form.postalcode', checkPostalCodeTimer);
 
         // TELEPHONE VALIDATION
         ValidateHandler.validateTelephoneNumber($scope, 'form.phone1');
@@ -77,7 +79,8 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.dniIsInvalid === false &&
                 $scope.dniRepresentantIsInvalid === false &&
                 $scope.emailIsInvalid === false &&
-                $scope.emailNoIguals === false
+                $scope.emailNoIguals === false &&
+                !$scope.postalCodeIsInvalid
             ;
             $scope.step3Ready = $scope.showAgreeCheckbox && $scope.form.accept !== undefined && $scope.form.accept !== false;
             $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready;

@@ -4,7 +4,7 @@ angular.module('newSomEnergiaWebformsApp')
     .service('ValidateHandler', ['$timeout', '$log', 'AjaxHandler', 'cfg', function($timeout, $log, AjaxHandler, cfg) {
 
         var emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        var integerRE = /^\d+$/;
+        var integerRE = /^\d*$/;
         var dniRE = /^[a-zA-Z]?\d*[a-zA-Z]?$/;
         var DELAY = 1000; // in milliseconds
 
@@ -150,7 +150,7 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // POSTAL CODE VALIDATOR
-        this.validatePostalCode = function($scope, element) {
+        this.validatePostalCode = function($scope, element, timer) {
             $scope.$watch(element, function(newValue, oldValue) {
                 if (newValue !== undefined && (!integerRE.test(newValue) || newValue.length > 5)) {
                     if (element === 'form.postalcode') {
@@ -159,6 +159,25 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.accountpostalcode = oldValue;
                     }
                 }
+                if (timer) {
+                    $timeout.cancel(timer);
+                }
+                timer = $timeout(function() {
+                    if (newValue !== undefined && newValue.length < 5) {
+                        if (element === 'form.postalcode') {
+                            $scope.postalCodeIsInvalid = true;
+                        } else if (element === 'form.accountpostalcode') {
+
+                        }
+                    } else {
+                        if (element === 'form.postalcode') {
+                            $scope.postalCodeIsInvalid = false;
+                        } else if (element === 'form.accountpostalcode') {
+
+                        }
+                    }
+                    $scope.formListener();
+                }, DELAY);
             });
         };
 
