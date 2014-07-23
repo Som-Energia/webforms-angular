@@ -24,7 +24,7 @@
             <span class="label label-danger" data-ng-show="dniIsInvalid">{{ 'INVALID' | translate }}</span>
         </div>
         <div class="col-xs-1">
-            <span class="badge current small" data-popover="{{ 'HELP_POPOVER_DNI' | translate }}">?</span>
+            <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_DNI' | translate }}" data-placement="top">?</span>
         </div>
         <!--<div class="col-xs-5">-->
             <!--<button class="btn btn-default grey pull-right" data-ng-disabled="!initSubmitReady" data-ng-click="initSubmit(initForm)">{{ 'CARREGAR_DADES_SOCI_VINCULAT' | translate }}</button>-->
@@ -748,5 +748,6 @@
 <script type="text/javascript">
     jQuery(document).ready(function() {
         jQuery("#help-popover-referencia-catastral").popover({html : true});
+        jQuery(".spc").popover();
     });
 </script>
