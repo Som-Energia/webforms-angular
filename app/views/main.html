@@ -141,6 +141,7 @@
                     <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
                     <input type="text" name="postalcode" data-ng-model="form.postalcode" class="form-control" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" data-ng-disabled="!step2Ready" required/>
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.postalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="postalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
                 </div>
             </div>
             <div class="row">
