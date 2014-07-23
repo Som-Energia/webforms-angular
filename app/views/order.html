@@ -161,20 +161,22 @@
         <div class="row">
             <div class="col-xs-12">
                 <span class="optional-info">{{ 'INFORMACIO_OPCIONAL' | translate }}</span>
-                <span class="badge current small" data-popover="{{ 'HELP_POPOVER_OPTIONAL_INFO' | translate }}">?</span>
+                <!--<span class="badge current small" data-popover="{{ 'HELP_POPOVER_OPTIONAL_INFO' | translate }}">?</span>-->
+                <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_OPTIONAL_INFO' | translate }}" data-placement="right">?</span>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-2">
                 <label for="estimation" class="sr-only">{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}:</label>
-                <input type="text" name="estimation" data-ng-model="form.estimation" class="form-control" placeholder="{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}" data-ng-change="formListener()" />
+                <input type="text" name="estimation" data-ng-model="form.estimation" class="form-control" placeholder="{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}" data-ng-change="formListener()"/>
             </div>
             <div class="col-xs-5">
                 <label for="catastre" class="sr-only">{{ 'REFERENCIA_CATASTRAL' | translate }}:</label>
-                <input type="text" name="catastre" data-ng-model="form.catastre" class="form-control" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener()" />
+                <input type="text" name="catastre" data-ng-model="form.catastre" class="form-control" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener()"/>
             </div>
             <div class="col-xs-1">
-                <span id="help-popover-referencia-catastral" class="badge current small" data-content="{{ 'HELP_POPOVER_REFERENCIA_CATASTRAL' | translate }}" data-html="true" data-container="body" data-placement="top">?</span>
+                <!--<span id="help-popover-referencia-catastral" class="badge current small" data-content="{{ 'HELP_POPOVER_REFERENCIA_CATASTRAL' | translate }}" data-html="true" data-container="body" data-placement="top">?</span>-->
+                <span class="spc-html badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_REFERENCIA_CATASTRAL' | translate }}" data-placement="top">?</span>
             </div>
         </div>
         <div class="row">
@@ -750,7 +752,7 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery("#help-popover-referencia-catastral").popover({html : true});
-        jQuery(".spc").popover();
+        jQuery(".spc-html").popover({html : true, trigger : 'hover'});
+        jQuery(".spc").popover({trigger : 'hover'});
     });
 </script>
