@@ -30,19 +30,21 @@ angular.module('newSomEnergiaWebformsApp')
                     var result = match[0].replace(',', '.');
                     result = result.replace('\'', '.');
                     if (element === 'form.power') {
-                        if ($scope.form.rate !== '3.0A') {
-                            if (result > 15) {
-                                $scope.form.power = oldValue;
-                            } else {
-                                $scope.form.power = result;
+                        var valueToApply = result;
+                        if ($scope.form.rate === '2.0A' || $scope.form.rate === '2.0DHA') {
+                            if (result > 10) {
+                                valueToApply = oldValue;
                             }
-                        } else {
+                        } else if ($scope.form.rate === '2.1A' || $scope.form.rate === '2.1DHA') {
+                            if (result > 15 || (result > 1 && newValue.length === 1)) {
+                                valueToApply = oldValue;
+                            }
+                        } else if ($scope.form.rate === '3.0A') {
                             if (result > 450 || (result < 15 && newValue.length > 1)) {
-                                $scope.form.power = oldValue;
-                            } else {
-                                $scope.form.power = result;
+                                valueToApply = oldValue;
                             }
                         }
+                        $scope.form.power = valueToApply;
                     } else if (element === 'form.power2') {
                         if (result > 450 || (result < 15 && newValue.length > 1)) {
                             $scope.form.power2 = oldValue;
