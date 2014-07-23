@@ -198,12 +198,13 @@
     </div>
     <div data-ng-show="step2Ready">
         <div class="row extra-margin-top">
-            <div class="col-xs-12">
-                <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_HELPER' | translate }}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-xs-4">
+            <!--<div class="col-xs-12">-->
+                <!--<p>{{ 'DADES_TITULAR_NOU_CONTRACTE_HELPER' | translate }}</p>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+            <div class="form-group col-xs-11">
+                <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_HELPER' | translate }}
                 <label>{{ 'VOLS_FER_CANVI_TITULAR' | translate }}</label>
                 <div class="btn-group">
                     <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>
@@ -211,7 +212,7 @@
                 </div>
             </div>
             <div class="col-xs-1">
-                <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_OWNER' | translate }}" data-placement="top">?</span>
+                <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_OWNER' | translate }}" data-placement="left">?</span>
             </div>
         </div>
         <hr>
