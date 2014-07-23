@@ -5,6 +5,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         var emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var integerRE = /^\d+$/;
+        var dniRE = /^[a-zA-Z]?\d*[a-zA-Z]?$/;
         var DELAY = 1000; // in milliseconds
 
         // INTEGER VALIDATOR
@@ -29,19 +30,21 @@ angular.module('newSomEnergiaWebformsApp')
                     var result = match[0].replace(',', '.');
                     result = result.replace('\'', '.');
                     if (element === 'form.power') {
-                        if ($scope.form.rate !== '3.0A') {
-                            if (result > 15) {
-                                $scope.form.power = oldValue;
-                            } else {
-                                $scope.form.power = result;
+                        var valueToApply = result;
+                        if ($scope.form.rate === '2.0A' || $scope.form.rate === '2.0DHA') {
+                            if (result > 10) {
+                                valueToApply = oldValue;
                             }
-                        } else {
+                        } else if ($scope.form.rate === '2.1A' || $scope.form.rate === '2.1DHA') {
+                            if (result > 15 || (result > 1 && newValue.length === 1)) {
+                                valueToApply = oldValue;
+                            }
+                        } else if ($scope.form.rate === '3.0A') {
                             if (result > 450 || (result < 15 && newValue.length > 1)) {
-                                $scope.form.power = oldValue;
-                            } else {
-                                $scope.form.power = result;
+                                valueToApply = oldValue;
                             }
                         }
+                        $scope.form.power = valueToApply;
                     } else if (element === 'form.power2') {
                         if (result > 450 || (result < 15 && newValue.length > 1)) {
                             $scope.form.power2 = oldValue;
@@ -61,12 +64,27 @@ angular.module('newSomEnergiaWebformsApp')
         
         // DNI VALIDATOR
         this.validateDni = function($scope, element, timer) {
-            $scope.$watch(element, function(newValue) {
+            $scope.$watch(element, function(newValue, oldValue) {
+                var makeApiAsyncCheck = true;
+                if (newValue !== undefined && !dniRE.test(newValue)) {
+                    if (element === 'form.dni') {
+                        $scope.form.dni = oldValue;
+                    } else if (element === 'form.init.dni') {
+                        $scope.form.init.dni = oldValue;
+                    } else if (element === 'form.representantdni') {
+                        $scope.form.representantdni = oldValue;
+                    } else if (element === 'form.accountdni') {
+                        $scope.form.accountdni = oldValue;
+                    } else if (element === 'form.accountrepresentantdni') {
+                        $scope.form.accountrepresentantdni = oldValue;
+                    }
+                    makeApiAsyncCheck = false;
+                }
                 if (timer) {
                     $timeout.cancel(timer);
                 }
                 timer = $timeout(function() {
-                    if (newValue !== undefined) {
+                    if (newValue !== undefined && makeApiAsyncCheck) {
                         var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
                         dniPromise.then(
                             function (response) {
@@ -147,7 +165,7 @@ angular.module('newSomEnergiaWebformsApp')
         // TELEPHONE NUMBER VALIDATOR
         this.validateTelephoneNumber = function($scope, element) {
             $scope.$watch(element, function(newValue, oldValue) {
-                if (newValue !== undefined && (!integerRE.test(newValue) || newValue.length > 9)) {
+                if (newValue !== undefined && newValue !== '' && (!integerRE.test(newValue) || newValue.length > 9)) {
                     if (element === 'form.phone1') {
                         $scope.form.phone1 = oldValue;
                     } else if (element === 'form.phone2') {

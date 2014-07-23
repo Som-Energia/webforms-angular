@@ -132,6 +132,15 @@ angular.module('newSomEnergiaWebformsApp')
             AjaxHandler.getCities($scope, 3);
         };
 
+        // ON CHANGE SELECTED FILE TO UPLOAD VALIDATION
+        $scope.validateSelectedFileSize = function() {
+            var file = jQuery('#fileuploaderinput')[0].files[0];
+            $scope.$apply(function() {
+                $scope.overflowAttachFile = (file.size / 1024 / 1024) > 10;
+                $scope.formListener();
+            });
+        };
+
         // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function() {
             $scope.initSubmitReady = $scope.form.init.dni !== undefined && $scope.form.init.socinumber !== undefined && $scope.dniIsInvalid === false;
@@ -144,7 +153,8 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.cupsIsInvalid === false &&
                 $scope.cnaeIsInvalid === false &&
                 $scope.form.power !== undefined &&
-                $scope.form.rate !== undefined;
+                $scope.form.rate !== undefined &&
+                !$scope.overflowAttachFile;
             $scope.isStep3ButtonReady = $scope.isStep2ButtonReady &&
                 ($scope.form.isownerlink === 'yes' &&
                     (($scope.form.usertype === 'company' && $scope.form.representantdni !== undefined && $scope.form.representantname !== undefined) || $scope.form.usertype === 'person') ||
