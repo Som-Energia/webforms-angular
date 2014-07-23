@@ -179,9 +179,9 @@
                 <label for="file">{{ 'ADJUNTAR_ULTIMA_FACTURA' | translate }}</label>
             </div>
             <div class="col-xs-7">
-                <input id="fileuploaderinput" type="file" name="file" data-ng-model="form.file" class="form-control" />
+                <input id="fileuploaderinput" type="file" name="file" data-ng-model="form.file" class="form-control" onchange="angular.element(this).scope().validateSelectedFileSize()"/>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && invalidAttachFileExtension">{{ 'BAD_EXTENSION' | translate }}</span>
-                <span class="label label-danger" data-ng-show="orderFormSubmitted && overflowAttachFile">{{ 'OVERFLOW_FILE' | translate }}</span>
+                <span class="label label-danger" data-ng-show="overflowAttachFile">{{ 'OVERFLOW_FILE' | translate }}</span>
             </div>
         </div>
         <div class="row no-margin-bottom">
