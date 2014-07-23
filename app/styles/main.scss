@@ -76,6 +76,10 @@ body {
   border-top-color: $grey-darkest;
 }
 
+.popover.right > .arrow:after {
+  border-right-color: $grey-darkest;
+}
+
 input[type="checkbox"] { margin-right: 5px; }
 
 input[type="text"], select {

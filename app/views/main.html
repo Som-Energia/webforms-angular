@@ -27,7 +27,7 @@
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.language.$invalid">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="col-xs-1">
-                    <span class="badge current small" data-popover="{{ 'HELP_POPOVER_IDIOMA' | translate }}" data-placement="auto">?</span>
+                    <span id="help-popover-language" class="badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_IDIOMA' | translate }}" data-placement="right">?</span>
                 </div>
             </div>
         </div>
@@ -218,3 +218,9 @@
 <div id="well-done-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="WebformsWellDone" data-aria-hidden="true">
     <div class="modal-dialog modal-lg" data-ng-include data-src="'views/common/well-done-modal.html'"></div>
 </div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery("#help-popover-language").popover();
+    });
+</script>
