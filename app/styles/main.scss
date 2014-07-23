@@ -80,6 +80,10 @@ body {
   border-right-color: $grey-darkest;
 }
 
+.popover.left > .arrow:after {
+  border-left-color: $grey-darkest;
+}
+
 input[type="checkbox"] { margin-right: 5px; }
 
 input[type="text"], select {
