@@ -14,6 +14,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.dniIsInvalid = false;
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
+        $scope.postalCodeIsInvalid = false;
         $scope.invalidAttachFileExtension = false;
         $scope.overflowAttachFile = false;
         $scope.accountIsInvalid = false;
@@ -176,6 +177,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.city2 !== undefined &&
                         $scope.form.accept !== undefined &&
                         $scope.form.accept !== false &&
+                        $scope.postalCodeIsInvalid === false &&
                         $scope.dni2IsInvalid === false &&
                         ($scope.dni3IsInvalid === false && $scope.form.usertype === 'company' || $scope.form.usertype === 'person') &&
                         $scope.emailIsInvalid === false &&
