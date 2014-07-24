@@ -31,15 +31,15 @@ angular.module('newSomEnergiaWebformsApp')
                     result = result.replace('\'', '.');
                     if (element === 'form.power') {
                         var valueToApply = result;
-                        if ($scope.form.rate === '2.0A' || $scope.form.rate === '2.0DHA') {
+                        if ($scope.form.rate === cfg.RATE_20A || $scope.form.rate === cfg.RATE_20DHA) {
                             if (result > 10) {
                                 valueToApply = oldValue;
                             }
-                        } else if ($scope.form.rate === '2.1A' || $scope.form.rate === '2.1DHA') {
+                        } else if ($scope.form.rate === cfg.RATE_21A || $scope.form.rate === cfg.RATE_21DHA) {
                             if (result > 15 || (result > 1 && newValue.length === 1)) {
                                 valueToApply = oldValue;
                             }
-                        } else if ($scope.form.rate === '3.0A') {
+                        } else if ($scope.form.rate === cfg.RATE_30A) {
                             if (result > 450 || (result < 15 && newValue.length > 1)) {
                                 valueToApply = oldValue;
                             }

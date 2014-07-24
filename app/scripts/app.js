@@ -230,6 +230,11 @@ angular.module('newSomEnergiaWebformsApp', [
         PAYMENT_METHOD_BANK_ACCOUNT: 'rebut',
         PAYMENT_METHOD_CREDIT_CARD: 'tpv',
         USER_TYPE_PERSON: 'fisica',
-        USER_TYPE_COMPANY: 'juridica'
+        USER_TYPE_COMPANY: 'juridica',
+        RATE_20A: '2.0A',
+        RATE_20DHA: '2.0DHA',
+        RATE_21A: '2.1A',
+        RATE_21DHA: '2.1DHA',
+        RATE_30A: '3.0A'
     })
 ;

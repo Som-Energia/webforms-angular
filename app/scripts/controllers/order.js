@@ -4,7 +4,7 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
-        var debugEnabled = false;
+        var debugEnabled = true;
 
         // INIT
         $scope.step0Ready = true;
@@ -34,7 +34,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.form.choosepayer = 'titular';
         $scope.completeAccountNumber = '';
         $scope.form.init = {};
-        $scope.rates = ['2.0A', '2.0DHA', '2.1A', '2.1DHA', '3.0A'];
+        $scope.rates = [cfg.RATE_20A, cfg.RATE_20DHA, cfg.RATE_21A, cfg.RATE_21DHA, cfg.RATE_30A];
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
@@ -446,7 +446,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.cups = 'ES0031406222973003LE0F';
             $scope.form.cnae = '0520';
             $scope.form.power = '5.5';
-            $scope.form.rate = '2.0A';
+            $scope.form.rate = cfg.RATE_20A;
             $scope.executeGetSociValues();
             $scope.showStep1Form = true;
             $scope.step0Ready = false;
