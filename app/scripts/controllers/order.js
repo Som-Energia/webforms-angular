@@ -156,8 +156,9 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.rate !== undefined &&
                 !$scope.overflowAttachFile;
             $scope.isStep3ButtonReady = $scope.isStep2ButtonReady &&
-                ($scope.form.isownerlink === 'yes' &&
-                    (($scope.form.usertype === 'company' && $scope.form.representantdni !== undefined && $scope.form.representantname !== undefined) || $scope.form.usertype === 'person') ||
+                $scope.form.changeowner !== undefined &&
+                (
+                    ($scope.form.isownerlink === 'yes') ||
                     ($scope.form.isownerlink === 'no' &&
                         $scope.form.language !== undefined &&
                         $scope.form.name !== undefined &&
@@ -176,9 +177,8 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.accept !== false &&
                         $scope.dni2IsInvalid === false &&
                         $scope.emailIsInvalid === false &&
-                        $scope.emailNoIguals === false
-                        )
-                    );
+                        $scope.emailNoIguals === false)
+                );
             $scope.isFinalStepButtonReady = $scope.isStep3ButtonReady &&
                 !$scope.accountIsInvalid &&
                 $scope.completeAccountNumber.length > 0 &&
