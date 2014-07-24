@@ -97,10 +97,7 @@ angular.module('newSomEnergiaWebformsApp')
             var postData = {
                 tipuspersona: $scope.form.usertype === 'person' ? cfg.USER_TYPE_PERSON : cfg.USER_TYPE_COMPANY,
                 nom: $scope.form.name,
-                cognom: $scope.form.surname,
                 dni: $scope.form.dni,
-                representant_nom: $scope.form.usertype === 'company' ? $scope.form.representantname : '',
-                representant_dni: $scope.form.usertype === 'company' ? $scope.form.representantdni : '',
                 tel: $scope.form.phone1,
                 tel2: $scope.form.phone2 === undefined ? '' : $scope.form.phone2,
                 email: $scope.form.email1,
@@ -111,6 +108,12 @@ angular.module('newSomEnergiaWebformsApp')
                 idioma: $scope.form.language.code,
                 payment_method: $scope.form.payment === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD
             };
+            if ($scope.form.usertype === 'person') {
+                postData.cognom = $scope.form.surname;
+            } else if ($scope.form.usertype === 'company') {
+                postData.representant_nom = $scope.form.representantname;
+                postData.representant_dni = $scope.form.representantdni;
+            }
 //            $log.log('request postData', postData);
             // Send request data POST
             var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData, '004');
