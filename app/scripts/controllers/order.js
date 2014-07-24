@@ -33,6 +33,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.cities = [];
         $scope.language = {};
         $scope.form = {};
+        $scope.form.usertype = 'person';
         $scope.form.choosepayer = cfg.PAYER_TYPE_TITULAR;
         $scope.completeAccountNumber = '';
         $scope.form.init = {};
