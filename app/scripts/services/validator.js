@@ -6,7 +6,6 @@ angular.module('newSomEnergiaWebformsApp')
         var emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var integerRE = /^\d*$/;
         var dniRE = /^[a-zA-Z]?\d*[a-zA-Z]?$/;
-        var DELAY = 1000; // in milliseconds
 
         // INTEGER VALIDATOR
         this.validateInteger = function($scope, element) {
@@ -105,7 +104,7 @@ angular.module('newSomEnergiaWebformsApp')
                             function (reason) { $log.error('Check DNI failed', reason); }
                         );
                     }
-                }, DELAY);
+                }, cfg.DEFAULT_MILLISECONDS_DELAY);
             });
         };
         
@@ -126,7 +125,7 @@ angular.module('newSomEnergiaWebformsApp')
                         }
                         $scope.formListener();
                     }
-                }, DELAY);
+                }, cfg.DEFAULT_MILLISECONDS_DELAY);
             });
         };
 
@@ -145,7 +144,7 @@ angular.module('newSomEnergiaWebformsApp')
                         }
                         $scope.formListener();
                     }
-                }, DELAY);
+                }, cfg.DEFAULT_MILLISECONDS_DELAY);
             });
         };
 
@@ -177,7 +176,7 @@ angular.module('newSomEnergiaWebformsApp')
                         }
                     }
                     $scope.formListener();
-                }, DELAY);
+                }, cfg.DEFAULT_MILLISECONDS_DELAY);
             });
         };
 
@@ -233,7 +232,7 @@ angular.module('newSomEnergiaWebformsApp')
                             function(reason) { $log.error('Check CUPS failed', reason); }
                         );
                     }
-                }, DELAY);
+                }, cfg.DEFAULT_MILLISECONDS_DELAY);
             });
         };
 
@@ -259,7 +258,7 @@ angular.module('newSomEnergiaWebformsApp')
                             function(reason) { $log.error('Check CNAE failed', reason); }
                         );
                     }
-                }, DELAY);
+                }, cfg.DEFAULT_MILLISECONDS_DELAY);
             });
         };
 

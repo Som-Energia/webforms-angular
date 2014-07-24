@@ -235,6 +235,8 @@ angular.module('newSomEnergiaWebformsApp', [
         RATE_20DHA: '2.0DHA',
         RATE_21A: '2.1A',
         RATE_21DHA: '2.1DHA',
-        RATE_30A: '3.0A'
+        RATE_30A: '3.0A',
+        DEFAULT_MILLISECONDS_DELAY: 1000,
+        THOUSANDS_CONVERSION_FACTOR: 1000
     })
 ;

@@ -270,7 +270,7 @@ angular.module('newSomEnergiaWebformsApp')
                 if (newValue !== undefined && !$scope.dniIsInvalid && $scope.form.init.dni !== undefined) {
                     $scope.executeGetSociValues();
                 }
-            }, 1000);
+            }, cfg.DEFAULT_MILLISECONDS_DELAY);
         });
         var checkEnableInitSubmit2 = false;
         $scope.$watch('form.init.dni', function(newValue) {
@@ -290,7 +290,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function (reason) { $log.error('Check DNI failed', reason); }
                     );
                 }
-            }, 1000);
+            }, cfg.DEFAULT_MILLISECONDS_DELAY);
         });
 //        $scope.initSubmit = function(form) {
 //            $scope.initFormSubmitted = true;
@@ -335,9 +335,9 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('tarifa', $scope.form.rate);
             formData.append('cups', $scope.form.cups);
             formData.append('consum', $scope.form.estimation === undefined ? '' : $scope.form.estimation);
-            formData.append('potencia', $scope.form.power * 1000);
-            formData.append('potencia_p2', $scope.form.rate === '3.0A' ? $scope.form.power2 * 1000 : '');
-            formData.append('potencia_p3', $scope.form.rate === '3.0A' ? $scope.form.power3 * 1000 : '');
+            formData.append('potencia', $scope.form.power * cfg.THOUSANDS_CONVERSION_FACTOR);
+            formData.append('potencia_p2', $scope.form.rate === '3.0A' ? $scope.form.power2 * cfg.THOUSANDS_CONVERSION_FACTOR : '');
+            formData.append('potencia_p3', $scope.form.rate === '3.0A' ? $scope.form.power3 * cfg.THOUSANDS_CONVERSION_FACTOR : '');
             formData.append('cnae', $scope.form.cnae);
             formData.append('cups_adreca', $scope.form.address);
             formData.append('cups_provincia', $scope.form.province.id);
