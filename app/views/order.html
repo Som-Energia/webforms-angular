@@ -532,6 +532,7 @@
                         <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
                         <input type="text" name="accountpostalcode" class="form-control" data-ng-model="form.accountpostalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountpostalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                        <span class="label label-danger" data-ng-show="accountPostalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -616,6 +617,7 @@
                         <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
                         <input type="text" name="accountpostalcode" class="form-control" data-ng-model="form.accountpostalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountpostalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                        <span class="label label-danger" data-ng-show="accountPostalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
                     </div>
                 </div>
                 <div class="row">

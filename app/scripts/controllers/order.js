@@ -4,7 +4,7 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
-        var debugEnabled = true;
+        var debugEnabled = false;
 
         // INIT
         $scope.step0Ready = true;
@@ -15,6 +15,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
         $scope.postalCodeIsInvalid = false;
+        $scope.accountPostalCodeIsInvalid = false;
         $scope.invalidAttachFileExtension = false;
         $scope.overflowAttachFile = false;
         $scope.accountIsInvalid = false;
@@ -204,6 +205,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.accept2 !== undefined &&
                         $scope.form.accept2 !== false &&
                         $scope.dni4IsInvalid === false &&
+                        $scope.accountPostalCodeIsInvalid === false &&
                         $scope.accountEmailIsInvalid === false &&
                         $scope.accountEmailNoIguals === false))
             ;

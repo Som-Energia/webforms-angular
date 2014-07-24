@@ -162,18 +162,11 @@ angular.module('newSomEnergiaWebformsApp')
                     $timeout.cancel(timer);
                 }
                 timer = $timeout(function() {
-                    if (newValue !== undefined && newValue.length < 5) {
-                        if (element === 'form.postalcode') {
-                            $scope.postalCodeIsInvalid = true;
-                        } else if (element === 'form.accountpostalcode') {
-
-                        }
-                    } else {
-                        if (element === 'form.postalcode') {
-                            $scope.postalCodeIsInvalid = false;
-                        } else if (element === 'form.accountpostalcode') {
-
-                        }
+                    var valueToApply = newValue !== undefined && newValue.length < 5;
+                    if (element === 'form.postalcode') {
+                        $scope.postalCodeIsInvalid = valueToApply;
+                    } else if (element === 'form.accountpostalcode') {
+                        $scope.accountPostalCodeIsInvalid = valueToApply;
                     }
                     $scope.formListener();
                 }, cfg.DEFAULT_MILLISECONDS_DELAY);
