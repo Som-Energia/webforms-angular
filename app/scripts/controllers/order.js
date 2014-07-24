@@ -442,6 +442,8 @@ angular.module('newSomEnergiaWebformsApp')
         if (debugEnabled) {
             $scope.form.init.socinumber = debugCfg.SOCI;
             $scope.form.init.dni = debugCfg.DNI;
+            $scope.form.province = {id: 0, name: 'province'};
+            $scope.form.city = {id: 0, name: 'city'};
             $scope.form.address = debugCfg.ADDRESS;
             $scope.form.cups = debugCfg.CUPS;
             $scope.form.cnae = debugCfg.CNAE;

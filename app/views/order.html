@@ -246,7 +246,6 @@
                 </div>
             </div>
             <hr class="dotted">
-            <div data-ng-include data-src="'views/common/directions-path-buttons.html'"></div>
         </div>
         <!-- TITULAR_EMPRESA & SOCI_VINCULAT_YES (page 09 & 15) -->
         <div data-ng-if="form.usertype == 'company' && form.isownerlink == 'yes'">
@@ -270,7 +269,6 @@
                 </div>
             </div>
             <hr class="dotted">
-            <div data-ng-include data-src="'views/common/directions-path-buttons.html'"></div>
         </div>
         <!-- TITULAR_PARTICULAR & SOCI_VINCULAT_NO (page 07 & 13) -->
         <div data-ng-if="form.usertype == 'person' && form.isownerlink == 'no'">
@@ -361,7 +359,6 @@
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
-            <div data-ng-include data-src="'views/common/directions-path-buttons.html'"></div>
         </div>
         <!-- TITULAR_EMPRESA & SOCI_VINCULAT_NO (page 10 & 16) -->
         <div data-ng-if="form.usertype == 'company' && form.isownerlink == 'no'">
@@ -464,7 +461,12 @@
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
-            <div data-ng-include data-src="'views/common/directions-path-buttons.html'"></div>
+        </div>
+        <div class="row no-margin-bottom">
+            <div class="col-xs-12 no-horitzontal-padding">
+                <button data-ng-click="backToStep2Form()" class="btn btn-default pull-left previous-step-submit">{{ 'PAS_ANTERIOR' | translate }}</button>
+                <button data-ng-click="moveToStep3Form()" class="btn btn-default pull-right next-step-submit" data-ng-disabled="!isStep3ButtonReady">{{ 'SEGUENT_PAS' | translate }}</button>
+            </div>
         </div>
     </div>
     <!--FORTH STEP-->

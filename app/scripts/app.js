@@ -197,7 +197,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 VOLS_FER_CANVI_TITULAR: 'Vols fer un canvi de titular?',
                 SI: 'Sí',
                 NO: 'No',
-                HELP_POPOVER_OWNER: 'Comparat amb el vostre contracte actual, al nou contracte voleu posar a una altre persona de titular?',
+                HELP_POPOVER_OWNER: 'Comparat amb el vostre contracte actual, al nou contracte voleu posar a una altra persona de titular?',
                 EL_TITULAR_ES: 'El titular és',
                 EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE: 'El titular és el soci vinculat a aquest contracte?',
                 DADES_PAGAMENT: 'Dades de pagament',
