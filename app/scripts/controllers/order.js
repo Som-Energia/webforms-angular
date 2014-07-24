@@ -162,6 +162,7 @@ angular.module('newSomEnergiaWebformsApp')
                     ($scope.form.isownerlink === 'no' &&
                         $scope.form.language !== undefined &&
                         $scope.form.name !== undefined &&
+                        ($scope.form.representantname !== undefined && $scope.form.usertype === 'company' || $scope.form.usertype === 'person') &&
                         $scope.form.changeowner !== undefined &&
                         ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
                         $scope.form.dni !== undefined &&
@@ -176,6 +177,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.accept !== undefined &&
                         $scope.form.accept !== false &&
                         $scope.dni2IsInvalid === false &&
+                        ($scope.dni3IsInvalid === false && $scope.form.usertype === 'company' || $scope.form.usertype === 'person') &&
                         $scope.emailIsInvalid === false &&
                         $scope.emailNoIguals === false)
                 );
@@ -442,8 +444,8 @@ angular.module('newSomEnergiaWebformsApp')
         if (debugEnabled) {
             $scope.form.init.socinumber = debugCfg.SOCI;
             $scope.form.init.dni = debugCfg.DNI;
-            $scope.form.province = {id: 0, name: 'province'};
-            $scope.form.city = {id: 0, name: 'city'};
+//            $scope.form.province = {id: 0, name: 'province'};
+//            $scope.form.city = {id: 0, name: 'city'};
             $scope.form.address = debugCfg.ADDRESS;
             $scope.form.cups = debugCfg.CUPS;
             $scope.form.cnae = debugCfg.CNAE;
@@ -458,5 +460,15 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.accountoffice = debugCfg.ACCOUNT_OFFICE;
             $scope.form.accountchecksum = debugCfg.ACCOUNT_CHECKSUM;
             $scope.form.accountnumber = debugCfg.ACCOUNT_NUMBER;
+            $scope.form.representantdni = debugCfg.CIF;
+            $scope.form.representantname = debugCfg.COMPANY;
+            $scope.form.dni = debugCfg.DNI;
+            $scope.form.name = debugCfg.NAME;
+            $scope.form.surname = debugCfg.SURNAME;
+            $scope.form.address2 = debugCfg.ADDRESS;
+            $scope.form.phone1 = debugCfg.PHONE;
+            $scope.form.email1 = debugCfg.EMAIL;
+            $scope.form.email2 = debugCfg.EMAIL;
+            $scope.form.accept = true;
         }
     }]);
