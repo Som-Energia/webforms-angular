@@ -197,7 +197,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 VOLS_FER_CANVI_TITULAR: 'Vols fer un canvi de titular?',
                 SI: 'Sí',
                 NO: 'No',
-                HELP_POPOVER_OWNER: 'Comparat amb el vostre contracte actual, al nou contracte voleu posar a una altre persona de titular?',
+                HELP_POPOVER_OWNER: 'Comparat amb el vostre contracte actual, al nou contracte voleu posar a una altra persona de titular?',
                 EL_TITULAR_ES: 'El titular és',
                 EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE: 'El titular és el soci vinculat a aquest contracte?',
                 DADES_PAGAMENT: 'Dades de pagament',
@@ -230,6 +230,16 @@ angular.module('newSomEnergiaWebformsApp', [
         PAYMENT_METHOD_BANK_ACCOUNT: 'rebut',
         PAYMENT_METHOD_CREDIT_CARD: 'tpv',
         USER_TYPE_PERSON: 'fisica',
-        USER_TYPE_COMPANY: 'juridica'
+        USER_TYPE_COMPANY: 'juridica',
+        PAYER_TYPE_TITULAR: 'titular',
+        PAYER_TYPE_OTHER: 'altre',
+        RATE_20A: '2.0A',
+        RATE_20DHA: '2.0DHA',
+        RATE_21A: '2.1A',
+        RATE_21DHA: '2.1DHA',
+        RATE_30A: '3.0A',
+        DEFAULT_MILLISECONDS_DELAY: 1000,
+        MAX_MB_FILE_SIZE: 10,
+        THOUSANDS_CONVERSION_FACTOR: 1000
     })
 ;

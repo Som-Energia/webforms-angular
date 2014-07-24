@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('OrderCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
+    .controller('OrderCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
         var debugEnabled = false;
@@ -14,6 +14,8 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.dniIsInvalid = false;
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
+        $scope.postalCodeIsInvalid = false;
+        $scope.accountPostalCodeIsInvalid = false;
         $scope.invalidAttachFileExtension = false;
         $scope.overflowAttachFile = false;
         $scope.accountIsInvalid = false;
@@ -31,10 +33,11 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.cities = [];
         $scope.language = {};
         $scope.form = {};
-        $scope.form.choosepayer = 'titular';
+        $scope.form.usertype = 'person';
+        $scope.form.choosepayer = cfg.PAYER_TYPE_TITULAR;
         $scope.completeAccountNumber = '';
         $scope.form.init = {};
-        $scope.rates = ['2.0A', '2.0DHA', '2.1A', '2.1DHA', '3.0A'];
+        $scope.rates = [cfg.RATE_20A, cfg.RATE_20DHA, cfg.RATE_21A, cfg.RATE_21DHA, cfg.RATE_30A];
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
@@ -136,7 +139,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.validateSelectedFileSize = function() {
             var file = jQuery('#fileuploaderinput')[0].files[0];
             $scope.$apply(function() {
-                $scope.overflowAttachFile = (file.size / 1024 / 1024) > 10;
+                $scope.overflowAttachFile = (file.size / 1024 / 1024) > cfg.MAX_MB_FILE_SIZE;
                 $scope.formListener();
             });
         };
@@ -156,11 +159,13 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.rate !== undefined &&
                 !$scope.overflowAttachFile;
             $scope.isStep3ButtonReady = $scope.isStep2ButtonReady &&
-                ($scope.form.isownerlink === 'yes' &&
-                    (($scope.form.usertype === 'company' && $scope.form.representantdni !== undefined && $scope.form.representantname !== undefined) || $scope.form.usertype === 'person') ||
+                $scope.form.changeowner !== undefined &&
+                (
+                    ($scope.form.isownerlink === 'yes') ||
                     ($scope.form.isownerlink === 'no' &&
                         $scope.form.language !== undefined &&
                         $scope.form.name !== undefined &&
+                        ($scope.form.representantname !== undefined && $scope.form.usertype === 'company' || $scope.form.usertype === 'person') &&
                         $scope.form.changeowner !== undefined &&
                         ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
                         $scope.form.dni !== undefined &&
@@ -174,17 +179,18 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.city2 !== undefined &&
                         $scope.form.accept !== undefined &&
                         $scope.form.accept !== false &&
+                        $scope.postalCodeIsInvalid === false &&
                         $scope.dni2IsInvalid === false &&
+                        ($scope.dni3IsInvalid === false && $scope.form.usertype === 'company' || $scope.form.usertype === 'person') &&
                         $scope.emailIsInvalid === false &&
-                        $scope.emailNoIguals === false
-                        )
-                    );
+                        $scope.emailNoIguals === false)
+                );
             $scope.isFinalStepButtonReady = $scope.isStep3ButtonReady &&
                 !$scope.accountIsInvalid &&
                 $scope.completeAccountNumber.length > 0 &&
                 $scope.form.acceptaccountowner &&
-                $scope.form.voluntary !== undefined && ($scope.form.choosepayer !== 'altre' ||
-                ($scope.form.choosepayer === 'altre' &&
+                $scope.form.voluntary !== undefined && ($scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ||
+                ($scope.form.choosepayer === cfg.PAYER_TYPE_OTHER &&
                         $scope.form.payertype !== undefined &&
                         $scope.form.accountname !== undefined &&
                         $scope.form.accountsurname !== undefined &&
@@ -200,6 +206,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.accept2 !== undefined &&
                         $scope.form.accept2 !== false &&
                         $scope.dni4IsInvalid === false &&
+                        $scope.accountPostalCodeIsInvalid === false &&
                         $scope.accountEmailIsInvalid === false &&
                         $scope.accountEmailNoIguals === false))
             ;
@@ -270,7 +277,7 @@ angular.module('newSomEnergiaWebformsApp')
                 if (newValue !== undefined && !$scope.dniIsInvalid && $scope.form.init.dni !== undefined) {
                     $scope.executeGetSociValues();
                 }
-            }, 1000);
+            }, cfg.DEFAULT_MILLISECONDS_DELAY);
         });
         var checkEnableInitSubmit2 = false;
         $scope.$watch('form.init.dni', function(newValue) {
@@ -290,7 +297,7 @@ angular.module('newSomEnergiaWebformsApp')
                         function (reason) { $log.error('Check DNI failed', reason); }
                     );
                 }
-            }, 1000);
+            }, cfg.DEFAULT_MILLISECONDS_DELAY);
         });
 //        $scope.initSubmit = function(form) {
 //            $scope.initFormSubmitted = true;
@@ -335,9 +342,9 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('tarifa', $scope.form.rate);
             formData.append('cups', $scope.form.cups);
             formData.append('consum', $scope.form.estimation === undefined ? '' : $scope.form.estimation);
-            formData.append('potencia', $scope.form.power * 1000);
-            formData.append('potencia_p2', $scope.form.rate === '3.0A' ? $scope.form.power2 * 1000 : '');
-            formData.append('potencia_p3', $scope.form.rate === '3.0A' ? $scope.form.power3 * 1000 : '');
+            formData.append('potencia', $scope.form.power * cfg.THOUSANDS_CONVERSION_FACTOR);
+            formData.append('potencia_p2', $scope.form.rate === cfg.RATE_30A ? $scope.form.power2 * cfg.THOUSANDS_CONVERSION_FACTOR : '');
+            formData.append('potencia_p3', $scope.form.rate === cfg.RATE_30A ? $scope.form.power3 * cfg.THOUSANDS_CONVERSION_FACTOR : '');
             formData.append('cnae', $scope.form.cnae);
             formData.append('cups_adreca', $scope.form.address);
             formData.append('cups_provincia', $scope.form.province.id);
@@ -349,18 +356,18 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('control', $scope.form.accountchecksum);
             formData.append('ncompte', $scope.form.accountnumber);
             formData.append('escull_pagador', $scope.form.choosepayer);
-            formData.append('compte_nom', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountname);
-            formData.append('compte_cognom', $scope.form.choosepayer === 'altre' && $scope.form.payertype === 'person' ? $scope.form.accountsurname : '' );
-            formData.append('compte_dni', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountdni);
-            formData.append('compte_adreca', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountaddress);
-            formData.append('compte_provincia', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.province3.id);
-            formData.append('compte_municipi', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.city3.id);
-            formData.append('compte_email', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountemail1);
-            formData.append('compte_tel', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountphone1);
-            formData.append('compte_tel2', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountphone2);
-            formData.append('compte_cp', $scope.form.choosepayer !== 'altre' ? '' : $scope.form.accountpostalcode);
-            formData.append('compte_representant_nom', $scope.form.choosepayer === 'altre' && $scope.form.payertype === 'company' ? $scope.form.accountrepresentantname : '');
-            formData.append('compte_representant_dni', $scope.form.choosepayer === 'altre' && $scope.form.payertype === 'company' ? $scope.form.accountrepresentantdni : '');
+            formData.append('compte_nom', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountname);
+            formData.append('compte_cognom', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.form.payertype === 'person' ? $scope.form.accountsurname : '' );
+            formData.append('compte_dni', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountdni);
+            formData.append('compte_adreca', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountaddress);
+            formData.append('compte_provincia', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.province3.id);
+            formData.append('compte_municipi', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.city3.id);
+            formData.append('compte_email', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountemail1);
+            formData.append('compte_tel', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountphone1);
+            formData.append('compte_tel2', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountphone2);
+            formData.append('compte_cp', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountpostalcode);
+            formData.append('compte_representant_nom', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.form.payertype === 'company' ? $scope.form.accountrepresentantname : '');
+            formData.append('compte_representant_dni', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.form.payertype === 'company' ? $scope.form.accountrepresentantdni : '');
             formData.append('condicions', 1);
             formData.append('condicions_privacitat', 1);
             formData.append('condicions_titular', 1);
@@ -440,20 +447,33 @@ angular.module('newSomEnergiaWebformsApp')
 
         // DEBUG (comment on production)
         if (debugEnabled) {
-            $scope.form.init.socinumber = 1706;
-            $scope.form.init.dni = '52608510N';
-            $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
-            $scope.form.cups = 'ES0031406222973003LE0F';
-            $scope.form.cnae = '0520';
-            $scope.form.power = '5.5';
-            $scope.form.rate = '2.0A';
+            $scope.form.init.socinumber = debugCfg.SOCI;
+            $scope.form.init.dni = debugCfg.DNI;
+//            $scope.form.province = {id: 0, name: 'province'};
+//            $scope.form.city = {id: 0, name: 'city'};
+            $scope.form.address = debugCfg.ADDRESS;
+            $scope.form.cups = debugCfg.CUPS;
+            $scope.form.cnae = debugCfg.CNAE;
+            $scope.form.power = debugCfg.POWER;
+            $scope.form.rate = debugCfg.RATE;
             $scope.executeGetSociValues();
             $scope.showStep1Form = true;
             $scope.step0Ready = false;
             $scope.step1Ready = true;
             $scope.step2Ready = false;
-            $scope.form.accountoffice = '0001';
-            $scope.form.accountchecksum = '20';
-            $scope.form.accountnumber = '20363698';
+            $scope.form.accountbank = debugCfg.ACCOUNT_BANK;
+            $scope.form.accountoffice = debugCfg.ACCOUNT_OFFICE;
+            $scope.form.accountchecksum = debugCfg.ACCOUNT_CHECKSUM;
+            $scope.form.accountnumber = debugCfg.ACCOUNT_NUMBER;
+            $scope.form.representantdni = debugCfg.CIF;
+            $scope.form.representantname = debugCfg.COMPANY;
+            $scope.form.dni = debugCfg.DNI;
+            $scope.form.name = debugCfg.NAME;
+            $scope.form.surname = debugCfg.SURNAME;
+            $scope.form.address2 = debugCfg.ADDRESS;
+            $scope.form.phone1 = debugCfg.PHONE;
+            $scope.form.email1 = debugCfg.EMAIL;
+            $scope.form.email2 = debugCfg.EMAIL;
+            $scope.form.accept = true;
         }
     }]);

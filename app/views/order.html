@@ -224,7 +224,7 @@
                     <label class="btn btn-default green" data-ng-model="form.isownerlink" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>
                 </div>
             </div>
-            <div class="form-group col-xs-4">
+            <div class="form-group col-xs-4" data-ng-show="form.isownerlink == 'no'">
                 <span>{{ 'EL_TITULAR_ES' | translate }}:&nbsp;</span>
                 <div class="btn-group">
                     <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
@@ -232,8 +232,8 @@
                 </div>
             </div>
         </div>
-        <!-- TITULAR_PARTICULAR & SOCI_VINCULAT_SI (page 06 & 12) -->
-        <div data-ng-show="form.usertype == 'person' && form.isownerlink == 'yes'">
+        <!-- (TITULAR_PARTICULAR || TITULAR_EMPRESA) & SOCI_VINCULAT_SI (page 06 & 12) (page 09 & 15) -->
+        <div data-ng-show="form.isownerlink == 'yes'">
             <div class="row">
                 <div class="col-xs-4">
                     <input type="text" name="ownername" data-ng-model="form.ownername" class="form-control" placeholder="{{ soci.nom }}" value="{{ soci.nom }}" disabled/>
@@ -246,31 +246,6 @@
                 </div>
             </div>
             <hr class="dotted">
-            <div data-ng-include data-src="'views/common/directions-path-buttons.html'"></div>
-        </div>
-        <!-- TITULAR_EMPRESA & SOCI_VINCULAT_YES (page 09 & 15) -->
-        <div data-ng-if="form.usertype == 'company' && form.isownerlink == 'yes'">
-            <div class="row">
-                <div class="form-group col-xs-2">
-                    <input type="text" name="representantdni" class="form-control" placeholder="DNI/NIE*" data-ng-model="form.representantdni" data-ng-change="formListener()" required/>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.representantdni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                    <span class="label label-danger" data-ng-show="dni3IsInvalid">{{ 'INVALID' | translate }}</span>
-                </div>
-                <div class="form-group col-xs-10">
-                    <input type="text" name="representantname" class="form-control" placeholder="{{ 'PERSONA_REPRESENTANT' | translate }}*" data-ng-model="form.representantname" data-ng-change="formListener()" required/>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.representantname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-xs-2">
-                    <input type="text" name="ownerdni" data-ng-model="form.ownerdni" class="form-control" placeholder="{{ soci.dni }}" value="{{ soci.dni }}" disabled/>
-                </div>
-                <div class="form-group col-xs-10">
-                    <input type="text" name="ownername" data-ng-model="form.ownername" class="form-control" placeholder="{{ soci.nom }}" value="{{ soci.nom }}" disabled/>
-                </div>
-            </div>
-            <hr class="dotted">
-            <div data-ng-include data-src="'views/common/directions-path-buttons.html'"></div>
         </div>
         <!-- TITULAR_PARTICULAR & SOCI_VINCULAT_NO (page 07 & 13) -->
         <div data-ng-if="form.usertype == 'person' && form.isownerlink == 'no'">
@@ -336,6 +311,7 @@
                     <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
                     <input type="text" name="postalcode" class="form-control" data-ng-model="form.postalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.postalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="postalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
                 </div>
                 <div class="form-group col-xs-3">
                     <label class="sr-only">{{ 'PROVINCIA' | translate }}</label>
@@ -361,7 +337,6 @@
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
-            <div data-ng-include data-src="'views/common/directions-path-buttons.html'"></div>
         </div>
         <!-- TITULAR_EMPRESA & SOCI_VINCULAT_NO (page 10 & 16) -->
         <div data-ng-if="form.usertype == 'company' && form.isownerlink == 'no'">
@@ -437,6 +412,7 @@
                     <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
                     <input type="text" name="postalcode" class="form-control" data-ng-model="form.postalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.postalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="postalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
                 </div>
             </div>
             <div class="row">
@@ -464,7 +440,12 @@
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
-            <div data-ng-include data-src="'views/common/directions-path-buttons.html'"></div>
+        </div>
+        <div class="row no-margin-bottom">
+            <div class="col-xs-12 no-horitzontal-padding">
+                <button data-ng-click="backToStep2Form()" class="btn btn-default pull-left previous-step-submit">{{ 'PAS_ANTERIOR' | translate }}</button>
+                <button data-ng-click="moveToStep3Form()" class="btn btn-default pull-right next-step-submit" data-ng-disabled="!isStep3ButtonReady">{{ 'SEGUENT_PAS' | translate }}</button>
+            </div>
         </div>
     </div>
     <!--FORTH STEP-->
@@ -551,6 +532,7 @@
                         <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
                         <input type="text" name="accountpostalcode" class="form-control" data-ng-model="form.accountpostalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountpostalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                        <span class="label label-danger" data-ng-show="accountPostalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -635,6 +617,7 @@
                         <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
                         <input type="text" name="accountpostalcode" class="form-control" data-ng-model="form.accountpostalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountpostalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                        <span class="label label-danger" data-ng-show="accountPostalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -747,7 +730,13 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery(".spc-html").popover({html : true, trigger : 'hover'});
+        jQuery(".spc-html").popover(
+                {
+                    html : true,
+                    trigger : 'hover',
+                    delay : { show : 0, hide : 2500 }
+                }
+        );
         jQuery(".spc").popover({trigger : 'hover'});
     });
 </script>
