@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('OrderCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
+    .controller('OrderCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
         var debugEnabled = true;
@@ -440,20 +440,21 @@ angular.module('newSomEnergiaWebformsApp')
 
         // DEBUG (comment on production)
         if (debugEnabled) {
-            $scope.form.init.socinumber = 1706;
-            $scope.form.init.dni = '52608510N';
-            $scope.form.address = 'Avda. Sebastià Joan Arbó, 6';
-            $scope.form.cups = 'ES0031406222973003LE0F';
-            $scope.form.cnae = '0520';
-            $scope.form.power = '5.5';
-            $scope.form.rate = cfg.RATE_20A;
+            $scope.form.init.socinumber = debugCfg.SOCI;
+            $scope.form.init.dni = debugCfg.DNI;
+            $scope.form.address = debugCfg.ADDRESS;
+            $scope.form.cups = debugCfg.CUPS;
+            $scope.form.cnae = debugCfg.CNAE;
+            $scope.form.power = debugCfg.POWER;
+            $scope.form.rate = debugCfg.RATE;
             $scope.executeGetSociValues();
             $scope.showStep1Form = true;
             $scope.step0Ready = false;
             $scope.step1Ready = true;
             $scope.step2Ready = false;
-            $scope.form.accountoffice = '0001';
-            $scope.form.accountchecksum = '20';
-            $scope.form.accountnumber = '20363698';
+            $scope.form.accountbank = debugCfg.ACCOUNT_BANK;
+            $scope.form.accountoffice = debugCfg.ACCOUNT_OFFICE;
+            $scope.form.accountchecksum = debugCfg.ACCOUNT_CHECKSUM;
+            $scope.form.accountnumber = debugCfg.ACCOUNT_NUMBER;
         }
     }]);

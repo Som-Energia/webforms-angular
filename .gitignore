@@ -4,6 +4,7 @@ dist/index.html
 .tmp
 .sass-cache
 app/bower_components
+app/scripts/debug.js
 secret.json
 !.bowerrc
 !.editorconfig
