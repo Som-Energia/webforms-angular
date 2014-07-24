@@ -231,12 +231,15 @@ angular.module('newSomEnergiaWebformsApp', [
         PAYMENT_METHOD_CREDIT_CARD: 'tpv',
         USER_TYPE_PERSON: 'fisica',
         USER_TYPE_COMPANY: 'juridica',
+        PAYER_TYPE_TITULAR: 'titular',
+        PAYER_TYPE_OTHER: 'altre',
         RATE_20A: '2.0A',
         RATE_20DHA: '2.0DHA',
         RATE_21A: '2.1A',
         RATE_21DHA: '2.1DHA',
         RATE_30A: '3.0A',
         DEFAULT_MILLISECONDS_DELAY: 1000,
+        MAX_MB_FILE_SIZE: 10,
         THOUSANDS_CONVERSION_FACTOR: 1000
     })
 ;
