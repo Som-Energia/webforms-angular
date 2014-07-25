@@ -687,13 +687,19 @@
                 <div class="container-xs-height">
                     <div class="row row-xs-height">
                         <div class="col-xs-5 col-xs-height col-middle custom-ad-bottom-left">
-                            <div class="form-group">
-                                <label>{{ 'DONATIU_VOLUNTARI' | translate }}?</label>
-                                <div class="btn-group">
-                                    <label class="btn btn-default green" data-ng-model="form.voluntary" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>
-                                    <label class="btn btn-default green" data-ng-model="form.voluntary" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>
-                                </div>
-                            </div>
+                            <!--<div class="form-group">-->
+                                <!--<label>{{ 'DONATIU_VOLUNTARI' | translate }}?</label>-->
+                                <!--<div class="btn-group">-->
+                                    <!--<label class="btn btn-default green" data-ng-model="form.voluntary" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>-->
+                                    <!--<label class="btn btn-default green" data-ng-model="form.voluntary" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <label>{{ 'DONATIU_VOLUNTARI' | translate }}</label>
+                            <select class="form-control" name="voluntary" data-ng-model="form.voluntary" data-ng-change="formListener()" required>
+                                <option value="">{{ 'SELECCIONA' | translate }}</option>
+                                <option value="yes">{{ 'SI' | translate }}</option>
+                                <option value="no">{{ 'NO' | translate }}</option>
+                            </select>
                         </div>
                         <div class="col-xs-7 col-xs-height col-middle custom-ad-bottom-right">
                             <p>{{ 'ELS_SOCIS_I_SOCIES_QUE_HO_DESITGIN_PODEN_REALITZAR_UN_DONATIU_VOLUNTARI' | translate }}</p>
