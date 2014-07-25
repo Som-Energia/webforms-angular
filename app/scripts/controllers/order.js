@@ -4,7 +4,7 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
-        var debugEnabled = false;
+        var debugEnabled = true;
 
         // INIT
         $scope.step0Ready = true;
@@ -475,5 +475,6 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.email1 = debugCfg.EMAIL;
             $scope.form.email2 = debugCfg.EMAIL;
             $scope.form.accept = true;
+            $scope.step3Ready = true;
         }
     }]);
