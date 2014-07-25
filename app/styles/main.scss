@@ -237,7 +237,7 @@ div.well.custom-ad-top {
   border: none;
   border-radius: 0;
   border-top: solid 2px $green;
-  box-shadow: 0px 0px 10px $grey;
+  box-shadow: 0 0 10px $grey;
   background-color: $white;
   margin-bottom: 0;
   h6 { font-size: 16px; }
@@ -247,23 +247,27 @@ div.well.custom-ad-top {
   }
 }
 
-div.well.custom-ad-bottom-left {
+.custom-ad-bottom-left {
   border: none;
   border-radius: 0;
   color: $white;
   background-color: $green;
-  box-shadow: 0px 3px 10px $grey;
+  box-shadow: 0 3px 10px $grey;
+  padding-top: 15px;
   label {
     font-weight: bold;
     font-size: 16px;
   }
 }
 
-div.well.custom-ad-bottom-right {
+.custom-ad-bottom-right {
   border: none;
+  border-bottom: 2px solid $green;
   border-radius: 0;
   background-color: $white;
-  box-shadow: 0px 3px 10px $grey;
+  box-shadow: 0 3px 10px $grey;
+  padding-bottom: 10px;
+  p { font-weight: bold; }
 }
 
 .label-success {
@@ -307,6 +311,21 @@ div.well.custom-ad-bottom-right {
 .form-control::-moz-placeholder          { color: $grey-dark; }
 .form-control:-ms-input-placeholder      { color: $grey-dark; }
 select[disabled] { color: $grey; }
+
+/* Columns of same height styles */
+.container-xs-height {
+  display: table;
+  padding: 0 15px;
+}
+
+.row-xs-height {
+  display: table-row;
+}
+
+.col-xs-height {
+  display: table-cell;
+  float: none;
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
