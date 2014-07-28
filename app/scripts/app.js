@@ -252,7 +252,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 ACCEDINT_SERVEI_PAGAMENT: 'A acceder ao servizo de pago',
                 FORMULARI_CONTRACTACIO: 'Formulario de contratación',
                 NUMERO_SOCI: 'Número de socio/a',
-                HELP_POPOVER_DNI: 'Exemplo nº socio: 1250 Exemplo DNI: 12345678P (con letra final)',
+                HELP_POPOVER_DNI: 'Exemplo núm. socio: 1250 Exemplo DNI: 12345678P (con letra final)',
                 HELP_POPOVER_IDIOMA: 'Este será o idioma co que nos comunicaremos a partir de agora',
                 CARREGAR_DADES_SOCI_VINCULAT: 'Cargar datos do/a socio/a vinculado',
                 SOCI_VINCULAT: 'Socio vinculado',
