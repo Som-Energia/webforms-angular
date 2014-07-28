@@ -274,7 +274,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 CONSUM_ANUAL_ESTIMAT: 'Consumo anual estimado',
                 REFERENCIA_CATASTRAL: 'Referencia catastral do inmoble',
                 ADJUNTAR_ULTIMA_FACTURA: 'Anexar a última factura eléctrica (PDF ou JPG) - 10Mb máximo',
-                BAD_EXTENSION: 'Anexar so PDF ou JPG',
+                BAD_EXTENSION: 'Anexar só PDF ou JPG',
                 SEGUENT_PAS: 'Seguinte paso',
                 PAS_ANTERIOR: 'Paso anterior',
                 DADES_TITULAR_NOU_CONTRACTE: 'Datos da persoa titular do contrato',
