@@ -126,13 +126,13 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
-            AjaxHandler.getCities($scope, 1);
+            AjaxHandler.getCities($scope, 1, $scope.form.province.id);
         };
         $scope.updateSelectedCity2 = function() {
-            AjaxHandler.getCities($scope, 2);
+            AjaxHandler.getCities($scope, 2, $scope.form.province2.id);
         };
         $scope.updateSelectedCity3 = function() {
-            AjaxHandler.getCities($scope, 3);
+            AjaxHandler.getCities($scope, 3, $scope.form.province3.id);
         };
 
         // ON CHANGE SELECTED FILE TO UPLOAD VALIDATION

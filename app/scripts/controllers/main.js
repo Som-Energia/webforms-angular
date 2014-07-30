@@ -57,7 +57,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
-            AjaxHandler.getCities($scope, 1);
+            AjaxHandler.getCities($scope, 1, $scope.form.province.id);
         };
 
         // CONTROL READY STEPS ON CHANGE FORM
