@@ -283,7 +283,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 SI: 'Si',
                 NO: 'Non',
                 HELP_POPOVER_OWNER: 'Comparado co teu contrato actual, no novo contrato queres poñer a outra persoa de titular?',
-                EL_TITULAR_ES: 'A persoa titular é', 
+                EL_TITULAR_ES: 'A persoa titular é',
                 EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE: 'A persoa titular é socia vinculada ao contrato?',
                 DADES_PAGAMENT: 'Datos de pago',
                 QUI_ES_TITULAR_COMPTE_BANCARI: 'Quen é a persoa titular da conta bancaria?',
@@ -302,7 +302,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 CONFIRMAR_CONTRACTACIO: 'Confirmar contratación',
                 LOADING: 'A enviar os datos...',
                 ENVIANT_DADES: 'Se anexaches unha factura este proceso pode demorar un tempo e este tempo dependerá do peso do ficheiro e da túa conexión a internet. Ánimo e boa enerxía, que xa case o conseguiches! :)'
-            })    
+            })
            .translations('eu', {
                 SELECCIONA: 'Aukera ezazu',
                 PARTICULAR: 'Pertsona fisikoa',
