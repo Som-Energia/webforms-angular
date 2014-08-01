@@ -126,13 +126,13 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
-            AjaxHandler.getCities($scope, 1);
+            AjaxHandler.getCities($scope, 1, $scope.form.province.id);
         };
         $scope.updateSelectedCity2 = function() {
-            AjaxHandler.getCities($scope, 2);
+            AjaxHandler.getCities($scope, 2, $scope.form.province2.id);
         };
         $scope.updateSelectedCity3 = function() {
-            AjaxHandler.getCities($scope, 3);
+            AjaxHandler.getCities($scope, 3, $scope.form.province3.id);
         };
 
         // ON CHANGE SELECTED FILE TO UPLOAD VALIDATION
@@ -356,6 +356,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('control', $scope.form.accountchecksum);
             formData.append('ncompte', $scope.form.accountnumber);
             formData.append('escull_pagador', $scope.form.choosepayer);
+            formData.append('compte_tipus_persona', $scope.form.payertype === 'person' ? 0 : 1);
             formData.append('compte_nom', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountname);
             formData.append('compte_cognom', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.form.payertype === 'person' ? $scope.form.accountsurname : '' );
             formData.append('compte_dni', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountdni);
