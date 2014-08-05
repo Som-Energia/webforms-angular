@@ -140,23 +140,23 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.getHumanizedAPIResponse = function(arrayResponse) {
             var result = '';
             if (arrayResponse.required_fields !== undefined) {
-                result = result + 'ERROR:';
                 for (var i = 0; i < arrayResponse.required_fields.length; i++) {
-                    result = result + ' ' + arrayResponse.required_fields[i];
                     if (arrayResponse.required_fields[i] === 'provincia') {
                         $scope.partnerForm.province.$setValidity('requiredp', false);
                     } else if (arrayResponse.required_fields[i] === 'municipi') {
                         $scope.partnerForm.city.$setValidity('requiredm', false);
+                    } else {
+                        result = result + 'ERROR REQUIRED FIELD:' + arrayResponse.required_fields[i] + ' ';
                     }
                 }
             }
             if (arrayResponse.invalid_fields !== undefined) {
-                result = result + ' ERROR:';
                 for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
-                    result = result + ' ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error;
                     if (arrayResponse.invalid_fields[j].field === 'dni' && arrayResponse.invalid_fields[j].error === 'exist') {
                         $scope.dniDuplicated = true;
                         $scope.partnerForm.dni.$setValidity('exist', false);
+                    } else {
+                        result = result + 'ERROR INVALID FIELD:' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error + ' ';
                     }
                 }
             }

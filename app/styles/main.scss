@@ -35,8 +35,8 @@ $my-border-radius: 4px;
 /* Space out content a bit */
 body {
   color: $grey-dark;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  /* padding-top: 20px; */
+  /* padding-bottom: 20px; */
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -193,6 +193,10 @@ label {
     }
   }
 }
+
+h1 { font-size: 25px; }
+
+h2 { font-size: 25px; }
 
 hr {
   border-top: 3px solid $grey-light;
