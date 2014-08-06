@@ -326,7 +326,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 REBUT_BANCARI: 'Banku-ordainagiria',
                 TARGETA_CREDIT: 'Kreditu-txartela',
                 COST: 'Kooperatibarako kostua',
-                INFO_APORTACIO: 'Bazkide izateko ekarpena 100 €-koa da<br/>100€ behin ordaintzen dira, ez dago urteko kuotarik  eta baja ematean itzultzeko modukoak dira.',
+                INFO_APORTACIO: 'Bazkide izateko ekarpena 100 €-koa da<br/>100€ behin ordaintzen dira, ez dago urteko kuotarik eta kooperatiban baja eman ezkero bueltan itzuliko dira.',
                 FINALITZA_PROCES: 'Prozesua amaitu',
                 FORMULARI_NO_DISPONIBLE: 'Formularioa ez dago eskuragarri, barkatu eragozpenak.',
                 INVALID: '<Baliogabea',
