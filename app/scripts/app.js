@@ -14,7 +14,8 @@ angular.module('newSomEnergiaWebformsApp', [
             return data === undefined ? data : jQuery.param(data);
         };
     })
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, $sceDelegateProvider) {
+//    .config(function ($routeProvider) {
 //    .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
@@ -41,6 +42,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 redirectTo: '/'
             });
 //        $locationProvider.html5Mode(true);
+        $sceDelegateProvider.resourceUrlWhitelist(['self', new RegExp('^(http[s]?):\/\/rawgit.com/.+$')]);
     })
     .config(function($translateProvider) {
         $translateProvider
