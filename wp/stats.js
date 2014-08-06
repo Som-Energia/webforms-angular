@@ -4,34 +4,34 @@ if (jQuery) {
     jQuery(document).ready(function() {
         // Partners
         jQuery.getJSON('http://somenergia-api-webforms.gisce.net/stats/socis', function(response) {
-//            console.log('JSON response: ' + response);
+            var partnerNode = jQuery('#partners');
             if (response.status === 'OFFLINE') {
-                console.error('Webforms server offline');
+                partnerNode.text('no disponible (EP1)');
             } else {
                 if (response.state === false) {
-                    console.error('Webforms server response error');
+                    partnerNode.text('no disponible (EP2)');
                 } else {
                     if (response.data === undefined) {
-                        console.error('Empty data webforms server response');
+                        partnerNode.text('no disponible (EP3)');
                     } else {
-                        jQuery('#partners').text(Number(response.data.socis).toLocaleString());
+                        partnerNode.text(Number(response.data.socis).toLocaleString());
                     }
                 }
             }
         });
         // Contracts
         jQuery.getJSON('http://somenergia-api-webforms.gisce.net/stats/contractes', function(response) {
-//            console.log('JSON response: ' + response);
+            var partnerNode = jQuery('#contracts');
             if (response.status === 'OFFLINE') {
-                console.error('Webforms server offline');
+                partnerNode.text('no disponible (EC1)');
             } else {
                 if (response.state === false) {
-                    console.error('Webforms server response error');
+                    partnerNode.text('no disponible (EC21)');
                 } else {
                     if (response.data === undefined) {
-                        console.error('Empty data webforms server response');
+                        partnerNode.text('no disponible (EC3)');
                     } else {
-                        jQuery('#contracts').text(Number(response.data.contractes).toLocaleString());
+                        partnerNode.text(Number(response.data.contractes).toLocaleString());
                     }
                 }
             }
