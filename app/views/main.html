@@ -1,5 +1,5 @@
 <!--GLOBAL MESSAGES-->
-<div class="row" data-ng-include data-src="'https://raw.githubusercontent.com/Som-Energia/new-api-webforms/master/app/views/common/global-messages.html'"></div>
+<div class="row" data-ng-include data-src="'http://rawgit.com/Som-Energia/new-api-webforms/master/app/views/common/global-messages.html'"></div>
 
 <!-- BEGIN FORM-->
 <form name="partnerForm" class="form-inline" role="form" novalidate>
@@ -19,14 +19,14 @@
                 </div>
             </div>
             <div class="row" data-ng-show="form.usertype">
-                <div class="form-group col-sm-3 col-xs-10" data-ng-show="form.usertype">
+                <div class="form-group col-md-4 col-xs-11" data-ng-show="form.usertype">
                     <label class="sr-only">{{ 'IDIOMA' | translate }}*:</label>
                     <select class="form-control" name="language" data-ng-model="form.language" data-ng-options="language.name for language in languages" data-ng-change="formListener()" required>
                         <option value="">{{ 'SELECCIONA_IDIOMA' | translate }}</option>
                     </select>
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.language.$invalid">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-                <div class="col-sm-1 col-xs-1">
+                <div class="col-md-1 col-xs-1">
                     <span id="help-popover-language" class="badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_IDIOMA' | translate }}" data-placement="right">?</span>
                 </div>
             </div>
@@ -211,12 +211,12 @@
 
 <!--OFFLINE API MODAL-->
 <div id="api-server-offline-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="Webforms" data-aria-hidden="true">
-    <div class="modal-dialog modal-lg" data-ng-include data-src="'https://raw.githubusercontent.com/Som-Energia/new-api-webforms/master/app/views/common/offline-api-modal.html'"></div>
+    <div class="modal-dialog modal-lg" data-ng-include data-src="'http://rawgit.com/Som-Energia/new-api-webforms/master/app/views/common/offline-api-modal.html'"></div>
 </div>
 
 <!--WELL DONE MODAL-->
 <div id="well-done-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="WebformsWellDone" data-aria-hidden="true">
-    <div class="modal-dialog modal-lg" data-ng-include data-src="'https://raw.githubusercontent.com/Som-Energia/new-api-webforms/master/app/views/common/well-done-modal.html'"></div>
+    <div class="modal-dialog modal-lg" data-ng-include data-src="'http://rawgit.com/Som-Energia/new-api-webforms/master/app/views/common/well-done-modal.html'"></div>
 </div>
 
 <script type="text/javascript">

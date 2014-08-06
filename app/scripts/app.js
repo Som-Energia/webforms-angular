@@ -392,7 +392,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 LOADING: 'Datuak bidaltzen...',
                 ENVIANT_DADES: 'Faktura bat gehitzekotan prozesua amaitzeak denbora dexente iraun lezake, arxtibategiaren pisuaren edota zure Internet-konexioaren arabera. Anima zaitez eta energia on, ia amaitu duzu! :)'
             })
-            .preferredLanguage('ca')
+            .preferredLanguage('es')
         ;
     })
     .constant('cfg', {
