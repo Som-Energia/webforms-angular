@@ -4,34 +4,34 @@ if (jQuery) {
     jQuery(document).ready(function() {
         // Partners
         jQuery.getJSON('http://somenergia-api-webforms.gisce.net/stats/socis', function(response) {
-            var partnerNode = jQuery('#partners');
+            var node = jQuery('#partners');
             if (response.status === 'OFFLINE') {
-                partnerNode.text('no disponible (EP1)');
+                node.text('no disponible (EP1)');
             } else {
                 if (response.state === false) {
-                    partnerNode.text('no disponible (EP2)');
+                    node.text('no disponible (EP2)');
                 } else {
                     if (response.data === undefined) {
-                        partnerNode.text('no disponible (EP3)');
+                        node.text('no disponible (EP3)');
                     } else {
-                        partnerNode.text(Number(response.data.socis).toLocaleString());
+                        node.text(Number(response.data.socis).toLocaleString());
                     }
                 }
             }
         });
         // Contracts
         jQuery.getJSON('http://somenergia-api-webforms.gisce.net/stats/contractes', function(response) {
-            var partnerNode = jQuery('#contracts');
+            var node = jQuery('#contracts');
             if (response.status === 'OFFLINE') {
-                partnerNode.text('no disponible (EC1)');
+                node.text('no disponible (EC1)');
             } else {
                 if (response.state === false) {
-                    partnerNode.text('no disponible (EC21)');
+                    node.text('no disponible (EC21)');
                 } else {
                     if (response.data === undefined) {
-                        partnerNode.text('no disponible (EC3)');
+                        node.text('no disponible (EC3)');
                     } else {
-                        partnerNode.text(Number(response.data.contractes).toLocaleString());
+                        node.text(Number(response.data.contractes).toLocaleString());
                     }
                 }
             }
