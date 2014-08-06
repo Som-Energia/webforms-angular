@@ -8173,13 +8173,13 @@ div.alert.alert-info.grey {
 
 /* line 231, ../../app/styles/main.scss */
 div.wrapper-continue-process {
-  background: url("/images/continue-process.png") no-repeat 100% -47px;
+  background: url("http://rawgit.com/Som-Energia/new-api-webforms/master/app/images/continue-process.png") no-repeat 100% -47px;
   height: 47px;
   margin-top: -3px;
 }
 /* line 235, ../../app/styles/main.scss */
 div.wrapper-continue-process.ready {
-  background: url("/images/continue-process.png") no-repeat 100% 0;
+  background: url("http://rawgit.com/Som-Energia/new-api-webforms/master/app/images/continue-process.png") no-repeat 100% 0;
 }
 
 /* line 240, ../../app/styles/main.scss */
