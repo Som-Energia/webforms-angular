@@ -14,7 +14,7 @@ if (jQuery) {
                     if (response.data === undefined) {
                         console.error('Empty data webforms server response');
                     } else {
-                        jQuery('#partners').text(response.data.socis);
+                        jQuery('#partners').text(Number(response.data.socis).toLocaleString());
                     }
                 }
             }
@@ -31,7 +31,7 @@ if (jQuery) {
                     if (response.data === undefined) {
                         console.error('Empty data webforms server response');
                     } else {
-                        jQuery('#contracts').text(response.data.contractes);
+                        jQuery('#contracts').text(Number(response.data.contractes).toLocaleString());
                     }
                 }
             }
