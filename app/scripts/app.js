@@ -14,7 +14,7 @@ angular.module('newSomEnergiaWebformsApp', [
             return data === undefined ? data : jQuery.param(data);
         };
     })
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',
@@ -39,6 +39,7 @@ angular.module('newSomEnergiaWebformsApp', [
             .otherwise({
                 redirectTo: '/'
             });
+        $locationProvider.html5Mode(true);
     })
     .config(function($translateProvider) {
         $translateProvider
