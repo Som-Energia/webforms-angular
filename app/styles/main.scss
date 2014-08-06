@@ -229,11 +229,11 @@ div.alert {
 }
 
 div.wrapper-continue-process {
-  background: url("/images/continue-process.png") no-repeat 100% -47px;
+  background: url("http://rawgit.com/Som-Energia/new-api-webforms/master/app/images/continue-process.png") no-repeat 100% -47px;
   height: 47px;
   margin-top: -3px;
   &.ready {
-    background: url("/images/continue-process.png") no-repeat 100% 0;
+    background: url("http://rawgit.com/Som-Energia/new-api-webforms/master/app/images/continue-process.png") no-repeat 100% 0;
   }
 }
 
