@@ -121,6 +121,12 @@ input, select {
     font-size: 14px;
     cursor: pointer;
   }
+}
+
+span.img-badge {
+  width: 30px;
+  display: block;
+  color: transparent;
   &.first-step-number {
     background: url("http://rawgit.com/Som-Energia/new-api-webforms/master/app/images/number-01.png") no-repeat 100% -30px;
     height: 30px;
