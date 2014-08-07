@@ -1,22 +1,23 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('PrepaymentCtrl', ['cfg', 'prepaymentService', '$http', '$scope', '$sce', function (cfg, prepaymentService, $http, $scope, $sce) {
+    .controller('PrepaymentCtrl', ['cfg', 'prepaymentService', '$http', '$scope', '$sce', '$log', function (cfg, prepaymentService, $http, $scope, $sce, $log) {
 
         $scope.data = prepaymentService.getData();
 
-        $scope.getTrustPostAction = function () {
+        $scope.getTrustPostAction = function() {
             return $sce.trustAsResourceUrl($scope.data.endpoint);
         };
 
-        $scope.getOperationIdEscape = function () {
+        $scope.getOperationIdEscape = function() {
             if ($scope.payment_type === 'rebut') {
                 $scope.data.payment_data.ID_OPERACION = escape($scope.data.payment_data.ID_OPERACION);
             }
         };
 
         // TODO enable on production to avoid prepayment template render
-        // $scope.getOperationIdEscape();
-        // $http.post($scope.data.endpoint, $scope.data.payment_data);
+        $log.log('prepayment endpoint', $scope.data.endpoint);
+        $scope.getOperationIdEscape();
+        $http.post($scope.data.endpoint, $scope.data.payment_data);
 
     }]);
