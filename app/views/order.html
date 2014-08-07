@@ -113,42 +113,46 @@
         <div class="row">
             <div class="form-group col-sm-6 col-xs-12">
                 <label class="combo-one-row">{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}*</label>
-                <select class="form-control width-30-percent combo-one-row" name="rate" data-ng-model="form.rate" data-ng-change="formListener()" required>
+                <select class="form-control width-30-percent combo-one-row" name="rate" data-ng-model="form.rate" data-ng-change="updatePowerRatePopoverListener()" required>
                     <option value="">{{ 'SELECCIONAR' | translate }}</option>
                     <option data-ng-repeat="rate in rates" value="{{ rate }}" data-ng-selected="{{ rate == form.rate }}">{{ rate }}</option>
                 </select>
                 <span class="spc badge current small combo-one-row" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_RATE' | translate }}" data-placement="top">?</span>
             </div>
         </div>
-        <div class="row">
-            <!--3.0A power rate NOT selected-->
-            <div data-ng-if="form.rate != '3.0A'">
-                <div class="form-group col-sm-5 col-xs-12">
+        <!--3.0A power rate NOT selected-->
+        <div data-ng-if="form.rate != '3.0A'">
+            <div class="row">
+                <div class="form-group col-sm-6 col-xs-12">
                     <label class="combo-one-row">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
-                    <input type="text" name="power" class="form-control width-40-percent combo-one-row" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
+                    <input type="text" name="power" class="form-control width-40-percent combo-one-row" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text" style="margin-right:5px;">kW</span>
+                    <span id="spc-rate-conditional" class="spc badge current small combo-one-row" style="margin-top:-17px;display:flex;padding-top:7px;padding-left:9px;" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_POWER' | translate }}" data-placement="left">?</span>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
-            <!--3.0A power rate selected-->
-            <div data-ng-if="form.rate == '3.0A'">
-                <div class="form-group col-xs-3">
-                    <label>P1*</label>
-                    <input type="text" name="power" class="form-control width-70-percent" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;kW
+        </div>
+        <!--3.0A power rate selected-->
+        <div data-ng-if="form.rate == '3.0A'">
+            <div class="row">
+                <div class="form-group col-xs-12">
+                    <label class="combo-one-row">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
+                    <span id="spc-rate-conditional" class="spc badge current small combo-one-row" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_POWER' | translate }}" data-placement="left">?</span>
+                </div>
+                <div class="form-group col-sm-3 col-xs-4">
+                    <label class="combo-one-row">P1*</label>
+                    <input type="text" name="power" class="form-control width-70-percent combo-one-row" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-                <div class="form-group col-xs-3">
-                    <label>P2*</label>
-                    <input type="text" name="power2" class="form-control width-70-percent" data-ng-model="form.power2" data-ng-change="formListener()" required/>&nbsp;kW
+                <div class="form-group col-sm-3 col-xs-4">
+                    <label class="combo-one-row">P2*</label>
+                    <input type="text" name="power2" class="form-control width-70-percent combo-one-row" data-ng-model="form.power2" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-                <div class="form-group col-xs-3">
-                    <label>P3*</label>
-                    <input type="text" name="power3" class="form-control width-70-percent" data-ng-model="form.power3" data-ng-change="formListener()" required/>&nbsp;kW
+                <div class="form-group col-sm-3 col-xs-4">
+                    <label class="combo-one-row">P3*</label>
+                    <input type="text" name="power3" class="form-control width-70-percent combo-one-row" data-ng-model="form.power3" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power3.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-            </div>
-            <div class="col-xs-1">
-                <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_POWER' | translate }}" data-placement="top">?</span>
             </div>
         </div>
         <hr>
@@ -159,24 +163,20 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-2">
+            <div class="col-sm-3 col-xs-12">
                 <label for="estimation" class="sr-only">{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}:</label>
                 <input type="text" name="estimation" data-ng-model="form.estimation" class="form-control" placeholder="{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}" data-ng-change="formListener()"/>
             </div>
-            <div class="col-xs-5">
+            <div class="col-sm-5 col-xs-12">
                 <label for="catastre" class="sr-only">{{ 'REFERENCIA_CATASTRAL' | translate }}:</label>
-                <input type="text" name="catastre" data-ng-model="form.catastre" class="form-control" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener()"/>
-            </div>
-            <div class="col-xs-1">
+                <input type="text" name="catastre" data-ng-model="form.catastre" class="form-control width-70-percent combo-one-row" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener()"/>
                 <span class="spc-html badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_REFERENCIA_CATASTRAL' | translate }}" data-placement="top">?</span>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-5">
-                <label for="file">{{ 'ADJUNTAR_ULTIMA_FACTURA' | translate }}</label>
-            </div>
-            <div class="col-xs-7">
-                <input id="fileuploaderinput" type="file" name="file" data-ng-model="form.file" class="form-control" onchange="angular.element(this).scope().validateSelectedFileSize()"/>
+            <div class="col-xs-12">
+                <label class="combo-one-row" for="file">{{ 'ADJUNTAR_ULTIMA_FACTURA' | translate }}</label>
+                <input id="fileuploaderinput" type="file" name="file" data-ng-model="form.file" class="form-control combo-one-row" onchange="angular.element(this).scope().validateSelectedFileSize()"/>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && invalidAttachFileExtension">{{ 'BAD_EXTENSION' | translate }}</span>
                 <span class="label label-danger" data-ng-show="overflowAttachFile">{{ 'OVERFLOW_FILE' | translate }}</span>
             </div>
@@ -215,14 +215,14 @@
         </div>
         <hr>
         <div class="row">
-            <div class="form-group col-xs-4">
+            <div class="form-group col-sm-6 col-xs-12">
                 <label>{{ 'EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE' | translate }}</label>
                 <div class="btn-group">
                     <label class="btn btn-default green" data-ng-model="form.isownerlink" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>
                     <label class="btn btn-default green" data-ng-model="form.isownerlink" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>
                 </div>
             </div>
-            <div class="form-group col-xs-4" data-ng-show="form.isownerlink == 'no'">
+            <div class="form-group col-sm-6 col-xs-12" data-ng-show="form.isownerlink == 'no'">
                 <span>{{ 'EL_TITULAR_ES' | translate }}:&nbsp;</span>
                 <div class="btn-group">
                     <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
@@ -233,13 +233,13 @@
         <!-- (TITULAR_PARTICULAR || TITULAR_EMPRESA) & SOCI_VINCULAT_SI (page 06 & 12) (page 09 & 15) -->
         <div data-ng-show="form.isownerlink == 'yes'">
             <div class="row">
-                <div class="col-xs-4">
+                <div class="col-sm-4 col-xs-12">
                     <input type="text" name="ownername" data-ng-model="form.ownername" class="form-control" placeholder="{{ soci.nom }}" value="{{ soci.nom }}" disabled/>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-sm-4 col-xs-12">
                     <input type="text" name="ownersurname" data-ng-model="form.ownersurname" class="form-control" placeholder="{{ soci.cognom }}" value="{{ soci.cognom }}" disabled/>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-sm-4 col-xs-12">
                     <input type="text" name="ownerdni" data-ng-model="form.ownerdni" class="form-control" placeholder="{{ soci.dni }}" value="{{ soci.dni }}" disabled/>
                 </div>
             </div>
@@ -248,7 +248,7 @@
         <!-- TITULAR_PARTICULAR & SOCI_VINCULAT_NO (page 07 & 13) -->
         <div data-ng-if="form.usertype == 'person' && form.isownerlink == 'no'">
             <div class="row">
-                <div class="form-group col-xs-6">
+                <div class="form-group col-sm-6 col-xs-12">
                     <label>{{ 'IDIOMA' | translate }}*:</label>
                     <select class="form-control width-70-percent" name="language" data-ng-model="form.language" data-ng-options="language.name for language in languages" data-ng-change="formListener()" required>
                         <option value="">{{ 'SELECCIONA_IDIOMA' | translate }}</option>
@@ -257,17 +257,17 @@
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-xs-4">
+                <div class="form-group col-sm-4 col-xs-12">
                     <label class="sr-only">{{ 'NOM' | translate }}*:</label>
                     <input type="text" name="name" class="form-control" placeholder="{{ 'NOM' | translate }}*" data-ng-model="form.name" data-ng-change="formListener()" required/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.name.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-                <div class="form-group col-xs-4">
+                <div class="form-group col-sm-4 col-xs-12">
                     <label class="sr-only">{{ 'COGNOMS' | translate }}*:</label>
                     <input type="text" name="surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}*" data-ng-model="form.surname" data-ng-change="formListener()" required/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-                <div class="form-group col-xs-4">
+                <div class="form-group col-sm-4 col-xs-12">
                     <label class="sr-only">DNI/NIE*:</label>
                     <input type="text" name="dni" class="form-control" placeholder="DNI/NIE*" data-ng-model="form.dni" data-ng-change="formListener()" required/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
@@ -276,49 +276,49 @@
             </div>
             <hr class="dotted">
             <div class="row">
-                <div class="form-group col-xs-3">
+                <div class="form-group col-sm-3 col-xs-6">
                     <label class="sr-only">Email*:</label>
                     <input type="text" name="email1" class="form-control" placeholder="Email*" data-ng-model="form.email1" data-ng-change="formListener()" data-ng-class="{'ng-invalid': emailIsInvalid}" required/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.email1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     <span class="label label-danger" data-ng-show="emailIsInvalid">{{ 'INVALID' | translate }}</span>
                 </div>
-                <div class="form-group col-xs-3">
+                <div class="form-group col-sm-3 col-xs-6">
                     <label class="sr-only">{{ 'REPETEIX_EMAIL' | translate }}*:</label>
                     <input type="text" name="email2" class="form-control" placeholder="{{ 'REPETEIX_EMAIL' | translate }}*" data-ng-model="form.email2" data-ng-change="formListener()" data-ng-class="{'ng-invalid': emailNoIguals}" required/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.email2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     <span class="label label-danger" data-ng-show="emailNoIguals">{{ 'EMAIL_NO_IGUALS' | translate }}</span>
                 </div>
-                <div class="form-group col-xs-3">
+                <div class="form-group col-sm-3 col-xs-6">
                     <label class="sr-only">{{ 'TELEFON' | translate }}*:</label>
                     <input type="text" name="phone1" class="form-control" placeholder="{{ 'TELEFON' | translate }}*" data-ng-model="form.phone1" data-ng-change="formListener()" required />
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.phone1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-                <div class="form-group col-xs-3">
+                <div class="form-group col-sm-3 col-xs-6">
                     <label class="sr-only">{{ 'TELEFON' | translate }} 2:</label>
                     <input type="text" name="phone2" class="form-control" placeholder="{{ 'TELEFON' | translate }} 2" data-ng-model="form.phone2"/>
                 </div>
             </div>
             <hr class="dotted">
             <div class="row">
-                <div class="form-group col-xs-4">
+                <div class="form-group col-sm-4 col-xs-8">
                     <label class="sr-only">{{ 'ADRECA' | translate }}*:</label>
                     <input type="text" name="address2" class="form-control" data-ng-model="form.address2" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener()" required/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.address2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-                <div class="form-group col-xs-2">
+                <div class="form-group col-sm-2 col-xs-4">
                     <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
                     <input type="text" name="postalcode" class="form-control" data-ng-model="form.postalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.postalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     <span class="label label-danger" data-ng-show="postalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
                 </div>
-                <div class="form-group col-xs-3">
+                <div class="form-group col-sm-3 col-xs-6">
                     <label class="sr-only">{{ 'PROVINCIA' | translate }}</label>
                     <select class="form-control" name="province2" data-ng-model="form.province2" data-ng-options="province.name for province in provinces2" data-ng-change="updateSelectedCity2()" required>
                         <option value="">{{ 'PROVINCIA' | translate }}*</option>
                     </select>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.province2.$invalid">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-                <div class="form-group col-xs-3">
+                <div class="form-group col-sm-3 col-xs-6">
                     <label for="city" class="sr-only">{{ 'POBLACIO' | translate }}</label>
                     <select class="form-control" name="city2" data-ng-model="form.city2" data-ng-options="city.name for city in cities2" data-ng-change="formListener()" required >
                         <option value="">{{ 'POBLACIO' | translate }}*</option>
@@ -339,7 +339,7 @@
         <!-- TITULAR_EMPRESA & SOCI_VINCULAT_NO (page 10 & 16) -->
         <div data-ng-if="form.usertype == 'company' && form.isownerlink == 'no'">
             <div class="row">
-                <div class="form-group col-xs-6">
+                <div class="form-group col-sm-6 col-xs-12">
                     <label>{{ 'IDIOMA' | translate }}*:</label>
                     <select class="form-control width-70-percent" name="language" data-ng-model="form.language" data-ng-options="language.name for language in languages" data-ng-change="formListener()" required>
                         <option value="">{{ 'SELECCIONA_IDIOMA' | translate }}</option>
@@ -401,12 +401,12 @@
             </div>
             <hr class="dotted">
             <div class="row">
-                <div class="form-group col-xs-10">
+                <div class="form-group col-sm-10 col-xs-8">
                     <label class="sr-only">{{ 'ADRECA' | translate }}*:</label>
                     <input type="text" name="address2" class="form-control" data-ng-model="form.address2" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener()" required/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.address2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-                <div class="form-group col-xs-2">
+                <div class="form-group col-sm-2 col-xs-4">
                     <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
                     <input type="text" name="postalcode" class="form-control" data-ng-model="form.postalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.postalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
@@ -454,9 +454,9 @@
     </div>
     <div data-ng-show="step3Ready">
         <div class="row extra-margin-top">
-            <div class="col-xs-7">
+            <div class="col-sm-7 col-xs-12">
                 <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}</label>
-                <select class="form-control width-50-percent" name="choosepayer" data-ng-model="form.choosepayer" data-ng-change="formListener()">
+                <select class="form-control width-70-percent" name="choosepayer" data-ng-model="form.choosepayer" data-ng-change="formListener()">
                     <option value="titular">{{ 'TITULAR_CONTRACTE_ELECTRICITAT' | translate }}</option>
                     <option value="soci">{{ 'SOCI_SOM_ENERGIA' | translate }}</option>
                     <option value="altre">{{ 'ALTRE_TITULAR' | translate }}</option>
@@ -465,7 +465,7 @@
         </div>
         <div data-ng-if="form.choosepayer == 'altre'">
             <div class="row">
-                <div class="form-group col-xs-6">
+                <div class="form-group col-sm-6 col-xs-12">
                     <label>{{ 'SELECCIONA' | translate }}:</label>
                     <div class="btn-group">
                         <label class="btn btn-default green" data-ng-model="form.payertype" data-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
@@ -521,12 +521,12 @@
                 </div>
                 <hr class="dotted">
                 <div class="row">
-                    <div class="form-group col-xs-9">
+                    <div class="form-group col-sm-9 col-xs-8">
                         <label class="sr-only">{{ 'ADRECA' | translate }}*:</label>
                         <input type="text" name="accountaddress" class="form-control" data-ng-model="form.accountaddress" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountaddress.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     </div>
-                    <div class="form-group col-xs-3">
+                    <div class="form-group col-sm-3 col-xs-4">
                         <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
                         <input type="text" name="accountpostalcode" class="form-control" data-ng-model="form.accountpostalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountpostalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
@@ -606,12 +606,12 @@
                 </div>
                 <hr class="dotted">
                 <div class="row">
-                    <div class="form-group col-xs-9">
+                    <div class="form-group col-sm-9 col-xs-8">
                         <label class="sr-only">{{ 'ADRECA' | translate }}*:</label>
                         <input type="text" name="accountaddress" class="form-control" data-ng-model="form.accountaddress" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountaddress.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     </div>
-                    <div class="form-group col-xs-3">
+                    <div class="form-group col-sm-3 col-xs-4">
                         <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
                         <input type="text" name="accountpostalcode" class="form-control" data-ng-model="form.accountpostalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountpostalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
@@ -637,23 +637,23 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-3">
+            <div class="col-sm-3 col-xs-12">
                 <label>{{ 'NUM_COMPTE' | translate }}</label>
                 <span class="label label-danger" data-ng-show="accountIsInvalid">{{ 'INVALID' | translate }}</span>
             </div>
-            <div class="col-xs-2">
+            <div class="col-sm-2 col-xs-6">
                 <input type="text" name="accountbank" class="form-control" data-ng-model="form.accountbank" placeholder="{{ 'BANC' | translate }}*" data-ng-change="formAccountListener()" required/>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountbank.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
-            <div class="col-xs-2">
+            <div class="col-sm-2 col-xs-6">
                 <input type="text" name="accountoffice" class="form-control" data-ng-model="form.accountoffice" placeholder="{{ 'OFICINA' | translate }}*" data-ng-change="formAccountListener()" required/>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountoffice.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
-            <div class="col-xs-1">
+            <div class="col-sm-1 col-xs-4">
                 <input type="text" name="accountchecksum" class="form-control" data-ng-model="form.accountchecksum" placeholder="D.C.*" data-ng-change="formAccountListener()" required/>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountchecksum.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
-            <div class="col-xs-4">
+            <div class="col-sm-4 col-xs-8">
                 <input type="text" name="accountnumber" class="form-control" data-ng-model="form.accountnumber" placeholder="{{ 'COMPTE' | translate }}*" data-ng-change="formAccountListener()" required/>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountnumber.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
@@ -740,5 +740,6 @@
                 }
         );
         jQuery(".spc").popover({trigger : 'hover'});
+        setTimeout(function () { jQuery("#spc-rate-conditional").popover({trigger : 'hover'}); }, 1000);
     });
 </script>
