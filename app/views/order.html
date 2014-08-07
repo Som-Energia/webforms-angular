@@ -131,19 +131,19 @@
             </div>
             <!--3.0A power rate selected-->
             <div data-ng-if="form.rate == '3.0A'">
-                <div class="form-group col-xs-3">
-                    <label>P1*</label>
-                    <input type="text" name="power" class="form-control width-70-percent" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;kW
+                <div class="form-group col-sm-3 col-xs-4">
+                    <label class="combo-one-row">P1*</label>
+                    <input type="text" name="power" class="form-control width-70-percent combo-one-row" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-                <div class="form-group col-xs-3">
-                    <label>P2*</label>
-                    <input type="text" name="power2" class="form-control width-70-percent" data-ng-model="form.power2" data-ng-change="formListener()" required/>&nbsp;kW
+                <div class="form-group col-sm-3 col-xs-4">
+                    <label class="combo-one-row">P2*</label>
+                    <input type="text" name="power2" class="form-control width-70-percent combo-one-row" data-ng-model="form.power2" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-                <div class="form-group col-xs-3">
-                    <label>P3*</label>
-                    <input type="text" name="power3" class="form-control width-70-percent" data-ng-model="form.power3" data-ng-change="formListener()" required/>&nbsp;kW
+                <div class="form-group col-sm-3 col-xs-4">
+                    <label class="combo-one-row">P3*</label>
+                    <input type="text" name="power3" class="form-control width-70-percent combo-one-row" data-ng-model="form.power3" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power3.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
