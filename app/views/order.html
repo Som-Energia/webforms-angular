@@ -12,18 +12,18 @@
 <form name="initForm" class="form-inline" role="form" data-ng-show="step0Ready" novalidate>
     <!--FIRST STEP-->
     <div class="row extra-margin-top">
-        <div class="form-group col-xs-3">
+        <div class="form-group col-sm-3 col-xs-5">
             <label class="sr-only">{{ 'NUMERO_SOCI' | translate }}*</label>
             <input type="text" name="socinumber" class="form-control" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="form.init.socinumber" data-ng-change="formListener()" required/>
             <span class="label label-danger" data-ng-show="initFormSubmitted && initForm.socinumber.$error.required">{{ 'OBLIGATORI' | translate }}</span>
         </div>
-        <div class="col-xs-3">
+        <div class="form-group col-sm-3 col-xs-5">
             <label class="sr-only">DNI/NIE/CIF*</label>
             <input type="text" name="dni" class="form-control" placeholder="DNI/NIE/CIF*" data-ng-model="form.init.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': dniIsInvalid}" required/>
             <span class="label label-danger" data-ng-show="initFormSubmitted && initForm.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             <span class="label label-danger" data-ng-show="dniIsInvalid">{{ 'INVALID' | translate }}</span>
         </div>
-        <div class="col-xs-1">
+        <div class="col-sm-1 col-xs-1">
             <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_DNI' | translate }}" data-placement="top">?</span>
         </div>
         <!--<div class="col-xs-5">-->
@@ -39,7 +39,7 @@
     <div class="row" data-ng-if="showUnknownSociWarning && !dniIsInvalid">
         <div class="col-xs-12">
             <h3><span class="label label-danger">{{ 'NO_TROBEM_CAP_SOCI_VINCULAT' | translate }}</span></h3>
-            <p>{{ 'NO_ETS_SOCI_FES_TE_AQUI' | translate }}</p>
+            <p data-ng-bind-html="'NO_ETS_SOCI_FES_TE_AQUI' | translate "></p>
         </div>
     </div>
     <div class="row" data-ng-if="showBeginOrderForm && !showUnknownSociWarning && !dniIsInvalid">
@@ -72,14 +72,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-xs-4">
+            <div class="form-group col-sm-4 col-xs-12">
                 <label>{{ 'PROVINCIA' | translate }}*:</label>
                 <select class="form-control width-70-percent" name="province" data-ng-model="form.province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity(form)" required>
                     <option value="">{{ 'PROVINCIA' | translate }}*</option>
                 </select>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.province.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
-            <div class="form-group col-xs-4">
+            <div class="form-group col-sm-4 col-xs-12">
                 <label>{{ 'POBLACIO' | translate }}*:</label>
                 <select class="form-control width-70-percent" name="city" data-ng-model="form.city" data-ng-options="city.name for city in cities" data-ng-change="formListener()" required>
                     <option value="">{{ 'POBLACIO' | translate }}*</option>
@@ -89,7 +89,7 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-xs-8">
+            <div class="col-sm-8 col-xs-12">
                 <div class="wrapper">
                     <label class="sr-only">{{ 'NUMERO_DE_CUPS' | translate }}*</label>
                     <input type="text" name="cups" class="form-control width-80-percent" placeholder="{{ 'NUMERO_DE_CUPS' | translate }}*" data-ng-model="form.cups" data-ng-change="formListener()" data-ng-class="{'ng-invalid': cupsIsInvalid || cupsIsDuplicated}" required/>
@@ -99,7 +99,7 @@
                 <span class="label label-danger" data-ng-show="cupsIsInvalid">{{ 'INVALID' | translate }}</span>
                 <span class="label label-danger" data-ng-show="cupsIsDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
             </div>
-            <div class="col-xs-4">
+            <div class="col-sm-4 col-xs-12">
                 <div class="wrapper">
                     <label class="sr-only">CNAE*</label>
                     <input type="text" name="cnae" class="form-control width-80-percent" placeholder="CNAE*" data-ng-model="form.cnae" data-ng-change="formListener()" data-ng-class="{'ng-invalid': cnaeIsInvalid}" required/>
@@ -111,23 +111,21 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-xs-4">
-                <label>{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}*</label>
-                <select class="form-control width-50-percent" name="rate" data-ng-model="form.rate" data-ng-change="formListener()" required>
+            <div class="form-group col-sm-6 col-xs-12">
+                <label class="combo-one-row">{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}*</label>
+                <select class="form-control width-30-percent combo-one-row" name="rate" data-ng-model="form.rate" data-ng-change="formListener()" required>
                     <option value="">{{ 'SELECCIONAR' | translate }}</option>
                     <option data-ng-repeat="rate in rates" value="{{ rate }}" data-ng-selected="{{ rate == form.rate }}">{{ rate }}</option>
                 </select>
-            </div>
-            <div class="col-xs-1">
-                <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_RATE' | translate }}" data-placement="top">?</span>
+                <span class="spc badge current small combo-one-row" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_RATE' | translate }}" data-placement="top">?</span>
             </div>
         </div>
         <div class="row">
             <!--3.0A power rate NOT selected-->
             <div data-ng-if="form.rate != '3.0A'">
-                <div class="form-group col-xs-5">
-                    <label>{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
-                    <input type="text" name="power" class="form-control width-50-percent" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;kW
+                <div class="form-group col-sm-5 col-xs-12">
+                    <label class="combo-one-row">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
+                    <input type="text" name="power" class="form-control width-40-percent combo-one-row" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
