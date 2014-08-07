@@ -299,6 +299,12 @@ angular.module('newSomEnergiaWebformsApp')
                 }
             }, cfg.DEFAULT_MILLISECONDS_DELAY);
         });
+
+        // WATCH ON POWER RATE SELECT CHANGE
+        $scope.$watch('form.rate', function() {
+            jQuery('#spc-rate-conditional').popover({trigger : 'hover'});
+        });
+
 //        $scope.initSubmit = function(form) {
 //            $scope.initFormSubmitted = true;
 //            if (form.$invalid) {

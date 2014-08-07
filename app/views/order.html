@@ -120,17 +120,24 @@
                 <span class="spc badge current small combo-one-row" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_RATE' | translate }}" data-placement="top">?</span>
             </div>
         </div>
-        <div class="row">
-            <!--3.0A power rate NOT selected-->
-            <div data-ng-if="form.rate != '3.0A'">
-                <div class="form-group col-sm-5 col-xs-12">
+        <!--3.0A power rate NOT selected-->
+        <div data-ng-if="form.rate != '3.0A'">
+            <div class="row">
+                <div class="form-group col-sm-6 col-xs-12">
                     <label class="combo-one-row">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
-                    <input type="text" name="power" class="form-control width-40-percent combo-one-row" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
+                    <input type="text" name="power" class="form-control width-40-percent combo-one-row" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text" style="margin-right:5px;">kW</span>
+                    <span id="spc-rate-conditional" class="spc badge current small combo-one-row" style="margin-top:-17px;display:flex;padding-top:7px;padding-left:9px;" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_POWER' | translate }}" data-placement="left">?</span>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
-            <!--3.0A power rate selected-->
-            <div data-ng-if="form.rate == '3.0A'">
+        </div>
+        <!--3.0A power rate selected-->
+        <div data-ng-if="form.rate == '3.0A'">
+            <div class="row">
+                <div class="form-group col-xs-12">
+                    <label class="combo-one-row">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
+                    <span id="spc-rate-conditional" class="spc badge current small combo-one-row" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_POWER' | translate }}" data-placement="left">?</span>
+                </div>
                 <div class="form-group col-sm-3 col-xs-4">
                     <label class="combo-one-row">P1*</label>
                     <input type="text" name="power" class="form-control width-70-percent combo-one-row" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
@@ -147,9 +154,6 @@
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power3.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
-            <div class="col-xs-1">
-                <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_POWER' | translate }}" data-placement="top">?</span>
-            </div>
         </div>
         <hr>
         <div class="row">
@@ -159,15 +163,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-2">
+            <div class="col-sm-3 col-xs-12">
                 <label for="estimation" class="sr-only">{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}:</label>
                 <input type="text" name="estimation" data-ng-model="form.estimation" class="form-control" placeholder="{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}" data-ng-change="formListener()"/>
             </div>
-            <div class="col-xs-5">
+            <div class="col-sm-5 col-xs-12">
                 <label for="catastre" class="sr-only">{{ 'REFERENCIA_CATASTRAL' | translate }}:</label>
-                <input type="text" name="catastre" data-ng-model="form.catastre" class="form-control" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener()"/>
-            </div>
-            <div class="col-xs-1">
+                <input type="text" name="catastre" data-ng-model="form.catastre" class="form-control width-70-percent" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener()"/>
                 <span class="spc-html badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_REFERENCIA_CATASTRAL' | translate }}" data-placement="top">?</span>
             </div>
         </div>
@@ -740,5 +742,6 @@
                 }
         );
         jQuery(".spc").popover({trigger : 'hover'});
+        setTimeout(function () { jQuery("#spc-rate-conditional").popover({trigger : 'hover'}); }, 1000);
     });
 </script>
