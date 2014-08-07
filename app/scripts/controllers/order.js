@@ -4,7 +4,7 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
-        var debugEnabled = true;
+        var debugEnabled = false;
 
         // INIT
         $scope.step0Ready = true;
@@ -468,6 +468,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.step0Ready = false;
             $scope.step1Ready = true;
             $scope.step2Ready = true;
+            $scope.step3Ready = true;
             $scope.form.accountbank = debugCfg.ACCOUNT_BANK;
             $scope.form.accountoffice = debugCfg.ACCOUNT_OFFICE;
             $scope.form.accountchecksum = debugCfg.ACCOUNT_CHECKSUM;

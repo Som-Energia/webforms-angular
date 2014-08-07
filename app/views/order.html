@@ -339,7 +339,7 @@
         <!-- TITULAR_EMPRESA & SOCI_VINCULAT_NO (page 10 & 16) -->
         <div data-ng-if="form.usertype == 'company' && form.isownerlink == 'no'">
             <div class="row">
-                <div class="form-group col-xs-6">
+                <div class="form-group col-sm-6 col-xs-12">
                     <label>{{ 'IDIOMA' | translate }}*:</label>
                     <select class="form-control width-70-percent" name="language" data-ng-model="form.language" data-ng-options="language.name for language in languages" data-ng-change="formListener()" required>
                         <option value="">{{ 'SELECCIONA_IDIOMA' | translate }}</option>
@@ -401,12 +401,12 @@
             </div>
             <hr class="dotted">
             <div class="row">
-                <div class="form-group col-xs-10">
+                <div class="form-group col-sm-10 col-xs-8">
                     <label class="sr-only">{{ 'ADRECA' | translate }}*:</label>
                     <input type="text" name="address2" class="form-control" data-ng-model="form.address2" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener()" required/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.address2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-                <div class="form-group col-xs-2">
+                <div class="form-group col-sm-2 col-xs-4">
                     <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
                     <input type="text" name="postalcode" class="form-control" data-ng-model="form.postalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.postalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
@@ -454,9 +454,9 @@
     </div>
     <div data-ng-show="step3Ready">
         <div class="row extra-margin-top">
-            <div class="col-xs-7">
+            <div class="col-sm-7 col-xs-12">
                 <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}</label>
-                <select class="form-control width-50-percent" name="choosepayer" data-ng-model="form.choosepayer" data-ng-change="formListener()">
+                <select class="form-control width-70-percent" name="choosepayer" data-ng-model="form.choosepayer" data-ng-change="formListener()">
                     <option value="titular">{{ 'TITULAR_CONTRACTE_ELECTRICITAT' | translate }}</option>
                     <option value="soci">{{ 'SOCI_SOM_ENERGIA' | translate }}</option>
                     <option value="altre">{{ 'ALTRE_TITULAR' | translate }}</option>
@@ -465,7 +465,7 @@
         </div>
         <div data-ng-if="form.choosepayer == 'altre'">
             <div class="row">
-                <div class="form-group col-xs-6">
+                <div class="form-group col-sm-6 col-xs-12">
                     <label>{{ 'SELECCIONA' | translate }}:</label>
                     <div class="btn-group">
                         <label class="btn btn-default green" data-ng-model="form.payertype" data-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
@@ -521,12 +521,12 @@
                 </div>
                 <hr class="dotted">
                 <div class="row">
-                    <div class="form-group col-xs-9">
+                    <div class="form-group col-sm-9 col-xs-8">
                         <label class="sr-only">{{ 'ADRECA' | translate }}*:</label>
                         <input type="text" name="accountaddress" class="form-control" data-ng-model="form.accountaddress" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountaddress.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     </div>
-                    <div class="form-group col-xs-3">
+                    <div class="form-group col-sm-3 col-xs-4">
                         <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
                         <input type="text" name="accountpostalcode" class="form-control" data-ng-model="form.accountpostalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountpostalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
@@ -606,12 +606,12 @@
                 </div>
                 <hr class="dotted">
                 <div class="row">
-                    <div class="form-group col-xs-9">
+                    <div class="form-group col-sm-9 col-xs-8">
                         <label class="sr-only">{{ 'ADRECA' | translate }}*:</label>
                         <input type="text" name="accountaddress" class="form-control" data-ng-model="form.accountaddress" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountaddress.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     </div>
-                    <div class="form-group col-xs-3">
+                    <div class="form-group col-sm-3 col-xs-4">
                         <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
                         <input type="text" name="accountpostalcode" class="form-control" data-ng-model="form.accountpostalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountpostalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
@@ -637,23 +637,23 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-3">
+            <div class="col-sm-3 col-xs-12">
                 <label>{{ 'NUM_COMPTE' | translate }}</label>
                 <span class="label label-danger" data-ng-show="accountIsInvalid">{{ 'INVALID' | translate }}</span>
             </div>
-            <div class="col-xs-2">
+            <div class="col-sm-2 col-xs-6">
                 <input type="text" name="accountbank" class="form-control" data-ng-model="form.accountbank" placeholder="{{ 'BANC' | translate }}*" data-ng-change="formAccountListener()" required/>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountbank.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
-            <div class="col-xs-2">
+            <div class="col-sm-2 col-xs-6">
                 <input type="text" name="accountoffice" class="form-control" data-ng-model="form.accountoffice" placeholder="{{ 'OFICINA' | translate }}*" data-ng-change="formAccountListener()" required/>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountoffice.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
-            <div class="col-xs-1">
+            <div class="col-sm-1 col-xs-4">
                 <input type="text" name="accountchecksum" class="form-control" data-ng-model="form.accountchecksum" placeholder="D.C.*" data-ng-change="formAccountListener()" required/>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountchecksum.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
-            <div class="col-xs-4">
+            <div class="col-sm-4 col-xs-8">
                 <input type="text" name="accountnumber" class="form-control" data-ng-model="form.accountnumber" placeholder="{{ 'COMPTE' | translate }}*" data-ng-change="formAccountListener()" required/>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountnumber.$error.required">{{ 'OBLIGATORI' | translate }}</span>
             </div>
