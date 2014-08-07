@@ -28,6 +28,15 @@ angular.module('newSomEnergiaWebformsApp')
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
+        var absUrl = $location.absUrl();
+        if (absUrl.indexOf('/ca/') !== -1) {
+            $translate.use('ca');
+        } else if (absUrl.indexOf('/eu/') !== -1) {
+            $translate.use('eu');
+        } else if (absUrl.indexOf('/gl/') !== -1) {
+            $translate.use('gl');
+        }
+        $log.log('abs URL', $location.absUrl());
 
         // GET LANGUAGES
         AjaxHandler.getLanguages($scope);
