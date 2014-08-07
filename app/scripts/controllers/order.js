@@ -467,7 +467,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.showStep1Form = true;
             $scope.step0Ready = false;
             $scope.step1Ready = true;
-            $scope.step2Ready = false;
+            $scope.step2Ready = true;
             $scope.form.accountbank = debugCfg.ACCOUNT_BANK;
             $scope.form.accountoffice = debugCfg.ACCOUNT_OFFICE;
             $scope.form.accountchecksum = debugCfg.ACCOUNT_CHECKSUM;
