@@ -15,9 +15,5 @@ angular.module('newSomEnergiaWebformsApp')
             }
         };
 
-        // TODO enable on production to avoid prepayment template render
         $log.log('prepayment endpoint', $scope.data.endpoint);
-        $scope.getOperationIdEscape();
-        $http.post($scope.data.endpoint, $scope.data.payment_data);
-
     }]);
