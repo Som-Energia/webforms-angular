@@ -53,8 +53,8 @@
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
-            <hr class="dotted" data-ng-if="form.usertype == 'person'">
-            <div class="row" data-ng-if="form.usertype == 'person'">
+            <hr class="dotted" data-ng-if="form.usertype != 'company'">
+            <div class="row" data-ng-if="form.usertype != 'company'">
                 <div class="form-group col-sm-4 col-xs-12">
                     <label class="sr-only">DNI/NIE*:</label>
                     <input type="text" name="dni" class="form-control" placeholder="DNI/NIE*" data-ng-model="form.dni" data-ng-change="formListener()" data-ng-disabled="!step2Ready" data-ng-class="{'ng-invalid': dniIsInvalid || dniDuplicated}" required/>
