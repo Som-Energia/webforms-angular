@@ -113,7 +113,7 @@
         <div class="row">
             <div class="form-group col-sm-6 col-xs-12">
                 <label class="combo-one-row">{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}*</label>
-                <select class="form-control width-30-percent combo-one-row" name="rate" data-ng-model="form.rate" data-ng-change="formListener()" required>
+                <select class="form-control width-30-percent combo-one-row" name="rate" data-ng-model="form.rate" data-ng-change="updatePowerRatePopoverListener()" required>
                     <option value="">{{ 'SELECCIONAR' | translate }}</option>
                     <option data-ng-repeat="rate in rates" value="{{ rate }}" data-ng-selected="{{ rate == form.rate }}">{{ rate }}</option>
                 </select>

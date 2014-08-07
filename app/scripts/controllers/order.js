@@ -144,6 +144,12 @@ angular.module('newSomEnergiaWebformsApp')
             });
         };
 
+        // ON CHANGE SELECTED POWER RATE
+        $scope.updatePowerRatePopoverListener = function() {
+            $timeout(function() { $log.log('hit3'); jQuery('#spc-rate-conditional').popover({trigger : 'hover'}); }, 100);
+            $scope.formListener();
+        };
+
         // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function() {
             $scope.initSubmitReady = $scope.form.init.dni !== undefined && $scope.form.init.socinumber !== undefined && $scope.dniIsInvalid === false;
@@ -298,11 +304,6 @@ angular.module('newSomEnergiaWebformsApp')
                     );
                 }
             }, cfg.DEFAULT_MILLISECONDS_DELAY);
-        });
-
-        // WATCH ON POWER RATE SELECT CHANGE
-        $scope.$watch('form.rate', function() {
-            jQuery('#spc-rate-conditional').popover({trigger : 'hover'});
         });
 
 //        $scope.initSubmit = function(form) {
