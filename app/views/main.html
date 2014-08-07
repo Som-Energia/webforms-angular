@@ -19,14 +19,14 @@
                 </div>
             </div>
             <div class="row" data-ng-show="form.usertype">
-                <div class="form-group col-md-4 col-xs-10" data-ng-show="form.usertype">
+                <div class="form-group col-sm-4 col-xs-10" data-ng-show="form.usertype">
                     <label class="sr-only">{{ 'IDIOMA' | translate }}*:</label>
                     <select class="form-control" name="language" data-ng-model="form.language" data-ng-options="language.name for language in languages" data-ng-change="formListener()" required>
                         <option value="">{{ 'SELECCIONA_IDIOMA' | translate }}</option>
                     </select>
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.language.$invalid">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-                <div class="col-md-1 col-xs-1">
+                <div class="col-sm-1 col-xs-1">
                     <span id="help-popover-language" class="badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_IDIOMA' | translate }}" data-placement="left">?</span>
                 </div>
             </div>
@@ -42,12 +42,12 @@
         <div class="col-xs-11">
             <!--PARTICULAR-->
             <div class="row" data-ng-if="form.usertype != 'company'">
-                <div class="form-group col-md-3 col-xs-12">
+                <div class="form-group col-sm-3 col-xs-12">
                     <label class="sr-only">{{ 'NOM' | translate }}*:</label>
                     <input type="text" name="name" class="form-control" placeholder="{{ 'NOM' | translate }}*" data-ng-model="form.name" data-ng-change="formListener()" data-ng-disabled="!step2Ready" required/>
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.name.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-                <div class="form-group col-md-9 col-xs-12">
+                <div class="form-group col-sm-9 col-xs-12">
                     <label class="sr-only">{{ 'COGNOMS' | translate }}*:</label>
                     <input type="text" name="surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}*" data-ng-model="form.surname" data-ng-change="formListener()" data-ng-disabled="!step2Ready" required/>
                     <span class="label label-danger" data-ng-show="submitted && partnerForm.surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
