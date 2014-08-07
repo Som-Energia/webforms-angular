@@ -169,16 +169,14 @@
             </div>
             <div class="col-sm-5 col-xs-12">
                 <label for="catastre" class="sr-only">{{ 'REFERENCIA_CATASTRAL' | translate }}:</label>
-                <input type="text" name="catastre" data-ng-model="form.catastre" class="form-control width-70-percent" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener()"/>
+                <input type="text" name="catastre" data-ng-model="form.catastre" class="form-control width-70-percent combo-one-row" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener()"/>
                 <span class="spc-html badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_REFERENCIA_CATASTRAL' | translate }}" data-placement="top">?</span>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-5">
-                <label for="file">{{ 'ADJUNTAR_ULTIMA_FACTURA' | translate }}</label>
-            </div>
-            <div class="col-xs-7">
-                <input id="fileuploaderinput" type="file" name="file" data-ng-model="form.file" class="form-control" onchange="angular.element(this).scope().validateSelectedFileSize()"/>
+            <div class="col-xs-12">
+                <label class="combo-one-row" for="file">{{ 'ADJUNTAR_ULTIMA_FACTURA' | translate }}</label>
+                <input id="fileuploaderinput" type="file" name="file" data-ng-model="form.file" class="form-control combo-one-row" onchange="angular.element(this).scope().validateSelectedFileSize()"/>
                 <span class="label label-danger" data-ng-show="orderFormSubmitted && invalidAttachFileExtension">{{ 'BAD_EXTENSION' | translate }}</span>
                 <span class="label label-danger" data-ng-show="overflowAttachFile">{{ 'OVERFLOW_FILE' | translate }}</span>
             </div>
