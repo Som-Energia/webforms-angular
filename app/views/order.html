@@ -112,20 +112,20 @@
         </div>
         <div class="row">
             <div class="form-group col-sm-6 col-xs-12">
-                <label>{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}*</label>
-                <select class="form-control width-30-percent" name="rate" data-ng-model="form.rate" data-ng-change="formListener()" required>
+                <label class="combo-one-row">{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}*</label>
+                <select class="form-control width-30-percent combo-one-row" name="rate" data-ng-model="form.rate" data-ng-change="formListener()" required>
                     <option value="">{{ 'SELECCIONAR' | translate }}</option>
                     <option data-ng-repeat="rate in rates" value="{{ rate }}" data-ng-selected="{{ rate == form.rate }}">{{ rate }}</option>
                 </select>
-                <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_RATE' | translate }}" data-placement="top">?</span>
+                <span class="spc badge current small combo-one-row" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_RATE' | translate }}" data-placement="top">?</span>
             </div>
         </div>
         <div class="row">
             <!--3.0A power rate NOT selected-->
             <div data-ng-if="form.rate != '3.0A'">
-                <div class="form-group col-xs-5">
-                    <label>{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
-                    <input type="text" name="power" class="form-control width-50-percent" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;kW
+                <div class="form-group col-sm-5 col-xs-12">
+                    <label class="combo-one-row">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
+                    <input type="text" name="power" class="form-control width-40-percent combo-one-row" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
