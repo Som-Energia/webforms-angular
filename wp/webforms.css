@@ -8020,7 +8020,7 @@ input.ng-dirty.ng-invalid, select.ng-dirty.ng-invalid {
   border-color: red;
 }
 
-/* line 109, ../../app/styles/main.scss */
+/* line 110, ../../app/styles/main.scss */
 .badge {
   margin-left: 5px;
   font-size: 30px;
@@ -8030,17 +8030,51 @@ input.ng-dirty.ng-invalid, select.ng-dirty.ng-invalid {
   display: table-cell;
   vertical-align: middle;
 }
-/* line 117, ../../app/styles/main.scss */
+/* line 118, ../../app/styles/main.scss */
 .badge.current {
   background-color: #aec122;
 }
-/* line 120, ../../app/styles/main.scss */
+/* line 121, ../../app/styles/main.scss */
 .badge.small {
   font-size: 14px;
   cursor: pointer;
 }
 
-/* line 126, ../../app/styles/main.scss */
+/* line 127, ../../app/styles/main.scss */
+span.img-badge {
+  width: 30px;
+  display: block;
+  color: transparent;
+}
+/* line 131, ../../app/styles/main.scss */
+span.img-badge.first-step-number {
+  background: url("http://rawgit.com/Som-Energia/new-api-webforms/master/app/images/number-01.png") no-repeat 100% -30px;
+  height: 30px;
+}
+/* line 134, ../../app/styles/main.scss */
+span.img-badge.first-step-number.current {
+  background: url("http://rawgit.com/Som-Energia/new-api-webforms/master/app/images/number-01.png") no-repeat 100% 0;
+}
+/* line 138, ../../app/styles/main.scss */
+span.img-badge.second-step-number {
+  background: url("http://rawgit.com/Som-Energia/new-api-webforms/master/app/images/number-02.png") no-repeat 100% -30px;
+  height: 30px;
+}
+/* line 141, ../../app/styles/main.scss */
+span.img-badge.second-step-number.current {
+  background: url("http://rawgit.com/Som-Energia/new-api-webforms/master/app/images/number-02.png") no-repeat 100% 0;
+}
+/* line 145, ../../app/styles/main.scss */
+span.img-badge.third-step-number {
+  background: url("http://rawgit.com/Som-Energia/new-api-webforms/master/app/images/number-03.png") no-repeat 100% -30px;
+  height: 30px;
+}
+/* line 148, ../../app/styles/main.scss */
+span.img-badge.third-step-number.current {
+  background: url("http://rawgit.com/Som-Energia/new-api-webforms/master/app/images/number-03.png") no-repeat 100% 0;
+}
+
+/* line 154, ../../app/styles/main.scss */
 span.optional-info {
   float: left;
   margin-right: 10px;
@@ -8048,30 +8082,30 @@ span.optional-info {
   font-size: 20px;
 }
 
-/* line 136, ../../app/styles/main.scss */
+/* line 164, ../../app/styles/main.scss */
 button.btn.btn-default.transparent {
   color: white;
   background-color: transparent;
   border-color: transparent;
   margin-right: 20px;
 }
-/* line 142, ../../app/styles/main.scss */
+/* line 170, ../../app/styles/main.scss */
 button.btn.btn-default.green {
   color: white;
   background-color: #aec122;
   border-color: #aec122;
 }
-/* line 147, ../../app/styles/main.scss */
+/* line 175, ../../app/styles/main.scss */
 button.btn.btn-default.grey {
   color: white;
   background-color: #5f5e63;
   border-color: #8a8990;
 }
-/* line 152, ../../app/styles/main.scss */
+/* line 180, ../../app/styles/main.scss */
 button.btn.btn-default.submit {
   font-size: 23px;
 }
-/* line 155, ../../app/styles/main.scss */
+/* line 183, ../../app/styles/main.scss */
 button.btn.btn-default.next-step-submit {
   border-radius: 0;
   color: white;
@@ -8082,7 +8116,7 @@ button.btn.btn-default.next-step-submit {
   text-align: left;
   background: url("../images/next-step-right.png") no-repeat;
 }
-/* line 160, ../../app/styles/main.scss */
+/* line 188, ../../app/styles/main.scss */
 button.btn.btn-default.final-step-submit {
   border-radius: 0;
   color: white;
@@ -8094,7 +8128,7 @@ button.btn.btn-default.final-step-submit {
   text-align: left;
   background: url("../images/iniciar-contractacio.png") no-repeat;
 }
-/* line 166, ../../app/styles/main.scss */
+/* line 194, ../../app/styles/main.scss */
 button.btn.btn-default.previous-step-submit {
   border-radius: 0;
   color: white;
@@ -8106,83 +8140,83 @@ button.btn.btn-default.previous-step-submit {
   background: url("../images/next-step-left.png") no-repeat;
 }
 
-/* line 175, ../../app/styles/main.scss */
+/* line 203, ../../app/styles/main.scss */
 label {
   font-weight: normal;
   margin-right: 10px;
 }
-/* line 179, ../../app/styles/main.scss */
+/* line 207, ../../app/styles/main.scss */
 label.btn:first-child:not(:last-child):not(.dropdown-toggle), label.btn:last-child:not(:first-child):not(.dropdown-toggle) {
   border-radius: 4px !important;
 }
-/* line 183, ../../app/styles/main.scss */
+/* line 211, ../../app/styles/main.scss */
 label.btn.btn-default.green {
   font-weight: bold;
   color: white;
   background-color: #5f5e63;
   border-color: #8a8990;
 }
-/* line 188, ../../app/styles/main.scss */
+/* line 216, ../../app/styles/main.scss */
 label.btn.btn-default.green.active {
   background-color: #aec122;
   border-color: #8a8990;
 }
 
-/* line 197, ../../app/styles/main.scss */
+/* line 225, ../../app/styles/main.scss */
 h1 {
   font-size: 25px;
 }
 
-/* line 199, ../../app/styles/main.scss */
+/* line 227, ../../app/styles/main.scss */
 h2 {
   font-size: 25px;
 }
 
-/* line 201, ../../app/styles/main.scss */
+/* line 229, ../../app/styles/main.scss */
 hr {
   border-top: 3px solid #dfdfe0;
 }
-/* line 203, ../../app/styles/main.scss */
+/* line 231, ../../app/styles/main.scss */
 hr.green {
   border-top: 3px solid #aec122;
 }
-/* line 206, ../../app/styles/main.scss */
+/* line 234, ../../app/styles/main.scss */
 hr.dotted {
   border-top: 1px dashed #dfdfe0;
 }
-/* line 209, ../../app/styles/main.scss */
+/* line 237, ../../app/styles/main.scss */
 hr.continue-process {
   margin-bottom: 0;
 }
 
-/* line 214, ../../app/styles/main.scss */
+/* line 242, ../../app/styles/main.scss */
 a {
   color: #aec122;
 }
-/* line 216, ../../app/styles/main.scss */
+/* line 244, ../../app/styles/main.scss */
 a:hover {
   color: #aec122;
 }
 
-/* line 223, ../../app/styles/main.scss */
+/* line 251, ../../app/styles/main.scss */
 div.alert.alert-info.grey {
   color: white;
   background-color: #8a8990;
   border-color: #8a8990;
 }
 
-/* line 231, ../../app/styles/main.scss */
+/* line 259, ../../app/styles/main.scss */
 div.wrapper-continue-process {
   background: url("http://rawgit.com/Som-Energia/new-api-webforms/master/app/images/continue-process.png") no-repeat 100% -47px;
   height: 47px;
   margin-top: -3px;
 }
-/* line 235, ../../app/styles/main.scss */
+/* line 263, ../../app/styles/main.scss */
 div.wrapper-continue-process.ready {
   background: url("http://rawgit.com/Som-Energia/new-api-webforms/master/app/images/continue-process.png") no-repeat 100% 0;
 }
 
-/* line 240, ../../app/styles/main.scss */
+/* line 268, ../../app/styles/main.scss */
 div.well.custom-ad-top {
   border: none;
   border-radius: 0;
@@ -8191,17 +8225,17 @@ div.well.custom-ad-top {
   background-color: white;
   margin-bottom: 0;
 }
-/* line 247, ../../app/styles/main.scss */
+/* line 275, ../../app/styles/main.scss */
 div.well.custom-ad-top h6 {
   font-size: 16px;
 }
-/* line 248, ../../app/styles/main.scss */
+/* line 276, ../../app/styles/main.scss */
 div.well.custom-ad-top h5 {
   font-size: 30px;
   color: #aec122;
 }
 
-/* line 254, ../../app/styles/main.scss */
+/* line 282, ../../app/styles/main.scss */
 .custom-ad-bottom-left {
   border: none;
   border-radius: 0;
@@ -8210,13 +8244,13 @@ div.well.custom-ad-top h5 {
   box-shadow: 0 3px 10px #8a8990;
   padding-top: 15px;
 }
-/* line 261, ../../app/styles/main.scss */
+/* line 289, ../../app/styles/main.scss */
 .custom-ad-bottom-left label {
   font-weight: bold;
   font-size: 16px;
 }
 
-/* line 267, ../../app/styles/main.scss */
+/* line 295, ../../app/styles/main.scss */
 .custom-ad-bottom-right {
   border: none;
   border-bottom: 2px solid #aec122;
@@ -8225,108 +8259,108 @@ div.well.custom-ad-top h5 {
   box-shadow: 0 3px 10px #8a8990;
   padding-bottom: 10px;
 }
-/* line 274, ../../app/styles/main.scss */
+/* line 302, ../../app/styles/main.scss */
 .custom-ad-bottom-right p {
   font-weight: bold;
 }
 
-/* line 277, ../../app/styles/main.scss */
+/* line 305, ../../app/styles/main.scss */
 .label-success {
   background-color: #aec122;
 }
 
-/* line 281, ../../app/styles/main.scss */
+/* line 309, ../../app/styles/main.scss */
 .color-bg-green {
   background-color: #aec122;
 }
 
-/* line 285, ../../app/styles/main.scss */
+/* line 313, ../../app/styles/main.scss */
 .color-fg-white {
   color: white;
 }
 
-/* line 289, ../../app/styles/main.scss */
+/* line 317, ../../app/styles/main.scss */
 .extra-margin {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-/* line 294, ../../app/styles/main.scss */
+/* line 322, ../../app/styles/main.scss */
 .no-horitzontal-padding {
   padding-left: 0;
   padding-right: 0;
 }
 
-/* line 299, ../../app/styles/main.scss */
+/* line 327, ../../app/styles/main.scss */
 .heading {
   color: #8a8990;
   background-color: #dfdfe0;
 }
-/* line 302, ../../app/styles/main.scss */
+/* line 330, ../../app/styles/main.scss */
 .heading.active {
   color: white;
   background-color: #aec122;
 }
 
 /* Placeholders color unified hack, don't group this rules together */
-/* line 309, ../../app/styles/main.scss */
+/* line 337, ../../app/styles/main.scss */
 .form-control[disabled]::-webkit-input-placeholder {
   color: #8a8990;
 }
 
-/* line 310, ../../app/styles/main.scss */
+/* line 338, ../../app/styles/main.scss */
 .form-control[disabled]:-moz-placeholder {
   color: #8a8990;
 }
 
-/* line 311, ../../app/styles/main.scss */
+/* line 339, ../../app/styles/main.scss */
 .form-control[disabled]::-moz-placeholder {
   color: #8a8990;
 }
 
-/* line 312, ../../app/styles/main.scss */
+/* line 340, ../../app/styles/main.scss */
 .form-control[disabled]:-ms-input-placeholder {
   color: #8a8990;
 }
 
-/* line 313, ../../app/styles/main.scss */
+/* line 341, ../../app/styles/main.scss */
 .form-control::-webkit-input-placeholder {
   color: #5f5e63;
 }
 
-/* line 314, ../../app/styles/main.scss */
+/* line 342, ../../app/styles/main.scss */
 .form-control:-moz-placeholder {
   color: #5f5e63;
 }
 
-/* line 315, ../../app/styles/main.scss */
+/* line 343, ../../app/styles/main.scss */
 .form-control::-moz-placeholder {
   color: #5f5e63;
 }
 
-/* line 316, ../../app/styles/main.scss */
+/* line 344, ../../app/styles/main.scss */
 .form-control:-ms-input-placeholder {
   color: #5f5e63;
 }
 
-/* line 317, ../../app/styles/main.scss */
+/* line 345, ../../app/styles/main.scss */
 select[disabled] {
   color: #8a8990;
 }
 
 /* Columns of same height styles */
-/* line 320, ../../app/styles/main.scss */
+/* line 348, ../../app/styles/main.scss */
 .container-xs-height {
   display: table;
   padding: 0 15px;
 }
 
-/* line 325, ../../app/styles/main.scss */
+/* line 353, ../../app/styles/main.scss */
 .row-xs-height {
   display: table-row;
 }
 
-/* line 329, ../../app/styles/main.scss */
+/* line 357, ../../app/styles/main.scss */
 .col-xs-height {
   display: table-cell;
   float: none;
@@ -8334,13 +8368,13 @@ select[disabled] {
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* line 336, ../../app/styles/main.scss */
+  /* line 364, ../../app/styles/main.scss */
   .container {
     max-width: 730px;
   }
 
   /* Remove the padding we set earlier */
-  /* line 342, ../../app/styles/main.scss */
+  /* line 370, ../../app/styles/main.scss */
   .header,
   .marketing,
   .footer {
@@ -8349,7 +8383,7 @@ select[disabled] {
   }
 
   /* Space out the masthead */
-  /* line 347, ../../app/styles/main.scss */
+  /* line 375, ../../app/styles/main.scss */
   .header {
     margin-bottom: 30px;
   }
