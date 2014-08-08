@@ -64,4 +64,20 @@
             <label class="confirm">CNAE:</label><span class="confirm">{{ form.cnae }}</span>
         </div>
     </div>
+    <div class="row" data-ng-show="form.rate != '3.0A'">
+        <div class="col-xs-12">
+            <label class="confirm">{{ 'POTENCIA_CONTRACTADA' | translate }}:</label><span class="confirm">{{ form.power }}</span>
+        </div>
+    </div>
+    <div class="row" data-ng-show="form.rate == '3.0A'">
+        <div class="col-xs-4">
+            <label class="confirm">P1:</label><span class="confirm">{{ form.power }}</span>
+        </div>
+        <div class="col-xs-4">
+            <label class="confirm">P2:</label><span class="confirm">{{ form.power2 }}</span>
+        </div>
+        <div class="col-xs-4">
+            <label class="confirm">P3:</label><span class="confirm">{{ form.power3 }}</span>
+        </div>
+    </div>
 </div>
