@@ -18,28 +18,28 @@
     </div>
     <div class="row">
         <div class="col-sm-3 col-xs-6">
-            <label class="confirm">{{ 'NOM' | translate }}:</label><span class="confirm">{{ form.name }}</span>
+            <label class="confirm">{{ 'NOM' | translate }}:</label><span class="confirm">{{ form.isownerlink == 'yes' ? soci.nom : form.name }}</span>
         </div>
         <div class="col-sm-9 col-xs-6">
-            <label class="confirm">{{ 'COGNOMS' | translate }}:</label><span class="confirm">{{ form.surname }}</span>
+            <label class="confirm">{{ 'COGNOMS' | translate }}:</label><span class="confirm">{{ form.isownerlink == 'yes' ? soci.cognom : form.surname }}</span>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <label class="confirm">DNI/NIE/CIF:</label><span class="confirm">{{ form.dni }}</span>
+            <label class="confirm">DNI/NIE/CIF:</label><span class="confirm">{{ form.isownerlink == 'yes' ? soci.dni : form.dni }}</span>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3 col-xs-6">
-            <label class="confirm">{{ 'TELEFON' | translate }}:</label><span class="confirm">{{ form.phone1 }}</span>
+            <label class="confirm">{{ 'TELEFON' | translate }}:</label><span class="confirm">{{ form.isownerlink == 'yes' ? soci.tel : form.phone1 }}</span>
         </div>
-        <div data-ng-show="form.phone2" class="col-sm-3 col-xs-6">
-            <label class="confirm">{{ 'TELEFON' | translate }} 2:</label><span class="confirm">{{ form.phone2 }}</span>
+        <div data-ng-show="form.isownerlink == 'yes' && soci.tel2 || form.isownerlink == 'no' && form.phone2" class="col-sm-3 col-xs-6">
+            <label class="confirm">{{ 'TELEFON' | translate }} 2:</label><span class="confirm">{{ form.isownerlink == 'yes' ? soci.tel2 : form.phone2 }}</span>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <label class="confirm">EMAIL:</label><span class="confirm">{{ form.email1 }}</span>
+            <label class="confirm">EMAIL:</label><span class="confirm">{{ form.isownerlink == 'yes' ? soci.email : form.email1 }}</span>
         </div>
     </div>
     <!--DADES_PUNT_SUBMINISTRAMENT-->
