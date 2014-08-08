@@ -39,7 +39,7 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <label class="confirm">EMAIL:</label><span class="confirm">{{ form.isownerlink == 'yes' ? soci.email : form.email1 }}</span>
+            <label class="confirm">Email:</label><span class="confirm">{{ form.isownerlink == 'yes' ? soci.email : form.email1 }}</span>
         </div>
     </div>
     <!--DADES_PUNT_SUBMINISTRAMENT-->
@@ -104,15 +104,54 @@
             <h4 class="confirm">{{ 'DADES_PAGAMENT' | translate }}:</h4>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-6">
-            <label class="confirm">{{ 'NOM_O_RAO_SOCIAL' | translate }}:</label><span class="confirm">{{ 'x' }}</span>
+    <div data-ng-if="form.choosepayer == 'soci'">
+        <!--PAYER_PARTNER-->
+        <div class="row">
+            <div class="col-xs-6">
+                <label class="confirm">{{ 'NOM_O_RAO_SOCIAL' | translate }}:</label><span class="confirm">{{ soci.nom }}</span>
+            </div>
+            <div class="col-xs-6">
+                <label class="confirm">{{ 'COGNOMS' | translate }}:</label><span class="confirm">{{ soci.cognom }}</span>
+            </div>
         </div>
-        <div class="col-xs-6">
-            <label class="confirm">{{ 'COGNOMS' | translate }}:</label><span class="confirm">{{ 'xx' }}</span>
+        <div class="row">
+            <div class="col-xs-6">
+                <label class="confirm">DNI/NIE/CIF:</label><span class="confirm">{{ soci.dni }}</span>
+            </div>
+            <div class="col-xs-6">
+                <label class="confirm">Email:</label><span class="confirm">{{ soci.email }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label class="confirm">{{ 'TELEFON' | translate }}:</label><span class="confirm">{{ soci.tel }}</span>
+            </div>
         </div>
     </div>
-
+    <div data-ng-if="form.choosepayer == 'titular'">
+        <!--PAYER_OWNER-->
+        <div class="row">
+            <div class="col-xs-6">
+                <label class="confirm">{{ 'NOM_O_RAO_SOCIAL' | translate }}:</label><span class="confirm">{{ form.name }}</span>
+            </div>
+            <div class="col-xs-6">
+                <label class="confirm">{{ 'COGNOMS' | translate }}:</label><span class="confirm">{{ form.surname }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <label class="confirm">DNI/NIE/CIF:</label><span class="confirm">{{ form.dni }}</span>
+            </div>
+            <div class="col-xs-6">
+                <label class="confirm">Email:</label><span class="confirm">{{ form.email1 }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label class="confirm">{{ 'TELEFON' | translate }}:</label><span class="confirm">{{ form.phone1 }}</span>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-12">
             <label class="confirm">{{ 'NUM_COMPTE' | translate }}:</label><span class="confirm">{{ getCompleteAccountNumberWithFormat() }}</span>
