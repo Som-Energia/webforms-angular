@@ -152,6 +152,30 @@
             </div>
         </div>
     </div>
+    <div data-ng-if="form.choosepayer == 'altre'">
+        <!--PAYER_OWNER-->
+        <div class="row">
+            <div class="col-xs-6">
+                <label class="confirm">{{ 'NOM_O_RAO_SOCIAL' | translate }}:</label><span class="confirm">{{ form.accountname }}</span>
+            </div>
+            <div class="col-xs-6">
+                <label class="confirm">{{ 'COGNOMS' | translate }}:</label><span class="confirm">{{ form.accountsurname }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <label class="confirm">DNI/NIE/CIF:</label><span class="confirm">{{ form.accountdni }}</span>
+            </div>
+            <div class="col-xs-6">
+                <label class="confirm">Email:</label><span class="confirm">{{ form.accountemail1 }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label class="confirm">{{ 'TELEFON' | translate }}:</label><span class="confirm">{{ form.accountphone1 }}</span>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-12">
             <label class="confirm">{{ 'NUM_COMPTE' | translate }}:</label><span class="confirm">{{ getCompleteAccountNumberWithFormat() }}</span>
