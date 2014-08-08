@@ -19,23 +19,23 @@ angular.module('newSomEnergiaWebformsApp', [
 //    .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'http://rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
-//                templateUrl: 'views/main.html',
+//                templateUrl: 'http://rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
+                templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
             .when('/prepagament', {
-                templateUrl: 'http://rawgit.com/Som-Energia/new-api-webforms/master/app/views/prepayment.html',
-//                templateUrl: 'views/prepayment.html',
+//                templateUrl: 'http://rawgit.com/Som-Energia/new-api-webforms/master/app/views/prepayment.html',
+                templateUrl: 'views/prepayment.html',
                 controller: 'PrepaymentCtrl'
             })
             .when('/:locale', {
-                templateUrl: 'http://rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
-//                templateUrl: 'views/main.html',
+//                templateUrl: 'http://rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
+                templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
             .when('/:locale/soci', {
-                templateUrl: 'http://rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
-//                templateUrl: 'views/main.html',
+//                templateUrl: 'http://rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
+                templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
             .when('/:locale/contractacio', {
@@ -136,7 +136,14 @@ angular.module('newSomEnergiaWebformsApp', [
                 ELS_SOCIS_I_SOCIES_QUE_HO_DESITGIN_PODEN_REALITZAR_UN_DONATIU_VOLUNTARI: 'Los socios y socias que lo deseen pueden realizar un donativo voluntario',
                 CONFIRMAR_CONTRACTACIO: 'Confirmar contratación',
                 LOADING: 'Enviando datos...',
-                ENVIANT_DADES: 'Si has adjuntado una factura este proceso puede tardar un tiempo y este tiempo dependerá del peso del archivo y de tu conexión a internet. Ánimos y buenas energías, que ya casi lo has conseguido! :)'
+                ENVIANT_DADES: 'Si has adjuntado una factura este proceso puede tardar un tiempo y este tiempo dependerá del peso del archivo y de tu conexión a internet. Ánimos y buenas energías, que ya casi lo has conseguido! :)',
+                REVISIO_CONFIRMACIO_DADES: 'Revisión y confirmación de los datos',
+                EL_CONTRACTE_CANVIA_TITULAR: '¿El contrato cambia de titular?',
+                TARIFA: 'Tarifa',
+                POTENCIA_CONTRACTADA: 'Potencia contratada',
+                NOM_O_RAO_SOCIAL: 'Nombre o razón social',
+                SI_LES_DADES_SON_CORRECTES: 'Si los datos son correctos pulse Sí para finalizar el proceso de contratación',
+                SI_TOT_CORRECTE: 'Sí, todo correcto'
             })
             .translations('ca', {
                 SELECCIONA: 'Selecciona',
@@ -224,7 +231,14 @@ angular.module('newSomEnergiaWebformsApp', [
                 ELS_SOCIS_I_SOCIES_QUE_HO_DESITGIN_PODEN_REALITZAR_UN_DONATIU_VOLUNTARI: 'Els socis i sòcies que ho desitgin poden realitzar un donatiu voluntari de 0,01€/kWh destinat a recolzar i facilitar l\'acció social i voluntària dels més de 50 Grups Locals repartits pel territori. Per un consum mitjà d\'una família (aproximadament 300kWh/mes) això representa un increment de 3€ mensuals. Sempre que ho vulguis podràs activar o desactivar aquest donatiu a l\'instant des de l\'Oficinal Virtual.',
                 CONFIRMAR_CONTRACTACIO: 'Confirmar contractació',
                 LOADING: 'Enviant dades...',
-                ENVIANT_DADES: 'Si has adjuntat una factura aquest procès pot tardar una estona i aquesta estona dependrà del pes de l\'arxiu i de la teva connexió a internet. Ànims i bona energia, que ja gairebé ho has aconseguit! :)'
+                ENVIANT_DADES: 'Si has adjuntat una factura aquest procès pot tardar una estona i aquesta estona dependrà del pes de l\'arxiu i de la teva connexió a internet. Ànims i bona energia, que ja gairebé ho has aconseguit! :)',
+                REVISIO_CONFIRMACIO_DADES: 'Revisió i confirmació de les dades',
+                EL_CONTRACTE_CANVIA_TITULAR: 'El contracte canvia de titular?',
+                TARIFA: 'Tarifa',
+                POTENCIA_CONTRACTADA: 'Potència contractada',
+                NOM_O_RAO_SOCIAL: 'Nom o raó social',
+                SI_LES_DADES_SON_CORRECTES: 'Si les dades són correctes premi Sí per finalitzar el procés de contractació',
+                SI_TOT_CORRECTE: 'Sí, tot correcte'
             })
            .translations('gl', {
                 SELECCIONA: 'Selecciona',
@@ -309,7 +323,14 @@ angular.module('newSomEnergiaWebformsApp', [
                 ELS_SOCIS_I_SOCIES_QUE_HO_DESITGIN_PODEN_REALITZAR_UN_DONATIU_VOLUNTARI: 'Os socios e socias que o desexen poden realizar un donativo voluntario',
                 CONFIRMAR_CONTRACTACIO: 'Confirmar contratación',
                 LOADING: 'A enviar os datos...',
-                ENVIANT_DADES: 'Se anexaches unha factura este proceso pode demorar un tempo e este tempo dependerá do peso do ficheiro e da túa conexión a internet. Ánimo e boa enerxía, que xa case o conseguiches! :)'
+                ENVIANT_DADES: 'Se anexaches unha factura este proceso pode demorar un tempo e este tempo dependerá do peso do ficheiro e da túa conexión a internet. Ánimo e boa enerxía, que xa case o conseguiches! :)',
+                REVISIO_CONFIRMACIO_DADES: 'Revisión y confirmación de los datos',
+                EL_CONTRACTE_CANVIA_TITULAR: '¿El contrato cambia de titular?',
+                TARIFA: 'Tarifa',
+                POTENCIA_CONTRACTADA: 'Potencia contratada',
+                NOM_O_RAO_SOCIAL: 'Nombre o razón social',
+                SI_LES_DADES_SON_CORRECTES: 'Si los datos son correctos pulse Sí para finalizar el proceso de contratación',
+                SI_TOT_CORRECTE: 'Sí, todo correcto'
             })
            .translations('eu', {
                 SELECCIONA: 'Aukera ezazu',
@@ -394,7 +415,14 @@ angular.module('newSomEnergiaWebformsApp', [
                 ELS_SOCIS_I_SOCIES_QUE_HO_DESITGIN_PODEN_REALITZAR_UN_DONATIU_VOLUNTARI: 'Bazkideek borondatezko oparia egin lezakete',
                 CONFIRMAR_CONTRACTACIO: 'Kontratazioa baieztatu',
                 LOADING: 'Datuak bidaltzen...',
-                ENVIANT_DADES: 'Faktura bat gehitzekotan prozesua amaitzeak denbora dexente iraun lezake, arxtibategiaren pisuaren edota zure Internet-konexioaren arabera. Anima zaitez eta energia on, ia amaitu duzu! :)'
+                ENVIANT_DADES: 'Faktura bat gehitzekotan prozesua amaitzeak denbora dexente iraun lezake, arxtibategiaren pisuaren edota zure Internet-konexioaren arabera. Anima zaitez eta energia on, ia amaitu duzu! :)',
+                REVISIO_CONFIRMACIO_DADES: 'Revisión y confirmación de los datos',
+                EL_CONTRACTE_CANVIA_TITULAR: '¿El contrato cambia de titular?',
+                TARIFA: 'Tarifa',
+                POTENCIA_CONTRACTADA: 'Potencia contratada',
+                NOM_O_RAO_SOCIAL: 'Nombre o razón social',
+                SI_LES_DADES_SON_CORRECTES: 'Si los datos son correctos pulse Sí para finalizar el proceso de contratación',
+                SI_TOT_CORRECTE: 'Sí, todo correcto'
             })
             .preferredLanguage('es')
         ;
