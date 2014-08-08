@@ -1,4 +1,5 @@
-<div data-ng-show="step4Ready">
+<div>
+<!--<div data-ng-show="step4Ready">-->
     <div class="row no-margin-bottom">
         <div class="col-xs-12 heading active">
             <h2 class="extra-margin">{{ 'REVISIO_CONFIRMACIO_DADES' | translate }}</h2>
@@ -7,7 +8,7 @@
     <div class="row extra-margin-top">
         <div class="col-xs-12">
             <label class="confirm">{{ 'SOCI_VINCULAT' | translate }}:</label><span class="confirm">{{ soci.nom + ' ' + soci.cognom }}</span><br>
-            <label class="confirm">{{ 'EL_CONTRACTE_CANVIA_TITULAR' | translate }}?:</label><span class="confirm" data-ng-show="form.changeowner == 'yes'">{{ 'SI' | translate }}</span><span class="confirm" data-ng-show="form.changeowner == 'no'">{{ 'NO' | translate }}</span>
+            <label class="confirm">{{ 'EL_CONTRACTE_CANVIA_TITULAR' | translate }}:</label><span class="confirm" data-ng-show="form.changeowner == 'yes'">{{ 'SI' | translate }}</span><span class="confirm" data-ng-show="form.changeowner == 'no'">{{ 'NO' | translate }}</span>
         </div>
     </div>
     <!--DADES_TITULAR_NOU_CONTRACTE-->
@@ -183,13 +184,13 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <label class="confirm">{{ 'DONATIU_VOLUNTARI' | translate }}?:</label><span class="confirm" data-ng-show="form.voluntary == 'yes'">{{ 'SI' | translate }}</span><span class="confirm" data-ng-show="form.voluntary == 'no'">{{ 'NO' | translate }}</span>
+            <label class="confirm">{{ 'DONATIU_VOLUNTARI' | translate }}:</label><span class="confirm" data-ng-show="form.voluntary == 'yes'">{{ 'SI' | translate }}</span><span class="confirm" data-ng-show="form.voluntary == 'no'">{{ 'NO' | translate }}</span>
         </div>
     </div>
     <!--FINAL_BUTTONS-->
     <div class="row">
         <div class="col-xs-12">
-            <span class="last-help-title">{{ 'SI_LES_DADES_SON_CORRECTES' | translate }}</span>
+            <span class="last-help-title">{{ 'SI_LES_DADES_SON_CORRECTES' | translate }}.</span>
         </div>
     </div>
     <div class="row no-margin-bottom">
