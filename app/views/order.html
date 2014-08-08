@@ -1,6 +1,7 @@
 <!--GLOBAL MESSAGES-->
 <div class="row" data-ng-include data-src="'views/common/global-messages.html'"></div>
 
+<div data-ng-show="!step4Ready">
 <!--HEADER-->
 <div class="row no-margin-bottom">
     <div class="col-xs-12 heading" data-ng-class="{active: step0Ready}">
@@ -709,11 +710,12 @@
         <div class="row no-margin-bottom">
             <div class="col-xs-12 no-horitzontal-padding">
                 <button data-ng-click="backToStep3Form()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'PAS_ANTERIOR' | translate }}</button>
-                <button data-ng-click="submitOrder(orderForm)" class="btn btn-default pull-right final-step-submit" data-ng-disabled="!isFinalStepButtonReady">{{ 'CONFIRMAR_CONTRACTACIO' | translate }}</button>
+                <button data-ng-click="moveToStep4Form()" class="btn btn-default pull-right final-step-submit" data-ng-disabled="!isFinalStepButtonReady">{{ 'CONFIRMAR_CONTRACTACIO' | translate }}</button>
             </div>
         </div>
     </div>
 </form>
+</div>
 
 <!--CONFIRM TEMPLATE-->
 <div data-ng-include data-src="'views/confirm.html'"></div>

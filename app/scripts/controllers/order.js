@@ -4,13 +4,14 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
-        var debugEnabled = true;
+        var debugEnabled = false;
 
         // INIT
         $scope.step0Ready = true;
         $scope.step1Ready = false;
         $scope.step2Ready = false;
         $scope.step3Ready = false;
+        $scope.step4Ready = false;
         $scope.dniIsInvalid = false;
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
@@ -240,6 +241,9 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.showStep1Form = true;
             $scope.step0Ready = false;
             $scope.step1Ready = true;
+            $scope.step2Ready = false;
+            $scope.step3Ready = false;
+            $scope.step4Ready = false;
         };
 
         // BACK TO STEP 1 FORM
@@ -247,30 +251,62 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.step0Ready = true;
             $scope.step1Ready = false;
             $scope.step2Ready = false;
+            $scope.step3Ready = false;
+            $scope.step4Ready = false;
         };
 
         // MOVE TO STEP 2 FORM
         $scope.moveToStep2Form = function() {
+            $scope.step0Ready = false;
             $scope.step1Ready = false;
             $scope.step2Ready = true;
+            $scope.step3Ready = false;
+            $scope.step4Ready = false;
         };
 
         // BACK TO STEP 2 FORM
         $scope.backToStep2Form = function() {
+            $scope.step0Ready = false;
+            $scope.step1Ready = true;
             $scope.step2Ready = false;
-            $scope.initOrderForm();
+            $scope.step3Ready = false;
+            $scope.step4Ready = false;
         };
 
         // MOVE TO STEP 3 FORM
         $scope.moveToStep3Form = function() {
+            $scope.step0Ready = false;
+            $scope.step1Ready = false;
             $scope.step2Ready = false;
             $scope.step3Ready = true;
+            $scope.step4Ready = false;
         };
 
         // BACK TO STEP 3 FORM
         $scope.backToStep3Form = function() {
+            $scope.step0Ready = false;
+            $scope.step1Ready = false;
+            $scope.step2Ready = true;
             $scope.step3Ready = false;
-            $scope.moveToStep2Form();
+            $scope.step4Ready = false;
+        };
+
+        // MOVE TO STEP 4 FORM
+        $scope.moveToStep4Form = function() {
+            $scope.step0Ready = false;
+            $scope.step1Ready = false;
+            $scope.step2Ready = false;
+            $scope.step3Ready = false;
+            $scope.step4Ready = true;
+        };
+
+        // BACK TO STEP 4 FORM
+        $scope.backToStep4Form = function() {
+            $scope.step0Ready = false;
+            $scope.step1Ready = false;
+            $scope.step2Ready = false;
+            $scope.step3Ready = true;
+            $scope.step4Ready = false;
         };
 
         // ON INIT SUBMIT FORM

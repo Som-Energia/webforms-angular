@@ -1,4 +1,4 @@
-<div data-ng-show="!confirmStepReady">
+<div data-ng-show="step4Ready">
     <div class="row no-margin-bottom">
         <div class="col-xs-12 heading active">
             <h2 class="extra-margin">{{ 'REVISIO_CONFIRMACIO_DADES' | translate }}</h2>
@@ -121,6 +121,18 @@
     <div class="row">
         <div class="col-xs-12">
             <label class="confirm">{{ 'DONATIU_VOLUNTARI' | translate }}?:</label><span class="confirm" data-ng-show="form.voluntary == 'yes'">{{ 'SI' | translate }}</span><span class="confirm" data-ng-show="form.voluntary == 'no'">{{ 'NO' | translate }}</span>
+        </div>
+    </div>
+    <!--FINAL_BUTTONS-->
+    <div class="row">
+        <div class="col-xs-12">
+            <span class="last-help-title">{{ 'SI_LES_DADES_SON_CORRECTES' | translate }}</span>
+        </div>
+    </div>
+    <div class="row no-margin-bottom">
+        <div class="col-xs-12 no-horitzontal-padding">
+            <button data-ng-click="backToStep4Form()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'NO' | translate }}</button>
+            <button data-ng-click="submitOrder(orderForm)" class="btn btn-default pull-right final-step-submit">{{ 'SI_TOT_CORRECTE' | translate }}</button>
         </div>
     </div>
 </div>
