@@ -7,13 +7,20 @@
     <div class="row extra-margin-top">
         <div class="col-xs-12">
             <label class="confirm">{{ 'SOCI_VINCULAT' | translate }}:</label><span class="confirm">{{ soci.nom + ' ' + soci.cognom }}</span><br>
-            <label class="confirm">{{ 'EL_CONTRACTE_CANVIA_TITULAR' | translate }}:</label><span class="confirm" data-ng-show="form.changeowner == 'yes'">{{ 'SI' | translate }}</span><span class="confirm" data-ng-show="form.changeowner == 'no'">{{ 'NO' | translate }}</span>
+            <label class="confirm">{{ 'EL_CONTRACTE_CANVIA_TITULAR' | translate }}?:</label><span class="confirm" data-ng-show="form.changeowner == 'yes'">{{ 'SI' | translate }}</span><span class="confirm" data-ng-show="form.changeowner == 'no'">{{ 'NO' | translate }}</span>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
             <h4 class="confirm">{{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}:</h4>
-            <label class="confirm">{{ 'EL_CONTRACTE_CANVIA_TITULAR' | translate }}:</label><span class="confirm">yyy</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-xs-6">
+            <label class="confirm">{{ 'NOM' | translate }}:</label><span class="confirm">{{ form.name }}</span>
+        </div>
+        <div class="col-sm-9 col-xs-6">
+            <label class="confirm">{{ 'COGNOMS' | translate }}:</label><span class="confirm">{{ form.surname }}</span>
         </div>
     </div>
 </div>
