@@ -6,8 +6,8 @@
     </div>
     <div class="row extra-margin-top">
         <div class="col-xs-12">
-            <label class="confirm">{{ 'SOCI_VINCULAT' | translate }}:</label><span class="confirm">xxx</span><br>
-            <label class="confirm">{{ 'EL_CONTRACTE_CANVIA_TITULAR' | translate }}:</label><span class="confirm">yyy</span>
+            <label class="confirm">{{ 'SOCI_VINCULAT' | translate }}:</label><span class="confirm">{{ soci.nom + ' ' + soci.cognom }}</span><br>
+            <label class="confirm">{{ 'EL_CONTRACTE_CANVIA_TITULAR' | translate }}:</label><span class="confirm" data-ng-show="form.changeowner == 'yes'">{{ 'SI' | translate }}</span><span class="confirm" data-ng-show="form.changeowner == 'no'">{{ 'NO' | translate }}</span>
         </div>
     </div>
     <div class="row">
