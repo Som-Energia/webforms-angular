@@ -23,4 +23,17 @@
             <label class="confirm">{{ 'COGNOMS' | translate }}:</label><span class="confirm">{{ form.surname }}</span>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <label class="confirm">DNI/NIE/CIF:</label><span class="confirm">{{ form.dni }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-xs-6">
+            <label class="confirm">{{ 'TELEFON' | translate }}:</label><span class="confirm">{{ form.phone1 }}</span>
+        </div>
+        <div data-ng-show="form.phone2" class="col-sm-3 col-xs-6">
+            <label class="confirm">{{ 'TELEFON' | translate }} 2:</label><span class="confirm">{{ form.phone2 }}</span>
+        </div>
+    </div>
 </div>
