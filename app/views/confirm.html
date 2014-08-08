@@ -80,4 +80,17 @@
             <label class="confirm">P3:</label><span class="confirm">{{ form.power3 }}</span>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <label class="confirm">{{ 'ADRECA' | translate }}:</label><span class="confirm">{{ form.address }}</span>
+        </div>
+        <div class="col-xs-6">
+            <label class="confirm">{{ 'POBLACIO' | translate }}:</label><span class="confirm">{{ form.city.name }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <label class="confirm">{{ 'PROVINCIA' | translate }}:</label><span class="confirm">{{ form.province.name }}</span>
+        </div>
+    </div>
 </div>
