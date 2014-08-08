@@ -98,4 +98,29 @@
             <label class="confirm">{{ 'REFERENCIA_CATASTRAL' | translate }}:</label><span class="confirm">{{ form.catastre }}</span>
         </div>
     </div>
+    <!--DADES_PAGAMENT-->
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="confirm">{{ 'DADES_PAGAMENT' | translate }}:</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <label class="confirm">{{ 'NOM_O_RAO_SOCIAL' | translate }}:</label><span class="confirm">{{ 'x' }}</span>
+        </div>
+        <div class="col-xs-6">
+            <label class="confirm">{{ 'COGNOMS' | translate }}:</label><span class="confirm">{{ 'xx' }}</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <label class="confirm">{{ 'NUM_COMPTE' | translate }}:</label><span class="confirm">{{ getCompleteAccountNumberWithFormat() }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <label class="confirm">{{ 'DONATIU_VOLUNTARI' | translate }}?:</label><span class="confirm" data-ng-show="form.voluntary == 'yes'">{{ 'SI' | translate }}</span><span class="confirm" data-ng-show="form.voluntary == 'no'">{{ 'NO' | translate }}</span>
+        </div>
+    </div>
 </div>

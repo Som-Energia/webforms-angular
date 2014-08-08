@@ -219,7 +219,7 @@ angular.module('newSomEnergiaWebformsApp')
         };
         $scope.formAccountListener = function () {
             if ($scope.form.accountbank !== undefined && $scope.form.accountoffice !== undefined && $scope.form.accountchecksum !== undefined && $scope.form.accountnumber !== undefined) {
-                $scope.completeAccountNumber = $scope.form.accountbank + $scope.form.accountoffice + $scope.form.accountchecksum + $scope.form.accountnumber;
+                $scope.completeAccountNumber = $scope.getCompleteAccountNumber();
                 var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/bank/' + $scope.completeAccountNumber, '017');
                 accountPromise.then(
                     function (response) {
@@ -450,6 +450,16 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.step3Ready = true;
 
             return result;
+        };
+
+        // GET COMPLETE ACCOUNT NUMBER
+        $scope.getCompleteAccountNumber = function() {
+            return $scope.form.accountbank + $scope.form.accountoffice + $scope.form.accountchecksum + $scope.form.accountnumber;
+        };
+
+        // GET COMPLETE ACCOUNT NUMBER WITH FORMAT
+        $scope.getCompleteAccountNumberWithFormat = function() {
+            return $scope.form.accountbank + '-' + $scope.form.accountoffice + '-' + $scope.form.accountchecksum + '-' + $scope.form.accountnumber;
         };
 
         // DEBUG (comment on production)
