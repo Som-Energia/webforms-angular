@@ -10,6 +10,7 @@
             <label class="confirm">{{ 'EL_CONTRACTE_CANVIA_TITULAR' | translate }}?:</label><span class="confirm" data-ng-show="form.changeowner == 'yes'">{{ 'SI' | translate }}</span><span class="confirm" data-ng-show="form.changeowner == 'no'">{{ 'NO' | translate }}</span>
         </div>
     </div>
+    <!--DADES_TITULAR_NOU_CONTRACTE-->
     <div class="row">
         <div class="col-xs-12">
             <h4 class="confirm">{{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}:</h4>
@@ -34,6 +35,25 @@
         </div>
         <div data-ng-show="form.phone2" class="col-sm-3 col-xs-6">
             <label class="confirm">{{ 'TELEFON' | translate }} 2:</label><span class="confirm">{{ form.phone2 }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <label class="confirm">EMAIL:</label><span class="confirm">{{ form.email1 }}</span>
+        </div>
+    </div>
+    <!--DADES_PUNT_SUBMINISTRAMENT-->
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="confirm">{{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}:</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <label class="confirm">{{ 'TARIFA' | translate }}:</label><span class="confirm">{{ form.rate }}</span>
+        </div>
+        <div class="col-xs-6">
+            <label class="confirm">{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}:</label><span class="confirm">{{ form.estimation }}</span>
         </div>
     </div>
 </div>
