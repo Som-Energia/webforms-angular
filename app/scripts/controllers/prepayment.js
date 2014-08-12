@@ -15,5 +15,5 @@ angular.module('newSomEnergiaWebformsApp')
             }
         };
 
-        $log.log('prepayment endpoint', $scope.data.endpoint);
+        // $log.log('prepayment endpoint', $scope.data.endpoint);
     }]);

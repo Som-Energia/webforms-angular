@@ -6,7 +6,7 @@
     </div>
 </div>
 
-<form action="{{ getTrustPostAction() }}" method="post" class="form-inline">
+<form id="prepayment-webform" action="{{ getTrustPostAction() }}" method="post" class="form-inline">
     <div class="row" data-ng-repeat="(key, value) in data.payment_data">
         <div class="col-xs-2 sr-only">
             <label for="{{ key }}">{{ key }}</label>
@@ -19,6 +19,6 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function () {
-        setTimeout(function () { document.forms[0].submit(); }, 10000);
+        setTimeout(function () { jQuery('#prepayment-webform').submit(); }, 1000);
     });
 </script>
