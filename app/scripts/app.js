@@ -324,13 +324,13 @@ angular.module('newSomEnergiaWebformsApp', [
                 CONFIRMAR_CONTRACTACIO: 'Confirmar contratación',
                 LOADING: 'A enviar os datos...',
                 ENVIANT_DADES: 'Se anexaches unha factura este proceso pode demorar un tempo e este tempo dependerá do peso do ficheiro e da túa conexión a internet. Ánimo e boa enerxía, que xa case o conseguiches! :)',
-                REVISIO_CONFIRMACIO_DADES: 'Revisión y confirmación de los datos',
-                EL_CONTRACTE_CANVIA_TITULAR: '¿El contrato cambia de titular?',
+                REVISIO_CONFIRMACIO_DADES: 'Revisión e confirmación dos datos',
+                EL_CONTRACTE_CANVIA_TITULAR: 'O contrato cambia de titular?',
                 TARIFA: 'Tarifa',
                 POTENCIA_CONTRACTADA: 'Potencia contratada',
-                NOM_O_RAO_SOCIAL: 'Nombre o razón social',
-                SI_LES_DADES_SON_CORRECTES: 'Si los datos son correctos pulse Sí para finalizar el proceso de contratación',
-                SI_TOT_CORRECTE: 'Sí, todo correcto'
+                NOM_O_RAO_SOCIAL: 'Nome ou razón social',
+                SI_LES_DADES_SON_CORRECTES: 'Se os datos son correctos preme Si para finalizar o proceso de contratación',
+                SI_TOT_CORRECTE: 'Si, todo correcto'
             })
            .translations('eu', {
                 SELECCIONA: 'Aukera ezazu',
@@ -416,13 +416,13 @@ angular.module('newSomEnergiaWebformsApp', [
                 CONFIRMAR_CONTRACTACIO: 'Kontratazioa baieztatu',
                 LOADING: 'Datuak bidaltzen...',
                 ENVIANT_DADES: 'Faktura bat gehitzekotan prozesua amaitzeak denbora dexente iraun lezake, arxtibategiaren pisuaren edota zure Internet-konexioaren arabera. Anima zaitez eta energia on, ia amaitu duzu! :)',
-                REVISIO_CONFIRMACIO_DADES: 'Revisión y confirmación de los datos',
-                EL_CONTRACTE_CANVIA_TITULAR: '¿El contrato cambia de titular?',
-                TARIFA: 'Tarifa',
-                POTENCIA_CONTRACTADA: 'Potencia contratada',
-                NOM_O_RAO_SOCIAL: 'Nombre o razón social',
-                SI_LES_DADES_SON_CORRECTES: 'Si los datos son correctos pulse Sí para finalizar el proceso de contratación',
-                SI_TOT_CORRECTE: 'Sí, todo correcto'
+		REVISIO_CONFIRMACIO_DADES: 'Datuak errepasatu eta konfirmatu',
+		EL_CONTRACTE_CANVIA_TITULAR: 'Kontratua titularrez aldatzen al da?',
+		TARIFA: 'Tarifa',
+		POTENCIA_CONTRACTADA: 'Potentzia kontratatua',
+		NOM_O_RAO_SOCIAL: 'Enpresa izena edo izen soziala',
+		SI_LES_DADES_SON_CORRECTES: 'Datuak zuzenak badira klikatu bai kontratazio prozesua amaitzeko',
+		SI_TOT_CORRECTE: 'Bai, dena zuzena da'
             })
             .preferredLanguage('es')
         ;
