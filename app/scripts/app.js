@@ -428,7 +428,7 @@ angular.module('newSomEnergiaWebformsApp', [
         ;
     })
     .constant('cfg', {
-        API_BASE_URL: 'http://api.somenergia.coop/',
+        API_BASE_URL: 'https://api.somenergia.coop/',
         STATUS_OFFLINE: 'OFFLINE',
         STATUS_ONLINE: 'ONLINE',
         STATE_TRUE: true,
