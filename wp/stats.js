@@ -3,7 +3,7 @@
 if (jQuery) {
     jQuery(document).ready(function() {
         // Partners
-        jQuery.getJSON('http://somenergia-api-webforms.gisce.net/stats/socis', function(response) {
+        jQuery.getJSON('https://api.somenergia.coop/stats/socis', function(response) {
             var node = jQuery('#partners');
             if (response.status === 'OFFLINE') {
                 node.text('no disponible (EP1)');
@@ -20,7 +20,7 @@ if (jQuery) {
             }
         });
         // Contracts
-        jQuery.getJSON('http://somenergia-api-webforms.gisce.net/stats/contractes', function(response) {
+        jQuery.getJSON('https://api.somenergia.coop/stats/contractes', function(response) {
             var node = jQuery('#contracts');
             if (response.status === 'OFFLINE') {
                 node.text('no disponible (EC1)');
