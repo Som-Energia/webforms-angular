@@ -26,7 +26,7 @@ if (jQuery) {
                 node.text('no disponible (EC1)');
             } else {
                 if (response.state === false) {
-                    node.text('no disponible (EC21)');
+                    node.text('no disponible (EC2)');
                 } else {
                     if (response.data === undefined) {
                         node.text('no disponible (EC3)');
