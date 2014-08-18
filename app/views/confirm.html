@@ -104,7 +104,7 @@
             <h4 class="confirm">{{ 'DADES_PAGAMENT' | translate }}:</h4>
         </div>
     </div>
-    <div data-ng-if="form.choosepayer == 'soci'">
+    <div data-ng-if="form.choosepayer == 'soci' || form.choosepayer == 'titular' && form.isownerlink == 'yes'">
         <!--PAYER_PARTNER-->
         <div class="row">
             <div class="col-xs-6">
@@ -128,7 +128,7 @@
             </div>
         </div>
     </div>
-    <div data-ng-if="form.choosepayer == 'titular'">
+    <div data-ng-if="form.choosepayer == 'titular' && form.isownerlink == 'no'">
         <!--PAYER_OWNER-->
         <div class="row">
             <div class="col-xs-6">
