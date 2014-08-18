@@ -415,13 +415,13 @@ angular.module('newSomEnergiaWebformsApp', [
                 CONFIRMAR_CONTRACTACIO: 'Kontratazioa baieztatu',
                 LOADING: 'Datuak bidaltzen...',
                 ENVIANT_DADES: 'Faktura bat gehitzekotan prozesua amaitzeak denbora dexente iraun lezake, arxtibategiaren pisuaren edota zure Internet-konexioaren arabera. Anima zaitez eta energia on, ia amaitu duzu! :)',
-		REVISIO_CONFIRMACIO_DADES: 'Datuak errepasatu eta konfirmatu',
-		EL_CONTRACTE_CANVIA_TITULAR: 'Kontratua titularrez aldatzen al da?',
-		TARIFA: 'Tarifa',
-		POTENCIA_CONTRACTADA: 'Potentzia kontratatua',
-		NOM_O_RAO_SOCIAL: 'Enpresa izena edo izen soziala',
-		SI_LES_DADES_SON_CORRECTES: 'Datuak zuzenak badira klikatu bai kontratazio prozesua amaitzeko',
-		SI_TOT_CORRECTE: 'Bai, dena zuzena da'
+		        REVISIO_CONFIRMACIO_DADES: 'Datuak errepasatu eta konfirmatu',
+		        EL_CONTRACTE_CANVIA_TITULAR: 'Kontratua titularrez aldatzen al da?',
+		        TARIFA: 'Tarifa',
+		        POTENCIA_CONTRACTADA: 'Potentzia kontratatua',
+		        NOM_O_RAO_SOCIAL: 'Enpresa izena edo izen soziala',
+		        SI_LES_DADES_SON_CORRECTES: 'Datuak zuzenak badira klikatu bai kontratazio prozesua amaitzeko',
+		        SI_TOT_CORRECTE: 'Bai, dena zuzena da'
             })
             .preferredLanguage('es')
         ;
