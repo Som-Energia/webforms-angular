@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('PrepaymentCtrl', ['cfg', 'prepaymentService', '$http', '$scope', '$sce', '$log', function (cfg, prepaymentService, $http, $scope, $sce, $log) {
+    .controller('PrepaymentCtrl', ['cfg', 'prepaymentService', '$http', '$scope', '$sce', function (cfg, prepaymentService, $http, $scope, $sce) {
 
         $scope.data = prepaymentService.getData();
 
