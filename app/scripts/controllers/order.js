@@ -239,74 +239,51 @@ angular.module('newSomEnergiaWebformsApp')
         // MOVE TO STEP 1 FORM
         $scope.initOrderForm = function() {
             $scope.showStep1Form = true;
-            $scope.step0Ready = false;
-            $scope.step1Ready = true;
-            $scope.step2Ready = false;
-            $scope.step3Ready = false;
-            $scope.step4Ready = false;
+            $scope.setStepReady(1);
         };
 
         // BACK TO STEP 1 FORM
         $scope.backToStep1Form = function() {
-            $scope.step0Ready = true;
-            $scope.step1Ready = false;
-            $scope.step2Ready = false;
-            $scope.step3Ready = false;
-            $scope.step4Ready = false;
+            $scope.setStepReady(0);
         };
 
         // MOVE TO STEP 2 FORM
         $scope.moveToStep2Form = function() {
-            $scope.step0Ready = false;
-            $scope.step1Ready = false;
-            $scope.step2Ready = true;
-            $scope.step3Ready = false;
-            $scope.step4Ready = false;
+            $scope.setStepReady(2);
         };
 
         // BACK TO STEP 2 FORM
         $scope.backToStep2Form = function() {
-            $scope.step0Ready = false;
-            $scope.step1Ready = true;
-            $scope.step2Ready = false;
-            $scope.step3Ready = false;
-            $scope.step4Ready = false;
+            $scope.setStepReady(1);
         };
 
         // MOVE TO STEP 3 FORM
         $scope.moveToStep3Form = function() {
-            $scope.step0Ready = false;
-            $scope.step1Ready = false;
-            $scope.step2Ready = false;
-            $scope.step3Ready = true;
-            $scope.step4Ready = false;
+            $scope.setStepReady(3);
         };
 
         // BACK TO STEP 3 FORM
         $scope.backToStep3Form = function() {
-            $scope.step0Ready = false;
-            $scope.step1Ready = false;
-            $scope.step2Ready = true;
-            $scope.step3Ready = false;
-            $scope.step4Ready = false;
+            $scope.setStepReady(2);
         };
 
         // MOVE TO STEP 4 FORM
         $scope.moveToStep4Form = function() {
-            $scope.step0Ready = false;
-            $scope.step1Ready = false;
-            $scope.step2Ready = false;
-            $scope.step3Ready = false;
-            $scope.step4Ready = true;
+            $scope.setStepReady(4);
         };
 
         // BACK TO STEP 4 FORM
         $scope.backToStep4Form = function() {
-            $scope.step0Ready = false;
-            $scope.step1Ready = false;
-            $scope.step2Ready = false;
-            $scope.step3Ready = true;
-            $scope.step4Ready = false;
+            $scope.setStepReady(3);
+        };
+
+        // COMMON MOVE STEPS LOGIC
+        $scope.setStepReady = function(enabledStep) {
+            $scope.step0Ready = enabledStep === 0;
+            $scope.step1Ready = enabledStep === 1;
+            $scope.step2Ready = enabledStep === 2;
+            $scope.step3Ready = enabledStep === 3;
+            $scope.step4Ready = enabledStep === 4;
         };
 
         // ON INIT SUBMIT FORM
