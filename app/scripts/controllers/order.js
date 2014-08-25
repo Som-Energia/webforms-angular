@@ -147,7 +147,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON CHANGE SELECTED POWER RATE
         $scope.updatePowerRatePopoverListener = function() {
-            $timeout(function() { $log.log('hit3'); jQuery('#spc-rate-conditional').popover({trigger : 'hover'}); }, 100);
+            $timeout(function() { jQuery('#spc-rate-conditional').popover({trigger : 'hover'}); }, 100);
             $scope.formListener();
         };
 
