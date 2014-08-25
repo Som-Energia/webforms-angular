@@ -186,8 +186,6 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.postalcode !== undefined &&
                         $scope.form.province2 !== undefined &&
                         $scope.form.city2 !== undefined &&
-//                        $scope.form.accept !== undefined &&
-//                        $scope.form.accept !== false &&
                         $scope.postalCodeIsInvalid === false &&
                         $scope.dni2IsInvalid === false &&
                         ($scope.dni3IsInvalid === false && $scope.form.usertype === 'company' || $scope.form.usertype === 'person') &&
