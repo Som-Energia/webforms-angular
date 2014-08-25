@@ -327,15 +327,15 @@
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.city2.$invalid">{{ 'OBLIGATORI' | translate }}</span>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group checkbox col-xs-12">
-                        <label>
-                            <input type="checkbox" name="accept" value="accept" data-ng-model="form.accept" data-ng-change="formListener()" required/>
-                            <span data-ng-bind-html="'ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT' | translate"></span>
-                        </label>
-                        <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                    </div>
-                </div>
+                <!--<div class="row">-->
+                    <!--<div class="form-group checkbox col-xs-12">-->
+                        <!--<label>-->
+                            <!--<input type="checkbox" name="accept" value="accept" data-ng-model="form.accept" data-ng-change="formListener()" required/>-->
+                            <!--<span data-ng-bind-html="'ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT' | translate"></span>-->
+                        <!--</label>-->
+                        <!--<span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
             <!-- TITULAR_EMPRESA & SOCI_VINCULAT_NO (page 10 & 16) -->
             <div data-ng-if="form.usertype == 'company' && form.isownerlink == 'no'">
@@ -430,14 +430,23 @@
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.city2.$invalid">{{ 'OBLIGATORI' | translate }}</span>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group checkbox col-xs-12">
-                        <label>
-                            <input type="checkbox" name="accept" value="accept" data-ng-model="form.accept" data-ng-change="formListener()" required/>
-                            <span data-ng-bind-html="'ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT' | translate"></span>
-                        </label>
-                        <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                    </div>
+                <!--<div class="row">-->
+                    <!--<div class="form-group checkbox col-xs-12">-->
+                        <!--<label>-->
+                            <!--<input type="checkbox" name="accept" value="accept" data-ng-model="form.accept" data-ng-change="formListener()" required/>-->
+                            <!--<span data-ng-bind-html="'ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT' | translate"></span>-->
+                        <!--</label>-->
+                        <!--<span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+            <div class="row">
+                <div class="form-group checkbox col-xs-12">
+                    <label>
+                        <input type="checkbox" name="accept" value="accept" data-ng-model="form.accept" data-ng-change="formListener()" required/>
+                        <span data-ng-bind-html="'ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT' | translate"></span>
+                    </label>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row no-margin-bottom">
@@ -686,13 +695,6 @@
                     <div class="container-xs-height">
                         <div class="row row-xs-height">
                             <div class="col-xs-5 col-xs-height col-middle custom-ad-bottom-left">
-                                <!--<div class="form-group">-->
-                                    <!--<label>{{ 'DONATIU_VOLUNTARI' | translate }}?</label>-->
-                                    <!--<div class="btn-group">-->
-                                        <!--<label class="btn btn-default green" data-ng-model="form.voluntary" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>-->
-                                        <!--<label class="btn btn-default green" data-ng-model="form.voluntary" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>-->
-                                    <!--</div>-->
-                                <!--</div>-->
                                 <label>{{ 'DONATIU_VOLUNTARI' | translate }}</label>
                                 <select class="form-control" name="voluntary" data-ng-model="form.voluntary" data-ng-change="formListener()" required>
                                     <option value="">{{ 'SELECCIONA' | translate }}</option>

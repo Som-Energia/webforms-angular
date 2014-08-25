@@ -167,6 +167,8 @@ angular.module('newSomEnergiaWebformsApp')
                 !$scope.overflowAttachFile;
             $scope.isStep3ButtonReady = $scope.isStep2ButtonReady &&
                 $scope.form.changeowner !== undefined &&
+                $scope.form.accept !== undefined &&
+                $scope.form.accept !== false &&
                 (
                     ($scope.form.isownerlink === 'yes') ||
                     ($scope.form.isownerlink === 'no' &&
@@ -184,8 +186,8 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.postalcode !== undefined &&
                         $scope.form.province2 !== undefined &&
                         $scope.form.city2 !== undefined &&
-                        $scope.form.accept !== undefined &&
-                        $scope.form.accept !== false &&
+//                        $scope.form.accept !== undefined &&
+//                        $scope.form.accept !== false &&
                         $scope.postalCodeIsInvalid === false &&
                         $scope.dni2IsInvalid === false &&
                         ($scope.dni3IsInvalid === false && $scope.form.usertype === 'company' || $scope.form.usertype === 'person') &&
@@ -477,7 +479,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.invalidAttachFileExtension = true;
                         $scope.orderForm.file.$setValidity('exist', false);
                     } else {
-                        result = result + 'ERROR INVALID FIELD:' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error + ' ';
+                        result = result + 'ERROR INVALID FIELD: ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error + ' ';
                     }
                 }
             }
