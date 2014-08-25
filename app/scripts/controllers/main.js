@@ -36,7 +36,6 @@ angular.module('newSomEnergiaWebformsApp')
         } else if (absUrl.indexOf('/gl/') !== -1) {
             $translate.use('gl');
         }
-        $log.log('abs URL', $location.absUrl());
 
         // GET LANGUAGES
         AjaxHandler.getLanguages($scope);
