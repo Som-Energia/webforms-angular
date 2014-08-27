@@ -53,8 +53,9 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.executeGetSociValues = function() {
             var sociPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/soci/' + $scope.form.init.socinumber + '/' + $scope.form.init.dni, '001');
             sociPromise.then(
-                function (response) {
+                function(response) {
                     if (response.state === cfg.STATE_TRUE) {
+                        $log.log('Get partner info response reviced', response);
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
@@ -66,7 +67,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.showStep1Form = false;
                     }
                 },
-                function (reason) { $log.error('Get partner info failed', reason); }
+                function(reason) { $log.error('Get partner info failed', reason); }
             );
         };
 
@@ -318,17 +319,6 @@ angular.module('newSomEnergiaWebformsApp')
                 }
             }, cfg.DEFAULT_MILLISECONDS_DELAY);
         });
-
-//        $scope.initSubmit = function(form) {
-//            $scope.initFormSubmitted = true;
-//            if (form.$invalid) {
-//                return null;
-//            }
-//            // GET SOCI VALUES
-//            $scope.executeGetSociValues();
-//
-//            return true;
-//        };
 
         // ON SUBMIT FORM
         $scope.submitOrder = function() {
