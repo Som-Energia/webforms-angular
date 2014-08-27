@@ -319,17 +319,6 @@ angular.module('newSomEnergiaWebformsApp')
             }, cfg.DEFAULT_MILLISECONDS_DELAY);
         });
 
-//        $scope.initSubmit = function(form) {
-//            $scope.initFormSubmitted = true;
-//            if (form.$invalid) {
-//                return null;
-//            }
-//            // GET SOCI VALUES
-//            $scope.executeGetSociValues();
-//
-//            return true;
-//        };
-
         // ON SUBMIT FORM
         $scope.submitOrder = function() {
             $scope.messages = null;
