@@ -201,7 +201,7 @@ angular.module('newSomEnergiaWebformsApp')
                 ($scope.form.choosepayer === cfg.PAYER_TYPE_OTHER &&
                         $scope.form.payertype !== undefined &&
                         $scope.form.accountname !== undefined &&
-                        $scope.form.accountsurname !== undefined &&
+                        ($scope.form.payertype === 'company' || $scope.form.payertype === 'person' && $scope.form.accountsurname !== undefined) &&
                         $scope.form.accountdni !== undefined &&
                         $scope.form.accountemail1 !== undefined &&
                         $scope.form.accountemail2 !== undefined &&
