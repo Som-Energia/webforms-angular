@@ -6,6 +6,14 @@ angular.module('newSomEnergiaWebformsApp')
         // DEBUG MODE
         var debugEnabled = false;
 
+        // DEVELOP ENVIRONMENT
+        var develEnvironment = false;
+
+        // MUST APPLY TO EMBED WITH WORDPRESS
+        if (!develEnvironment) {
+            document.domain = cfg.BASE_DOMAIN;
+        }
+
         // INIT
         $scope.step0Ready = true;
         $scope.step1Ready = false;
