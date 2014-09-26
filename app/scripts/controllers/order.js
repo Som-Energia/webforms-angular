@@ -297,14 +297,10 @@ angular.module('newSomEnergiaWebformsApp')
                 $log.log(eventArgument);
             }
             if (develEnvironment) {
-                $log.log('[dev]', eventArgument);
                 jQuery(document).trigger('moveStep', [eventArgument]);
             } else {
-                $log.log('[prod]', eventArgument);
                 parent.jQuery('body').trigger('moveStep', [eventArgument]);
             }
-            // TODO capture from wordpress parent and remove logs
-            // jQuery(document).on('moveStep', {}, function(event, parameter) {console.log(parameter)});
         };
 
         // ON INIT SUBMIT FORM
