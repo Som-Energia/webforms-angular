@@ -7,7 +7,7 @@ angular.module('newSomEnergiaWebformsApp')
         var debugEnabled = false;
 
         // DEVELOP ENVIRONMENT
-        var develEnvironment = true;
+        var develEnvironment = false;
 
         // MUST APPLY TO EMBED WITH WORDPRESS
         if (!develEnvironment) {
