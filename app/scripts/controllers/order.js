@@ -6,6 +6,14 @@ angular.module('newSomEnergiaWebformsApp')
         // DEBUG MODE
         var debugEnabled = false;
 
+        // DEVELOP ENVIRONMENT
+        var develEnvironment = true;
+
+        // MUST APPLY TO EMBED WITH WORDPRESS
+        if (!develEnvironment) {
+            document.domain = cfg.BASE_DOMAIN;
+        }
+
         // INIT
         $scope.step0Ready = true;
         $scope.step1Ready = false;
@@ -55,7 +63,7 @@ angular.module('newSomEnergiaWebformsApp')
             sociPromise.then(
                 function(response) {
                     if (response.state === cfg.STATE_TRUE) {
-                        $log.log('Get partner info response reviced', response);
+                        $log.log('Get partner info response recived', response);
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.showUnknownSociWarning = false;
@@ -240,51 +248,63 @@ angular.module('newSomEnergiaWebformsApp')
         // MOVE TO STEP 1 FORM
         $scope.initOrderForm = function() {
             $scope.showStep1Form = true;
-            $scope.setStepReady(1);
+            $scope.setStepReady(1, 'initOrderForm');
         };
 
         // BACK TO STEP 1 FORM
         $scope.backToStep1Form = function() {
-            $scope.setStepReady(0);
+            $scope.setStepReady(0, 'backToStep1Form');
         };
 
         // MOVE TO STEP 2 FORM
         $scope.moveToStep2Form = function() {
-            $scope.setStepReady(2);
+            $scope.setStepReady(2, 'moveToStep2Form');
         };
 
         // BACK TO STEP 2 FORM
         $scope.backToStep2Form = function() {
-            $scope.setStepReady(1);
+            $scope.setStepReady(1, 'backToStep2Form');
         };
 
         // MOVE TO STEP 3 FORM
         $scope.moveToStep3Form = function() {
-            $scope.setStepReady(3);
+            $scope.setStepReady(3, 'moveToStep3Form');
         };
 
         // BACK TO STEP 3 FORM
         $scope.backToStep3Form = function() {
-            $scope.setStepReady(2);
+            $scope.setStepReady(2, 'backToStep3Form');
         };
 
         // MOVE TO STEP 4 FORM
         $scope.moveToStep4Form = function() {
-            $scope.setStepReady(4);
+            $scope.setStepReady(4, 'moveToStep4Form');
         };
 
         // BACK TO STEP 4 FORM
         $scope.backToStep4Form = function() {
-            $scope.setStepReady(3);
+            $scope.setStepReady(3, 'backToStep4Form');
         };
 
         // COMMON MOVE STEPS LOGIC
-        $scope.setStepReady = function(enabledStep) {
+        $scope.setStepReady = function(enabledStep, eventArgument) {
             $scope.step0Ready = enabledStep === 0;
             $scope.step1Ready = enabledStep === 1;
             $scope.step2Ready = enabledStep === 2;
             $scope.step3Ready = enabledStep === 3;
             $scope.step4Ready = enabledStep === 4;
+            if (debugEnabled) {
+                $log.log(eventArgument);
+            }
+            if (develEnvironment) {
+                $log.log('[dev]', eventArgument);
+                jQuery(document).trigger('moveStep', [eventArgument]);
+            } else {
+                $log.log('[prod]', eventArgument);
+                parent.jQuery('body').trigger('moveStep', [eventArgument]);
+            }
+            // TODO capture from wordpress parent and remove logs
+            // jQuery(document).on('moveStep', {}, function(event, parameter) {console.log(parameter)});
         };
 
         // ON INIT SUBMIT FORM
