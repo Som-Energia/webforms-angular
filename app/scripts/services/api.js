@@ -14,7 +14,7 @@ angular.module('newSomEnergiaWebformsApp')
                         uiHandler.showErrorDialog('GET response state false recived (ref.003-002)');
                     }
                 },
-                function (reason) { $log.error('Get languages failed', reason); }
+                function (reason) { uiHandler.showErrorDialog('Get languages failed ' + reason); }
             );
         };
 
@@ -31,7 +31,7 @@ angular.module('newSomEnergiaWebformsApp')
                         uiHandler.showErrorDialog('GET response state false recived (ref.003-001)');
                     }
                 },
-                function (reason) { $log.error('Get states failed', reason); }
+                function (reason) { uiHandler.showErrorDialog('Get states failed ' + reason); }
             );
         };
 
@@ -53,7 +53,7 @@ angular.module('newSomEnergiaWebformsApp')
                             uiHandler.showErrorDialog('GET response state false recived (ref.003-003)');
                         }
                     },
-                    function (reason) { $log.error('Update city select failed', reason); }
+                    function (reason) { uiHandler.showErrorDialog('Update city select failed ' + reason); }
                 );
                 $scope.formListener();
             }
