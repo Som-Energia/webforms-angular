@@ -30,6 +30,8 @@ angular.module('newSomEnergiaWebformsApp')
                 show: true
             });
         };
+
+        // HIDE LOADING DIALOG
         this.hideLoadingDialog = function() {
             jQuery('#loading-modal').modal('hide');
         };
