@@ -223,7 +223,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 BANC: 'Banc',
                 OFICINA: 'Oficina',
                 COMPTE: 'Número compte',
-                CONFIRMO_TITULAR_COMPTE_ACCEPTA_DOMICILIACIO: 'Confirmo que el titular del compte bancari autoritza la dominicilació de les factures d\'electricitat',
+                CONFIRMO_TITULAR_COMPTE_ACCEPTA_DOMICILIACIO: 'Confirmo que el titular del compte bancari autoritza la domiciliació de les factures d\'electricitat',
                 SOM_UNA_COOPERATIVA_SENSE_ANIM_DE_LUCRE: 'Som una Cooperativa sense ànim de lucre amb l\'objectiu ferm de canviar el model energètic',
                 VOLS_PARTICIPAR_AMB_LA_TEVA_ENERGIA: 'Vols participar amb la teva energia a fer-ho possible?',
                 DONATIU_VOLUNTARI: 'Donatiu voluntari de 0,01€/kWh',
