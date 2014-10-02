@@ -170,6 +170,7 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.cups !== undefined &&
                 $scope.form.cnae !== undefined &&
                 $scope.cupsIsInvalid === false &&
+                $scope.cupsIsDuplicated === false &&
                 $scope.cnaeIsInvalid === false &&
                 $scope.form.power !== undefined &&
                 $scope.form.rate !== undefined &&

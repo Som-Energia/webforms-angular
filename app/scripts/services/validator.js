@@ -215,11 +215,16 @@ angular.module('newSomEnergiaWebformsApp')
                 }
                 timer = $timeout(function() {
                     if (newValue !== undefined) {
-                        var cupsPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/cups/' + newValue, '006');
+                        var cupsPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'check/cups/' + newValue, '006');
                         cupsPromise.then(
                             function(response) {
-                                $scope.cupsIsInvalid = response === cfg.STATE_FALSE;
-                                $scope.cupsIsDuplicated = false;
+                                if (response.state === cfg.STATE_TRUE) {
+                                    $scope.cupsIsInvalid = false;
+                                    $scope.cupsIsDuplicated = false;
+                                } else {
+                                    $scope.cupsIsInvalid = response.data.invalid_fields[0].error === 'incorrect';
+                                    $scope.cupsIsDuplicated = response.data.invalid_fields[0].error === 'exist';
+                                }
                                 $scope.formListener($scope.form);
                             },
                             function(reason) { $log.error('Check CUPS failed', reason); }
