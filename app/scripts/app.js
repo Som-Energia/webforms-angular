@@ -18,22 +18,22 @@ angular.module('newSomEnergiaWebformsApp', [
 //    .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'http://rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
+                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
 //                templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
             .when('/prepagament', {
-                templateUrl: 'http://rawgit.com/Som-Energia/new-api-webforms/master/app/views/prepayment.html',
+                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/prepayment.html',
 //                templateUrl: 'views/prepayment.html',
                 controller: 'PrepaymentCtrl'
             })
             .when('/:locale', {
-                templateUrl: 'http://rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
+                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
 //                templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
             .when('/:locale/soci', {
-                templateUrl: 'http://rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
+                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
 //                templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
