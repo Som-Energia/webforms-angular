@@ -187,7 +187,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 NO_ETS_SOCI_FES_TE_AQUI: 'No ets soci/a? Fes-te soci/a <a href="http://www.somenergia.coop/ca/fes-te-soci-a/" target="_blank">aquí</a>!',
                 INICIAR_CONTRACTACIO: 'Iniciar contractació',
                 DADES_PUNT_SUBMINISTRAMENT: 'Dades del punt de subministrament',
-                DADES_PUNT_SUBMINISTRAMENT_HELPER: 'Poseu-hi les dades tal i com estan en la factura actual. Si voleu fer canvis de tarifa o potència, cal que us espereu a tenir el contracte amb Som Energia per sol.licitar-nos-els. Si voleu fer un canvi de titular, el podreu fer en el pas núm. 2 d\'aquest formulari.',
+                DADES_PUNT_SUBMINISTRAMENT_HELPER: 'Poseu-hi les dades tal i com estan en la factura actual. Si voleu fer canvis de tarifa o potència, cal que us espereu a tenir el contracte amb Som Energia per sol·licitar-nos-els. Si voleu fer un canvi de titular, el podreu fer en el pas núm. 2 d\'aquest formulari.',
                 NUMERO_DE_CUPS: 'Número de CUPS',
                 HELP_POPOVER_CUPS: 'Ho trobareu a la vostra factura actual. És un codi de 20 o 22 xifres i lletres. Exemple: ES0031031321313W0F',
                 HELP_POPOVER_CNAE: 'En cas d\'habitatges: 9820. En cas d\'empreses el de la vostra activitat econòmica',
