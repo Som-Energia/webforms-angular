@@ -429,6 +429,7 @@ angular.module('newSomEnergiaWebformsApp', [
     .constant('cfg', {
         BASE_DOMAIN: 'somenergia.coop',
         API_BASE_URL: 'https://api.somenergia.coop/',
+        CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
         STATUS_OFFLINE: 'OFFLINE',
         STATUS_ONLINE: 'ONLINE',
         STATE_TRUE: true,

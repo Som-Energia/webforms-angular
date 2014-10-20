@@ -415,6 +415,7 @@ angular.module('newSomEnergiaWebformsApp')
                         if (response.data.state === cfg.STATE_TRUE) {
                             // well done
                             uiHandler.showWellDoneDialog();
+                            $window.top.location.href = cfg.CONTRACT_OK_REDIRECT_URL;
                         } else {
                             // error
                             $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
@@ -482,7 +483,7 @@ angular.module('newSomEnergiaWebformsApp')
             return $scope.form.accountbank + '-' + $scope.form.accountoffice + '-' + $scope.form.accountchecksum + '-' + $scope.form.accountnumber;
         };
 
-        // DEBUG (comment on production)
+        // DEBUG (only apply on development environment)
         if (debugEnabled) {
             $scope.form.init.socinumber = debugCfg.SOCI;
             $scope.form.init.dni = debugCfg.DNI;
