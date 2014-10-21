@@ -47,7 +47,7 @@ function browserSupportsToLocaleString() {
     try {
         number.toLocaleString('i');
     } catch (e) {
-        return e​.name === 'RangeError';
+        return e.name === 'RangeError';
     }
     return false;
 }
@@ -63,16 +63,16 @@ function setCustomLocaleToStringBehaviour()
             var stringValue = Math.round(this).toString();
             var resultValue = '';
             for (var i = 0, len = stringValue.length; i < len; i++) {
-                var inversedIndex = stringValue.length - i;
-                if (i % 3 === 0 && inversedIndex !== 0) {
-                    resultValue = resultValue + '.';
+                var inversedIndex = stringValue.length - i - 1;
+                if ((i + 1) % 3 === 0 && inversedIndex !== 0) {
+                    resultValue = resultValue + stringValue[inversedIndex] + '.';
                 } else {
                     resultValue = resultValue + stringValue[inversedIndex];
                 }
             }
             stringValue = '';
             for (i = resultValue.length - 1; i >= 0; i--) {
-                stringValue += str[resultValue];
+                stringValue += resultValue[i];
             }
             
             return stringValue;
