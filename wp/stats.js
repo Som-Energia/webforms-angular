@@ -66,9 +66,8 @@ function setCustomLocaleToStringBehaviour()
                 var inversedIndex = stringValue.length - i;
                 if (i % 3 === 0 && inversedIndex !== 0) {
                     resultValue = resultValue + '.';
-                } else {
-                    resultValue = resultValue + stringValue[inversedIndex];
                 }
+                resultValue = resultValue + stringValue[inversedIndex];
             }
             stringValue = '';
             for (i = resultValue.length - 1; i >= 0; i--) {
