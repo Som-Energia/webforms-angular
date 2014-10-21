@@ -72,7 +72,7 @@ function setCustomLocaleToStringBehaviour()
             }
             stringValue = '';
             for (i = resultValue.length - 1; i >= 0; i--) {
-                stringValue += str[resultValue];
+                stringValue += resultValue[i];
             }
             
             return stringValue;
