@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('MainCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', 'prepaymentService', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$location', '$log', function (cfg, AjaxHandler, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
+    .controller('MainCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', 'prepaymentService', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$location', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
+
+        // DEBUG MODE
+        var debugEnabled = false;
 
         // INIT
         $scope.step1Ready = true;
@@ -171,5 +174,21 @@ angular.module('newSomEnergiaWebformsApp')
 
             return result;
         };
+
+        // DEBUG (only apply on development environment)
+        if (debugEnabled) {
+            $scope.step2Ready = true;
+            $scope.step3Ready = true;
+            $scope.form.usertype = 'person';
+            $scope.form.language = 1;
+            $scope.form.name = debugCfg.NAME;
+            $scope.form.surname = debugCfg.SURNAME;
+            $scope.form.dni = debugCfg.DNI;
+            $scope.form.email1 = debugCfg.EMAIL;
+            $scope.form.email2 = debugCfg.EMAIL;
+            $scope.form.phone1 = debugCfg.PHONE;
+            $scope.form.address = debugCfg.ADDRESS;
+            $scope.form.postalcode = debugCfg.POSTALCODE;
+        }
 
     }]);
