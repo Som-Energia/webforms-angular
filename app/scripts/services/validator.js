@@ -212,13 +212,13 @@ angular.module('newSomEnergiaWebformsApp')
         this.validateIban = function($scope, element) {
             $scope.$watch(element, function(newValue, oldValue) {
                 if (newValue !== undefined) {
-                    $log.log('[IBAN validator] element = ' + element);
-                    $log.log('[IBAN validator] old = ' + oldValue);
-                    $log.log('[IBAN validator] new = ' + newValue);
-                    $log.log('[IBAN validator] test = ' + ibanFirstFieldRE.test(newValue));
-                    $log.log(element === 'form.accountbankiban1');
-                    $log.log(ibanFirstFieldRE.test(newValue));
-                    $log.log(newValue.length > 4);
+//                    $log.log('[IBAN validator] element = ' + element);
+//                    $log.log('[IBAN validator] old = ' + oldValue);
+//                    $log.log('[IBAN validator] new = ' + newValue);
+//                    $log.log('[IBAN validator] test = ' + ibanFirstFieldRE.test(newValue));
+//                    $log.log(element === 'form.accountbankiban1');
+//                    $log.log(ibanFirstFieldRE.test(newValue));
+//                    $log.log(newValue.length > 4);
                     if (element === 'form.accountbankiban1' && (!ibanFirstFieldRE.test(newValue) || newValue.length > 4)) {
                         $scope.form.accountbankiban1 = oldValue;
                     } else if (element === 'form.accountbankiban2' && (!integerRE.test(newValue) || newValue.length > 4)) {
