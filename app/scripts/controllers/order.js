@@ -47,6 +47,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.completeAccountNumber = '';
         $scope.form.init = {};
         $scope.rates = [cfg.RATE_20A, cfg.RATE_20DHA, cfg.RATE_21A, cfg.RATE_21DHA, cfg.RATE_30A];
+        $scope.form.accountbankiban1 = 'ES';
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
@@ -523,5 +524,6 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.email1 = debugCfg.EMAIL;
             $scope.form.email2 = debugCfg.EMAIL;
             $scope.form.accept = true;
+            $scope.form.accountbankiban1 = 'ES';
         }
     }]);
