@@ -207,6 +207,25 @@ angular.module('newSomEnergiaWebformsApp')
             });
         };
 
+        // IBAN VALIDATOR
+        this.validateIban = function($scope, element) {
+            $scope.$watch(element, function(newValue, oldValue) {
+                if (newValue !== undefined) {
+                    if (element === 'form.accountbankiban2' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                        $scope.form.accountbankiban2 = oldValue;
+                    } else if (element === 'form.accountbankiban3' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                        $scope.form.accountbankiban3 = oldValue;
+                    } else if (element === 'form.accountbankiban4' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                        $scope.form.accountbankiban4 = oldValue;
+                    } else if (element === 'form.accountbankiban5' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                        $scope.form.accountbankiban5 = oldValue;
+                    } else if (element === 'form.accountbankiban6' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                        $scope.form.accountbankiban6 = oldValue;
+                    }
+                }
+            });
+        };
+
         // CUPS VALIDATOR
         this.validateCups = function($scope, element, timer) {
             $scope.$watch(element, function(newValue) {

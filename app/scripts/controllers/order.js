@@ -134,6 +134,14 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateBankAccountInteger($scope, 'form.accountchecksum');
         ValidateHandler.validateBankAccountInteger($scope, 'form.accountnumber');
 
+        // IBAN VALIDATION
+        ValidateHandler.validateIban($scope, 'form.accountbankiban1');
+        ValidateHandler.validateIban($scope, 'form.accountbankiban2');
+        ValidateHandler.validateIban($scope, 'form.accountbankiban3');
+        ValidateHandler.validateIban($scope, 'form.accountbankiban4');
+        ValidateHandler.validateIban($scope, 'form.accountbankiban5');
+        ValidateHandler.validateIban($scope, 'form.accountbankiban6');
+
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
             AjaxHandler.getCities($scope, 1, $scope.form.province.id);
