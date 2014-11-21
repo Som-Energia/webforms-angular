@@ -4,7 +4,7 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('MainCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', 'prepaymentService', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$location', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
 
         // DEBUG MODE
-        var debugEnabled = false;
+        var debugEnabled = true;
 
         // INIT
         $scope.step1Ready = true;
