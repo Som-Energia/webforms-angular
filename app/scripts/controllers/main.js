@@ -115,12 +115,12 @@ angular.module('newSomEnergiaWebformsApp')
                 accountPromise.then(
                     function (response) {
                         $scope.accountIsInvalid = response === cfg.STATE_FALSE;
-                        $scope.form.accountbankiban1.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.form.accountbankiban2.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.form.accountbankiban3.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.form.accountbankiban4.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.form.accountbankiban5.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.form.accountbankiban6.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.partnerForm.accountbankiban1.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.partnerForm.accountbankiban2.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.partnerForm.accountbankiban3.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.partnerForm.accountbankiban4.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.partnerForm.accountbankiban5.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.partnerForm.accountbankiban6.$setValidity('invalid', !$scope.accountIsInvalid);
                         $scope.formListener($scope.form);
                     },
                     function(reason) { $log.error('Check IBAN failed', reason); }
