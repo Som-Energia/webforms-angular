@@ -221,6 +221,7 @@ angular.module('newSomEnergiaWebformsApp')
 //                    $log.log(newValue.length > 4);
                     if (element === 'form.accountbankiban1' && (!ibanFirstFieldRE.test(newValue) || newValue.length > 4)) {
                         $scope.form.accountbankiban1 = oldValue;
+
                     } else if (element === 'form.accountbankiban2' && (!integerRE.test(newValue) || newValue.length > 4)) {
                         $scope.form.accountbankiban2 = oldValue;
                     } else if (element === 'form.accountbankiban3' && (!integerRE.test(newValue) || newValue.length > 4)) {
@@ -231,6 +232,19 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.accountbankiban5 = oldValue;
                     } else if (element === 'form.accountbankiban6' && (!integerRE.test(newValue) || newValue.length > 4)) {
                         $scope.form.accountbankiban6 = oldValue;
+                    }
+                    if (newValue.length === 4) {
+                        if (element === 'form.accountbankiban1') {
+                            angular.element('#accountbankiban2input').focus();
+                        } else if (element === 'form.accountbankiban2') {
+                            angular.element('#accountbankiban3input').focus();
+                        } else if (element === 'form.accountbankiban3') {
+                            angular.element('#accountbankiban4input').focus();
+                        } else if (element === 'form.accountbankiban4') {
+                            angular.element('#accountbankiban5input').focus();
+                        } else if (element === 'form.accountbankiban5') {
+                            angular.element('#accountbankiban6input').focus();
+                        }
                     }
                 } else {
                     $log.log('[IBAN validator] undef');

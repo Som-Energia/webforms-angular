@@ -67,6 +67,14 @@ angular.module('newSomEnergiaWebformsApp')
         var checkEmail2Timer = false;
         ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
 
+        // IBAN VALIDATION
+        ValidateHandler.validateIban($scope, 'form.accountbankiban1');
+        ValidateHandler.validateIban($scope, 'form.accountbankiban2');
+        ValidateHandler.validateIban($scope, 'form.accountbankiban3');
+        ValidateHandler.validateIban($scope, 'form.accountbankiban4');
+        ValidateHandler.validateIban($scope, 'form.accountbankiban5');
+        ValidateHandler.validateIban($scope, 'form.accountbankiban6');
+
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
             AjaxHandler.getCities($scope, 1, $scope.form.province.id);
