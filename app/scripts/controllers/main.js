@@ -28,6 +28,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.city = {};
         $scope.messages = null;
         $scope.form.payment = 'bankaccount';
+        $scope.form.accountbankiban1 = 'ES';
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
@@ -189,6 +190,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.phone1 = debugCfg.PHONE;
             $scope.form.address = debugCfg.ADDRESS;
             $scope.form.postalcode = debugCfg.POSTALCODE;
+            $scope.form.accept = true;
         }
 
     }]);

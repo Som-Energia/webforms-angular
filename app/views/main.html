@@ -188,13 +188,13 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" data-ng-if="form.payment == 'bankaccount'">
                 <div class="col-sm-12 col-xs-12">
                     <label>{{ 'NUM_COMPTE' | translate }} (IBAN)</label>
                     <span class="label label-danger" data-ng-show="accountIsInvalid">{{ 'INVALID' | translate }}</span>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" data-ng-if="form.payment == 'bankaccount'">
                 <div class="col-sm-2 col-xs-2">
                     <input type="text" name="accountbankiban1" class="form-control" data-ng-model="form.accountbankiban1" data-ng-change="formAccountIbanListener()" required/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountbankiban1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
