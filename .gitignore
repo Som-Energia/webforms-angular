@@ -6,6 +6,7 @@ dist/index.html
 app/bower_components
 app/scripts/debug.js
 secret.json
+secret.dev.json
 !.bowerrc
 !.editorconfig
 !.jshintrc
