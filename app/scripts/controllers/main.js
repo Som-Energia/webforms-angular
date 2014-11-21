@@ -161,7 +161,7 @@ angular.module('newSomEnergiaWebformsApp')
                 postData.representant_nom = $scope.form.representantname;
                 postData.representant_dni = $scope.form.representantdni;
             }
-//            $log.log('request postData', postData);
+            $log.log('request postData', postData);
             // Send request data POST
             var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData, '004');
             postPromise.then(
@@ -172,7 +172,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.submitReady = false;
                     } else if (response.state === cfg.STATE_TRUE) {
                         // well done
-//                        $log.log('response recived', response);
+                        $log.log('response recived', response);
                         prepaymentService.setData(response.data);
                         $location.path('/prepagament');
                     }

@@ -546,6 +546,12 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.email1 = debugCfg.EMAIL;
             $scope.form.email2 = debugCfg.EMAIL;
             $scope.form.accept = true;
-            $scope.form.accountbankiban1 = 'ES';
+            $scope.form.accountbankiban1 = debugCfg.IBAN1;
+            $scope.form.accountbankiban2 = debugCfg.IBAN2;
+            $scope.form.accountbankiban3 = debugCfg.IBAN3;
+            $scope.form.accountbankiban4 = debugCfg.IBAN4;
+            $scope.form.accountbankiban5 = debugCfg.IBAN5;
+            $scope.form.accountbankiban6 = debugCfg.IBAN6;
+            cfg.API_BASE_URL = 'http://sompre.gisce.net:5001/';
         }
     }]);
