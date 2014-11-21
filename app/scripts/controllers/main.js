@@ -28,6 +28,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.city = {};
         $scope.messages = null;
         $scope.accountIsInvalid = false;
+        $scope.ibanValidated = false;
         $scope.form.payment = 'bankaccount';
         $scope.form.accountbankiban1 = 'ES';
         if ($routeParams.locale !== undefined) {
@@ -104,17 +105,19 @@ angular.module('newSomEnergiaWebformsApp')
                 !$scope.postalCodeIsInvalid
             ;
             $scope.step3Ready = $scope.showAgreeCheckbox && $scope.form.accept !== undefined && $scope.form.accept !== false;
-            $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready;
+            $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready && ($scope.form.payment === 'creditcard' || $scope.form.payment === 'bankaccount' && $scope.ibanValidated && !$scope.accountIsInvalid);
         };
 
         // CONTROL IBAN FIELDS
         $scope.formAccountIbanListener = function () {
             if ($scope.form.accountbankiban1 !== undefined && $scope.form.accountbankiban2 !== undefined && $scope.form.accountbankiban3 !== undefined && $scope.form.accountbankiban4 !== undefined && $scope.form.accountbankiban5 !== undefined && $scope.form.accountbankiban6 !== undefined && $scope.form.accountbankiban1.length === 4 && $scope.form.accountbankiban2.length === 4 && $scope.form.accountbankiban3.length === 4 && $scope.form.accountbankiban4.length === 4 && $scope.form.accountbankiban5.length === 4 && $scope.form.accountbankiban6.length === 4) {
                 $scope.completeAccountNumber = $scope.form.accountbankiban1 + $scope.form.accountbankiban2 + $scope.form.accountbankiban3 + $scope.form.accountbankiban4 + $scope.form.accountbankiban5 + $scope.form.accountbankiban6;
-                var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/bank/' + $scope.completeAccountNumber, '017');
+                $scope.ibanValidated = false;
+                var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/iban/' + $scope.completeAccountNumber, '017');
                 accountPromise.then(
                     function (response) {
                         $scope.accountIsInvalid = response === cfg.STATE_FALSE;
+                        $scope.ibanValidated = true;
                         $scope.partnerForm.accountbankiban1.$setValidity('invalid', !$scope.accountIsInvalid);
                         $scope.partnerForm.accountbankiban2.$setValidity('invalid', !$scope.accountIsInvalid);
                         $scope.partnerForm.accountbankiban3.$setValidity('invalid', !$scope.accountIsInvalid);
@@ -221,6 +224,12 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.address = debugCfg.ADDRESS;
             $scope.form.postalcode = debugCfg.POSTALCODE;
             $scope.form.accept = true;
+            $scope.form.accountbankiban1 = debugCfg.IBAN1;
+            $scope.form.accountbankiban2 = debugCfg.IBAN2;
+            $scope.form.accountbankiban3 = debugCfg.IBAN3;
+            $scope.form.accountbankiban4 = debugCfg.IBAN4;
+            $scope.form.accountbankiban5 = debugCfg.IBAN5;
+            $scope.form.accountbankiban6 = debugCfg.IBAN6;
             cfg.API_BASE_URL = 'http://sompre.gisce.net:5001/';
         }
 

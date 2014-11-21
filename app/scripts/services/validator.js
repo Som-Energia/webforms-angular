@@ -246,8 +246,6 @@ angular.module('newSomEnergiaWebformsApp')
                             angular.element('#accountbankiban6input').focus();
                         }
                     }
-                } else {
-                    $log.log('[IBAN validator] undef');
                 }
             });
         };
