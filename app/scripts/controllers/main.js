@@ -31,6 +31,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.ibanValidated = false;
         $scope.form.payment = 'bankaccount';
         $scope.form.accountbankiban1 = 'ES';
+        $scope.completeAccountNumber = '';
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
@@ -110,7 +111,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // CONTROL IBAN FIELDS
         $scope.formAccountIbanListener = function () {
-            if ($scope.form.accountbankiban1 !== undefined && $scope.form.accountbankiban2 !== undefined && $scope.form.accountbankiban3 !== undefined && $scope.form.accountbankiban4 !== undefined && $scope.form.accountbankiban5 !== undefined && $scope.form.accountbankiban6 !== undefined && $scope.form.accountbankiban1.length === 4 && $scope.form.accountbankiban2.length === 4 && $scope.form.accountbankiban3.length === 4 && $scope.form.accountbankiban4.length === 4 && $scope.form.accountbankiban5.length === 4 && $scope.form.accountbankiban6.length === 4) {
+            if ($scope.form.accountbankiban1 !== undefined && $scope.form.accountbankiban2 !== undefined && $scope.form.accountbankiban3 !== undefined && $scope.form.accountbankiban4 !== undefined && $scope.form.accountbankiban5 !== undefined && $scope.form.accountbankiban6 !== undefined) {
                 $scope.completeAccountNumber = $scope.form.accountbankiban1 + $scope.form.accountbankiban2 + $scope.form.accountbankiban3 + $scope.form.accountbankiban4 + $scope.form.accountbankiban5 + $scope.form.accountbankiban6;
                 $scope.ibanValidated = false;
                 var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/iban/' + $scope.completeAccountNumber, '017');
@@ -151,7 +152,8 @@ angular.module('newSomEnergiaWebformsApp')
                 adreca: $scope.form.address,
                 municipi: $scope.form.city.id,
                 idioma: $scope.form.language.code,
-                payment_method: $scope.form.payment === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD
+                payment_method: $scope.form.payment === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD,
+                payment_iban: $scope.completeAccountNumber
             };
             if ($scope.form.usertype === 'person') {
                 postData.cognom = $scope.form.surname;
