@@ -4,7 +4,15 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('MainCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', 'prepaymentService', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$location', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
 
         // DEBUG MODE
-        var debugEnabled = true;
+        var debugEnabled = false;
+
+        // DEVELOP ENVIRONMENT
+        var develEnvironment = true; // TODO change to false
+
+        // DEVEL
+        if (develEnvironment) {
+            cfg.API_BASE_URL = 'http://sompre.gisce.net:5001/';
+        }
 
         // INIT
         $scope.step1Ready = true;
@@ -232,7 +240,6 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.accountbankiban4 = debugCfg.IBAN4;
             $scope.form.accountbankiban5 = debugCfg.IBAN5;
             $scope.form.accountbankiban6 = debugCfg.IBAN6;
-            cfg.API_BASE_URL = 'http://sompre.gisce.net:5001/';
         }
 
     }]);
