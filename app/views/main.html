@@ -181,11 +181,43 @@
         <div class="col-xs-11">
             <div class="row">
                 <div class="form-group col-xs-12">
-                    <label>{{ 'METODE_PAGAMENT' | translate }}:</label>
+                    <label>{{ 'METODE_PAGAMENT' | translate }} ({{ 'COST' | translate }})</label>
                     <div class="btn-group">
-                        <label class="btn btn-default green" data-ng-disabled="!step3Ready" data-ng-model="form.payment" data-btn-radio="'bankaccount'">{{ 'REBUT_BANCARI' | translate }}</label>
-                        <label class="btn btn-default green" data-ng-disabled="!step3Ready" data-ng-model="form.payment" data-btn-radio="'creditcard'">{{ 'TARGETA_CREDIT' | translate }}</label>
+                        <label class="btn btn-default green" data-ng-disabled="!step3Ready" data-ng-model="form.payment" data-btn-radio="'bankaccount'" data-ng-change="formListener()">{{ 'REBUT_BANCARI' | translate }} (0 €)</label>
+                        <label class="btn btn-default green" data-ng-disabled="!step3Ready" data-ng-model="form.payment" data-btn-radio="'creditcard'" data-ng-change="formListener()">{{ 'TARGETA_CREDIT' | translate }} (1,8 €)</label>
                     </div>
+                </div>
+            </div>
+            <div class="row" data-ng-if="form.payment == 'bankaccount'">
+                <div class="col-sm-12 col-xs-12">
+                    <label>{{ 'NUM_COMPTE' | translate }} (IBAN: ES11 2222 3333 4444 5555 6666)</label>
+                    <span class="label label-danger" data-ng-show="accountIsInvalid">{{ 'INVALID' | translate }}</span>
+                </div>
+            </div>
+            <div class="row" data-ng-if="form.payment == 'bankaccount'">
+                <div class="col-sm-2 col-xs-2">
+                    <input type="text" name="accountbankiban1" class="form-control" data-ng-disabled="!step3Ready" data-ng-model="form.accountbankiban1" data-ng-change="formAccountIbanListener()" required/>
+                    <span class="label label-danger" data-ng-show="form.accountbankiban1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+                <div class="col-sm-2 col-xs-2">
+                    <input id="accountbankiban2input" type="text" name="accountbankiban2" class="form-control" data-ng-disabled="!step3Ready" data-ng-model="form.accountbankiban2" data-ng-change="formAccountIbanListener()" required/>
+                    <span class="label label-danger" data-ng-show="form.accountbankiban2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+                <div class="col-sm-2 col-xs-2">
+                    <input id="accountbankiban3input" type="text" name="accountbankiban3" class="form-control" data-ng-disabled="!step3Ready" data-ng-model="form.accountbankiban3" data-ng-change="formAccountIbanListener()" required/>
+                    <span class="label label-danger" data-ng-show="form.accountbankiban3.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+                <div class="col-sm-2 col-xs-2">
+                    <input id="accountbankiban4input" type="text" name="accountbankiban4" class="form-control" data-ng-disabled="!step3Ready" data-ng-model="form.accountbankiban4" data-ng-change="formAccountIbanListener()" required/>
+                    <span class="label label-danger" data-ng-show="form.accountbankiban4.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+                <div class="col-sm-2 col-xs-2">
+                    <input id="accountbankiban5input" type="text" name="accountbankiban5" class="form-control" data-ng-disabled="!step3Ready" data-ng-model="form.accountbankiban5" data-ng-change="formAccountIbanListener()" required/>
+                    <span class="label label-danger" data-ng-show="form.accountbankiban5.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+                <div class="col-sm-2 col-xs-2">
+                    <input id="accountbankiban6input" type="text" name="accountbankiban6" class="form-control" data-ng-disabled="!step3Ready" data-ng-model="form.accountbankiban6" data-ng-change="formAccountIbanListener()" required/>
+                    <span class="label label-danger" data-ng-show="form.accountbankiban6.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <!--<div class="row">-->

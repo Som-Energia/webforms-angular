@@ -1,7 +1,18 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('MainCtrl', ['cfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', 'prepaymentService', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$location', '$log', function (cfg, AjaxHandler, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
+    .controller('MainCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', 'prepaymentService', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$location', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
+
+        // DEBUG MODE
+        var debugEnabled = false;
+
+        // DEVELOP ENVIRONMENT
+        var develEnvironment = false;
+
+        // DEVEL
+        if (develEnvironment) {
+            cfg.API_BASE_URL = 'http://sompre.gisce.net:5001/';
+        }
 
         // INIT
         $scope.step1Ready = true;
@@ -24,7 +35,11 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.province = {};
         $scope.city = {};
         $scope.messages = null;
+        $scope.accountIsInvalid = false;
+        $scope.ibanValidated = false;
         $scope.form.payment = 'bankaccount';
+        $scope.form.accountbankiban1 = 'ES';
+        $scope.completeAccountNumber = '';
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
@@ -63,6 +78,14 @@ angular.module('newSomEnergiaWebformsApp')
         var checkEmail2Timer = false;
         ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
 
+        // IBAN VALIDATION
+        ValidateHandler.validateIban($scope, 'form.accountbankiban1');
+        ValidateHandler.validateIban($scope, 'form.accountbankiban2');
+        ValidateHandler.validateIban($scope, 'form.accountbankiban3');
+        ValidateHandler.validateIban($scope, 'form.accountbankiban4');
+        ValidateHandler.validateIban($scope, 'form.accountbankiban5');
+        ValidateHandler.validateIban($scope, 'form.accountbankiban6');
+
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
             AjaxHandler.getCities($scope, 1, $scope.form.province.id);
@@ -91,7 +114,30 @@ angular.module('newSomEnergiaWebformsApp')
                 !$scope.postalCodeIsInvalid
             ;
             $scope.step3Ready = $scope.showAgreeCheckbox && $scope.form.accept !== undefined && $scope.form.accept !== false;
-            $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready;
+            $scope.submitReady = $scope.step1Ready && $scope.step2Ready && $scope.step3Ready && ($scope.form.payment === 'creditcard' || $scope.form.payment === 'bankaccount' && $scope.ibanValidated && !$scope.accountIsInvalid);
+        };
+
+        // CONTROL IBAN FIELDS
+        $scope.formAccountIbanListener = function () {
+            if ($scope.form.accountbankiban1 !== undefined && $scope.form.accountbankiban2 !== undefined && $scope.form.accountbankiban3 !== undefined && $scope.form.accountbankiban4 !== undefined && $scope.form.accountbankiban5 !== undefined && $scope.form.accountbankiban6 !== undefined) {
+                $scope.completeAccountNumber = $scope.form.accountbankiban1 + $scope.form.accountbankiban2 + $scope.form.accountbankiban3 + $scope.form.accountbankiban4 + $scope.form.accountbankiban5 + $scope.form.accountbankiban6;
+                $scope.ibanValidated = false;
+                var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/iban/' + $scope.completeAccountNumber, '017');
+                accountPromise.then(
+                    function (response) {
+                        $scope.accountIsInvalid = response === cfg.STATE_FALSE;
+                        $scope.ibanValidated = true;
+                        $scope.partnerForm.accountbankiban1.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.partnerForm.accountbankiban2.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.partnerForm.accountbankiban3.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.partnerForm.accountbankiban4.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.partnerForm.accountbankiban5.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.partnerForm.accountbankiban6.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.formListener($scope.form);
+                    },
+                    function(reason) { $log.error('Check IBAN failed', reason); }
+                );
+            }
         };
 
         // ON SUBMIT FORM
@@ -114,7 +160,8 @@ angular.module('newSomEnergiaWebformsApp')
                 adreca: $scope.form.address,
                 municipi: $scope.form.city.id,
                 idioma: $scope.form.language.code,
-                payment_method: $scope.form.payment === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD
+                payment_method: $scope.form.payment === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD,
+                payment_iban: $scope.completeAccountNumber
             };
             if ($scope.form.usertype === 'person') {
                 postData.cognom = $scope.form.surname;
@@ -122,7 +169,7 @@ angular.module('newSomEnergiaWebformsApp')
                 postData.representant_nom = $scope.form.representantname;
                 postData.representant_dni = $scope.form.representantdni;
             }
-//            $log.log('request postData', postData);
+            $log.log('request postData', postData);
             // Send request data POST
             var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData, '004');
             postPromise.then(
@@ -133,7 +180,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.submitReady = false;
                     } else if (response.state === cfg.STATE_TRUE) {
                         // well done
-//                        $log.log('response recived', response);
+                        $log.log('response recived', response);
                         prepaymentService.setData(response.data);
                         $location.path('/prepagament');
                     }
@@ -171,5 +218,28 @@ angular.module('newSomEnergiaWebformsApp')
 
             return result;
         };
+
+        // DEBUG (only apply on development environment)
+        if (debugEnabled) {
+            $scope.step2Ready = true;
+            $scope.step3Ready = true;
+            $scope.form.usertype = 'person';
+            $scope.form.language = 1;
+            $scope.form.name = debugCfg.NAME;
+            $scope.form.surname = debugCfg.SURNAME;
+            $scope.form.dni = debugCfg.DNI;
+            $scope.form.email1 = debugCfg.EMAIL;
+            $scope.form.email2 = debugCfg.EMAIL;
+            $scope.form.phone1 = debugCfg.PHONE;
+            $scope.form.address = debugCfg.ADDRESS;
+            $scope.form.postalcode = debugCfg.POSTALCODE;
+            $scope.form.accept = true;
+            $scope.form.accountbankiban1 = debugCfg.IBAN1;
+            $scope.form.accountbankiban2 = debugCfg.IBAN2;
+            $scope.form.accountbankiban3 = debugCfg.IBAN3;
+            $scope.form.accountbankiban4 = debugCfg.IBAN4;
+            $scope.form.accountbankiban5 = debugCfg.IBAN5;
+            $scope.form.accountbankiban6 = debugCfg.IBAN6;
+        }
 
     }]);

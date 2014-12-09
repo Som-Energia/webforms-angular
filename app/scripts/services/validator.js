@@ -5,6 +5,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         var emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var integerRE = /^\d*$/;
+        var ibanFirstFieldRE = /^[a-zA-Z]{1,2}[0-9]*/;
         var dniRE = /^[a-zA-Z]?\d*[a-zA-Z]?$/;
 
         // INTEGER VALIDATOR
@@ -202,6 +203,48 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.accountchecksum = oldValue;
                     } else if (element === 'form.accountnumber' && (!integerRE.test(newValue) || newValue.length > 10)) {
                         $scope.form.accountnumber = oldValue;
+                    }
+                }
+            });
+        };
+
+        // IBAN VALIDATOR
+        this.validateIban = function($scope, element) {
+            $scope.$watch(element, function(newValue, oldValue) {
+                if (newValue !== undefined) {
+//                    $log.log('[IBAN validator] element = ' + element);
+//                    $log.log('[IBAN validator] old = ' + oldValue);
+//                    $log.log('[IBAN validator] new = ' + newValue);
+//                    $log.log('[IBAN validator] test = ' + ibanFirstFieldRE.test(newValue));
+//                    $log.log(element === 'form.accountbankiban1');
+//                    $log.log(ibanFirstFieldRE.test(newValue));
+//                    $log.log(newValue.length > 4);
+                    if (element === 'form.accountbankiban1' && (!ibanFirstFieldRE.test(newValue) || newValue.length > 4)) {
+                        $scope.form.accountbankiban1 = oldValue;
+
+                    } else if (element === 'form.accountbankiban2' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                        $scope.form.accountbankiban2 = oldValue;
+                    } else if (element === 'form.accountbankiban3' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                        $scope.form.accountbankiban3 = oldValue;
+                    } else if (element === 'form.accountbankiban4' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                        $scope.form.accountbankiban4 = oldValue;
+                    } else if (element === 'form.accountbankiban5' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                        $scope.form.accountbankiban5 = oldValue;
+                    } else if (element === 'form.accountbankiban6' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                        $scope.form.accountbankiban6 = oldValue;
+                    }
+                    if (newValue.length === 4) {
+                        if (element === 'form.accountbankiban1') {
+                            angular.element('#accountbankiban2input').focus();
+                        } else if (element === 'form.accountbankiban2') {
+                            angular.element('#accountbankiban3input').focus();
+                        } else if (element === 'form.accountbankiban3') {
+                            angular.element('#accountbankiban4input').focus();
+                        } else if (element === 'form.accountbankiban4') {
+                            angular.element('#accountbankiban5input').focus();
+                        } else if (element === 'form.accountbankiban5') {
+                            angular.element('#accountbankiban6input').focus();
+                        }
                     }
                 }
             });
