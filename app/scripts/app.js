@@ -18,23 +18,23 @@ angular.module('newSomEnergiaWebformsApp', [
 //    .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-//                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
-                templateUrl: 'views/main.html',
+                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
+//                templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
             .when('/prepagament', {
-//                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/prepayment.html',
-                templateUrl: 'views/prepayment.html',
+                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/prepayment.html',
+//                templateUrl: 'views/prepayment.html',
                 controller: 'PrepaymentCtrl'
             })
             .when('/:locale', {
-//                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
-                templateUrl: 'views/main.html',
+                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
+//                templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
             .when('/:locale/soci', {
-//                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
-                templateUrl: 'views/main.html',
+                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
+//                templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
             .when('/:locale/contractacio', {

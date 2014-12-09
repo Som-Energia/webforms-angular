@@ -7,7 +7,7 @@ angular.module('newSomEnergiaWebformsApp')
         var debugEnabled = false;
 
         // DEVELOP ENVIRONMENT
-        var develEnvironment = true; // TODO change to false
+        var develEnvironment = false;
 
         // DEVEL
         if (develEnvironment) {

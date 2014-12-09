@@ -4,10 +4,10 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
-        var debugEnabled = true; // TODO change to false
+        var debugEnabled = false;
 
         // DEVELOP ENVIRONMENT
-        var develEnvironment = true; // TODO change to false
+        var develEnvironment = false;
 
         // MUST APPLY TO EMBED WITH WORDPRESS
         if (!develEnvironment) {
@@ -47,7 +47,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.completeAccountNumber = '';
         $scope.form.init = {};
         $scope.rates = [cfg.RATE_20A, cfg.RATE_20DHA, cfg.RATE_21A, cfg.RATE_21DHA, cfg.RATE_30A];
-        $scope.form.accountbankiban1 = 'ES';
+//        $scope.form.accountbankiban1 = 'ES';
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
@@ -130,18 +130,18 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone2');
 
         // BANK ACCOUNT VALIDATION
-//        ValidateHandler.validateBankAccountInteger($scope, 'form.accountbank');
-//        ValidateHandler.validateBankAccountInteger($scope, 'form.accountoffice');
-//        ValidateHandler.validateBankAccountInteger($scope, 'form.accountchecksum');
-//        ValidateHandler.validateBankAccountInteger($scope, 'form.accountnumber');
+        ValidateHandler.validateBankAccountInteger($scope, 'form.accountbank');
+        ValidateHandler.validateBankAccountInteger($scope, 'form.accountoffice');
+        ValidateHandler.validateBankAccountInteger($scope, 'form.accountchecksum');
+        ValidateHandler.validateBankAccountInteger($scope, 'form.accountnumber');
 
         // IBAN VALIDATION
-        ValidateHandler.validateIban($scope, 'form.accountbankiban1');
-        ValidateHandler.validateIban($scope, 'form.accountbankiban2');
-        ValidateHandler.validateIban($scope, 'form.accountbankiban3');
-        ValidateHandler.validateIban($scope, 'form.accountbankiban4');
-        ValidateHandler.validateIban($scope, 'form.accountbankiban5');
-        ValidateHandler.validateIban($scope, 'form.accountbankiban6');
+//        ValidateHandler.validateIban($scope, 'form.accountbankiban1');
+//        ValidateHandler.validateIban($scope, 'form.accountbankiban2');
+//        ValidateHandler.validateIban($scope, 'form.accountbankiban3');
+//        ValidateHandler.validateIban($scope, 'form.accountbankiban4');
+//        ValidateHandler.validateIban($scope, 'form.accountbankiban5');
+//        ValidateHandler.validateIban($scope, 'form.accountbankiban6');
 
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
@@ -237,42 +237,42 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.accountEmailNoIguals === false))
             ;
         };
-//        $scope.formAccountListener = function () {
-//            if ($scope.form.accountbank !== undefined && $scope.form.accountoffice !== undefined && $scope.form.accountchecksum !== undefined && $scope.form.accountnumber !== undefined) {
-//                $scope.completeAccountNumber = $scope.getCompleteAccountNumber();
-//                var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/bank/' + $scope.completeAccountNumber, '017');
-//                accountPromise.then(
-//                    function (response) {
-//                        $scope.accountIsInvalid = response === cfg.STATE_FALSE;
-//                        $scope.orderForm.accountbank.$setValidity('invalid', !$scope.accountIsInvalid);
-//                        $scope.orderForm.accountoffice.$setValidity('invalid', !$scope.accountIsInvalid);
-//                        $scope.orderForm.accountchecksum.$setValidity('invalid', !$scope.accountIsInvalid);
-//                        $scope.orderForm.accountnumber.$setValidity('invalid', !$scope.accountIsInvalid);
-//                        $scope.formListener($scope.form);
-//                    },
-//                    function(reason) { $log.error('Check account number failed', reason); }
-//                );
-//            }
-//        };
-        $scope.formAccountIbanListener = function () {
-            if ($scope.form.accountbankiban1 !== undefined && $scope.form.accountbankiban2 !== undefined && $scope.form.accountbankiban3 !== undefined && $scope.form.accountbankiban4 !== undefined && $scope.form.accountbankiban5 !== undefined && $scope.form.accountbankiban6 !== undefined) {
-                $scope.completeAccountNumber = $scope.getCompleteIban();
-                var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/iban/' + $scope.completeAccountNumber, '017');
+        $scope.formAccountListener = function () {
+            if ($scope.form.accountbank !== undefined && $scope.form.accountoffice !== undefined && $scope.form.accountchecksum !== undefined && $scope.form.accountnumber !== undefined) {
+                $scope.completeAccountNumber = $scope.getCompleteAccountNumber();
+                var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/bank/' + $scope.completeAccountNumber, '017');
                 accountPromise.then(
                     function (response) {
                         $scope.accountIsInvalid = response === cfg.STATE_FALSE;
-                        $scope.orderForm.accountbankiban1.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountbankiban2.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountbankiban3.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountbankiban4.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountbankiban5.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountbankiban6.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.orderForm.accountbank.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.orderForm.accountoffice.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.orderForm.accountchecksum.$setValidity('invalid', !$scope.accountIsInvalid);
+                        $scope.orderForm.accountnumber.$setValidity('invalid', !$scope.accountIsInvalid);
                         $scope.formListener($scope.form);
                     },
-                    function(reason) { $log.error('Check IBAN failed', reason); }
+                    function(reason) { $log.error('Check account number failed', reason); }
                 );
             }
         };
+//        $scope.formAccountIbanListener = function () {
+//            if ($scope.form.accountbankiban1 !== undefined && $scope.form.accountbankiban2 !== undefined && $scope.form.accountbankiban3 !== undefined && $scope.form.accountbankiban4 !== undefined && $scope.form.accountbankiban5 !== undefined && $scope.form.accountbankiban6 !== undefined) {
+//                $scope.completeAccountNumber = $scope.getCompleteIban();
+//                var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/iban/' + $scope.completeAccountNumber, '017');
+//                accountPromise.then(
+//                    function (response) {
+//                        $scope.accountIsInvalid = response === cfg.STATE_FALSE;
+//                        $scope.orderForm.accountbankiban1.$setValidity('invalid', !$scope.accountIsInvalid);
+//                        $scope.orderForm.accountbankiban2.$setValidity('invalid', !$scope.accountIsInvalid);
+//                        $scope.orderForm.accountbankiban3.$setValidity('invalid', !$scope.accountIsInvalid);
+//                        $scope.orderForm.accountbankiban4.$setValidity('invalid', !$scope.accountIsInvalid);
+//                        $scope.orderForm.accountbankiban5.$setValidity('invalid', !$scope.accountIsInvalid);
+//                        $scope.orderForm.accountbankiban6.$setValidity('invalid', !$scope.accountIsInvalid);
+//                        $scope.formListener($scope.form);
+//                    },
+//                    function(reason) { $log.error('Check IBAN failed', reason); }
+//                );
+//            }
+//        };
 
         // MOVE TO STEP 1 FORM
         $scope.initOrderForm = function() {
