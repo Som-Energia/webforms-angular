@@ -28,7 +28,7 @@
                 <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_DNI' | translate }}" data-placement="top">?</span>
             </div>
             <!--<div class="col-xs-5">-->
-                <!--<button class="btn btn-default grey pull-right" data-ng-disabled="!initSubmitReady" data-ng-click="initSubmit(initForm)">{{ 'CARREGAR_DADES_SOCI_VINCULAT' | translate }}</button>-->
+                <!--<button class="btn btn-default grey pull-right" data-ng-disabled="!initSubmitReady" data-ng-click="initSubmit(initForm)" type="button">{{ 'CARREGAR_DADES_SOCI_VINCULAT' | translate }}</button>-->
             <!--</div>-->
         </div>
         <div class="row" data-ng-if="showBeginOrderForm && !showUnknownSociWarning && !dniIsInvalid">
@@ -45,7 +45,7 @@
         </div>
         <div class="row" data-ng-if="showBeginOrderForm && !showUnknownSociWarning && !dniIsInvalid">
             <div class="col-xs-12">
-                <button class="btn btn-default green pull-right submit" data-ng-click="initOrderForm()">{{ 'INICIAR_CONTRACTACIO' | translate }}</button>
+                <button class="btn btn-default green pull-right submit" data-ng-click="initOrderForm()" type="button">{{ 'INICIAR_CONTRACTACIO' | translate }}</button>
             </div>
         </div>
     </form>
@@ -185,7 +185,7 @@
             <div class="row no-margin-bottom">
                 <div class="col-xs-12 no-horitzontal-padding">
                     <button data-ng-click="backToStep1Form()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'PAS_ANTERIOR' | translate }}</button>
-                    <button data-ng-click="moveToStep2Form()" class="btn btn-default pull-right next-step-submit" data-ng-disabled="!isStep2ButtonReady">{{ 'SEGUENT_PAS' | translate }}</button>
+                    <button data-ng-click="moveToStep2Form()" class="btn btn-default pull-right next-step-submit" data-ng-disabled="!isStep2ButtonReady" type="button">{{ 'SEGUENT_PAS' | translate }}</button>
                 </div>
             </div>
         </div>
@@ -433,8 +433,8 @@
             </div>
             <div class="row no-margin-bottom">
                 <div class="col-xs-12 no-horitzontal-padding">
-                    <button data-ng-click="backToStep2Form()" class="btn btn-default pull-left previous-step-submit">{{ 'PAS_ANTERIOR' | translate }}</button>
-                    <button data-ng-click="moveToStep3Form()" class="btn btn-default pull-right next-step-submit" data-ng-disabled="!isStep3ButtonReady">{{ 'SEGUENT_PAS' | translate }}</button>
+                    <button data-ng-click="backToStep2Form()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'PAS_ANTERIOR' | translate }}</button>
+                    <button data-ng-click="moveToStep3Form()" class="btn btn-default pull-right next-step-submit" data-ng-disabled="!isStep3ButtonReady" type="button">{{ 'SEGUENT_PAS' | translate }}</button>
                 </div>
             </div>
         </div>
@@ -726,7 +726,7 @@
             <div class="row no-margin-bottom">
                 <div class="col-xs-12 no-horitzontal-padding">
                     <button data-ng-click="backToStep3Form()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'PAS_ANTERIOR' | translate }}</button>
-                    <button data-ng-click="moveToStep4Form()" class="btn btn-default pull-right final-step-submit" data-ng-disabled="!isFinalStepButtonReady">{{ 'CONFIRMAR_CONTRACTACIO' | translate }}</button>
+                    <button data-ng-click="moveToStep4Form()" class="btn btn-default pull-right final-step-submit" data-ng-disabled="!isFinalStepButtonReady" type="button">{{ 'CONFIRMAR_CONTRACTACIO' | translate }}</button>
                 </div>
             </div>
         </div>
