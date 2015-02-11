@@ -7,7 +7,7 @@ angular.module('newSomEnergiaWebformsApp')
         var debugEnabled = false;
 
         // DEVELOP ENVIRONMENT
-        var develEnvironment = false;
+        var develEnvironment = true; //TODO
 
         // MUST APPLY TO EMBED WITH WORDPRESS
         if (!develEnvironment) {
@@ -23,6 +23,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.dniIsInvalid = false;
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
+        $scope.rate3AIsInvalid = false;
         $scope.postalCodeIsInvalid = false;
         $scope.accountPostalCodeIsInvalid = false;
         $scope.invalidAttachFileExtension = false;

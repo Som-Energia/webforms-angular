@@ -5,7 +5,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         var emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var integerRE = /^\d*$/;
-        var ibanFirstFieldRE = /^[a-zA-Z]{1,2}[0-9]*/;
+        //var ibanFirstFieldRE = /^[a-zA-Z]{1,2}[0-9]*/;
         var dniRE = /^[a-zA-Z]?\d*[a-zA-Z]?$/;
 
         // INTEGER VALIDATOR
@@ -43,6 +43,8 @@ angular.module('newSomEnergiaWebformsApp')
                             if (result > 450) {
                                 valueToApply = oldValue;
                             }
+                            $scope.rate3AIsInvalid = (valueToApply <= 15 && $scope.form.power2 <= 15 && $scope.form.power3 <= 15);
+                            $log.log(valueToApply <= 15, $scope.form.power2 <= 15, $scope.form.power3 <= 15);
                         }
                         $scope.form.power = valueToApply;
                     } else if (element === 'form.power2') {
@@ -51,12 +53,16 @@ angular.module('newSomEnergiaWebformsApp')
                         } else {
                             $scope.form.power2 = result;
                         }
+                        $scope.rate3AIsInvalid = ($scope.form.power <= 15 && result <= 15 && $scope.form.power3 <= 15);
+                        $log.log($scope.form.power <= 15, result <= 15, $scope.form.power3 <= 15);
                     } else if (element === 'form.power3') {
                         if (result > 450) {
                             $scope.form.power3 = oldValue;
                         } else {
                             $scope.form.power3 = result;
                         }
+                        $scope.rate3AIsInvalid = ($scope.form.power <= 15 && $scope.form.power2 <= 15 && result <= 15);
+                        $log.log($scope.form.power <= 15, $scope.form.power2 <= 15, result <= 15);
                     }
                 }
             });
