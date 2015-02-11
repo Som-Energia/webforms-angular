@@ -219,18 +219,17 @@ angular.module('newSomEnergiaWebformsApp')
 //                    $log.log(element === 'form.accountbankiban1');
 //                    $log.log(ibanFirstFieldRE.test(newValue));
 //                    $log.log(newValue.length > 4);
-                    if (element === 'form.accountbankiban1' && (!ibanFirstFieldRE.test(newValue) || newValue.length > 4)) {
+                    if (element === 'form.accountbankiban1' && newValue.length > 4) {
                         $scope.form.accountbankiban1 = oldValue;
-
-                    } else if (element === 'form.accountbankiban2' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                    } else if (element === 'form.accountbankiban2' && newValue.length > 4) {
                         $scope.form.accountbankiban2 = oldValue;
-                    } else if (element === 'form.accountbankiban3' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                    } else if (element === 'form.accountbankiban3' && newValue.length > 4) {
                         $scope.form.accountbankiban3 = oldValue;
-                    } else if (element === 'form.accountbankiban4' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                    } else if (element === 'form.accountbankiban4' && newValue.length > 4) {
                         $scope.form.accountbankiban4 = oldValue;
-                    } else if (element === 'form.accountbankiban5' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                    } else if (element === 'form.accountbankiban5' && newValue.length > 4) {
                         $scope.form.accountbankiban5 = oldValue;
-                    } else if (element === 'form.accountbankiban6' && (!integerRE.test(newValue) || newValue.length > 4)) {
+                    } else if (element === 'form.accountbankiban6' && newValue.length > 4) {
                         $scope.form.accountbankiban6 = oldValue;
                     }
                     if (newValue.length === 4) {
