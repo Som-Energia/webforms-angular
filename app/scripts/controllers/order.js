@@ -4,10 +4,10 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
-        var debugEnabled = true; // TODO change it
+        var debugEnabled = false; // TODO change it
 
         // DEVELOP ENVIRONMENT
-        var develEnvironment = true; // TODO change it
+        var develEnvironment = false; // TODO change it
 
         // MUST APPLY TO EMBED WITH WORDPRESS
         if (!develEnvironment) {
