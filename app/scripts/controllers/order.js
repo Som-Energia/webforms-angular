@@ -4,10 +4,10 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
-        var debugEnabled = false; // TODO change it
+        var debugEnabled = false;
 
         // DEVELOP ENVIRONMENT
-        var develEnvironment = false; // TODO change it
+        var develEnvironment = false;
 
         // MUST APPLY TO EMBED WITH WORDPRESS
         if (!develEnvironment) {
@@ -23,6 +23,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.dniIsInvalid = false;
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
+        $scope.rate3AIsInvalid = false;
         $scope.postalCodeIsInvalid = false;
         $scope.accountPostalCodeIsInvalid = false;
         $scope.invalidAttachFileExtension = false;
@@ -181,7 +182,7 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.cupsIsInvalid === false &&
                 $scope.cupsIsDuplicated === false &&
                 $scope.cnaeIsInvalid === false &&
-                (($scope.form.rate !== cfg.RATE_30A && $scope.form.power) || ($scope.form.rate === cfg.RATE_30A && $scope.form.power !== undefined && $scope.form.power2 !== undefined && $scope.form.power3 !== undefined)) &&
+                (($scope.form.rate !== cfg.RATE_30A && $scope.form.power) || ($scope.form.rate === cfg.RATE_30A && $scope.form.power !== undefined && $scope.form.power2 !== undefined && $scope.form.power3 !== undefined && $scope.rate3AIsInvalid)) &&
                 $scope.form.rate !== undefined &&
                 !$scope.overflowAttachFile;
             $scope.isStep3ButtonReady = $scope.isStep2ButtonReady &&

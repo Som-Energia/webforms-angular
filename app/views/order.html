@@ -143,16 +143,19 @@
                         <label class="combo-one-row">P1*</label>
                         <input type="text" name="power" class="form-control width-70-percent combo-one-row" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                        <span class="label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
                     </div>
                     <div class="form-group col-sm-3 col-xs-4">
                         <label class="combo-one-row">P2*</label>
                         <input type="text" name="power2" class="form-control width-70-percent combo-one-row" data-ng-model="form.power2" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                        <span class="label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
                     </div>
                     <div class="form-group col-sm-3 col-xs-4">
                         <label class="combo-one-row">P3*</label>
                         <input type="text" name="power3" class="form-control width-70-percent combo-one-row" data-ng-model="form.power3" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power3.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                        <span class="label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
                     </div>
                 </div>
             </div>
