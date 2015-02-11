@@ -44,7 +44,7 @@ angular.module('newSomEnergiaWebformsApp')
                                 valueToApply = oldValue;
                             }
                             $scope.rate3AIsInvalid = (valueToApply <= 15 && $scope.form.power2 <= 15 && $scope.form.power3 <= 15);
-                            $log.log(valueToApply <= 15, $scope.form.power2 <= 15, $scope.form.power3 <= 15);
+                            //$log.log(valueToApply <= 15, $scope.form.power2 <= 15, $scope.form.power3 <= 15);
                         }
                         $scope.form.power = valueToApply;
                     } else if (element === 'form.power2') {
@@ -54,7 +54,7 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.form.power2 = result;
                         }
                         $scope.rate3AIsInvalid = ($scope.form.power <= 15 && result <= 15 && $scope.form.power3 <= 15);
-                        $log.log($scope.form.power <= 15, result <= 15, $scope.form.power3 <= 15);
+                        //$log.log($scope.form.power <= 15, result <= 15, $scope.form.power3 <= 15);
                     } else if (element === 'form.power3') {
                         if (result > 450) {
                             $scope.form.power3 = oldValue;
@@ -62,7 +62,7 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.form.power3 = result;
                         }
                         $scope.rate3AIsInvalid = ($scope.form.power <= 15 && $scope.form.power2 <= 15 && result <= 15);
-                        $log.log($scope.form.power <= 15, $scope.form.power2 <= 15, result <= 15);
+                        //$log.log($scope.form.power <= 15, $scope.form.power2 <= 15, result <= 15);
                     }
                 }
             });
