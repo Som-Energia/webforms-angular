@@ -36,7 +36,7 @@ angular.module('newSomEnergiaWebformsApp')
                                 valueToApply = oldValue;
                             }
                         } else if ($scope.form.rate === cfg.RATE_21A || $scope.form.rate === cfg.RATE_21DHA || $scope.form.rate === cfg.RATE_21DHS) {
-                            if (result > 15 || (result > 1 && newValue.length === 1)) {
+                            if ((result <= 10 && newValue.length > 1) || result > 15) {
                                 valueToApply = oldValue;
                             }
                         } else if ($scope.form.rate === cfg.RATE_30A) {
