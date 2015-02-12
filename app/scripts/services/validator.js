@@ -39,8 +39,8 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.rate21IsInvalid = false;
                             $scope.rate3AIsInvalid = false;
 
-                            $log.log(oldValue, newValue, result);
-                            $log.log($scope.rate20IsInvalid, $scope.rate21IsInvalid, $scope.rate3AIsInvalid);
+                            //$log.log(oldValue, newValue, result);
+                            //$log.log($scope.rate20IsInvalid, $scope.rate21IsInvalid, $scope.rate3AIsInvalid);
 
 
                         } else if ($scope.form.rate === cfg.RATE_21A || $scope.form.rate === cfg.RATE_21DHA || $scope.form.rate === cfg.RATE_21DHS) {
@@ -62,8 +62,8 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.rate21IsInvalid = false;
                             $scope.rate3AIsInvalid = $scope.form.power2 !== undefined && $scope.form.power3 !== undefined && valueToApply <= 15 && $scope.form.power2 <= 15 && $scope.form.power3 <= 15;
 
-                            $log.log(oldValue, newValue, result);
-                            $log.log($scope.rate20IsInvalid, $scope.rate21IsInvalid, $scope.rate3AIsInvalid);
+                            //$log.log(oldValue, newValue, result);
+                            //$log.log($scope.rate20IsInvalid, $scope.rate21IsInvalid, $scope.rate3AIsInvalid);
 
                         }
                         $scope.form.power = valueToApply;
