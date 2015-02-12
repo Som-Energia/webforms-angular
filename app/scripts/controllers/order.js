@@ -407,10 +407,11 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('cups_municipi', $scope.form.city.id);
             formData.append('referencia', $scope.form.catastre === undefined ? '' : $scope.form.catastre);
             formData.append('fitxer', jQuery('#fileuploaderinput')[0].files[0]);
-            formData.append('entitat', $scope.form.accountbank);
-            formData.append('sucursal', $scope.form.accountoffice);
-            formData.append('control', $scope.form.accountchecksum);
-            formData.append('ncompte', $scope.form.accountnumber);
+            //formData.append('entitat', $scope.form.accountbank);
+            //formData.append('sucursal', $scope.form.accountoffice);
+            //formData.append('control', $scope.form.accountchecksum);
+            //formData.append('ncompte', $scope.form.accountnumber);
+            formData.append('payment_iban', $scope.getCompleteIban());
             formData.append('escull_pagador', $scope.form.choosepayer);
             formData.append('compte_tipus_persona', $scope.form.payertype === 'person' ? 0 : 1);
             formData.append('compte_nom', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountname);
