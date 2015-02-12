@@ -128,6 +128,8 @@
                         <label class="combo-one-row">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
                         <input type="text" name="power" class="form-control width-40-percent combo-one-row" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text" style="margin-right:5px;">kW</span>
                         <span id="spc-rate-conditional" class="spc badge current small combo-one-row" style="margin-top:-17px;display:flex;padding-top:7px;padding-left:9px;" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_POWER' | translate }}" data-placement="left">?</span>
+                        <span class="label label-danger" data-ng-show="rate20IsInvalid">{{ 'INVALID' | translate }}</span>
+                        <span class="label label-danger" data-ng-show="rate21IsInvalid">{{ 'INVALID' | translate }}</span>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     </div>
                 </div>
