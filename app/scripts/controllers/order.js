@@ -7,7 +7,7 @@ angular.module('newSomEnergiaWebformsApp')
         var debugEnabled = false;
 
         // DEVELOP ENVIRONMENT
-        var develEnvironment = false; // TODO change xorigin domain on index.html
+        var develEnvironment = false; // TODO change xorigin domain on index.html && replace grunt sftp source environment
 
         // MUST APPLY TO EMBED WITH WORDPRESS
         if (!develEnvironment) {
