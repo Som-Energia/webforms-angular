@@ -35,16 +35,36 @@ angular.module('newSomEnergiaWebformsApp')
                             if (result > 10) {
                                 valueToApply = oldValue;
                             }
+                            $scope.rate20IsInvalid = result <= 0;
+                            $scope.rate21IsInvalid = false;
+                            $scope.rate3AIsInvalid = false;
+
+                            //$log.log(oldValue, newValue, result);
+                            //$log.log($scope.rate20IsInvalid, $scope.rate21IsInvalid, $scope.rate3AIsInvalid);
+
+
                         } else if ($scope.form.rate === cfg.RATE_21A || $scope.form.rate === cfg.RATE_21DHA || $scope.form.rate === cfg.RATE_21DHS) {
-                            if (result > 15 || (result > 1 && newValue.length === 1)) {
+                            if ((newValue < 10 && newValue.length > 1) || result > 15) {
                                 valueToApply = oldValue;
                             }
+                            $scope.rate20IsInvalid = false;
+                            $scope.rate21IsInvalid = result <= 10 || result > 15;
+                            $scope.rate3AIsInvalid = false;
+
+                            $log.log(oldValue, newValue, result);
+                            $log.log($scope.rate20IsInvalid, $scope.rate21IsInvalid, $scope.rate3AIsInvalid);
+
                         } else if ($scope.form.rate === cfg.RATE_30A) {
                             if (result > 450) {
                                 valueToApply = oldValue;
                             }
-                            $scope.rate3AIsInvalid = (valueToApply <= 15 && $scope.form.power2 <= 15 && $scope.form.power3 <= 15);
-                            //$log.log(valueToApply <= 15, $scope.form.power2 <= 15, $scope.form.power3 <= 15);
+                            $scope.rate20IsInvalid = false;
+                            $scope.rate21IsInvalid = false;
+                            $scope.rate3AIsInvalid = $scope.form.power2 !== undefined && $scope.form.power3 !== undefined && valueToApply <= 15 && $scope.form.power2 <= 15 && $scope.form.power3 <= 15;
+
+                            //$log.log(oldValue, newValue, result);
+                            //$log.log($scope.rate20IsInvalid, $scope.rate21IsInvalid, $scope.rate3AIsInvalid);
+
                         }
                         $scope.form.power = valueToApply;
                     } else if (element === 'form.power2') {
@@ -53,7 +73,9 @@ angular.module('newSomEnergiaWebformsApp')
                         } else {
                             $scope.form.power2 = result;
                         }
-                        $scope.rate3AIsInvalid = ($scope.form.power <= 15 && result <= 15 && $scope.form.power3 <= 15);
+                        $scope.rate20IsInvalid = false;
+                        $scope.rate21IsInvalid = false;
+                        $scope.rate3AIsInvalid = $scope.form.power !== undefined && $scope.form.power3 !== undefined && $scope.form.power <= 15 && result <= 15 && $scope.form.power3 <= 15;
                         //$log.log($scope.form.power <= 15, result <= 15, $scope.form.power3 <= 15);
                     } else if (element === 'form.power3') {
                         if (result > 450) {
@@ -61,9 +83,12 @@ angular.module('newSomEnergiaWebformsApp')
                         } else {
                             $scope.form.power3 = result;
                         }
-                        $scope.rate3AIsInvalid = ($scope.form.power <= 15 && $scope.form.power2 <= 15 && result <= 15);
+                        $scope.rate20IsInvalid = false;
+                        $scope.rate21IsInvalid = false;
+                        $scope.rate3AIsInvalid = $scope.form.power !== undefined && $scope.form.power2 !== undefined && $scope.form.power <= 15 && $scope.form.power2 <= 15 && result <= 15;
                         //$log.log($scope.form.power <= 15, $scope.form.power2 <= 15, result <= 15);
                     }
+                    $scope.formListener();
                 }
             });
         };

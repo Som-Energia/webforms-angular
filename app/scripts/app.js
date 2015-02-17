@@ -125,6 +125,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 SOCI_SOM_ENERGIA: 'Socio/a de Som Energia',
                 ALTRE_TITULAR: 'Otro titular',
                 NUM_COMPTE: 'Número de cuenta bancaria',
+                IBAN_EXEMPLE: 'ejemplo IBAN',
                 BANC: 'Banco',
                 OFICINA: 'Oficina',
                 COMPTE: 'Número cuenta',
@@ -220,6 +221,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 SOCI_SOM_ENERGIA: 'Soci/a de Som Energia',
                 ALTRE_TITULAR: 'Un altre titular',
                 NUM_COMPTE: 'Número de compte bancari',
+                IBAN_EXEMPLE: 'exemple IBAN',
                 BANC: 'Banc',
                 OFICINA: 'Oficina',
                 COMPTE: 'Número compte',
@@ -315,6 +317,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 SOCI_SOM_ENERGIA: 'Socio/a de Som Energia',
                 ALTRE_TITULAR: 'Outra titular',
                 NUM_COMPTE: 'Número de conta bancaria',
+                IBAN_EXEMPLE: 'exemplo IBAN',
                 BANC: 'Banco',
                 OFICINA: 'Oficina',
                 COMPTE: 'Número de conta',
@@ -410,6 +413,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 SOCI_SOM_ENERGIA: 'Som Energiaren bazkidea',
                 ALTRE_TITULAR: 'Beste titular batek',
                 NUM_COMPTE: 'Banku-kontuaren zenbakia',
+                IBAN_EXEMPLE: 'esate IBAN',
                 BANC: 'Bankua',
                 OFICINA: 'Bulegoa',
                 COMPTE: 'Kontuaren zenbakia',
@@ -434,7 +438,8 @@ angular.module('newSomEnergiaWebformsApp', [
     })
     .constant('cfg', {
         BASE_DOMAIN: 'somenergia.coop',
-        API_BASE_URL: 'https://api.somenergia.coop/',
+        API_BASE_URL: 'https://api.somenergia.coop/',     // production environment
+        //API_BASE_URL: 'http://sompre.gisce.net:5001/',    // test environment
         CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
         STATUS_OFFLINE: 'OFFLINE',
         STATUS_ONLINE: 'ONLINE',

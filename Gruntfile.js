@@ -18,7 +18,7 @@ module.exports = function (grunt) {
     // Define the configuration for all the tasks
     grunt.initConfig({
 
-        // Deploy settings production
+        // Deploy production environment config
         secret: grunt.file.readJSON('secret.json'),
         sftp: {
             production: {
@@ -37,24 +37,24 @@ module.exports = function (grunt) {
             }
         },
 
-        // Deploy settings development
-//        secret: grunt.file.readJSON('secret.dev.json'),
-//        sftp: {
-//            production: {
-//                files: {
-//                    './': 'dist/**'
-//                },
-//                options: {
-//                    path: '<%= secret.path %>',
-//                    host: '<%= secret.host %>',
-//                    username: '<%= secret.username %>',
-//                    password: '<%= secret.password %>',
-//                    srcBasePath: 'dist/',
-//                    createDirectories: true,
-//                    showProgress: true
-//                }
-//            }
-//        },
+        // Deploy development environment config
+        //secret: grunt.file.readJSON('secret.dev.json'),
+        //sftp: {
+        //    production: {
+        //        files: {
+        //            './': 'dist/**'
+        //        },
+        //        options: {
+        //            path: '<%= secret.path %>',
+        //            host: '<%= secret.host %>',
+        //            username: '<%= secret.username %>',
+        //            password: '<%= secret.password %>',
+        //            srcBasePath: 'dist/',
+        //            createDirectories: true,
+        //            showProgress: true
+        //        }
+        //    }
+        //},
 
         // Project settings
         yeoman: {

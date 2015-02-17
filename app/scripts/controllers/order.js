@@ -7,7 +7,7 @@ angular.module('newSomEnergiaWebformsApp')
         var debugEnabled = false;
 
         // DEVELOP ENVIRONMENT
-        var develEnvironment = false;
+        var develEnvironment = false; // TODO change xorigin domain on index.html && replace grunt sftp source environment
 
         // MUST APPLY TO EMBED WITH WORDPRESS
         if (!develEnvironment) {
@@ -23,6 +23,8 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.dniIsInvalid = false;
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
+        $scope.rate20IsInvalid = false;
+        $scope.rate21IsInvalid = false;
         $scope.rate3AIsInvalid = false;
         $scope.postalCodeIsInvalid = false;
         $scope.accountPostalCodeIsInvalid = false;
@@ -172,6 +174,9 @@ angular.module('newSomEnergiaWebformsApp')
 
         // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function() {
+            //$log.log('FL20', ($scope.form.rate === cfg.RATE_20A || $scope.form.rate === cfg.RATE_20DHA || $scope.form.rate === cfg.RATE_20DHS) && !$scope.rate20IsInvalid);
+            //$log.log('FL21', ($scope.form.rate === cfg.RATE_21A || $scope.form.rate === cfg.RATE_21DHA || $scope.form.rate === cfg.RATE_21DHS) && !$scope.rate21IsInvalid);
+            //$log.log('FL3A', $scope.form.rate === cfg.RATE_30A && $scope.form.power !== undefined && $scope.form.power2 !== undefined && $scope.form.power3 !== undefined && !$scope.rate3AIsInvalid);
             $scope.initSubmitReady = $scope.form.init.dni !== undefined && $scope.form.init.socinumber !== undefined && $scope.dniIsInvalid === false;
             $scope.isStep2ButtonReady = $scope.initSubmitReady &&
                 $scope.form.address !== undefined &&
@@ -182,7 +187,7 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.cupsIsInvalid === false &&
                 $scope.cupsIsDuplicated === false &&
                 $scope.cnaeIsInvalid === false &&
-                (($scope.form.rate !== cfg.RATE_30A && $scope.form.power) || ($scope.form.rate === cfg.RATE_30A && $scope.form.power !== undefined && $scope.form.power2 !== undefined && $scope.form.power3 !== undefined && $scope.rate3AIsInvalid)) &&
+                ((($scope.form.rate === cfg.RATE_20A || $scope.form.rate === cfg.RATE_20DHA || $scope.form.rate === cfg.RATE_20DHS) && $scope.form.power !== undefined && !$scope.rate20IsInvalid) || (($scope.form.rate === cfg.RATE_21A || $scope.form.rate === cfg.RATE_21DHA || $scope.form.rate === cfg.RATE_21DHS) && $scope.form.power !== undefined && !$scope.rate21IsInvalid) || ($scope.form.rate === cfg.RATE_30A && $scope.form.power !== undefined && $scope.form.power2 !== undefined && $scope.form.power3 !== undefined && !$scope.rate3AIsInvalid)) &&
                 $scope.form.rate !== undefined &&
                 !$scope.overflowAttachFile;
             $scope.isStep3ButtonReady = $scope.isStep2ButtonReady &&
@@ -407,10 +412,11 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('cups_municipi', $scope.form.city.id);
             formData.append('referencia', $scope.form.catastre === undefined ? '' : $scope.form.catastre);
             formData.append('fitxer', jQuery('#fileuploaderinput')[0].files[0]);
-            formData.append('entitat', $scope.form.accountbank);
-            formData.append('sucursal', $scope.form.accountoffice);
-            formData.append('control', $scope.form.accountchecksum);
-            formData.append('ncompte', $scope.form.accountnumber);
+            //formData.append('entitat', $scope.form.accountbank);
+            //formData.append('sucursal', $scope.form.accountoffice);
+            //formData.append('control', $scope.form.accountchecksum);
+            //formData.append('ncompte', $scope.form.accountnumber);
+            formData.append('payment_iban', $scope.getCompleteIban());
             formData.append('escull_pagador', $scope.form.choosepayer);
             formData.append('compte_tipus_persona', $scope.form.payertype === 'person' ? 0 : 1);
             formData.append('compte_nom', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountname);
@@ -513,6 +519,9 @@ angular.module('newSomEnergiaWebformsApp')
         // GET COMPLETE ACCOUNT NUMBER WITH FORMAT
         $scope.getCompleteAccountNumberWithFormat = function() {
             return $scope.form.accountbank + '-' + $scope.form.accountoffice + '-' + $scope.form.accountchecksum + '-' + $scope.form.accountnumber;
+        };
+        $scope.getCompleteIbanWithFormat = function() {
+            return $scope.form.accountbankiban1 + ' ' + $scope.form.accountbankiban2 + ' ' + $scope.form.accountbankiban3 + ' ' + $scope.form.accountbankiban4 + ' ' + $scope.form.accountbankiban5 + ' ' + $scope.form.accountbankiban6;
         };
 
         // DEBUG (only apply on development environment)
