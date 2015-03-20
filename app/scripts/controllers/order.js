@@ -455,6 +455,8 @@ angular.module('newSomEnergiaWebformsApp')
                             // error
                             $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
                             $scope.submitReady = false;
+                            $scope.rawReason = response;
+                            jQuery('#webformsGlobalMessagesModal').modal('show');
                         }
                     } else if (response.data.status === cfg.STATUS_OFFLINE) {
                         uiHandler.showErrorDialog('API server status offline (ref.022-022)');
@@ -474,6 +476,8 @@ angular.module('newSomEnergiaWebformsApp')
                     $scope.step1Ready = true;
                     $scope.step2Ready = true;
                     $scope.step3Ready = true;
+                    $scope.rawReason = reason;
+                    jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
             );
 
