@@ -174,9 +174,9 @@ angular.module('newSomEnergiaWebformsApp')
 
         // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function() {
-            //$log.log('FL20', ($scope.form.rate === cfg.RATE_20A || $scope.form.rate === cfg.RATE_20DHA || $scope.form.rate === cfg.RATE_20DHS) && !$scope.rate20IsInvalid);
-            //$log.log('FL21', ($scope.form.rate === cfg.RATE_21A || $scope.form.rate === cfg.RATE_21DHA || $scope.form.rate === cfg.RATE_21DHS) && !$scope.rate21IsInvalid);
-            //$log.log('FL3A', $scope.form.rate === cfg.RATE_30A && $scope.form.power !== undefined && $scope.form.power2 !== undefined && $scope.form.power3 !== undefined && !$scope.rate3AIsInvalid);
+
+            jQuery('#webformsGlobalMessagesModal').modal('show');
+
             $scope.initSubmitReady = $scope.form.init.dni !== undefined && $scope.form.init.socinumber !== undefined && $scope.dniIsInvalid === false;
             $scope.isStep2ButtonReady = $scope.initSubmitReady &&
                 $scope.form.address !== undefined &&
