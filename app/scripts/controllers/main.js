@@ -178,6 +178,7 @@ angular.module('newSomEnergiaWebformsApp')
                         // error
                         $scope.messages = $scope.getHumanizedAPIResponse(response.data);
                         $scope.submitReady = false;
+                        jQuery('#webformsGlobalMessagesModal').modal('show');
                     } else if (response.state === cfg.STATE_TRUE) {
                         // well done
                         $log.log('response recived', response);
@@ -185,7 +186,11 @@ angular.module('newSomEnergiaWebformsApp')
                         $location.path('/prepagament');
                     }
                 },
-                function (reason) { $log.error('Post data failed', reason); }
+                function (reason) {
+                    $log.error('Post data failed', reason);
+                    $scope.rawReason = reason;
+                    jQuery('#webformsGlobalMessagesModal').modal('show');
+                }
             );
 
             return true;
