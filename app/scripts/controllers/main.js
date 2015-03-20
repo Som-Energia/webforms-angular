@@ -201,7 +201,7 @@ angular.module('newSomEnergiaWebformsApp')
                     } else if (arrayResponse.required_fields[i] === 'municipi') {
                         $scope.partnerForm.city.$setValidity('requiredm', false);
                     } else {
-                        result = result + 'ERROR REQUIRED FIELD:' + arrayResponse.required_fields[i] + ' ';
+                        result = result + 'ERROR REQUIRED FIELD: ' + arrayResponse.required_fields[i] + ' ';
                     }
                 }
             }
@@ -211,7 +211,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.dniDuplicated = true;
                         $scope.partnerForm.dni.$setValidity('exist', false);
                     } else {
-                        result = result + 'ERROR INVALID FIELD:' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error + ' ';
+                        result = result + 'ERROR INVALID FIELD: ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error + ' ';
                     }
                 }
             }
