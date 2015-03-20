@@ -150,7 +150,7 @@ angular.module('newSomEnergiaWebformsApp')
             // Prepare request data
             var postData = {
                 tipuspersona: $scope.form.usertype === 'person' ? cfg.USER_TYPE_PERSON : cfg.USER_TYPE_COMPANY,
-                //nom: $scope.form.name,
+                nom: $scope.form.name,
                 dni: $scope.form.dni,
                 tel: $scope.form.phone1,
                 tel2: $scope.form.phone2 === undefined ? '' : $scope.form.phone2,

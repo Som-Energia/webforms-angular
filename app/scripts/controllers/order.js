@@ -4,7 +4,7 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
-        var debugEnabled = false;
+        var debugEnabled = true; //TODO false;
 
         // DEVELOP ENVIRONMENT
         var develEnvironment = true; // TODO change xorigin domain on index.html && replace grunt sftp source environment

@@ -178,6 +178,16 @@ span {
     font-size: 18px;
     font-weight: bold;
   }
+  &.owner-swap {
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 0.9em;
+    a {
+      color: #FFF;
+      text-decoration: underline;
+    }
+  }
 }
 
 button {
