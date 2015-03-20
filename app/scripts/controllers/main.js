@@ -6,14 +6,6 @@ angular.module('newSomEnergiaWebformsApp')
         // DEBUG MODE
         var debugEnabled = false;
 
-        // DEVELOP ENVIRONMENT
-        var develEnvironment = false;
-
-        // DEVEL
-        if (develEnvironment) {
-            cfg.API_BASE_URL = 'http://sompre.gisce.net:5001/';
-        }
-
         // INIT
         $scope.step1Ready = true;
         $scope.step2Ready = false;
