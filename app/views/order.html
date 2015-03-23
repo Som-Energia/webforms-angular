@@ -214,7 +214,9 @@
                         <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'yes'" data-ng-change="formListener()" data-ng-click="showAvisCanviTitular = true">{{ 'SI' | translate }}</label>
                         <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'no'" data-ng-change="formListener()" data-ng-click="showAvisCanviTitular = false">{{ 'NO' | translate }}</label>
                     </div>
-                    <span data-ng-show="showAvisCanviTitular" class="label label-warning owner-swap" data-ng-bind-html="'AVIS_CANVI_TITULAR' | translate"></span>
+                    <div data-ng-show="showAvisCanviTitular" class="alert alert-warning" style="margin-top:5px" role="alert">
+                        <span data-ng-bind-html="'AVIS_CANVI_TITULAR' | translate"></span>
+                    </div>
                 </div>
                 <div class="col-xs-1">
                     <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_OWNER' | translate }}" data-placement="left">?</span>
