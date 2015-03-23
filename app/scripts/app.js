@@ -19,22 +19,22 @@ angular.module('newSomEnergiaWebformsApp', [
         $routeProvider
             .when('/', {
                 templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
-//                templateUrl: 'views/main.html',
+                //templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
             .when('/prepagament', {
                 templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/prepayment.html',
-//                templateUrl: 'views/prepayment.html',
+                //templateUrl: 'views/prepayment.html',
                 controller: 'PrepaymentCtrl'
             })
             .when('/:locale', {
                 templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
-//                templateUrl: 'views/main.html',
+                //templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
             .when('/:locale/soci', {
                 templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
-//                templateUrl: 'views/main.html',
+                //templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
             .when('/:locale/contractacio', {
@@ -114,6 +114,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 DADES_TITULAR_NOU_CONTRACTE: 'Datos del titular del contrato',
                 DADES_TITULAR_NOU_CONTRACTE_HELPER: 'Poner los datos de quien va a ser el titular del nuevo contrato con Som Energia. Puede ser el mismo que aparece en vuestro contrato anterior o podéis aprovechar ahora para cambiarlo.',
                 VOLS_FER_CANVI_TITULAR: '¿Quieres hacer un cambio de titular?',
+                AVIS_CANVI_TITULAR: '<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;Atención: En ciertos casos, la distribuidora puede solicitar la renovación del Boletín de la Instalación, si este está caducado (20 años). Más información <a target="_blank" href="http://es.support.somenergia.coop/article/505-que-es-el-boletin-electrico">aquí</a>',
                 SI: 'Si',
                 NO: 'No',
                 HELP_POPOVER_OWNER: '¿Comparado con tu contracto actual, en el nuevo contrato quieres poner a otra persona de titular?',
@@ -210,6 +211,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 DADES_TITULAR_NOU_CONTRACTE: 'Dades del/la titular del nou contracte amb Som Energia',
                 DADES_TITULAR_NOU_CONTRACTE_HELPER: 'Poseu les dades de qui serà el titular del nou contracte amb Som Energia. Pot ser el mateix que apareix en el vostre contracte anterior o podeu aprofitar per canviar-ho.',
                 VOLS_FER_CANVI_TITULAR: 'Vols fer un canvi de titular?',
+                AVIS_CANVI_TITULAR: '<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;Atenció: En alguns casos, la distribuïdora pot demanar la renovació del Butlletí de la Instal·lació, si aquest està caducat (20 anys). Més informació <a target="_blank" href="http://ca.support.somenergia.coop/article/500-que-es-el-butlleti-electric">aquí</a>',
                 SI: 'Sí',
                 NO: 'No',
                 HELP_POPOVER_OWNER: 'Comparat amb el vostre contracte actual, al nou contracte voleu posar a una altra persona de titular?',
@@ -306,6 +308,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 DADES_TITULAR_NOU_CONTRACTE: 'Datos da persoa titular do contrato',
                 DADES_TITULAR_NOU_CONTRACTE_HELPER: 'Poñer os datos de quen vai a ser a titular do novo contrato con Som Energia. Pode ser a mesma persoa que aparece no teu contrato anterior ou podes aproveitar agora para mudalo',
                 VOLS_FER_CANVI_TITULAR: 'Queres facer un cambio de titular?',
+                AVIS_CANVI_TITULAR: '<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;Atención: En certos casos a distribuidora pode solicitar a renovación do Boletín de Instalación se este está caducado (20 anos). Máis información <a target="_blank" href="http://gl.support.somenergia.coop/article/556-boletin-electrico">aquí</a>',
                 SI: 'Si',
                 NO: 'Non',
                 HELP_POPOVER_OWNER: 'Comparado co teu contrato actual, no novo contrato queres poñer a outra persoa de titular?',
@@ -402,6 +405,7 @@ angular.module('newSomEnergiaWebformsApp', [
                 DADES_TITULAR_NOU_CONTRACTE: 'Kontratuaren titularraren datuak',
                 DADES_TITULAR_NOU_CONTRACTE_HELPER: 'Jar itzazue Som Energiarekiko kontratu berriaren titularraren datuak. Aurreko kontratuaren titular berdina izan liteke edo aprobetxa ezazue titularra aldatzeko.',
                 VOLS_FER_CANVI_TITULAR: 'Titularraren aldaketa egin nahi duzu?',
+                AVIS_CANVI_TITULAR: '<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;Adi: Hainbat kasutan, instalazio-buletina iraungita badago (20 urte), enpresa banatzaileak berritzea eskatuko du. Informazio gehiago <a target="_blank" href="http://eu.support.somenergia.coop/article/555-boletin-electrico">hemen</a>',
                 SI: 'Bai',
                 NO: 'Ez',
                 HELP_POPOVER_OWNER: 'Zure oraingo kontratuarekin konparatuta, kontratu berrian beste titular bat jarri nahi al duzu?',
@@ -438,7 +442,7 @@ angular.module('newSomEnergiaWebformsApp', [
     })
     .constant('cfg', {
         BASE_DOMAIN: 'somenergia.coop',
-        API_BASE_URL: 'https://api.somenergia.coop/',     // production environment
+        API_BASE_URL: 'https://api.somenergia.coop/',
         //API_BASE_URL: 'http://sompre.gisce.net:5001/',    // test environment
         CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
         STATUS_OFFLINE: 'OFFLINE',

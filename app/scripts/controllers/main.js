@@ -6,14 +6,6 @@ angular.module('newSomEnergiaWebformsApp')
         // DEBUG MODE
         var debugEnabled = false;
 
-        // DEVELOP ENVIRONMENT
-        var develEnvironment = false;
-
-        // DEVEL
-        if (develEnvironment) {
-            cfg.API_BASE_URL = 'http://sompre.gisce.net:5001/';
-        }
-
         // INIT
         $scope.step1Ready = true;
         $scope.step2Ready = false;
@@ -178,6 +170,7 @@ angular.module('newSomEnergiaWebformsApp')
                         // error
                         $scope.messages = $scope.getHumanizedAPIResponse(response.data);
                         $scope.submitReady = false;
+                        jQuery('#webformsGlobalMessagesModal').modal('show');
                     } else if (response.state === cfg.STATE_TRUE) {
                         // well done
                         $log.log('response recived', response);
@@ -185,7 +178,11 @@ angular.module('newSomEnergiaWebformsApp')
                         $location.path('/prepagament');
                     }
                 },
-                function (reason) { $log.error('Post data failed', reason); }
+                function (reason) {
+                    $log.error('Post data failed', reason);
+                    $scope.rawReason = reason;
+                    jQuery('#webformsGlobalMessagesModal').modal('show');
+                }
             );
 
             return true;
@@ -201,7 +198,7 @@ angular.module('newSomEnergiaWebformsApp')
                     } else if (arrayResponse.required_fields[i] === 'municipi') {
                         $scope.partnerForm.city.$setValidity('requiredm', false);
                     } else {
-                        result = result + 'ERROR REQUIRED FIELD:' + arrayResponse.required_fields[i] + ' ';
+                        result = result + 'ERROR REQUIRED FIELD: ' + arrayResponse.required_fields[i] + ' ';
                     }
                 }
             }
@@ -211,7 +208,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.dniDuplicated = true;
                         $scope.partnerForm.dni.$setValidity('exist', false);
                     } else {
-                        result = result + 'ERROR INVALID FIELD:' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error + ' ';
+                        result = result + 'ERROR INVALID FIELD: ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error + ' ';
                     }
                 }
             }

@@ -1,4 +1,5 @@
-$icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+/* Font (keep before @import boostrap directive) */
+$icon-font-path: "/fonts/";
 
 // bower:scss
 @import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
@@ -177,6 +178,17 @@ span {
   &.last-help-title {
     font-size: 18px;
     font-weight: bold;
+  }
+  &.owner-swap {
+    text-align: left;
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 0.9em;
+    a {
+      color: #FFF;
+      text-decoration: underline;
+    }
   }
 }
 

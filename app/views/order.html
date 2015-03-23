@@ -211,9 +211,10 @@
                     <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_HELPER' | translate }}
                     <label>{{ 'VOLS_FER_CANVI_TITULAR' | translate }}</label>
                     <div class="btn-group">
-                        <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>
-                        <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>
+                        <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'yes'" data-ng-change="formListener()" data-ng-click="showAvisCanviTitular = true">{{ 'SI' | translate }}</label>
+                        <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'no'" data-ng-change="formListener()" data-ng-click="showAvisCanviTitular = false">{{ 'NO' | translate }}</label>
                     </div>
+                    <span data-ng-show="showAvisCanviTitular" class="label label-warning owner-swap" data-ng-bind-html="'AVIS_CANVI_TITULAR' | translate"></span>
                 </div>
                 <div class="col-xs-1">
                     <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_OWNER' | translate }}" data-placement="left">?</span>
