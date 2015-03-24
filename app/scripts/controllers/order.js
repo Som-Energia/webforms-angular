@@ -7,7 +7,7 @@ angular.module('newSomEnergiaWebformsApp')
         var debugEnabled = false;
 
         // DEVELOP ENVIRONMENT
-        var develEnvironment = false; // TODO change xorigin domain on index.html && replace grunt sftp source environment
+        var develEnvironment = true; // TODO change xorigin domain on index.html && replace grunt sftp source environment
 
         // MUST APPLY TO EMBED WITH WORDPRESS
         if (!develEnvironment) {
@@ -15,6 +15,7 @@ angular.module('newSomEnergiaWebformsApp')
         }
 
         // INIT
+        $scope.developing = develEnvironment;
         $scope.step0Ready = true;
         $scope.step1Ready = false;
         $scope.step2Ready = false;
