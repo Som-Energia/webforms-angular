@@ -1,5 +1,8 @@
 'use strict';
 
+//var base = '//rawgit.com/Som-Energia/new-api-webforms/master/app/';
+var base = '';
+
 angular.module('newSomEnergiaWebformsApp', [
         'ngCookies',
         'ngResource',
@@ -18,27 +21,23 @@ angular.module('newSomEnergiaWebformsApp', [
 //    .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
-                //templateUrl: 'views/main.html',
+                templateUrl: base+'views/main.html',
                 controller: 'MainCtrl'
             })
             .when('/prepagament', {
-                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/prepayment.html',
-                //templateUrl: 'views/prepayment.html',
+                templateUrl: base+'views/prepayment.html',
                 controller: 'PrepaymentCtrl'
             })
             .when('/:locale', {
-                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
-                //templateUrl: 'views/main.html',
+                templateUrl: base+'views/main.html',
                 controller: 'MainCtrl'
             })
             .when('/:locale/soci', {
-                templateUrl: '//rawgit.com/Som-Energia/new-api-webforms/master/app/views/main.html',
-                //templateUrl: 'views/main.html',
+                templateUrl: base+'views/main.html',
                 controller: 'MainCtrl'
             })
             .when('/:locale/contractacio', {
-                templateUrl: 'views/order.html',
+                templateUrl: 'views/order.html', // DGG: No base??
                 controller: 'OrderCtrl'
             })
             .otherwise({
@@ -442,7 +441,8 @@ angular.module('newSomEnergiaWebformsApp', [
     })
     .constant('cfg', {
         BASE_DOMAIN: 'somenergia.coop',
-        API_BASE_URL: 'https://api.somenergia.coop/',
+        //BASE_DOMAIN: '127.0.0.1:9000',
+        API_BASE_URL: 'https://api.somenergia.coop/',     // production environment
         //API_BASE_URL: 'http://sompre.gisce.net:5001/',    // test environment
         CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
         STATUS_OFFLINE: 'OFFLINE',
