@@ -28,6 +28,7 @@ angular.module('newSomEnergiaWebformsApp')
             INVALIDID: 4,
             INVALIDMEMBER: 5,
             READY: 6,
+            APIERROR: 7,
         };
         $scope.initFormState = $scope.initFormStates.IDLE;
         $scope.currentInitState = function() {
@@ -84,9 +85,9 @@ angular.module('newSomEnergiaWebformsApp')
             sociPromise.dni = $scope.form.init.dni;
             sociPromise.then(
                 function(response) {
-                    if ($scope.form.init.socinumber != sociPromise.soci) {
-                    }
+                    if ($scope.form.init.socinumber != sociPromise.soci) return;
                     if ($scope.form.init.dni != sociPromise.dni) return;
+
                     if (response.state === cfg.STATE_TRUE) {
                         $log.log('Get partner info response recived', response);
                         $scope.soci = response.data.soci;
@@ -102,7 +103,11 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.showStep1Form = false;
                     }
                 },
-                function(reason) { $log.error('Get partner info failed', reason); }
+                function(reason) {
+                    $scope.initFormState = $scope.initFormStates.APIERROR;
+                    $scope.apiError = reason;
+                    $log.error('Get partner info failed', reason);
+                }
             );
         };
 
@@ -276,7 +281,11 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.orderForm.accountnumber.$setValidity('invalid', !$scope.accountIsInvalid);
                         $scope.formListener($scope.form);
                     },
-                    function(reason) { $log.error('Check account number failed', reason); }
+                    function(reason) {
+                        $scope.initFormState = $scope.initFormStates.APIERROR;
+                        $scope.apiError = reason;
+                        $log.error('Check account number failed', reason);
+                    }
                 );
             }
         };
