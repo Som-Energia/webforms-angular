@@ -30,40 +30,38 @@
         <div class='well'>
             <div class="row">
                 <div class="col-xs-12">
-			         <h4 class='col-xs-12'>{{ "QUAN_VOLS_INVERTIR" | translate }}</h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <p>{{ 'EN_APORTACIO_VOLUNTARIA' | translate }}</p>
+					<label for="amount">
+			        <h4>{{ "QUAN_VOLS_INVERTIR" | translate }}
+                    <div class="small">{{ 'EN_APORTACIO_VOLUNTARIA' | translate }}</div>
+					</h4></label>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 col-xs-6">
                     <div class="input-group">
-                    <input type="text" name="amount" class="form-control input-lg" data-ng-model="form.amount" data-ng-change="formAmountListener()" required/>
+                    <input type="text" id="amount" name="amount" class="form-control input-lg" data-ng-model="form.amount" data-ng-change="formAmountListener()" required aria-describedby="amounthelp"/>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.amount.$error.required">{{ 'OBLIGATORI' | translate }}</span>
 					<span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>€</span>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xs-6">
-                    {{ 'AMOUNT_HELPER' | translate }}
+                    <div class="help-block" id="amounthelp">{{ 'AMOUNT_HELPER' | translate }}</div>
                 </div>
             </div>
             <div class="row extra-margin-top">
                 <div class="col-xs-12">
-			         <h4 class='col-xs-12'>{{ "NUM_DE_COMPTE" | translate }}</h4>
+			         <h4><label for="accountbankiban">{{ "NUM_DE_COMPTE" | translate }}</label></h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
-                    <input type="text" name="accountbankiban" class="form-control input-lg" data-ng-model="form.accountbankiban" data-ng-change="formAccountIbanListener()" required/>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountbankiban1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <input type="text" id="accountbankiban" name="accountbankiban" class="form-control input-lg" data-ng-model="form.accountbankiban" data-ng-change="formAccountIbanListener()" required aria-describedby="accountbankibanHelp"/>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountbankiban.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <label>{{ 'NUM_COMPTE' | translate }} ({{ 'IBAN_EXEMPLE' | translate }}: ES11 2222 3333 4444 5555 6666)</label>
+                    <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>{{ 'NUM_COMPTE' | translate }} ({{ 'IBAN_EXEMPLE' | translate }}: ES11 2222 3333 4444 5555 6666)</div>
                     <span class="label label-danger" data-ng-show="accountIsInvalid">{{ 'INVALID' | translate }}</span>
                 </div>
             </div>
