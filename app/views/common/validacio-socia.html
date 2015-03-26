@@ -8,13 +8,13 @@
             </div>
             <div class="form-group col-xs-6 col-sm-5 col-md-4 col-lg-3" >
                 <label class="sr-only">DNI/NIE/CIF*</label>
-                <div class="input-group">
-                <input type="text" name="dni" class="form-control input-lg" placeholder="DNI/NIE/CIF*" data-ng-model="form.init.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': initFormIsInvalidId()}" required/>
-                <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>
-                <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_DNI' | translate }}" data-placement="top">?</span>
-</span>
-                    </div>
-                <span ></span>
+                <div class="input-group" style="width: 100%">
+                    <input type="text" name="dni" class="form-control input-lg" placeholder="DNI/NIE/CIF*" data-ng-model="form.init.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': initFormIsInvalidId()}" required/>
+                    <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>
+                        <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_DNI' | translate }}" data-placement="top">?</span>
+                    </span>
+                </div>
+                <span></span>
                 <span class="label label-danger" style="position:absolute;" data-ng-show="initFormIsInvalidId()">{{ 'INVALID' | translate }}</span>
             </div>
         </div>
@@ -58,7 +58,7 @@
                 >Boo</p>
 
             <div class="col-xs-2 col-md-4 col-lg-6 pull-right"></div>
-            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right" style='text-align:right'>
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right">
                 <button class="btn btn-default btn-lg btn-block green submit" data-ng-disabled="!initFormIsReady()" data-ng-click="initOrderForm()" type="button"
 >{{ 'INICIAR_CONTRACTACIO' | translate }}</button>
             </div>
