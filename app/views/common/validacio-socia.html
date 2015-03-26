@@ -2,11 +2,11 @@
     <form name="initForm" class="form-inline" role="form" data-ng-show="step0Ready" novalidate>
         <!--FIRST STEP-->
         <div class="row extra-margin-top">
-            <div class="form-group col-xs-12 col-sm-5 col-lg-4 col-lg-offset-2">
+            <div class="form-group col-xs-5 col-sm-5 col-md-4 col-lg-3">
                 <label class="sr-only">{{ 'NUMERO_SOCI' | translate }}*</label>
                 <input type="text" name="socinumber" class="form-control" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="form.init.socinumber" data-ng-change="formListener()" required/>
             </div>
-            <div class="form-group col-xs-10 col-sm-5 col-lg-4" >
+            <div class="form-group col-xs-5 col-sm-5 col-md-4 col-lg-3" >
                 <label class="sr-only">DNI/NIE/CIF*</label>
                 <input type="text" name="dni" class="form-control" placeholder="DNI/NIE/CIF*" data-ng-model="form.init.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': initFormIsInvalidId()}" required/>
                 <span ></span>
@@ -19,33 +19,33 @@
         <div class="row">
             <div
                 ng-if='initFormIsReady()'
-                class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-7 col-lg-4 col-lg-offset-2 alert alert-success"
+                class="col-xs-10 col-xs-offset-1 col-sm-4 col-md-4 col-lg-3 alert alert-success"
                 >{{ 'Soci/a trobat/da:' | translate }} {{soci.nom}} {{soci.cognom}}</div>
             <div
                 ng-if='initFormIsValidatingId()'
-                class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-7 col-lg-4 col-lg-offset-2 alert alert-info"
+                class="col-xs-10 col-xs-offset-1 col-sm-4 col-md-4 col-lg-3 alert alert-info"
                 >{{ 'Validant document d\'identitat...'| translate}}</div>
             <div
                 ng-if='initFormIsValidatingMember()'
-                class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-7 col-lg-4 col-lg-offset-2 alert alert-info"
+                class="col-xs-10 col-xs-offset-1 col-sm-4 col-md-4 col-lg-3 alert alert-info"
                 >{{ 'Identificant soci/a...'| translate}}</div>
             <div
                 ng-if="initFormIsInvalidMember()"
-                class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-7 col-lg-4 col-lg-offset-2 alert alert-danger"
+                class="col-xs-10 col-xs-offset-1 col-sm-4 col-md-4 col-lg-3 alert alert-danger"
                 >{{ 'NO_TROBEM_CAP_SOCI_VINCULAT' | translate}}
                 <p data-ng-bind-html="'NO_ETS_SOCI_FES_TE_AQUI' | translate "></p>
             </div>
             <div
-                ng-if="initFormIsApiError()"
-                class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-7 col-lg-4 col-lg-offset-2 alert alert-danger"
-                >{{ 'Problemes accedint al servidor:' | translate}} {{ apiError }}</div>
-            <div
                 ng-if="initFormIsInvalidId()"
-                class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-7 col-lg-4 col-lg-offset-2 alert alert-danger"
+                class="col-xs-10 col-xs-offset-1 col-sm-4 col-md-4 col-lg-3 alert alert-danger"
                 >{{ 'Codi del DNI/NIE/CIF invàlid.' | translate}}</div>
+            <div
+                ng-if="initFormIsApiError()"
+                class="col-xs-10 col-xs-offset-1 col-sm-4 col-md-4 col-lg-3 alert alert-danger"
+                >{{ 'Problemes accedint al servidor:' | translate}} {{ apiError }}</div>
 
-            <div class="col-md-2 hidden-xs visible-md visible-lg pull-right"></div>
-            <div class="col-xs-12 col-sm-5 col-md-4 pull-right" style='text-align:right'>
+            <div class="col-xs-2 col-md-4 col-lg-6 pull-right"></div>
+            <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2 pull-right" style='text-align:right'>
                 <button class="btn btn-default green submit" data-ng-disabled="!initFormIsReady()" data-ng-click="initOrderForm()" type="button"
 >{{ 'INICIAR_CONTRACTACIO' | translate }}</button>
             </div>
