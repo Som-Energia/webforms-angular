@@ -2,55 +2,68 @@
     <form name="initForm" class="form-inline" role="form" data-ng-show="step0Ready" novalidate>
         <!--FIRST STEP-->
         <div class="row extra-margin-top">
-            <div class="form-group col-xs-5 col-sm-5 col-md-4 col-lg-3">
+            <div class="form-group col-xs-6 col-sm-5 col-md-4 col-lg-3">
                 <label class="sr-only">{{ 'NUMERO_SOCI' | translate }}*</label>
-                <input type="text" name="socinumber" class="form-control" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="form.init.socinumber" data-ng-change="formListener()" required/>
+                <input type="text" name="socinumber" class="form-control input-lg" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="form.init.socinumber" data-ng-change="formListener()" required/>
             </div>
-            <div class="form-group col-xs-5 col-sm-5 col-md-4 col-lg-3" >
+            <div class="form-group col-xs-6 col-sm-5 col-md-4 col-lg-3" >
                 <label class="sr-only">DNI/NIE/CIF*</label>
-                <input type="text" name="dni" class="form-control" placeholder="DNI/NIE/CIF*" data-ng-model="form.init.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': initFormIsInvalidId()}" required/>
-                <span ></span>
-                <span class="label label-danger" style='position:absolute;' data-ng-show="initFormIsInvalidId()">{{ 'INVALID' | translate }}</span>
-            </div>
-            <div class="col-xs-1 col-sm-1">
+                <div class="input-group">
+                <input type="text" name="dni" class="form-control input-lg" placeholder="DNI/NIE/CIF*" data-ng-model="form.init.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': initFormIsInvalidId()}" required/>
+                <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>
                 <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_DNI' | translate }}" data-placement="top">?</span>
+</span>
+                    </div>
+                <span ></span>
+                <span class="label label-danger" style="position:absolute;" data-ng-show="initFormIsInvalidId()">{{ 'INVALID' | translate }}</span>
             </div>
         </div>
         <div class="row">
-            <div
+            <p
                 ng-if='initFormIsReady()'
-                class="col-xs-10 col-xs-offset-1 col-sm-4 col-md-4 col-lg-3 alert alert-success"
-                >{{ 'Soci/a trobat/da:' | translate }} {{soci.nom}} {{soci.cognom}}</div>
-            <div
+                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-success"
+                style="margin-bottom:4ex"
+                >{{ 'Soci/a trobat/da:' | translate }} {{soci.nom}} {{soci.cognom}}</p>
+            <p
                 ng-if='initFormIsValidatingId()'
-                class="col-xs-10 col-xs-offset-1 col-sm-4 col-md-4 col-lg-3 alert alert-info"
-                >{{ 'Validant document d\'identitat...'| translate}}</div>
-            <div
+                style="margin-bottom:4ex"
+                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-info"
+                >{{ 'Validant document d\'identitat...'| translate}}</p>
+            <p
                 ng-if='initFormIsValidatingMember()'
-                class="col-xs-10 col-xs-offset-1 col-sm-4 col-md-4 col-lg-3 alert alert-info"
-                >{{ 'Identificant soci/a...'| translate}}</div>
+                style="margin-bottom:4ex"
+                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-info"
+                >{{ 'Identificant soci/a...'| translate}}</p>
             <div
                 ng-if="initFormIsInvalidMember()"
-                class="col-xs-10 col-xs-offset-1 col-sm-4 col-md-4 col-lg-3 alert alert-danger"
+                style="margin-bottom:4ex"
+                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
                 >{{ 'NO_TROBEM_CAP_SOCI_VINCULAT' | translate}}
                 <p data-ng-bind-html="'NO_ETS_SOCI_FES_TE_AQUI' | translate "></p>
-            </div>
-            <div
+                </div>
+            <p
                 ng-if="initFormIsInvalidId()"
-                class="col-xs-10 col-xs-offset-1 col-sm-4 col-md-4 col-lg-3 alert alert-danger"
-                >{{ 'Codi del DNI/NIE/CIF invàlid.' | translate}}</div>
-            <div
+                style="margin-bottom:4ex"
+                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
+                >{{ 'Codi del DNI/NIE/CIF invàlid.' | translate}}</p>
+            <p
                 ng-if="initFormIsApiError()"
-                class="col-xs-10 col-xs-offset-1 col-sm-4 col-md-4 col-lg-3 alert alert-danger"
-                >{{ 'Problemes accedint al servidor:' | translate}} {{ apiError }}</div>
+                style="margin-bottom:4ex"
+                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
+                >{{ 'Problemes accedint al servidor:' | translate}} {{ apiError }}</p>
+            <p
+                ng-if="initFormIsIdle()"
+                style="margin-bottom:4ex; visibility:hidden"
+                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
+                >Boo</p>
 
             <div class="col-xs-2 col-md-4 col-lg-6 pull-right"></div>
-            <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2 pull-right" style='text-align:right'>
-                <button class="btn btn-default green submit" data-ng-disabled="!initFormIsReady()" data-ng-click="initOrderForm()" type="button"
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right" style='text-align:right'>
+                <button class="btn btn-default btn-lg btn-block green submit" data-ng-disabled="!initFormIsReady()" data-ng-click="initOrderForm()" type="button"
 >{{ 'INICIAR_CONTRACTACIO' | translate }}</button>
             </div>
         </div>
-        <div class="row" ng-if='developing'>
+        <div class="row" ng-if='developing && false'>
             <div class="col-xs-12">
                 {{ currentInitState() }}
             </div>
