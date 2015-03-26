@@ -50,6 +50,11 @@
                 <p data-ng-bind-html="'NO_ETS_SOCI_FES_TE_AQUI' | translate "></p>
             </div>
         </div>
+        <div class="row" ng-if='developing'>
+            <div class="col-xs-12">
+                {{ currentInitState() }}
+            </div>
+        </div>
         <div class="row" data-ng-if="showBeginOrderForm && !showUnknownSociWarning && !dniIsInvalid">
             <div class="col-xs-12">
                 <button class="btn btn-default green pull-right submit" data-ng-click="initOrderForm()" type="button">{{ 'INICIAR_CONTRACTACIO' | translate }}</button>
