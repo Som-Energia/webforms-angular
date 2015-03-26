@@ -31,12 +31,34 @@ angular.module('newSomEnergiaWebformsApp')
             APIERROR: 7,
         };
         $scope.initFormState = $scope.initFormStates.IDLE;
+
+        $scope.initFormIsIdle = function () {
+            return $scope.initFormState === $scope.initFormStates.IDLE;
+        };
+        $scope.initFormIsValidatingId = function () {
+            return $scope.initFormState === $scope.initFormStates.VALIDATINGID;
+        };
+        $scope.initFormIsValidatingMember = function () {
+            return $scope.initFormState === $scope.initFormStates.VALIDATINGMEMBER;
+        };
+        $scope.initFormIsInvalidId = function () {
+            return $scope.initFormState === $scope.initFormStates.INVALIDID;
+        };
+        $scope.initFormIsInvalidMember = function () {
+            return $scope.initFormState === $scope.initFormStates.INVALIDMEMBER;
+        };
+        $scope.initFormIsReady = function () {
+            return $scope.initFormState === $scope.initFormStates.READY;
+        };
+        $scope.initFormIsApiError = function () {
+            return $scope.initFormState === $scope.initFormStates.APIERROR;
+        };
         $scope.currentInitState = function() {
             return Object.keys($scope.initFormStates)
                 .filter(function(key) {
-                    return $scope.initFormStates[key] === $scope.initFormState
+                    return $scope.initFormStates[key] === $scope.initFormState;
                 })[0];
-        }
+        };
         $scope.dniIsInvalid = false;
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
@@ -51,8 +73,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.showUnknownSociWarning = false;
         $scope.showBeginOrderForm = false;
         $scope.showStep1Form = false;
-        $scope.initSubmitReady = false;
-        $scope.initFormSubmitted = false;
         $scope.isStep2ButtonReady = false;
         $scope.isStep3ButtonReady = false;
         $scope.isFinalStepButtonReady = false;
@@ -85,8 +105,8 @@ angular.module('newSomEnergiaWebformsApp')
             sociPromise.dni = $scope.form.init.dni;
             sociPromise.then(
                 function(response) {
-                    if ($scope.form.init.socinumber != sociPromise.soci) return;
-                    if ($scope.form.init.dni != sociPromise.dni) return;
+                    if ($scope.form.init.socinumber !== sociPromise.soci) {return;}
+                    if ($scope.form.init.dni !== sociPromise.dni) {return;}
 
                     if (response.state === cfg.STATE_TRUE) {
                         $log.log('Get partner info response recived', response);
@@ -121,8 +141,8 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateInteger($scope, 'form.estimation');
 
         // DNI VALIDATION
-        var checkDniTimer = false;
-        ValidateHandler.validateDni($scope, 'form.init.dni', checkDniTimer);
+//        var checkDniTimer = false;
+//        ValidateHandler.validateDni($scope, 'form.init.dni', checkDniTimer);
         var checkDni2Timer = false;
         ValidateHandler.validateDni($scope, 'form.dni', checkDni2Timer);
         var checkDni3Timer = false;
@@ -202,8 +222,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function() {
-            $scope.initSubmitReady = $scope.form.init.dni !== undefined && $scope.form.init.socinumber !== undefined && $scope.dniIsInvalid === false;
-            $scope.isStep2ButtonReady = $scope.initSubmitReady &&
+            $scope.isStep2ButtonReady = $scope.initFormIsReady() &&
                 $scope.form.address !== undefined &&
                 $scope.form.province !== undefined &&
                 $scope.form.city !== undefined &&
@@ -370,9 +389,9 @@ angular.module('newSomEnergiaWebformsApp')
         // ON INIT SUBMIT FORM
         var checkEnableInitSubmit1 = false;
         $scope.$watch('form.init.socinumber', function(newValue) {
-            if ($scope.initFormState === $scope.initFormStates.IDLE) return;
-            if ($scope.initFormState === $scope.initFormStates.VALIDATINGID) return;
-            if ($scope.initFormState === $scope.initFormStates.INVALIDID) return;
+            if ($scope.initFormIsIdle()) {return;}
+            if ($scope.initFormIsValidatingId()) {return;}
+            if ($scope.initFormIsInvalidId()) {return;}
 
             if (newValue === undefined) {
                 $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
@@ -406,7 +425,7 @@ angular.module('newSomEnergiaWebformsApp')
                 dniPromise.dni = newValue;
                 dniPromise.then(
                     function (response) {
-                        if (dniPromise.dni != $scope.form.init.dni) {
+                        if (dniPromise.dni !== $scope.form.init.dni) {
                             //console.log('Ignorant validació del DNI '+dniPromise.dni+' perque ja val '+$scope.form.init.dni);
                             return;
                         }
@@ -424,7 +443,10 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.executeGetSociValues();
                     },
                     // TODO: Server error state and display reason
-                    function (reason) { $log.error('Check DNI failed', reason); }
+                    function (reason) {
+                        $log.error('Check DNI failed', reason);
+                        $scope.initFormState = $scope.initFormStates.APIERROR;
+                    }
                 );
             }, cfg.DEFAULT_MILLISECONDS_DELAY);
         });
