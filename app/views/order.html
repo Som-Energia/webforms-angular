@@ -51,8 +51,9 @@
             <div
                 ng-if="initFormState === initFormStates.INVALIDMEMBER"
                 class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-7 col-lg-4 col-lg-offset-2 alert alert-danger"
-                >{{ 'NO_TROBEM_CAP_SOCI_VINCULAT' | translate}}<p data-ng-bind-html="'NO_ETS_SOCI_FES_TE_AQUI' | translate "></p></div>
-
+                >{{ 'NO_TROBEM_CAP_SOCI_VINCULAT' | translate}}
+                <p data-ng-bind-html="'NO_ETS_SOCI_FES_TE_AQUI' | translate "></p>
+            </div>
             <div
                 ng-if="initFormState === initFormStates.APIERROR"
                 class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-7 col-lg-4 col-lg-offset-2 alert alert-danger"
