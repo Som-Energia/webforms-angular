@@ -17,64 +17,7 @@
     </div>
 
     <!-- BEGIN INIT FORM-->
-    <form name="initForm" class="form-inline" role="form" data-ng-show="step0Ready" novalidate>
-        <!--FIRST STEP-->
-        <div class="row extra-margin-top">
-            <div class="form-group col-xs-12 col-sm-5 col-lg-4 col-lg-offset-2">
-                <label class="sr-only">{{ 'NUMERO_SOCI' | translate }}*</label>
-                <input type="text" name="socinumber" class="form-control" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="form.init.socinumber" data-ng-change="formListener()" required/>
-                <span class="label label-danger" data-ng-show="initFormSubmitted && initForm.socinumber.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-            </div>
-            <div class="form-group col-xs-10 col-sm-5 col-lg-4" >
-                <label class="sr-only">DNI/NIE/CIF*</label>
-                <input type="text" name="dni" class="form-control" placeholder="DNI/NIE/CIF*" data-ng-model="form.init.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': initFormState===initFormStates.INVALIDID }" required/>
-                <span class="label label-danger" style='position:absolute;' data-ng-show="initFormSubmitted && initForm.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                <span class="label label-danger" style='position:absolute;' data-ng-show="initFormState===initFormStates.INVALIDID">{{ 'INVALID' | translate }}</span>
-            </div>
-            <div class="col-xs-1 col-sm-1">
-                <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_DNI' | translate }}" data-placement="top">?</span>
-            </div>
-        </div>
-        <div class="row">
-            <div
-                ng-if='initFormState === initFormStates.READY'
-                class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-7 col-lg-4 col-lg-offset-2 alert alert-success"
-                >{{ 'Soci/a identificat/da:' | translate }} {{soci.nom}} {{soci.cognom}}</div>
-            <div
-                ng-if='initFormState === initFormStates.VALIDATINGID'
-                class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-7 col-lg-4 col-lg-offset-2 alert alert-info"
-                >{{ 'Validant document d\'identitat...'| translate}}</div>
-            <div
-                ng-if='initFormState === initFormStates.VALIDATINGMEMBER'
-                class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-7 col-lg-4 col-lg-offset-2 alert alert-info"
-                >{{ 'Identificant soci/a...'| translate}}</div>
-            <div
-                ng-if="initFormState === initFormStates.INVALIDMEMBER"
-                class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-7 col-lg-4 col-lg-offset-2 alert alert-danger"
-                >{{ 'NO_TROBEM_CAP_SOCI_VINCULAT' | translate}}
-                <p data-ng-bind-html="'NO_ETS_SOCI_FES_TE_AQUI' | translate "></p>
-            </div>
-            <div
-                ng-if="initFormState === initFormStates.APIERROR"
-                class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-7 col-lg-4 col-lg-offset-2 alert alert-danger"
-                >{{ 'Problemes accedint al servidor:' | translate}} {{ apiError }}</div>
-            <div
-                ng-if="initFormState === initFormStates.INVALIDID"
-                class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-7 col-lg-4 col-lg-offset-2 alert alert-danger"
-                >{{ 'DNI incorrecte.' | translate}}</div>
-
-            <div class="col-md-2 hidden-xs visible-md visible-lg pull-right"></div>
-            <div class="col-xs-12 col-sm-5 col-md-4 pull-right" style='text-align:right'>
-                <button class="btn btn-default green submit" data-ng-disabled="initFormState !== initFormStates.READY" data-ng-click="initOrderForm()" type="button"
->{{ 'INICIAR_CONTRACTACIO' | translate }}</button>
-            </div>
-            <div class="row" ng-if='developing'>
-                <div class="col-xs-12">
-                    {{ currentInitState() }}
-                </div>
-            </div>
-        </div>
-    </form>
+    <div data-ng-include data-src="'views/common/validacio-socia.html'"></div>
     <!--END INIT FORM-->
 
     <!-- BEGIN ORDER FORM-->
