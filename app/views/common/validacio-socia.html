@@ -59,7 +59,7 @@
 
             <div class="col-xs-2 col-md-4 col-lg-6 pull-right"></div>
             <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right">
-                <button class="btn btn-default btn-lg btn-block green submit" data-ng-disabled="!initFormIsReady()" data-ng-click="initOrderForm()" type="button"
+                <button class="btn btn-default btn-lg btn-block submit" data-ng-disabled="!initFormIsReady()" data-ng-class="{'green': initFormIsReady(), 'grey':!initFormIsReady()}" data-ng-click="initOrderForm()" type="button"
 >{{ 'INICIAR_CONTRACTACIO' | translate }}</button>
             </div>
         </div>
