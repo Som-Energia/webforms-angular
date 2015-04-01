@@ -20,7 +20,7 @@
     <div data-ng-include data-src="'views/common/validacio-socia.html'"></div>
     <!--END INIT FORM-->
 
-    <!-- BEGIN ORDER FORM-->
+    <!-- BEGIN INVEST FORM-->
     <form name="investForm" class="form-inline" role="form" ng-show="step1Ready" enctype="multipart/form-data" novalidate>
         <div class="row">
             <div class="col-xs-12 heading active">
@@ -41,7 +41,6 @@
                 <div class="col-sm-6 col-xs-6">
                     <div class="input-group">
                     <input type="text" id="amount" name="amount" class="form-control input-lg" data-ng-model="form.amount" data-ng-change="formAmountListener()" required aria-describedby="amounthelp" ng-class="{'ng-invalid': amountAboveMax || amountNotHundred || amountUnderMin}"/>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.amount.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>€</span>
                     </div>
                 </div>
@@ -68,7 +67,6 @@
                     <span class="label label-danger" data-ng-show="accountIsInvalid===true">{{ 'INVALID' | translate }}</span>
                     <span class="label label-warning" data-ng-show="accountIsInvalid===undefined">{{ 'COMPROVANT' | translate }}</span>
                     <span class="label label-success" data-ng-show="accountIsInvalid===false">{{ 'CORRECTE' | translate }}</span>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountbankiban.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
@@ -82,7 +80,6 @@
                         <input type="checkbox" name="acceptaccountowner" value="accept" data-ng-model="form.acceptaccountowner" required/>
                         <span translate="CONFIRMO_CONDICIONS_INVERSIO" ></span>
                     </label>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row no-margin-bottom">

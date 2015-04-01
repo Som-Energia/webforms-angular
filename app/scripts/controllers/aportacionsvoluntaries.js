@@ -62,9 +62,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.dniIsInvalid = true;
         $scope.accountIsInvalid = true;
-        $scope.showBeginOrderForm = false;
         $scope.isInvestmentFormReady = false;
-        $scope.orderFormSubmitted = false;
         $scope.languages = [];
         $scope.language = {};
         $scope.form = {};
@@ -115,7 +113,6 @@ angular.module('newSomEnergiaWebformsApp')
                     if (response.state === cfg.STATE_TRUE) {
                         $log.log('Get partner info response recived', response);
                         $scope.soci = response.data.soci;
-                        $scope.showBeginOrderForm = true;
                         $scope.initFormState = $scope.initFormStates.READY;
                     } else {
                         $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
@@ -297,7 +294,6 @@ console.log($scope.form.acceptaccountowner);
         // ON SUBMIT FORM
         $scope.submitOrder = function() {
             $scope.messages = null;
-            $scope.orderFormSubmitted = true;
             uiHandler.showLoadingDialog();
             // Prepare request data
             var formData = new FormData();
