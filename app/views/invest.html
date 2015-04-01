@@ -8,11 +8,11 @@
 
 <div class="row" data-ng-include data-src="'views/common/global-messages.html'"></div>
 
-<div data-ng-show="!step4Ready">
+<div>
     <!--HEADER-->
-    <div class="row no-margin-bottom">
-        <div class="col-xs-12 heading active">
-            <h1 class="extra-margin">{{ 'FORMULARI_APORTACIO_VOLUNTARIA' | translate }}</h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="green extra-margin" translate="FORMULARI_D_INVERSIO"></h1>
         </div>
     </div>
 
@@ -21,7 +21,7 @@
     <!--END INIT FORM-->
 
     <!-- BEGIN ORDER FORM-->
-    <form name="investForm" class="form-inline" role="form" ng-visible="isInitFormReady()" enctype="multipart/form-data" novalidate>
+    <form name="investForm" class="form-inline" role="form" ng-show="step1Ready" enctype="multipart/form-data" novalidate>
         <div class="row">
             <div class="col-xs-12 heading active">
                 <h1>{{ 'BENVINGUDA' | translate }} <b>{{ soci.nom }} {{ soci.cognom }}</b>!</h1>
@@ -30,10 +30,11 @@
         <div class='well'>
             <div class="row">
                 <div class="col-xs-12">
+                    <h3 class="green" data-ng-bind-html=' "QUANT_VOLS_INVERTIR" | translate '>
+                    <small>{{ 'EN_APORTACIO_VOLUNTARIA' | translate }}</small>
+                    </h3>
                     <label for="amount">
-                    <h4>{{ "QUAN_VOLS_INVERTIR" | translate }}
-                    <div class="small">{{ 'EN_APORTACIO_VOLUNTARIA' | translate }}</div>
-                    </h4></label>
+                    </label>
                 </div>
             </div>
             <div class="row">
@@ -46,6 +47,7 @@
                 </div>
                 <div class="col-sm-6 col-xs-6">
                     <div class="help-block" id="amounthelp">
+                        <b>{{ 'RECORDA' | translate}}</b>
                         <span ng-class="{'text-danger': amountAboveMax}">
                             {{ 'AMOUNT_HELPER_MAX' | translate }}</span>
                         <span ng-class="{'text-danger': amountUnderMin}">
@@ -55,43 +57,42 @@
                     </div>
                 </div>
             </div>
-            <div class="row extra-margin-top">
-                <div class="col-xs-12">
-                     <h4><label for="accountbankiban">{{ "NUM_DE_COMPTE" | translate }}</label></h4>
+            <div class="row">
+                <div class="col-xs-12 no-margin-bottom">
+                     <h3 class='green'><label for="accountbankiban" data-ng-bind-html="'DES_DE_QUIN_COMPTE' | translate"></label></h3>
                 </div>
             </div>
-            <div class="row">
+            <div class="row no-margin-bottom">
                 <div class="col-sm-12 col-xs-12">
-                    <input type="text" id="accountbankiban" name="accountbankiban" class="form-control input-lg" data-ng-model="form.accountbankiban" data-ng-change="formAccountIbanListener()" required aria-describedby="accountbankibanHelp"/>
+                    <input type="text" id="accountbankiban" name="accountbankiban" class="form-control input-lg" data-ng-model="form.accountbankiban" data-ng-change="formAccountIbanListener()" data-ng-class="{'ng-invalid': accountIsInvalid}" required aria-describedby="accountbankibanHelp"/>
+                    <span class="label label-danger" data-ng-show="accountIsInvalid===true">{{ 'INVALID' | translate }}</span>
+                    <span class="label label-warning" data-ng-show="accountIsInvalid===undefined">{{ 'COMPROVANT' | translate }}</span>
+                    <span class="label label-success" data-ng-show="accountIsInvalid===false">{{ 'CORRECTE' | translate }}</span>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountbankiban.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>{{ 'NUM_COMPTE' | translate }} ({{ 'IBAN_EXEMPLE' | translate }}: ES11 2222 3333 4444 5555 6666)</div>
-                    <span class="label label-danger" data-ng-show="accountIsInvalid">{{ 'INVALID' | translate }}</span>
+                    <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>{{ 'NUMERO_DE_COMPTE_FORMAT_IBAN' | translate }}</div>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group checkbox col-xs-12">
                     <label>
-                        <input type="checkbox" name="acceptaccountowner" value="accept" data-ng-model="form.acceptaccountowner" data-ng-change="formListener()" required/>
-                        <span data-ng-bind-html="'CONFIRMO_CONDICIONS_INVERSIO' | translate"></span>
+                        <input type="checkbox" name="acceptaccountowner" value="accept" data-ng-model="form.acceptaccountowner" required/>
+                        <span translate="CONFIRMO_CONDICIONS_INVERSIO" ></span>
                     </label>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row no-margin-bottom">
-                <div class="col-xs-12 no-horitzontal-padding">
-                    <button data-ng-click="moveToStep4Form()" class="btn btn-default green btn-lg btn-block col-xs-12 " data-ng-disabled="!isFinalStepButtonReady" type="button">{{ 'CONFIRMAR_INVERSIO' | translate }}</button>
+                <div class="col-xs-12 pull-right no-horitzontal-padding">
+                    <button data-ng-click="sendInvestment()" class="btn btn-default green btn-lg btn-block submit" data-ng-class="{'green': isInvestmentFormReady(), 'grey':!isInvestmentFormReady() }" data-ng-disabled="!isInvestmentFormReady()" type="button">{{ 'CONFIRMAR_INVERSIO' | translate }}</button>
                 </div>
             </div>
         </div>
     </form>
 </div>
-
-<!--CONFIRM TEMPLATE-->
-<div data-ng-include data-src="'views/confirm.html'"></div>
 
 <!--OFFLINE API MODAL-->
 <div id="api-server-offline-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="WebformsOfflineApi" data-aria-hidden="true">

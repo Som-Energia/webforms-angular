@@ -147,7 +147,21 @@ angular.module('newSomEnergiaWebformsApp', [
                 POTENCIA_CONTRACTADA: 'Potencia contratada',
                 NOM_O_RAO_SOCIAL: 'Nombre o razón social',
                 SI_LES_DADES_SON_CORRECTES: 'Si los datos son correctos pulse Sí para finalizar el proceso de contratación',
-                SI_TOT_CORRECTE: 'Sí, todo correcto'
+                SI_TOT_CORRECTE: 'Sí, todo correcto',
+
+                INICIAR_INVERSIO: 'Iniciar Inversión',
+                FORMULARI_D_INVERSIO: 'Formulario de <b>inversión</b>',
+                BENVINGUDA: 'Bienvenido/a, ',
+                QUANT_VOLS_INVERTIR: '¿Cuánto quieres <b>invertir</b>? <br/> <small>En aportación voluntaria</small>',
+                RECORDA: 'Recuerda: ',
+                AMOUNT_HELPER_MIN: 'Mínima aportación 100€.',
+                AMOUNT_HELPER_MAX: 'Máxima aportación 25.000€.',
+                AMOUNT_HELPER_STEP: 'La cantidad tiene que ser múltiple de 100€.',
+                DES_DE_QUIN_COMPTE: '¿Desde qué <b>cuenta?</b>',
+                NUMERO_DE_COMPTE_FORMAT_IBAN: 'Número de cuenta en formato IBAN. Ejemplo: ES11 2222 3333 4444 5555 6666',
+                CONFIRMO_CONDICIONS_INVERSIO: 'Confirmo que soy el titular de la cuenta corriente, autorizo la domiciliación y acepto las <a href="TODO">condiciones generales de la inversión</a> y la <a href="TODO">política de privacidad</a>',
+                CONFIRMAR_INVERSIO: 'Confirmar inversión',
+
             })
             .translations('ca', {
                 SELECCIONA: 'Selecciona',
@@ -244,7 +258,21 @@ angular.module('newSomEnergiaWebformsApp', [
                 POTENCIA_CONTRACTADA: 'Potència contractada',
                 NOM_O_RAO_SOCIAL: 'Nom o raó social',
                 SI_LES_DADES_SON_CORRECTES: 'Si les dades són correctes premi Sí per finalitzar el procés de contractació',
-                SI_TOT_CORRECTE: 'Sí, tot correcte'
+                SI_TOT_CORRECTE: 'Sí, tot correcte',
+
+                INICIAR_INVERSIO: 'Iniciar Inversió',
+                FORMULARI_D_INVERSIO: 'Formulari d\'<b>inversió</b>',
+                BENVINGUDA: 'Bienvingut/da, ',
+                QUANT_VOLS_INVERTIR: 'Quant vols <b>invertir</b>? <br/><small>En aportació voluntària</small>',
+                RECORDA: 'Recorda: ',
+                AMOUNT_HELPER_MIN: 'Mínima aportació 100€.',
+                AMOUNT_HELPER_MAX: 'Màxima aportació 25.000€.',
+                AMOUNT_HELPER_STEP: 'La quantitat ha de ser múltiple de 100€.',
+                DES_DE_QUIN_COMPTE: 'Des de quin <b>compte</b>?',
+                NUMERO_DE_COMPTE_FORMAT_IBAN: 'Número de compte en format IBAN. Exemple: ES11 2222 3333 4444 5555 6666',
+                CONFIRMO_CONDICIONS_INVERSIO: 'Confirmo que sóc el titular del compte corrent, autoritzo la domiciliació i accepto les <a href="TODO">condicions generals de la inversió</a> i la <a href="TODO">política de privacitat',
+                CONFIRMAR_INVERSIO: 'Confirmar inversió',
+
             })
            .translations('gl', {
                 SELECCIONA: 'Selecciona',
@@ -432,13 +460,13 @@ angular.module('newSomEnergiaWebformsApp', [
                 CONFIRMAR_CONTRACTACIO: 'Kontratazioa baieztatu',
                 LOADING: 'Datuak bidaltzen...',
                 ENVIANT_DADES: 'Faktura bat gehitzekotan prozesua amaitzeak denbora dexente iraun lezake, arxtibategiaren pisuaren edota zure Internet-konexioaren arabera. Anima zaitez eta energia on, ia amaitu duzu! :)',
-		        REVISIO_CONFIRMACIO_DADES: 'Datuak errepasatu eta konfirmatu',
-		        EL_CONTRACTE_CANVIA_TITULAR: 'Kontratua titularrez aldatzen al da?',
-		        TARIFA: 'Tarifa',
-		        POTENCIA_CONTRACTADA: 'Potentzia kontratatua',
-		        NOM_O_RAO_SOCIAL: 'Enpresa izena edo izen soziala',
-		        SI_LES_DADES_SON_CORRECTES: 'Datuak zuzenak badira klikatu bai kontratazio prozesua amaitzeko',
-		        SI_TOT_CORRECTE: 'Bai, dena zuzena da'
+                REVISIO_CONFIRMACIO_DADES: 'Datuak errepasatu eta konfirmatu',
+                EL_CONTRACTE_CANVIA_TITULAR: 'Kontratua titularrez aldatzen al da?',
+                TARIFA: 'Tarifa',
+                POTENCIA_CONTRACTADA: 'Potentzia kontratatua',
+                NOM_O_RAO_SOCIAL: 'Enpresa izena edo izen soziala',
+                SI_LES_DADES_SON_CORRECTES: 'Datuak zuzenak badira klikatu bai kontratazio prozesua amaitzeko',
+                SI_TOT_CORRECTE: 'Bai, dena zuzena da'
             })
             .preferredLanguage('es')
         ;

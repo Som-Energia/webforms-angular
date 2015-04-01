@@ -329,9 +329,9 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // MOVE TO STEP 1 FORM
-        $scope.initOrderForm = function() {
+        $scope.initFormSubmited = function() {
             $scope.showStep1Form = true;
-            $scope.setStepReady(1, 'initOrderForm');
+            $scope.setStepReady(1, 'initFormSubmited');
         };
 
         // BACK TO STEP 1 FORM

@@ -60,10 +60,9 @@ angular.module('newSomEnergiaWebformsApp')
                 })[0];
         };
 
-        $scope.dniIsInvalid = false;
-        $scope.accountIsInvalid = false;
+        $scope.dniIsInvalid = true;
+        $scope.accountIsInvalid = true;
         $scope.showBeginOrderForm = false;
-        $scope.showStep1Form = false;
         $scope.isInvestmentFormReady = false;
         $scope.orderFormSubmitted = false;
         $scope.languages = [];
@@ -79,6 +78,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.amountUnderMin = false;
         $scope.amountNotHundred = false;
         $scope.form.amount = 100;
+        $scope.form.acceptaccountowner = false;
         $scope.aportacioMinima = 100;
         $scope.aportacioMaxima = 25000;
         $scope.aportacioSalts = 100;
@@ -117,12 +117,8 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.initFormState = $scope.initFormStates.READY;
-                        if (debugEnabled) {
-                            $scope.showStep1Form = false;
-                        }
                     } else {
                         $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
-                        $scope.showStep1Form = false;
                     }
                 },
                 function(reason) {
@@ -133,6 +129,17 @@ angular.module('newSomEnergiaWebformsApp')
             );
         };
 
+        $scope.isInvestmentFormReady = function() {
+            if ($scope.form.accountbankiban === undefined) {return false;}
+            if ($scope.accountIsInvalid !== false) {return false;}
+            if ($scope.amountUnderMin) {return false;}
+            if ($scope.amountAboveMax) {return false;}
+            if ($scope.amountNotHundred) {return false;}
+console.log($scope.form.acceptaccountowner);
+            if ($scope.form.acceptaccountowner === false) {return false;}
+            return true;
+        }
+
         // PARTNER NUMBER VALIDATION
         ValidateHandler.validateInteger($scope, 'form.init.socinumber');
 
@@ -140,22 +147,30 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateIban($scope, 'form.accountbankiban');
 
         $scope.formAccountIbanListener = function () {
-            if ($scope.form.accountbankiban === undefined) {return;}
+            if ($scope.form.accountbankiban === undefined) {
+                $scope.accountIsInvalid = true;
+                return;
+            }
+            $scope.accountIsInvalid = undefined;
             var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/iban/' + $scope.form.accountbankiban, '017');
+            accountPromise.account = $scope.form.accountbankiban;
             accountPromise.then(
                 function (response) {
+                    if (accountPromise.account !== $scope.form.accountbankiban) {
+                        // Changed while waiting a response, ignore
+                        return;
+                    }
                     $scope.accountIsInvalid = response === cfg.STATE_FALSE;
-                    $scope.orderForm.accountbankiban.$setValidity('invalid', !$scope.accountIsInvalid);
-                    $scope.formListener($scope.form);
                 },
                 function(reason) { $log.error('Check IBAN failed', reason); }
             );
         };
 
         // MOVE TO STEP 1 FORM
-        $scope.initOrderForm = function() {
-            $scope.showStep1Form = true;
-            $scope.setStepReady(1, 'initOrderForm');
+        $scope.initFormSubmited = function() {
+            $scope.step0Ready = false;
+            $scope.step1Ready = true;
+//            $scope.setStepReady(1, 'initFormSubmited');
         };
 
         // BACK TO STEP 1 FORM
@@ -274,6 +289,10 @@ angular.module('newSomEnergiaWebformsApp')
                 );
             }, cfg.DEFAULT_MILLISECONDS_DELAY);
         });
+
+        // Backward with order.js  
+        $scope.formListener = function() {
+        }
 
         // ON SUBMIT FORM
         $scope.submitOrder = function() {
