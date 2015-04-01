@@ -161,6 +161,8 @@ angular.module('newSomEnergiaWebformsApp', [
                 NUMERO_DE_COMPTE_FORMAT_IBAN: 'Número de cuenta en formato IBAN. Ejemplo: ES11 2222 3333 4444 5555 6666',
                 CONFIRMO_CONDICIONS_INVERSIO: 'Confirmo que soy el titular de la cuenta corriente, autorizo la domiciliación y acepto las <a href="TODO">condiciones generales de la inversión</a> y la <a href="TODO">política de privacidad</a>',
                 CONFIRMAR_INVERSIO: 'Confirmar inversión',
+				COMPROVANT: 'Comprovando...',
+				CORRECTE: 'Correcto.',
 
             })
             .translations('ca', {
@@ -272,6 +274,8 @@ angular.module('newSomEnergiaWebformsApp', [
                 NUMERO_DE_COMPTE_FORMAT_IBAN: 'Número de compte en format IBAN. Exemple: ES11 2222 3333 4444 5555 6666',
                 CONFIRMO_CONDICIONS_INVERSIO: 'Confirmo que sóc el titular del compte corrent, autoritzo la domiciliació i accepto les <a href="TODO">condicions generals de la inversió</a> i la <a href="TODO">política de privacitat',
                 CONFIRMAR_INVERSIO: 'Confirmar inversió',
+				COMPROVANT: 'Comprovant...',
+				CORRECTE: 'Correcte.',
 
             })
            .translations('gl', {
