@@ -44,16 +44,16 @@
                     <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>€</span>
                     </div>
                 </div>
-                <div class="col-sm-6 col-xs-6">
-                    <div class="help-block" id="amounthelp">
-                        <b>{{ 'RECORDA' | translate}}</b>
-                        <span ng-class="{'text-danger': amountAboveMax}">
-                            {{ 'AMOUNT_HELPER_MAX' | translate }}</span>
-                        <span ng-class="{'text-danger': amountUnderMin}">
-                            {{ 'AMOUNT_HELPER_MIN' | translate }}</span>
-                        <span ng-class="{'text-danger': amountNotHundred}">
-                            {{ 'AMOUNT_HELPER_STEP' | translate }}</span>
-                    </div>
+                <div class="col-sm-6 col-xs-6 no-margin-top">
+                    <b>{{ 'RECORDA' | translate}}</b>
+                    <ul>
+                    <li><span ng-class="{'label-danger': amountUnderMin, label: amountUnderMin}">
+                        {{ 'AMOUNT_HELPER_MIN' | translate }}</span> </li>
+                    <li><span ng-class="{'label-danger': amountAboveMax, label: amountAboveMax}">
+                        {{ 'AMOUNT_HELPER_MAX' | translate }}</span></li>
+                    <li><span ng-class="{'label-danger': amountNotHundred, label: amountNotHundred}">
+                        {{ 'AMOUNT_HELPER_STEP' | translate }}</span>
+                    </ul>
                 </div>
             </div>
             <div class="row">
