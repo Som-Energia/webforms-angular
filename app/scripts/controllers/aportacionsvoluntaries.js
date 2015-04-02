@@ -4,7 +4,7 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('AportacioVoluntariaCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
-        var debugEnabled = false;
+        var debugEnabled = true;
 
         // DEVELOP ENVIRONMENT
         var develEnvironment = true; // TODO change xorigin domain on index.html && replace grunt sftp source environment
@@ -16,6 +16,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // INIT
         $scope.developing = develEnvironment;
+        $scope.mostraNomSociTrobat = false;
         $scope.step0Ready = true;
         $scope.step1Ready = false;
         $scope.step2Ready = false;
@@ -148,7 +149,7 @@ console.log($scope.form.acceptaccountowner);
                 $scope.accountIsInvalid = true;
                 return;
             }
-            $scope.accountIsInvalid = undefined;
+            $scope.accountIsInvalid = undefined; // checking
             var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/iban/' + $scope.form.accountbankiban, '017');
             accountPromise.account = $scope.form.accountbankiban;
             accountPromise.then(

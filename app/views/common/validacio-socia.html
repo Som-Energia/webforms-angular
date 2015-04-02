@@ -4,14 +4,19 @@
         <div class="row extra-margin-top">
             <div class="form-group col-xs-6 col-sm-5 col-md-4 col-lg-3">
                 <label class="sr-only">{{ 'NUMERO_SOCI' | translate }}*</label>
-                <input type="text" name="socinumber" class="form-control input-lg" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="form.init.socinumber" data-ng-change="formListener()" required/>
+                <div class="input-group" style="width: 100%">
+                    <input type="text" name="socinumber" class="form-control input-lg" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="form.init.socinumber" data-ng-change="formListener()" required/>
+                    <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>
+                        <span class="spc-html badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_SOCIA' | translate }}" data-placement="top">?</span>
+                    </span>
+               </div>
             </div>
             <div class="form-group col-xs-6 col-sm-5 col-md-4 col-lg-3" >
                 <label class="sr-only">DNI/NIE/CIF*</label>
                 <div class="input-group" style="width: 100%">
                     <input type="text" name="dni" class="form-control input-lg" placeholder="DNI/NIE/CIF*" data-ng-model="form.init.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': initFormIsInvalidId()}" required/>
                     <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>
-                        <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_DNI' | translate }}" data-placement="top">?</span>
+                        <span class="spc-html badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_DNI' | translate }}" data-placement="top">?</span>
                     </span>
                 </div>
                 <span></span>
@@ -23,17 +28,17 @@
                 ng-if='initFormIsReady()'
                 class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-success"
                 style="margin-bottom:4ex"
-                >{{ 'Soci/a trobat/da:' | translate }} {{soci.nom}} {{soci.cognom}}</p>
+                >{{ 'SOCIA_TROBADA' | translate }}{{ mostraNomSociTrobat ? ': ' + soci.nom+' '+soci.cognom :''}}</p>
             <p
                 ng-if='initFormIsValidatingId()'
                 style="margin-bottom:4ex"
                 class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-info"
-                >{{ 'Validant document d\'identitat...'| translate}}</p>
+                >{{ 'VALIDANT_ID'| translate}}</p>
             <p
                 ng-if='initFormIsValidatingMember()'
                 style="margin-bottom:4ex"
                 class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-info"
-                >{{ 'Identificant soci/a...'| translate}}</p>
+                >{{ 'IDENTIFICANT_SOCIA'| translate}}</p>
             <div
                 ng-if="initFormIsInvalidMember()"
                 style="margin-bottom:4ex"
@@ -45,17 +50,17 @@
                 ng-if="initFormIsInvalidId()"
                 style="margin-bottom:4ex"
                 class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
-                >{{ 'Codi del DNI/NIE/CIF invàlid.' | translate}}</p>
+                >{{ 'DNI_INVALID' | translate}}</p>
             <p
                 ng-if="initFormIsApiError()"
                 style="margin-bottom:4ex"
                 class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
-                >{{ 'Problemes accedint al servidor:' | translate}} {{ apiError }}</p>
+                >{{ 'SERVER_ERRROR' | translate}} {{ apiError }}</p>
             <p
                 ng-if="initFormIsIdle()"
                 style="margin-bottom:4ex; visibility:hidden"
                 class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
-                >Boo</p>
+                >PlaceholderMessage</p>
 
             <div class="col-xs-2 col-md-4 col-lg-6 pull-right"></div>
             <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right">

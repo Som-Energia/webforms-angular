@@ -16,6 +16,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // INIT
         $scope.developing = develEnvironment;
+        $scope.mostraNomSociTrobat = true;
         $scope.step0Ready = true;
         $scope.step1Ready = false;
         $scope.step2Ready = false;
