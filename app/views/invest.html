@@ -21,7 +21,7 @@
     <!--END INIT FORM-->
 
     <!-- BEGIN INVEST FORM-->
-    <form name="investForm" class="form-inline" role="form" ng-show="step1Ready" enctype="multipart/form-data" novalidate>
+    <form name="investForm" class="form-inline" role="form" ng-show="isStep(1)" enctype="multipart/form-data" novalidate>
         <div class="row">
             <div class="col-xs-12 heading active">
                 <h1>{{ 'BENVINGUDA' | translate }} <b>{{ soci.nom }} {{ soci.cognom }}</b>!</h1>

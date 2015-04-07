@@ -17,11 +17,15 @@ angular.module('newSomEnergiaWebformsApp')
         // INIT
         $scope.developing = develEnvironment;
         $scope.mostraNomSociTrobat = false;
-        $scope.step0Ready = true;
-        $scope.step1Ready = false;
-        $scope.step2Ready = false;
-        $scope.step3Ready = false;
-        $scope.step4Ready = false;
+
+        $scope.setStep = function(step) {
+            $scope.currentStep = step;
+        }
+        $scope.isStep = function(step) {
+            return $scope.currentStep === step;
+        }
+        $scope.setStep(0);
+
         $scope.initFormStates = {
             IDLE: 1,
             VALIDATINGID: 2,
@@ -72,6 +76,11 @@ angular.module('newSomEnergiaWebformsApp')
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
+
+        $translate("INICIAR_INVERSIO").then(function(translation) {
+            $scope.initFormActionText = translation;
+        });
+
 
         $scope.amountAboveMax = false;
         $scope.amountUnderMin = false;
@@ -164,67 +173,12 @@ console.log($scope.form.acceptaccountowner);
             );
         };
 
-        // MOVE TO STEP 1 FORM
         $scope.initFormSubmited = function() {
-            $scope.step0Ready = false;
-            $scope.step1Ready = true;
-//            $scope.setStepReady(1, 'initFormSubmited');
+            $scope.showStep1Form = true;
+            $scope.setStep(1);
         };
 
-        // BACK TO STEP 1 FORM
-        $scope.backToStep1Form = function() {
-            $scope.setStepReady(0, 'backToStep1Form');
-        };
-
-        // MOVE TO STEP 2 FORM
-        $scope.moveToStep2Form = function() {
-            $scope.setStepReady(2, 'moveToStep2Form');
-        };
-
-        // BACK TO STEP 2 FORM
-        $scope.backToStep2Form = function() {
-            $scope.setStepReady(1, 'backToStep2Form');
-        };
-
-        // MOVE TO STEP 3 FORM
-        $scope.moveToStep3Form = function() {
-            $scope.setStepReady(3, 'moveToStep3Form');
-        };
-
-        // BACK TO STEP 3 FORM
-        $scope.backToStep3Form = function() {
-            $scope.setStepReady(2, 'backToStep3Form');
-        };
-
-        // MOVE TO STEP 4 FORM
-        $scope.moveToStep4Form = function() {
-            $scope.setStepReady(4, 'moveToStep4Form');
-        };
-
-        // BACK TO STEP 4 FORM
-        $scope.backToStep4Form = function() {
-            $scope.setStepReady(3, 'backToStep4Form');
-        };
-
-        // COMMON MOVE STEPS LOGIC
-        $scope.setStepReady = function(enabledStep, eventArgument) {
-            $scope.step0Ready = enabledStep === 0;
-            $scope.step1Ready = enabledStep === 1;
-            $scope.step2Ready = enabledStep === 2;
-            $scope.step3Ready = enabledStep === 3;
-            $scope.step4Ready = enabledStep === 4;
-            if (debugEnabled) {
-                $log.log(eventArgument);
-            }
-            if (develEnvironment) {
-                jQuery(document).trigger('moveStep', [eventArgument]);
-            } else {
-                parent.jQuery('body').trigger('moveStep', [eventArgument]);
-            }
-        };
-
-        // ON INIT SUBMIT FORM
-        var checkEnableInitSubmit1 = false;
+        var timeoutCheckSoci = false;
         $scope.$watch('form.init.socinumber', function(newValue) {
             if ($scope.initFormIsIdle()) {return;}
             if ($scope.initFormIsValidatingId()) {return;}
@@ -237,27 +191,27 @@ console.log($scope.form.acceptaccountowner);
 
             $scope.initFormState = $scope.initFormStates.VALIDATINGMEMBER;
 
-            if (checkEnableInitSubmit1) {
-                $timeout.cancel(checkEnableInitSubmit1);
+            if (timeoutCheckSoci) {
+                $timeout.cancel(timeoutCheckSoci);
             }
-            checkEnableInitSubmit1 = $timeout(function() {
+            timeoutCheckSoci = $timeout(function() {
                 // TODO: Remove redundant conditions
                 if (newValue !== undefined && !$scope.dniIsInvalid && $scope.form.init.dni !== undefined) {
                     $scope.executeGetSociValues();
                 }
             }, cfg.DEFAULT_MILLISECONDS_DELAY);
         });
-        var checkEnableInitSubmit2 = false;
+        var timeoutCheckDni = false;
         $scope.$watch('form.init.dni', function(newValue) {
             if (newValue === undefined) {
                 $scope.initFormState = $scope.initFormStates.IDLE;
                 return;
             }
             $scope.initFormState = $scope.initFormStates.VALIDATINGID;
-            if (checkEnableInitSubmit2) {
-                $timeout.cancel(checkEnableInitSubmit2);
+            if (timeoutCheckDni) {
+                $timeout.cancel(timeoutCheckDni);
             }
-            checkEnableInitSubmit2 = $timeout(function() {
+            timeoutCheckDni = $timeout(function() {
                 var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
                 dniPromise.dni = newValue;
                 dniPromise.then(
@@ -312,7 +266,7 @@ console.log($scope.form.acceptaccountowner);
             }).then(
                 function(response) {
                     uiHandler.hideLoadingDialog();
-                    $log.log('response recived', response);
+                    $log.log('response received', response);
                     if (response.data.status === cfg.STATUS_ONLINE) {
                         if (response.data.state === cfg.STATE_TRUE) {
                             // well done

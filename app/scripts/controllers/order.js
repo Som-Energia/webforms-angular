@@ -17,11 +17,32 @@ angular.module('newSomEnergiaWebformsApp')
         // INIT
         $scope.developing = develEnvironment;
         $scope.mostraNomSociTrobat = true;
-        $scope.step0Ready = true;
-        $scope.step1Ready = false;
-        $scope.step2Ready = false;
-        $scope.step3Ready = false;
-        $scope.step4Ready = false;
+
+
+        $scope.showAllSteps = function(step) {
+            $scope.step1Ready = true;
+            $scope.step2Ready = true;
+            $scope.step3Ready = true;
+            $scope.currentStep = undefined;
+        }
+        $scope.setStep = function(step) {
+            $scope.step0Ready = step === 0;
+            $scope.step1Ready = step === 1;
+            $scope.step2Ready = step === 2;
+            $scope.step3Ready = step === 3;
+            $scope.step4Ready = step === 4;
+            $scope.currentStep = step;
+        }
+        $scope.isStep = function(step) {
+            if (step===0) { return $scope.step0Ready === true; }
+            if (step===1) { return $scope.step1Ready === true; }
+            if (step===2) { return $scope.step2Ready === true; }
+            if (step===3) { return $scope.step3Ready === true; }
+            if (step===4) { return $scope.step4Ready === true; }
+            return step===0;
+        }
+        $scope.setStep(0);
+
         $scope.initFormStates = {
             IDLE: 1,
             VALIDATINGID: 2,
@@ -71,7 +92,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.invalidAttachFileExtension = false;
         $scope.overflowAttachFile = false;
         $scope.accountIsInvalid = false;
-        $scope.showUnknownSociWarning = false;
         $scope.showBeginOrderForm = false;
         $scope.showStep1Form = false;
         $scope.isStep2ButtonReady = false;
@@ -93,6 +113,9 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.use($routeParams.locale);
         }
 
+        $translate("INICIAR_CONTRACTACIO").then(function(translation) {
+            $scope.initFormActionText = translation;
+        });
         // GET LANGUAGES
         AjaxHandler.getLanguages($scope);
 
@@ -113,14 +136,12 @@ angular.module('newSomEnergiaWebformsApp')
                         $log.log('Get partner info response recived', response);
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
-                        $scope.showUnknownSociWarning = false;
                         $scope.initFormState = $scope.initFormStates.READY;
                         if (debugEnabled) {
                             $scope.showStep1Form = false;
                         }
                     } else {
                         $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
-                        $scope.showUnknownSociWarning = true;
                         $scope.showStep1Form = false;
                     }
                 },
@@ -372,11 +393,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // COMMON MOVE STEPS LOGIC
         $scope.setStepReady = function(enabledStep, eventArgument) {
-            $scope.step0Ready = enabledStep === 0;
-            $scope.step1Ready = enabledStep === 1;
-            $scope.step2Ready = enabledStep === 2;
-            $scope.step3Ready = enabledStep === 3;
-            $scope.step4Ready = enabledStep === 4;
+            $scope.setStep(enabledStep);
             if (debugEnabled) {
                 $log.log(eventArgument);
             }
@@ -526,7 +543,7 @@ angular.module('newSomEnergiaWebformsApp')
             }).then(
                 function(response) {
                     uiHandler.hideLoadingDialog();
-                    $log.log('response recived', response);
+                    $log.log('response received', response);
                     if (response.data.status === cfg.STATUS_ONLINE) {
                         if (response.data.state === cfg.STATE_TRUE) {
                             // well done
@@ -554,9 +571,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.messages = 'ERROR';
                     }
                     $scope.overflowAttachFile = true;
-                    $scope.step1Ready = true;
-                    $scope.step2Ready = true;
-                    $scope.step3Ready = true;
+                    $scope.showAllSteps();
                     $scope.rawReason = reason;
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
@@ -586,9 +601,7 @@ angular.module('newSomEnergiaWebformsApp')
                     }
                 }
             }
-            $scope.step1Ready = true;
-            $scope.step2Ready = true;
-            $scope.step3Ready = true;
+            $scope.showAllSteps();
 
             return result;
         };
