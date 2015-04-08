@@ -20,10 +20,10 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.setStep = function(step) {
             $scope.currentStep = step;
-        }
+        };
         $scope.isStep = function(step) {
             return $scope.currentStep === step;
-        }
+        };
         $scope.setStep(0);
 
         $scope.initFormStates = {
@@ -76,7 +76,7 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.use($routeParams.locale);
         }
 
-        $translate("INICIAR_INVERSIO").then(function(translation) {
+        $translate('INICIAR_INVERSIO').then(function(translation) {
             $scope.initFormActionText = translation;
         });
 
@@ -141,10 +141,9 @@ angular.module('newSomEnergiaWebformsApp')
             if ($scope.amountUnderMin) {return false;}
             if ($scope.amountAboveMax) {return false;}
             if ($scope.amountNotHundred) {return false;}
-console.log($scope.form.acceptaccountowner);
             if ($scope.form.acceptaccountowner === false) {return false;}
             return true;
-        }
+        };
 
         // PARTNER NUMBER VALIDATION
         ValidateHandler.validateInteger($scope, 'form.init.socinumber');
@@ -243,7 +242,7 @@ console.log($scope.form.acceptaccountowner);
 
         // Backward with order.js  
         $scope.formListener = function() {
-        }
+        };
 
         // ON SUBMIT FORM
         $scope.sendInvestment = function() {

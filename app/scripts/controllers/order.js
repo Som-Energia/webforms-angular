@@ -19,12 +19,12 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.mostraNomSociTrobat = true;
 
 
-        $scope.showAllSteps = function(step) {
+        $scope.showAllSteps = function() {
             $scope.step1Ready = true;
             $scope.step2Ready = true;
             $scope.step3Ready = true;
             $scope.currentStep = undefined;
-        }
+        };
         $scope.setStep = function(step) {
             $scope.step0Ready = step === 0;
             $scope.step1Ready = step === 1;
@@ -32,7 +32,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.step3Ready = step === 3;
             $scope.step4Ready = step === 4;
             $scope.currentStep = step;
-        }
+        };
         $scope.isStep = function(step) {
             if (step===0) { return $scope.step0Ready === true; }
             if (step===1) { return $scope.step1Ready === true; }
@@ -40,7 +40,7 @@ angular.module('newSomEnergiaWebformsApp')
             if (step===3) { return $scope.step3Ready === true; }
             if (step===4) { return $scope.step4Ready === true; }
             return step===0;
-        }
+        };
         $scope.setStep(0);
 
         $scope.initFormStates = {
@@ -113,7 +113,7 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.use($routeParams.locale);
         }
 
-        $translate("INICIAR_CONTRACTACIO").then(function(translation) {
+        $translate('INICIAR_CONTRACTACIO').then(function(translation) {
             $scope.initFormActionText = translation;
         });
         // GET LANGUAGES
