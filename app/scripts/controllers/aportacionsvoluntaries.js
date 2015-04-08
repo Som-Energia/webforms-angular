@@ -72,7 +72,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.language = {};
         $scope.form = {};
         $scope.form.init = {};
-        $scope.form.accountbankiban = '';
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
@@ -81,15 +80,15 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.initFormActionText = translation;
         });
 
-
+        $scope.form.accountbankiban = '';
+        $scope.aportacioMinima = 100;
+        $scope.aportacioMaxima = 25000;
+        $scope.aportacioSalts = 100;
         $scope.amountAboveMax = false;
         $scope.amountUnderMin = false;
         $scope.amountNotHundred = false;
         $scope.form.amount = 100;
         $scope.form.acceptaccountowner = false;
-        $scope.aportacioMinima = 100;
-        $scope.aportacioMaxima = 25000;
-        $scope.aportacioSalts = 100;
 
         $scope.$watch('form.amount', function(newValue, oldValue) {
             if (newValue === undefined) {
@@ -247,43 +246,46 @@ console.log($scope.form.acceptaccountowner);
         }
 
         // ON SUBMIT FORM
-        $scope.submitOrder = function() {
+        $scope.sendInvestment = function() {
             $scope.messages = null;
             uiHandler.showLoadingDialog();
             // Prepare request data
             var formData = new FormData();
-            formData.append('id_soci', $scope.form.init.socinumber);
+            formData.append('socinumber', $scope.form.init.socinumber);
             formData.append('dni', $scope.form.init.dni);
-            formData.append('payment_iban', $scope.form.accountbankiban);
-            formData.append('condicions', 1);
+            formData.append('accountbankiban', $scope.form.accountbankiban);
+            formData.append('amount', $scope.form.amount);
+            formData.append('acceptaccountowner', 1);
             // Send request data POST
             $http({
                 method: 'POST',
-                url: cfg.API_BASE_URL + 'form/contractacio',
-                headers: {'Content-Type': undefined},
+                url: cfg.API_BASE_URL + 'form/inversio',
+                headers: {'Content-Type': 'application/json'},
                 data: formData,
                 transformRequest: angular.identity
             }).then(
                 function(response) {
                     uiHandler.hideLoadingDialog();
                     $log.log('response received', response);
-                    if (response.data.status === cfg.STATUS_ONLINE) {
-                        if (response.data.state === cfg.STATE_TRUE) {
-                            // well done
-                            uiHandler.showWellDoneDialog();
-                            $window.top.location.href = cfg.CONTRACT_OK_REDIRECT_URL;
-                        } else {
-                            // error
-                            $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
-                            $scope.submitReady = false;
-                            $scope.rawReason = response;
-                            jQuery('#webformsGlobalMessagesModal').modal('show');
-                        }
-                    } else if (response.data.status === cfg.STATUS_OFFLINE) {
+                    if (response.data.status === cfg.STATUS_OFFLINE) {
                         uiHandler.showErrorDialog('API server status offline (ref.022-022)');
-                    } else {
-                        uiHandler.showErrorDialog('API server unknown status (ref.021-021)');
+                        return;
                     }
+                    if (response.data.status !== cfg.STATUS_ONLINE) {
+                        uiHandler.showErrorDialog('API server unknown status (ref.021-021)');
+                        return;
+                    }
+                    if (response.data.state !== cfg.STATE_TRUE) {
+                        // error
+                        $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
+                        $scope.submitReady = false;
+                        $scope.rawReason = response;
+                        jQuery('#webformsGlobalMessagesModal').modal('show');
+                        return;
+                    }
+
+                    uiHandler.showWellDoneDialog();
+                    $window.top.location.href = cfg.CONTRACT_OK_REDIRECT_URL;
                 },
                 function(reason) {
                     $log.error('Send POST failed', reason);
