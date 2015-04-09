@@ -248,20 +248,24 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.sendInvestment = function() {
             $scope.messages = null;
             uiHandler.showLoadingDialog();
-            // Prepare request data
-            var formData = new FormData();
-            formData.append('socinumber', $scope.form.init.socinumber);
-            formData.append('dni', $scope.form.init.dni);
-            formData.append('accountbankiban', $scope.form.accountbankiban);
-            formData.append('amount', $scope.form.amount);
-            formData.append('acceptaccountowner', 1);
             // Send request data POST
+            var formData = new FormData();
+            angular.forEach({
+                socinumber: $scope.form.init.socinumber,
+                dni: $scope.form.init.dni,
+                accountbankiban: $scope.form.accountbankiban,
+                amount: $scope.form.amount,
+                acceptaccountowner: 1,
+            }, function(value, key) {
+                console.log(key, value);
+                formData.append(key,value);
+            });
             $http({
                 method: 'POST',
                 url: cfg.API_BASE_URL + 'form/inversio',
-                headers: {'Content-Type': 'application/json'},
+                headers: {'Content-Type': undefined},
                 data: formData,
-                transformRequest: angular.identity
+                transformRequest: angular.identity,
             }).then(
                 function(response) {
                     uiHandler.hideLoadingDialog();
@@ -278,12 +282,13 @@ angular.module('newSomEnergiaWebformsApp')
                         // error
                         $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
                         $scope.submitReady = false;
-                        $scope.rawReason = response;
+                        $scope.rawReason = JSON.stringify(response,null,'  ');
                         jQuery('#webformsGlobalMessagesModal').modal('show');
                         return;
                     }
 
                     uiHandler.showWellDoneDialog();
+                    // TODO: Cambiar a una pagina de exito propia
                     $window.top.location.href = cfg.CONTRACT_OK_REDIRECT_URL;
                 },
                 function(reason) {
@@ -298,6 +303,7 @@ angular.module('newSomEnergiaWebformsApp')
                     $scope.step2Ready = true;
                     $scope.step3Ready = true;
                     $scope.rawReason = reason;
+                    $scope.rawReason = JSON.stringify(reason,null,'  ');
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
             );
