@@ -97,9 +97,9 @@ angular.module('newSomEnergiaWebformsApp')
                 POTENCIA_CONTRACTADA: 'Potencia contratada',
                 NOM_O_RAO_SOCIAL: 'Nome ou razón social',
                 SI_LES_DADES_SON_CORRECTES: 'Se os datos son correctos preme Si para finalizar o proceso de contratación',
-                SI_TOT_CORRECTE: 'Si, todo correcto'
+                SI_TOT_CORRECTE: 'Si, todo correcto',
 
-                HELP_POPOVER_DNI: 'Exemplo núm. socio: 1250 Exemplo DNI: 12345678P (con letra final)',
+                HELP_POPOVER_DNI: 'Exemplo núm. socio: 1250 Exemplo DNI: 12345678P (con letra final)'
             })
         ;
     });
