@@ -60,9 +60,6 @@ angular.module('newSomEnergiaWebformsApp', [
         //BASE_DOMAIN: '127.0.0.1:9000',
         API_BASE_URL: 'https://api.somenergia.coop/',     // production environment
         //API_BASE_URL: 'http://sompre.gisce.net:5001/',    // test environment
-        CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
-        // TODO: Change this url
-        INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
         STATUS_OFFLINE: 'OFFLINE',
         STATUS_ONLINE: 'ONLINE',
         STATE_TRUE: true,

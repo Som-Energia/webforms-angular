@@ -113,9 +113,8 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.use($routeParams.locale);
         }
 
-        $translate('INICIAR_CONTRACTACIO').then(function(translation) {
-            $scope.initFormActionText = translation;
-        });
+        $scope.initFormActionText = $translate.instant('INICIAR_CONTRACTACIO');
+
         // GET LANGUAGES
         AjaxHandler.getLanguages($scope);
 
@@ -548,7 +547,7 @@ angular.module('newSomEnergiaWebformsApp')
                         if (response.data.state === cfg.STATE_TRUE) {
                             // well done
                             uiHandler.showWellDoneDialog();
-                            $window.top.location.href = cfg.CONTRACT_OK_REDIRECT_URL;
+                            $window.top.location.href = $translate.instant('CONTRACT_OK_REDIRECT_URL')
                         } else {
                             // error
                             $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);

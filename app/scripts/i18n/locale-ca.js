@@ -120,6 +120,8 @@ angular.module('newSomEnergiaWebformsApp')
                 CONFIRMAR_INVERSIO: 'Confirmar inversió',
                 COMPROVANT: 'Comprovant...',
                 CORRECTE: 'Correcte.',
+                INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/ca/inversio-realitzada',
+                CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
             })
         ;
     });

@@ -99,7 +99,31 @@ angular.module('newSomEnergiaWebformsApp')
                 SI_LES_DADES_SON_CORRECTES: 'Datuak zuzenak badira klikatu bai kontratazio prozesua amaitzeko',
                 SI_TOT_CORRECTE: 'Bai, dena zuzena da',
 
-                HELP_POPOVER_DNI: 'Adibide bazkide zbk: 1250 Adibide NAN: 12345678P (azkenengo letra barne)'
+// Traducciones pendientes
+
+//                HELP_POPOVER_SOCIA: '¿No recuerdas tu nº de socio/a? Averígualo en el apartado "Datos Personales" de la <a href="https://oficinavirtual.somenergia.coop/">Oficina Virtual</a>.',
+//                HELP_POPOVER_DNI: 'Ejemplo DNI: 12345678P (con letra final)',
+//                SOCIA_TROBADA: 'Soci/a encontrado/a',
+//                VALIDANT_ID: 'Validando documento de identificación...',
+//                IDENTIFICANT_SOCIA: 'Identificando socio/a...',
+//                DNI_INVALID: 'Código de DNI/NIE/CIF inválido.',
+//                SERVER_ERRROR: 'Error accediendo al servidor:',
+//                INICIAR_INVERSIO: 'Iniciar Inversión',
+//                FORMULARI_D_INVERSIO: 'Formulario de <b>inversión</b>',
+//                BENVINGUDA: 'Bienvenido/a, ',
+//                QUANT_VOLS_INVERTIR: '¿Cuánto quieres <b>invertir</b>? <br/> <small>En aportación voluntaria</small>',
+//                RECORDA: 'Recuerda: ',
+//                AMOUNT_HELPER_MIN: 'Mínima aportación 100€',
+//                AMOUNT_HELPER_MAX: 'Máxima aportación 25.000€',
+//                AMOUNT_HELPER_STEP: 'Cantidad múltiple de 100€',
+//                DES_DE_QUIN_COMPTE: '¿Desde qué <b>cuenta?</b>',
+//                NUMERO_DE_COMPTE_FORMAT_IBAN: 'Número de cuenta en formato IBAN. Ejemplo: ES11 2222 3333 4444 5555 6666',
+//                CONFIRMO_CONDICIONS_INVERSIO: 'Confirmo que soy el titular de la cuenta corriente, autorizo la domiciliación y acepto las <a href"http://somenergia.coop/es/condiciones-generales-inversion">condiciones generales de la inversión</a> y la <a href="https://www.somenergia.coop/es/politica-de-privacidad-cookies-y-aviso-legal/">política de privacidad</a>',
+//                CONFIRMAR_INVERSIO: 'Confirmar inversión',
+//                COMPROVANT: 'Comprovando...',
+//                CORRECTE: 'Correcto.',
+                INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/inversion-realizada',
+                CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
             })
         ;
     });
