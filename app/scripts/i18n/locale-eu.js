@@ -29,7 +29,7 @@ angular.module('newSomEnergiaWebformsApp')
                 INFO_APORTACIO: 'Bazkide izateko ekarpena 100 €-koa da<br/>100€ behin ordaintzen dira, ez dago urteko kuotarik eta kooperatiban baja eman ezkero bueltan itzuliko dira.',
                 FINALITZA_PROCES: 'Prozesuarekin jarraitzeko',
                 FORMULARI_NO_DISPONIBLE: 'Formularioa ez dago eskuragarri, barkatu eragozpenak.',
-                INVALID: '<Baliogabea',
+                INVALID: 'Baliogabea',
                 EMAIL_NO_IGUALS: 'Email desberdinak',
                 DIGITS_LENGTH_5: '5 digituko zenbakia izan behar du',
                 REGISTRE_EXISTENT: 'Badago erregistroa',
