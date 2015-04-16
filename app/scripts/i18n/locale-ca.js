@@ -116,7 +116,7 @@ angular.module('newSomEnergiaWebformsApp')
                 AMOUNT_HELPER_STEP: 'Quantitat múltiple de 100€',
                 DES_DE_QUIN_COMPTE: 'Des de quin <b>compte</b>?',
                 NUMERO_DE_COMPTE_FORMAT_IBAN: 'Número de compte en format IBAN. Exemple: ES11 2222 3333 4444 5555 6666',
-                CONFIRMO_CONDICIONS_INVERSIO: 'Confirmo que sóc el titular del compte corrent, autoritzo la domiciliació i accepto les <a href="TODO">condicions generals de la inversió</a> i la <a href="TODO">política de privacitat',
+                CONFIRMO_CONDICIONS_INVERSIO: 'Confirmo que sóc el titular del compte corrent, autoritzo la domiciliació i accepto les <a href="http://somenergia.coop/ca/condicions-generals-inversio">condicions generals de la inversió</a> i la <a href="https://www.somenergia.coop/ca/politica-de-privacitat-cookies-i-avis-legal/">política de privacitat',
                 CONFIRMAR_INVERSIO: 'Confirmar inversió',
                 COMPROVANT: 'Comprovant...',
                 CORRECTE: 'Correcte.',
