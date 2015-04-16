@@ -13,6 +13,14 @@ angular.module('newSomEnergiaWebformsApp')
         if (!develEnvironment) {
             document.domain = cfg.BASE_DOMAIN;
         }
+        // Just when developing, show untranslated strings instead of falling back to spanish
+        if (!develEnvironment ) {
+            $translate.fallbackLanguage('es');
+        }
+        // DEBUG (only apply on development environment)
+        if (debugEnabled) {
+            cfg.API_BASE_URL = 'http://sompre.gisce.net:5001/';
+        }
 
         // INIT
         $scope.developing = develEnvironment;
@@ -350,8 +358,4 @@ angular.module('newSomEnergiaWebformsApp')
             return $scope.form.accountbankiban1 + ' ' + $scope.form.accountbankiban2 + ' ' + $scope.form.accountbankiban3 + ' ' + $scope.form.accountbankiban4 + ' ' + $scope.form.accountbankiban5 + ' ' + $scope.form.accountbankiban6;
         };
 
-        // DEBUG (only apply on development environment)
-        if (debugEnabled) {
-            cfg.API_BASE_URL = 'http://sompre.gisce.net:5001/';
-        }
     });
