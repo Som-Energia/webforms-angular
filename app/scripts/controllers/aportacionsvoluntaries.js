@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('AportacioVoluntariaCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
+    .controller('AportacioVoluntariaCtrl', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
         var debugEnabled = true;
@@ -354,4 +354,4 @@ angular.module('newSomEnergiaWebformsApp')
         if (debugEnabled) {
             cfg.API_BASE_URL = 'http://sompre.gisce.net:5001/';
         }
-    }]);
+    });

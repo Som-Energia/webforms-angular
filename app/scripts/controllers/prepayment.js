@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('PrepaymentCtrl', ['cfg', 'prepaymentService', '$http', '$scope', '$sce', function (cfg, prepaymentService, $http, $scope, $sce) {
+    .controller('PrepaymentCtrl', function (cfg, prepaymentService, $http, $scope, $sce) {
 
         $scope.data = prepaymentService.getData();
 
@@ -16,4 +16,4 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // $log.log('prepayment endpoint', $scope.data.endpoint);
-    }]);
+    });
