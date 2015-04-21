@@ -50,7 +50,7 @@ angular.module('newSomEnergiaWebformsApp')
             INVALIDID: 4,
             INVALIDMEMBER: 5,
             READY: 6,
-            APIERROR: 7,
+            APIERROR: 7
         };
         $scope.initFormState = $scope.initFormStates.IDLE;
 
@@ -547,7 +547,7 @@ angular.module('newSomEnergiaWebformsApp')
                         if (response.data.state === cfg.STATE_TRUE) {
                             // well done
                             uiHandler.showWellDoneDialog();
-                            $window.top.location.href = $translate.instant('CONTRACT_OK_REDIRECT_URL')
+                            $window.top.location.href = $translate.instant('CONTRACT_OK_REDIRECT_URL');
                         } else {
                             // error
                             $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);

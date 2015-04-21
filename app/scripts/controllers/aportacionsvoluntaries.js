@@ -41,7 +41,7 @@ angular.module('newSomEnergiaWebformsApp')
             INVALIDID: 4,
             INVALIDMEMBER: 5,
             READY: 6,
-            APIERROR: 7,
+            APIERROR: 7
         };
         $scope.initFormState = $scope.initFormStates.IDLE;
 
@@ -260,7 +260,7 @@ angular.module('newSomEnergiaWebformsApp')
                 dni: $scope.form.init.dni,
                 accountbankiban: $scope.form.accountbankiban,
                 amount: $scope.form.amount,
-                acceptaccountowner: 1,
+                acceptaccountowner: 1
             }, function(value, key) {
                 console.log(key, value);
                 formData.append(key,value);
