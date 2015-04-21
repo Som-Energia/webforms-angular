@@ -23,7 +23,8 @@ This should be the parameters to upload the website:
 	{
 		"host" : "myhost",
 		"username" : "andrewrjones",
-		"password" : "**************"
+		"password" : "**************",
+		"path": "/target/path"
 	}
 
 #### app/scripts/debug.js
@@ -66,6 +67,16 @@ This should be sample parameters to check the website while developing
 
 	$ grunt serve
 	$ firefox http://localhost:9000
+
+### Deploy on an actual server
+
+To publish on the sftp server specifiet at secret.json 
+
+    $ grunt sftp
+
+
+
+
 
 
 
