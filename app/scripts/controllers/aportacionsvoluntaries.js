@@ -83,7 +83,7 @@ angular.module('newSomEnergiaWebformsApp')
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
-        $scope.initFormActionText = $translate.instant('INICIAR_INVERSIO')
+        $scope.initFormActionText = $translate.instant('INICIAR_INVERSIO');
 
         $scope.form.accountbankiban = '';
         $scope.aportacioMinima = 100;
@@ -294,7 +294,7 @@ angular.module('newSomEnergiaWebformsApp')
 
                     uiHandler.showWellDoneDialog();
                     // TODO: Cambiar a una pagina de exito propia
-                    $window.top.location.href = $translate.instant('INVEST_OK_REDIRECT_URL')
+                    $window.top.location.href = $translate.instant('INVEST_OK_REDIRECT_URL');
                 },
                 function(reason) {
                     $log.error('Send POST failed', reason);
