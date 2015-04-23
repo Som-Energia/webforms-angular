@@ -84,6 +84,7 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.use($routeParams.locale);
         }
         $scope.initFormActionText = $translate.instant('INICIAR_INVERSIO');
+        $scope.submitButtonText = $translate.instant('CONFIRMAR_INVERSIO');
 
         $scope.form.accountbankiban = '';
         $scope.aportacioMinima = 100;
@@ -265,6 +266,8 @@ angular.module('newSomEnergiaWebformsApp')
                 console.log(key, value);
                 formData.append(key,value);
             });
+
+            $scope.submitButtonText = $translate.instant('LOADING');
             $http({
                 method: 'POST',
                 url: cfg.API_BASE_URL + 'form/inversio',
