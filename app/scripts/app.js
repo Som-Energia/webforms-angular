@@ -59,7 +59,7 @@ angular.module('newSomEnergiaWebformsApp', [
         BASE_DOMAIN: 'somenergia.coop',
         //BASE_DOMAIN: '127.0.0.1:9000',
         API_BASE_URL: 'https://api.somenergia.coop/',     // production environment
-        //API_BASE_URL: 'http://sompre.gisce.net:5001/',    // test environment
+        //API_BASE_URL: 'https://sompre.gisce.net:5001/',    // test environment
         STATUS_OFFLINE: 'OFFLINE',
         STATUS_ONLINE: 'ONLINE',
         STATE_TRUE: true,

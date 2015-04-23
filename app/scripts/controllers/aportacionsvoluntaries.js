@@ -19,7 +19,7 @@ angular.module('newSomEnergiaWebformsApp')
         }
         // DEBUG (only apply on development environment)
         if (debugEnabled) {
-            cfg.API_BASE_URL = 'http://sompre.gisce.net:5001/';
+            cfg.API_BASE_URL = 'https://sompre.gisce.net:5001/';
         }
 
         // INIT
