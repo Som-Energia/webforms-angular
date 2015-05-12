@@ -111,7 +111,7 @@ angular.module('newSomEnergiaWebformsApp')
 //                INICIAR_INVERSIO: 'Iniciar Inversión',
 //                FORMULARI_D_INVERSIO: 'Formulario de <b>inversión</b>',
 //                BENVINGUDA: 'Bienvenido/a, ',
-//                QUANT_VOLS_INVERTIR: '¿Cuánto quieres <b>invertir</b>? <br/> <small>En aportación voluntaria</small>',
+//                QUANT_VOLS_INVERTIR: '¿Cuánto quieres <b>invertir</b>? <br/> <small>En aportación voluntaria al capital social</small>',
 //                RECORDA: 'Recuerda: ',
 //                AMOUNT_HELPER_MIN: 'Mínima aportación 100€',
 //                AMOUNT_HELPER_MAX: 'Máxima aportación 25.000€',
