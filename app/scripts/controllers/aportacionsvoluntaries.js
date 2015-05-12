@@ -177,6 +177,8 @@ angular.module('newSomEnergiaWebformsApp')
             );
         };
 
+        $scope.submiting = false;
+
         $scope.initFormSubmited = function() {
             $scope.showStep1Form = true;
             $scope.setStep(1);
@@ -253,7 +255,7 @@ angular.module('newSomEnergiaWebformsApp')
         // ON SUBMIT FORM
         $scope.sendInvestment = function() {
             $scope.messages = null;
-            uiHandler.showLoadingDialog();
+            $scope.submiting = true;
             // Send request data POST
             var formData = new FormData();
             angular.forEach({
@@ -267,7 +269,7 @@ angular.module('newSomEnergiaWebformsApp')
                 formData.append(key,value);
             });
 
-            $scope.submitButtonText = $translate.instant('LOADING');
+            $scope.submitButtonText = $translate.instant('SENDING');
             $http({
                 method: 'POST',
                 url: cfg.API_BASE_URL + 'form/inversio',
@@ -276,7 +278,6 @@ angular.module('newSomEnergiaWebformsApp')
                 transformRequest: angular.identity,
             }).then(
                 function(response) {
-                    uiHandler.hideLoadingDialog();
                     $log.log('response received', response);
                     if (response.data.status === cfg.STATUS_OFFLINE) {
                         uiHandler.showErrorDialog('API server status offline (ref.022-022)');
@@ -289,7 +290,6 @@ angular.module('newSomEnergiaWebformsApp')
                     if (response.data.state !== cfg.STATE_TRUE) {
                         // error
                         $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
-                        $scope.submitReady = false;
                         $scope.rawReason = JSON.stringify(response,null,'  ');
                         jQuery('#webformsGlobalMessagesModal').modal('show');
                         return;
@@ -301,16 +301,11 @@ angular.module('newSomEnergiaWebformsApp')
                 },
                 function(reason) {
                     $log.error('Send POST failed', reason);
-                    uiHandler.hideLoadingDialog();
                     if (reason.status === 413) {
                         $scope.messages = 'ERROR 413';
                     } else {
                         $scope.messages = 'ERROR';
                     }
-                    $scope.step1Ready = true;
-                    $scope.step2Ready = true;
-                    $scope.step3Ready = true;
-                    $scope.rawReason = reason;
                     $scope.rawReason = JSON.stringify(reason,null,'  ');
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
@@ -329,18 +324,9 @@ angular.module('newSomEnergiaWebformsApp')
             }
             if (arrayResponse.invalid_fields !== undefined) {
                 for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
-                    if (arrayResponse.invalid_fields[j].field === 'cups' && arrayResponse.invalid_fields[j].error === 'exist') {
-                        $scope.orderForm.cups.$setValidity('exist', false);
-                    } else if (arrayResponse.invalid_fields[j].field === 'fitxer' && arrayResponse.invalid_fields[j].error === 'bad_extension') {
-                        $scope.orderForm.file.$setValidity('exist', false);
-                    } else {
-                        result = result + 'ERROR INVALID FIELD: ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error + ' ';
-                    }
+                    result += 'ERROR INVALID FIELD: ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error + ' ';
                 }
             }
-            $scope.step1Ready = true;
-            $scope.step2Ready = true;
-            $scope.step3Ready = true;
 
             return result;
         };

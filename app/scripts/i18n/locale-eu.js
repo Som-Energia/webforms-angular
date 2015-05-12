@@ -89,7 +89,7 @@ angular.module('newSomEnergiaWebformsApp')
                 DONATIU_VOLUNTARI: 'Borondatezko ekarpena',
                 ELS_SOCIS_I_SOCIES_QUE_HO_DESITGIN_PODEN_REALITZAR_UN_DONATIU_VOLUNTARI: 'Nahi duten bazkideek 0,01 €/kWhko ekarpen boluntarioa egin dezakete lurraldean zehar zabaldurik dauden 50 talde lokal baino gehiagoren sutengu eta laguntza gisa. Batazbesteko kontsumo bateko familia baten kasuan ( 300 kWh/hilabeteko), hilean 3 euroko igoera suposatzen du. Nahi duzunean aktibatu edo desaktibatu ahal da laguntza hau momentuan bertan bulego birtualean.',
                 CONFIRMAR_CONTRACTACIO: 'Kontratazioa baieztatu',
-                LOADING: 'Datuak bidaltzen...',
+                SENDING: 'Datuak bidaltzen...',
                 ENVIANT_DADES: 'Faktura bat gehitzekotan prozesua amaitzeak denbora dexente iraun lezake, arxtibategiaren pisuaren edota zure Internet-konexioaren arabera. Anima zaitez eta energia on, ia amaitu duzu! :)',
                 REVISIO_CONFIRMACIO_DADES: 'Datuak errepasatu eta konfirmatu',
                 EL_CONTRACTE_CANVIA_TITULAR: 'Kontratua titularrez aldatzen al da?',

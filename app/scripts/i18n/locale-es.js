@@ -89,7 +89,7 @@ angular.module('newSomEnergiaWebformsApp')
                 DONATIU_VOLUNTARI: 'Donativo voluntario 0,01€/kWh',
                 ELS_SOCIS_I_SOCIES_QUE_HO_DESITGIN_PODEN_REALITZAR_UN_DONATIU_VOLUNTARI: 'Los socios que lo deseen pueden realizar un donativo voluntario de 0,01€/kWh destinado a apoyar y facilitar la acción social y voluntaria de los más de 50 Grupos Locales repartidos por el territorio. Para un consumo medio de una familia (aproximadamente 300kWh/mes) esto representa un incremento de 3€ mensuales. Siempre que lo desees podrás activar o desactivar este donativo al instante desde la Oficinal Virtual.',
                 CONFIRMAR_CONTRACTACIO: 'Confirmar contratación',
-                LOADING: 'Enviando datos...',
+                SENDING: 'Enviando datos...',
                 ENVIANT_DADES: 'Si has adjuntado una factura este proceso puede tardar un tiempo y este tiempo dependerá del peso del archivo y de tu conexión a internet. Ánimos y buenas energías, que ya casi lo has conseguido! :)',
                 REVISIO_CONFIRMACIO_DADES: 'Revisión y confirmación de los datos',
                 EL_CONTRACTE_CANVIA_TITULAR: '¿El contrato cambia de titular?',
