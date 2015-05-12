@@ -331,20 +331,4 @@ angular.module('newSomEnergiaWebformsApp')
             return result;
         };
 
-        // GET COMPLETE ACCOUNT NUMBER
-        $scope.getCompleteAccountNumber = function() {
-            return $scope.form.accountbank + $scope.form.accountoffice + $scope.form.accountchecksum + $scope.form.accountnumber;
-        };
-        $scope.getCompleteIban = function() {
-            return $scope.form.accountbankiban1 + $scope.form.accountbankiban2 + $scope.form.accountbankiban3 + $scope.form.accountbankiban4 + $scope.form.accountbankiban5 + $scope.form.accountbankiban6;
-        };
-
-        // GET COMPLETE ACCOUNT NUMBER WITH FORMAT
-        $scope.getCompleteAccountNumberWithFormat = function() {
-            return $scope.form.accountbank + '-' + $scope.form.accountoffice + '-' + $scope.form.accountchecksum + '-' + $scope.form.accountnumber;
-        };
-        $scope.getCompleteIbanWithFormat = function() {
-            return $scope.form.accountbankiban1 + ' ' + $scope.form.accountbankiban2 + ' ' + $scope.form.accountbankiban3 + ' ' + $scope.form.accountbankiban4 + ' ' + $scope.form.accountbankiban5 + ' ' + $scope.form.accountbankiban6;
-        };
-
     });
