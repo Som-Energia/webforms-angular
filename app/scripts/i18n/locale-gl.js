@@ -56,7 +56,7 @@ angular.module('newSomEnergiaWebformsApp')
                 HELP_POPOVER_RATE: 'Atoparalo na túa factura actual. Para máis información consulta o apartado de Axuda da web.',
                 INFORMACIO_OPCIONAL: 'Información opcional',
                 HELP_POPOVER_OPTIONAL_INFO: 'Los datos de consumo anual podrían ser útiles para emitir nuestras primeras facturas.',
-                CONSUM_ANUAL_ESTIMAT: 'Consumo anual estimado',
+                CONSUM_ANUAL_ESTIMAT: 'Consumo anual estimado (kWh)',
                 REFERENCIA_CATASTRAL: 'Referencia catastral do inmoble',
                 HELP_POPOVER_REFERENCIA_CATASTRAL: 'Máis información aquí:<br/><a target="_blank" href="https://www1.sedecatastro.gob.es/OVCFrames.aspx?TIPO=CONSULTA">España</a><br/><a target="_blank" href="http://www.bizkaia.net/home2/Temas/DetalleTema.asp?Tem_Codigo=5181&Idioma=CA">Bizkaia</a><br/><a target="_blank" href="http://catastroalava.tracasa.es/navegar/?lang=es">Araba</a><br/><a target="_blank" href="http://www4.gipuzkoa.net/ogasuna/catastro/presenta.asp">Guipuzkoa</a><br/><a target="_blank" href="https://catastro.navarra.es/">Navarra</a>',
                 ADJUNTAR_ULTIMA_FACTURA: 'Anexar a última factura eléctrica (PDF ou JPG) - 10Mb máximo',
