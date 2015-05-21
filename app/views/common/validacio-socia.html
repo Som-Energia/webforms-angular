@@ -1,0 +1,92 @@
+    <!-- BEGIN INIT FORM-->
+    <form name="initForm" class="form-inline" role="form" data-ng-show="isStep(0)" novalidate>
+        <!--FIRST STEP-->
+        <div class="row extra-margin-top">
+            <div class="form-group col-xs-6 col-sm-5 col-md-4 col-lg-3">
+                <label class="sr-only">{{ 'NUMERO_SOCI' | translate }}*</label>
+                <div class="input-group" style="width: 100%">
+                    <input type="text" name="socinumber" class="form-control input-lg" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="form.init.socinumber" data-ng-change="formListener()" required/>
+                    <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>
+                        <span class="spc-html badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_SOCIA' | translate }}" data-placement="top">?</span>
+                    </span>
+               </div>
+            </div>
+            <div class="form-group col-xs-6 col-sm-5 col-md-4 col-lg-3" >
+                <label class="sr-only">DNI/NIE/CIF*</label>
+                <div class="input-group" style="width: 100%">
+                    <input type="text" name="dni" class="form-control input-lg" placeholder="DNI/NIE/CIF*" data-ng-model="form.init.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': initFormIsInvalidId()}" required/>
+                    <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>
+                        <span class="spc-html badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_DNI' | translate }}" data-placement="top">?</span>
+                    </span>
+                </div>
+                <span></span>
+                <span class="label label-danger" style="position:absolute;" data-ng-show="initFormIsInvalidId()">{{ 'INVALID' | translate }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <p
+                ng-if='initFormIsReady()'
+                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-success"
+                style="margin-bottom:4ex"
+                >{{ 'SOCIA_TROBADA' | translate }}{{ mostraNomSociTrobat ? ': ' + soci.nom+' '+soci.cognom :''}}</p>
+            <p
+                ng-if='initFormIsValidatingId()'
+                style="margin-bottom:4ex"
+                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-info"
+                >{{ 'VALIDANT_ID'| translate}}</p>
+            <p
+                ng-if='initFormIsValidatingMember()'
+                style="margin-bottom:4ex"
+                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-info"
+                >{{ 'IDENTIFICANT_SOCIA'| translate}}</p>
+            <div
+                ng-if="initFormIsInvalidMember()"
+                style="margin-bottom:4ex"
+                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
+                >{{ 'NO_TROBEM_CAP_SOCI_VINCULAT' | translate}}
+                <p data-ng-bind-html="'NO_ETS_SOCI_FES_TE_AQUI' | translate "></p>
+                </div>
+            <p
+                ng-if="initFormIsInvalidId()"
+                style="margin-bottom:4ex"
+                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
+                >{{ 'DNI_INVALID' | translate}}</p>
+            <p
+                ng-if="initFormIsApiError()"
+                style="margin-bottom:4ex"
+                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
+                >{{ 'SERVER_ERRROR' | translate}} {{ apiError }}</p>
+            <p
+                ng-if="initFormIsIdle()"
+                style="margin-bottom:4ex; visibility:hidden"
+                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
+                >PlaceholderMessage</p>
+
+            <div class="col-xs-2 col-md-4 col-lg-6 pull-right"></div>
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right">
+                <button class="btn btn-default btn-lg btn-block submit" data-ng-disabled="!initFormIsReady()" data-ng-class="{'green': initFormIsReady(), 'grey':!initFormIsReady()}" data-ng-click="initFormSubmited()" type="button"
+>{{ initFormActionText }}</button>
+            </div>
+        </div>
+        <div class="row" ng-if='developing && false'>
+            <div class="col-xs-12">
+                {{ currentInitState() }}
+            </div>
+        </div>
+    </form>
+    <!--END INIT FORM-->
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery(".spc-html").popover(
+                {
+                    html : true,
+                    trigger : 'hover',
+                    delay : { show : 0, hide : 2500 }
+                }
+        );
+        jQuery(".spc").popover({trigger : 'hover'});
+        setTimeout(function () { jQuery("#spc-rate-conditional").popover({trigger : 'hover'}); }, 1000);
+    });
+</script>
+

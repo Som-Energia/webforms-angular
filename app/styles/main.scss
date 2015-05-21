@@ -269,6 +269,13 @@ h1 { font-size: 25px; }
 
 h2 { font-size: 25px; }
 
+h1, h2, h3, h4 {
+  &.green {
+    color: $green;
+    margin:0;
+  }
+}
+
 h4 {
   &.confirm {
     font-size: 22px;
@@ -409,6 +416,13 @@ select[disabled] { color: $grey; }
 .col-xs-height {
   display: table-cell;
   float: none;
+}
+
+/* Overload default bootstrap right alignment, was used for buttons, detailed error text is used here */
+.modal-footer {
+  pre {
+    text-align: left;
+  }
 }
 
 /* Responsive: Portrait tablets and up */

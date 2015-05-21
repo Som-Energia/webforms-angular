@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('OrderCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$window', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
+    .controller('OrderCtrl', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
         var debugEnabled = false;
@@ -15,11 +15,72 @@ angular.module('newSomEnergiaWebformsApp')
         }
 
         // INIT
-        $scope.step0Ready = true;
-        $scope.step1Ready = false;
-        $scope.step2Ready = false;
-        $scope.step3Ready = false;
-        $scope.step4Ready = false;
+        $scope.developing = develEnvironment;
+        $scope.mostraNomSociTrobat = true;
+
+
+        $scope.showAllSteps = function() {
+            $scope.step1Ready = true;
+            $scope.step2Ready = true;
+            $scope.step3Ready = true;
+            $scope.currentStep = undefined;
+        };
+        $scope.setStep = function(step) {
+            $scope.step0Ready = step === 0;
+            $scope.step1Ready = step === 1;
+            $scope.step2Ready = step === 2;
+            $scope.step3Ready = step === 3;
+            $scope.step4Ready = step === 4;
+            $scope.currentStep = step;
+        };
+        $scope.isStep = function(step) {
+            if (step===0) { return $scope.step0Ready === true; }
+            if (step===1) { return $scope.step1Ready === true; }
+            if (step===2) { return $scope.step2Ready === true; }
+            if (step===3) { return $scope.step3Ready === true; }
+            if (step===4) { return $scope.step4Ready === true; }
+            return step===0;
+        };
+        $scope.setStep(0);
+
+        $scope.initFormStates = {
+            IDLE: 1,
+            VALIDATINGID: 2,
+            VALIDATINGMEMBER: 3,
+            INVALIDID: 4,
+            INVALIDMEMBER: 5,
+            READY: 6,
+            APIERROR: 7
+        };
+        $scope.initFormState = $scope.initFormStates.IDLE;
+
+        $scope.initFormIsIdle = function () {
+            return $scope.initFormState === $scope.initFormStates.IDLE;
+        };
+        $scope.initFormIsValidatingId = function () {
+            return $scope.initFormState === $scope.initFormStates.VALIDATINGID;
+        };
+        $scope.initFormIsValidatingMember = function () {
+            return $scope.initFormState === $scope.initFormStates.VALIDATINGMEMBER;
+        };
+        $scope.initFormIsInvalidId = function () {
+            return $scope.initFormState === $scope.initFormStates.INVALIDID;
+        };
+        $scope.initFormIsInvalidMember = function () {
+            return $scope.initFormState === $scope.initFormStates.INVALIDMEMBER;
+        };
+        $scope.initFormIsReady = function () {
+            return $scope.initFormState === $scope.initFormStates.READY;
+        };
+        $scope.initFormIsApiError = function () {
+            return $scope.initFormState === $scope.initFormStates.APIERROR;
+        };
+        $scope.currentInitState = function() {
+            return Object.keys($scope.initFormStates)
+                .filter(function(key) {
+                    return $scope.initFormStates[key] === $scope.initFormState;
+                })[0];
+        };
         $scope.dniIsInvalid = false;
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
@@ -31,11 +92,8 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.invalidAttachFileExtension = false;
         $scope.overflowAttachFile = false;
         $scope.accountIsInvalid = false;
-        $scope.showUnknownSociWarning = false;
         $scope.showBeginOrderForm = false;
         $scope.showStep1Form = false;
-        $scope.initSubmitReady = false;
-        $scope.initFormSubmitted = false;
         $scope.isStep2ButtonReady = false;
         $scope.isStep3ButtonReady = false;
         $scope.isFinalStepButtonReady = false;
@@ -55,6 +113,8 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.use($routeParams.locale);
         }
 
+        $scope.initFormActionText = $translate.instant('INICIAR_CONTRACTACIO');
+
         // GET LANGUAGES
         AjaxHandler.getLanguages($scope);
 
@@ -64,22 +124,31 @@ angular.module('newSomEnergiaWebformsApp')
         // GET PARTNER DATA
         $scope.executeGetSociValues = function() {
             var sociPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/soci/' + $scope.form.init.socinumber + '/' + $scope.form.init.dni, '001');
+            sociPromise.soci = $scope.form.init.socinumber;
+            sociPromise.dni = $scope.form.init.dni;
             sociPromise.then(
                 function(response) {
+                    if ($scope.form.init.socinumber !== sociPromise.soci) {return;}
+                    if ($scope.form.init.dni !== sociPromise.dni) {return;}
+
                     if (response.state === cfg.STATE_TRUE) {
                         $log.log('Get partner info response recived', response);
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
-                        $scope.showUnknownSociWarning = false;
+                        $scope.initFormState = $scope.initFormStates.READY;
                         if (debugEnabled) {
                             $scope.showStep1Form = false;
                         }
                     } else {
-                        $scope.showUnknownSociWarning = true;
+                        $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
                         $scope.showStep1Form = false;
                     }
                 },
-                function(reason) { $log.error('Get partner info failed', reason); }
+                function(reason) {
+                    $scope.initFormState = $scope.initFormStates.APIERROR;
+                    $scope.apiError = reason;
+                    $log.error('Get partner info failed', reason);
+                }
             );
         };
 
@@ -93,8 +162,8 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateInteger($scope, 'form.estimation');
 
         // DNI VALIDATION
-        var checkDniTimer = false;
-        ValidateHandler.validateDni($scope, 'form.init.dni', checkDniTimer);
+//        var checkDniTimer = false;
+//        ValidateHandler.validateDni($scope, 'form.init.dni', checkDniTimer);
         var checkDni2Timer = false;
         ValidateHandler.validateDni($scope, 'form.dni', checkDni2Timer);
         var checkDni3Timer = false;
@@ -174,8 +243,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function() {
-            $scope.initSubmitReady = $scope.form.init.dni !== undefined && $scope.form.init.socinumber !== undefined && $scope.dniIsInvalid === false;
-            $scope.isStep2ButtonReady = $scope.initSubmitReady &&
+            $scope.isStep2ButtonReady = $scope.initFormIsReady() &&
                 $scope.form.address !== undefined &&
                 $scope.form.province !== undefined &&
                 $scope.form.city !== undefined &&
@@ -253,7 +321,11 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.orderForm.accountnumber.$setValidity('invalid', !$scope.accountIsInvalid);
                         $scope.formListener($scope.form);
                     },
-                    function(reason) { $log.error('Check account number failed', reason); }
+                    function(reason) {
+                        $scope.initFormState = $scope.initFormStates.APIERROR;
+                        $scope.apiError = reason;
+                        $log.error('Check account number failed', reason);
+                    }
                 );
             }
         };
@@ -278,9 +350,9 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // MOVE TO STEP 1 FORM
-        $scope.initOrderForm = function() {
+        $scope.initFormSubmited = function() {
             $scope.showStep1Form = true;
-            $scope.setStepReady(1, 'initOrderForm');
+            $scope.setStepReady(1, 'initFormSubmited');
         };
 
         // BACK TO STEP 1 FORM
@@ -320,11 +392,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // COMMON MOVE STEPS LOGIC
         $scope.setStepReady = function(enabledStep, eventArgument) {
-            $scope.step0Ready = enabledStep === 0;
-            $scope.step1Ready = enabledStep === 1;
-            $scope.step2Ready = enabledStep === 2;
-            $scope.step3Ready = enabledStep === 3;
-            $scope.step4Ready = enabledStep === 4;
+            $scope.setStep(enabledStep);
             if (debugEnabled) {
                 $log.log(eventArgument);
             }
@@ -338,10 +406,22 @@ angular.module('newSomEnergiaWebformsApp')
         // ON INIT SUBMIT FORM
         var checkEnableInitSubmit1 = false;
         $scope.$watch('form.init.socinumber', function(newValue) {
+            if ($scope.initFormIsIdle()) {return;}
+            if ($scope.initFormIsValidatingId()) {return;}
+            if ($scope.initFormIsInvalidId()) {return;}
+
+            if (newValue === undefined) {
+                $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
+                return;
+            }
+
+            $scope.initFormState = $scope.initFormStates.VALIDATINGMEMBER;
+
             if (checkEnableInitSubmit1) {
                 $timeout.cancel(checkEnableInitSubmit1);
             }
             checkEnableInitSubmit1 = $timeout(function() {
+                // TODO: Remove redundant conditions
                 if (newValue !== undefined && !$scope.dniIsInvalid && $scope.form.init.dni !== undefined) {
                     $scope.executeGetSociValues();
                 }
@@ -349,22 +429,42 @@ angular.module('newSomEnergiaWebformsApp')
         });
         var checkEnableInitSubmit2 = false;
         $scope.$watch('form.init.dni', function(newValue) {
+            if (newValue === undefined) {
+                $scope.initFormState = $scope.initFormStates.IDLE;
+                return;
+            }
+            $scope.initFormState = $scope.initFormStates.VALIDATINGID;
             if (checkEnableInitSubmit2) {
                 $timeout.cancel(checkEnableInitSubmit2);
             }
             checkEnableInitSubmit2 = $timeout(function() {
-                if (newValue !== undefined) {
-                    var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
-                    dniPromise.then(
-                        function (response) {
-                            $scope.dniIsInvalid  = response === cfg.STATE_FALSE;
-                            if (!$scope.dniIsInvalid && $scope.form.init.socinumber !== undefined) {
-                                $scope.executeGetSociValues();
-                            }
-                        },
-                        function (reason) { $log.error('Check DNI failed', reason); }
-                    );
-                }
+                var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
+                dniPromise.dni = newValue;
+                dniPromise.then(
+                    function (response) {
+                        if (dniPromise.dni !== $scope.form.init.dni) {
+                            //console.log('Ignorant validació del DNI '+dniPromise.dni+' perque ja val '+$scope.form.init.dni);
+                            return;
+                        }
+                        $scope.dniIsInvalid  = response === cfg.STATE_FALSE;
+                        if ($scope.dniIsInvalid) {
+                            $scope.initFormState = $scope.initFormStates.INVALIDID;
+                            return;
+                        }
+                        if ($scope.form.init.socinumber === undefined) {
+                            // TODO: Review this transition
+                            $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
+                            return;
+                        }
+                        $scope.initFormState = $scope.initFormStates.VALIDATINGMEMBER;
+                        $scope.executeGetSociValues();
+                    },
+                    // TODO: Server error state and display reason
+                    function (reason) {
+                        $log.error('Check DNI failed', reason);
+                        $scope.initFormState = $scope.initFormStates.APIERROR;
+                    }
+                );
             }, cfg.DEFAULT_MILLISECONDS_DELAY);
         });
 
@@ -442,12 +542,12 @@ angular.module('newSomEnergiaWebformsApp')
             }).then(
                 function(response) {
                     uiHandler.hideLoadingDialog();
-                    $log.log('response recived', response);
+                    $log.log('response received', response);
                     if (response.data.status === cfg.STATUS_ONLINE) {
                         if (response.data.state === cfg.STATE_TRUE) {
                             // well done
                             uiHandler.showWellDoneDialog();
-                            $window.top.location.href = cfg.CONTRACT_OK_REDIRECT_URL;
+                            $window.top.location.href = $translate.instant('CONTRACT_OK_REDIRECT_URL');
                         } else {
                             // error
                             $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
@@ -470,9 +570,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.messages = 'ERROR';
                     }
                     $scope.overflowAttachFile = true;
-                    $scope.step1Ready = true;
-                    $scope.step2Ready = true;
-                    $scope.step3Ready = true;
+                    $scope.showAllSteps();
                     $scope.rawReason = reason;
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
@@ -502,9 +600,7 @@ angular.module('newSomEnergiaWebformsApp')
                     }
                 }
             }
-            $scope.step1Ready = true;
-            $scope.step2Ready = true;
-            $scope.step3Ready = true;
+            $scope.showAllSteps();
 
             return result;
         };
@@ -563,6 +659,6 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.accountbankiban4 = debugCfg.IBAN4;
             $scope.form.accountbankiban5 = debugCfg.IBAN5;
             $scope.form.accountbankiban6 = debugCfg.IBAN6;
-            cfg.API_BASE_URL = 'http://sompre.gisce.net:5001/';
+            cfg.API_BASE_URL = 'https://sompre.gisce.net:5001/';
         }
-    }]);
+    });

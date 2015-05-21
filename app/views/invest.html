@@ -1,0 +1,118 @@
+<!--GLOBAL MESSAGES-->
+<div class="row" data-ng-include data-src="'views/common/global-messages.html'"></div>
+
+<div ng-if='developing' data-ng-include data-src="'views/common/responsive-display.html'"></div>
+
+<div>
+    <!--HEADER-->
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="green extra-margin" translate="FORMULARI_D_INVERSIO"></h1>
+        </div>
+    </div>
+
+    <!-- BEGIN INIT FORM-->
+    <div data-ng-include data-src="'views/common/validacio-socia.html'"></div>
+    <!--END INIT FORM-->
+
+    <!-- BEGIN INVEST FORM-->
+    <form name="investForm" class="form-inline" role="form" ng-show="isStep(1)" enctype="multipart/form-data" novalidate>
+        <fieldset ng-disabled="submiting">
+        <div class="row">
+            <div class="col-xs-12 heading active">
+                <h1>{{ 'BENVINGUDA' | translate }} <b>{{ soci.nom }} {{ soci.cognom }}</b>!</h1>
+            </div>
+        </div>
+        <div class='well'>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3 class="green" data-ng-bind-html=' "QUANT_VOLS_INVERTIR" | translate '>
+                    <small>{{ 'EN_APORTACIO_VOLUNTARIA' | translate }}</small>
+                    </h3>
+                    <label for="amount">
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <div class="input-group">
+                    <input type="text" id="amount" name="amount" class="form-control input-lg" data-ng-model="form.amount" data-ng-change="formAmountListener()" required aria-describedby="amounthelp" ng-class="{'ng-invalid': amountAboveMax || amountNotHundred || amountUnderMin}"/>
+                    <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>€</span>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-6 no-margin-top">
+                    <b>{{ 'RECORDA' | translate}}</b>
+                    <ul>
+                    <li><span ng-class="{'label-danger': amountUnderMin, label: amountUnderMin}">
+                        {{ 'AMOUNT_HELPER_MIN' | translate }}</span> </li>
+                    <li><span ng-class="{'label-danger': amountAboveMax, label: amountAboveMax}">
+                        {{ 'AMOUNT_HELPER_MAX' | translate }}</span></li>
+                    <li><span ng-class="{'label-danger': amountNotHundred, label: amountNotHundred}">
+                        {{ 'AMOUNT_HELPER_STEP' | translate }}</span>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 no-margin-bottom">
+                     <h3 class='green'><label for="accountbankiban" data-ng-bind-html="'DES_DE_QUIN_COMPTE' | translate"></label></h3>
+                </div>
+            </div>
+            <div class="row no-margin-bottom">
+                <div class="col-sm-12 col-xs-12">
+                    <input type="text" id="accountbankiban" name="accountbankiban" class="form-control input-lg" data-ng-model="form.accountbankiban" data-ng-change="formAccountIbanListener()" data-ng-class="{'ng-invalid': accountIsInvalid}" required aria-describedby="accountbankibanHelp"/>
+                    <span class="label label-danger" data-ng-show="accountIsInvalid===true">{{ 'INVALID' | translate }}</span>
+                    <span class="label label-warning" data-ng-show="accountIsInvalid===undefined">{{ 'COMPROVANT' | translate }}</span>
+                    <span class="label label-success" data-ng-show="accountIsInvalid===false">{{ 'CORRECTE' | translate }}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>{{ 'NUMERO_DE_COMPTE_FORMAT_IBAN' | translate }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group checkbox col-xs-12">
+                    <label>
+                        <input type="checkbox" name="acceptaccountowner" value="accept" data-ng-model="form.acceptaccountowner" required/>
+                        <span translate="CONFIRMO_CONDICIONS_INVERSIO" ></span>
+                    </label>
+                </div>
+            </div>
+            <div class="row no-margin-bottom">
+                <div class="col-xs-12 pull-right no-horitzontal-padding">
+                    <button data-ng-click="sendInvestment()" class="btn btn-default green btn-lg btn-block submit" data-ng-class="{'green': isInvestmentFormReady(), 'grey':!isInvestmentFormReady() }" data-ng-disabled="!isInvestmentFormReady()" type="button">{{ submitButtonText }}</button>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    </form>
+</div>
+
+<!--OFFLINE API MODAL-->
+<div id="api-server-offline-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="WebformsOfflineApi" data-aria-hidden="true">
+    <div class="modal-dialog modal-lg" data-ng-include data-src="'views/common/offline-api-modal.html'"></div>
+</div>
+
+<!--LOADING API MODAL-->
+<div id="loading-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="WebformsLoadingApi" data-aria-hidden="true">
+    <div class="modal-dialog modal-lg" data-ng-include data-src="'views/common/loading-api-modal.html'"></div>
+</div>
+
+<!--WELL DONE MODAL-->
+<div id="well-done-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="WebformsWellDone" data-aria-hidden="true">
+    <div class="modal-dialog modal-lg" data-ng-include data-src="'views/common/well-done-modal.html'"></div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery(".spc-html").popover(
+                {
+                    html : true,
+                    trigger : 'hover',
+                    delay : { show : 0, hide : 2500 }
+                }
+        );
+        jQuery(".spc").popover({trigger : 'hover'});
+        setTimeout(function () { jQuery("#spc-rate-conditional").popover({trigger : 'hover'}); }, 1000);
+    });
+</script>

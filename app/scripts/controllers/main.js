@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('MainCtrl', ['cfg', 'debugCfg', 'AjaxHandler', 'ValidateHandler', 'uiHandler', 'prepaymentService', '$scope', '$http', '$routeParams', '$translate', '$timeout', '$location', '$log', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
+    .controller('MainCtrl', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
 
         // DEBUG MODE
         var debugEnabled = false;
@@ -239,4 +239,4 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.accountbankiban6 = debugCfg.IBAN6;
         }
 
-    }]);
+    });
