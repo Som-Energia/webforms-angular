@@ -4,10 +4,10 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('AportacioVoluntariaCtrl', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // DEBUG MODE
-        var debugEnabled = true;
+        var debugEnabled = false;
 
         // DEVELOP ENVIRONMENT
-        var develEnvironment = true; // TODO change xorigin domain on index.html && replace grunt sftp source environment
+        var develEnvironment = false; // TODO change xorigin domain on index.html && replace grunt sftp source environment
 
         // MUST APPLY TO EMBED WITH WORDPRESS
         if (!develEnvironment) {
