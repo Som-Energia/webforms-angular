@@ -100,7 +100,7 @@ angular.module('newSomEnergiaWebformsApp')
                 SI_TOT_CORRECTE: 'Sí, todo correcto',
 
 
-                HELP_POPOVER_SOCIA: '¿No recuerdas tu nº de socio/a? Averígualo en el apartado "Datos Personales" de la <a href="https://oficinavirtual.somenergia.coop/">Oficina Virtual</a>.',
+                HELP_POPOVER_SOCIA: '¿No recuerdas tu nº de socio/a? Averígualo en el apartado "Datos Personales" de la <a target="_blank" href="https://oficinavirtual.somenergia.coop/">Oficina Virtual</a>.',
                 HELP_POPOVER_DNI: 'Ejemplo DNI: 12345678P (con letra final)',
                 SOCIA_TROBADA: 'Soci/a encontrado/a',
                 VALIDANT_ID: 'Validando documento de identificación...',
