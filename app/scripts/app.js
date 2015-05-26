@@ -1,7 +1,7 @@
 'use strict';
 
-//var base = '//rawgit.com/Som-Energia/new-api-webforms/master/app/';
-var base = '';
+var base = '//rawgit.com/Som-Energia/new-api-webforms/master/app/';
+//var base = '';
 
 angular.module('newSomEnergiaWebformsApp', [
         'ngCookies',
