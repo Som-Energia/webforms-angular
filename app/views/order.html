@@ -1,6 +1,8 @@
 <!--GLOBAL MESSAGES-->
 <div class="row" data-ng-include data-src="'views/common/global-messages.html'"></div>
 
+<div ng-if='developing' data-ng-include data-src="'views/common/responsive-display.html'"></div>
+
 <div data-ng-show="!step4Ready">
     <!--HEADER-->
     <div class="row no-margin-bottom">
@@ -10,45 +12,7 @@
     </div>
 
     <!-- BEGIN INIT FORM-->
-    <form name="initForm" class="form-inline" role="form" data-ng-show="step0Ready" novalidate>
-        <!--FIRST STEP-->
-        <div class="row extra-margin-top">
-            <div class="form-group col-sm-3 col-xs-5">
-                <label class="sr-only">{{ 'NUMERO_SOCI' | translate }}*</label>
-                <input type="text" name="socinumber" class="form-control" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="form.init.socinumber" data-ng-change="formListener()" required/>
-                <span class="label label-danger" data-ng-show="initFormSubmitted && initForm.socinumber.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-            </div>
-            <div class="form-group col-sm-3 col-xs-5">
-                <label class="sr-only">DNI/NIE/CIF*</label>
-                <input type="text" name="dni" class="form-control" placeholder="DNI/NIE/CIF*" data-ng-model="form.init.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': dniIsInvalid}" required/>
-                <span class="label label-danger" data-ng-show="initFormSubmitted && initForm.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                <span class="label label-danger" data-ng-show="dniIsInvalid">{{ 'INVALID' | translate }}</span>
-            </div>
-            <div class="col-sm-1 col-xs-1">
-                <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_DNI' | translate }}" data-placement="top">?</span>
-            </div>
-            <!--<div class="col-xs-5">-->
-                <!--<button class="btn btn-default grey pull-right" data-ng-disabled="!initSubmitReady" data-ng-click="initSubmit(initForm)" type="button">{{ 'CARREGAR_DADES_SOCI_VINCULAT' | translate }}</button>-->
-            <!--</div>-->
-        </div>
-        <div class="row" data-ng-if="showBeginOrderForm && !showUnknownSociWarning && !dniIsInvalid">
-            <div class="form-group col-xs-12">
-                <label>{{ 'SOCI_VINCULAT' | translate }}:</label>
-                <input type="text" name="address" class="form-control width-70-percent" placeholder="{{ soci.nom + ' ' + soci.cognom }}" disabled/>
-            </div>
-        </div>
-        <div class="row" data-ng-if="showUnknownSociWarning && !dniIsInvalid">
-            <div class="col-xs-12">
-                <h3><span class="label label-danger">{{ 'NO_TROBEM_CAP_SOCI_VINCULAT' | translate }}</span></h3>
-                <p data-ng-bind-html="'NO_ETS_SOCI_FES_TE_AQUI' | translate "></p>
-            </div>
-        </div>
-        <div class="row" data-ng-if="showBeginOrderForm && !showUnknownSociWarning && !dniIsInvalid">
-            <div class="col-xs-12">
-                <button class="btn btn-default green pull-right submit" data-ng-click="initOrderForm()" type="button">{{ 'INICIAR_CONTRACTACIO' | translate }}</button>
-            </div>
-        </div>
-    </form>
+    <div data-ng-include data-src="'views/common/validacio-socia.html'"></div>
     <!--END INIT FORM-->
 
     <!-- BEGIN ORDER FORM-->

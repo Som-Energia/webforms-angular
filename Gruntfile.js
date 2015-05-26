@@ -20,6 +20,8 @@ module.exports = function (grunt) {
 
         // Deploy production environment config
         secret: grunt.file.readJSON('secret.json'),
+        // Deploy development environment config
+        // secret: grunt.file.readJSON('secret.dev.json'),
         sftp: {
             production: {
                 files: {
@@ -36,25 +38,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-
-        // Deploy development environment config
-        //secret: grunt.file.readJSON('secret.dev.json'),
-        //sftp: {
-        //    production: {
-        //        files: {
-        //            './': 'dist/**'
-        //        },
-        //        options: {
-        //            path: '<%= secret.path %>',
-        //            host: '<%= secret.host %>',
-        //            username: '<%= secret.username %>',
-        //            password: '<%= secret.password %>',
-        //            srcBasePath: 'dist/',
-        //            createDirectories: true,
-        //            showProgress: true
-        //        }
-        //    }
-        //},
 
         // Project settings
         yeoman: {
