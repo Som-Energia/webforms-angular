@@ -32,6 +32,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.form.payment = 'bankaccount';
         $scope.form.accountbankiban1 = 'ES';
         $scope.completeAccountNumber = '';
+        $translate.fallbackLanguage('es');
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
