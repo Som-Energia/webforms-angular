@@ -12,7 +12,11 @@
     </div>
 
     <!-- BEGIN INIT FORM-->
-    <div data-ng-include data-src="'views/common/validacio-socia.html'"></div>
+    <member-validator
+        button-text="{{'INICIAR_CONTRACTACIO' | translate }}"
+        show-member-name="true"
+        data-ng-show="isStep(0)"
+    ></member-validator>
     <!--END INIT FORM-->
 
     <!-- BEGIN ORDER FORM-->

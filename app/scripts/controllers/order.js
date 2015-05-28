@@ -16,8 +16,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         // INIT
         $scope.developing = develEnvironment;
-        $scope.mostraNomSociTrobat = true;
-
 
         $scope.showAllSteps = function() {
             $scope.step1Ready = true;
@@ -112,8 +110,6 @@ angular.module('newSomEnergiaWebformsApp')
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
-
-        $scope.initFormActionText = $translate.instant('INICIAR_CONTRACTACIO');
 
         // GET LANGUAGES
         AjaxHandler.getLanguages($scope);

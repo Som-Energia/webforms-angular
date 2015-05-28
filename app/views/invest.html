@@ -12,7 +12,10 @@
     </div>
 
     <!-- BEGIN INIT FORM-->
-    <div data-ng-include data-src="'views/common/validacio-socia.html'"></div>
+    <member-validator
+        button-text="{{'INICIAR_INVERSIO' | translate }}"
+        data-ng-show="isStep(0)"
+    ></member-validator>
     <!--END INIT FORM-->
 
     <!-- BEGIN INVEST FORM-->

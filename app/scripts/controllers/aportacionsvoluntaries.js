@@ -24,7 +24,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         // INIT
         $scope.developing = develEnvironment;
-        $scope.mostraNomSociTrobat = false;
 
         $scope.setStep = function(step) {
             $scope.currentStep = step;
@@ -83,7 +82,6 @@ angular.module('newSomEnergiaWebformsApp')
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
-        $scope.initFormActionText = $translate.instant('INICIAR_INVERSIO');
         $scope.submitButtonText = $translate.instant('CONFIRMAR_INVERSIO');
 
         $scope.form.accountbankiban = '';
@@ -331,4 +329,25 @@ angular.module('newSomEnergiaWebformsApp')
             return result;
         };
 
-    });
+    })
+
+.directive('memberValidator', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/common/validacio-socia.html',
+        controller: 'memberValidatorCtrl',
+        link: function(scope, element, attrs, memberValidatorCtrl) {
+            memberValidatorCtrl.init(element, attrs);
+        },
+    };
+})
+.controller('memberValidatorCtrl', function ($compile, $scope) {
+    var self = this;
+    self.init = function(element, attrs) {
+        $scope.mostraNomSociTrobat = attrs.showMemberName !== undefined;
+        $scope.initFormActionText = attrs.buttonText;
+    };
+});
+
+
+
