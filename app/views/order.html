@@ -38,6 +38,15 @@
                 </div>
             </div>
             <div class="row">
+                <div class="form-group col-xs-11">
+                    <label>{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}</label>
+                    <div class="btn-group">
+                        <label class="btn btn-default green" data-ng-model="form.hasservice" data-btn-radio="'yes'" >{{ 'SI' | translate }}</label>
+                        <label class="btn btn-default green" data-ng-model="form.hasservice" data-btn-radio="'no'" >{{ 'NO' | translate }}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-12">
                     <label for="address" class="sr-only">{{ 'ADRECA' | translate }}*:</label>
                     <input type="text" name="address" data-ng-model="form.address" class="form-control" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener()" required />
@@ -179,14 +188,17 @@
                 <!--</div>-->
             <!--</div>-->
             <!--<div class="row">-->
-                <div class="form-group col-xs-11">
-                    <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_HELPER' | translate }}
+                <div class="form-group col-xs-11" data-ng-hide="form.hasservice">
+                    <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_ALTA_HELPER' | translate}}</p>
+                </div>
+                <div class="form-group col-xs-11" data-ng-show="form.hasservice">
+                    <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_HELPER' | translate }}</p>
                     <label>{{ 'VOLS_FER_CANVI_TITULAR' | translate }}</label>
                     <div class="btn-group">
-                        <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'yes'" data-ng-change="formListener()" data-ng-click="showAvisCanviTitular = true">{{ 'SI' | translate }}</label>
-                        <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'no'" data-ng-change="formListener()" data-ng-click="showAvisCanviTitular = false">{{ 'NO' | translate }}</label>
+                        <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>
+                        <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>
                     </div>
-                    <div data-ng-show="showAvisCanviTitular" class="alert alert-warning" style="margin-top:5px" role="alert">
+                    <div data-ng-show="form.changeowner" class="alert alert-warning" style="margin-top:5px" role="alert">
                         <span data-ng-bind-html="'AVIS_CANVI_TITULAR' | translate"></span>
                     </div>
                 </div>
