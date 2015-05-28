@@ -90,7 +90,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.invalidAttachFileExtension = false;
         $scope.overflowAttachFile = false;
         $scope.accountIsInvalid = false;
-        $scope.showBeginOrderForm = false;
         $scope.isStep2ButtonReady = false;
         $scope.isStep3ButtonReady = false;
         $scope.isFinalStepButtonReady = false;
@@ -127,9 +126,8 @@ angular.module('newSomEnergiaWebformsApp')
                     if ($scope.form.init.dni !== sociPromise.dni) {return;}
 
                     if (response.state === cfg.STATE_TRUE) {
-                        $log.log('Get partner info response recived', response);
+                        $log.log('Get partner info response received', response);
                         $scope.soci = response.data.soci;
-                        $scope.showBeginOrderForm = true;
                         $scope.initFormState = $scope.initFormStates.READY;
                     } else {
                         $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;

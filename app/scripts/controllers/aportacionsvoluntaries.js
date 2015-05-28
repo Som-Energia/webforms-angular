@@ -124,7 +124,7 @@ angular.module('newSomEnergiaWebformsApp')
                     if ($scope.form.init.dni !== sociPromise.dni) {return;}
 
                     if (response.state === cfg.STATE_TRUE) {
-                        $log.log('Get partner info response recived', response);
+                        $log.log('Get partner info response received', response);
                         $scope.soci = response.data.soci;
                         $scope.initFormState = $scope.initFormStates.READY;
                     } else {
