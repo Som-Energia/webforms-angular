@@ -231,7 +231,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.initFormActionText = attrs.buttonText;
         $scope.developing = false;
 
-        $scope.initFormStates = {
+        $scope._states = {
             IDLE: 1,
             VALIDATINGID: 2,
             VALIDATINGMEMBER: 3,
@@ -240,33 +240,33 @@ angular.module('newSomEnergiaWebformsApp')
             READY: 6,
             APIERROR: 7
         };
-        $scope.initFormState = $scope.initFormStates.IDLE;
+        $scope._state = $scope._states.IDLE;
 
         $scope.isIdle = function () {
-            return $scope.initFormState === $scope.initFormStates.IDLE;
+            return $scope._state === $scope._states.IDLE;
         };
         $scope.isValidatingId = function () {
-            return $scope.initFormState === $scope.initFormStates.VALIDATINGID;
+            return $scope._state === $scope._states.VALIDATINGID;
         };
         $scope.isValidatingMember = function () {
-            return $scope.initFormState === $scope.initFormStates.VALIDATINGMEMBER;
+            return $scope._state === $scope._states.VALIDATINGMEMBER;
         };
         $scope.isInvalidId = function () {
-            return $scope.initFormState === $scope.initFormStates.INVALIDID;
+            return $scope._state === $scope._states.INVALIDID;
         };
         $scope.isInvalidMember = function () {
-            return $scope.initFormState === $scope.initFormStates.INVALIDMEMBER;
+            return $scope._state === $scope._states.INVALIDMEMBER;
         };
         $scope.isReady = function () {
-            return $scope.initFormState === $scope.initFormStates.READY;
+            return $scope._state === $scope._states.READY;
         };
         $scope.isApiError = function () {
-            return $scope.initFormState === $scope.initFormStates.APIERROR;
+            return $scope._state === $scope._states.APIERROR;
         };
         $scope.currentInitState = function() {
-            return Object.keys($scope.initFormStates)
+            return Object.keys($scope._states)
                 .filter(function(key) {
-                    return $scope.initFormStates[key] === $scope.initFormState;
+                    return $scope._states[key] === $scope._state;
                 })[0];
         };
         $scope.model.isReady = $scope.isReady;
@@ -278,11 +278,11 @@ angular.module('newSomEnergiaWebformsApp')
             if ($scope.isInvalidId()) {return;}
 
             if (newValue === undefined) {
-                $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
+                $scope._state = $scope._states.INVALIDMEMBER;
                 return;
             }
 
-            $scope.initFormState = $scope.initFormStates.VALIDATINGMEMBER;
+            $scope._state = $scope._states.VALIDATINGMEMBER;
 
             if (timeoutCheckSoci) {
                 $timeout.cancel(timeoutCheckSoci);
@@ -298,10 +298,10 @@ angular.module('newSomEnergiaWebformsApp')
         var timeoutCheckDni = false;
         $scope.$watch('formvalues.dni', function(newValue) {
             if (newValue === undefined) {
-                $scope.initFormState = $scope.initFormStates.IDLE;
+                $scope._state = $scope._states.IDLE;
                 return;
             }
-            $scope.initFormState = $scope.initFormStates.VALIDATINGID;
+            $scope._state = $scope._states.VALIDATINGID;
             if (timeoutCheckDni) {
                 $timeout.cancel(timeoutCheckDni);
             }
@@ -316,21 +316,21 @@ angular.module('newSomEnergiaWebformsApp')
                         }
                         $scope.dniIsInvalid  = response === cfg.STATE_FALSE;
                         if ($scope.dniIsInvalid) {
-                            $scope.initFormState = $scope.initFormStates.INVALIDID;
+                            $scope._state = $scope._states.INVALIDID;
                             return;
                         }
                         if ($scope.formvalues.socinumber === undefined) {
                             // TODO: Review this transition
-                            $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
+                            $scope._state = $scope._states.INVALIDMEMBER;
                             return;
                         }
-                        $scope.initFormState = $scope.initFormStates.VALIDATINGMEMBER;
+                        $scope._state = $scope._states.VALIDATINGMEMBER;
                         $scope.executeGetSociValues();
                     },
                     // TODO: Server error state and display reason
                     function (reason) {
                         $log.error('Check DNI failed', reason);
-                        $scope.initFormState = $scope.initFormStates.APIERROR;
+                        $scope._state = $scope._states.APIERROR;
                     }
                 );
             }, cfg.DEFAULT_MILLISECONDS_DELAY);
@@ -355,13 +355,13 @@ angular.module('newSomEnergiaWebformsApp')
                     if (response.state === cfg.STATE_TRUE) {
                         $log.log('Get partner info response received', response);
                         $scope.soci = response.data.soci;
-                        $scope.initFormState = $scope.initFormStates.READY;
+                        $scope._state = $scope._states.READY;
                     } else {
-                        $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
+                        $scope._state = $scope._states.INVALIDMEMBER;
                     }
                 },
                 function(reason) {
-                    $scope.initFormState = $scope.initFormStates.APIERROR;
+                    $scope._state = $scope._states.APIERROR;
                     $scope.apiError = reason;
                     $log.error('Get partner info failed', reason);
                 }
