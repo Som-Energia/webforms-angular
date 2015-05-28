@@ -198,9 +198,7 @@ angular.module('newSomEnergiaWebformsApp')
     })
 
 
-
-
-.directive('memberValidator', function () {
+.directive('memberChooser', function () {
     return {
         restrict: 'E',
         scope: {
@@ -210,13 +208,13 @@ angular.module('newSomEnergiaWebformsApp')
             onproceed: '&',
         },
         templateUrl: 'views/common/validacio-socia.html',
-        controller: 'memberValidatorCtrl',
-        link: function(scope, element, attrs, memberValidatorCtrl) {
-            memberValidatorCtrl.init(element, attrs);
+        controller: 'memberChooserCtrl',
+        link: function(scope, element, attrs, memberChooserCtrl) {
+            memberChooserCtrl.init(element, attrs);
         },
     };
 })
-.controller('memberValidatorCtrl', function (
+.controller('memberChooserCtrl', function (
         cfg,
         $scope,
         $timeout,
@@ -227,10 +225,8 @@ angular.module('newSomEnergiaWebformsApp')
     var self = this;
     self.init = function(element, attrs) {
         $scope.soci = {};
-        $scope.model = {};
         $scope.formvalues = {};
-        $scope.model.formvalues = $scope.formvalues;
-        $scope.model.soci = $scope.soci;
+        $scope.model = $scope;
         $scope.mostraNomSociTrobat = attrs.showMemberName !== undefined;
         $scope.initFormActionText = attrs.buttonText;
         $scope.developing = false;
@@ -246,25 +242,25 @@ angular.module('newSomEnergiaWebformsApp')
         };
         $scope.initFormState = $scope.initFormStates.IDLE;
 
-        $scope.initFormIsIdle = function () {
+        $scope.isIdle = function () {
             return $scope.initFormState === $scope.initFormStates.IDLE;
         };
-        $scope.initFormIsValidatingId = function () {
+        $scope.isValidatingId = function () {
             return $scope.initFormState === $scope.initFormStates.VALIDATINGID;
         };
-        $scope.initFormIsValidatingMember = function () {
+        $scope.isValidatingMember = function () {
             return $scope.initFormState === $scope.initFormStates.VALIDATINGMEMBER;
         };
-        $scope.initFormIsInvalidId = function () {
+        $scope.isInvalidId = function () {
             return $scope.initFormState === $scope.initFormStates.INVALIDID;
         };
-        $scope.initFormIsInvalidMember = function () {
+        $scope.isInvalidMember = function () {
             return $scope.initFormState === $scope.initFormStates.INVALIDMEMBER;
         };
-        $scope.initFormIsReady = function () {
+        $scope.isReady = function () {
             return $scope.initFormState === $scope.initFormStates.READY;
         };
-        $scope.initFormIsApiError = function () {
+        $scope.isApiError = function () {
             return $scope.initFormState === $scope.initFormStates.APIERROR;
         };
         $scope.currentInitState = function() {
@@ -273,15 +269,13 @@ angular.module('newSomEnergiaWebformsApp')
                     return $scope.initFormStates[key] === $scope.initFormState;
                 })[0];
         };
-
-        $scope.model={};
-        $scope.model.isReady = $scope.initFormIsReady;
+        $scope.model.isReady = $scope.isReady;
 
         var timeoutCheckSoci = false;
         $scope.$watch('formvalues.socinumber', function(newValue) {
-            if ($scope.initFormIsIdle()) {return;}
-            if ($scope.initFormIsValidatingId()) {return;}
-            if ($scope.initFormIsInvalidId()) {return;}
+            if ($scope.isIdle()) {return;}
+            if ($scope.isValidatingId()) {return;}
+            if ($scope.isInvalidId()) {return;}
 
             if (newValue === undefined) {
                 $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;

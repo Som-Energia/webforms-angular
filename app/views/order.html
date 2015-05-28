@@ -12,7 +12,7 @@
     </div>
 
     <!-- BEGIN INIT FORM-->
-    <member-validator
+    <member-chooser
         button-text="{{'INICIAR_CONTRACTACIO' | translate }}"
         show-member-name="true"
         onproceed="initFormSubmited()"
@@ -20,7 +20,7 @@
         model="initForm"
         formvalues="form.init"
         data-ng-show="isStep(0)"
-    ></member-validator>
+    ></member-chooser>
     <!--END INIT FORM-->
 
     <!-- BEGIN ORDER FORM-->
