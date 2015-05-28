@@ -178,7 +178,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.submiting = false;
 
         $scope.initFormSubmited = function() {
-            $scope.showStep1Form = true;
             $scope.setStep(1);
         };
 

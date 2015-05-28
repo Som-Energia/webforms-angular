@@ -91,7 +91,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.overflowAttachFile = false;
         $scope.accountIsInvalid = false;
         $scope.showBeginOrderForm = false;
-        $scope.showStep1Form = false;
         $scope.isStep2ButtonReady = false;
         $scope.isStep3ButtonReady = false;
         $scope.isFinalStepButtonReady = false;
@@ -132,12 +131,8 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.soci = response.data.soci;
                         $scope.showBeginOrderForm = true;
                         $scope.initFormState = $scope.initFormStates.READY;
-                        if (debugEnabled) {
-                            $scope.showStep1Form = false;
-                        }
                     } else {
                         $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
-                        $scope.showStep1Form = false;
                     }
                 },
                 function(reason) {
@@ -347,7 +342,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         // MOVE TO STEP 1 FORM
         $scope.initFormSubmited = function() {
-            $scope.showStep1Form = true;
             $scope.setStepReady(1, 'initFormSubmited');
         };
 
@@ -629,7 +623,6 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.power = debugCfg.POWER;
             $scope.form.rate = debugCfg.RATE;
             $scope.executeGetSociValues();
-            $scope.showStep1Form = true;
             $scope.step0Ready = false;
             $scope.step1Ready = true;
             $scope.step2Ready = true;
