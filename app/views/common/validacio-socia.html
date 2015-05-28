@@ -1,5 +1,5 @@
     <!-- BEGIN INIT FORM-->
-    <form name="initForm" class="form-inline" role="form" novalidate>
+    <form class="form-inline" role="form" novalidate>
         <!--FIRST STEP-->
         <div class="row extra-margin-top">
             <div class="form-group col-xs-6 col-sm-5 col-md-4 col-lg-3">
@@ -64,8 +64,8 @@
 
             <div class="col-xs-2 col-md-4 col-lg-6 pull-right"></div>
             <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right">
-                <button class="btn btn-default btn-lg btn-block submit" data-ng-disabled="!isReady()" data-ng-class="{'green': isReady(), 'grey':!isReady()}" data-ng-click="initFormSubmited()" type="button"
->{{ initFormActionText }}</button>
+                <button class="btn btn-default btn-lg btn-block submit" data-ng-disabled="!isReady()" data-ng-class="{'green': isReady(), 'grey':!isReady()}" data-ng-click="proceed()" type="button"
+>{{ buttonText }}</button>
             </div>
         </div>
         <div class="row" ng-if='developing'>

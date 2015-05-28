@@ -202,6 +202,7 @@ angular.module('newSomEnergiaWebformsApp')
     return {
         restrict: 'E',
         scope: {
+            buttonText: '@',
             soci: '=',
             formvalues: '=',
             model: '=',
@@ -228,7 +229,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.formvalues = {};
         $scope.model = $scope;
         $scope.mostraNomSociTrobat = attrs.showMemberName !== undefined;
-        $scope.initFormActionText = attrs.buttonText;
         $scope.developing = false;
 
         $scope._states = {
@@ -367,7 +367,7 @@ angular.module('newSomEnergiaWebformsApp')
                 }
             );
         };
-        $scope.initFormSubmited = function() {
+        $scope.proceed = function() {
             $scope.onproceed();
         };
     };
