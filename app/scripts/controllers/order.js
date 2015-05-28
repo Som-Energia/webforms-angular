@@ -13,6 +13,10 @@ angular.module('newSomEnergiaWebformsApp')
         if (!develEnvironment) {
             document.domain = cfg.BASE_DOMAIN;
         }
+        // Just when developing, show untranslated strings instead of falling back to spanish
+        if (!develEnvironment ) {
+            $translate.fallbackLanguage('es');
+        }
 
         // INIT
         $scope.developing = develEnvironment;
@@ -392,7 +396,7 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // ON INIT SUBMIT FORM
-        var checkEnableInitSubmit1 = false;
+        var timeoutCheckSoci = false;
         $scope.$watch('form.init.socinumber', function(newValue) {
             if ($scope.initFormIsIdle()) {return;}
             if ($scope.initFormIsValidatingId()) {return;}
@@ -405,27 +409,27 @@ angular.module('newSomEnergiaWebformsApp')
 
             $scope.initFormState = $scope.initFormStates.VALIDATINGMEMBER;
 
-            if (checkEnableInitSubmit1) {
-                $timeout.cancel(checkEnableInitSubmit1);
+            if (timeoutCheckSoci) {
+                $timeout.cancel(timeoutCheckSoci);
             }
-            checkEnableInitSubmit1 = $timeout(function() {
+            timeoutCheckSoci = $timeout(function() {
                 // TODO: Remove redundant conditions
                 if (newValue !== undefined && !$scope.dniIsInvalid && $scope.form.init.dni !== undefined) {
                     $scope.executeGetSociValues();
                 }
             }, cfg.DEFAULT_MILLISECONDS_DELAY);
         });
-        var checkEnableInitSubmit2 = false;
+        var timeoutCheckDni = false;
         $scope.$watch('form.init.dni', function(newValue) {
             if (newValue === undefined) {
                 $scope.initFormState = $scope.initFormStates.IDLE;
                 return;
             }
             $scope.initFormState = $scope.initFormStates.VALIDATINGID;
-            if (checkEnableInitSubmit2) {
-                $timeout.cancel(checkEnableInitSubmit2);
+            if (timeoutCheckDni) {
+                $timeout.cancel(timeoutCheckDni);
             }
-            checkEnableInitSubmit2 = $timeout(function() {
+            timeoutCheckDni = $timeout(function() {
                 var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
                 dniPromise.dni = newValue;
                 dniPromise.then(
