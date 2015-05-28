@@ -88,7 +88,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // DNI VALIDATION
 //        var checkDniTimer = false;
-//        ValidateHandler.validateDni($scope, 'form.init.dni', checkDniTimer);
+//        ValidateHandler.validateDni($scope, 'formsoci.dni', checkDniTimer);
         var checkDni2Timer = false;
         ValidateHandler.validateDni($scope, 'form.dni', checkDni2Timer);
         var checkDni3Timer = false;
@@ -339,8 +339,8 @@ angular.module('newSomEnergiaWebformsApp')
             uiHandler.showLoadingDialog();
             // Prepare request data
             var formData = new FormData();
-            formData.append('id_soci', $scope.form.init.socinumber);
-            formData.append('dni', $scope.form.init.dni);
+            formData.append('id_soci', $scope.formsoci.socinumber);
+            formData.append('dni', $scope.formsoci.dni);
             formData.append('tipus_persona', $scope.form.usertype === 'person' ? 0 : 1);
             formData.append('soci_titular', $scope.form.isownerlink === 'yes' ? 1 : 0);
             formData.append('canvi_titular', $scope.form.changeowner === 'yes' ? 1 : 0);
@@ -482,8 +482,8 @@ angular.module('newSomEnergiaWebformsApp')
 
         // DEBUG (only apply on development environment)
         if (debugEnabled) {
-            $scope.form.init.socinumber = debugCfg.SOCI;
-            $scope.form.init.dni = debugCfg.DNI;
+            $scope.formsoci.socinumber = debugCfg.SOCI;
+            $scope.formsoci.dni = debugCfg.DNI;
 //            $scope.form.province = {id: 0, name: 'province'};
 //            $scope.form.city = {id: 0, name: 'city'};
             $scope.form.address = debugCfg.ADDRESS;

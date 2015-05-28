@@ -123,8 +123,8 @@ angular.module('newSomEnergiaWebformsApp')
             // Send request data POST
             var formData = new FormData();
             angular.forEach({
-                socinumber: $scope.form.init.socinumber,
-                dni: $scope.form.init.dni,
+                socinumber: $scope.formsoci.socinumber,
+                dni: $scope.formsoci.dni,
                 accountbankiban: $scope.form.accountbankiban,
                 amount: $scope.form.amount,
                 acceptaccountowner: 1
@@ -195,7 +195,7 @@ angular.module('newSomEnergiaWebformsApp')
             return result;
         };
 
-});
+    });
 
 
 
