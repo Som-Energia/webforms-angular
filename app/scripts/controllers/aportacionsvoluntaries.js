@@ -33,7 +33,6 @@ angular.module('newSomEnergiaWebformsApp')
         };
         $scope.setStep(0);
 
-        $scope.dniIsInvalid = true;
         $scope.accountIsInvalid = true;
         $scope.isInvestmentFormReady = false;
         $scope.languages = [];

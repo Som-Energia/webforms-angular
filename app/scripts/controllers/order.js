@@ -45,7 +45,6 @@ angular.module('newSomEnergiaWebformsApp')
         };
         $scope.setStep(0);
 
-        $scope.dniIsInvalid = false;
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
         $scope.rate20IsInvalid = false;

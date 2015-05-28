@@ -12,7 +12,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.step3Ready = false;
         $scope.showAgreeCheckbox = false;
         $scope.submitReady = false;
-        $scope.dniIsInvalid = false;
         $scope.dniRepresentantIsInvalid = false;
         $scope.dniDuplicated = false;
         $scope.emailIsInvalid = false;
@@ -100,7 +99,6 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.postalcode !== undefined &&
                 $scope.form.province !== undefined &&
                 $scope.form.city !== undefined &&
-                $scope.dniIsInvalid === false &&
                 $scope.dniRepresentantIsInvalid === false &&
                 $scope.emailIsInvalid === false &&
                 $scope.emailNoIguals === false &&

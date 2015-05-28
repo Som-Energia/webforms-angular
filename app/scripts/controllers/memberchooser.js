@@ -33,6 +33,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.model = $scope;
         $scope.mostraNomSociTrobat = attrs.showMemberName !== undefined;
         $scope.developing = false;
+        $scope.dniIsInvalid = true;
 
         $scope._states = {
             IDLE: 1,
