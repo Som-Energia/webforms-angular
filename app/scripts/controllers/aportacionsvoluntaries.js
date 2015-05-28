@@ -269,7 +269,6 @@ angular.module('newSomEnergiaWebformsApp')
                     return $scope._states[key] === $scope._state;
                 })[0];
         };
-        $scope.model.isReady = $scope.isReady;
 
         var timeoutCheckSoci = false;
         $scope.$watch('formvalues.socinumber', function(newValue) {
