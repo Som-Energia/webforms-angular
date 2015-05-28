@@ -12,8 +12,8 @@ angular.module('newSomEnergiaWebformsApp')
         this.validateInteger = function($scope, element) {
             $scope.$watch(element, function(newValue, oldValue) {
                 if (newValue !== undefined) {
-                    if (element === 'form.init.socinumber' && !integerRE.test(newValue)) {
-                        $scope.form.init.socinumber = oldValue;
+                    if (element === 'formvalues.socinumber' && !integerRE.test(newValue)) {
+                        $scope.formvalues.socinumber = oldValue;
                     } else if (element === 'form.estimation' && !integerRE.test(newValue)) {
                         $scope.form.estimation = oldValue;
                     }
@@ -100,8 +100,8 @@ angular.module('newSomEnergiaWebformsApp')
                 if (newValue !== undefined && !dniRE.test(newValue)) {
                     if (element === 'form.dni') {
                         $scope.form.dni = oldValue;
-                    } else if (element === 'form.init.dni') {
-                        $scope.form.init.dni = oldValue;
+                    } else if (element === 'formvalues.init.dni') {
+                        $scope.formvalues.dni = oldValue;
                     } else if (element === 'form.representantdni') {
                         $scope.form.representantdni = oldValue;
                     } else if (element === 'form.accountdni') {
@@ -119,7 +119,7 @@ angular.module('newSomEnergiaWebformsApp')
                         var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
                         dniPromise.then(
                             function (response) {
-                                if (element === 'form.dni' || element === 'form.init.dni') {
+                                if (element === 'form.dni' || element === 'formvalues.dni') {
                                     $scope.dniIsInvalid  = response === cfg.STATE_FALSE;
                                     $scope.dni2IsInvalid = response === cfg.STATE_FALSE;
                                     $scope.dniDuplicated = false;

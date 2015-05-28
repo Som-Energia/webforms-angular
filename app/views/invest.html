@@ -14,6 +14,10 @@
     <!-- BEGIN INIT FORM-->
     <member-validator
         button-text="{{'INICIAR_INVERSIO' | translate }}"
+        onproceed="initFormSubmited()"
+        soci="soci"
+        model="initForm"
+        formvalues="form.init"
         data-ng-show="isStep(0)"
     ></member-validator>
     <!--END INIT FORM-->

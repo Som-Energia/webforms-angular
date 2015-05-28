@@ -33,52 +33,12 @@ angular.module('newSomEnergiaWebformsApp')
         };
         $scope.setStep(0);
 
-        $scope.initFormStates = {
-            IDLE: 1,
-            VALIDATINGID: 2,
-            VALIDATINGMEMBER: 3,
-            INVALIDID: 4,
-            INVALIDMEMBER: 5,
-            READY: 6,
-            APIERROR: 7
-        };
-        $scope.initFormState = $scope.initFormStates.IDLE;
-
-        $scope.initFormIsIdle = function () {
-            return $scope.initFormState === $scope.initFormStates.IDLE;
-        };
-        $scope.initFormIsValidatingId = function () {
-            return $scope.initFormState === $scope.initFormStates.VALIDATINGID;
-        };
-        $scope.initFormIsValidatingMember = function () {
-            return $scope.initFormState === $scope.initFormStates.VALIDATINGMEMBER;
-        };
-        $scope.initFormIsInvalidId = function () {
-            return $scope.initFormState === $scope.initFormStates.INVALIDID;
-        };
-        $scope.initFormIsInvalidMember = function () {
-            return $scope.initFormState === $scope.initFormStates.INVALIDMEMBER;
-        };
-        $scope.initFormIsReady = function () {
-            return $scope.initFormState === $scope.initFormStates.READY;
-        };
-        $scope.initFormIsApiError = function () {
-            return $scope.initFormState === $scope.initFormStates.APIERROR;
-        };
-        $scope.currentInitState = function() {
-            return Object.keys($scope.initFormStates)
-                .filter(function(key) {
-                    return $scope.initFormStates[key] === $scope.initFormState;
-                })[0];
-        };
-
         $scope.dniIsInvalid = true;
         $scope.accountIsInvalid = true;
         $scope.isInvestmentFormReady = false;
         $scope.languages = [];
         $scope.language = {};
         $scope.form = {};
-        $scope.form.init = {};
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
@@ -113,32 +73,6 @@ angular.module('newSomEnergiaWebformsApp')
         // GET LANGUAGES
         AjaxHandler.getLanguages($scope);
 
-        // GET PARTNER DATA
-        $scope.executeGetSociValues = function() {
-            var sociPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/soci/' + $scope.form.init.socinumber + '/' + $scope.form.init.dni, '001');
-            sociPromise.soci = $scope.form.init.socinumber;
-            sociPromise.dni = $scope.form.init.dni;
-            sociPromise.then(
-                function(response) {
-                    if ($scope.form.init.socinumber !== sociPromise.soci) {return;}
-                    if ($scope.form.init.dni !== sociPromise.dni) {return;}
-
-                    if (response.state === cfg.STATE_TRUE) {
-                        $log.log('Get partner info response received', response);
-                        $scope.soci = response.data.soci;
-                        $scope.initFormState = $scope.initFormStates.READY;
-                    } else {
-                        $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
-                    }
-                },
-                function(reason) {
-                    $scope.initFormState = $scope.initFormStates.APIERROR;
-                    $scope.apiError = reason;
-                    $log.error('Get partner info failed', reason);
-                }
-            );
-        };
-
         $scope.isInvestmentFormReady = function() {
             if ($scope.form.accountbankiban === undefined) {return false;}
             if ($scope.accountIsInvalid !== false) {return false;}
@@ -148,9 +82,6 @@ angular.module('newSomEnergiaWebformsApp')
             if ($scope.form.acceptaccountowner === false) {return false;}
             return true;
         };
-
-        // PARTNER NUMBER VALIDATION
-        ValidateHandler.validateInteger($scope, 'form.init.socinumber');
 
         // IBAN VALIDATION
         ValidateHandler.validateIban($scope, 'form.accountbankiban');
@@ -180,70 +111,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.initFormSubmited = function() {
             $scope.setStep(1);
         };
-
-        var timeoutCheckSoci = false;
-        $scope.$watch('form.init.socinumber', function(newValue) {
-            if ($scope.initFormIsIdle()) {return;}
-            if ($scope.initFormIsValidatingId()) {return;}
-            if ($scope.initFormIsInvalidId()) {return;}
-
-            if (newValue === undefined) {
-                $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
-                return;
-            }
-
-            $scope.initFormState = $scope.initFormStates.VALIDATINGMEMBER;
-
-            if (timeoutCheckSoci) {
-                $timeout.cancel(timeoutCheckSoci);
-            }
-            timeoutCheckSoci = $timeout(function() {
-                // TODO: Remove redundant conditions
-                if (newValue !== undefined && !$scope.dniIsInvalid && $scope.form.init.dni !== undefined) {
-                    $scope.executeGetSociValues();
-                }
-            }, cfg.DEFAULT_MILLISECONDS_DELAY);
-        });
-        var timeoutCheckDni = false;
-        $scope.$watch('form.init.dni', function(newValue) {
-            if (newValue === undefined) {
-                $scope.initFormState = $scope.initFormStates.IDLE;
-                return;
-            }
-            $scope.initFormState = $scope.initFormStates.VALIDATINGID;
-            if (timeoutCheckDni) {
-                $timeout.cancel(timeoutCheckDni);
-            }
-            timeoutCheckDni = $timeout(function() {
-                var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
-                dniPromise.dni = newValue;
-                dniPromise.then(
-                    function (response) {
-                        if (dniPromise.dni !== $scope.form.init.dni) {
-                            //console.log('Ignorant validació del DNI '+dniPromise.dni+' perque ja val '+$scope.form.init.dni);
-                            return;
-                        }
-                        $scope.dniIsInvalid  = response === cfg.STATE_FALSE;
-                        if ($scope.dniIsInvalid) {
-                            $scope.initFormState = $scope.initFormStates.INVALIDID;
-                            return;
-                        }
-                        if ($scope.form.init.socinumber === undefined) {
-                            // TODO: Review this transition
-                            $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
-                            return;
-                        }
-                        $scope.initFormState = $scope.initFormStates.VALIDATINGMEMBER;
-                        $scope.executeGetSociValues();
-                    },
-                    // TODO: Server error state and display reason
-                    function (reason) {
-                        $log.error('Check DNI failed', reason);
-                        $scope.initFormState = $scope.initFormStates.APIERROR;
-                    }
-                );
-            }, cfg.DEFAULT_MILLISECONDS_DELAY);
-        });
 
         // Backward with order.js  
         $scope.formListener = function() {
@@ -330,9 +197,18 @@ angular.module('newSomEnergiaWebformsApp')
 
     })
 
+
+
+
 .directive('memberValidator', function () {
     return {
         restrict: 'E',
+        scope: {
+            soci: '=',
+            formvalues: '=',
+            model: '=',
+            onproceed: '&',
+        },
         templateUrl: 'views/common/validacio-socia.html',
         controller: 'memberValidatorCtrl',
         link: function(scope, element, attrs, memberValidatorCtrl) {
@@ -340,11 +216,166 @@ angular.module('newSomEnergiaWebformsApp')
         },
     };
 })
-.controller('memberValidatorCtrl', function ($compile, $scope) {
+.controller('memberValidatorCtrl', function (
+        cfg,
+        $scope,
+        $timeout,
+        $log,
+        AjaxHandler,
+        ValidateHandler
+        ) {
     var self = this;
     self.init = function(element, attrs) {
+        $scope.soci = {};
+        $scope.model = {};
+        $scope.formvalues = {};
+        $scope.model.formvalues = $scope.formvalues;
+        $scope.model.soci = $scope.soci;
         $scope.mostraNomSociTrobat = attrs.showMemberName !== undefined;
         $scope.initFormActionText = attrs.buttonText;
+        $scope.developing = false;
+
+        $scope.initFormStates = {
+            IDLE: 1,
+            VALIDATINGID: 2,
+            VALIDATINGMEMBER: 3,
+            INVALIDID: 4,
+            INVALIDMEMBER: 5,
+            READY: 6,
+            APIERROR: 7
+        };
+        $scope.initFormState = $scope.initFormStates.IDLE;
+
+        $scope.initFormIsIdle = function () {
+            return $scope.initFormState === $scope.initFormStates.IDLE;
+        };
+        $scope.initFormIsValidatingId = function () {
+            return $scope.initFormState === $scope.initFormStates.VALIDATINGID;
+        };
+        $scope.initFormIsValidatingMember = function () {
+            return $scope.initFormState === $scope.initFormStates.VALIDATINGMEMBER;
+        };
+        $scope.initFormIsInvalidId = function () {
+            return $scope.initFormState === $scope.initFormStates.INVALIDID;
+        };
+        $scope.initFormIsInvalidMember = function () {
+            return $scope.initFormState === $scope.initFormStates.INVALIDMEMBER;
+        };
+        $scope.initFormIsReady = function () {
+            return $scope.initFormState === $scope.initFormStates.READY;
+        };
+        $scope.initFormIsApiError = function () {
+            return $scope.initFormState === $scope.initFormStates.APIERROR;
+        };
+        $scope.currentInitState = function() {
+            return Object.keys($scope.initFormStates)
+                .filter(function(key) {
+                    return $scope.initFormStates[key] === $scope.initFormState;
+                })[0];
+        };
+
+        $scope.model={};
+        $scope.model.isReady = $scope.initFormIsReady;
+
+        var timeoutCheckSoci = false;
+        $scope.$watch('formvalues.socinumber', function(newValue) {
+            if ($scope.initFormIsIdle()) {return;}
+            if ($scope.initFormIsValidatingId()) {return;}
+            if ($scope.initFormIsInvalidId()) {return;}
+
+            if (newValue === undefined) {
+                $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
+                return;
+            }
+
+            $scope.initFormState = $scope.initFormStates.VALIDATINGMEMBER;
+
+            if (timeoutCheckSoci) {
+                $timeout.cancel(timeoutCheckSoci);
+            }
+            timeoutCheckSoci = $timeout(function() {
+                // TODO: Remove redundant conditions
+                if (newValue !== undefined && !$scope.dniIsInvalid && $scope.formvalues.dni !== undefined) {
+                    $scope.executeGetSociValues();
+                }
+            }, cfg.DEFAULT_MILLISECONDS_DELAY);
+        });
+
+        var timeoutCheckDni = false;
+        $scope.$watch('formvalues.dni', function(newValue) {
+            if (newValue === undefined) {
+                $scope.initFormState = $scope.initFormStates.IDLE;
+                return;
+            }
+            $scope.initFormState = $scope.initFormStates.VALIDATINGID;
+            if (timeoutCheckDni) {
+                $timeout.cancel(timeoutCheckDni);
+            }
+            timeoutCheckDni = $timeout(function() {
+                var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
+                dniPromise.dni = newValue;
+                dniPromise.then(
+                    function (response) {
+                        if (dniPromise.dni !== $scope.formvalues.dni) {
+                            //console.log('Ignorant validació del DNI '+dniPromise.dni+' perque ja val '+$scope.formvalues.dni);
+                            return;
+                        }
+                        $scope.dniIsInvalid  = response === cfg.STATE_FALSE;
+                        if ($scope.dniIsInvalid) {
+                            $scope.initFormState = $scope.initFormStates.INVALIDID;
+                            return;
+                        }
+                        if ($scope.formvalues.socinumber === undefined) {
+                            // TODO: Review this transition
+                            $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
+                            return;
+                        }
+                        $scope.initFormState = $scope.initFormStates.VALIDATINGMEMBER;
+                        $scope.executeGetSociValues();
+                    },
+                    // TODO: Server error state and display reason
+                    function (reason) {
+                        $log.error('Check DNI failed', reason);
+                        $scope.initFormState = $scope.initFormStates.APIERROR;
+                    }
+                );
+            }, cfg.DEFAULT_MILLISECONDS_DELAY);
+        });
+        // Backward with order.js  
+        $scope.formListener = function() {
+        };
+
+        // PARTNER NUMBER VALIDATION
+        ValidateHandler.validateInteger($scope, 'formvalues.socinumber');
+
+        // GET PARTNER DATA
+        $scope.executeGetSociValues = function() {
+            var sociPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/soci/' + $scope.formvalues.socinumber + '/' + $scope.formvalues.dni, '001');
+            sociPromise.soci = $scope.formvalues.socinumber;
+            sociPromise.dni = $scope.formvalues.dni;
+            sociPromise.then(
+                function(response) {
+                    if ($scope.formvalues.socinumber !== sociPromise.soci) {return;}
+                    if ($scope.formvalues.dni !== sociPromise.dni) {return;}
+
+                    if (response.state === cfg.STATE_TRUE) {
+                        $log.log('Get partner info response received', response);
+                        $scope.soci = response.data.soci;
+                        $scope.initFormState = $scope.initFormStates.READY;
+                    } else {
+                        $scope.initFormState = $scope.initFormStates.INVALIDMEMBER;
+                    }
+                },
+                function(reason) {
+                    $scope.initFormState = $scope.initFormStates.APIERROR;
+                    $scope.apiError = reason;
+                    $log.error('Get partner info failed', reason);
+                }
+            );
+        };
+        $scope.initFormSubmited = function() {
+            $scope.onproceed();
+        };
     };
 });
 

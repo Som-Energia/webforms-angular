@@ -5,7 +5,7 @@
             <div class="form-group col-xs-6 col-sm-5 col-md-4 col-lg-3">
                 <label class="sr-only">{{ 'NUMERO_SOCI' | translate }}*</label>
                 <div class="input-group" style="width: 100%">
-                    <input type="text" name="socinumber" class="form-control input-lg" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="form.init.socinumber" data-ng-change="formListener()" required/>
+                    <input type="text" name="socinumber" class="form-control input-lg" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="formvalues.socinumber" data-ng-change="formListener()" required/>
                     <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>
                         <span class="spc-html badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_SOCIA' | translate }}" data-placement="top">?</span>
                     </span>
@@ -14,7 +14,7 @@
             <div class="form-group col-xs-6 col-sm-5 col-md-4 col-lg-3" >
                 <label class="sr-only">DNI/NIE/CIF*</label>
                 <div class="input-group" style="width: 100%">
-                    <input type="text" name="dni" class="form-control input-lg" placeholder="DNI/NIE/CIF*" data-ng-model="form.init.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': initFormIsInvalidId()}" required/>
+                    <input type="text" name="dni" class="form-control input-lg" placeholder="DNI/NIE/CIF*" data-ng-model="formvalues.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': initFormIsInvalidId()}" required/>
                     <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>
                         <span class="spc-html badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_DNI' | translate }}" data-placement="top">?</span>
                     </span>
@@ -68,9 +68,9 @@
 >{{ initFormActionText }}</button>
             </div>
         </div>
-        <div class="row" ng-if='developing && false'>
+        <div class="row" ng-if='developing'>
             <div class="col-xs-12">
-                {{ currentInitState() }}
+                Current State: {{ currentInitState() }}
             </div>
         </div>
     </form>
