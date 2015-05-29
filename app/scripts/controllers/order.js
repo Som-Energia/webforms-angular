@@ -6,20 +6,17 @@ angular.module('newSomEnergiaWebformsApp')
         // DEBUG MODE
         var debugEnabled = false;
 
-        // DEVELOP ENVIRONMENT
-        var develEnvironment = false; // TODO change xorigin domain on index.html && replace grunt sftp source environment
+        // INIT
+        $scope.developing = cfg.DEVELOPMENT; // TODO change xorigin domain on index.html && replace grunt sftp source environment
 
         // MUST APPLY TO EMBED WITH WORDPRESS
-        if (!develEnvironment) {
+        if (cfg.BASE_DOMAIN) {
             document.domain = cfg.BASE_DOMAIN;
         }
         // Just when developing, show untranslated strings instead of falling back to spanish
-        if (!develEnvironment ) {
+        if (!$scope.developing ) {
             $translate.fallbackLanguage('es');
         }
-
-        // INIT
-        $scope.developing = develEnvironment;
 
         $scope.showAllSteps = function() {
             $scope.step1Ready = true;
@@ -318,7 +315,7 @@ angular.module('newSomEnergiaWebformsApp')
             if (debugEnabled) {
                 $log.log(eventArgument);
             }
-            if (develEnvironment) {
+            if ($scope.developing) {
                 jQuery(document).trigger('moveStep', [eventArgument]);
             } else {
                 parent.jQuery('body').trigger('moveStep', [eventArgument]);

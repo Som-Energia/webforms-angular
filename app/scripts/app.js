@@ -1,7 +1,6 @@
 'use strict';
 
-var base = '//rawgit.com/Som-Energia/new-api-webforms/master/app/';
-//var base = '';
+var developmentMode = true;
 
 angular.module('newSomEnergiaWebformsApp', [
         'ngCookies',
@@ -17,8 +16,11 @@ angular.module('newSomEnergiaWebformsApp', [
             return data === undefined ? data : jQuery.param(data);
         };
     })
-    .config(function ($routeProvider, $sceDelegateProvider) {
-//    .config(function ($routeProvider, $locationProvider) {
+    .config(function ($routeProvider, $sceDelegateProvider/*, $locationProvider*/) {
+        var base = (
+            developmentMode ? '' :
+            '//rawgit.com/Som-Energia/new-api-webforms/master/app/'
+            );
         $routeProvider
             .when('/', {
                 templateUrl: base+'views/main.html',
@@ -47,8 +49,11 @@ angular.module('newSomEnergiaWebformsApp', [
             .otherwise({
                 redirectTo: '/'
             });
-//        $locationProvider.html5Mode(true);
-        $sceDelegateProvider.resourceUrlWhitelist(['self', new RegExp('^(http[s]?):\/\/rawgit.com/.+$')]);
+        //$locationProvider.html5Mode(true);
+        $sceDelegateProvider.resourceUrlWhitelist([
+            'self',
+            new RegExp('^(http[s]?):\/\/rawgit.com/.+$'),
+        ]);
     })
     .config(function($translateProvider) {
         $translateProvider
@@ -56,10 +61,13 @@ angular.module('newSomEnergiaWebformsApp', [
         ;
     })
     .constant('cfg', {
-        BASE_DOMAIN: 'somenergia.coop',
-        //BASE_DOMAIN: '127.0.0.1:9000',
-        API_BASE_URL: 'https://api.somenergia.coop/',     // production environment
-        //API_BASE_URL: 'https://sompre.gisce.net:5001/',    // test environment
+        DEVELOPMENT: developmentMode,
+        BASE_DOMAIN: (developmentMode?
+            false:
+            'somenergia.coop'),
+        API_BASE_URL: (developmentMode?
+            'https://sompre.gisce.net:5001/': // development api
+            'https://api.somenergia.coop/'),  // production api
         STATUS_OFFLINE: 'OFFLINE',
         STATUS_ONLINE: 'ONLINE',
         STATE_TRUE: true,

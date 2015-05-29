@@ -1,30 +1,20 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('AportacioVoluntariaCtrl', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
-
-        // DEBUG MODE
-        var debugEnabled = false;
-
-        // DEVELOP ENVIRONMENT
-        var develEnvironment = false; // TODO change xorigin domain on index.html && replace grunt sftp source environment
-
-        // MUST APPLY TO EMBED WITH WORDPRESS
-        if (!develEnvironment) {
-            document.domain = cfg.BASE_DOMAIN;
-        }
-        // Just when developing, show untranslated strings instead of falling back to spanish
-        if (!develEnvironment ) {
-            $translate.fallbackLanguage('es');
-        }
-        // DEBUG (only apply on development environment)
-        if (debugEnabled) {
-            cfg.API_BASE_URL = 'https://sompre.gisce.net:5001/';
-        }
+    .controller('AportacioVoluntariaCtrl', function (cfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // INIT
-        $scope.developing = develEnvironment;
+        $scope.developing = cfg.DEVELOPMENT;
 
+        // Just when developing, show untranslated strings instead of falling back to spanish
+        if (!$scope.developing ) {
+            $translate.fallbackLanguage('es');
+        }
+
+        // MUST APPLY TO EMBED WITH WORDPRESS
+        if (cfg.BASE_DOMAIN) {
+            document.domain = cfg.BASE_DOMAIN;
+        }
         $scope.setStep = function(step) {
             $scope.currentStep = step;
         };
