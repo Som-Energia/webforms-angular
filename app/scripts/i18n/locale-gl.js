@@ -124,6 +124,8 @@ angular.module('newSomEnergiaWebformsApp')
                 CORRECTE: 'Correcto.',
                 INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/inversion-realizada',
                 CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
+
+//                HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: '¿Hay actualmente luz en el punto de suministro?',
             })
         ;
     });

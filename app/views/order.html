@@ -37,12 +37,18 @@
                     <p>{{ 'DADES_PUNT_SUBMINISTRAMENT_HELPER' | translate }}</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group col-xs-11">
+            <div class="row" data-ng-hide='altesDeshabilitades'>
+                <div class="form-group col-xs-12">
                     <label>{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}</label>
                     <div class="btn-group">
-                        <label class="btn btn-default green" data-ng-model="form.hasservice" data-btn-radio="'yes'" >{{ 'SI' | translate }}</label>
+                        <label class="btn btn-default green" data-ng-model="form.hasservice" data-btn-radio="'yes'">{{ 'SI' | translate }}</label>
                         <label class="btn btn-default green" data-ng-model="form.hasservice" data-btn-radio="'no'" >{{ 'NO' | translate }}</label>
+                    </div>
+                    <div data-ng-show="form.hasservice==='yes'" class="alert alert-warning" style="margin-top:5px" role="alert">
+                        <span data-ng-bind-html="'AVIS_CANVI_COMERCIALITZADORA' | translate"></span>
+                    </div>
+                    <div data-ng-show="form.hasservice==='no'" class="alert alert-warning" style="margin-top:5px" role="alert">
+                        <span data-ng-bind-html="'AVIS_ALTA_DE_SERVEI' | translate"></span>
                     </div>
                 </div>
             </div>
@@ -188,10 +194,10 @@
                 <!--</div>-->
             <!--</div>-->
             <!--<div class="row">-->
-                <div class="form-group col-xs-11" data-ng-hide="form.hasservice">
+                <div class="form-group col-xs-12" data-ng-show="esAlta()">
                     <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_ALTA_HELPER' | translate}}</p>
                 </div>
-                <div class="form-group col-xs-11" data-ng-show="form.hasservice">
+                <div class="form-group col-xs-11" data-ng-hide="esAlta()">
                     <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_HELPER' | translate }}</p>
                     <label>{{ 'VOLS_FER_CANVI_TITULAR' | translate }}</label>
                     <div class="btn-group">
@@ -202,7 +208,7 @@
                         <span data-ng-bind-html="'AVIS_CANVI_TITULAR' | translate"></span>
                     </div>
                 </div>
-                <div class="col-xs-1">
+                <div class="col-xs-1" data-ng-hide="esAlta()">
                     <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_OWNER' | translate }}" data-placement="left">?</span>
                 </div>
             </div>

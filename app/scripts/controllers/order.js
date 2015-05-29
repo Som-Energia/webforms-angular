@@ -18,6 +18,8 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.fallbackLanguage('es');
         }
 
+        $scope.altesDeshabilitades = true;
+
         $scope.showAllSteps = function() {
             $scope.step1Ready = true;
             $scope.step2Ready = true;
@@ -162,9 +164,15 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.formListener();
         };
 
+        $scope.esAlta = function() {
+            $log.log($scope.form.hasservice);
+            return  $scope.form.hasservice === 'no';
+        };
+
         // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function() {
             $scope.isStep2ButtonReady = $scope.initForm.isReady() &&
+                ($scope.form.hasservice !== undefined || $scope.altesDeshabilitades) &&
                 $scope.form.address !== undefined &&
                 $scope.form.province !== undefined &&
                 $scope.form.city !== undefined &&
@@ -173,13 +181,16 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.cupsIsInvalid === false &&
                 $scope.cupsIsDuplicated === false &&
                 $scope.cnaeIsInvalid === false &&
-                ((($scope.form.rate === cfg.RATE_20A || $scope.form.rate === cfg.RATE_20DHA || $scope.form.rate === cfg.RATE_20DHS) && $scope.form.power !== undefined && !$scope.rate20IsInvalid) || (($scope.form.rate === cfg.RATE_21A || $scope.form.rate === cfg.RATE_21DHA || $scope.form.rate === cfg.RATE_21DHS) && $scope.form.power !== undefined && !$scope.rate21IsInvalid) || ($scope.form.rate === cfg.RATE_30A && $scope.form.power !== undefined && $scope.form.power2 !== undefined && $scope.form.power3 !== undefined && !$scope.rate3AIsInvalid)) &&
                 $scope.form.rate !== undefined &&
+                (
+                    (($scope.form.rate === cfg.RATE_20A || $scope.form.rate === cfg.RATE_20DHA || $scope.form.rate === cfg.RATE_20DHS) && $scope.form.power !== undefined && !$scope.rate20IsInvalid) ||
+                    (($scope.form.rate === cfg.RATE_21A || $scope.form.rate === cfg.RATE_21DHA || $scope.form.rate === cfg.RATE_21DHS) && $scope.form.power !== undefined && !$scope.rate21IsInvalid) ||
+                    ($scope.form.rate === cfg.RATE_30A && $scope.form.power !== undefined && $scope.form.power2 !== undefined && $scope.form.power3 !== undefined && !$scope.rate3AIsInvalid)
+                ) &&
                 !$scope.overflowAttachFile;
             $scope.isStep3ButtonReady = $scope.isStep2ButtonReady &&
                 $scope.form.changeowner !== undefined &&
-                $scope.form.accept !== undefined &&
-                $scope.form.accept !== false &&
+                $scope.form.accept === true &&
                 (
                     ($scope.form.isownerlink === 'yes') ||
                     ($scope.form.isownerlink === 'no' &&
@@ -340,21 +351,25 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('tipus_persona', $scope.form.usertype === 'person' ? 0 : 1);
             formData.append('soci_titular', $scope.form.isownerlink === 'yes' ? 1 : 0);
             formData.append('canvi_titular', $scope.form.changeowner === 'yes' ? 1 : 0);
+            if (!$scope.altesDeshabilitades) {
+                formData.append('alta_subministre', $scope.esAlta() ? 1 : 0);
+                formData.append('proces', $scope.esAlta() ? 'A3' : $scope.form.isownerlink === 'yes' ? 'C2': 'C1');
+            }
             formData.append('representant_nom', $scope.form.usertype === 'company' ? $scope.form.representantname : '');
             formData.append('representant_dni', $scope.form.usertype === 'company' ? $scope.form.representantdni : '');
             formData.append('titular_nom', $scope.form.isownerlink === 'yes' ? $scope.soci.nom : $scope.form.name);
-            formData.append('titular_cognom', $scope.form.isownerlink === 'yes' ? $scope.soci.cognom : $scope.form.surname === undefined ? '' : $scope.form.surname);
+            formData.append('titular_cognom', $scope.form.isownerlink === 'yes' ? $scope.soci.cognom : $scope.form.surname || '');
             formData.append('titular_dni', $scope.form.isownerlink === 'yes' ? $scope.soci.dni : $scope.form.dni);
             formData.append('titular_email', $scope.form.isownerlink === 'yes' ? $scope.soci.email : $scope.form.email1);
             formData.append('titular_tel', $scope.form.isownerlink === 'yes' ? $scope.soci.tel : $scope.form.phone1);
-            formData.append('titular_tel2', $scope.form.isownerlink === 'yes' ? $scope.soci.tel2 : $scope.form.phone2 === undefined ? '' : $scope.form.phone2);
+            formData.append('titular_tel2', $scope.form.isownerlink === 'yes' ? $scope.soci.tel2 : $scope.form.phone2 || '');
             formData.append('titular_adreca', $scope.form.isownerlink === 'yes' ? $scope.soci.adreca : $scope.form.address2);
             formData.append('titular_municipi', $scope.form.isownerlink === 'yes' ? $scope.soci.municipi : $scope.form.city2.id);
             formData.append('titular_cp', $scope.form.isownerlink === 'yes' ? $scope.soci.cp : $scope.form.postalcode);
             formData.append('titular_provincia', $scope.form.isownerlink === 'yes' ? $scope.soci.provincia : $scope.form.province2.id);
             formData.append('tarifa', $scope.form.rate);
             formData.append('cups', $scope.form.cups);
-            formData.append('consum', $scope.form.estimation === undefined ? '' : $scope.form.estimation);
+            formData.append('consum', $scope.form.estimation || '');
             formData.append('potencia', Math.round($scope.form.power * cfg.THOUSANDS_CONVERSION_FACTOR));
             formData.append('potencia_p2', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power2 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
             formData.append('potencia_p3', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power3 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
@@ -362,7 +377,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('cups_adreca', $scope.form.address);
             formData.append('cups_provincia', $scope.form.province.id);
             formData.append('cups_municipi', $scope.form.city.id);
-            formData.append('referencia', $scope.form.catastre === undefined ? '' : $scope.form.catastre);
+            formData.append('referencia', $scope.form.catastre || '');
             formData.append('fitxer', jQuery('#fileuploaderinput')[0].files[0]);
             //formData.append('entitat', $scope.form.accountbank);
             //formData.append('sucursal', $scope.form.accountoffice);
