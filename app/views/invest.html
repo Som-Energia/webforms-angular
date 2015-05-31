@@ -65,17 +65,19 @@
                 </div>
             </div>
             <div class="row no-margin-bottom">
-                <div class="col-sm-12 col-xs-12">
-                    <input type="text" id="accountbankiban" name="accountbankiban" class="form-control input-lg" data-ng-model="form.accountbankiban" data-ng-change="formAccountIbanListener()" data-ng-class="{'ng-invalid': accountIsInvalid}" required aria-describedby="accountbankibanHelp"/>
-                    <span class="label label-danger" data-ng-show="accountIsInvalid===true">{{ 'INVALID' | translate }}</span>
-                    <span class="label label-warning" data-ng-show="accountIsInvalid===undefined">{{ 'COMPROVANT' | translate }}</span>
-                    <span class="label label-success" data-ng-show="accountIsInvalid===false">{{ 'CORRECTE' | translate }}</span>
-                </div>
-            </div>
-            <div class="row">
+                <iban-editor
+                    class="col-sm-8 col-xs-12"
+                    required
+                    inputid="accountbankiban"
+                    placeholder="{{'CODI_IBAN_DEL_COMPTE' | translate}}"
+                    help="accountbankibanHelp"
+                    model="ibanEditor"
+                ></iban-editor>
                 <div class="col-xs-12">
                     <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>{{ 'NUMERO_DE_COMPTE_FORMAT_IBAN' | translate }}</div>
                 </div>
+            </div>
+            <div class="row no-margin-bottom">
             </div>
             <div class="row">
                 <div class="form-group checkbox col-xs-12">
@@ -87,7 +89,13 @@
             </div>
             <div class="row no-margin-bottom">
                 <div class="col-xs-12 pull-right no-horitzontal-padding">
-                    <button data-ng-click="sendInvestment()" class="btn btn-default green btn-lg btn-block submit" data-ng-class="{'green': isInvestmentFormReady(), 'grey':!isInvestmentFormReady() }" data-ng-disabled="!isInvestmentFormReady()" type="button">{{ submitButtonText }}</button>
+                    <button
+                        data-ng-click="sendInvestment()"
+                        type="button"
+                        class="btn btn-default green btn-lg btn-block submit"
+                        data-ng-class="{'green': isInvestmentFormReady(), 'grey':!isInvestmentFormReady() }"
+                        data-ng-disabled="!isInvestmentFormReady()"
+                    >{{ submitButtonText }}</button>
                 </div>
             </div>
         </div>

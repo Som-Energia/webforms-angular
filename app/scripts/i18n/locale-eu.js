@@ -99,15 +99,13 @@ angular.module('newSomEnergiaWebformsApp')
                 SI_LES_DADES_SON_CORRECTES: 'Datuak zuzenak badira klikatu bai kontratazio prozesua amaitzeko',
                 SI_TOT_CORRECTE: 'Bai, dena zuzena da',
 
-// Traducciones pendientes
-
                 HELP_POPOVER_SOCIA: 'Zure bazkidearen zenbakia ez duzu gogoratzen? Asma ezazu web orriaren "Datu pertsonalak" atalean <a target="_blank" href="https://oficinavirtual.somenergia.coop/">Bulego Birtuala</a>.',
                 HELP_POPOVER_DNI: 'Adibide NAN: 12345678P (amaierako letrarekin)',
                 SOCIA_TROBADA: 'Bazkide aurkituta',
                 VALIDANT_ID: 'Nortasun-agiria balioztatzen...',
                 IDENTIFICANT_SOCIA: 'Bazkidea identifikatzen...',
                 DNI_INVALID: 'Nortasun-agiriaren kode okerra.',
-                SERVER_ERRROR: 'Hutsegitea serbidorean sartzen:',
+                SERVER_ERROR: 'Hutsegitea serbidorean sartzen:',
                 INICIAR_INVERSIO: 'Hasi inbertsioa',
                 FORMULARI_D_INVERSIO: 'Inbertsio <b>formulario</b>',
                 BENVINGUDA: 'Ongi etorri, ',
@@ -125,7 +123,12 @@ angular.module('newSomEnergiaWebformsApp')
                 INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/inversion-realizada',
                 CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
 
+                // En desarrollo (sujetas a cambios)
+//                CODI_IBAN_DEL_COMPTE: 'Código IBAN de la cuenta',
+//                REQUERIT: 'Requerido.',
 //                HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: '¿Hay actualmente luz en el punto de suministro?',
+//                AVIS_ALTA_DE_SERVEI: 'El punt de suministre no té servei i vols fer l\'alta directament amb SomEnergia',
+//                AVIS_CANVI_COMERCIALITZADORA: 'El punt de subministre ja té servei amb altre comercialitzadora i vols passar-te a SomEnergia',
             })
         ;
     });

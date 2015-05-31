@@ -11,6 +11,11 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.fallbackLanguage('es');
         }
 
+        if ($routeParams.locale !== undefined) {
+            $translate.use($routeParams.locale);
+        }
+        $scope.submitButtonText = $translate.instant('CONFIRMAR_INVERSIO');
+
         // MUST APPLY TO EMBED WITH WORDPRESS
         if (cfg.BASE_DOMAIN) {
             document.domain = cfg.BASE_DOMAIN;
@@ -23,25 +28,18 @@ angular.module('newSomEnergiaWebformsApp')
         };
         $scope.setStep(0);
 
-        $scope.accountIsInvalid = true;
-        $scope.isInvestmentFormReady = false;
         $scope.languages = [];
         $scope.language = {};
         $scope.form = {};
-        if ($routeParams.locale !== undefined) {
-            $translate.use($routeParams.locale);
-        }
-        $scope.submitButtonText = $translate.instant('CONFIRMAR_INVERSIO');
+        $scope.form.amount = 100;
+        $scope.form.acceptaccountowner = false;
 
-        $scope.form.accountbankiban = '';
         $scope.aportacioMinima = 100;
         $scope.aportacioMaxima = 25000;
         $scope.aportacioSalts = 100;
         $scope.amountAboveMax = false;
         $scope.amountUnderMin = false;
         $scope.amountNotHundred = false;
-        $scope.form.amount = 100;
-        $scope.form.acceptaccountowner = false;
 
         $scope.$watch('form.amount', function(newValue, oldValue) {
             if (newValue === undefined) {
@@ -63,36 +61,13 @@ angular.module('newSomEnergiaWebformsApp')
         AjaxHandler.getLanguages($scope);
 
         $scope.isInvestmentFormReady = function() {
-            if ($scope.form.accountbankiban === undefined) {return false;}
-            if ($scope.accountIsInvalid !== false) {return false;}
+            if ($scope.ibanEditor === undefined) {return false;}
+            if (!$scope.ibanEditor.isValid()) {return false;}
             if ($scope.amountUnderMin) {return false;}
             if ($scope.amountAboveMax) {return false;}
             if ($scope.amountNotHundred) {return false;}
             if ($scope.form.acceptaccountowner === false) {return false;}
             return true;
-        };
-
-        // IBAN VALIDATION
-        ValidateHandler.validateIban($scope, 'form.accountbankiban');
-
-        $scope.formAccountIbanListener = function () {
-            if ($scope.form.accountbankiban === undefined) {
-                $scope.accountIsInvalid = true;
-                return;
-            }
-            $scope.accountIsInvalid = undefined; // checking
-            var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/iban/' + $scope.form.accountbankiban, '017');
-            accountPromise.account = $scope.form.accountbankiban;
-            accountPromise.then(
-                function (response) {
-                    if (accountPromise.account !== $scope.form.accountbankiban) {
-                        // Changed while waiting a response, ignore
-                        return;
-                    }
-                    $scope.accountIsInvalid = response === cfg.STATE_FALSE;
-                },
-                function(reason) { $log.error('Check IBAN failed', reason); }
-            );
         };
 
         $scope.submiting = false;
@@ -114,7 +89,7 @@ angular.module('newSomEnergiaWebformsApp')
             angular.forEach({
                 socinumber: $scope.formsoci.socinumber,
                 dni: $scope.formsoci.dni,
-                accountbankiban: $scope.form.accountbankiban,
+                accountbankiban: $scope.ibanEditor.value,
                 amount: $scope.form.amount,
                 acceptaccountowner: 1
             }, function(value, key) {
@@ -186,5 +161,102 @@ angular.module('newSomEnergiaWebformsApp')
 
     });
 
+angular.module('newSomEnergiaWebformsApp')
+.directive('ibanEditor', function () {
+    return {
+        restrict: 'E',
+        scope: {
+            model: '=',
+            help: '@',
+            inputid: '@',
+            placeholder: '@?',
+            required: '@?',
+        },
+        templateUrl: 'views/ibaneditor.html',
+        controller: 'ibanEditorCtrl',
+        link: function(scope, element, attrs, ibanEditorCtrl) {
+            ibanEditorCtrl.init(element, attrs);
+        },
+    };
+})
+.controller('ibanEditorCtrl', function (
+        cfg,
+        $scope,
+        $timeout,
+        $log,
+        AjaxHandler
+        ) {
+    var self = this;
+    self.init = function(/*element, attrs*/) {
 
+        $scope._isValid = $scope.required === undefined;
+        $scope._lastPromise = undefined;
+        $scope.model = {};
+        $scope.model.value = undefined;
+        $scope.model.serverError = undefined;
+
+        $scope.model.inServerError = function() {
+            return $scope.model.serverError !== undefined;
+        };
+        $scope.model.isRequiredMissing = function() {
+            if ($scope.model.inServerError()) { return false; }
+            if ($scope.required === undefined) { return false; }
+            return $scope.model.value === undefined || $scope.model.value === '';
+        };
+        $scope.model.isValidating = function() {
+            if ($scope.model.inServerError()) { return false; }
+            if ($scope.model.isRequiredMissing()) { return false; }
+            return $scope._isValid === undefined;
+        };
+        $scope.model.isValid = function() {
+            if ($scope.model.inServerError()) { return false; }
+            if ($scope.model.isRequiredMissing()) { return false; }
+            return $scope._isValid === true;
+        };
+        $scope.model.isInvalid = function() {
+            if ($scope.model.inServerError()) { return false; }
+            if ($scope.model.isRequiredMissing()) { return false; }
+            return $scope._isValid === false;
+        };
+
+        // Backward with order.js  
+        $scope.formListener = function() {
+        };
+        $scope.onChange = function () {
+            $scope.model.serverError = undefined;
+            // Unify value for some browsers when not required
+            if ($scope.model.value === '') {
+                $scope.model.value = undefined;
+            }
+            if ($scope.model.value === undefined) {
+                $scope._isValid = ($scope.required === undefined);
+                return;
+            }
+            $scope._isValid = undefined; // checking
+            if ($scope._lastPromise !== undefined) {
+                $scope._lastPromise.abort();
+            }
+            var promise = AjaxHandler.getStateRequest(
+                $scope, cfg.API_BASE_URL +
+                'check/iban/' + $scope.model.value,
+                '017');
+            $scope._lastPromise = promise;
+            promise.value = $scope.model.value;
+            promise.then(
+                function (response) {
+                    if (promise.value !== $scope.model.value) {
+                        // Changed while waiting a response, ignore
+                        return;
+                    }
+                    $scope._isValid = response !== cfg.STATE_FALSE;
+                },
+                function(reason) {
+                    // TODO: Translate 'Unknown'
+                    $log.log('Server error:', reason);
+                    $scope.model.serverError = reason || 'Unknown';
+                }
+            );
+        };
+    };
+});
 

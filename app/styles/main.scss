@@ -442,3 +442,43 @@ select[disabled] { color: $grey; }
         margin-bottom: 30px;
     }
 }
+
+/* colored feedback icons */
+.form-control-feedback.primary {
+    color: rgb(50, 118, 177);
+}
+.form-control-feedback.success {
+    color: $green;
+}
+.form-control-feedback.info {
+    color: rgb(57, 179, 215);
+}
+.form-control-feedback.warning {
+    color: rgb(240, 173, 78);
+}
+.form-control-feedback.danger {
+    color: rgb(200, 100, 100);
+    color: $red;
+}
+
+/* feedback icon position fix */
+.has-feedback .form-control-feedback {
+    position: absolute;
+    top: 3px;
+    right: 15px;
+    display: block;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+}
+
+/* spinning icons */
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+}
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+

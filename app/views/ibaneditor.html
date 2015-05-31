@@ -1,0 +1,30 @@
+<div
+    class='form-group has-feedback'
+    data-ng-class="{
+        'ng-invalid': ! model.isValid()
+    }"
+    >
+    <input
+        type="text"
+        class="form-control input-lg"
+        placeholder="{{placeholder}}"
+        ng-required="{{required}}"
+        id="{inputid}"
+        name="{{inputid}}"
+        data-ng-model="model.value"
+        data-ng-change="onChange()"
+        aria-describedby="{{help}}"
+        />
+    <span class="form-control-feedback glyphicon "  data-ng-class="{
+        'glyphicon-warning-sign danger': model.inServerError(),
+        'glyphicon-asterisk danger': model.isRequiredMissing(),
+        'glyphicon-remove danger': model.isInvalid(),
+        'glyphicon-refresh spinning warning': model.isValidating(),
+        'glyphicon-ok success': model.isValid()
+    }"></span>
+    <span class="pull-right label label-danger"  data-ng-show="model.isRequiredMissing()">{{ 'REQUERIT' | translate }}</span>
+    <span class="pull-right label label-danger"  data-ng-show="model.isInvalid()">{{ 'INVALID' | translate }}</span>
+    <span class="pull-right label label-danger"  data-ng-show="model.inServerError()">{{ 'SERVER_ERROR' | translate }} {{model.serverError}}</span>
+    <span class="pull-right label label-warning" data-ng-show="model.isValidating()">{{ 'COMPROVANT' | translate }}</span>
+    <span class="pull-right label label-success" data-ng-show="model.isValid()">{{ 'CORRECTE' | translate }}</span>
+</div>

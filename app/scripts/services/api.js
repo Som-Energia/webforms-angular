@@ -84,19 +84,29 @@ angular.module('newSomEnergiaWebformsApp')
 
         // Async GET state call
         this.getStateRequest = function($scope, URL, errorCode) {
+            var aborter = $q.defer();
             var deferred = $q.defer();
-            $http.get(URL)
+            deferred.promise.abort = function() {
+                aborter.resolve('Aborted');
+            };
+            $http.get(URL, {timeout: aborter} )
                 .success(function (response) {
+                    var msg;
                     if (response.status === cfg.STATUS_ONLINE) {
                         deferred.resolve(response.state);
                         $scope.formListener($scope.form);
                     } else if (response.status === cfg.STATUS_OFFLINE) {
-                        uiHandler.showErrorDialog('API server response status offline recived (ref.002-' + errorCode + ')');
+                        msg = 'API server response status offline recived (ref.002-' + errorCode + ')';
+                        uiHandler.showErrorDialog(msg);
+                        deferred.reject(msg);
                     } else {
-                        uiHandler.showErrorDialog('API server unknown status (ref.001-' + errorCode + ')');
+                        msg = 'API server unknown status (ref.001-' + errorCode + ')';
+                        uiHandler.showErrorDialog(msg);
+                        deferred.reject(msg);
                     }
                 })
-                .error(function (data) {
+                .error(function (data, status, headers, config, statusText) {
+                    $log.debug('Error on getStateReq:', [data, status, headers, config, statusText]);
                     deferred.reject(data);
                 });
 

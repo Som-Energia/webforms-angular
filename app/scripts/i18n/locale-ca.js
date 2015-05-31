@@ -99,14 +99,13 @@ angular.module('newSomEnergiaWebformsApp')
                 SI_LES_DADES_SON_CORRECTES: 'Si les dades són correctes premi Sí per finalitzar el procés de contractació',
                 SI_TOT_CORRECTE: 'Sí, tot correcte',
 
-
                 HELP_POPOVER_SOCIA: 'No recordes el teu nº? el pots veure dins l\'apartat "Dades Personals" de l\'<a target="_blank" href="https://oficinavirtual.somenergia.coop/">Oficina Virtual</a>.',
                 HELP_POPOVER_DNI: 'Exemple DNI: 12345678P (amb lletra final)',
                 SOCIA_TROBADA: 'Soci/sòcia trobat/da!',
                 VALIDANT_ID: 'Validant document d\'identificació...',
                 IDENTIFICANT_SOCIA: 'Identificant soci/sòcia...',
                 DNI_INVALID: 'Codi del DNI/NIE/CIF invàlid.',
-                SERVER_ERRROR: 'Error accedint al servidor:',
+                SERVER_ERROR: 'Error accedint al servidor:',
                 INICIAR_INVERSIO: 'Iniciar Inversió',
                 FORMULARI_D_INVERSIO: 'Formulari d\'<b>inversió</b>',
                 BENVINGUDA: 'Benvingut/da, ',
@@ -124,7 +123,12 @@ angular.module('newSomEnergiaWebformsApp')
                 INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/ca/inversio-realitzada',
                 CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
 
+                // En desarrollo (sujetas a cambios)
+                CODI_IBAN_DEL_COMPTE: 'Codi IBAN del compte',
+                REQUERIT: 'Requerit.',
                 HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: 'Hi ha llum al punt de subministrament actualment?',
+                AVIS_ALTA_DE_SERVEI: 'El punt de suministre no té servei i vols fer l\'alta directament amb SomEnergia',
+                AVIS_CANVI_COMERCIALITZADORA: 'El punt de subministre ja té servei amb altre comercialitzadora i vols passar-te a SomEnergia',
             })
         ;
     });
