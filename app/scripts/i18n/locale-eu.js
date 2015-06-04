@@ -3,7 +3,7 @@
 angular.module('newSomEnergiaWebformsApp')
     .config(function($translateProvider) {
         $translateProvider
-           .translations('eu', {
+            .translations('eu', {
                 SELECCIONA: 'Aukera ezazu',
                 PARTICULAR: 'Pertsona fisikoa',
                 EMPRESA: 'Pertsona juridikoa',
@@ -125,6 +125,7 @@ angular.module('newSomEnergiaWebformsApp')
 
                 // En desarrollo (sujetas a cambios)
 //                CODI_IBAN_DEL_COMPTE: 'Código IBAN de la cuenta',
+//                EXEMPLE_IBAN: 'Esate: ES11 2222 3333 4444 5555 6666',
 //                REQUERIT: 'Requerido.',
 //                HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: '¿Hay actualmente luz en el punto de suministro?',
 //                AVIS_ALTA_DE_SERVEI: 'El punt de suministre no té servei i vols fer l\'alta directament amb SomEnergia',
