@@ -68,7 +68,6 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.energeticActions = 1;
         };
         $scope.$watch('form.energeticActions', function(newValue, oldValue) {
-            $log.log('watching', newValue, oldValue);
             if (isNaN(parseInt(newValue))) {
                 $scope.form.energeticActions = oldValue;
                 return;
