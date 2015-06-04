@@ -91,10 +91,27 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.initFormSubmited = function() {
             $scope.setStep(1);
+            $scope.updateAnnualUse();
         };
 
         // Backward with order.js  
         $scope.formListener = function() {
+        };
+
+        $scope.updateAnnualUse = function() {
+            $scope.partnerContracts = [];
+            var promise = $timeout(function() {
+                $scope.partnerContracts = [
+                    { id:'1313', address:'Rue del Percebe, 13, Villabotijo, Zamora', yearlykwh:2342 },
+                    { id:'1314', address:'Rue del Percebe, 13, Villabotijo, Zamora', yearlykwh:2342 },
+                    { id:'1315', address:'Rue del Percebe, 13, Villabotijo, Zamora', yearlykwh:2342 },
+                    { id:'1316', address:'Rue del Percebe, 13, Villabotijo, Zamora', yearlykwh:2342 },
+                ];
+                $scope.totalYearlyKwh = $scope.partnerContracts.reduce(function(sum, contract) {
+                    return sum + contract.yearlykwh;
+                }, 0);
+            }, 5000);
+            promise.soci = $scope.formsoci.soci;
         };
 
         // ON SUBMIT FORM
