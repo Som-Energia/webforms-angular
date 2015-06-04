@@ -1,0 +1,177 @@
+<!--GLOBAL MESSAGES-->
+<div class="row" data-ng-include data-src="'views/common/global-messages.html'"></div>
+
+<div ng-if='developing' data-ng-include data-src="'views/common/responsive-display.html'"></div>
+
+<div>
+    <!--HEADER-->
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="green extra-margin" translate="FORMULARI_D_INVERSIO_GKWH"></h1>
+        </div>
+    </div>
+
+    <!-- BEGIN INIT FORM-->
+    <member-chooser
+        button-text="{{'INICIAR_INVERSIO' | translate }}"
+        onproceed="initFormSubmited()"
+        soci="soci"
+        model="initForm"
+        formvalues="formsoci"
+        data-ng-show="isStep(0)"
+    ></member-chooser>
+    <!--END INIT FORM-->
+
+    <!-- BEGIN INVEST FORM-->
+    <form name="investForm" class="form-inline" role="form" ng-show="isStep(1) || true" enctype="multipart/form-data" novalidate>
+        <fieldset ng-disabled="submiting">
+        <div class="row">
+            <div class="col-xs-12 heading active">
+                <h1>{{ 'BENVINGUDA' | translate }} <b>{{ soci.nom }} {{ soci.cognom }}</b>!</h1>
+            </div>
+        </div>
+        <div class='well'>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3 class="green">{{ 'QUANTES_ACCIONS_ENERGETIQUES_VOLS' | translate }}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-minus"></i></button>
+                        </span>
+                        <input class='form-control input-lg' type="number"
+                            min="1" max="2000" data-ng-model="form.energeticActions" required>
+                        </input>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            class="form-control input-lg"
+                            value="{{ energeticActionsCost() }}"
+                            readonly
+                            />
+                        <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>€</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" 
+                    translate="ET_DONARA_DRET_A_APROX_KWHANY"
+                    translate-value-kwhany="{{ energeticActionsThrowput() }}"
+                >
+                </div>
+                <div class="col-xs-12" 
+                    translate="SUPOSA_UN_PERCENT_CONSUM_ANUAL_ESTIMAT"
+                    translate-value-percent="{{ percentatgeCobert() }}"
+                >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <table
+                        width="100%"
+                        class='contractTable'>
+                    <tr>
+                        <th>{{ 'CONTRACTE' | translate }}</th>
+                        <th>{{ 'ADRECA' | translate }}</th>
+                        <th>{{ 'CONSUM_EN_KWH' | translate }}</th>
+                    </tr>
+                    <tr ng-repeat='contract in partnerContracts'>
+                        <td align="center">{{contract.id}}</td>
+                        <td>{{contract.address}}</td>
+                        <td align="right">{{contract.yearlykwh}} kWh</td>
+                    </tr>
+                    <tr>
+                        <th colspan='2'>{{ 'TOTAL_CONSUM_ANUAL_ESTIMAT' | translate }}</th>
+                        <th align="right" style="text-align:right">{{ totalYearlyKwh }} kWh</th>
+                    </tr>
+                    <tr>
+                        <th colspan='2'>{{ 'CONSUM_APROXIMAT_COBERT' | translate }}</th>
+                        <th align="right" style="text-align:right">{{ energeticActionsThrowput() }} kWh</th>
+                    </tr>
+                    </table>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success"
+                            role="progressbar"
+                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                            style="{{ 'width: '+greenBarLength()+'%' }}"
+                            >
+                            <span ng-show="percentatgeCobert()>=15">{{ percentatgeCobert() }}%</span>
+                        </div>
+                        <div class="progress-bar progress-bar-warning"
+                            role="progressbar"
+                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                            style="{{ 'width: '+orangeBarLength()+'%' }}"
+                            >
+                        </div>
+                        <span ng-show="percentatgeCobert()<15">{{ percentatgeCobert() }}%</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-12 no-margin-bottom">
+                     <h3 class='green'><label for="accountbankiban" data-ng-bind-html="'DES_DE_QUIN_COMPTE' | translate"></label></h3>
+                </div>
+            </div>
+            <div class="row no-margin-bottom">
+                <iban-editor
+                    class="col-sm-8 col-xs-12"
+                    required
+                    inputid="accountbankiban"
+                    placeholder="{{'CODI_IBAN_DEL_COMPTE' | translate}}"
+                    help="accountbankibanHelp"
+                    model="ibanEditor"
+                ></iban-editor>
+                <div class="col-xs-12">
+                    <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>{{ 'NUMERO_DE_COMPTE_FORMAT_IBAN' | translate }}</div>
+                </div>
+            </div>
+            <div class="row no-margin-bottom">
+            </div>
+            <div class="row">
+                <div class="form-group checkbox col-xs-12">
+                    <label>
+                        <input type="checkbox" name="acceptaccountowner" value="accept" data-ng-model="form.acceptaccountowner" required/>
+                        <span translate="CONFIRMO_CONDICIONS_INVERSIO" ></span>
+                    </label>
+                </div>
+            </div>
+            <div class="row no-margin-bottom">
+                <div class="col-xs-12 pull-right no-horitzontal-padding">
+                    <button
+                        data-ng-click="sendInvestment()"
+                        type="button"
+                        class="btn btn-default green btn-lg btn-block submit"
+                        data-ng-class="{'green': isInvestmentFormReady(), 'grey':!isInvestmentFormReady() }"
+                        data-ng-disabled="!isInvestmentFormReady()"
+                    >{{ submitButtonText }}</button>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    </form>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery(".spc-html").popover(
+                {
+                    html : true,
+                    trigger : 'hover',
+                    delay : { show : 0, hide : 2500 }
+                }
+        );
+        jQuery(".spc").popover({trigger : 'hover'});
+        setTimeout(function () { jQuery("#spc-rate-conditional").popover({trigger : 'hover'}); }, 1000);
+    });
+</script>

@@ -46,6 +46,10 @@ angular.module('newSomEnergiaWebformsApp', [
                 templateUrl: 'views/invest.html', // DGG: No base??
                 controller: 'AportacioVoluntariaCtrl'
             })
+            .when('/:locale/generationkwh', {
+                templateUrl: 'views/generationkwh.html',
+                controller: 'GenerationKwhCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

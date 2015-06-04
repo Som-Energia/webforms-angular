@@ -482,3 +482,20 @@ select[disabled] { color: $grey; }
     to { transform: scale(1) rotate(360deg);}
 }
 
+/* Electricity use by contract table */
+table.contractTable {
+    th {
+        padding-right: 10px;
+        color: $green;
+    }
+    tr:nth-child(even) {
+        background-color: #f3f3f3;
+    }
+    td {
+        padding-right: 10px;
+        vertical-align: top;
+    }
+}
+
+
+

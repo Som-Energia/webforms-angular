@@ -129,6 +129,14 @@ angular.module('newSomEnergiaWebformsApp')
                 HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: 'Hi ha llum al punt de subministrament actualment?',
                 AVIS_ALTA_DE_SERVEI: 'El punt de suministre no té servei i vols fer l\'alta directament amb SomEnergia',
                 AVIS_CANVI_COMERCIALITZADORA: 'El punt de subministre ja té servei amb altre comercialitzadora i vols passar-te a SomEnergia',
+
+                ET_DONARA_DRET_A_APROX_KWHANY: 'Aproximadament, et donarà dret a <b>{{kwhany}} kWh l\'any</b> a preu de cost.',
+                SUPOSA_UN_PERCENT_CONSUM_ANUAL_ESTIMAT: 'Suposa un {{percent}}% de la teva estimació de consum anual als contractes dels que ets titular o pagador. La nostra recomanació és un màxim del 78% perqué no et sobrin KWh si els preus de cost encara baixen més.',
+                QUANTES_ACCIONS_ENERGETIQUES_VOLS: 'Quàntes accions energètiques vols?',
+                CONTRACTE: 'Contracte',
+                TOTAL_CONSUM_ANUAL_ESTIMAT: 'Consum anual estimat total',
+                CONSUM_APROXIMAT_COBERT: 'Consum cobert (aproximat)',
+                CONSUM_EN_KWH: ' Consum anual',
             })
         ;
     });
