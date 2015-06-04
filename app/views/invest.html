@@ -93,7 +93,10 @@
                         data-ng-click="sendInvestment()"
                         type="button"
                         class="btn btn-default green btn-lg btn-block submit"
-                        data-ng-class="{'green': isInvestmentFormReady(), 'grey':!isInvestmentFormReady() }"
+                        data-ng-class="{
+                            'green': isInvestmentFormReady(),
+                            'grey':!isInvestmentFormReady()
+                            }"
                         data-ng-disabled="!isInvestmentFormReady()"
                     >{{ submitButtonText }}</button>
                 </div>
