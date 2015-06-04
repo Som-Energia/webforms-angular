@@ -28,10 +28,7 @@ angular.module('newSomEnergiaWebformsApp')
         };
         $scope.setStep(0);
 
-        $scope.languages = [];
-        $scope.language = {};
         $scope.form = {};
-        $scope.form.amount = 100;
         $scope.form.acceptaccountowner = false;
 
         $scope.partnerContracts = [
@@ -63,39 +60,30 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.greenBarLength = function() {
             return Math.min($scope.recommendedMax,$scope.percentatgeCobert());
         };
-
-        $scope.aportacioMinima = 100;
-        $scope.aportacioMaxima = 25000;
-        $scope.aportacioSalts = 100;
-        $scope.amountAboveMax = false;
-        $scope.amountUnderMin = false;
-        $scope.amountNotHundred = false;
-
-        $scope.$watch('form.amount', function(newValue, oldValue) {
-            if (newValue === undefined) {
-                $scope.amountAboveMax = false;
-                $scope.amountNotHundred = false;
-                $scope.amountUnderMin = false;
+        $scope.incrementShares = function(amount) {
+            if (amount + $scope.form.energeticActions>0) {
+                $scope.form.energeticActions+=amount;
                 return;
             }
-            if (! /^\d+$/.test(newValue)) {
-                $scope.form.amount = oldValue;
+            $scope.form.energeticActions = 1;
+        };
+        $scope.$watch('form.energeticActions', function(newValue, oldValue) {
+            $log.log('watching', newValue, oldValue);
+            if (isNaN(parseInt(newValue))) {
+                $scope.form.energeticActions = oldValue;
                 return;
             }
-            $scope.amountAboveMax = (newValue > $scope.aportacioMaxima)? true : false;
-            $scope.amountNotHundred = (newValue % $scope.aportacioSalts) !== 0;
-            $scope.amountUnderMin = newValue < $scope.aportacioMinima;
+            var intValue = parseInt(newValue);
+            if (intValue<1) {
+                $scope.form.energeticActions = oldValue;
+                return;
+            }
         });
-
-        // GET LANGUAGES
-        AjaxHandler.getLanguages($scope);
 
         $scope.isInvestmentFormReady = function() {
             if ($scope.ibanEditor === undefined) {return false;}
             if (!$scope.ibanEditor.isValid()) {return false;}
-            if ($scope.amountUnderMin) {return false;}
-            if ($scope.amountAboveMax) {return false;}
-            if ($scope.amountNotHundred) {return false;}
+            if (!$scope.energeticActionsCost()) {return false;}
             if ($scope.form.acceptaccountowner === false) {return false;}
             return true;
         };
@@ -120,7 +108,7 @@ angular.module('newSomEnergiaWebformsApp')
                 socinumber: $scope.formsoci.socinumber,
                 dni: $scope.formsoci.dni,
                 accountbankiban: $scope.ibanEditor.value,
-                amount: $scope.form.amount,
+                amount: $scope.energeticActionsCost(),
                 acceptaccountowner: 1
             }, function(value, key) {
                 console.log(key, value);
@@ -130,7 +118,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.submitButtonText = $translate.instant('SENDING');
             $http({
                 method: 'POST',
-                url: cfg.API_BASE_URL + 'form/inversio',
+                url: cfg.API_BASE_URL + 'form/generationkwh',
                 headers: {'Content-Type': undefined},
                 data: formData,
                 transformRequest: angular.identity,

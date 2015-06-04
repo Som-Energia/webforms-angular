@@ -33,20 +33,21 @@
         <div class='well'>
             <div class="row">
                 <div class="col-xs-12">
-                    <h3 class="green">{{ 'QUANTES_ACCIONS_ENERGETIQUES_VOLS' | translate }}</h2>
+                    <h3 class="green"><label for="energeticActions">{{ 'QUANTES_ACCIONS_ENERGETIQUES_VOLS' | translate }}</label></h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-6">
                     <div class="input-group input-group-lg">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-minus"></i></button>
+                            <button class="btn btn-default" type="button" ng-click="incrementShares(-1)"><i class="glyphicon glyphicon-minus"></i></button>
                         </span>
                         <input class='form-control input-lg' type="number"
-                            min="1" max="2000" data-ng-model="form.energeticActions" required>
+                            id="energeticActions"
+                            min="1" data-ng-model="form.energeticActions" required>
                         </input>
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+                            <button class="btn btn-default" type="button" ng-click="incrementShares(+1)"><i class="glyphicon glyphicon-plus"></i></button>
                         </span>
                     </div>
                 </div>

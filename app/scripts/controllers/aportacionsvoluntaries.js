@@ -28,8 +28,6 @@ angular.module('newSomEnergiaWebformsApp')
         };
         $scope.setStep(0);
 
-        $scope.languages = [];
-        $scope.language = {};
         $scope.form = {};
         $scope.form.amount = 100;
         $scope.form.acceptaccountowner = false;
@@ -56,9 +54,6 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.amountNotHundred = (newValue % $scope.aportacioSalts) !== 0;
             $scope.amountUnderMin = newValue < $scope.aportacioMinima;
         });
-
-        // GET LANGUAGES
-        AjaxHandler.getLanguages($scope);
 
         $scope.isInvestmentFormReady = function() {
             if ($scope.ibanEditor === undefined) {return false;}
