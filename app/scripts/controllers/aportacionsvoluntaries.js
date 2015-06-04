@@ -17,7 +17,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.submitButtonText = $translate.instant('CONFIRMAR_INVERSIO');
 
         // MUST APPLY TO EMBED WITH WORDPRESS
-        if (cfg.BASE_DOMAIN) {
+        if (document.domain !== top.document.domain) {
             document.domain = cfg.BASE_DOMAIN;
         }
         $scope.setStep = function(step) {

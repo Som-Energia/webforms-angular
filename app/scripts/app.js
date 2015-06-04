@@ -62,10 +62,8 @@ angular.module('newSomEnergiaWebformsApp', [
     })
     .constant('cfg', {
         DEVELOPMENT: developmentMode,
-        BASE_DOMAIN: (developmentMode?
-            false:
-            'somenergia.coop'),
-        API_BASE_URL: (developmentMode?
+        BASE_DOMAIN: 'somenergia.coop',
+        API_BASE_URL: (developmentMode ?
             'https://sompre.gisce.net:5001/': // development api
             'https://api.somenergia.coop/'),  // production api
         STATUS_OFFLINE: 'OFFLINE',

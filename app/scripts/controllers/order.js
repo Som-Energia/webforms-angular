@@ -9,10 +9,11 @@ angular.module('newSomEnergiaWebformsApp')
         // INIT
         $scope.developing = cfg.DEVELOPMENT; // TODO change xorigin domain on index.html && replace grunt sftp source environment
 
-        // MUST APPLY TO EMBED WITH WORDPRESS
-        if (cfg.BASE_DOMAIN) {
+        // MUST APPLY TO EMBED WITH WORDPRESS (detects inside frame)
+        if (document.domain !== top.document.domain) {
             document.domain = cfg.BASE_DOMAIN;
         }
+
         // Just when developing, show untranslated strings instead of falling back to spanish
         if (!$scope.developing ) {
             $translate.fallbackLanguage('es');
