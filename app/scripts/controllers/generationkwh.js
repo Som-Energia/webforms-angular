@@ -31,17 +31,11 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.form = {};
         $scope.form.acceptaccountowner = false;
 
-        $scope.partnerContracts = [
-            { id:'1313', address:'Rue del Percebe, 13, Villabotijo, Zamora', yearlykwh:2342 },
-            { id:'1314', address:'Rue del Percebe, 13, Villabotijo, Zamora', yearlykwh:2342 },
-            { id:'1315', address:'Rue del Percebe, 13, Villabotijo, Zamora', yearlykwh:2342 },
-            { id:'1316', address:'Rue del Percebe, 13, Villabotijo, Zamora', yearlykwh:2342 },
-        ];
-        $scope.totalYearlyKwh = $scope.partnerContracts.reduce(function(sum, contract) {
-            return sum + contract.yearlykwh;
-        }, 0);
+        $scope.partnerContracts = [];
+        $scope.estimatedMeanHomeUse = 2800; // kWh
+        $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
         $scope.form.energeticActions = 1;
-        $scope.kwhPerAccio = 160;
+        $scope.kwhPerAccio = 170;
         $scope.preuPerAccio = 100;
         $scope.recommendedMax = 80;
         $scope.energeticActionsCost = function() {
@@ -99,19 +93,32 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.updateAnnualUse = function() {
-            $scope.partnerContracts = [];
+            $scope.partnerContracts = undefined;
+            $scope.totalYearlyKwh = undefined;
+            var promise = $http.get(cfg.API_BASE_URL +
+               'data/consumanualsoci/' + $scope.formsoci.socinumber+'/'+ $scope.formsoci.dni);
+            promise.success(function(response) {
+                console.log(response.data.consums);
+                $scope.partnerContracts = response.data.consums;
+                $scope.totalYearlyKwh = $scope.partnerContracts.reduce(
+                    function(sum, contract) {
+                        return sum + contract.annual_use_kwh;
+                    }, 0);
+            });
+            /*
             var promise = $timeout(function() {
                 $scope.partnerContracts = [
-                    { id:'1313', address:'Rue del Percebe, 13, Villabotijo, Zamora', yearlykwh:2342 },
-                    { id:'1314', address:'Rue del Percebe, 13, Villabotijo, Zamora', yearlykwh:2342 },
-                    { id:'1315', address:'Rue del Percebe, 13, Villabotijo, Zamora', yearlykwh:2342 },
-                    { id:'1316', address:'Rue del Percebe, 13, Villabotijo, Zamora', yearlykwh:2342 },
+                    { contract_id:'1313', supply_address:'Rue del Percebe, 13, Villabotijo, Zamora', annual_use_kwh:2342 },
+                    { contract_id:'1314', supply_address:'Rue del Percebe, 14, Villabotijo, Zamora', annual_use_kwh:2343 },
+                    { contract_id:'1315', supply_address:'Rue del Percebe, 15, Villabotijo, Zamora', annual_use_kwh:2344 },
+                    { contract_id:'1316', supply_address:'Rue del Percebe, 16, Villabotijo, Zamora', annual_use_kwh:2345 },
                 ];
                 $scope.totalYearlyKwh = $scope.partnerContracts.reduce(function(sum, contract) {
-                    return sum + contract.yearlykwh;
+                    return sum + contract.annual_use_kwh;
                 }, 0);
-            }, 5000);
-            promise.soci = $scope.formsoci.soci;
+            }, 8000);
+            */
+            promise.soci = $scope.formsoci.socinumber;
         };
 
         // ON SUBMIT FORM

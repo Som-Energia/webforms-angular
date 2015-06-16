@@ -132,13 +132,17 @@ angular.module('newSomEnergiaWebformsApp')
                 AVIS_CANVI_COMERCIALITZADORA: 'El punt de subministre ja té servei amb altre comercialitzadora i vols passar-te a SomEnergia',
 
                 FORMULARI_D_INVERSIO_GKWH: 'Formulari d\'inversió pel Generation kWh',
-                ET_DONARA_DRET_A_APROX_KWHANY: 'Aproximadament, et donarà dret a <b>{{kwhany}} kWh l\'any</b> a preu de cost.',
-                SUPOSA_UN_PERCENT_CONSUM_ANUAL_ESTIMAT: 'Suposa un {{percent}}% de la teva estimació de consum anual als contractes dels que ets titular o pagador. La nostra recomanació és un màxim del 78% perqué no et sobrin KWh si els preus de cost encara baixen més.',
                 QUANTES_ACCIONS_ENERGETIQUES_VOLS: 'Quantes accions energètiques vols?',
-                CONTRACTE: 'Contracte',
-                TOTAL_CONSUM_ANUAL_ESTIMAT: 'Consum anual estimat total',
-                CONSUM_APROXIMAT_COBERT: 'Consum cobert (aproximat)',
-                CONSUM_EN_KWH: ' Consum anual',
+                COST_PER_ACCIO_ENERGETICA: 'Cada acció energètica és de {{ preuperaccio }}€. Mínim una acció.',
+                KWH_PER_ACCIO_ENERGETICA: 'A cada acció li corresponen {{ kwhperaccio }} kWh de l\'electricitat que generaran els nous projectes renovables. (valor provisional; el real s’acabarà de definir segons els costos finals dels projectes)',
+                CARREGANT_INFORMACIO_DELS_TEUS_CONTRACTES: 'Carregant la informació dels teus contractes...',
+                NUM_CONTRACTE: 'Nº contracte',
+                PUNT_DE_SUBMINISTRAMENT: 'Punt de subministrament',
+                US_ANUAL: 'Ús anual',
+                TOTAL_US_ANUAL_ESTIMAT: 'Ús anual estimat total',
+                AUTOPRODUCCIO_ASSOLIDA: 'Autoproducció assolida',
+                PERCENTATGE_ASSOLIT: 'Percentatge de l’ús total anual autoproduït',
+                RECOMANACIO_750_PERCENT: 'La nostra recomanació és invertir per un valor màxim aproximat del 75% per si milloren els resultats que no et sobri electricitat. De totes maneres es pot invertir més si un així ho desitja.'
             })
         ;
     });

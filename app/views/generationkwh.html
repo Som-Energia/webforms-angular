@@ -65,14 +65,26 @@
             </div>
             <div class="row">
                 <div class="col-xs-12" 
-                    translate="ET_DONARA_DRET_A_APROX_KWHANY"
-                    translate-value-kwhany="{{ energeticActionsThrowput() }}"
+                    translate="COST_PER_ACCIO_ENERGETICA"
+                    translate-value-preuperaccio="{{ preuPerAccio }}"
                 >
                 </div>
                 <div class="col-xs-12" 
-                    translate="SUPOSA_UN_PERCENT_CONSUM_ANUAL_ESTIMAT"
-                    translate-value-percent="{{ percentatgeCobert() }}"
+                    translate="KWH_PER_ACCIO_ENERGETICA"
+                    translate-value-kwhperaccio="{{kwhPerAccio}}"
                 >
+                </div>
+            </div>
+            <div class="row" data-ng-show='partnerContracts === []'>
+                <div class="col-xs-12">
+                   {{ 'NO_DISPOSEM_DE_INFORMACIO_HISTORICA_DEL_TEU_CONSUM' | translate }}
+                </div>
+            </div>
+            <div class="row" data-ng-show='partnerContracts === undefined'>
+                <div class="col-xs-12 text-info">
+                    <i class='glyphicon glyphicon-refresh spinning'></i>
+
+                    {{ 'CARREGANT_INFORMACIO_DELS_TEUS_CONTRACTES' | translate }}
                 </div>
             </div>
             <div class="row">
@@ -81,24 +93,29 @@
                         width="100%"
                         class='contractTable'>
                     <tr>
-                        <th>{{ 'CONTRACTE' | translate }}</th>
-                        <th>{{ 'ADRECA' | translate }}</th>
-                        <th>{{ 'CONSUM_EN_KWH' | translate }}</th>
+                        <th>{{ 'NUM_CONTRACTE' | translate }}</th>
+                        <th>{{ 'PUNT_DE_SUBMINISTRAMENT' | translate }}</th>
+                        <th>{{ 'US_ANUAL' | translate }}</th>
                     </tr>
                     <tr ng-repeat='contract in partnerContracts'>
-                        <td align="center">{{contract.id}}</td>
-                        <td>{{contract.address}}</td>
-                        <td align="right">{{contract.yearlykwh}} kWh</td>
+                        <td align="center">{{contract.contract_id}}</td>
+                        <td>{{contract.supply_address}}</td>
+                        <td align="right">{{contract.annual_use_kwh}} kWh</td>
                     </tr>
                     <tr>
-                        <th colspan='2'>{{ 'TOTAL_CONSUM_ANUAL_ESTIMAT' | translate }}</th>
+                        <th colspan='2'>{{ 'TOTAL_US_ANUAL_ESTIMAT' | translate }}</th>
                         <th align="right" style="text-align:right">{{ totalYearlyKwh }} kWh</th>
                     </tr>
                     <tr>
-                        <th colspan='2'>{{ 'CONSUM_APROXIMAT_COBERT' | translate }}</th>
+                        <th colspan='2'>{{ 'AUTOPRODUCCIO_ASSOLIDA' | translate }}</th>
                         <th align="right" style="text-align:right">{{ energeticActionsThrowput() }} kWh</th>
                     </tr>
                     </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class='green'>{{ 'PERCENTATGE_ASSOLIT' | translate }}</div>
                     <div class="progress">
                         <div class="progress-bar progress-bar-success"
                             role="progressbar"
@@ -115,6 +132,7 @@
                         </div>
                         <span ng-show="percentatgeCobert()<15">{{ percentatgeCobert() }}%</span>
                     </div>
+                    <div>{{ 'RECOMANACIO_750_PERCENT' | translate}}</div>
                 </div>
             </div>
 
