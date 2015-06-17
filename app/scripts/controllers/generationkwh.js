@@ -63,15 +63,22 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.energeticActions = 1;
         };
         $scope.$watch('form.energeticActions', function(newValue, oldValue) {
-            if (isNaN(parseInt(newValue))) {
-                $scope.form.energeticActions = oldValue;
-                return;
-            }
+            console.log("Valor:", newValue, oldValue);
+            if (newValue === undefined) { return; }
             var intValue = parseInt(newValue);
-            if (intValue<1) {
+            if (isNaN(intValue)) {
                 $scope.form.energeticActions = oldValue;
                 return;
             }
+            if (intValue<1) {
+                $scope.form.energeticActions = 1;
+                return;
+            }
+            if (intValue>9999) {
+                $scope.form.energeticActions = 9999;
+                return;
+            }
+            $scope.form.energeticActions = intValue;
         });
 
         $scope.isInvestmentFormReady = function() {
