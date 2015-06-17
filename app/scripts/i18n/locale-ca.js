@@ -144,7 +144,7 @@ angular.module('newSomEnergiaWebformsApp')
                 PERCENTATGE_ASSOLIT: 'Percentatge de l’ús total anual autoproduït',
                 RECOMANACIO_750_PERCENT: 'La nostra recomanació és invertir per un valor màxim aproximat del 75% per si milloren els resultats que no et sobri electricitat. De totes maneres es pot invertir més si un així ho desitja.',
                 ACCEPTO_DOMICILIACIO_GENERATION: 'Confirmo que sóc el titular del compte corrent i autoritzo la domiciliació',
-                ACCEPTO_CONDICIONS_GENERATION: 'Accepto les <a target="_blank" href="https://somenergia.coop/ca/condicions-generals-inversio">condicions generals de la inversió</a> i la <a target="_blank" href="https://www.somenergia.coop/ca/politica-de-privacitat-cookies-i-avis-legal/">política de privacitat</a>',
+                ACCEPTO_CONDICIONS_GENERATION: 'Accepto les <a target="_blank" href="https://somenergia.coop/ca/condicions-generals-inversio">condicions generals de la inversió</a>',
             })
         ;
     });
