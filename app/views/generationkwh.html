@@ -95,12 +95,10 @@
                         <th align="right">{{ 'US_ANUAL' | translate }}</th>
                     </tr>
                     <tr data-ng-show="partnerContracts === undefined">
-                        <td></td>
-                        <td align="center" class="text-info">
+                        <td colspan="3" align="center" class="text-info">
                             <i class="glyphicon glyphicon-refresh spinning"></i>
                             <b>{{ 'CARREGANT_INFORMACIO_DELS_TEUS_CONTRACTES' | translate }}</b>
                         </td>
-                        <td></td>
                     </tr>
                     <tr data-ng-show="false"><td></td></tr>
                     <tr data-ng-show="partnerContracts.length === 0">

@@ -500,14 +500,13 @@ table.contractTable {
         padding-right: 10px;
         vertical-align: top;
     }
+    tr:first-child {
+        th {
+            white-space: nowrap;
+        }
+        th:nth-child(2) {
+            width: 99%;
+        }
+    }
 }
 
-/** Disable spiner */
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
-}
-input[type='number'] {
-    -moz-appearance:textfield;
-}
