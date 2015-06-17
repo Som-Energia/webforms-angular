@@ -75,16 +75,9 @@
                 >
                 </div>
             </div>
-            <div class="row" data-ng-show='partnerContracts === []'>
+            <div class="row" data-ng-show='partnerContracts.lenght === 0'>
                 <div class="col-xs-12">
                    {{ 'NO_DISPOSEM_DE_INFORMACIO_HISTORICA_DEL_TEU_CONSUM' | translate }}
-                </div>
-            </div>
-            <div class="row" data-ng-show='partnerContracts === undefined'>
-                <div class="col-xs-12 text-info">
-                    <i class='glyphicon glyphicon-refresh spinning'></i>
-
-                    {{ 'CARREGANT_INFORMACIO_DELS_TEUS_CONTRACTES' | translate }}
                 </div>
             </div>
             <div class="row">
@@ -95,20 +88,34 @@
                     <tr>
                         <th>{{ 'NUM_CONTRACTE' | translate }}</th>
                         <th>{{ 'PUNT_DE_SUBMINISTRAMENT' | translate }}</th>
-                        <th>{{ 'US_ANUAL' | translate }}</th>
+                        <th align="right">{{ 'US_ANUAL' | translate }}</th>
                     </tr>
+                    <tr data-ng-show="partnerContracts === undefined">
+                        <td colspan="3" align="center" class="text-info">
+                            <i class="glyphicon glyphicon-refresh spinning"></i>
+                            {{ 'CARREGANT_INFORMACIO_DELS_TEUS_CONTRACTES' | translate }}
+                        </td>
+                    </tr>
+                    <tr data-ng-show="false"><td></td></tr>
+                    <tr data-ng-show="partnerContracts.length === 0">
+                        <td>{{ 'NO_HA_ESTAT_TROBAT' | translate }}</td>
+                        <td>{{ 'FENT_SERVIR_RESIDENCIA_MITJANA' | translate }}</td>
+                        <td align="right">{{ estimatedMeanHomeUse }}&nbsp;kWh</td>
+                    </tr>
+                    <tr data-ng-show="false"><td></td></tr>
                     <tr ng-repeat='contract in partnerContracts'>
-                        <td align="center">{{contract.contract_id}}</td>
+                        <td>{{contract.contract_id}}</td>
                         <td>{{contract.supply_address}}</td>
-                        <td align="right">{{contract.annual_use_kwh}} kWh</td>
+                        <td align="right">{{contract.annual_use_kwh}}&nbsp;kWh</td>
                     </tr>
+                    <tr data-ng-show='false'><td></td></tr>
                     <tr>
                         <th colspan='2'>{{ 'TOTAL_US_ANUAL_ESTIMAT' | translate }}</th>
-                        <th align="right" style="text-align:right">{{ totalYearlyKwh }} kWh</th>
+                        <th align="right" style="text-align:right">{{ totalYearlyKwh }}&nbsp;kWh</th>
                     </tr>
                     <tr>
                         <th colspan='2'>{{ 'AUTOPRODUCCIO_ASSOLIDA' | translate }}</th>
-                        <th align="right" style="text-align:right">{{ energeticActionsThrowput() }} kWh</th>
+                        <th align="right" style="text-align:right">{{ energeticActionsThrowput() }}&nbsp;kWh</th>
                     </tr>
                     </table>
                 </div>
