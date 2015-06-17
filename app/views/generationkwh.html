@@ -18,12 +18,12 @@
         soci="soci"
         model="initForm"
         formvalues="formsoci"
-        data-ng-show="isStep(0)"
+        data-ng-show="isStep(0) || showAll"
     ></member-chooser>
     <!--END INIT FORM-->
 
     <!-- BEGIN INVEST FORM-->
-    <form name="investForm" class="form-inline" role="form" ng-show="isStep(1)" enctype="multipart/form-data" novalidate>
+    <form name="investForm" class="form-inline" role="form" ng-show="isStep(1) || showAll" enctype="multipart/form-data" novalidate>
         <fieldset ng-disabled="submiting">
         <div class="row">
             <div class="col-xs-12 heading active">
@@ -95,10 +95,12 @@
                         <th align="right">{{ 'US_ANUAL' | translate }}</th>
                     </tr>
                     <tr data-ng-show="partnerContracts === undefined">
-                        <td colspan="3" align="center" class="text-info">
+                        <td></td>
+                        <td align="center" class="text-info">
                             <i class="glyphicon glyphicon-refresh spinning"></i>
-                            {{ 'CARREGANT_INFORMACIO_DELS_TEUS_CONTRACTES' | translate }}
+                            <b>{{ 'CARREGANT_INFORMACIO_DELS_TEUS_CONTRACTES' | translate }}</b>
                         </td>
+                        <td></td>
                     </tr>
                     <tr data-ng-show="false"><td></td></tr>
                     <tr data-ng-show="partnerContracts.length === 0">
@@ -179,7 +181,10 @@
                     </label>
                     <label>
                         <input type="checkbox" name="acceptcontract" value="accept" data-ng-model="form.acceptcontract" required/>
-                        <span translate="GENERATION_ACCEPTO_CONDICIONS" ></span>
+                        <span
+                            translate="GENERATION_ACCEPTO_CONDICIONS"
+                            translate-value-url="{{ 'GENERATION_CONDICIONS_URL' | translate }}"
+                            ></span>
                     </label>
                 </div>
             </div>

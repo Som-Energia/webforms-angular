@@ -132,7 +132,24 @@ angular.module('newSomEnergiaWebformsApp')
                 AVIS_CANVI_COMERCIALITZADORA: 'El punto de suministro ya tiene servicio con otra comercializadora y quieres pasarte a SomEnergia',
 
                 DES_DE_QUIN_COMPTE: '¿Desde qué <b>cuenta bancaria</b>?',
-                GENERATION_ACCEPTO_CONDICIONS: 'Acepto las <a target="_blank" href="//www.generationkwh.org/wp-content/uploads/Condiciones-Generales-Contrato-Autoproduccion-Colectiva-Generation-kWh_ES.pdf">condiciones generales de la inversión</a>',
+                FORMULARI_D_INVERSIO_GKWH: 'Formulario de inversión para el Generation kWh',
+                QUANTES_ACCIONS_ENERGETIQUES_VOLS: '¿Cuántas acciones energéticas quieres?',
+                COST_PER_ACCIO_ENERGETICA: 'Cada acción energética son {{ preuperaccio }}€. Mínimo una acción.',
+                KWH_PER_ACCIO_ENERGETICA: 'A cada acción le corresponden {{ kwhperaccio }} kWh de la electricidad que generarán los nuevos proyectos renovables. (valor provisional; el real se acabará de definir según los costos finales de los proyectos)',
+                CARREGANT_INFORMACIO_DELS_TEUS_CONTRACTES: 'Cargando la información de tus contratos...',
+                NUM_CONTRACTE: 'Nº contrato',
+                PUNT_DE_SUBMINISTRAMENT: 'Punto de suministro',
+                US_ANUAL: 'Uso anual',
+                TOTAL_US_ANUAL_ESTIMAT: 'Uso anual estimado total',
+                AUTOPRODUCCIO_ASSOLIDA: 'Autoproducción lograda anual',
+                PERCENTATGE_ASSOLIT: 'Porcentaje de autoproducción sobre tu uso total',
+                GENERATION_RECOMANACIO_PERCENT: 'Puedes autoproducir lo que quieras, pero recuerda <a href="{{ url }}" target="_blank">nuestra recomendación</a> de no superar el {{ percent }}% en según qué casos.',
+                GENERATION_RECOMANACIO_PERCENT_URL: 'http://es.support.somenergia.coop/article/591-existe-una-cantidad-minima-y-maxima-a-aportar', // TODO: bit.ly
+                GENERATION_ACCEPTO_DOMICILIACIO: 'Confirmo que soy el titular de la cuenta corriente y autorizo la domiciliación',
+                GENERATION_ACCEPTO_CONDICIONS: 'Acepto las <a target="_blank" href="{{url}}">condiciones generales de la inversión</a>',
+                GENERATION_CONDICIONS_URL: 'http://www.generationkwh.org/wp-content/uploads/Condiciones-Generales-Contrato-Autoproduccion-Colectiva-Generation-kWh_ES.pdf',
+                NO_HA_ESTAT_TROBAT: 'No encontrado',
+                FENT_SERVIR_RESIDENCIA_MITJANA: 'Se esta usando a modo de referencia el uso de electricidad de una residencia media',
             })
         ;
     });

@@ -134,7 +134,7 @@ angular.module('newSomEnergiaWebformsApp')
                 DES_DE_QUIN_COMPTE: 'Des de quin <b>compte bancari</b>?',
                 FORMULARI_D_INVERSIO_GKWH: 'Formulari d\'inversió pel Generation kWh',
                 QUANTES_ACCIONS_ENERGETIQUES_VOLS: 'Quantes accions energètiques vols?',
-                COST_PER_ACCIO_ENERGETICA: 'Cada acció energètica és de {{ preuperaccio }}€. Mínim una acció.',
+                COST_PER_ACCIO_ENERGETICA: 'Cada acció energètica són {{ preuperaccio }}€. Mínim una acció.',
                 KWH_PER_ACCIO_ENERGETICA: 'A cada acció li corresponen {{ kwhperaccio }} kWh de l\'electricitat que generaran els nous projectes renovables. (valor provisional; el real s’acabarà de definir segons els costos finals dels projectes)',
                 CARREGANT_INFORMACIO_DELS_TEUS_CONTRACTES: 'Carregant la informació dels teus contractes...',
                 NUM_CONTRACTE: 'Nº contracte',
@@ -146,7 +146,8 @@ angular.module('newSomEnergiaWebformsApp')
                 GENERATION_RECOMANACIO_PERCENT: 'Pots autoproduir el que vulguis però recorda <a href="{{ url }}" target="_blank">la nostra recomanació</a> de no superar el {{ percent }}% en segons quins casos.',
                 GENERATION_RECOMANACIO_PERCENT_URL: 'http://bit.ly/maxGkWh', // Points to: 'http://ca.support.somenergia.coop/article/584-hi-ha-una-quantitat-minima-o-maxima-a-aportar'
                 GENERATION_ACCEPTO_DOMICILIACIO: 'Confirmo que sóc el titular del compte corrent i autoritzo la domiciliació',
-                GENERATION_ACCEPTO_CONDICIONS: 'Accepto les <a target="_blank" href="//www.generationkwh.org/wp-content/uploads/Condicions-Generals-Contracte-Autoproduccio-Col_lectiva-Generation-kWh_CA.pdf">condicions generals de la inversió</a>',
+                GENERATION_ACCEPTO_CONDICIONS: 'Accepto les <a target="_blank" href="{{url}}">condicions generals de la inversió</a>',
+                GENERATION_CONDICIONS_URL: 'http://www.generationkwh.org/wp-content/uploads/Condicions-Generals-Contracte-Autoproduccio-Col_lectiva-Generation-kWh_CA.pdf',
                 NO_HA_ESTAT_TROBAT: 'No ha estat trobat',
                 FENT_SERVIR_RESIDENCIA_MITJANA: 'S\'està fent servir com a referència l\'ús d\'electricitat d\'una residència mitjana',
             })

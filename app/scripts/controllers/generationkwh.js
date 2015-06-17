@@ -20,6 +20,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.submitButtonText = $translate.instant('CONFIRMAR_INVERSIO');
 
+        $scope.showAll = false;
         $scope.setStep = function(step) {
             $scope.currentStep = step;
         };
@@ -63,7 +64,6 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.energeticActions = 1;
         };
         $scope.$watch('form.energeticActions', function(newValue, oldValue) {
-            console.log("Valor:", newValue, oldValue);
             if (newValue === undefined) { return; }
             var intValue = parseInt(newValue);
             if (isNaN(intValue)) {
