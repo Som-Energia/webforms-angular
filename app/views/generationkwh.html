@@ -139,7 +139,12 @@
                         </div>
                         <span ng-show="percentatgeCobert()<15">{{ percentatgeCobert() }}%</span>
                     </div>
-                    <div>{{ 'GENERATION_RECOMANACIO_PERCENT' | translate:'{ percent: recommendedMax }' }}</div>
+                    <div
+                        translate="GENERATION_RECOMANACIO_PERCENT"
+                        translate-value-percent="{{ recommendedMax }}"
+                        translate-value-url="{{ 'GENERATION_RECOMANACIO_PERCENT_URL' | translate }}"
+                        >
+                    </div>
                 </div>
             </div>
 
