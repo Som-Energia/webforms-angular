@@ -167,7 +167,7 @@ angular.module('newSomEnergiaWebformsApp')
 
                     uiHandler.showWellDoneDialog();
                     // TODO: Cambiar a una pagina de exito propia
-                    $window.top.location.href = $translate.instant('INVEST_OK_REDIRECT_URL');
+                    $window.top.location.href = $translate.instant('GENERATION_OK_REDIRECT_URL');
                 },
                 function(reason) {
                     $log.error('Send POST failed', reason);

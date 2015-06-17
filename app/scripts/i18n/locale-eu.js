@@ -120,8 +120,9 @@ angular.module('newSomEnergiaWebformsApp')
                 CONFIRMAR_INVERSIO: 'Egiaztatu inbertsioa',
                 COMPROVANT: 'Egiaztatzen...',
                 CORRECTE: 'Zuzena.',
-                INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/inversion-realizada',
+                INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/eu/inbertsioa-egin/',
                 CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
+                GENERATION_OK_REDIRECT_URL: 'http://www.generationkwh.org/eu/inbertsioa-egin/',
 
                 // En desarrollo (sujetas a cambios)
 //                CODI_IBAN_DEL_COMPTE: 'Código IBAN de la cuenta',

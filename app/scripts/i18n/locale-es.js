@@ -122,6 +122,7 @@ angular.module('newSomEnergiaWebformsApp')
                 CORRECTE: 'Correcto.',
                 INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/inversion-realizada',
                 CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
+                GENERATION_OK_REDIRECT_URL: 'http://www.generationkwh.org/es/inversion-realizada/',
 
                 // En desarrollo (sujetas a cambios)
                 CODI_IBAN_DEL_COMPTE: 'Código IBAN de la cuenta',
@@ -130,6 +131,8 @@ angular.module('newSomEnergiaWebformsApp')
                 HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: '¿Hay actualmente luz en el punto de suministro?',
                 AVIS_ALTA_DE_SERVEI: 'El punto de suministro no tiene servicio y quieres darlo de alta directamente con SomEnergia',
                 AVIS_CANVI_COMERCIALITZADORA: 'El punto de suministro ya tiene servicio con otra comercializadora y quieres pasarte a SomEnergia',
+
+                GENERATION_ACCEPTO_CONDICIONS: 'Acepto las <a target="_blank" href="//www.generationkwh.org/wp-content/uploads/Condiciones-Generales-Contrato-Autoproduccion-Colectiva-Generation-kWh_ES.pdf">condiciones generales de la inversión</a>',
             })
         ;
     });

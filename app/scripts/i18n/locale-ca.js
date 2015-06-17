@@ -122,6 +122,7 @@ angular.module('newSomEnergiaWebformsApp')
                 CORRECTE: 'Correcte.',
                 INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/ca/inversio-realitzada',
                 CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
+                GENERATION_OK_REDIRECT_URL: 'http://www.generationkwh.org/ca/inversio-realitzada/',
 
                 // En desarrollo (sujetas a cambios)
                 CODI_IBAN_DEL_COMPTE: 'Codi IBAN del compte',
@@ -143,8 +144,8 @@ angular.module('newSomEnergiaWebformsApp')
                 AUTOPRODUCCIO_ASSOLIDA: 'Autoproducció assolida',
                 PERCENTATGE_ASSOLIT: 'Percentatge de l’ús total anual autoproduït',
                 RECOMANACIO_750_PERCENT: 'La nostra recomanació és invertir per un valor màxim aproximat del 75% per si milloren els resultats que no et sobri electricitat. De totes maneres es pot invertir més si un així ho desitja.',
-                ACCEPTO_DOMICILIACIO_GENERATION: 'Confirmo que sóc el titular del compte corrent i autoritzo la domiciliació',
-                ACCEPTO_CONDICIONS_GENERATION: 'Accepto les <a target="_blank" href="https://somenergia.coop/ca/condicions-generals-inversio">condicions generals de la inversió</a>',
+                GENERATION_ACCEPTO_DOMICILIACIO: 'Confirmo que sóc el titular del compte corrent i autoritzo la domiciliació',
+                GENERATION_ACCEPTO_CONDICIONS: 'Accepto les <a target="_blank" href="//www.generationkwh.org/wp-content/uploads/Condicions-Generals-Contracte-Autoproduccio-Col_lectiva-Generation-kWh_CA.pdf">condicions generals de la inversió</a>',
             })
         ;
     });

@@ -120,8 +120,9 @@ angular.module('newSomEnergiaWebformsApp')
                 CONFIRMAR_INVERSIO: 'Confirmar investimento',
                 COMPROVANT: 'A comprobar...',
                 CORRECTE: 'Correcto.',
-                INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/inversion-realizada',
+                INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/gl/investimento-feito/',
                 CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
+                GENERATION_OK_REDIRECT_URL: 'http://www.generationkwh.org/gl/investimento-feito/',
 
                 // En desarrollo (sujetas a cambios)
 //                CODI_IBAN_DEL_COMPTE: 'Código IBAN de la cuenta',
