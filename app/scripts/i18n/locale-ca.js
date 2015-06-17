@@ -142,8 +142,8 @@ angular.module('newSomEnergiaWebformsApp')
                 US_ANUAL: 'Ús anual',
                 TOTAL_US_ANUAL_ESTIMAT: 'Ús anual estimat total',
                 AUTOPRODUCCIO_ASSOLIDA: 'Autoproducció assolida',
-                PERCENTATGE_ASSOLIT: 'Percentatge de l’ús total anual autoproduït',
-                RECOMANACIO_750_PERCENT: 'La nostra recomanació és invertir per un valor màxim aproximat del 75% per si milloren els resultats que no et sobri electricitat. De totes maneres es pot invertir més si un així ho desitja.',
+                PERCENTATGE_ASSOLIT: 'Percentatge d\'autoproducció sobre el teu ús total',
+                GENERATION_RECOMANACIO_PERCENT: 'La nostra recomanació és invertir per un valor màxim aproximat del {{ percent }}% per si milloren els resultats que no et sobri electricitat. De totes maneres es pot invertir més si es vol.',
                 GENERATION_ACCEPTO_DOMICILIACIO: 'Confirmo que sóc el titular del compte corrent i autoritzo la domiciliació',
                 GENERATION_ACCEPTO_CONDICIONS: 'Accepto les <a target="_blank" href="//www.generationkwh.org/wp-content/uploads/Condicions-Generals-Contracte-Autoproduccio-Col_lectiva-Generation-kWh_CA.pdf">condicions generals de la inversió</a>',
             })

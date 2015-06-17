@@ -37,7 +37,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.form.energeticActions = 1;
         $scope.kwhPerAccio = 170;
         $scope.preuPerAccio = 100;
-        $scope.recommendedMax = 80;
+        $scope.recommendedMax = 70;
         $scope.energeticActionsCost = function() {
             return ($scope.form.energeticActions||0) * $scope.preuPerAccio;
         };
