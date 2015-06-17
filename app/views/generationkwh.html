@@ -155,13 +155,15 @@
                     <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>{{ 'EXEMPLE_IBAN' | translate }}</div>
                 </div>
             </div>
-            <div class="row no-margin-bottom">
-            </div>
             <div class="row">
                 <div class="form-group checkbox col-xs-12">
                     <label>
                         <input type="checkbox" name="acceptaccountowner" value="accept" data-ng-model="form.acceptaccountowner" required/>
-                        <span translate="CONFIRMO_CONDICIONS_INVERSIO" ></span>
+                        <span translate="ACCEPTO_DOMICILIACIO_GENERATION" ></span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="acceptcontract" value="accept" data-ng-model="form.acceptcontract" required/>
+                        <span translate="ACCEPTO_CONDICIONS_GENERATION" ></span>
                     </label>
                 </div>
             </div>

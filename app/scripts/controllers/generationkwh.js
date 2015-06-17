@@ -78,6 +78,7 @@ angular.module('newSomEnergiaWebformsApp')
             if (!$scope.ibanEditor.isValid()) {return false;}
             if (!$scope.energeticActionsCost()) {return false;}
             if ($scope.form.acceptaccountowner === false) {return false;}
+            if ($scope.form.acceptcontract === false) {return false;}
             return true;
         };
 
