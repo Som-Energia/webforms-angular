@@ -15,12 +15,14 @@ angular.module('newSomEnergiaWebformsApp', [
         $httpProvider.defaults.transformRequest = function(data) {
             return data === undefined ? data : jQuery.param(data);
         };
+//        $httpProvider.defaults.useXDomain = true;
     })
     .config(function ($routeProvider, $sceDelegateProvider/*, $locationProvider*/) {
         var base = (
             developmentMode ? '' :
             '//rawgit.com/Som-Energia/new-api-webforms/master/app/'
             );
+
         $routeProvider
             .when('/', {
                 templateUrl: base+'views/main.html',
@@ -68,7 +70,8 @@ angular.module('newSomEnergiaWebformsApp', [
         DEVELOPMENT: developmentMode,
         BASE_DOMAIN: 'somenergia.coop',
         API_BASE_URL: (developmentMode ?
-            'https://sompre.gisce.net:5001/': // development api
+//            'http://localhost:5001/': // development api
+            'https://sompre.gisce.net:5001/': // testing api
             'https://api.somenergia.coop/'),  // production api
         STATUS_OFFLINE: 'OFFLINE',
         STATUS_ONLINE: 'ONLINE',
