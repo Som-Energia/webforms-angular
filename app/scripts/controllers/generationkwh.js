@@ -30,6 +30,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.form = {};
         $scope.form.acceptaccountowner = false;
+        $scope.form.acceptcontract = false;
 
         $scope.partnerContracts = [];
         $scope.estimatedMeanHomeUse = 2800; // kWh
