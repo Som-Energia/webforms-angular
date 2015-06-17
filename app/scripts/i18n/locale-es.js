@@ -114,7 +114,6 @@ angular.module('newSomEnergiaWebformsApp')
                 AMOUNT_HELPER_MIN: 'Mínima aportación 100€',
                 AMOUNT_HELPER_MAX: 'Máxima aportación 25.000€',
                 AMOUNT_HELPER_STEP: 'Cantidad múltiple de 100€',
-                DES_DE_QUIN_COMPTE: '¿Desde qué <b>cuenta?</b>',
                 NUMERO_DE_COMPTE_FORMAT_IBAN: 'Número de cuenta en formato IBAN. Ejemplo: ES11 2222 3333 4444 5555 6666',
                 CONFIRMO_CONDICIONS_INVERSIO: 'Confirmo que soy el titular de la cuenta corriente, autorizo la domiciliación y acepto las <a target="_blank" href="https://somenergia.coop/es/condiciones-generales-inversion">condiciones generales de la inversión</a> y la <a target="_blank" href="https://www.somenergia.coop/es/politica-de-privacidad-cookies-y-aviso-legal/">política de privacidad</a>',
                 CONFIRMAR_INVERSIO: 'Confirmar inversión',
@@ -132,6 +131,7 @@ angular.module('newSomEnergiaWebformsApp')
                 AVIS_ALTA_DE_SERVEI: 'El punto de suministro no tiene servicio y quieres darlo de alta directamente con SomEnergia',
                 AVIS_CANVI_COMERCIALITZADORA: 'El punto de suministro ya tiene servicio con otra comercializadora y quieres pasarte a SomEnergia',
 
+                DES_DE_QUIN_COMPTE: '¿Desde qué <b>cuenta bancaria</b>?',
                 GENERATION_ACCEPTO_CONDICIONS: 'Acepto las <a target="_blank" href="//www.generationkwh.org/wp-content/uploads/Condiciones-Generales-Contrato-Autoproduccion-Colectiva-Generation-kWh_ES.pdf">condiciones generales de la inversión</a>',
             })
         ;

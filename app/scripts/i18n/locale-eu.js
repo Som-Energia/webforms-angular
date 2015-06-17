@@ -114,7 +114,6 @@ angular.module('newSomEnergiaWebformsApp')
                 AMOUNT_HELPER_MIN: 'Gutxienengo ekarpena 100€',
                 AMOUNT_HELPER_MAX: 'Gehienezko ekarpena 25.000€',
                 AMOUNT_HELPER_STEP: 'Ekarpena 100€-ko multiplo',
-                DES_DE_QUIN_COMPTE: 'Zein <b>kontu-korrontetik?</b>',
                 NUMERO_DE_COMPTE_FORMAT_IBAN: 'Kontu-korrontearen zenbakia IBAN formatuan. Adibide: ES11 2222 3333 4444 5555 6666',
                 CONFIRMO_CONDICIONS_INVERSIO: 'Kontu-korrontearen titularra naizela ziurtatzen dut, helbideratzea baimentzen dut eta onartzen ditut <a target="_blank" href="https://somenergia.coop/es/condiciones-generales-inversion">inbertsioaren baldintza-orokorrak</a> baita <a target="_blank" href="https://www.somenergia.coop/es/politica-de-privacidad-cookies-y-aviso-legal/">pribatutasun-politika ere</a>',
                 CONFIRMAR_INVERSIO: 'Egiaztatu inbertsioa',
@@ -131,6 +130,7 @@ angular.module('newSomEnergiaWebformsApp')
 //                HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: '¿Hay actualmente luz en el punto de suministro?',
 //                AVIS_ALTA_DE_SERVEI: 'El punt de suministre no té servei i vols fer l\'alta directament amb SomEnergia',
 //                AVIS_CANVI_COMERCIALITZADORA: 'El punt de subministre ja té servei amb altre comercialitzadora i vols passar-te a SomEnergia',
+                DES_DE_QUIN_COMPTE: 'Zein <b>kontu-korrontetik?</b>', // Actualizar
             })
         ;
     });

@@ -114,7 +114,6 @@ angular.module('newSomEnergiaWebformsApp')
                 AMOUNT_HELPER_MIN: 'Mínima aportació 100€',
                 AMOUNT_HELPER_MAX: 'Màxima aportació 25.000€',
                 AMOUNT_HELPER_STEP: 'Quantitat múltiple de 100€',
-                DES_DE_QUIN_COMPTE: 'Des de quin <b>compte</b>?',
                 NUMERO_DE_COMPTE_FORMAT_IBAN: 'Número de compte en format IBAN. Exemple: ES11 2222 3333 4444 5555 6666',
                 CONFIRMO_CONDICIONS_INVERSIO: 'Confirmo que sóc el titular del compte corrent, autoritzo la domiciliació i accepto les <a target="_blank" href="https://somenergia.coop/ca/condicions-generals-inversio">condicions generals de la inversió</a> i la <a target="_blank" href="https://www.somenergia.coop/ca/politica-de-privacitat-cookies-i-avis-legal/">política de privacitat</a>',
                 CONFIRMAR_INVERSIO: 'Confirmar inversió',
@@ -132,6 +131,7 @@ angular.module('newSomEnergiaWebformsApp')
                 AVIS_ALTA_DE_SERVEI: 'El punt de suministre no té servei i vols fer l\'alta directament amb SomEnergia',
                 AVIS_CANVI_COMERCIALITZADORA: 'El punt de subministre ja té servei amb altre comercialitzadora i vols passar-te a SomEnergia',
 
+                DES_DE_QUIN_COMPTE: 'Des de quin <b>compte bancari</b>?',
                 FORMULARI_D_INVERSIO_GKWH: 'Formulari d\'inversió pel Generation kWh',
                 QUANTES_ACCIONS_ENERGETIQUES_VOLS: 'Quantes accions energètiques vols?',
                 COST_PER_ACCIO_ENERGETICA: 'Cada acció energètica és de {{ preuperaccio }}€. Mínim una acció.',

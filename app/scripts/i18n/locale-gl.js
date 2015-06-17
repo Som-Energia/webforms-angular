@@ -114,7 +114,6 @@ angular.module('newSomEnergiaWebformsApp')
                 AMOUNT_HELPER_MIN: 'Achega mínima 100€',
                 AMOUNT_HELPER_MAX: 'Achega máxima  25.000€',
                 AMOUNT_HELPER_STEP: 'Cantidade múltiple de 100€',
-                DES_DE_QUIN_COMPTE: 'Desde que <b>conta?</b>',
                 NUMERO_DE_COMPTE_FORMAT_IBAN: 'Número de conta en formato IBAN. Exemplo: ES11 2222 3333 4444 5555 6666',
                 CONFIRMO_CONDICIONS_INVERSIO: 'Confirmo que son titular da conta corrente, autorizo a domiciliación e acepto as <a target="_blank" href="https://somenergia.coop/es/condiciones-generales-inversion">condicións xerais do investimento</a> e a <a target="_blank" href="https://www.somenergia.coop/es/politica-de-privacidad-cookies-y-aviso-legal/">política de privacidade</a>',
                 CONFIRMAR_INVERSIO: 'Confirmar investimento',
@@ -131,6 +130,7 @@ angular.module('newSomEnergiaWebformsApp')
 //                HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: '¿Hay actualmente luz en el punto de suministro?',
 //                AVIS_ALTA_DE_SERVEI: 'El punt de suministre no té servei i vols fer l\'alta directament amb SomEnergia',
 //                AVIS_CANVI_COMERCIALITZADORA: 'El punt de subministre ja té servei amb altre comercialitzadora i vols passar-te a SomEnergia',
+                DES_DE_QUIN_COMPTE: 'Desde que <b>conta?</b>', // Actualizar
             })
         ;
     });
