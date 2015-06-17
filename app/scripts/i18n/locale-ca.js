@@ -141,7 +141,7 @@ angular.module('newSomEnergiaWebformsApp')
                 PUNT_DE_SUBMINISTRAMENT: 'Punt de subministrament',
                 US_ANUAL: 'Ús anual',
                 TOTAL_US_ANUAL_ESTIMAT: 'Ús anual estimat total',
-                AUTOPRODUCCIO_ASSOLIDA: 'Autoproducció assolida',
+                AUTOPRODUCCIO_ASSOLIDA: 'Autoproducció assolida anual',
                 PERCENTATGE_ASSOLIT: 'Percentatge d\'autoproducció sobre el teu ús total',
                 GENERATION_RECOMANACIO_PERCENT: 'Pots autoproduir el que vulguis però recorda <a href="{{ url }}" target="_blank">la nostra recomanació</a> de no superar el {{ percent }}% en segons quins casos.',
                 GENERATION_RECOMANACIO_PERCENT_URL: 'http://bit.ly/maxGkWh', // Points to: 'http://ca.support.somenergia.coop/article/584-hi-ha-una-quantitat-minima-o-maxima-a-aportar'
