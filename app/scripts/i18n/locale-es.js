@@ -144,7 +144,7 @@ angular.module('newSomEnergiaWebformsApp')
                 AUTOPRODUCCIO_ASSOLIDA: 'Autoproducción lograda anual',
                 PERCENTATGE_ASSOLIT: 'Porcentaje de autoproducción sobre tu uso total',
                 GENERATION_RECOMANACIO_PERCENT: 'Puedes autoproducir lo que quieras, pero recuerda <a href="{{ url }}" target="_blank">nuestra recomendación</a> de no superar el {{ percent }}% en según qué casos.',
-                GENERATION_RECOMANACIO_PERCENT_URL: 'http://es.support.somenergia.coop/article/591-existe-una-cantidad-minima-y-maxima-a-aportar', // TODO: bit.ly
+                GENERATION_RECOMANACIO_PERCENT_URL: 'http://bit.ly/maxGkWhES', // Points to 'http://es.support.somenergia.coop/article/591-existe-una-cantidad-minima-y-maxima-a-aportar'
                 GENERATION_ACCEPTO_DOMICILIACIO: 'Confirmo que soy el titular de la cuenta corriente y autorizo la domiciliación',
                 GENERATION_ACCEPTO_CONDICIONS: 'Acepto las <a target="_blank" href="{{url}}">condiciones generales de la inversión</a>',
                 GENERATION_CONDICIONS_URL: 'http://www.generationkwh.org/wp-content/uploads/Condiciones-Generales-Contrato-Autoproduccion-Colectiva-Generation-kWh_ES.pdf',
