@@ -6,7 +6,7 @@ angular.module('newSomEnergiaWebformsApp')
         // INIT
         $scope.developing = cfg.DEVELOPMENT;
         // MUST APPLY TO EMBED WITH WORDPRESS
-        if (document.domain !== top.document.domain) {
+        if (window !== window.top) { // Inside a frame
             document.domain = cfg.BASE_DOMAIN;
         }
 

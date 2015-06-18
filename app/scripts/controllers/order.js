@@ -10,7 +10,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.developing = cfg.DEVELOPMENT; // TODO change xorigin domain on index.html && replace grunt sftp source environment
 
         // MUST APPLY TO EMBED WITH WORDPRESS (detects inside frame)
-        if (document.domain !== top.document.domain) {
+        if (window !== window.top) { // Inside a frame
             document.domain = cfg.BASE_DOMAIN;
         }
 
