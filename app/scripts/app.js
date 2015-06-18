@@ -1,6 +1,6 @@
 'use strict';
 
-var developmentMode = true;
+var developmentMode = false;
 
 angular.module('newSomEnergiaWebformsApp', [
         'ngCookies',
