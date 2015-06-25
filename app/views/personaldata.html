@@ -34,11 +34,6 @@
             <input type="text" name="surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}*" data-ng-model="form.surname" data-ng-change="formListener()" required/>
             <span class="label label-danger" data-ng-show="submitted && partnerForm.surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
         </div>
-    </div>
-
-    <hr class="dotted">
-
-    <div class="row">
         <div class="form-group col-sm-4 col-xs-12">
             <label class="sr-only">DNI/NIE*:</label>
             <input type="text" name="dni" class="form-control" placeholder="DNI/NIE*" data-ng-model="form.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': dniIsInvalid || dniDuplicated}" required/>
@@ -46,6 +41,11 @@
             <span class="label label-danger" data-ng-show="dniIsInvalid">{{ 'INVALID' | translate }}</span>
             <span class="label label-danger" data-ng-show="dniDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
         </div>
+    </div>
+
+    <hr class="dotted">
+
+    <div class="row">
         <div class="form-group col-sm-4 col-xs-12">
             <label class="sr-only">Email*:</label>
             <input type="text" name="email1" class="form-control" placeholder="Email*" data-ng-model="form.email1" data-ng-change="formListener()" data-ng-class="{'ng-invalid': emailIsInvalid}" required/>
