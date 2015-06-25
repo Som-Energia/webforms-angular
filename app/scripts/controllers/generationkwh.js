@@ -110,13 +110,12 @@ angular.module('newSomEnergiaWebformsApp')
             promise.success(function(response) {
                 console.log(response.data.consums);
                 $scope.partnerContracts = response.data.consums;
-                if ($scope.partnerContracts.length) {
-                    $scope.totalYearlyKwh = $scope.partnerContracts.reduce(
-                        function(sum, contract) {
-                            return sum + contract.annual_use_kwh;
-                        }, 0);
-                }
-                else {
+                $scope.totalYearlyKwh = $scope.partnerContracts.reduce(
+                    function(sum, contract) {
+                        return sum + (contract.annual_use_kwh || 0);
+                    }, 0);
+                if ( $scope.totalYearlyKwh === 0 ) {
+                    $scope.partnerContracts = [];
                     $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
                 }
             });
