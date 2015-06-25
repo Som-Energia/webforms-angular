@@ -74,6 +74,28 @@ To publish on the sftp server specifiet at secret.json
 
     $ grunt sftp
 
+### Wordpress
+
+Wordpress integrates the forms in two ways:
+
+- As an iframe (most forms)
+- Embeding the index.html code (becoming-a-partner form)
+
+In order for the later embedded case to work,
+whenever you change the list of js files at index.html,
+you should update the list as well at:
+
+`~/www2/wp-content/themes/superior/footer-forms.php`
+
+And because this is a change at the file system level,
+WP does not realize it happened and
+you should invalidate the wp cache.
+
+WP Dashboard -> Page Cache -> Empty all caches
+
+
+
+
 
 
 
