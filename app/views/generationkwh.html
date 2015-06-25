@@ -110,7 +110,7 @@
                     <tr ng-repeat='contract in partnerContracts'>
                         <td>{{contract.contract_id}}</td>
                         <td>{{contract.supply_address}}</td>
-                        <td align="right">{{contract.annual_use_kwh}}&nbsp;kWh</td>
+                        <td align="right">{{contract.annual_use_kwh !== false ? contract.annual_use_kwh : '??' }}&nbsp;kWh</td>
                     </tr>
                     <tr data-ng-show='false'><td></td></tr>
                     <tr>
