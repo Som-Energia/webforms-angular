@@ -222,7 +222,7 @@ angular.module('newSomEnergiaWebformsApp')
     return {
         restrict: 'E',
         scope: {
-            model: '=form',
+            form: '=model',
         },
         templateUrl: 'views/personaldata.html',
         controller: 'personalDataCtrl',
@@ -242,6 +242,29 @@ angular.module('newSomEnergiaWebformsApp')
     self.init = function(element, attrs) {
         $scope.form = {};
 
+        $scope.form.isReady = function() {
+            return (
+                $scope.form.language &&
+                $scope.form.name != undefined && 
+                ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
+                ($scope.form.usertype === 'person' || $scope.form.usertype === 'company' && $scope.form.representantdni !== undefined && $scope.form.representantname !== undefined) &&
+                $scope.form.dni !== undefined &&
+                $scope.form.email1 !== undefined &&
+                $scope.form.email2 !== undefined &&
+                $scope.form.email1 === $scope.form.email2 &&
+                $scope.form.phone1 !== undefined &&
+                $scope.form.address !== undefined &&
+                $scope.form.postalcode !== undefined &&
+                $scope.form.province !== undefined &&
+                $scope.form.city !== undefined &&
+                $scope.dniRepresentantIsInvalid === false &&
+                $scope.emailIsInvalid === false &&
+                $scope.emailNoIguals === false &&
+                !$scope.postalCodeIsInvalid &&
+                true
+                );
+        };
+
         $scope.languages = [];
         $scope.language = {};
         $scope.provinces = [];
@@ -250,6 +273,12 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.messages = null;
         $scope.province = {};
         $scope.city = {};
+
+        $scope.dniRepresentantIsInvalid = false;
+        $scope.dniDuplicated = false;
+        $scope.emailIsInvalid = false;
+        $scope.emailNoIguals = false;
+        $scope.postalCodeIsInvalid = false;
 
         // GET LANGUAGES
         AjaxHandler.getLanguages($scope);
@@ -270,7 +299,6 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateDni($scope, 'form.dni', checkDniTimer);
         var checkDniRepresentantTimer = false;
         ValidateHandler.validateDni($scope, 'form.representantdni', checkDniRepresentantTimer);
-
         // EMAIL VALIDATION
         var checkEmail1Timer = false;
         ValidateHandler.validateEmail1($scope, 'form.email1', checkEmail1Timer);
