@@ -183,9 +183,13 @@
                     <h3 class='green'><label for="accountbankiban" data-ng-bind-html="'DES_DE_QUIN_COMPTE' | translate"></label>
                     </h3>
                 </div>
-                <div class="col-xs-12">
-                    Es carregaràn {{ energeticActionsCost() }}€
-                    <span data-ng-if="isPartner===false"> + 100€ per esdevenir soci</span>
+                <div class="col-xs-12"
+                    data-ng-if="isPartner===false"
+                    translate="CARREC_ADICIONAL_NOVA_SOCIA"
+                    translate-value-total="{{ energeticActionsCost() + 100 }}"
+                    translate-value-costaccions="{{ energeticActionsCost() }}"
+                    translate-value-aportaciosoci="{{ 100 }}"
+                    >
                 </div>
             </div>
             <div class="row no-margin-bottom">
