@@ -110,7 +110,13 @@ angular.module('newSomEnergiaWebformsApp')
 
         // CONTROL IBAN FIELDS
         $scope.formAccountIbanListener = function () {
-            if ($scope.form.accountbankiban1 !== undefined && $scope.form.accountbankiban2 !== undefined && $scope.form.accountbankiban3 !== undefined && $scope.form.accountbankiban4 !== undefined && $scope.form.accountbankiban5 !== undefined && $scope.form.accountbankiban6 !== undefined) {
+            if (
+                $scope.form.accountbankiban1 !== undefined &&
+                $scope.form.accountbankiban2 !== undefined &&
+                $scope.form.accountbankiban3 !== undefined &&
+                $scope.form.accountbankiban4 !== undefined &&
+                $scope.form.accountbankiban5 !== undefined &&
+                $scope.form.accountbankiban6 !== undefined) {
                 $scope.completeAccountNumber = $scope.form.accountbankiban1 + $scope.form.accountbankiban2 + $scope.form.accountbankiban3 + $scope.form.accountbankiban4 + $scope.form.accountbankiban5 + $scope.form.accountbankiban6;
                 $scope.ibanValidated = false;
                 var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/iban/' + $scope.completeAccountNumber, '017');
