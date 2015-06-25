@@ -233,13 +233,55 @@ angular.module('newSomEnergiaWebformsApp')
 })
 .controller('personalDataCtrl', function(
         cfg,
+        AjaxHandler,
+        ValidateHandler,
         $scope,
         $log
         ) {
     var self = this;
     self.init = function(element, attrs) {
         $scope.form = {};
-        $scope.step2Ready = true;
+
+        $scope.languages = [];
+        $scope.language = {};
+        $scope.provinces = [];
+        $scope.cities = [];
+        $scope.language = {};
+        $scope.messages = null;
+        $scope.province = {};
+        $scope.city = {};
+
+        // GET LANGUAGES
+        AjaxHandler.getLanguages($scope);
+
+        // GET STATES
+        AjaxHandler.getStates($scope);
+
+        // POSTAL CODE VALIDATION
+        var checkPostalCodeTimer = false;
+        ValidateHandler.validatePostalCode($scope, 'form.postalcode', checkPostalCodeTimer);
+
+        // TELEPHONE VALIDATION
+        ValidateHandler.validateTelephoneNumber($scope, 'form.phone1');
+        ValidateHandler.validateTelephoneNumber($scope, 'form.phone2');
+
+        // DNI VALIDATION
+        var checkDniTimer = false;
+        ValidateHandler.validateDni($scope, 'form.dni', checkDniTimer);
+        var checkDniRepresentantTimer = false;
+        ValidateHandler.validateDni($scope, 'form.representantdni', checkDniRepresentantTimer);
+
+        // EMAIL VALIDATION
+        var checkEmail1Timer = false;
+        ValidateHandler.validateEmail1($scope, 'form.email1', checkEmail1Timer);
+        var checkEmail2Timer = false;
+        ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
+
+        // ON CHANGE SELECTED STATE
+        $scope.updateSelectedCity = function() {
+            AjaxHandler.getCities($scope, 1, $scope.form.province.id);
+        };
+
     };
     $scope.formListener = function() {
         $log.debug($scope.form);
