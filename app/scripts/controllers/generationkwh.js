@@ -217,5 +217,35 @@ angular.module('newSomEnergiaWebformsApp')
             return result;
         };
 
-    });
+    })
+.directive('personalData', function () {
+    return {
+        restrict: 'E',
+        scope: {
+            model: '=form',
+        },
+        templateUrl: 'views/personaldata.html',
+        controller: 'personalDataCtrl',
+        link: function(scope, element, attrs, personalDataCtrl) {
+            personalDataCtrl.init(element, attrs);
+        },
+    };
+})
+.controller('personalDataCtrl', function(
+        cfg,
+        $scope,
+        $log
+        ) {
+    var self = this;
+    self.init = function(element, attrs) {
+        $scope.form = {};
+        $scope.step2Ready = true;
+    };
+    $scope.formListener = function() {
+        $log.debug($scope.form);
+    };
+
+})
+;
+
 

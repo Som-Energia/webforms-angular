@@ -10,17 +10,29 @@
             <h1 class="green extra-margin" translate="FORMULARI_D_INVERSIO_GKWH"></h1>
         </div>
     </div>
+    <div class="row">
+        <div class="form-group col-xs-12">
+            <label>{{ 'SELECCIONA' | translate }}:</label>
+            <div class="btn-group">
+                <label class="btn btn-default green" data-ng-model="isPartner" data-btn-radio="true">{{ 'JA_SOC_SOCIA' | translate }}</label>
+                <label class="btn btn-default green" data-ng-model="isPartner" data-btn-radio="false">{{ 'EM_VULL_FER_SOCIA' | translate }}</label>
+            </div>
+        </div>
+    </div>
 
-    <!-- BEGIN INIT FORM-->
+    <personal-data
+        data-ng-show="isStep(0) && isPartner===false || showAll"
+        model='newPartner'
+    ></personal-data>
+
     <member-chooser
         button-text="{{'INICIAR_INVERSIO' | translate }}"
         onproceed="initFormSubmited()"
         soci="soci"
         model="initForm"
         formvalues="formsoci"
-        data-ng-show="isStep(0) || showAll"
+        data-ng-show="isStep(0) && isPartner===true || showAll "
     ></member-chooser>
-    <!--END INIT FORM-->
 
     <!-- BEGIN INVEST FORM-->
     <form name="investForm" class="form-inline" role="form" ng-show="isStep(1) || showAll" enctype="multipart/form-data" novalidate>
