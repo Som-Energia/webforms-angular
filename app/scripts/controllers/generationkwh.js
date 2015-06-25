@@ -106,18 +106,22 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.totalYearlyKwh = undefined;
             var promise = $http.get(cfg.API_BASE_URL +
                'data/consumanualsoci/' + $scope.formsoci.socinumber+'/'+ $scope.formsoci.dni);
+            promise.soci = $scope.formsoci.socinumber;
             promise.success(function(response) {
                 console.log(response.data.consums);
                 $scope.partnerContracts = response.data.consums;
-                if ($scope.partnerContracts.length) {
-                    $scope.totalYearlyKwh = $scope.partnerContracts.reduce(
-                        function(sum, contract) {
-                            return sum + contract.annual_use_kwh;
-                        }, 0);
-                }
-                else {
+                $scope.totalYearlyKwh = $scope.partnerContracts.reduce(
+                    function(sum, contract) {
+                        return sum + (contract.annual_use_kwh || 0);
+                    }, 0);
+                if ( $scope.totalYearlyKwh === 0 ) {
+                    $scope.partnerContracts = [];
                     $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
                 }
+            });
+            promise.error(function() {
+                $scope.partnerContracts = [];
+                $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
             });
             /*
             var promise = $timeout(function() {
@@ -132,7 +136,6 @@ angular.module('newSomEnergiaWebformsApp')
                 }, 0);
             }, 8000);
             */
-            promise.soci = $scope.formsoci.socinumber;
         };
 
         // ON SUBMIT FORM
