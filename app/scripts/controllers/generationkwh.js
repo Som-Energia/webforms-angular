@@ -123,19 +123,6 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.partnerContracts = [];
                 $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
             });
-            /*
-            var promise = $timeout(function() {
-                $scope.partnerContracts = [
-                    { contract_id:'1313', supply_address:'Rue del Percebe, 13, Villabotijo, Zamora', annual_use_kwh:2342 },
-                    { contract_id:'1314', supply_address:'Rue del Percebe, 14, Villabotijo, Zamora', annual_use_kwh:2343 },
-                    { contract_id:'1315', supply_address:'Rue del Percebe, 15, Villabotijo, Zamora', annual_use_kwh:2344 },
-                    { contract_id:'1316', supply_address:'Rue del Percebe, 16, Villabotijo, Zamora', annual_use_kwh:2345 },
-                ];
-                $scope.totalYearlyKwh = $scope.partnerContracts.reduce(function(sum, contract) {
-                    return sum + contract.annual_use_kwh;
-                }, 0);
-            }, 8000);
-            */
         };
 
         // ON SUBMIT FORM
