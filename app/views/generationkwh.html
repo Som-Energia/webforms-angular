@@ -52,7 +52,9 @@
         <fieldset ng-disabled="submiting">
         <div class="row">
             <div class="col-xs-12 heading active">
-                <h1>{{ 'BENVINGUDA' | translate }} <b>{{ soci.nom }} {{ soci.cognom }}</b>!</h1>
+                <h1 translate="BENVINGUDA"
+                    translate-value-name="{{soci.nom}} {{soci.cognom}}"
+                    ></h1>
             </div>
         </div>
         <div class='well'>

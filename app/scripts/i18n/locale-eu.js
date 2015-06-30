@@ -108,7 +108,7 @@ angular.module('newSomEnergiaWebformsApp')
                 SERVER_ERROR: 'Hutsegitea serbidorean sartzen:',
                 INICIAR_INVERSIO: 'Hasi inbertsioa',
                 FORMULARI_D_INVERSIO: 'Inbertsio <b>formulario</b>',
-                BENVINGUDA: 'Ongi etorri, ',
+                BENVINGUDA: 'Ongi etorri, <b>{{name}}</b>!',
                 QUANT_VOLS_INVERTIR: 'Zenbat inbertitu <b>nahi duzu</b>? <br/> <small>kapital sozialerako borondatezko ekarpenetan?</small>',
                 RECORDA: 'Gogora ezazu: ',
                 AMOUNT_HELPER_MIN: 'Gutxienengo ekarpena 100€',

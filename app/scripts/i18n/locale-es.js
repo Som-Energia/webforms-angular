@@ -108,7 +108,7 @@ angular.module('newSomEnergiaWebformsApp')
                 SERVER_ERROR: 'Error accediendo al servidor:',
                 INICIAR_INVERSIO: 'Iniciar Inversión',
                 FORMULARI_D_INVERSIO: 'Formulario de <b>inversión</b>',
-                BENVINGUDA: 'Bienvenido/a, ',
+                BENVINGUDA: '¡Bienvenido/a, <b>{{name}}</b>!',
                 QUANT_VOLS_INVERTIR: '¿Cuánto quieres <b>invertir</b>? <br/> <small>En aportación voluntaria al capital social</small>',
                 RECORDA: 'Recuerda: ',
                 AMOUNT_HELPER_MIN: 'Mínima aportación 100€',
