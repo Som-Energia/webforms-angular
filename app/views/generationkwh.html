@@ -58,7 +58,8 @@
         <div class='well'>
             <div class="row">
                 <div class="col-xs-12">
-                    <h3 class="green"><label for="energeticActions">{{ 'QUANTES_ACCIONS_ENERGETIQUES_VOLS' | translate }}</label></h2>
+                    <h3 class="green"><label for="energeticActions"
+                        translate="QUANTES_ACCIONS_ENERGETIQUES_VOLS"></label></h2>
                 </div>
             </div>
             <div class="row">
@@ -223,7 +224,7 @@
             <div class="row no-margin-bottom">
                 <div class="col-xs-12 pull-right no-horitzontal-padding">
                     <button
-                        data-ng-click="sendInvestment()"
+                        data-ng-click="proceed()"
                         type="button"
                         class="btn btn-default green btn-lg btn-block submit"
                         data-ng-class="{'green': isInvestmentFormReady(), 'grey':!isInvestmentFormReady() }"

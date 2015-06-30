@@ -133,7 +133,7 @@ angular.module('newSomEnergiaWebformsApp')
 
                 DES_DE_QUIN_COMPTE: 'Des de quin <b>compte bancari</b>?',
                 FORMULARI_D_INVERSIO_GKWH: 'Formulari d\'inversió pel Generation kWh',
-                QUANTES_ACCIONS_ENERGETIQUES_VOLS: 'Quantes accions energètiques vols?',
+                QUANTES_ACCIONS_ENERGETIQUES_VOLS: 'Quantes <b>accions energètiques</b> vols?',
                 COST_PER_ACCIO_ENERGETICA: 'Cada acció energètica són {{ preuperaccio }}€. Mínim una acció.',
                 KWH_PER_ACCIO_ENERGETICA: 'A cada acció li corresponen {{ kwhperaccio }} kWh de l\'electricitat que generaran els nous projectes renovables. (valor provisional; el real s’acabarà de definir segons els costos finals dels projectes)',
                 CARREGANT_INFORMACIO_DELS_TEUS_CONTRACTES: 'Carregant la informació dels teus contractes...',
