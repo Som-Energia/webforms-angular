@@ -239,13 +239,13 @@ angular.module('newSomEnergiaWebformsApp')
         $log
         ) {
     var self = this;
-    self.init = function(element, attrs) {
+    self.init = function(/*element, attrs*/) {
         $scope.form = {};
 
         $scope.form.isReady = function() {
             return (
                 $scope.form.language &&
-                $scope.form.name != undefined && 
+                $scope.form.name !== undefined &&
                 ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
                 ($scope.form.usertype === 'person' || $scope.form.usertype === 'company' && $scope.form.representantdni !== undefined && $scope.form.representantname !== undefined) &&
                 $scope.form.dni !== undefined &&
