@@ -150,7 +150,7 @@ angular.module('newSomEnergiaWebformsApp')
                 nom: $scope.form.name,
                 dni: $scope.form.dni,
                 tel: $scope.form.phone1,
-                tel2: $scope.form.phone2 === undefined ? '' : $scope.form.phone2,
+                tel2: $scope.form.phone2 || '',
                 email: $scope.form.email1,
                 cp: $scope.form.postalcode,
                 provincia: $scope.form.province.id,

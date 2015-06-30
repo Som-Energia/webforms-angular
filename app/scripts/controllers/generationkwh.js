@@ -29,17 +29,19 @@ angular.module('newSomEnergiaWebformsApp')
         };
         $scope.setStep(0);
 
-        $scope.form = {};
-        $scope.form.acceptaccountowner = false;
-        $scope.form.acceptcontract = false;
-
-        $scope.partnerContracts = [];
+        // Configurable constants
         $scope.estimatedMeanHomeUse = 2800; // kWh
-        $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
-        $scope.form.energeticActions = 1;
         $scope.kwhPerAccio = 170;
         $scope.preuPerAccio = 100;
-        $scope.recommendedMax = 70;
+        $scope.recommendedMax = 70; // percent
+
+        $scope.form = {};
+        $scope.form.energeticActions = 1;
+        $scope.form.acceptaccountowner = false;
+        $scope.form.acceptcontract = false;
+        $scope.partnerContracts = [];
+        $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
+
         $scope.energeticActionsCost = function() {
             return ($scope.form.energeticActions||0) * $scope.preuPerAccio;
         };
@@ -125,10 +127,70 @@ angular.module('newSomEnergiaWebformsApp')
             });
         };
 
+        $scope.proceed = function() {
+            if ($scope.isPartner === true) {
+                $scope.sendInvestment();
+                return;
+            }
+            // new partner submit partner creation first
+            
+            $scope.messages = null;
+            $scope.submiting = true;
+
+            // Prepare request data
+            var postData = {
+                tipuspersona: $scope.newPartner.usertype === 'person' ? cfg.USER_TYPE_PERSON : cfg.USER_TYPE_COMPANY,
+                nom: $scope.newPartner.name,
+                dni: $scope.newPartner.dni,
+                tel: $scope.newPartner.phone1,
+                tel2: $scope.newPartner.phone2 || '',
+                email: $scope.newPartner.email1,
+                cp: $scope.newPartner.postalcode,
+                provincia: $scope.newPartner.province.id,
+                adreca: $scope.newPartner.address,
+                municipi: $scope.newPartner.city.id,
+                idioma: $scope.newPartner.language.code,
+                payment_method: 'remesa',
+                payment_iban: $scope.ibanEditor.value,
+            };
+            if ($scope.newPartner.usertype === 'person') {
+                postData.cognom = $scope.newPartner.surname;
+            } else if ($scope.newPartner.usertype === 'company') {
+                postData.representant_nom = $scope.newPartner.representantname;
+                postData.representant_dni = $scope.newPartner.representantdni;
+            }
+            $log.log('request postData', postData);
+            // Send request data POST
+            var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData, '004');
+            postPromise.then(
+                function (response) {
+                    if (response.state === cfg.STATE_TRUE) { // well done
+                        $log.log('Tens el número de soci '+response.data.soci_num);
+                        $scope.formsoci.socinumber = response.data.soci_num;
+                        $scope.formsoci.dni = $scope.newPartner.dni;
+                        $scope.sendInvestment();
+                        return;
+                    }
+                    if (response.state === cfg.STATE_FALSE) { // error
+                        $scope.messages = $scope.getHumanizedAPIResponse(response.data);
+                        jQuery('#webformsGlobalMessagesModal').modal('show');
+                    }
+                },
+                function (reason) {
+                    $log.error('Post data failed', reason);
+                    $scope.rawReason = reason;
+                    jQuery('#webformsGlobalMessagesModal').modal('show');
+                }
+            );
+
+            return true;
+        };
+
         // ON SUBMIT FORM
         $scope.sendInvestment = function() {
             $scope.messages = null;
             $scope.submiting = true;
+
             // Send request data POST
             var formData = new FormData();
             angular.forEach({
@@ -183,7 +245,6 @@ angular.module('newSomEnergiaWebformsApp')
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
             );
-
             return true;
         };
 
