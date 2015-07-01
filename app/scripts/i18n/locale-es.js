@@ -108,7 +108,7 @@ angular.module('newSomEnergiaWebformsApp')
                 SERVER_ERROR: 'Error accediendo al servidor:',
                 INICIAR_INVERSIO: 'Iniciar Inversión',
                 FORMULARI_D_INVERSIO: 'Formulario de <b>inversión</b>',
-                BENVINGUDA: 'Bienvenido/a, ',
+                BENVINGUDA: '¡Bienvenido/a, <b>{{name}}</b>!',
                 QUANT_VOLS_INVERTIR: '¿Cuánto quieres <b>invertir</b>? <br/> <small>En aportación voluntaria al capital social</small>',
                 RECORDA: 'Recuerda: ',
                 AMOUNT_HELPER_MIN: 'Mínima aportación 100€',
@@ -133,7 +133,7 @@ angular.module('newSomEnergiaWebformsApp')
 
                 DES_DE_QUIN_COMPTE: '¿Desde qué <b>cuenta bancaria</b>?',
                 FORMULARI_D_INVERSIO_GKWH: 'Formulario de inversión para el Generation kWh',
-                QUANTES_ACCIONS_ENERGETIQUES_VOLS: '¿Cuántas acciones energéticas quieres?',
+                QUANTES_ACCIONS_ENERGETIQUES_VOLS: '¿Cuántas <b>acciones energéticas</b> quieres?',
                 COST_PER_ACCIO_ENERGETICA: 'Cada acción energética son {{ preuperaccio }}€. Mínimo una acción.',
                 KWH_PER_ACCIO_ENERGETICA: 'A cada acción le corresponden {{ kwhperaccio }} kWh de la electricidad que generarán los nuevos proyectos renovables. (valor provisional; el real se acabará de definir según los costes final de los proyectos)',
                 CARREGANT_INFORMACIO_DELS_TEUS_CONTRACTES: 'Cargando la información de tus contratos...',
@@ -150,6 +150,14 @@ angular.module('newSomEnergiaWebformsApp')
                 GENERATION_CONDICIONS_URL: 'http://www.generationkwh.org/wp-content/uploads/Condiciones-Generales-Contrato-Autoproduccion-Colectiva-Generation-kWh_ES.pdf',
                 NO_HA_ESTAT_TROBAT: 'No encontrado',
                 FENT_SERVIR_RESIDENCIA_MITJANA: 'Se esta usando a modo de referencia el uso de electricidad de una residencia media',
+                GENERATION_FERSE_SOCIA: 'Ser socio implica una aportación al capital social de 100€ que se añadirá a la cantidad que quieras invertir.<br/>Se pagan una sola vez, y son retornables si te das de baja.',
+                ERROR_POST_INVERSIO: 'Error realizando la inversión',
+                ERROR_POST_NOVASOCIA: 'Error registrando el/la socio/a',
+                ERROR_REQUIRED_FIELD: 'Falta parámetro requerido: {{field}}',
+                ERROR_INVALID_FIELD: 'Valor inválido del parámetro: {{field}}, motivo: {{reason}}',
+                CARREC_ADICIONAL_NOVA_SOCIA: 'Importe total: {{total}}€ ({{ aportaciosoci }}€ + {{ costaccions }}€)',
+                JA_SOC_SOCIA: 'Ya soy socio/a',
+                EM_VULL_FER_SOCIA: 'Quiero ser socio/a',
             })
         ;
     });

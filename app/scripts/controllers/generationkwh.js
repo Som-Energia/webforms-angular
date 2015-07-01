@@ -29,17 +29,19 @@ angular.module('newSomEnergiaWebformsApp')
         };
         $scope.setStep(0);
 
-        $scope.form = {};
-        $scope.form.acceptaccountowner = false;
-        $scope.form.acceptcontract = false;
-
-        $scope.partnerContracts = [];
+        // Configurable constants
         $scope.estimatedMeanHomeUse = 2800; // kWh
-        $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
-        $scope.form.energeticActions = 1;
         $scope.kwhPerAccio = 170;
         $scope.preuPerAccio = 100;
-        $scope.recommendedMax = 70;
+        $scope.recommendedMax = 70; // percent
+
+        $scope.form = {};
+        $scope.form.energeticActions = 1;
+        $scope.form.acceptaccountowner = false;
+        $scope.form.acceptcontract = false;
+        $scope.partnerContracts = [];
+        $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
+
         $scope.energeticActionsCost = function() {
             return ($scope.form.energeticActions||0) * $scope.preuPerAccio;
         };
@@ -97,6 +99,14 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.updateAnnualUse();
         };
 
+        $scope.newPartnerSubmitted = function() {
+            $scope.setStep(1);
+            $scope.soci.nom = $scope.newPartner.name;
+            $scope.soci.cognom = $scope.newPartner.surname;
+
+//            $scope.updateAnnualUse();
+        };
+
         // Backward with order.js  
         $scope.formListener = function() {
         };
@@ -123,25 +133,74 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.partnerContracts = [];
                 $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
             });
-            /*
-            var promise = $timeout(function() {
-                $scope.partnerContracts = [
-                    { contract_id:'1313', supply_address:'Rue del Percebe, 13, Villabotijo, Zamora', annual_use_kwh:2342 },
-                    { contract_id:'1314', supply_address:'Rue del Percebe, 14, Villabotijo, Zamora', annual_use_kwh:2343 },
-                    { contract_id:'1315', supply_address:'Rue del Percebe, 15, Villabotijo, Zamora', annual_use_kwh:2344 },
-                    { contract_id:'1316', supply_address:'Rue del Percebe, 16, Villabotijo, Zamora', annual_use_kwh:2345 },
-                ];
-                $scope.totalYearlyKwh = $scope.partnerContracts.reduce(function(sum, contract) {
-                    return sum + contract.annual_use_kwh;
-                }, 0);
-            }, 8000);
-            */
+        };
+
+        $scope.proceed = function() {
+            if ($scope.isPartner === true) {
+                $scope.sendInvestment();
+                return;
+            }
+            // new partner submit partner creation first
+            
+            $scope.messages = null;
+            $scope.submiting = true;
+
+            // Prepare request data
+            var postData = {
+                tipuspersona: $scope.newPartner.usertype === 'person' ? cfg.USER_TYPE_PERSON : cfg.USER_TYPE_COMPANY,
+                nom: $scope.newPartner.name,
+                dni: $scope.newPartner.dni,
+                tel: $scope.newPartner.phone1,
+                tel2: $scope.newPartner.phone2 || '',
+                email: $scope.newPartner.email1,
+                cp: $scope.newPartner.postalcode,
+                provincia: $scope.newPartner.province.id,
+                adreca: $scope.newPartner.address,
+                municipi: $scope.newPartner.city.id,
+                idioma: $scope.newPartner.language.code,
+                payment_method: 'remesa',
+                payment_iban: $scope.ibanEditor.value,
+            };
+            if ($scope.newPartner.usertype === 'person') {
+                postData.cognom = $scope.newPartner.surname;
+            } else if ($scope.newPartner.usertype === 'company') {
+                postData.representant_nom = $scope.newPartner.representantname;
+                postData.representant_dni = $scope.newPartner.representantdni;
+            }
+            $log.log('request postData', postData);
+            // Send request data POST
+            var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData, '004');
+            postPromise.then(
+                function (response) {
+                    if (response.state === cfg.STATE_TRUE) { // well done
+                        $log.log('Tens el número de soci '+response.data.soci_num);
+                        $scope.formsoci.socinumber = response.data.soci_num;
+                        $scope.formsoci.dni = $scope.newPartner.dni;
+                        $scope.sendInvestment();
+                        return;
+                    }
+                    if (response.state === cfg.STATE_FALSE) { // error
+                        $scope.modalTitle = $translate.instant('ERROR_POST_NOVASOCIA');
+                        $scope.messages = $scope.getHumanizedAPIResponse(response.data);
+                        jQuery('#webformsGlobalMessagesModal').modal('show');
+                    }
+                },
+                function (reason) {
+                    $log.error('Post data failed', reason);
+                    $scope.modalTitle = $translate.instant('ERROR_POST_NOVASOCIA');
+                    $scope.rawReason = reason;
+                    jQuery('#webformsGlobalMessagesModal').modal('show');
+                }
+            );
+
+            return true;
         };
 
         // ON SUBMIT FORM
         $scope.sendInvestment = function() {
             $scope.messages = null;
             $scope.submiting = true;
+
             // Send request data POST
             var formData = new FormData();
             angular.forEach({
@@ -175,6 +234,7 @@ angular.module('newSomEnergiaWebformsApp')
                     }
                     if (response.data.state !== cfg.STATE_TRUE) {
                         // error
+                        $scope.modalTitle = $translate.instant('ERROR_POST_INVERSIO');
                         $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
                         $scope.rawReason = JSON.stringify(response,null,'  ');
                         jQuery('#webformsGlobalMessagesModal').modal('show');
@@ -192,11 +252,11 @@ angular.module('newSomEnergiaWebformsApp')
                     } else {
                         $scope.messages = 'ERROR';
                     }
+                    $scope.modalTitle = $translate.instant('ERROR_POST_INVERSIO');
                     $scope.rawReason = JSON.stringify(reason,null,'  ');
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
             );
-
             return true;
         };
 
@@ -205,17 +265,122 @@ angular.module('newSomEnergiaWebformsApp')
             var result = '';
             if (arrayResponse.required_fields !== undefined) {
                 for (var i = 0; i < arrayResponse.required_fields.length; i++) {
-                    result = result + 'ERROR REQUIRED FIELD:' + arrayResponse.required_fields[i] + ' ';
+                    result += '<li>'+$translate.instant('ERROR_REQUIRED_FIELD', {
+                        field: arrayResponse.required_fields[i],
+                    })+'</li>';
                 }
             }
             if (arrayResponse.invalid_fields !== undefined) {
                 for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
-                    result += 'ERROR INVALID FIELD: ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error + ' ';
+                    result += '<li>'+$translate.instant('ERROR_INVALID_FIELD', {
+                        field: arrayResponse.invalid_fields[j].field,
+                        reason: arrayResponse.invalid_fields[j].error
+                    })+'</li>';
                 }
             }
-
-            return result;
+            if (result === '') {return '';} // TODO: Manage case
+            return '<ul>'+result+'</ul>';
         };
 
-    });
+    })
+.directive('personalData', function () {
+    return {
+        restrict: 'E',
+        scope: {
+            form: '=model',
+        },
+        templateUrl: 'views/personaldata.html',
+        controller: 'personalDataCtrl',
+        link: function(scope, element, attrs, personalDataCtrl) {
+            personalDataCtrl.init(element, attrs);
+        },
+    };
+})
+.controller('personalDataCtrl', function(
+        cfg,
+        AjaxHandler,
+        ValidateHandler,
+        $scope,
+        $log
+        ) {
+    var self = this;
+    self.init = function(/*element, attrs*/) {
+        $scope.form = {};
+
+        $scope.form.isReady = function() {
+            return (
+                $scope.form.language &&
+                $scope.form.name !== undefined &&
+                ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
+                ($scope.form.usertype === 'person' || $scope.form.usertype === 'company' && $scope.form.representantdni !== undefined && $scope.form.representantname !== undefined) &&
+                $scope.form.dni !== undefined &&
+                $scope.form.email1 !== undefined &&
+                $scope.form.email2 !== undefined &&
+                $scope.form.email1 === $scope.form.email2 &&
+                $scope.form.phone1 !== undefined &&
+                $scope.form.address !== undefined &&
+                $scope.form.postalcode !== undefined &&
+                $scope.form.province !== undefined &&
+                $scope.form.city !== undefined &&
+                $scope.dniRepresentantIsInvalid === false &&
+                $scope.emailIsInvalid === false &&
+                $scope.emailNoIguals === false &&
+                !$scope.postalCodeIsInvalid &&
+                true
+                );
+        };
+
+        $scope.languages = [];
+        $scope.language = {};
+        $scope.provinces = [];
+        $scope.cities = [];
+        $scope.language = {};
+        $scope.messages = null;
+        $scope.province = {};
+        $scope.city = {};
+
+        $scope.dniRepresentantIsInvalid = false;
+        $scope.dniDuplicated = false;
+        $scope.emailIsInvalid = false;
+        $scope.emailNoIguals = false;
+        $scope.postalCodeIsInvalid = false;
+
+        // GET LANGUAGES
+        AjaxHandler.getLanguages($scope);
+
+        // GET STATES
+        AjaxHandler.getStates($scope);
+
+        // POSTAL CODE VALIDATION
+        var checkPostalCodeTimer = false;
+        ValidateHandler.validatePostalCode($scope, 'form.postalcode', checkPostalCodeTimer);
+
+        // TELEPHONE VALIDATION
+        ValidateHandler.validateTelephoneNumber($scope, 'form.phone1');
+        ValidateHandler.validateTelephoneNumber($scope, 'form.phone2');
+
+        // DNI VALIDATION
+        var checkDniTimer = false;
+        ValidateHandler.validateDni($scope, 'form.dni', checkDniTimer);
+        var checkDniRepresentantTimer = false;
+        ValidateHandler.validateDni($scope, 'form.representantdni', checkDniRepresentantTimer);
+        // EMAIL VALIDATION
+        var checkEmail1Timer = false;
+        ValidateHandler.validateEmail1($scope, 'form.email1', checkEmail1Timer);
+        var checkEmail2Timer = false;
+        ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
+
+        // ON CHANGE SELECTED STATE
+        $scope.updateSelectedCity = function() {
+            AjaxHandler.getCities($scope, 1, $scope.form.province.id);
+        };
+
+    };
+    $scope.formListener = function() {
+        $log.debug($scope.form);
+    };
+
+})
+;
+
 
