@@ -150,7 +150,12 @@ angular.module('newSomEnergiaWebformsApp')
                 GENERATION_CONDICIONS_URL: 'http://www.generationkwh.org/wp-content/uploads/Condiciones-Generales-Contrato-Autoproduccion-Colectiva-Generation-kWh_ES.pdf',
                 NO_HA_ESTAT_TROBAT: 'No encontrado',
                 FENT_SERVIR_RESIDENCIA_MITJANA: 'Se esta usando a modo de referencia el uso de electricidad de una residencia media',
-                GENERATION_FERSE_SOCIA: 'Ser socio implica una aportación adicional de 100€ que se añadirá a la cantidad que quieras invertir.<br/>Se pagan una sola vez, y son retornables si te das de baja.',
+                GENERATION_FERSE_SOCIA: 'Ser socio implica una aportación al capital social de 100€ que se añadirá a la cantidad que quieras invertir.<br/>Se pagan una sola vez, y son retornables si te das de baja.',
+                ERROR_REQUIRED_FIELD: 'Falta parámetro requerido: {{field}}',
+                ERROR_INVALID_FIELD: 'Valor inválido del parámetro: {{field}}, motivo: {{reason}}',
+                CARREC_ADICIONAL_NOVA_SOCIA: 'Importe total: {{total}}€ ({{ aportaciosoci }}€ + {{ costaccions }}€)',
+                JA_SOC_SOCIA: 'Ya soy socio/a',
+                EM_VULL_FER_SOCIA: 'Quiero ser socio/a',
             })
         ;
     });
