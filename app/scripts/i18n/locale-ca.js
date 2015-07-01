@@ -150,6 +150,7 @@ angular.module('newSomEnergiaWebformsApp')
                 GENERATION_CONDICIONS_URL: 'http://www.generationkwh.org/wp-content/uploads/Condicions-Generals-Contracte-Autoproduccio-Col_lectiva-Generation-kWh_CA.pdf',
                 NO_HA_ESTAT_TROBAT: 'No ha estat trobat',
                 FENT_SERVIR_RESIDENCIA_MITJANA: 'S\'està fent servir com a referència l\'ús d\'electricitat d\'una residència mitjana',
+                GENERATION_FERSE_SOCIA: 'Fer-se soci/a implica una aportació addicional de 100€ que s\'afegirà a la quantitat que vulguis invertir.<br/>Es paguen una sola vegada, no hi ha quota anual i són retornables si et dones de baixa.',
             })
         ;
     });
