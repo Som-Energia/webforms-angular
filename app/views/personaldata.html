@@ -2,8 +2,8 @@
     <div class="form-group col-xs-12">
         <label>{{ 'SELECCIONA' | translate }}:</label>
         <div class="btn-group">
-            <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
-            <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'company'" data-ng-change="formListener()">{{ 'EMPRESA' | translate }}</label>
+            <label class="btn btn-default btn-lg green" data-ng-model="form.usertype" data-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
+            <label class="btn btn-default btn-lg green" data-ng-model="form.usertype" data-btn-radio="'company'" data-ng-change="formListener()">{{ 'EMPRESA' | translate }}</label>
         </div>
     </div>
 </div>
@@ -24,12 +24,12 @@
 <!--PARTICULAR-->
 <div data-ng-if="form.usertype == 'person'">
     <div class="row">
-        <div class="form-group col-sm-3 col-xs-12">
+        <div class="form-group col-xs-5">
             <label class="sr-only">{{ 'NOM' | translate }}*:</label>
             <input type="text" name="name" class="form-control" placeholder="{{ 'NOM' | translate }}*" data-ng-model="form.name" data-ng-change="formListener()" required/>
             <span class="label label-danger" data-ng-show="submitted && partnerForm.name.$error.required">{{ 'OBLIGATORI' | translate }}</span>
         </div>
-        <div class="form-group col-sm-9 col-xs-12">
+        <div class="form-group col-xs-7">
             <label class="sr-only">{{ 'COGNOMS' | translate }}*:</label>
             <input type="text" name="surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}*" data-ng-model="form.surname" data-ng-change="formListener()" required/>
             <span class="label label-danger" data-ng-show="submitted && partnerForm.surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
