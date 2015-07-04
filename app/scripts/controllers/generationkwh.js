@@ -99,6 +99,10 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.updateAnnualUse();
         };
 
+        $scope.isNewPartnerReady = function() {
+            return $scope.newPartner.isReady() && $scope.form.acceptprivacypolicy;
+        };
+
         $scope.newPartnerSubmitted = function() {
             $scope.setStep(1);
             $scope.soci.nom = $scope.newPartner.name;
