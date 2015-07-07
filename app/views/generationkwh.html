@@ -11,10 +11,17 @@
         </div>
     </div>
     <div class="row" data-ng-show="isStep(0) || showAll">
+        <div class="col-xs-12">
+            <div class="well"
+                translate="GENERATION_REQUERIMENT_SER_SOCIA">
+            </div>
+        </div>
+    </div>
+    <div class="row" data-ng-show="isStep(0) || showAll">
         <div class="form-group col-xs-12">
             <label>{{ 'SELECCIONA' | translate }}:</label>
             <div class="btn-group">
-                <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-btn-radio="true">{{ 'JA_SOC_SOCIA' | translate }}</label>
+                <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-btn-radio="true" >{{ 'JA_SOC_SOCIA' | translate }}</label>
                 <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-btn-radio="false">{{ 'EM_VULL_FER_SOCIA' | translate }}</label>
             </div>
         </div>

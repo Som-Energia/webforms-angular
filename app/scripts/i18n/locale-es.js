@@ -158,6 +158,7 @@ angular.module('newSomEnergiaWebformsApp')
                 CARREC_ADICIONAL_NOVA_SOCIA: 'Importe total: {{total}}€ ({{ aportaciosoci }}€ + {{ costaccions }}€)',
                 JA_SOC_SOCIA: 'Ya soy socio/a',
                 EM_VULL_FER_SOCIA: 'Quiero ser socio/a',
+                GENERATION_REQUERIMENT_SER_SOCIA: 'Para participar en el <em>Generation kWh</em> has de ser soci/a de SomEnergia.',
             })
         ;
     });
