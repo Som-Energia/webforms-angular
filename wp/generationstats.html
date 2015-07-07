@@ -1,13 +1,39 @@
-'use strict';
+<div style="text-align: center; font-size:15px; font-style:bold regular">Primer objetivo: 1.000.000 € hasta 31/07/15</div>
+<div class="progress" style="height:30px">
+    <div
+        id="generation_progress_bar"
+        class="progress-bar progress-bar-striped progress-bar-success active"
+        style="height:50px"
+        role="progressbar"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style="width:0%;
+        background-color: red"
+        >
+    <b>Inversión actual <span id="generation_amount">...</span> de 1.000.000€</b>
+    </div>
+</div>                                             
 
-alert('Benvingut!');
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
 
 if (jQuery) {
     setCustomLocaleToStringBehaviour();
     jQuery(document).ready(function() {
         // Partners
         jQuery.getJSON('https://api.somenergia.coop/stats/generation_amount', function(response) {
-            var node = jQuery('#partners');
+            var node = jQuery('#generation_amount');
             if (response.status === 'OFFLINE') {
                 node.text('no disponible (EP1)');
             } else {
@@ -17,24 +43,13 @@ if (jQuery) {
                     if (response.data === undefined) {
                         node.text('no disponible (EP3)');
                     } else {
-                        node.text(Number(response.data.socis).customToLocaleString());
-                    }
-                }
-            }
-        });
-        // Contracts
-        jQuery.getJSON('https://api.somenergia.coop/stats/contractes', function(response) {
-            var node = jQuery('#contracts');
-            if (response.status === 'OFFLINE') {
-                node.text('no disponible (EC1)');
-            } else {
-                if (response.state === false) {
-                    node.text('no disponible (EC2)');
-                } else {
-                    if (response.data === undefined) {
-                        node.text('no disponible (EC3)');
-                    } else {
-                        node.text(Number(response.data.contractes).customToLocaleString());
+                        var goal_amount = 1000000;
+                        var current_amount = Number(response.data.amount);
+                        var percent = 100 * current_amount / goal_amount;
+                        node.text(current_amount.customToLocaleString());
+                        var bar = jQuery('#generation_progress_bar');
+                        bar.css("width", percent+"%");
+                        bar.attr("aria-valuenow", percent);
                     }
                 }
             }
@@ -43,7 +58,6 @@ if (jQuery) {
 } else {
     console.error('Unable to load jQuery');
 }
-
 function browserSupportsToLocaleString() {
     var number = 0;
     try {
@@ -76,8 +90,11 @@ function setCustomLocaleToStringBehaviour()
             for (i = resultValue.length - 1; i >= 0; i--) {
                 stringValue += resultValue[i];
             }
-            
+
             return stringValue;
         }
     }
 }
+
+</script>
+
