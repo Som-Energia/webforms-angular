@@ -47,9 +47,118 @@
 [vcex_divider style="solid" width="69%" height="2px" color="#c1c1c1" margin_top="-7px" margin_bottom="0px" icon_color="#000000" icon_size="14px"]
 [vcex_divider style="solid" width="2px" height="20px" color="#c1c1c1" margin_top="0px" margin_bottom="0px" icon_color="#000000" icon_size="14px"]
 [vc_custom_heading text="Inversión prevista para los 3 proyectos: 5.000.000€" font_container="tag:h2|font_size:15px|text_align:center|color:%23333333|line_height:16px" google_fonts="font_family:Lato%3A100%2C100italic%2C300%2C300italic%2Cregular%2Citalic%2C700%2C700italic%2C900%2C900italic|font_style:700%20bold%20regular%3A700%3Anormal" css=".vc_custom_1434975587639{margin-bottom: 10px !important;}"]
-[vc_progress_bar values="42|Inversión actual 421.500 € de 1.000.000 €" bgcolor="bar_green" options="striped,animated" title="Primer objetivo: 1.000.000 € hasta 31/07/15"]
+<div style="text-align: center; font-size:15px; font-style:bold regular">Primer objetivo: 1.000.000 € hasta 31/07/15</div>
+<div class="progress" style="height:30px">
+    <div
+        id="generation_progress_bar"
+        class="progress-bar progress-bar-striped progress-bar-success active"
+        style="height:50px"
+        role="progressbar"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style="width:0%;
+        background-color: red"
+        >
+    <b>Inversión actual <span id="generation_amount"><img src="https://somenergia.coop/wp-content/themes/superior/images/loading.gif" alt="Loading..."></span> de 1.000.000€</b>
+    </div>
+</div>                                             
 [vcex_divider style="solid" width="2px" height="20px" color="#c1c1c1" margin_top="0px" margin_bottom="0px" icon_color="#000000" icon_size="14px"]
 [vcex_button url="http://www.generationkwh.org/es/invertir/" title="¡Invertir ahora!" rel="none" style="flat" align="center" color="green" size="medium" text_transform="uppercase" custom_background="#86bc24" custom_color="#ffffff" custom_hover_background="#7a9b17" custom_hover_color="#ffffff" font_size="25px" font_padding="10px" font_weight="900" border_radius="5px" layout="expanded"]INVERTIR
 [/vcex_button]
 [/vc_column]
 [/vc_row]
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+function applyStats() {
+    if (!jQuery)  {
+        console.error('Unable to load jQuery');
+        return;
+    }
+    setCustomLocaleToStringBehaviour();
+    jQuery(document).ready(function() {
+        // Partners
+        jQuery.getJSON('https://api.somenergia.coop/stats/generation_amount', function(response) {
+            var node = jQuery('#generation_amount');
+            if (response.status === 'OFFLINE') {
+                node.text('no disponible (EG1)');
+                return;
+            }
+            if (response.state === false) {
+                node.text('no disponible (EG2)');
+                return;
+            }
+            if (response.data === undefined) {
+                node.text('no disponible (EG3)');
+                return;
+            }
+            var goal_amount = 1000000;
+            var current_amount = Number(response.data.amount);
+            var percent = 100 * current_amount / goal_amount;
+            node.text(current_amount.customToLocaleString());
+            var bar = jQuery('#generation_progress_bar');
+            bar.css("width", percent+"%");
+            bar.attr("aria-valuenow", percent);
+        });
+        jQuery.getJSON('https://api.somenergia.coop/stats/generation_socis', function(response) {
+            var node = jQuery('#generation_many');
+            if (response.status === 'OFFLINE') {
+                node.text('no disponible (EM1)');
+                return;
+            }
+            if (response.state === false) {
+                node.text('no disponible (EM2)');
+                return;
+            }
+            if (response.data === undefined) {
+                node.text('no disponible (EM3)');
+                return;
+            }
+            var many = jQuery('#generation_many');
+            many.text(Number(response.data.socis).customToLocaleString());
+        });
+    });
+}
+function browserSupportsToLocaleString() {
+    var number = 0;
+    try {
+        number.toLocaleString('i');
+    } catch (e) {
+        return e.name === 'RangeError';
+    }
+    return false;
+}
+
+function setCustomLocaleToStringBehaviour()
+{
+    if (browserSupportsToLocaleString()) {
+        Number.prototype.customToLocaleString = function() {
+            return this.toLocaleString();
+        }
+    }
+    Number.prototype.customToLocaleString = function() {
+        var stringValue = Math.round(this).toString();
+        var resultValue = '';
+        for (var i = 0, len = stringValue.length; i < len; i++) {
+            var inversedIndex = stringValue.length - i - 1;
+            if ((i + 1) % 3 === 0 && inversedIndex !== 0) {
+                resultValue = resultValue + stringValue[inversedIndex] + '.';
+            } else {
+                resultValue = resultValue + stringValue[inversedIndex];
+            }
+        }
+        stringValue = '';
+        for (i = resultValue.length - 1; i >= 0; i--) {
+            stringValue += resultValue[i];
+        }
+
+        return stringValue;
+    }
+}
+applyStats();
+</script>
