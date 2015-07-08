@@ -1,4 +1,42 @@
+<html>
+<head>
+<meta charset='utf-8'>
+</head>
+<body>
+
+<h2>Español</h2>
+
+<p>
+Ya somos una generación de <span id="generation_many"><img src="https://somenergia.coop/wp-content/themes/superior/images/loading.gif" alt="Loading..."></span> 
+personas que queremos generar nuestros propios kilovatios-hora 
+</p>
+
 <div style="text-align: center; font-size:15px; font-style:bold regular">Primer objetivo: 1.000.000 € hasta 31/07/15</div>
+<div class="progress" style="height:30px">
+<b>Inversión actual <span id="generation_amount"><img src="https://somenergia.coop/wp-content/themes/superior/images/loading.gif" alt="Loading..."></span> de 1.000.000€</b>
+    <div
+        id="generation_progress_bar"
+        class="progress-bar progress-bar-striped progress-bar-success active"
+        style="height:50px"
+        role="progressbar"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style="width:0%;
+        background-color: red"
+        >
+    <b>Inversión actual <span id="generation_amount"><img src="https://somenergia.coop/wp-content/themes/superior/images/loading.gif" alt="Loading..."></span> de 1.000.000€</b>
+    </div>
+</div>                                             
+
+<h2>Català (no s'omple perque només pot haver un a la pàgina</h2>
+
+<p>
+Ja som una generació de <span id="generation_many"><img src="https://somenergia.coop/wp-content/themes/superior/images/loading.gif" alt="Loading..."></span> 
+persones que volem generar els nostres propis kilovats-hora
+</p>
+
+<div style="text-align: center; font-size:15px; font-style:bold regular">Primer objetiu: 1.000.000 € fins el 31/07/15</div>
 <div class="progress" style="height:30px">
     <div
         id="generation_progress_bar"
@@ -11,52 +49,67 @@
         style="width:0%;
         background-color: red"
         >
-    <b>Inversión actual <span id="generation_amount">...</span> de 1.000.000€</b>
+    <b>Inversió actual <span id="generation_amount"><img src="https://somenergia.coop/wp-content/themes/superior/images/loading.gif" alt="Loading..."></span> de 1.000.000€</b>
     </div>
 </div>                                             
 
+<!-- Estils i javascript necessari -->
 
-
-<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-<!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 
-if (jQuery) {
+function applyStats() {
+    if (!jQuery)  {
+        console.error('Unable to load jQuery');
+        return;
+    }
     setCustomLocaleToStringBehaviour();
     jQuery(document).ready(function() {
         // Partners
         jQuery.getJSON('https://api.somenergia.coop/stats/generation_amount', function(response) {
             var node = jQuery('#generation_amount');
             if (response.status === 'OFFLINE') {
-                node.text('no disponible (EP1)');
-            } else {
-                if (response.state === false) {
-                    node.text('no disponible (EP2)');
-                } else {
-                    if (response.data === undefined) {
-                        node.text('no disponible (EP3)');
-                    } else {
-                        var goal_amount = 1000000;
-                        var current_amount = Number(response.data.amount);
-                        var percent = 100 * current_amount / goal_amount;
-                        node.text(current_amount.customToLocaleString());
-                        var bar = jQuery('#generation_progress_bar');
-                        bar.css("width", percent+"%");
-                        bar.attr("aria-valuenow", percent);
-                    }
-                }
+                node.text('no disponible (EG1)');
+                return;
             }
+            if (response.state === false) {
+                node.text('no disponible (EG2)');
+                return;
+            }
+            if (response.data === undefined) {
+                node.text('no disponible (EG3)');
+                return;
+            }
+            var goal_amount = 1000000;
+            var current_amount = Number(response.data.amount);
+            var percent = 100 * current_amount / goal_amount;
+            node.text(current_amount.customToLocaleString());
+            var bar = jQuery('#generation_progress_bar');
+            bar.css("width", percent+"%");
+            bar.attr("aria-valuenow", percent);
+        });
+        jQuery.getJSON('https://api.somenergia.coop/stats/generation_socis', function(response) {
+            var node = jQuery('#generation_many');
+            if (response.status === 'OFFLINE') {
+                node.text('no disponible (EM1)');
+                return;
+            }
+            if (response.state === false) {
+                node.text('no disponible (EM2)');
+                return;
+            }
+            if (response.data === undefined) {
+                node.text('no disponible (EM3)');
+                return;
+            }
+            var many = jQuery('#generation_many');
+            many.text(Number(response.data.socis).customToLocaleString());
         });
     });
-} else {
-    console.error('Unable to load jQuery');
 }
 function browserSupportsToLocaleString() {
     var number = 0;
@@ -95,6 +148,9 @@ function setCustomLocaleToStringBehaviour()
         }
     }
 }
-
+applyStats();
 </script>
 
+
+</body>
+</html>
