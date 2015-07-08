@@ -41,6 +41,8 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.form.acceptcontract = false;
         $scope.partnerContracts = [];
         $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
+        $scope.isPartner = true;
+        $scope.newPartner = {};
 
         $scope.energeticActionsCost = function() {
             return ($scope.form.energeticActions||0) * $scope.preuPerAccio;
@@ -97,6 +99,11 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.initFormSubmited = function() {
             $scope.setStep(1);
             $scope.updateAnnualUse();
+        };
+
+        $scope.isNewPartnerReady = function() {
+            if ($scope.newPartner.isReady === undefined) { return false; }
+            return $scope.newPartner.isReady() && $scope.form.acceptprivacypolicy;
         };
 
         $scope.newPartnerSubmitted = function() {
@@ -330,6 +337,7 @@ angular.module('newSomEnergiaWebformsApp')
                 );
         };
 
+        $scope.form = {};
         $scope.languages = [];
         $scope.language = {};
         $scope.provinces = [];
@@ -338,6 +346,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.messages = null;
         $scope.province = {};
         $scope.city = {};
+        $scope.form.usertype = 'person';
 
         $scope.dniRepresentantIsInvalid = false;
         $scope.dniDuplicated = false;

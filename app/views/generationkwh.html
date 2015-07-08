@@ -11,10 +11,17 @@
         </div>
     </div>
     <div class="row" data-ng-show="isStep(0) || showAll">
+        <div class="col-xs-12">
+            <div class="well"
+                translate="GENERATION_REQUERIMENT_SER_SOCIA">
+            </div>
+        </div>
+    </div>
+    <div class="row" data-ng-show="isStep(0) || showAll">
         <div class="form-group col-xs-12">
             <label>{{ 'SELECCIONA' | translate }}:</label>
             <div class="btn-group">
-                <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-btn-radio="true">{{ 'JA_SOC_SOCIA' | translate }}</label>
+                <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-btn-radio="true" >{{ 'JA_SOC_SOCIA' | translate }}</label>
                 <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-btn-radio="false">{{ 'EM_VULL_FER_SOCIA' | translate }}</label>
             </div>
         </div>
@@ -30,9 +37,17 @@
         <personal-data
             model='newPartner'
         ></personal-data>
+        <div class="row" data-ng-show="isPartner!==undefined">
+            <div class="form-group checkbox col-xs-12">
+                <label>
+                    <input type="checkbox" name="acceptprivacypolicy" value="accept" data-ng-model="form.acceptprivacypolicy" required/>
+                    <span translate="ACCEPTO_POLITICA_PRIVACITAT" ></span>
+                </label>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right">
-                <button class="btn btn-default btn-lg btn-block submit" data-ng-disabled="!newPartner.isReady()" data-ng-class="{'green': newPartner.isReady(), 'grey':!newPartner.isReady()}" data-ng-click="newPartnerSubmitted()" type="button"
+                <button class="btn btn-default btn-lg btn-block submit" data-ng-disabled="!isNewPartnerReady()" data-ng-class="{'green': isNewPartnerReady(), 'grey':!isNewPartnerReady()}" data-ng-click="newPartnerSubmitted()" type="button"
 >{{ 'INICIAR_INVERSIO' | translate }}</button>
             </div>
         </div>
@@ -214,6 +229,8 @@
                         <input type="checkbox" name="acceptaccountowner" value="accept" data-ng-model="form.acceptaccountowner" required/>
                         <span translate="GENERATION_ACCEPTO_DOMICILIACIO" ></span>
                     </label>
+                </div>
+                <div class="form-group checkbox col-xs-12">
                     <label>
                         <input type="checkbox" name="acceptcontract" value="accept" data-ng-model="form.acceptcontract" required/>
                         <span
