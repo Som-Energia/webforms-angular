@@ -13,7 +13,6 @@ personas que queremos generar nuestros propios kilovatios-hora
 
 <div style="text-align: center; font-size:15px; font-style:bold regular">Primer objetivo: 1.000.000 € hasta 31/07/15</div>
 <div class="progress" style="height:30px">
-<b>Inversión actual <span id="generation_amount"><img src="https://somenergia.coop/wp-content/themes/superior/images/loading.gif" alt="Loading..."></span> de 1.000.000€</b>
     <div
         id="generation_progress_bar"
         class="progress-bar progress-bar-striped progress-bar-success active"
@@ -29,7 +28,8 @@ personas que queremos generar nuestros propios kilovatios-hora
     </div>
 </div>                                             
 
-<h2>Català (no s'omple perque només pot haver un a la pàgina</h2>
+<h2>Català</h2>
+<h3>(no s'omple perque només pot haver un a la pàgina)</h3>
 
 <p>
 Ja som una generació de <span id="generation_many"><img src="https://somenergia.coop/wp-content/themes/superior/images/loading.gif" alt="Loading..."></span> 
@@ -127,25 +127,24 @@ function setCustomLocaleToStringBehaviour()
         Number.prototype.customToLocaleString = function() {
             return this.toLocaleString();
         }
-    } else {
-        Number.prototype.customToLocaleString = function() {
-            var stringValue = Math.round(this).toString();
-            var resultValue = '';
-            for (var i = 0, len = stringValue.length; i < len; i++) {
-                var inversedIndex = stringValue.length - i - 1;
-                if ((i + 1) % 3 === 0 && inversedIndex !== 0) {
-                    resultValue = resultValue + stringValue[inversedIndex] + '.';
-                } else {
-                    resultValue = resultValue + stringValue[inversedIndex];
-                }
+    }
+    Number.prototype.customToLocaleString = function() {
+        var stringValue = Math.round(this).toString();
+        var resultValue = '';
+        for (var i = 0, len = stringValue.length; i < len; i++) {
+            var inversedIndex = stringValue.length - i - 1;
+            if ((i + 1) % 3 === 0 && inversedIndex !== 0) {
+                resultValue = resultValue + stringValue[inversedIndex] + '.';
+            } else {
+                resultValue = resultValue + stringValue[inversedIndex];
             }
-            stringValue = '';
-            for (i = resultValue.length - 1; i >= 0; i--) {
-                stringValue += resultValue[i];
-            }
-
-            return stringValue;
         }
+        stringValue = '';
+        for (i = resultValue.length - 1; i >= 0; i--) {
+            stringValue += resultValue[i];
+        }
+
+        return stringValue;
     }
 }
 applyStats();
