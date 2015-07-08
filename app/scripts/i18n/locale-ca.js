@@ -150,7 +150,7 @@ angular.module('newSomEnergiaWebformsApp')
                 GENERATION_CONDICIONS_URL: 'http://www.generationkwh.org/wp-content/uploads/Condicions-Generals-Contracte-Autoproduccio-Col_lectiva-Generation-kWh_CA.pdf',
                 NO_HA_ESTAT_TROBAT: 'No ha estat trobat',
                 FENT_SERVIR_RESIDENCIA_MITJANA: 'S\'està fent servir com a referència l\'ús d\'electricitat d\'una residència mitjana',
-                GENERATION_FERSE_SOCIA: 'Fer-se soci/a requereix fer una aportació al capital social de 100€ que s\'afegirà a la quantitat que decideixis invertir.<br/>Aquesta aportació es fa un sol cop i es torna si et dones de baixa.',
+                GENERATION_FERSE_SOCIA: 'Per ser soci/sòcia s’ha de fer una aportació al capital social de 100€ que <b>es retornen</b> si et dones de baixa.<br/>Aquesta aportació obligatòria s’afegirà a la quantitat que decideixis invertir a la Generació kWh.',
                 ERROR_POST_INVERSIO: 'Error realitzant la inversió',
                 ERROR_POST_NOVASOCIA: 'Error registrant el/la socio/a',
                 ERROR_REQUIRED_FIELD: 'Falta paràmetre requerit: {{field}}',
