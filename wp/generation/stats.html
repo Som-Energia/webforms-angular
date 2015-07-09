@@ -1,45 +1,51 @@
 <html>
 <head>
 <meta charset='utf-8'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<h2>Español</h2>
+<div id="inscripcions">
+<h4 style="line-height:4ex; padding:0pt 2ex;">
+Somos una generación de <span style="font-size: 16px;vertical-align: baseline;color: #94D500;"><span id="generation_many"><img src="https://somenergia.coop/wp-content/themes/superior/images/loading.gif" alt="Loading..."></span> personas</span>
+que hemos invertido <span id="generation_amount_euros" style="font-size: 16px;vertical-align: baseline;color: #94D500;"><img src="https://somenergia.coop/wp-content/themes/superior/images/loading.gif" alt="Loading..."> €</span> 
+para autoproducir  <span id="generation_many_kwh" style="font-size: 16px;vertical-align: baseline;color: #94D500;"><img src="https://somenergia.coop/wp-content/themes/superior/images/loading.gif" alt="Loading..."> kWh</span> de energía verde.
+<a href="/es/invertir/">¿Te apuntas?</a>
+</h4>
+</div>
 
-<p>
-Ya somos una generación de <span id="generation_many"><img src="https://somenergia.coop/wp-content/themes/superior/images/loading.gif" alt="Loading..."></span> 
-personas que queremos generar nuestros propios kilovatios-hora 
-</p>
+<div class="vc_progress_bar wpb_content_element">
+<h2 class="wpb_heading wpb_progress_bar_heading">Primer objetivo: 1.000.000 € hasta 31/07/15</h2>
+<div class="vc_single_bar bar_green">
+<small class="vc_label">Inversión actual <span id="generation_amount"><img src="https://somenergia.coop/wp-content/themes/superior/images/loading.gif" alt="Loading..."></span> € de 1.000.000 €</small>
+<span id="generation_progress_bar" class="vc_bar animated striped" data-percentage-value="0" data-value="0"></span>
+</div>
+</div>
 
 <div style="text-align: center; font-size:15px; font-style:bold regular">Primer objetivo: 1.000.000 € hasta 31/07/15</div>
 <div class="progress" style="height:30px">
     <div
-        id="generation_progress_bar"
+        id="generation_progress_bar2"
         class="progress-bar progress-bar-striped progress-bar-success active"
         style="height:50px"
         role="progressbar"
         aria-valuenow="0"
         aria-valuemin="0"
         aria-valuemax="100"
-        style="width:0%;
-        background-color: red"
+        style="width:0%; background-color: red"
         >
     <b>Inversión actual <span id="generation_amount"><img src="https://somenergia.coop/wp-content/themes/superior/images/loading.gif" alt="Loading..."></span> de 1.000.000€</b>
     </div>
 </div>                                             
 
-<h2>Català</h2>
-<h3>(no s'omple perque només pot haver un a la pàgina)</h3>
-
-<p>
-Ja som una generació de <span id="generation_many"><img src="https://somenergia.coop/wp-content/themes/superior/images/loading.gif" alt="Loading..."></span> 
-persones que volem generar els nostres propis kilovats-hora
-</p>
 
 <div style="text-align: center; font-size:15px; font-style:bold regular">Primer objetiu: 1.000.000 € fins el 31/07/15</div>
 <div class="progress" style="height:30px">
     <div
-        id="generation_progress_bar"
+        id="generation_progress_bar3"
         class="progress-bar progress-bar-striped progress-bar-success active"
         style="height:50px"
         role="progressbar"
@@ -55,13 +61,9 @@ persones que volem generar els nostres propis kilovats-hora
 
 <!-- Estils i javascript necessari -->
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+<!-- Afegit SomEnergia -->
 <script type="text/javascript">
-
 function applyStats() {
     if (!jQuery)  {
         console.error('Unable to load jQuery');
@@ -88,9 +90,20 @@ function applyStats() {
             var current_amount = Number(response.data.amount);
             var percent = 100 * current_amount / goal_amount;
             node.text(current_amount.customToLocaleString());
+            var manyEuros = jQuery('#generation_amount_euros');
+            manyEuros.text(current_amount.customToLocaleString()+" €")
+            var manyKwh = jQuery('#generation_many_kwh');
+            manyKwh.text((current_amount*0.17).customToLocaleString()+" kWh")
             var bar = jQuery('#generation_progress_bar');
-            bar.css("width", percent+"%");
             bar.attr("aria-valuenow", percent);
+            bar.attr("data-percentage-value", percent);
+            bar.attr("data-value", percent);
+            var bar2 = jQuery('#generation_progress_bar2');
+            bar2.attr("aria-valuenow", percent);
+            bar2.css("width", percent+'%');
+            var bar3 = jQuery('#generation_progress_bar3');
+            bar3.attr("aria-valuenow", percent);
+            bar3.css("width", percent+'%');
         });
         jQuery.getJSON('https://api.somenergia.coop/stats/generation_socis', function(response) {
             var node = jQuery('#generation_many');
@@ -145,10 +158,11 @@ function setCustomLocaleToStringBehaviour()
         }
 
         return stringValue;
-    }
+    };
 }
 applyStats();
 </script>
+
 
 
 </body>
