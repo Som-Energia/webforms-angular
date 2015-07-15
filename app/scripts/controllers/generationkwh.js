@@ -102,6 +102,7 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.isNewPartnerReady = function() {
+            if ($scope.newPartner === undefined) { return false; }
             if ($scope.newPartner.isReady === undefined) { return false; }
             return $scope.newPartner.isReady() && $scope.form.acceptprivacypolicy;
         };
@@ -313,7 +314,6 @@ angular.module('newSomEnergiaWebformsApp')
     var self = this;
     self.init = function(/*element, attrs*/) {
         $scope.form = {};
-
         $scope.form.isReady = function() {
             return (
                 $scope.form.language &&
@@ -337,15 +337,13 @@ angular.module('newSomEnergiaWebformsApp')
                 );
         };
 
-        $scope.form = {};
         $scope.languages = [];
-        $scope.language = {};
         $scope.provinces = [];
         $scope.cities = [];
-        $scope.language = {};
         $scope.messages = null;
-        $scope.province = {};
-        $scope.city = {};
+        $scope.form.language = {};
+        $scope.form.province = {};
+        $scope.form.city = {};
         $scope.form.usertype = 'person';
 
         $scope.dniRepresentantIsInvalid = false;
@@ -386,7 +384,7 @@ angular.module('newSomEnergiaWebformsApp')
 
     };
     $scope.formListener = function() {
-        $log.debug($scope.form);
+//        $log.debug($scope.form);
     };
 
 })
