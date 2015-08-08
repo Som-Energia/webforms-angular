@@ -5,21 +5,22 @@ angular.module('newSomEnergiaWebformsApp')
 
         // INIT
         $scope.developing = cfg.DEVELOPMENT;
+        // MUST APPLY TO EMBED WITH WORDPRESS
+        if (window !== window.top) { // Inside a frame
+            document.domain = cfg.BASE_DOMAIN;
+        }
 
         // Just when developing, show untranslated strings instead of falling back to spanish
         if (!$scope.developing ) {
             $translate.fallbackLanguage('es');
         }
-
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
+
         $scope.submitButtonText = $translate.instant('CONFIRMAR_INVERSIO');
 
-        // MUST APPLY TO EMBED WITH WORDPRESS
-        if (window !== window.top) { // Inside a frame
-            document.domain = cfg.BASE_DOMAIN;
-        }
+        $scope.showAll = false;
         $scope.setStep = function(step) {
             $scope.currentStep = step;
         };
@@ -28,16 +29,18 @@ angular.module('newSomEnergiaWebformsApp')
         };
         $scope.setStep(0);
 
-        $scope.form = {};
-        $scope.form.amount = 100;
-        $scope.form.acceptaccountowner = false;
-
+        // Configurable constants
         $scope.aportacioMinima = 100;
         $scope.aportacioMaxima = 25000;
         $scope.aportacioSalts = 100;
         $scope.amountAboveMax = false;
         $scope.amountUnderMin = false;
         $scope.amountNotHundred = false;
+
+        $scope.form = {};
+        $scope.form.amount = $scope.aportacioMinima;
+        $scope.form.acceptaccountowner = false;
+        $scope.form.acceptcontract = false;
 
         $scope.$watch('form.amount', function(newValue, oldValue) {
             if (newValue === undefined) {
@@ -62,6 +65,7 @@ angular.module('newSomEnergiaWebformsApp')
             if ($scope.amountAboveMax) {return false;}
             if ($scope.amountNotHundred) {return false;}
             if ($scope.form.acceptaccountowner === false) {return false;}
+            if ($scope.form.acceptcontract === false) {return false;}
             return true;
         };
 
@@ -79,6 +83,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.sendInvestment = function() {
             $scope.messages = null;
             $scope.submiting = true;
+
             // Send request data POST
             var formData = new FormData();
             angular.forEach({
@@ -112,6 +117,7 @@ angular.module('newSomEnergiaWebformsApp')
                     }
                     if (response.data.state !== cfg.STATE_TRUE) {
                         // error
+                        $scope.modalTitle = $translate.instant('ERROR_POST_INVERSIO');
                         $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
                         $scope.rawReason = JSON.stringify(response,null,'  ');
                         jQuery('#webformsGlobalMessagesModal').modal('show');
@@ -129,6 +135,7 @@ angular.module('newSomEnergiaWebformsApp')
                     } else {
                         $scope.messages = 'ERROR';
                     }
+                    $scope.modalTitle = $translate.instant('ERROR_POST_INVERSIO');
                     $scope.rawReason = JSON.stringify(reason,null,'  ');
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }

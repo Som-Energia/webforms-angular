@@ -159,6 +159,7 @@ angular.module('newSomEnergiaWebformsApp')
                 JA_SOC_SOCIA: 'Ja sóc soci/a',
                 EM_VULL_FER_SOCIA: 'Em vull fer soci/a',
                 GENERATION_REQUERIMENT_SER_SOCIA: 'Per a participar del <em>Generation kWh</em> cal ser de SomEnergia.',
+                APORTACIO_CONDICIONS_URL: 'https://somenergia.coop/ca/condicions-generals-inversio',
             })
         ;
     });

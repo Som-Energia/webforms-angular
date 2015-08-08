@@ -11,19 +11,17 @@
         </div>
     </div>
 
-    <!-- BEGIN INIT FORM-->
     <member-chooser
         button-text="{{'INICIAR_INVERSIO' | translate }}"
         onproceed="initFormSubmited()"
         soci="soci"
         model="initForm"
         formvalues="formsoci"
-        data-ng-show="isStep(0)"
+        data-ng-show="isStep(0) || showAll"
     ></member-chooser>
-    <!--END INIT FORM-->
 
     <!-- BEGIN INVEST FORM-->
-    <form name="investForm" class="form-inline" role="form" ng-show="isStep(1)" enctype="multipart/form-data" novalidate>
+    <form name="investForm" class="form-inline" role="form" ng-show="isStep(1) || showAll" enctype="multipart/form-data" novalidate>
         <fieldset ng-disabled="submiting">
         <div class="row">
             <div class="col-xs-12 heading active">
@@ -35,11 +33,11 @@
         <div class='well'>
             <div class="row">
                 <div class="col-xs-12">
-                    <h3 class="green" data-ng-bind-html=' "QUANT_VOLS_INVERTIR" | translate '>
+                    <h3 class="green">
+                        <label for="amount"
+                            translate="QUANT_VOLS_INVERTIR">
                     <small>{{ 'EN_APORTACIO_VOLUNTARIA' | translate }}</small>
-                    </h3>
-                    <label for="amount">
-                    </label>
+                    </label></h3>
                 </div>
             </div>
             <div class="row">
@@ -63,7 +61,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 no-margin-bottom">
-                     <h3 class='green'><label for="accountbankiban" data-ng-bind-html="'DES_DE_QUIN_COMPTE' | translate"></label></h3>
+                    <h3 class='green'><label for="accountbankiban" data-ng-bind-html="'DES_DE_QUIN_COMPTE' | translate"></label>
+                    </h3>
                 </div>
             </div>
             <div class="row no-margin-bottom">
@@ -85,7 +84,16 @@
                 <div class="form-group checkbox col-xs-12">
                     <label>
                         <input type="checkbox" name="acceptaccountowner" value="accept" data-ng-model="form.acceptaccountowner" required/>
-                        <span translate="CONFIRMO_CONDICIONS_INVERSIO" ></span>
+                        <span translate="GENERATION_ACCEPTO_DOMICILIACIO" ></span>
+                    </label>
+                </div>
+                <div class="form-group checkbox col-xs-12">
+                    <label>
+                        <input type="checkbox" name="acceptcontract" value="accept" data-ng-model="form.acceptcontract" required/>
+                        <span
+                            translate="GENERATION_ACCEPTO_CONDICIONS"
+                            translate-value-url="{{ 'APORTACIO_CONDICIONS_URL' | translate }}"
+                            ></span>
                     </label>
                 </div>
             </div>

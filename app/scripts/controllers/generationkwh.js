@@ -67,8 +67,11 @@ angular.module('newSomEnergiaWebformsApp')
             }
             $scope.form.energeticActions = 1;
         };
+
         $scope.$watch('form.energeticActions', function(newValue, oldValue) {
-            if (newValue === undefined) { return; }
+            if (newValue === undefined) {
+                return;
+            }
             var intValue = parseInt(newValue);
             if (isNaN(intValue)) {
                 $scope.form.energeticActions = oldValue;
@@ -265,6 +268,7 @@ angular.module('newSomEnergiaWebformsApp')
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
             );
+
             return true;
         };
 
