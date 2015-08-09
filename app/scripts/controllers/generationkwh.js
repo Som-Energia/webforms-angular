@@ -152,7 +152,7 @@ angular.module('newSomEnergiaWebformsApp')
                 return;
             }
             // new partner submit partner creation first
-            
+
             $scope.messages = null;
             $scope.submiting = true;
 
@@ -253,7 +253,6 @@ angular.module('newSomEnergiaWebformsApp')
                     }
 
                     uiHandler.showWellDoneDialog();
-                    // TODO: Cambiar a una pagina de exito propia
                     $window.top.location.href = $translate.instant('GENERATION_OK_REDIRECT_URL');
                 },
                 function(reason) {
@@ -294,7 +293,9 @@ angular.module('newSomEnergiaWebformsApp')
             return '<ul>'+result+'</ul>';
         };
 
-    })
+    });
+
+angular.module('newSomEnergiaWebformsApp')
 .directive('personalData', function () {
     return {
         restrict: 'E',

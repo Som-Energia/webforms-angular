@@ -10,6 +10,53 @@
             <h1 class="green extra-margin" translate="FORMULARI_D_INVERSIO"></h1>
         </div>
     </div>
+    <div class="row" data-ng-show="isStep(0) || showAll">
+        <div class="col-xs-12">
+            <div class="well"
+                translate="APORTACIO_REQUERIMENT_SER_SOCIA">
+            </div>
+        </div>
+    </div>
+    <div class="row" data-ng-show="isStep(0) || showAll">
+        <div class="form-group col-xs-12">
+            <label>{{ 'SELECCIONA' | translate }}:</label>
+            <div class="btn-group">
+                <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-btn-radio="true" >{{ 'JA_SOC_SOCIA' | translate }}</label>
+                <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-btn-radio="false">{{ 'EM_VULL_FER_SOCIA' | translate }}</label>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="well"
+        data-ng-show="isStep(0) && isPartner===false || showAll"
+        >
+        <div class="alert alert-info">
+            <span data-ng-bind-html="'APORTACIO_FERSE_SOCIA' | translate"></span>
+        </div>
+        <personal-data
+            model='newPartner'
+        ></personal-data>
+        <div class="row" data-ng-show="isPartner!==undefined">
+            <div class="form-group checkbox col-xs-12">
+                <label>
+                    <input type="checkbox" name="acceptprivacypolicy" value="accept" data-ng-model="form.acceptprivacypolicy" required/>
+                    <span translate="ACCEPTO_POLITICA_PRIVACITAT" ></span>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right">
+                <button
+                    class="btn btn-default btn-lg btn-block submit"
+                    data-ng-disabled="!isNewPartnerReady()"
+                    data-ng-class="{'green': isNewPartnerReady(), 'grey':!isNewPartnerReady()}"
+                    data-ng-click="newPartnerSubmitted()"
+                    type="button"
+                    >{{ 'INICIAR_INVERSIO' | translate }}</button>
+            </div>
+        </div>
+    </div>
 
     <member-chooser
         button-text="{{'INICIAR_INVERSIO' | translate }}"
@@ -17,7 +64,7 @@
         soci="soci"
         model="initForm"
         formvalues="formsoci"
-        data-ng-show="isStep(0) || showAll"
+        data-ng-show="isStep(0) && isPartner===true || showAll "
     ></member-chooser>
 
     <!-- BEGIN INVEST FORM-->
@@ -36,8 +83,9 @@
                     <h3 class="green">
                         <label for="amount"
                             translate="QUANT_VOLS_INVERTIR">
-                    <small>{{ 'EN_APORTACIO_VOLUNTARIA' | translate }}</small>
-                    </label></h3>
+                           <small>{{ 'EN_APORTACIO_VOLUNTARIA' | translate }}</small>
+                        </label>
+                    </h3>
                 </div>
             </div>
             <div class="row">
@@ -59,10 +107,20 @@
                     </ul>
                 </div>
             </div>
+
+
             <div class="row">
                 <div class="col-xs-12 no-margin-bottom">
                     <h3 class='green'><label for="accountbankiban" data-ng-bind-html="'DES_DE_QUIN_COMPTE' | translate"></label>
                     </h3>
+                </div>
+                <div class="col-xs-12"
+                    data-ng-if="isPartner===false"
+                    translate="CARREC_ADICIONAL_NOVA_SOCIA"
+                    translate-value-total="{{ investedAmount() + 100 }}"
+                    translate-value-costaccions="{{ investedAmount() }}"
+                    translate-value-aportaciosoci="{{ 100 }}"
+                    >
                 </div>
             </div>
             <div class="row no-margin-bottom">
@@ -100,7 +158,7 @@
             <div class="row no-margin-bottom">
                 <div class="col-xs-12 pull-right no-horitzontal-padding">
                     <button
-                        data-ng-click="sendInvestment()"
+                        data-ng-click="proceed()"
                         type="button"
                         class="btn btn-default green btn-lg btn-block submit"
                         data-ng-class="{
