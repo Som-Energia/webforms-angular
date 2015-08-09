@@ -151,6 +151,7 @@ angular.module('newSomEnergiaWebformsApp')
                 NO_HA_ESTAT_TROBAT: 'No ha estat trobat',
                 FENT_SERVIR_RESIDENCIA_MITJANA: 'S\'està fent servir com a referència l\'ús d\'electricitat d\'una residència mitjana',
                 GENERATION_FERSE_SOCIA: 'Per ser soci/sòcia s’ha de fer una aportació al capital social de 100€ que <b>es retornen</b> si et dones de baixa.<br/>Aquesta aportació obligatòria s’afegirà a la quantitat que decideixis invertir a la Generació kWh.',
+                APORTACIO_FERSE_SOCIA: 'Per ser soci/sòcia s’ha de fer una aportació al capital social de 100€ que <b>es retornen</b> si et dones de baixa.<br/>Aquesta aportació obligatòria s’afegirà a la quantitat que decideixis invertir com a aportació voluntària al capital social.',
                 ERROR_POST_INVERSIO: 'Error realitzant la inversió',
                 ERROR_POST_NOVASOCIA: 'Error registrant el/la socio/a',
                 ERROR_REQUIRED_FIELD: 'Falta paràmetre requerit: {{field}}',
@@ -159,6 +160,7 @@ angular.module('newSomEnergiaWebformsApp')
                 JA_SOC_SOCIA: 'Ja sóc soci/a',
                 EM_VULL_FER_SOCIA: 'Em vull fer soci/a',
                 GENERATION_REQUERIMENT_SER_SOCIA: 'Per a participar del <em>Generation kWh</em> cal ser de SomEnergia.',
+                APORTACIO_REQUERIMENT_SER_SOCIA: 'Per fer una <em>aportació voluntària al capital social</em> cal ser de SomEnergia.',
                 APORTACIO_CONDICIONS_URL: 'https://somenergia.coop/ca/condicions-generals-inversio',
             })
         ;
