@@ -20,7 +20,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.submitButtonText = $translate.instant('CONFIRMAR_INVERSIO');
 
-        $scope.showAll = true;
+        $scope.showAll = false;
         $scope.setStep = function(step) {
             $scope.currentStep = step;
         };
