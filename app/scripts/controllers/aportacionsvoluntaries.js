@@ -81,6 +81,10 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.setStep(1);
         };
 
+        $scope.newPartnerProceed = function() {
+            $scope.setStep(2);
+        };
+
         $scope.isNewPartnerReady = function() {
             if ($scope.newPartner === undefined) { return false; }
             if ($scope.newPartner.isReady === undefined) { return false; }
