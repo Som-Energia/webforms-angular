@@ -159,9 +159,13 @@ angular.module('newSomEnergiaWebformsApp')
                 CARREC_ADICIONAL_NOVA_SOCIA: 'Importe total: {{total}}€ ({{ aportaciosoci }}€ + {{ costaccions }}€)',
                 JA_SOC_SOCIA: 'Ya soy socio/a',
                 EM_VULL_FER_SOCIA: 'Quiero ser socio/a',
-                GENERATION_REQUERIMENT_SER_SOCIA: 'Para participar en el <em>Generation kWh</em> hay que ser de SomEnergia.',
-                APORTACIO_REQUERIMENT_SER_SOCIA: 'Para hacer una <em>aportación voluntaria al capital social</em> hay que ser ser de SomEnergia.',
+                GENERATION_REQUERIMENT_SER_SOCIA: 'Para participar en esta inversión hay que ser de SomEnergia. ¿Qual es tu caso?',
+                APORTACIO_REQUERIMENT_SER_SOCIA: 'Para participar en esta inversión hay que ser de SomEnergia. ¿Qual es tu caso?',
                 APORTACIO_CONDICIONS_URL: 'https://somenergia.coop/es/condiciones-generales-inversion',
+                DADES_ALTA: 'Datos del alta en la cooperativa',
+                HELP_JURIDICA: 'Personas jurídicas son las empresas, asociaciones i otras entidades. Las personas físiques somos las personas de carne y hueso.',
+                COM_CONTACTEM: '¿Cómo contactamos contigo?',
+                DOMICILI: 'Domicilio',
             })
         ;
     });
