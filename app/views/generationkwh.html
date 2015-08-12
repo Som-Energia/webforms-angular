@@ -106,8 +106,11 @@
                         </span>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-6">
                     <div class="input-group">
+                        <span class="input-group-addon" style='font-weight:bold; color: #9a7'>Valor:</span>
                         <input
                             type="text"
                             class="form-control input-lg"
@@ -117,14 +120,26 @@
                         <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>€</span>
                     </div>
                 </div>
+                <div class="col-xs-6">
+                    <div class="input-group">
+                        <span class="input-group-addon" style='font-weight:bold; color: #9a7'>Prod:</span>
+                        <input
+                            type="text"
+                            class="form-control input-lg"
+                            value="{{ energeticActionsThrowput() }}"
+                            readonly
+                            />
+                        <span class="input-group-addon" style='font-weight:bold; color: #9a7'>kWh</span>
+                    </div>
+                </div>
             </div>
             <div class="row">
-                <div class="col-xs-12" 
+                <div class="col-xs-6"
                     translate="COST_PER_ACCIO_ENERGETICA"
                     translate-value-preuperaccio="{{ preuPerAccio }}"
                 >
                 </div>
-                <div class="col-xs-12" 
+                <div class="col-xs-6"
                     translate="KWH_PER_ACCIO_ENERGETICA"
                     translate-value-kwhperaccio="{{kwhPerAccio}}"
                 >
