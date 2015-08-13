@@ -150,8 +150,7 @@ angular.module('newSomEnergiaWebformsApp')
                 GENERATION_CONDICIONS_URL: 'http://www.generationkwh.org/wp-content/uploads/Condicions-Generals-Contracte-Autoproduccio-Col_lectiva-Generation-kWh_CA.pdf',
                 NO_HA_ESTAT_TROBAT: 'No ha estat trobat',
                 FENT_SERVIR_RESIDENCIA_MITJANA: 'S\'està fent servir com a referència l\'ús d\'electricitat d\'una residència mitjana',
-                GENERATION_FERSE_SOCIA: '<b>Atenció:</b> A banda de la quantitat que decideixis invertir, per ser soci/sòcia s’ha de fer una aportació al capital social de <b>100€</b> que <b>es retornen</b> si et donessis de baixa.',
-                APORTACIO_FERSE_SOCIA: 'Per ser soci/sòcia s’ha de fer una aportació al capital social de 100€ que <b>es retornen</b> si et dones de baixa.<br/>Aquesta aportació obligatòria s’afegirà a la quantitat que decideixis invertir com a aportació voluntària al capital social.',
+                ADDICIONAL_FERSE_SOCIA: '<b>Atenció:</b> A banda de la quantitat que decideixis invertir, per ser soci/sòcia s’ha de fer una aportació al capital social de <b>100€</b> que <b>es retornen</b> si et dones de baixa.',
                 ERROR_POST_INVERSIO: 'Error realitzant la inversió',
                 ERROR_POST_NOVASOCIA: 'Error registrant el/la socio/a',
                 ERROR_REQUIRED_FIELD: 'Falta paràmetre requerit: {{field}}',
@@ -166,6 +165,7 @@ angular.module('newSomEnergiaWebformsApp')
                 HELP_JURIDICA: 'Persones jurídiques són les empreses, associacions i d\'altres entitats. Les persones físiques som les persones de carn i ossos.',
                 COM_CONTACTEM: 'Com contactem amb tu?',
                 DOMICILI: 'Domicili',
+                TELEFON_ALTERNATIU: 'Telèfon alternatiu',
             })
         ;
     });

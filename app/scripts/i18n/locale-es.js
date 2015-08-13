@@ -150,8 +150,7 @@ angular.module('newSomEnergiaWebformsApp')
                 GENERATION_CONDICIONS_URL: 'http://www.generationkwh.org/wp-content/uploads/Condiciones-Generales-Contrato-Autoproduccion-Colectiva-Generation-kWh_ES.pdf',
                 NO_HA_ESTAT_TROBAT: 'No encontrado',
                 FENT_SERVIR_RESIDENCIA_MITJANA: 'Se esta usando a modo de referencia el uso de electricidad de una residencia media',
-                GENERATION_FERSE_SOCIA: 'Para ser socio/a hay que hacer una aportación al capital social de 100 € que <b>se devuelven</b> si te das de baja.<br/>Esta aportación obligatoria se añadirá a la cantidad que decidas invertir en la Generación kWh.',
-                APORTACIO_FERSE_SOCIA: 'Para ser socio/a hay que hacer una aportación al capital social de 100 € que <b>se devuelven</b> si te das de baja.<br/>Esta aportación obligatoria se añadirá a la cantidad que decidas invertir en la Generación kWh.',
+                ADDICIONAL_FERSE_SOCIA: '<b>Atención:</b> A parte de la cantidad que decidas invertir, para ser socio/a tienes que hacer una aportació al capital social de <b>100€</b> que <b>se retornan</b> si te das de baja.',
                 ERROR_POST_INVERSIO: 'Error realizando la inversión',
                 ERROR_POST_NOVASOCIA: 'Error registrando el/la socio/a',
                 ERROR_REQUIRED_FIELD: 'Falta parámetro requerido: {{field}}',
@@ -166,6 +165,7 @@ angular.module('newSomEnergiaWebformsApp')
                 HELP_JURIDICA: 'Personas jurídicas son las empresas, asociaciones y otras entidades. Las personas físicas somos las personas de carne y hueso.',
                 COM_CONTACTEM: '¿Cómo contactamos contigo?',
                 DOMICILI: 'Domicilio',
+                TELEFON_ALTERNATIU: 'Teléfono alternativo',
             })
         ;
     });
