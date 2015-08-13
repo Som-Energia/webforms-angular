@@ -83,7 +83,7 @@ angular.module('newSomEnergiaWebformsApp')
                 BANC: 'Banco',
                 OFICINA: 'Oficina',
                 COMPTE: 'Número cuenta',
-                CONFIRMO_TITULAR_COMPTE_ACCEPTA_DOMICILIACIO: 'Confirmo que el/la titular de la cuenta bancaria autoriza la domicilación de las facturas de electricidad',
+                CONFIRMO_TITULAR_COMPTE_ACCEPTA_DOMICILIACIO: 'Confirmo que la persona titular de la cuenta bancaria autoriza la domicilación de las facturas de electricidad',
                 SOM_UNA_COOPERATIVA_SENSE_ANIM_DE_LUCRE: 'Somos una Cooperativa sin ánimo de lucro con el objetivo firme de cambiar el modelo energético',
                 VOLS_PARTICIPAR_AMB_LA_TEVA_ENERGIA: '¿Quieres participar con tu energia a hacerlo posible?',
                 DONATIU_VOLUNTARI: 'Donativo voluntario 0,01€/kWh',
@@ -123,14 +123,10 @@ angular.module('newSomEnergiaWebformsApp')
                 CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
                 GENERATION_OK_REDIRECT_URL: 'http://www.generationkwh.org/es/inversion-realizada/',
 
-                // En desarrollo (sujetas a cambios)
+                // Added or changed since 1.2.6
                 CODI_IBAN_DEL_COMPTE: 'Código IBAN de la cuenta',
                 EXEMPLE_IBAN: 'Ejemplo: ES11 2222 3333 4444 5555 6666',
                 REQUERIT: 'Requerido.',
-                HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: '¿Hay actualmente luz en el punto de suministro?',
-                AVIS_ALTA_DE_SERVEI: 'El punto de suministro no tiene servicio y quieres darlo de alta directamente con Som Energia',
-                AVIS_CANVI_COMERCIALITZADORA: 'El punto de suministro ya tiene servicio con otra comercializadora y quieres pasarte a Som Energia',
-
                 DES_DE_QUIN_COMPTE: '¿Desde qué <b>cuenta bancaria</b>?',
                 FORMULARI_D_INVERSIO_GKWH: 'Formulario de inversión para el Generation kWh',
                 QUANTES_ACCIONS_ENERGETIQUES_VOLS: '¿Cuántas <b>acciones energéticas</b> quieres?',
@@ -141,7 +137,6 @@ angular.module('newSomEnergiaWebformsApp')
                 PUNT_DE_SUBMINISTRAMENT: 'Punto de suministro',
                 US_ANUAL: 'Uso anual',
                 TOTAL_US_ANUAL_ESTIMAT: 'Uso anual estimado total',
-                AUTOPRODUCCIO_ASSOLIDA: 'Autoproducción lograda anual',
                 PERCENTATGE_ASSOLIT: 'Porcentaje de autoproducción sobre tu uso total',
                 GENERATION_RECOMANACIO_PERCENT: 'Puedes autoproducir lo que quieras. Nuestra <a href="{{ url }}" target="_blank">recomendación</a> es no superar el {{ percent }}% en según qué casos.',
                 GENERATION_RECOMANACIO_PERCENT_URL: 'http://bit.ly/maxGkWhES', // Points to 'http://es.support.somenergia.coop/article/591-existe-una-cantidad-minima-y-maxima-a-aportar'
@@ -169,6 +164,11 @@ angular.module('newSomEnergiaWebformsApp')
                 APORTACIO_CORRESPONENT: 'Aportación correspondiente',
                 AUTOPRODUCCIO_ANUAL: 'Autoproducción anual',
                 PREVISIO_GENERATION_URL: 'http://es.support.somenergia.coop/article/589-que-representa-una-accion-energetica',
+
+                // Under development
+                HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: '¿Hay actualmente luz en el punto de suministro?',
+                AVIS_ALTA_DE_SERVEI: 'El punto de suministro no tiene servicio y quieres darlo de alta directamente con Som Energia',
+                AVIS_CANVI_COMERCIALITZADORA: 'El punto de suministro ya tiene servicio con otra comercializadora y quieres pasarte a Som Energia',
             })
         ;
     });

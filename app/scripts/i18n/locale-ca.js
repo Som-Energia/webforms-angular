@@ -83,7 +83,7 @@ angular.module('newSomEnergiaWebformsApp')
                 BANC: 'Banc',
                 OFICINA: 'Oficina',
                 COMPTE: 'Número compte',
-                CONFIRMO_TITULAR_COMPTE_ACCEPTA_DOMICILIACIO: 'Confirmo que el/la titular del compte bancari autoritza la domiciliació de les factures d\'electricitat',
+                CONFIRMO_TITULAR_COMPTE_ACCEPTA_DOMICILIACIO: 'Confirmo que la persona titular del compte bancari autoritza la domiciliació de les factures d\'electricitat',
                 SOM_UNA_COOPERATIVA_SENSE_ANIM_DE_LUCRE: 'Som una Cooperativa sense ànim de lucre amb l\'objectiu ferm de canviar el model energètic',
                 VOLS_PARTICIPAR_AMB_LA_TEVA_ENERGIA: 'Vols participar amb la teva energia a fer-ho possible?',
                 DONATIU_VOLUNTARI: 'Donatiu voluntari de 0,01€/kWh',
@@ -123,14 +123,10 @@ angular.module('newSomEnergiaWebformsApp')
                 CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
                 GENERATION_OK_REDIRECT_URL: 'http://www.generationkwh.org/ca/inversio-realitzada/',
 
-                // En desarrollo (sujetas a cambios)
+                // Added or changed since 1.2.6
                 CODI_IBAN_DEL_COMPTE: 'Codi IBAN del compte',
                 EXEMPLE_IBAN: 'Exemple: ES11 2222 3333 4444 5555 6666',
                 REQUERIT: 'Requerit.',
-                HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: 'Hi ha llum al punt de subministrament actualment?',
-                AVIS_ALTA_DE_SERVEI: 'El punt de suministre no té servei i vols fer l\'alta directament amb Som Energia',
-                AVIS_CANVI_COMERCIALITZADORA: 'El punt de subministre ja té servei amb altre comercialitzadora i vols passar-te a Som Energia',
-
                 DES_DE_QUIN_COMPTE: 'Des de quin <b>compte bancari</b>?',
                 FORMULARI_D_INVERSIO_GKWH: 'Formulari d\'inversió pel Generation kWh',
                 QUANTES_ACCIONS_ENERGETIQUES_VOLS: 'Quantes <b>accions energètiques</b> vols?',
@@ -141,7 +137,6 @@ angular.module('newSomEnergiaWebformsApp')
                 PUNT_DE_SUBMINISTRAMENT: 'Punt de subministrament',
                 US_ANUAL: 'Ús anual',
                 TOTAL_US_ANUAL_ESTIMAT: 'Ús anual estimat total',
-                AUTOPRODUCCIO_ASSOLIDA: 'Autoproducció assolida anual',
                 PERCENTATGE_ASSOLIT: 'Percentatge d\'autoproducció sobre el teu ús total',
                 GENERATION_RECOMANACIO_PERCENT: 'Pots autoproduir el que vulguis. La nostra <a href="{{ url }}" target="_blank">recomanació</a> és no superar el {{ percent }}% en segons quins casos.',
                 GENERATION_RECOMANACIO_PERCENT_URL: 'http://bit.ly/maxGkWh', // Points to: 'http://ca.support.somenergia.coop/article/584-hi-ha-una-quantitat-minima-o-maxima-a-aportar'
@@ -169,6 +164,11 @@ angular.module('newSomEnergiaWebformsApp')
                 APORTACIO_CORRESPONENT: 'Aportació corresponent',
                 AUTOPRODUCCIO_ANUAL: 'Autoproducció anual',
                 PREVISIO_GENERATION_URL: 'http://ca.support.somenergia.coop/article/582-que-representa-una-accio-energetica',
+
+                // Under development
+                HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: 'Hi ha llum al punt de subministrament actualment?',
+                AVIS_ALTA_DE_SERVEI: 'El punt de suministre no té servei i vols fer l\'alta directament amb Som Energia',
+                AVIS_CANVI_COMERCIALITZADORA: 'El punt de subministre ja té servei amb altre comercialitzadora i vols passar-te a Som Energia',
             })
         ;
     });
