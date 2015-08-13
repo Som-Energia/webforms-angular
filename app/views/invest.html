@@ -23,6 +23,15 @@
             </div>
         </div>
     </div>
+    <member-chooser
+        button-text="{{'INICIAR_INVERSIO' | translate }}"
+        onproceed="initFormSubmited()"
+        soci="soci"
+        model="initForm"
+        formvalues="formsoci"
+        data-ng-show="isStep(0) && isPartner===true"
+    ></member-chooser>
+
     <div data-ng-show="isStep(0) && isPartner===false">
         <div class="row">
             <div class="col-xs-12">
@@ -34,7 +43,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-10 col-sm-5 col-md-4 col-lg-3 pull-right">
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right">
                 <button
                     class="btn btn-default btn-lg btn-block submit green"
                     data-ng-click="newPartnerProceed()"
@@ -76,15 +85,6 @@
             </div>
         </div>
     </div>
-
-    <member-chooser
-        button-text="{{'INICIAR_INVERSIO' | translate }}"
-        onproceed="initFormSubmited()"
-        soci="soci"
-        model="initForm"
-        formvalues="formsoci"
-        data-ng-show="isStep(0) && isPartner===true || showAll "
-    ></member-chooser>
 
     <!-- BEGIN INVEST FORM-->
     <form name="investForm" class="form-inline" role="form" ng-show="isStep(1) || showAll" enctype="multipart/form-data" novalidate>
