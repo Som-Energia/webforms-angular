@@ -133,7 +133,7 @@ angular.module('newSomEnergiaWebformsApp')
                'data/consumanualsoci/' + $scope.formsoci.socinumber+'/'+ $scope.formsoci.dni);
             promise.soci = $scope.formsoci.socinumber;
             promise.success(function(response) {
-                console.log(response.data.consums);
+                $log.log(response.data.consums);
                 $scope.partnerContracts = response.data.consums;
                 $scope.totalYearlyKwh = $scope.partnerContracts.reduce(
                     function(sum, contract) {
@@ -317,8 +317,7 @@ angular.module('newSomEnergiaWebformsApp')
         cfg,
         AjaxHandler,
         ValidateHandler,
-        $scope,
-        $log
+        $scope
         ) {
     var self = this;
     self.init = function(/*element, attrs*/) {

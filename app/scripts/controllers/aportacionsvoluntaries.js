@@ -46,7 +46,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.investedAmount = function() {
             return parseInt($scope.form.amount||0);
-        }
+        };
 
         $scope.$watch('form.amount', function(newValue, oldValue) {
             if (newValue === undefined) {
