@@ -124,13 +124,41 @@ angular.module('newSomEnergiaWebformsApp')
                 GENERATION_OK_REDIRECT_URL: 'http://www.generationkwh.org/gl/investimento-feito/',
 
                 // En desarrollo (sujetas a cambios)
-//                CODI_IBAN_DEL_COMPTE: 'Código IBAN de la cuenta',
-//                EXEMPLE_IBAN: 'Exemplo: ES11 2222 3333 4444 5555 6666',
-//                REQUERIT: 'Requerido.',
-//                HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: '¿Hay actualmente luz en el punto de suministro?',
-//                AVIS_ALTA_DE_SERVEI: 'El punt de suministre no té servei i vols fer l\'alta directament amb SomEnergia',
-//                AVIS_CANVI_COMERCIALITZADORA: 'El punt de subministre ja té servei amb altre comercialitzadora i vols passar-te a SomEnergia',
-                DES_DE_QUIN_COMPTE: 'Desde que <b>conta?</b>', // Actualizar
+                CODI_IBAN_DEL_COMPTE: 'Código IBAN da conta',
+                EXEMPLE_IBAN: 'Exemplo: ES11 2222 3333 4444 5555 6666',
+                REQUERIT: 'Requirido.',
+                HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: 'Hai actualmente luz no punto de subministro?',
+                AVIS_ALTA_DE_SERVEI: 'O punto de subministro non ten servizo e queres dalo de alta directamente con SomEnergia',
+                AVIS_CANVI_COMERCIALITZADORA: 'O punto de subministro xa ten servizo con outra comercializadora e queres pasarte a SomEnergia',
+
+                DES_DE_QUIN_COMPTE: 'Desde que <b>conta bancaria</b>?',
+                FORMULARI_D_INVERSIO_GKWH: 'Formulario de investimento para o Generation kWh',
+                QUANTES_ACCIONS_ENERGETIQUES_VOLS: 'Cantas <b>accións enerxéticas</b> queres?',
+                COST_PER_ACCIO_ENERGETICA: 'Cada acción enerxética son {{ preuperaccio }}€. Mínimo unha acción.',
+                KWH_PER_ACCIO_ENERGETICA: 'A cada acción correspondenlle {{ kwhperaccio }} kWh da electricidade que xerarán os novos proxectos renovables. (valor provisional; o real acabarase de definir segundo o custe final dos proxectos)',
+                CARREGANT_INFORMACIO_DELS_TEUS_CONTRACTES: 'Cargando a información dos teus contratos...',
+                NUM_CONTRACTE: 'Nº contrato',
+                PUNT_DE_SUBMINISTRAMENT: 'Punto de subministro',
+                US_ANUAL: 'Uso anual',
+                TOTAL_US_ANUAL_ESTIMAT: 'Uso anual estimado total',
+                AUTOPRODUCCIO_ASSOLIDA: 'Autoprodución acadada anual',
+                PERCENTATGE_ASSOLIT: 'Porcentaxe de autoprodución sobre o teu uso total',
+                GENERATION_RECOMANACIO_PERCENT: 'Podes autoproducir o que queiras, mais lembra <a href="{{ url }}" target="_blank">a nosa recomendación</a> de non superar o {{ percent }}% segundo en que caso.',
+                GENERATION_RECOMANACIO_PERCENT_URL: 'http://bit.ly/maxGkWhES', // Points to 'http://es.support.somenergia.coop/article/591-existe-una-cantidad-minima-y-maxima-a-aportar'
+                GENERATION_ACCEPTO_DOMICILIACIO: 'Confirmo que son titular da conta corrente e autorizo a domiciliación',
+                GENERATION_ACCEPTO_CONDICIONS: 'Acepto as <a target="_blank" href="{{url}}">condicións xerais do investimento</a>',
+                GENERATION_CONDICIONS_URL: 'http://www.generationkwh.org/wp-content/uploads/Condiciones-Generales-Contrato-Autoproduccion-Colectiva-Generation-kWh_ES.pdf',
+                NO_HA_ESTAT_TROBAT: 'Non atopado',
+                FENT_SERVIR_RESIDENCIA_MITJANA: 'Estase a utilizar a modo de referencia o uso de electricidad dunha residencia media',
+                GENERATION_FERSE_SOCIA: 'Para ser socio/a hai que facer una achega ao capital social de 100 € que <b>se devolven</b> se te das de baixa.<br/>Esta achega obrigatoria engadirase á cantidade que decidas investir no Generation kWh.',
+                ERROR_POST_INVERSIO: 'Erro ao realizar o investimento',
+                ERROR_POST_NOVASOCIA: 'Erro ao rexistrar o/a socio/a',
+                ERROR_REQUIRED_FIELD: 'Falta un parámetro requirido: {{field}}',
+                ERROR_INVALID_FIELD: 'Valor inválido do parámetro: {{field}}, motivo: {{reason}}',
+                CARREC_ADICIONAL_NOVA_SOCIA: 'Importe total: {{total}}€ ({{ aportaciosoci }}€ + {{ costaccions }}€)',
+                JA_SOC_SOCIA: 'Xa son socio/a',
+                EM_VULL_FER_SOCIA: 'Quero ser socio/a',
+                GENERATION_REQUERIMENT_SER_SOCIA: 'Para participar no <em>Generation kWh</em> hai que ser de SomEnergia.',
             })
         ;
     });
