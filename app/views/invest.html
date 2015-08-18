@@ -10,20 +10,84 @@
             <h1 class="green extra-margin" translate="FORMULARI_D_INVERSIO"></h1>
         </div>
     </div>
-
-    <!-- BEGIN INIT FORM-->
+    <div class="row" data-ng-show="isStep(0) || showAll">
+        <div class="col-xs-12"
+                translate="APORTACIO_REQUERIMENT_SER_SOCIA">
+        </div>
+    </div>
+    <div class="row" data-ng-show="isStep(0) || showAll">
+        <div class="form-group col-xs-12">
+            <div class="btn-group" style="text-align: center; width:100%">
+                <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-btn-radio="true" >{{ 'JA_SOC_SOCIA' | translate }}</label>
+                <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-btn-radio="false">{{ 'EM_VULL_FER_SOCIA' | translate }}</label>
+            </div>
+        </div>
+    </div>
     <member-chooser
         button-text="{{'INICIAR_INVERSIO' | translate }}"
         onproceed="initFormSubmited()"
         soci="soci"
         model="initForm"
         formvalues="formsoci"
-        data-ng-show="isStep(0)"
+        data-ng-show="isStep(0) && isPartner===true"
     ></member-chooser>
-    <!--END INIT FORM-->
+
+    <div data-ng-show="isStep(0) && isPartner===false">
+        <div class="row">
+            <div class="col-xs-12">
+                <div
+                    class="alert alert-info"
+                    translate="ADDICIONAL_FERSE_SOCIA"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right">
+                <button
+                    class="btn btn-default btn-lg btn-block submit green"
+                    data-ng-click="newPartnerProceed()"
+                    type="button"
+                    >{{ 'SEGUENT_PAS' | translate }}</button>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="well"
+        data-ng-show="isStep(2) && isPartner===false || showAll"
+        >
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class='green' translate="DADES_ALTA"></h2>
+            </div>
+        </div>
+        <personal-data
+            model='newPartner'
+        ></personal-data>
+        <div class="row" data-ng-show="isPartner!==undefined">
+            <div class="form-group checkbox col-xs-12">
+                <label>
+                    <input type="checkbox" name="acceptprivacypolicy" value="accept" data-ng-model="form.acceptprivacypolicy" required/>
+                    <span translate="ACCEPTO_POLITICA_PRIVACITAT" ></span>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right">
+                <button
+                    class="btn btn-default btn-lg btn-block submit"
+                    data-ng-disabled="!isNewPartnerReady()"
+                    data-ng-class="{'green': isNewPartnerReady(), 'grey':!isNewPartnerReady()}"
+                    data-ng-click="newPartnerSubmitted()"
+                    type="button"
+                    >{{ 'INICIAR_INVERSIO' | translate }}</button>
+            </div>
+        </div>
+    </div>
 
     <!-- BEGIN INVEST FORM-->
-    <form name="investForm" class="form-inline" role="form" ng-show="isStep(1)" enctype="multipart/form-data" novalidate>
+    <form name="investForm" class="form-inline" role="form" ng-show="isStep(1) || showAll" enctype="multipart/form-data" novalidate>
         <fieldset ng-disabled="submiting">
         <div class="row">
             <div class="col-xs-12 heading active">
@@ -35,11 +99,11 @@
         <div class='well'>
             <div class="row">
                 <div class="col-xs-12">
-                    <h3 class="green" data-ng-bind-html=' "QUANT_VOLS_INVERTIR" | translate '>
-                    <small>{{ 'EN_APORTACIO_VOLUNTARIA' | translate }}</small>
+                    <h3 class="green">
+                        <label for="amount"
+                            translate="QUANT_VOLS_INVERTIR">
+                        </label>
                     </h3>
-                    <label for="amount">
-                    </label>
                 </div>
             </div>
             <div class="row">
@@ -61,9 +125,20 @@
                     </ul>
                 </div>
             </div>
+
+
             <div class="row">
                 <div class="col-xs-12 no-margin-bottom">
-                     <h3 class='green'><label for="accountbankiban" data-ng-bind-html="'DES_DE_QUIN_COMPTE' | translate"></label></h3>
+                    <h3 class='green'><label for="accountbankiban" data-ng-bind-html="'DES_DE_QUIN_COMPTE' | translate"></label>
+                    </h3>
+                </div>
+                <div class="col-xs-12"
+                    data-ng-if="isPartner===false"
+                    translate="CARREC_ADICIONAL_NOVA_SOCIA"
+                    translate-value-total="{{ investedAmount() + 100 }}"
+                    translate-value-costaccions="{{ investedAmount() }}"
+                    translate-value-aportaciosoci="{{ 100 }}"
+                    >
                 </div>
             </div>
             <div class="row no-margin-bottom">
@@ -79,20 +154,27 @@
                     <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>{{ 'EXEMPLE_IBAN' | translate }}</div>
                 </div>
             </div>
-            <div class="row no-margin-bottom">
-            </div>
             <div class="row">
                 <div class="form-group checkbox col-xs-12">
                     <label>
                         <input type="checkbox" name="acceptaccountowner" value="accept" data-ng-model="form.acceptaccountowner" required/>
-                        <span translate="CONFIRMO_CONDICIONS_INVERSIO" ></span>
+                        <span translate="GENERATION_ACCEPTO_DOMICILIACIO" ></span>
+                    </label>
+                </div>
+                <div class="form-group checkbox col-xs-12">
+                    <label>
+                        <input type="checkbox" name="acceptcontract" value="accept" data-ng-model="form.acceptcontract" required/>
+                        <span
+                            translate="GENERATION_ACCEPTO_CONDICIONS"
+                            translate-value-url="{{ 'APORTACIO_CONDICIONS_URL' | translate }}"
+                            ></span>
                     </label>
                 </div>
             </div>
             <div class="row no-margin-bottom">
                 <div class="col-xs-12 pull-right no-horitzontal-padding">
                     <button
-                        data-ng-click="sendInvestment()"
+                        data-ng-click="proceed()"
                         type="button"
                         class="btn btn-default green btn-lg btn-block submit"
                         data-ng-class="{

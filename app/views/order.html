@@ -31,7 +31,7 @@
                 <h2 class="extra-margin">1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}</h2>
             </div>
         </div>
-        <div data-ng-show="step1Ready">
+        <div data-ng-show="step1Ready || showAll">
             <div class="row extra-margin-top">
                 <div class="col-xs-12">
                     <p>{{ 'DADES_PUNT_SUBMINISTRAMENT_HELPER' | translate }}</p>
@@ -187,7 +187,7 @@
                 <h2 class="extra-margin">2 {{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}</h2>
             </div>
         </div>
-        <div data-ng-show="step2Ready">
+        <div data-ng-show="step2Ready || showAll">
             <div class="row extra-margin-top">
                 <!--<div class="col-xs-12">-->
                     <!--<p>{{ 'DADES_TITULAR_NOU_CONTRACTE_HELPER' | translate }}</p>-->
@@ -442,7 +442,7 @@
                 <h2 class="extra-margin">3 {{ 'DADES_PAGAMENT' | translate }}</h2>
             </div>
         </div>
-        <div data-ng-show="step3Ready">
+        <div data-ng-show="step3Ready || showAll">
             <div class="row extra-margin-top">
                 <div class="col-sm-7 col-xs-12">
                     <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}</label>

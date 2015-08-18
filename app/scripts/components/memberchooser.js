@@ -11,7 +11,7 @@ angular.module('newSomEnergiaWebformsApp')
             model: '=',
             onproceed: '&',
         },
-        templateUrl: 'views/memberchooser.html',
+        templateUrl: 'scripts/components/memberchooser.html',
         controller: 'memberChooserCtrl',
         link: function(scope, element, attrs, memberChooserCtrl) {
             memberChooserCtrl.init(element, attrs);

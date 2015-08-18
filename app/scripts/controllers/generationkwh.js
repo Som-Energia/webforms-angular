@@ -67,8 +67,11 @@ angular.module('newSomEnergiaWebformsApp')
             }
             $scope.form.energeticActions = 1;
         };
+
         $scope.$watch('form.energeticActions', function(newValue, oldValue) {
-            if (newValue === undefined) { return; }
+            if (newValue === undefined) {
+                return;
+            }
             var intValue = parseInt(newValue);
             if (isNaN(intValue)) {
                 $scope.form.energeticActions = oldValue;
@@ -101,6 +104,10 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.updateAnnualUse();
         };
 
+        $scope.newPartnerProceed = function() {
+            $scope.setStep(2);
+        };
+
         $scope.isNewPartnerReady = function() {
             if ($scope.newPartner === undefined) { return false; }
             if ($scope.newPartner.isReady === undefined) { return false; }
@@ -126,7 +133,7 @@ angular.module('newSomEnergiaWebformsApp')
                'data/consumanualsoci/' + $scope.formsoci.socinumber+'/'+ $scope.formsoci.dni);
             promise.soci = $scope.formsoci.socinumber;
             promise.success(function(response) {
-                console.log(response.data.consums);
+                $log.log(response.data.consums);
                 $scope.partnerContracts = response.data.consums;
                 $scope.totalYearlyKwh = $scope.partnerContracts.reduce(
                     function(sum, contract) {
@@ -149,7 +156,7 @@ angular.module('newSomEnergiaWebformsApp')
                 return;
             }
             // new partner submit partner creation first
-            
+
             $scope.messages = null;
             $scope.submiting = true;
 
@@ -250,7 +257,6 @@ angular.module('newSomEnergiaWebformsApp')
                     }
 
                     uiHandler.showWellDoneDialog();
-                    // TODO: Cambiar a una pagina de exito propia
                     $window.top.location.href = $translate.instant('GENERATION_OK_REDIRECT_URL');
                 },
                 function(reason) {
@@ -265,6 +271,7 @@ angular.module('newSomEnergiaWebformsApp')
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
             );
+
             return true;
         };
 
@@ -290,104 +297,6 @@ angular.module('newSomEnergiaWebformsApp')
             return '<ul>'+result+'</ul>';
         };
 
-    })
-.directive('personalData', function () {
-    return {
-        restrict: 'E',
-        scope: {
-            form: '=model',
-        },
-        templateUrl: 'views/personaldata.html',
-        controller: 'personalDataCtrl',
-        link: function(scope, element, attrs, personalDataCtrl) {
-            personalDataCtrl.init(element, attrs);
-        },
-    };
-})
-.controller('personalDataCtrl', function(
-        cfg,
-        AjaxHandler,
-        ValidateHandler,
-        $scope,
-        $log
-        ) {
-    var self = this;
-    self.init = function(/*element, attrs*/) {
-        $scope.form = {};
-        $scope.form.isReady = function() {
-            return (
-                $scope.form.language &&
-                $scope.form.name !== undefined &&
-                ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
-                ($scope.form.usertype === 'person' || $scope.form.usertype === 'company' && $scope.form.representantdni !== undefined && $scope.form.representantname !== undefined) &&
-                $scope.form.dni !== undefined &&
-                $scope.form.email1 !== undefined &&
-                $scope.form.email2 !== undefined &&
-                $scope.form.email1 === $scope.form.email2 &&
-                $scope.form.phone1 !== undefined &&
-                $scope.form.address !== undefined &&
-                $scope.form.postalcode !== undefined &&
-                $scope.form.province !== undefined &&
-                $scope.form.city !== undefined &&
-                $scope.dniRepresentantIsInvalid === false &&
-                $scope.emailIsInvalid === false &&
-                $scope.emailNoIguals === false &&
-                !$scope.postalCodeIsInvalid &&
-                true
-                );
-        };
-
-        $scope.languages = [];
-        $scope.provinces = [];
-        $scope.cities = [];
-        $scope.messages = null;
-        $scope.form.language = {};
-        $scope.form.province = {};
-        $scope.form.city = {};
-        $scope.form.usertype = 'person';
-
-        $scope.dniRepresentantIsInvalid = false;
-        $scope.dniDuplicated = false;
-        $scope.emailIsInvalid = false;
-        $scope.emailNoIguals = false;
-        $scope.postalCodeIsInvalid = false;
-
-        // GET LANGUAGES
-        AjaxHandler.getLanguages($scope);
-
-        // GET STATES
-        AjaxHandler.getStates($scope);
-
-        // POSTAL CODE VALIDATION
-        var checkPostalCodeTimer = false;
-        ValidateHandler.validatePostalCode($scope, 'form.postalcode', checkPostalCodeTimer);
-
-        // TELEPHONE VALIDATION
-        ValidateHandler.validateTelephoneNumber($scope, 'form.phone1');
-        ValidateHandler.validateTelephoneNumber($scope, 'form.phone2');
-
-        // DNI VALIDATION
-        var checkDniTimer = false;
-        ValidateHandler.validateDni($scope, 'form.dni', checkDniTimer);
-        var checkDniRepresentantTimer = false;
-        ValidateHandler.validateDni($scope, 'form.representantdni', checkDniRepresentantTimer);
-        // EMAIL VALIDATION
-        var checkEmail1Timer = false;
-        ValidateHandler.validateEmail1($scope, 'form.email1', checkEmail1Timer);
-        var checkEmail2Timer = false;
-        ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
-
-        // ON CHANGE SELECTED STATE
-        $scope.updateSelectedCity = function() {
-            AjaxHandler.getCities($scope, 1, $scope.form.province.id);
-        };
-
-    };
-    $scope.formListener = function() {
-//        $log.debug($scope.form);
-    };
-
-})
-;
+    });
 
 

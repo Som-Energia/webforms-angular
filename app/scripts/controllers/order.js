@@ -20,6 +20,7 @@ angular.module('newSomEnergiaWebformsApp')
         }
 
         $scope.altesDeshabilitades = true;
+        $scope.showAll = false;
 
         $scope.showAllSteps = function() {
             $scope.step1Ready = true;

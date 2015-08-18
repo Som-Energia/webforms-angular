@@ -35,7 +35,7 @@ This should be sample parameters to check the website while developing
 
 	angular.module('newSomEnergiaWebformsApp')
 		.constant('debugCfg', {
-			SOCI: 0000,
+			SOCI: '0000',
 			CIF: 'B12345678',
 			COMPANY: 'ACME',
 			DNI: '12345678Z',
@@ -44,7 +44,7 @@ This should be sample parameters to check the website while developing
 			EMAIL: 'bunny@acme.info',
 			PHONE: '555112233',
 			ADDRESS: 'Rue del Percebe 13',
-			POSTALCODE: 08080,
+			POSTALCODE: '08080',
 			CUPS: 'ES001234567891234LE0F',
 			CNAE: '0520',
 			POWER: '5.5',
