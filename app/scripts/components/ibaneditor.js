@@ -10,6 +10,7 @@ angular.module('newSomEnergiaWebformsApp')
             inputid: '@',
             placeholder: '@?',
             required: '@?',
+            checkurl: '@?',
         },
         templateUrl: 'scripts/components/ibaneditor.html',
         controller: 'ibanEditorCtrl',
@@ -77,7 +78,7 @@ angular.module('newSomEnergiaWebformsApp')
             }
             var promise = AjaxHandler.getStateRequest(
                 $scope, cfg.API_BASE_URL +
-                'check/iban/' + $scope.model.value,
+                ($scope.checkurl || 'check/iban/') + $scope.model.value,
                 '017');
             $scope._lastPromise = promise;
             promise.value = $scope.model.value;
