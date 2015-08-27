@@ -119,7 +119,7 @@ angular.module('newSomEnergiaWebformsApp')
                 CONFIRMAR_INVERSIO: 'Confirmar inversió',
                 COMPROVANT: 'Comprovant...',
                 CORRECTE: 'Correcte.',
-                INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/ca/inversio-realitzada',
+                INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/ca/aportacio-realitzada-correctament/',
                 CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
                 GENERATION_OK_REDIRECT_URL: 'http://www.generationkwh.org/ca/inversio-realitzada/',
 
