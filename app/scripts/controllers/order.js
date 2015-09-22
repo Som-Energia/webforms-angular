@@ -26,6 +26,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.step1Ready = true;
             $scope.step2Ready = true;
             $scope.step3Ready = true;
+            $scope.step8Ready = true;
             $scope.currentStep = undefined;
         };
         $scope.setStep = function(step) {
@@ -34,6 +35,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.step2Ready = step === 2;
             $scope.step3Ready = step === 3;
             $scope.step4Ready = step === 4;
+            $scope.step8Ready = step === 8;
             $scope.currentStep = step;
         };
         $scope.isStep = function(step) {
@@ -42,6 +44,7 @@ angular.module('newSomEnergiaWebformsApp')
             if (step===2) { return $scope.step2Ready === true; }
             if (step===3) { return $scope.step3Ready === true; }
             if (step===4) { return $scope.step4Ready === true; }
+            if (step===8) { return $scope.step8Ready === true; }
             return step===0;
         };
         $scope.setStep(0);
@@ -173,6 +176,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function() {
+            $scope.isStepHaveLightReady = $scope.form.hasservice===true || $scope.form.hascups === true;
             $scope.isStep2ButtonReady = $scope.initForm.isReady() &&
                 ($scope.form.hasservice !== undefined || $scope.altesDeshabilitades) &&
                 $scope.form.address !== undefined &&
@@ -282,14 +286,16 @@ angular.module('newSomEnergiaWebformsApp')
             }
         };
 
-        // MOVE TO STEP 1 FORM
-        $scope.initFormSubmited = function() {
-            $scope.setStepReady(1, 'initFormSubmited');
+        $scope.goToSociPage = function() {
+            $scope.setStepReady(0, 'goToSociPage');
         };
 
-        // BACK TO STEP 1 FORM
-        $scope.backToStep1Form = function() {
-            $scope.setStepReady(0, 'backToStep1Form');
+        $scope.goToHaveLightPage = function() {
+            $scope.setStepReady(8, 'goToHaveLightPage');
+        };
+
+        $scope.goToSupplyPointPage = function() {
+            $scope.setStepReady(1, 'goToSupplyPointPage');
         };
 
         // MOVE TO STEP 2 FORM
@@ -327,11 +333,6 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.setStep(enabledStep);
             if (debugEnabled) {
                 $log.log(eventArgument);
-            }
-            if ($scope.developing) {
-                jQuery(document).trigger('moveStep', [eventArgument]);
-            } else {
-                parent.jQuery('body').trigger('moveStep', [eventArgument]);
             }
         };
 
@@ -506,6 +507,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.rate = debugCfg.RATE;
             $scope.executeGetSociValues();
             $scope.step0Ready = false;
+            $scope.step8Ready = true;
             $scope.step1Ready = true;
             $scope.step2Ready = true;
             $scope.step3Ready = true;

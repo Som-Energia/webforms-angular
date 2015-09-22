@@ -166,9 +166,11 @@ angular.module('newSomEnergiaWebformsApp')
                 PREVISIO_GENERATION_URL: 'http://es.support.somenergia.coop/article/589-que-representa-una-accion-energetica',
 
                 // Under development
+                TENS_LLUM: 'Tienes luz?',
                 HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: '¿Hay actualmente luz en el punto de suministro?',
                 AVIS_ALTA_DE_SERVEI: 'El punto de suministro no tiene servicio y quieres darlo de alta directamente con Som Energia',
                 AVIS_CANVI_COMERCIALITZADORA: 'El punto de suministro ya tiene servicio con otra comercializadora y quieres pasarte a Som Energia',
+                TENS_EL_CUPS: 'Tienes el código CUPS?',
             })
         ;
     });

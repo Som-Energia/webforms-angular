@@ -15,7 +15,7 @@
     <member-chooser
         button-text="{{'INICIAR_CONTRACTACIO' | translate }}"
         show-member-name="true"
-        onproceed="initFormSubmited()"
+        onproceed="altesDeshabilitades ? goToSupplyPointPage() : goToHaveLightPage()"
         soci="soci"
         model="initForm"
         formvalues="formsoci"
@@ -25,6 +25,50 @@
 
     <!-- BEGIN ORDER FORM-->
     <form name="orderForm" class="form-inline" role="form" enctype="multipart/form-data" novalidate>
+
+        <div class="row no-margin-bottom">
+            <div class="col-xs-12 heading" data-ng-class="{active: step8Ready}">
+                <h2 class="extra-margin">0 {{ 'TENS_LLUM' | translate }}</h2>
+            </div>
+        </div>
+        <div data-ng-hide='altesDeshabilitades'>
+            <div class="row">
+                <div class="form-group col-xs-12">
+                    <label>{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}</label>
+                    <div class="btn-group">
+                        <label class="btn btn-default green" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="true">{{ 'SI' | translate }}</label>
+                        <label class="btn btn-default green" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="false" >{{ 'NO' | translate }}</label>
+                    </div>
+                    <div data-ng-show="form.hasservice===true" class="alert alert-warning" style="margin-top:5px" role="alert">
+                        <span data-ng-bind-html="'AVIS_CANVI_COMERCIALITZADORA' | translate"></span>
+                    </div>
+                    <div data-ng-show="form.hasservice===false" class="alert alert-warning" style="margin-top:5px" role="alert">
+                        <span data-ng-bind-html="'AVIS_ALTA_DE_SERVEI' | translate"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" data-ng-hide="form.hasservice !== false">
+                <div class="form-group col-xs-12">
+                    <label>{{ 'TENS_EL_CUPS' | translate }}</label>
+                    <div class="btn-group">
+                        <label class="btn btn-default green" data-ng-change="formListener()" data-ng-model="form.hascups" data-btn-radio="true">{{ 'SI' | translate }}</label>
+                        <label class="btn btn-default green" data-ng-change="formListener()" data-ng-model="form.hascups" data-btn-radio="false" >{{ 'NO' | translate }}</label>
+                    </div>
+                    <div data-ng-show="form.hascups===true" class="alert alert-warning" style="margin-top:5px" role="alert">
+                        <span data-ng-bind-html="'AVIS_CUPS' | translate"></span>
+                    </div>
+                    <div data-ng-show="form.hascups===false" class="alert alert-warning" style="margin-top:5px" role="alert">
+                        <span data-ng-bind-html="'AVIS_NOCUPS' | translate"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row no-margin-bottom">
+                <div class="col-xs-12 no-horitzontal-padding">
+                    <button data-ng-click="goToSociPage()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'PAS_ANTERIOR' | translate }}</button>
+                    <button data-ng-click="goToSupplyPointPage()" class="btn btn-default pull-right next-step-submit" data-ng-disabled="!isStepHaveLightReady" type="button">{{ 'SEGUENT_PAS' | translate }}</button>
+                </div>
+            </div>
+        </div>
         <!--SECOND STEP-->
         <div class="row no-margin-bottom">
             <div class="col-xs-12 heading" data-ng-class="{active: step1Ready}">
@@ -35,21 +79,6 @@
             <div class="row extra-margin-top">
                 <div class="col-xs-12">
                     <p>{{ 'DADES_PUNT_SUBMINISTRAMENT_HELPER' | translate }}</p>
-                </div>
-            </div>
-            <div class="row" data-ng-hide='altesDeshabilitades'>
-                <div class="form-group col-xs-12">
-                    <label>{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}</label>
-                    <div class="btn-group">
-                        <label class="btn btn-default green" data-ng-model="form.hasservice" data-btn-radio="'yes'">{{ 'SI' | translate }}</label>
-                        <label class="btn btn-default green" data-ng-model="form.hasservice" data-btn-radio="'no'" >{{ 'NO' | translate }}</label>
-                    </div>
-                    <div data-ng-show="form.hasservice==='yes'" class="alert alert-warning" style="margin-top:5px" role="alert">
-                        <span data-ng-bind-html="'AVIS_CANVI_COMERCIALITZADORA' | translate"></span>
-                    </div>
-                    <div data-ng-show="form.hasservice==='no'" class="alert alert-warning" style="margin-top:5px" role="alert">
-                        <span data-ng-bind-html="'AVIS_ALTA_DE_SERVEI' | translate"></span>
-                    </div>
                 </div>
             </div>
             <div class="row">
@@ -176,7 +205,7 @@
             </div>
             <div class="row no-margin-bottom">
                 <div class="col-xs-12 no-horitzontal-padding">
-                    <button data-ng-click="backToStep1Form()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'PAS_ANTERIOR' | translate }}</button>
+                    <button data-ng-click="altesDeshabilitades?goToSociPage():goToHaveLightPage()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'PAS_ANTERIOR' | translate }}</button>
                     <button data-ng-click="moveToStep2Form()" class="btn btn-default pull-right next-step-submit" data-ng-disabled="!isStep2ButtonReady" type="button">{{ 'SEGUENT_PAS' | translate }}</button>
                 </div>
             </div>
@@ -431,7 +460,7 @@
             </div>
             <div class="row no-margin-bottom">
                 <div class="col-xs-12 no-horitzontal-padding">
-                    <button data-ng-click="backToStep2Form()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'PAS_ANTERIOR' | translate }}</button>
+                    <button data-ng-click="goToSupplyPointPage()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'PAS_ANTERIOR' | translate }}</button>
                     <button data-ng-click="moveToStep3Form()" class="btn btn-default pull-right next-step-submit" data-ng-disabled="!isStep3ButtonReady" type="button">{{ 'SEGUENT_PAS' | translate }}</button>
                 </div>
             </div>
