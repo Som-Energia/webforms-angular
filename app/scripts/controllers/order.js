@@ -19,8 +19,8 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.fallbackLanguage('es');
         }
 
-        $scope.altesDeshabilitades = true;
-        $scope.showAll = false;
+        $scope.altesDeshabilitades = false;
+        $scope.showAll = true;
 
         $scope.showAllSteps = function() {
             $scope.step1Ready = true;
