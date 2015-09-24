@@ -23,6 +23,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.showAll = true;
 
         $scope.showAllSteps = function() {
+            $scope.showAll = true;
             $scope.step1Ready = true;
             $scope.step2Ready = true;
             $scope.step3Ready = true;
@@ -47,8 +48,6 @@ angular.module('newSomEnergiaWebformsApp')
             if (step===8) { return $scope.step8Ready === true; }
             return step===0;
         };
-        $scope.setStep(0);
-
         $scope.cupsIsInvalid = false;
         $scope.cnaeIsInvalid = false;
         $scope.rate20IsInvalid = false;
@@ -287,54 +286,40 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.goToSociPage = function() {
-            $scope.setStepReady(0, 'goToSociPage');
+            $scope.setStepReady(0, 'dadesSociPage');
         };
 
         $scope.goToHaveLightPage = function() {
-            $scope.setStepReady(8, 'goToHaveLightPage');
+            $scope.setStepReady(8, 'hasLightPage');
         };
 
         $scope.goToSupplyPointPage = function() {
-            $scope.setStepReady(1, 'goToSupplyPointPage');
+            $scope.setStepReady(1, 'supplyPointPage');
         };
 
-        // MOVE TO STEP 2 FORM
-        $scope.moveToStep2Form = function() {
-            $scope.setStepReady(2, 'moveToStep2Form');
+        $scope.goToOwnerPage = function() {
+            $scope.setStepReady(2, 'ownerPage');
         };
 
-        // BACK TO STEP 2 FORM
-        $scope.backToStep2Form = function() {
-            $scope.setStepReady(1, 'backToStep2Form');
+        $scope.goToPayerPage = function() {
+            $scope.setStepReady(3, 'payerPage');
         };
 
-        // MOVE TO STEP 3 FORM
-        $scope.moveToStep3Form = function() {
-            $scope.setStepReady(3, 'moveToStep3Form');
+        $scope.goToConfirmationPage = function() {
+            $scope.setStepReady(4, 'confirmationPage');
         };
-
-        // BACK TO STEP 3 FORM
-        $scope.backToStep3Form = function() {
-            $scope.setStepReady(2, 'backToStep3Form');
-        };
-
-        // MOVE TO STEP 4 FORM
-        $scope.moveToStep4Form = function() {
-            $scope.setStepReady(4, 'moveToStep4Form');
-        };
-
-        // BACK TO STEP 4 FORM
-        $scope.backToStep4Form = function() {
-            $scope.setStepReady(3, 'backToStep4Form');
-        };
+        $scope.wizardPage = {};
 
         // COMMON MOVE STEPS LOGIC
-        $scope.setStepReady = function(enabledStep, eventArgument) {
+        $scope.setStepReady = function(enabledStep, pageName) {
             $scope.setStep(enabledStep);
+            $scope.wizardPage.current = pageName;
             if (debugEnabled) {
-                $log.log(eventArgument);
+                $log.log(pageName);
             }
         };
+
+        $scope.goToSociPage();
 
 
         // ON SUBMIT FORM

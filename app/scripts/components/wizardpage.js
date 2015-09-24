@@ -5,10 +5,12 @@ angular.module('newSomEnergiaWebformsApp')
     return {
         restrict: 'E',
         scope: {
+            model: '=',
             header: '@',
+            pageName: '@',
             prevPage: '&',
             nextPage: '&',
-            current: '=',
+            /*current: '=',*/
             showAlways: '=',
             ready: '=',
             nextText: '@?',
@@ -24,14 +26,17 @@ angular.module('newSomEnergiaWebformsApp')
 .controller('wizardPageCtrl', function (
         cfg,
         $scope
-/*
-        $timeout,
-        $log,
-        AjaxHandler
-*/
         ) {
     var self = this;
     self.init = function(/*element, attrs*/) {
+        if ($scope.model.pages === undefined) {
+            $scope.model.pages = [];
+        }
+        if ($scope.model.pages.indexOf($scope.pageName) < 0) {
+            $scope.model.pages.push($scope.pageName);
+        } else {
+            console.log("Duplicated page on Wizard", $scope.pageName);
+        }
         $scope.prev = function() {
             $scope.prevPage();
         };

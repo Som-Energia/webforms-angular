@@ -18,7 +18,7 @@
         soci="soci"
         model="initForm"
         formvalues="formsoci"
-        data-ng-show="isStep(0)"
+        data-ng-show="isStep(0) || showAll"
     ></member-chooser>
 
     <form name="orderForm" class="form-inline" role="form" enctype="multipart/form-data" novalidate>
@@ -26,16 +26,19 @@
     <!-- PAGE: HAS LIGHT -->
     <div data-ng-hide='altesDeshabilitades'>
         <wizard-page
+            model="wizardPage"
+            page-name='hasLightPage'
             header="0 {{ 'TENS_LLUM' | translate }}"
             prev-page="goToSociPage()"
             next-page="goToSupplyPointPage()"
-            current='step8Ready'
             show-always='showAll'
             ready="isStepHaveLightReady"
         >
             <div class="row">
                 <div class="form-group col-xs-12">
-                    <label>{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}</label>
+                    <div>
+                        <label>{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}</label>
+                    </div>
                     <div class="btn-group">
                         <label class="btn btn-default green" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="true">{{ 'SI' | translate }}</label>
                         <label class="btn btn-default green" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="false" >{{ 'NO' | translate }}</label>
@@ -50,7 +53,9 @@
             </div>
             <div class="row" data-ng-hide="form.hasservice !== false">
                 <div class="form-group col-xs-12">
-                    <label>{{ 'TENS_EL_CUPS' | translate }}</label>
+                    <div>
+                        <label>{{ 'TENS_EL_CUPS' | translate }}</label>
+                    </div>
                     <div class="btn-group">
                         <label class="btn btn-default green" data-ng-change="formListener()" data-ng-model="form.hascups" data-btn-radio="true">{{ 'SI' | translate }}</label>
                         <label class="btn btn-default green" data-ng-change="formListener()" data-ng-model="form.hascups" data-btn-radio="false" >{{ 'NO' | translate }}</label>
@@ -69,10 +74,11 @@
 
         <!-- PAGE: Supply Point -->
         <wizard-page
+            model="wizardPage"
+            page-name='supplyPointPage'
             header="1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}"
-            prev-page="altesDeshabilitades?goToSociPage():goToHaveLightPage()"
-            next-page="moveToStep2Form()"
-            current='step1Ready'
+            prev-page="altesDeshabilitades ? goToSociPage() : goToHaveLightPage()"
+            next-page="goToOwnerPage()"
             show-always='showAll'
             ready="isStep2ButtonReady"
         >
@@ -207,10 +213,11 @@
 
         <!-- Page: Owner data -->
         <wizard-page
+            model="wizardPage"
+            page-name='ownerPage'
             header="2 {{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}"
             prev-page="goToSupplyPointPage()"
-            next-page="moveToStep3Form()"
-            current='step2Ready'
+            next-page="goToPayerPage()"
             show-always='showAll'
             ready="isStep3ButtonReady"
         >
@@ -454,11 +461,12 @@
 
         <!-- Page: Payer data -->
         <wizard-page
-            header="2 {{ 'DADES_PAGAMENT' | translate }}"
-            prev-page="backToStep3Form()"
-            next-page="moveToStep4Form()"
+            model="wizardPage"
+            page-name='payerPage'
+            header="3 {{ 'DADES_PAGAMENT' | translate }}"
+            prev-page="goToOwnerPage()"
+            next-page="goToConfirmationPage()"
             next-text="{{ 'CONFIRMAR_CONTRACTACIO' | translate }}"
-            current='step3Ready'
             show-always='showAll'
             ready="isFinalStepButtonReady"
         >
