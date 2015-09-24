@@ -534,4 +534,36 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.accountbankiban6 = debugCfg.IBAN6;
             cfg.API_BASE_URL = 'https://sompre.gisce.net:5001/';
         }
-    });
+    })
+
+angular.module('newSomEnergiaWebformsApp')
+.directive('wizardPage', function () {
+    return {
+        restrict: 'E',
+        scope: {
+            title: '@',
+        },
+        transclude: true,
+        templateUrl: 'scripts/components/wizardPage.html',
+        controller: 'wizardPageCtrl',
+        link: function(scope, element, attrs, wizardPageCtrl) {
+            wizardPageCtrl.init(element, attrs);
+        },
+    };
+})
+.controller('wizardPageCtrl', function (
+        cfg,
+        $scope
+/*
+        $timeout,
+        $log,
+        AjaxHandler
+*/
+        ) {
+    var self = this;
+    self.init = function(/*element, attrs*/) {
+    };
+});
+
+
+

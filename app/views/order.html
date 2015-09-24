@@ -11,7 +11,6 @@
         </div>
     </div>
 
-    <!-- BEGIN INIT FORM-->
     <member-chooser
         button-text="{{'INICIAR_CONTRACTACIO' | translate }}"
         show-member-name="true"
@@ -21,12 +20,16 @@
         formvalues="formsoci"
         data-ng-show="isStep(0)"
     ></member-chooser>
-    <!--END INIT FORM-->
 
-    <!-- BEGIN ORDER FORM-->
     <form name="orderForm" class="form-inline" role="form" enctype="multipart/form-data" novalidate>
+    <wizard-page
+        title="Hola"
+    >
+        contingut
+    </wizard-page>
 
-        <div class="row no-margin-bottom">
+        <!-- PAGE: HAS LIGHT -->
+        <div class="row">
             <div class="col-xs-12 heading" data-ng-class="{active: step8Ready}">
                 <h2 class="extra-margin">0 {{ 'TENS_LLUM' | translate }}</h2>
             </div>
@@ -69,7 +72,8 @@
                 </div>
             </div>
         </div>
-        <!--SECOND STEP-->
+
+        <!-- PAGE: Supply Point -->
         <div class="row no-margin-bottom">
             <div class="col-xs-12 heading" data-ng-class="{active: step1Ready}">
                 <h2 class="extra-margin">1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}</h2>
