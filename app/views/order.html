@@ -24,15 +24,15 @@
     <form name="orderForm" class="form-inline" role="form" enctype="multipart/form-data" novalidate>
 
     <!-- PAGE: HAS LIGHT -->
-    <wizard-page
-        title="0 {{ 'TENS_LLUM' | translate }}"
-        prev-page="goToSociPage()"
-        next-page="goToSupplyPointPage()"
-        current='step8Ready'
-        show-always='showAll'
-        ready="isStepHaveLightReady"
-    >
-        <div data-ng-hide='altesDeshabilitades'>
+    <div data-ng-hide='altesDeshabilitades'>
+        <wizard-page
+            title="0 {{ 'TENS_LLUM' | translate }}"
+            prev-page="goToSociPage()"
+            next-page="goToSupplyPointPage()"
+            current='step8Ready'
+            show-always='showAll'
+            ready="isStepHaveLightReady"
+        >
             <div class="row">
                 <div class="form-group col-xs-12">
                     <label>{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}</label>
@@ -63,17 +63,19 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </wizard-page>
+        </wizard-page>
+    </div>
 
 
         <!-- PAGE: Supply Point -->
-        <div class="row no-margin-bottom">
-            <div class="col-xs-12 heading" data-ng-class="{active: step1Ready}">
-                <h2 class="extra-margin">1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}</h2>
-            </div>
-        </div>
-        <div data-ng-show="step1Ready || showAll">
+        <wizard-page
+            title="1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}"
+            prev-page="altesDeshabilitades?goToSociPage():goToHaveLightPage()"
+            next-page="moveToStep2Form()"
+            current='step1Ready'
+            show-always='showAll'
+            ready="isStep2ButtonReady"
+        >
             <div class="row extra-margin-top">
                 <div class="col-xs-12">
                     <p>{{ 'DADES_PUNT_SUBMINISTRAMENT_HELPER' | translate }}</p>
@@ -201,26 +203,18 @@
                     <span class="label label-danger" data-ng-show="overflowAttachFile">{{ 'OVERFLOW_FILE' | translate }}</span>
                 </div>
             </div>
-            <div class="row no-margin-bottom">
-                <div class="col-xs-12 no-horitzontal-padding">
-                    <button data-ng-click="altesDeshabilitades?goToSociPage():goToHaveLightPage()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'PAS_ANTERIOR' | translate }}</button>
-                    <button data-ng-click="moveToStep2Form()" class="btn btn-default pull-right next-step-submit" data-ng-disabled="!isStep2ButtonReady" type="button">{{ 'SEGUENT_PAS' | translate }}</button>
-                </div>
-            </div>
-        </div>
-        <!--THIRD STEP-->
-        <div class="row no-margin-bottom">
-            <div class="col-xs-12 heading" data-ng-class="{active: step2Ready}">
-                <h2 class="extra-margin">2 {{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}</h2>
-            </div>
-        </div>
-        <div data-ng-show="step2Ready || showAll">
+        </wizard-page>
+
+        <!-- Page: Owner data -->
+        <wizard-page
+            title="2 {{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}"
+            prev-page="goToSupplyPointPage()"
+            next-page="moveToStep3Form()"
+            current='step2Ready'
+            show-always='showAll'
+            ready="isStep3ButtonReady"
+        >
             <div class="row extra-margin-top">
-                <!--<div class="col-xs-12">-->
-                    <!--<p>{{ 'DADES_TITULAR_NOU_CONTRACTE_HELPER' | translate }}</p>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="row">-->
                 <div class="form-group col-xs-12" data-ng-show="esAlta()">
                     <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_ALTA_HELPER' | translate}}</p>
                 </div>
@@ -456,21 +450,19 @@
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
-            <div class="row no-margin-bottom">
-                <div class="col-xs-12 no-horitzontal-padding">
-                    <button data-ng-click="goToSupplyPointPage()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'PAS_ANTERIOR' | translate }}</button>
-                    <button data-ng-click="moveToStep3Form()" class="btn btn-default pull-right next-step-submit" data-ng-disabled="!isStep3ButtonReady" type="button">{{ 'SEGUENT_PAS' | translate }}</button>
-                </div>
-            </div>
-        </div>
+        </wizard-page>
 
+        <!-- Page: Payer data -->
+        <wizard-page
+            title="2 {{ 'DADES_PAGAMENT' | translate }}"
+            prev-page="backToStep3Form()"
+            next-page="moveToStep4Form()"
+            next-text="{{ 'CONFIRMAR_CONTRACTACIO' | translate }}"
+            current='step3Ready'
+            show-always='showAll'
+            ready="isFinalStepButtonReady"
+        >
         <!--FORTH STEP-->
-        <div class="row no-margin-bottom last">
-            <div class="col-xs-12 heading" data-ng-class="{active: step3Ready}">
-                <h2 class="extra-margin">3 {{ 'DADES_PAGAMENT' | translate }}</h2>
-            </div>
-        </div>
-        <div data-ng-show="step3Ready || showAll">
             <div class="row extra-margin-top">
                 <div class="col-sm-7 col-xs-12">
                     <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}</label>
@@ -749,13 +741,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row no-margin-bottom">
-                <div class="col-xs-12 no-horitzontal-padding">
-                    <button data-ng-click="backToStep3Form()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'PAS_ANTERIOR' | translate }}</button>
-                    <button data-ng-click="moveToStep4Form()" class="btn btn-default pull-right final-step-submit" data-ng-disabled="!isFinalStepButtonReady" type="button">{{ 'CONFIRMAR_CONTRACTACIO' | translate }}</button>
-                </div>
-            </div>
-        </div>
+        </wizard-page>
     </form>
 </div>
 
