@@ -9,7 +9,8 @@ angular.module('newSomEnergiaWebformsApp')
             prevPage: '&',
             nextPage: '&',
             current: '=',
-            showAlways: '='
+            showAlways: '=',
+            ready: '='
         },
         transclude: true,
         templateUrl: 'scripts/components/wizardpage.html',

@@ -12,7 +12,7 @@
     <div class="row no-margin-bottom">
         <div class="col-xs-12 no-horitzontal-padding">
             <button data-ng-click="prev()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'PAS_ANTERIOR' | translate }}</button>
-            <button data-ng-click="next()" class="btn btn-default pull-right next-step-submit" data-ng-disabled="false && !isStepHaveLightReady" type="button">{{ 'SEGUENT_PAS' | translate }}</button>
+            <button data-ng-click="next()" class="btn btn-default pull-right next-step-submit" data-ng-disabled="!ready" type="button">{{ 'SEGUENT_PAS' | translate }}</button>
         </div>
     </div>
 </div>
