@@ -22,18 +22,15 @@
     ></member-chooser>
 
     <form name="orderForm" class="form-inline" role="form" enctype="multipart/form-data" novalidate>
-    <wizard-page
-        title="Hola"
-    >
-        contingut
-    </wizard-page>
 
-        <!-- PAGE: HAS LIGHT -->
-        <div class="row">
-            <div class="col-xs-12 heading" data-ng-class="{active: step8Ready}">
-                <h2 class="extra-margin">0 {{ 'TENS_LLUM' | translate }}</h2>
-            </div>
-        </div>
+    <!-- PAGE: HAS LIGHT -->
+    <wizard-page
+        title="0 {{ 'TENS_LLUM' | translate }}"
+        prev-page="goToSociPage()"
+        next-page="goToSupplyPointPage()"
+        current='step8Ready'
+        show-always='showAll'
+    >
         <div data-ng-hide='altesDeshabilitades'>
             <div class="row">
                 <div class="form-group col-xs-12">
@@ -65,13 +62,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row no-margin-bottom">
-                <div class="col-xs-12 no-horitzontal-padding">
-                    <button data-ng-click="goToSociPage()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'PAS_ANTERIOR' | translate }}</button>
-                    <button data-ng-click="goToSupplyPointPage()" class="btn btn-default pull-right next-step-submit" data-ng-disabled="!isStepHaveLightReady" type="button">{{ 'SEGUENT_PAS' | translate }}</button>
-                </div>
-            </div>
         </div>
+    </wizard-page>
+
 
         <!-- PAGE: Supply Point -->
         <div class="row no-margin-bottom">
@@ -469,6 +462,7 @@
                 </div>
             </div>
         </div>
+
         <!--FORTH STEP-->
         <div class="row no-margin-bottom last">
             <div class="col-xs-12 heading" data-ng-class="{active: step3Ready}">

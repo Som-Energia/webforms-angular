@@ -20,7 +20,7 @@ angular.module('newSomEnergiaWebformsApp')
         }
 
         $scope.altesDeshabilitades = false;
-        $scope.showAll = true;
+        $scope.showAll = false;
 
         $scope.showAllSteps = function() {
             $scope.step1Ready = true;
@@ -534,7 +534,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.accountbankiban6 = debugCfg.IBAN6;
             cfg.API_BASE_URL = 'https://sompre.gisce.net:5001/';
         }
-    })
+    });
 
 angular.module('newSomEnergiaWebformsApp')
 .directive('wizardPage', function () {
@@ -542,6 +542,10 @@ angular.module('newSomEnergiaWebformsApp')
         restrict: 'E',
         scope: {
             title: '@',
+            prevPage: '&',
+            nextPage: '&',
+            current: '=',
+            showAlways: '='
         },
         transclude: true,
         templateUrl: 'scripts/components/wizardPage.html',
@@ -562,6 +566,12 @@ angular.module('newSomEnergiaWebformsApp')
         ) {
     var self = this;
     self.init = function(/*element, attrs*/) {
+        $scope.prev = function() {
+            $scope.prevPage();
+        };
+        $scope.next = function() {
+            $scope.nextPage();
+        };
     };
 });
 
