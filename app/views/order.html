@@ -26,7 +26,7 @@
     <!-- PAGE: HAS LIGHT -->
     <div data-ng-hide='altesDeshabilitades'>
         <wizard-page
-            title="0 {{ 'TENS_LLUM' | translate }}"
+            header="0 {{ 'TENS_LLUM' | translate }}"
             prev-page="goToSociPage()"
             next-page="goToSupplyPointPage()"
             current='step8Ready'
@@ -69,7 +69,7 @@
 
         <!-- PAGE: Supply Point -->
         <wizard-page
-            title="1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}"
+            header="1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}"
             prev-page="altesDeshabilitades?goToSociPage():goToHaveLightPage()"
             next-page="moveToStep2Form()"
             current='step1Ready'
@@ -207,7 +207,7 @@
 
         <!-- Page: Owner data -->
         <wizard-page
-            title="2 {{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}"
+            header="2 {{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}"
             prev-page="goToSupplyPointPage()"
             next-page="moveToStep3Form()"
             current='step2Ready'
@@ -454,7 +454,7 @@
 
         <!-- Page: Payer data -->
         <wizard-page
-            title="2 {{ 'DADES_PAGAMENT' | translate }}"
+            header="2 {{ 'DADES_PAGAMENT' | translate }}"
             prev-page="backToStep3Form()"
             next-page="moveToStep4Form()"
             next-text="{{ 'CONFIRMAR_CONTRACTACIO' | translate }}"

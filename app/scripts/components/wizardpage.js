@@ -5,7 +5,7 @@ angular.module('newSomEnergiaWebformsApp')
     return {
         restrict: 'E',
         scope: {
-            title: '@',
+            header: '@',
             prevPage: '&',
             nextPage: '&',
             current: '=',
