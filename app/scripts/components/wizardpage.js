@@ -6,14 +6,14 @@ angular.module('newSomEnergiaWebformsApp')
         restrict: 'E',
         scope: {
             model: '=',
-            header: '@',
+            header: '@?',
             pageName: '@',
             prevPage: '&',
             nextPage: '&',
-            /*current: '=',*/
             showAlways: '=',
             ready: '=',
             nextText: '@?',
+            hideButtons: '@?',
         },
         transclude: true,
         templateUrl: 'scripts/components/wizardpage.html',
@@ -28,14 +28,14 @@ angular.module('newSomEnergiaWebformsApp')
         $scope
         ) {
     var self = this;
-    self.init = function(/*element, attrs*/) {
+    self.init = function(element, attrs) {
         if ($scope.model.pages === undefined) {
             $scope.model.pages = [];
         }
         if ($scope.model.pages.indexOf($scope.pageName) < 0) {
             $scope.model.pages.push($scope.pageName);
         } else {
-            console.log("Duplicated page on Wizard", $scope.pageName);
+            console.log('Duplicated page on Wizard', $scope.pageName);
         }
         $scope.prev = function() {
             $scope.prevPage();

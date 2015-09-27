@@ -22,6 +22,9 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.altesDeshabilitades = false;
         $scope.showAll = true;
 
+        $scope.initForm = {};
+        $scope.initForm.isReady = function() { return false;};
+
         $scope.showAllSteps = function() {
             $scope.showAll = true;
             $scope.step1Ready = true;
@@ -175,9 +178,13 @@ angular.module('newSomEnergiaWebformsApp')
 
         // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function() {
-            $scope.isStepHaveLightReady = $scope.form.hasservice===true || $scope.form.hascups === true;
-            $scope.isStep2ButtonReady = $scope.initForm.isReady() &&
-                ($scope.form.hasservice !== undefined || $scope.altesDeshabilitades) &&
+            $scope.isStepHaveLightReady = $scope.initForm.isReady() && (
+		$scope.form.hasservice===true ||
+		$scope.form.hascups === true ||
+		$scope.altesDeshabilitades
+		);
+
+            $scope.isStep2ButtonReady = $scope.isStepHaveLightReady &&
                 $scope.form.address !== undefined &&
                 $scope.form.province !== undefined &&
                 $scope.form.city !== undefined &&
@@ -193,6 +200,7 @@ angular.module('newSomEnergiaWebformsApp')
                     ($scope.form.rate === cfg.RATE_30A && $scope.form.power !== undefined && $scope.form.power2 !== undefined && $scope.form.power3 !== undefined && !$scope.rate3AIsInvalid)
                 ) &&
                 !$scope.overflowAttachFile;
+
             $scope.isStep3ButtonReady = $scope.isStep2ButtonReady &&
                 $scope.form.changeowner !== undefined &&
                 $scope.form.accept === true &&

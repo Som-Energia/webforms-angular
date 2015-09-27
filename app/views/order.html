@@ -4,22 +4,26 @@
 <div ng-if='developing' data-ng-include data-src="'views/common/responsive-display.html'"></div>
 
 <div data-ng-show="!step4Ready">
-    <!--HEADER-->
-    <div class="row no-margin-bottom">
-        <div class="col-xs-12 heading" data-ng-class="{active: step0Ready}">
-            <h1 class="extra-margin">{{ 'FORMULARI_CONTRACTACIO' | translate }}</h1>
-        </div>
-    </div>
-
-    <member-chooser
-        button-text="{{'INICIAR_CONTRACTACIO' | translate }}"
-        show-member-name="true"
-        onproceed="altesDeshabilitades ? goToSupplyPointPage() : goToHaveLightPage()"
-        soci="soci"
-        model="initForm"
-        formvalues="formsoci"
-        data-ng-show="isStep(0) || showAll"
-    ></member-chooser>
+    <!-- Page: dadesSociPage -->
+    <wizard-page
+        model="wizardPage"
+        header="{{ 'FORMULARI_CONTRACTACIO' | translate }}"
+        page-name='dadesSociPage'
+        next-page="altesDeshabilitades ? goToSupplyPointPage() : goToHaveLightPage()"
+        show-always='showAll'
+        ready="initForm.isReady()"
+        hide-buttons="boo"
+    >
+        <member-chooser
+            button-text="{{'INICIAR_CONTRACTACIO' | translate }}"
+            show-member-name="true"
+            onproceed="altesDeshabilitades ? goToSupplyPointPage() : goToHaveLightPage()"
+            soci="soci"
+            model="initForm"
+            formvalues="formsoci"
+            data-ng-show="isStep(0) || showAll"
+            ></member-chooser>
+    </wizard-page>
 
     <form name="orderForm" class="form-inline" role="form" enctype="multipart/form-data" novalidate>
 
