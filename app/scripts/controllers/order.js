@@ -22,6 +22,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.altesDeshabilitades = false;
         $scope.showAll = true;
         $scope.initForm = {};
+        $scope.ibanEditor = {};
 
         $scope.showAllSteps = function() {
             $scope.showAll = true;
@@ -72,7 +73,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.form.choosepayer = cfg.PAYER_TYPE_TITULAR;
         $scope.completeAccountNumber = '';
         $scope.rates = [cfg.RATE_20A, cfg.RATE_20DHA, cfg.RATE_20DHS, cfg.RATE_21A, cfg.RATE_21DHA, cfg.RATE_21DHS, cfg.RATE_30A];
-//        $scope.form.accountbankiban1 = 'ES';
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
@@ -128,12 +128,6 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateTelephoneNumber($scope, 'form.phone2');
         ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone1');
         ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone2');
-
-        // BANK ACCOUNT VALIDATION
-        //ValidateHandler.validateBankAccountInteger($scope, 'form.accountbank');
-        //ValidateHandler.validateBankAccountInteger($scope, 'form.accountoffice');
-        //ValidateHandler.validateBankAccountInteger($scope, 'form.accountchecksum');
-        //ValidateHandler.validateBankAccountInteger($scope, 'form.accountnumber');
 
         // IBAN VALIDATION
         ValidateHandler.validateIban($scope, 'form.accountbankiban1');
@@ -227,8 +221,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.emailNoIguals === false)
                 );
             $scope.isFinalStepButtonReady = $scope.isStep3ButtonReady &&
-                !$scope.accountIsInvalid &&
-                $scope.completeAccountNumber.length > 0 &&
+                $scope.ibanEditor.isValid() &&
                 $scope.form.acceptaccountowner &&
                 $scope.form.voluntary !== undefined && ($scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ||
                 ($scope.form.choosepayer === cfg.PAYER_TYPE_OTHER &&
@@ -251,26 +244,6 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.accountEmailIsInvalid === false &&
                         $scope.accountEmailNoIguals === false))
             ;
-        };
-        $scope.formAccountListener = function () {
-            if ($scope.form.accountbank !== undefined && $scope.form.accountoffice !== undefined && $scope.form.accountchecksum !== undefined && $scope.form.accountnumber !== undefined) {
-                $scope.completeAccountNumber = $scope.getCompleteAccountNumber();
-                var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/bank/' + $scope.completeAccountNumber, '017');
-                accountPromise.then(
-                    function (response) {
-                        $scope.accountIsInvalid = response === cfg.STATE_FALSE;
-                        $scope.orderForm.accountbank.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountoffice.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountchecksum.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountnumber.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.formListener($scope.form);
-                    },
-                    function(reason) {
-                        $scope.apiError = reason;
-                        $log.error('Check account number failed', reason);
-                    }
-                );
-            }
         };
         $scope.formAccountIbanListener = function () {
             if ($scope.form.accountbankiban1 !== undefined && $scope.form.accountbankiban2 !== undefined && $scope.form.accountbankiban3 !== undefined && $scope.form.accountbankiban4 !== undefined && $scope.form.accountbankiban5 !== undefined && $scope.form.accountbankiban6 !== undefined) {
@@ -374,10 +347,6 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('cups_municipi', $scope.form.city.id);
             formData.append('referencia', $scope.form.catastre || '');
             formData.append('fitxer', jQuery('#fileuploaderinput')[0].files[0]);
-            //formData.append('entitat', $scope.form.accountbank);
-            //formData.append('sucursal', $scope.form.accountoffice);
-            //formData.append('control', $scope.form.accountchecksum);
-            //formData.append('ncompte', $scope.form.accountnumber);
             formData.append('payment_iban', $scope.getCompleteIban());
             formData.append('escull_pagador', $scope.form.choosepayer);
             formData.append('compte_tipus_persona', $scope.form.payertype === 'person' ? 0 : 1);
@@ -471,19 +440,28 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // GET COMPLETE ACCOUNT NUMBER
-        $scope.getCompleteAccountNumber = function() {
-            return $scope.form.accountbank + $scope.form.accountoffice + $scope.form.accountchecksum + $scope.form.accountnumber;
-        };
         $scope.getCompleteIban = function() {
-            return $scope.form.accountbankiban1 + $scope.form.accountbankiban2 + $scope.form.accountbankiban3 + $scope.form.accountbankiban4 + $scope.form.accountbankiban5 + $scope.form.accountbankiban6;
+            return $scope.ibanEditor.value;
         };
 
         // GET COMPLETE ACCOUNT NUMBER WITH FORMAT
-        $scope.getCompleteAccountNumberWithFormat = function() {
-            return $scope.form.accountbank + '-' + $scope.form.accountoffice + '-' + $scope.form.accountchecksum + '-' + $scope.form.accountnumber;
-        };
         $scope.getCompleteIbanWithFormat = function() {
-            return $scope.form.accountbankiban1 + ' ' + $scope.form.accountbankiban2 + ' ' + $scope.form.accountbankiban3 + ' ' + $scope.form.accountbankiban4 + ' ' + $scope.form.accountbankiban5 + ' ' + $scope.form.accountbankiban6;
+            // TODO: Format it!
+            if (!$scope.ibanEditor.isValid()) {
+                return 'INVALID';
+            }
+            var joined = $scope.ibanEditor.value.toUpperCase();
+            joined = joined.split(' ').join('');
+            joined = joined.split('-').join('');
+            joined = joined.split('.').join('');
+            return [
+                joined.slice(0,4),
+                joined.slice(4,8),
+                joined.slice(8,12),
+                joined.slice(12,16),
+                joined.slice(16,20),
+                joined.slice(20,24),
+            ].join(' ');
         };
 
         // DEBUG (only apply on development environment)
@@ -504,10 +482,6 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.step2Ready = true;
             $scope.step3Ready = true;
             $scope.step4Ready = true;
-            $scope.form.accountbank = debugCfg.ACCOUNT_BANK;
-            $scope.form.accountoffice = debugCfg.ACCOUNT_OFFICE;
-            $scope.form.accountchecksum = debugCfg.ACCOUNT_CHECKSUM;
-            $scope.form.accountnumber = debugCfg.ACCOUNT_NUMBER;
             $scope.form.representantdni = debugCfg.CIF;
             $scope.form.representantname = debugCfg.COMPANY;
             $scope.form.dni = debugCfg.DNI;
@@ -518,12 +492,12 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.email1 = debugCfg.EMAIL;
             $scope.form.email2 = debugCfg.EMAIL;
             $scope.form.accept = true;
-            $scope.form.accountbankiban1 = debugCfg.IBAN1;
-            $scope.form.accountbankiban2 = debugCfg.IBAN2;
-            $scope.form.accountbankiban3 = debugCfg.IBAN3;
-            $scope.form.accountbankiban4 = debugCfg.IBAN4;
-            $scope.form.accountbankiban5 = debugCfg.IBAN5;
-            $scope.form.accountbankiban6 = debugCfg.IBAN6;
+            $scope.ibanEditor.value = debugCfg.IBAN1
+            $scope.ibanEditor.value += debugCfg.IBAN2;
+            $scope.ibanEditor.value += debugCfg.IBAN3;
+            $scope.ibanEditor.value += debugCfg.IBAN4;
+            $scope.ibanEditor.value += debugCfg.IBAN5;
+            $scope.ibanEditor.value += debugCfg.IBAN6;
             cfg.API_BASE_URL = 'https://sompre.gisce.net:5001/';
         }
     });

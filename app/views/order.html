@@ -641,58 +641,17 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="row">-->
-                <!--<div class="col-sm-3 col-xs-12">-->
-                    <!--<label>{{ 'NUM_COMPTE' | translate }} (CCC)</label>-->
-                    <!--<span class="label label-danger" data-ng-show="accountIsInvalid">{{ 'INVALID' | translate }}</span>-->
-                <!--</div>-->
-                <!--<div class="col-sm-2 col-xs-6">-->
-                    <!--<input type="text" name="accountbank" class="form-control" data-ng-model="form.accountbank" placeholder="{{ 'BANC' | translate }}*" data-ng-change="formAccountListener()" required/>-->
-                    <!--<span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountbank.$error.required">{{ 'OBLIGATORI' | translate }}</span>-->
-                <!--</div>-->
-                <!--<div class="col-sm-2 col-xs-6">-->
-                    <!--<input type="text" name="accountoffice" class="form-control" data-ng-model="form.accountoffice" placeholder="{{ 'OFICINA' | translate }}*" data-ng-change="formAccountListener()" required/>-->
-                    <!--<span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountoffice.$error.required">{{ 'OBLIGATORI' | translate }}</span>-->
-                <!--</div>-->
-                <!--<div class="col-sm-1 col-xs-4">-->
-                    <!--<input type="text" name="accountchecksum" class="form-control" data-ng-model="form.accountchecksum" placeholder="D.C.*" data-ng-change="formAccountListener()" required/>-->
-                    <!--<span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountchecksum.$error.required">{{ 'OBLIGATORI' | translate }}</span>-->
-                <!--</div>-->
-                <!--<div class="col-sm-4 col-xs-8">-->
-                    <!--<input type="text" name="accountnumber" class="form-control" data-ng-model="form.accountnumber" placeholder="{{ 'COMPTE' | translate }}*" data-ng-change="formAccountListener()" required/>-->
-                    <!--<span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountnumber.$error.required">{{ 'OBLIGATORI' | translate }}</span>-->
-                <!--</div>-->
-            <!--</div>-->
-            <div class="row">
-                <div class="col-sm-12 col-xs-12">
-                    <label>{{ 'NUM_COMPTE' | translate }} ({{ 'IBAN_EXEMPLE' | translate }}: ES11 2222 3333 4444 5555 6666)</label>
-                    <span class="label label-danger" data-ng-show="accountIsInvalid">{{ 'INVALID' | translate }}</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2 col-xs-2">
-                    <input type="text" name="accountbankiban1" class="form-control" data-ng-model="form.accountbankiban1" data-ng-change="formAccountIbanListener()" required/>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountbankiban1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                </div>
-                <div class="col-sm-2 col-xs-2">
-                    <input id="accountbankiban2input" type="text" name="accountbankiban2" class="form-control" data-ng-model="form.accountbankiban2" data-ng-change="formAccountIbanListener()" required/>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountbankiban2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                </div>
-                <div class="col-sm-2 col-xs-2">
-                    <input id="accountbankiban3input" type="text" name="accountbankiban3" class="form-control" data-ng-model="form.accountbankiban3" data-ng-change="formAccountIbanListener()" required/>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountbankiban3.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                </div>
-                <div class="col-sm-2 col-xs-2">
-                    <input id="accountbankiban4input" type="text" name="accountbankiban4" class="form-control" data-ng-model="form.accountbankiban4" data-ng-change="formAccountIbanListener()" required/>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountbankiban4.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                </div>
-                <div class="col-sm-2 col-xs-2">
-                    <input id="accountbankiban5input" type="text" name="accountbankiban5" class="form-control" data-ng-model="form.accountbankiban5" data-ng-change="formAccountIbanListener()" required/>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountbankiban5.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                </div>
-                <div class="col-sm-2 col-xs-2">
-                    <input id="accountbankiban6input" type="text" name="accountbankiban6" class="form-control" data-ng-model="form.accountbankiban6" data-ng-change="formAccountIbanListener()" required/>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountbankiban6.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            <div class="row no-margin-bottom">
+                <iban-editor
+                    class="col-sm-8 col-xs-12"
+                    required
+                    inputid="accountbankiban"
+                    placeholder="{{'CODI_IBAN_DEL_COMPTE' | translate}}"
+                    help="accountbankibanHelp"
+                    model="ibanEditor"
+                ></iban-editor>
+                <div class="col-xs-12">
+                    <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>{{ 'EXEMPLE_IBAN' | translate }}</div>
                 </div>
             </div>
             <div class="row">
