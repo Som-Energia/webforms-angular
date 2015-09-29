@@ -170,7 +170,6 @@ angular.module('newSomEnergiaWebformsApp')
                 HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: 'Hi ha llum al punt de subministrament actualment?',
                 AVIS_ALTA_DE_SERVEI: 'El punt de suministre no té servei i vols fer l\'alta directament amb Som Energia',
                 AVIS_CANVI_COMERCIALITZADORA: 'El punt de subministre ja té servei amb altre comercialitzadora i vols passar-te a Som Energia',
-                TENS_EL_CUPS: 'Tens el codi CUPS?',
             })
         ;
     });
