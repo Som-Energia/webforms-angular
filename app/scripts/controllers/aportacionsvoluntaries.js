@@ -43,6 +43,8 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.form.acceptcontract = false;
         $scope.isPartner = true;
         $scope.newPartner = {};
+        $scope.initForm = {};
+        $scope.ibanEditor = {};
 
         $scope.investedAmount = function() {
             return parseInt($scope.form.amount||0);
@@ -65,7 +67,7 @@ angular.module('newSomEnergiaWebformsApp')
         });
 
         $scope.isInvestmentFormReady = function() {
-            if ($scope.ibanEditor === undefined) {return false;}
+            if ($scope.ibanEditor.isValid === undefined) {return false;}
             if (!$scope.ibanEditor.isValid()) {return false;}
             if ($scope.amountUnderMin) {return false;}
             if ($scope.amountAboveMax) {return false;}

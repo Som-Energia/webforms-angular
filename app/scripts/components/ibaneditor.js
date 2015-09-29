@@ -31,7 +31,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope._isValid = $scope.required === undefined;
         $scope._lastPromise = undefined;
-        $scope.model = {};
         $scope.model.value = undefined;
         $scope.model.serverError = undefined;
 

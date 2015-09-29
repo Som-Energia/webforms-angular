@@ -43,6 +43,8 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
         $scope.isPartner = true;
         $scope.newPartner = {};
+        $scope.initForm = {};
+        $scope.ibanEditor = {};
 
         $scope.energeticActionsCost = function() {
             return ($scope.form.energeticActions||0) * $scope.preuPerAccio;
@@ -89,7 +91,7 @@ angular.module('newSomEnergiaWebformsApp')
         });
 
         $scope.isInvestmentFormReady = function() {
-            if ($scope.ibanEditor === undefined) {return false;}
+            if ($scope.ibanEditor.isValid === undefined) {return false;}
             if (!$scope.ibanEditor.isValid()) {return false;}
             if (!$scope.energeticActionsCost()) {return false;}
             if ($scope.form.acceptaccountowner === false) {return false;}
