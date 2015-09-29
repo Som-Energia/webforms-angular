@@ -1,4 +1,16 @@
-<div data-ng-show="step4Ready">
+
+<wizard-page
+    model="wizardPage"
+    header="{{ 'REVISIO_CONFIRMACIO_DADES' | translate }}"
+    page-name='confirmationPage'
+    prev-page="goToPayerPage()"
+    next-page="submitOrder(orderForm)"
+    prev-text="{{ 'NO' | translate }}"
+    next-text="{{ 'SI_TOT_CORRECTE' | translate }}"
+    show-always='showAll'
+    ready="true"
+    boodata-ng-show="step4Ready"
+>
     <div class="row no-margin-bottom">
         <div class="col-xs-12 heading active">
             <h2 class="extra-margin">{{ 'REVISIO_CONFIRMACIO_DADES' | translate }}</h2>
@@ -192,10 +204,4 @@
             <span class="last-help-title">{{ 'SI_LES_DADES_SON_CORRECTES' | translate }}.</span>
         </div>
     </div>
-    <div class="row no-margin-bottom">
-        <div class="col-xs-12 no-horitzontal-padding">
-            <button data-ng-click="goToPayerPage()" class="btn btn-default pull-left previous-step-submit" type="button">{{ 'NO' | translate }}</button>
-            <button data-ng-click="submitOrder(orderForm)" class="btn btn-default pull-right final-step-submit" type="button">{{ 'SI_TOT_CORRECTE' | translate }}</button>
-        </div>
-    </div>
-</div>
+</wizard-page>

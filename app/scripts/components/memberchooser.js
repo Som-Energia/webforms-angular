@@ -34,6 +34,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.mostraNomSociTrobat = attrs.showMemberName !== undefined;
         $scope.developing = false;
         $scope.dniIsInvalid = true;
+        console.debug($scope);
 
         $scope._states = {
             IDLE: 1,
@@ -73,6 +74,15 @@ angular.module('newSomEnergiaWebformsApp')
                     return $scope._states[key] === $scope._state;
                 })[0];
         };
+        $scope.model.isIdle = $scope.isIdle;
+        $scope.model.isValidatingId = $scope.isValidatingId;
+        $scope.model.isValidatingMember = $scope.isValidatingMember;
+        $scope.model.isInvalidId = $scope.isInvalidId;
+        $scope.model.isInvalidMember = $scope.isInvalidMember;
+        $scope.model.isReady = $scope.isReady;
+        $scope.model.isApiError = $scope.isApiError;
+        $scope.model.currentInitState = $scope.currentInitState;
+
 
         var timeoutCheckSoci = false;
         $scope.$watch('formvalues.socinumber', function(newValue) {

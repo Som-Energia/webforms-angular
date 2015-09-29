@@ -12,13 +12,19 @@ angular.module('newSomEnergiaWebformsApp')
             nextPage: '&',
             showAlways: '=',
             ready: '=',
+            prevText: '@?',
             nextText: '@?',
             hideButtons: '@?',
         },
         transclude: true,
         templateUrl: 'scripts/components/wizardpage.html',
         controller: 'wizardPageCtrl',
-        link: function(scope, element, attrs, wizardPageCtrl) {
+        link: function(scope, element, attrs, wizardPageCtrl, transclude) {
+            console.debug('transclude:', transclude);
+            transclude(scope.$parent, function(content) {
+                scope.caca;
+                element.replaceChild(content);
+            });
             wizardPageCtrl.init(element, attrs);
         },
     };
@@ -28,7 +34,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope
         ) {
     var self = this;
-    self.init = function(element, attrs) {
+    self.init = function( /* element, attrs */ ) {
         if ($scope.model.pages === undefined) {
             $scope.model.pages = [];
         }

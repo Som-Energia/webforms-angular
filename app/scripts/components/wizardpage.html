@@ -1,34 +1,35 @@
 <!-- Wizard Page -->
-<div ng-hidden="header===undefined" class="row no-margin-bottom">
-    <div class="col-xs-12 heading" data-ng-class="{active: model.current === pageName}">
-        <h2 class="extra-margin">{{header}}</h2>
+<div>
+    <div ng-hidden="header===undefined" class="row no-margin-bottom">
+        <div class="col-xs-12 heading" data-ng-class="{active: model.current === pageName}">
+            <h2 class="extra-margin">{{header}}</h2>
+        </div>
     </div>
-</div>
-<div
-    data-ng-show="model.current === pageName || showAlways"
-    >
-    <div ng-transclude>
-    </div>
-    <div class="row no-margin-bottom" data-ng-show="hideButtons===undefined">
-        <div class="col-xs-12 no-horitzontal-padding">
-            <button
-                data-ng-click="prev()"
-                class="btn btn-default pull-left previous-step-submit"
-                type="button"
-            >{{ 'PAS_ANTERIOR' | translate }}</button>
-            <button
-                data-ng-hidden="next === undefined"
-                data-ng-click="next()"
-                class="btn btn-default pull-right"
-                data-ng-class="{
-                    'next-step-submit': nextText === undefined,
-                    'final-step-submit': nextText !== undefined,
-                }"
-                data-ng-disabled="!ready"
-                type="button"
-            >{{ nextText || ('SEGUENT_PAS' | translate) }}
-            </button>
+    <div
+        data-ng-show="model.current === pageName || showAlways"
+        >
+        <div ng-transclude>
+        </div>
+        <div class="row no-margin-bottom" data-ng-show="hideButtons===undefined">
+            <div class="col-xs-12 no-horitzontal-padding">
+                <button
+                    data-ng-click="prev()"
+                    class="btn btn-default pull-left previous-step-submit"
+                    type="button"
+                >{{ prevText || 'PAS_ANTERIOR' | translate }}</button>
+                <button
+                    data-ng-hidden="next === undefined"
+                    data-ng-click="next()"
+                    class="btn btn-default pull-right"
+                    data-ng-class="{
+                        'next-step-submit': nextText === undefined,
+                        'final-step-submit': nextText !== undefined,
+                    }"
+                    data-ng-disabled="!ready"
+                    type="button"
+                >{{ nextText || ('SEGUENT_PAS' | translate) }}
+                </button>
+            </div>
         </div>
     </div>
 </div>
-

@@ -23,7 +23,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.showAll = true;
 
         $scope.initForm = {};
-        $scope.initForm.isReady = function() { return false;};
 
         $scope.showAllSteps = function() {
             $scope.showAll = true;
@@ -172,19 +171,26 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.esAlta = function() {
-            $log.log($scope.form.hasservice);
-            return  $scope.form.hasservice === 'no';
+            $log.log('hasservice', $scope.form.hasservice);
+            return  $scope.form.hasservice === true;
         };
 
         // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function() {
-            $scope.isStepHaveLightReady = $scope.initForm.isReady() && (
-		$scope.form.hasservice===true ||
-		$scope.form.hascups === true ||
-		$scope.altesDeshabilitades
-		);
-
-            $scope.isStep2ButtonReady = $scope.isStepHaveLightReady &&
+            console.debug(
+                'initForm', $scope.initForm);
+            console.debug(
+                'initForm.isReady', $scope.initForm && $scope.initForm.isReady);
+            $scope.isStepHaveLightReady =
+                $scope.initForm !== undefined &&
+                $scope.initForm.isReady !== undefined &&
+                $scope.initForm.isReady() && (
+                   $scope.esAlta() === true ||
+                   $scope.form.hascups === true ||
+                   $scope.altesDeshabilitades
+                );
+            $scope.isStep2ButtonReady =
+                $scope.isStepHaveLightReady &&
                 $scope.form.address !== undefined &&
                 $scope.form.province !== undefined &&
                 $scope.form.city !== undefined &&
