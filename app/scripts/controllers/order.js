@@ -21,7 +21,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.altesDeshabilitades = false;
         $scope.showAll = true;
-
         $scope.initForm = {};
 
         $scope.showAllSteps = function() {
@@ -171,22 +170,16 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.esAlta = function() {
-            $log.log('hasservice', $scope.form.hasservice);
             return  $scope.form.hasservice === true;
         };
 
         // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function() {
-            console.debug(
-                'initForm', $scope.initForm);
-            console.debug(
-                'initForm.isReady', $scope.initForm && $scope.initForm.isReady);
             $scope.isStepHaveLightReady =
                 $scope.initForm !== undefined &&
                 $scope.initForm.isReady !== undefined &&
                 $scope.initForm.isReady() && (
-                   $scope.esAlta() === true ||
-                   $scope.form.hascups === true ||
+                   $scope.esAlta() !== undefined ||
                    $scope.altesDeshabilitades
                 );
             $scope.isStep2ButtonReady =

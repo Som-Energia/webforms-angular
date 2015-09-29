@@ -55,23 +55,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row" data-ng-hide="form.hasservice !== false">
-                <div class="form-group col-xs-12">
-                    <div>
-                        <label>{{ 'TENS_EL_CUPS' | translate }}</label>
-                    </div>
-                    <div class="btn-group">
-                        <label class="btn btn-default green" data-ng-change="formListener()" data-ng-model="form.hascups" data-btn-radio="true">{{ 'SI' | translate }}</label>
-                        <label class="btn btn-default green" data-ng-change="formListener()" data-ng-model="form.hascups" data-btn-radio="false" >{{ 'NO' | translate }}</label>
-                    </div>
-                    <div data-ng-show="form.hascups===true" class="alert alert-warning" style="margin-top:5px" role="alert">
-                        <span data-ng-bind-html="'AVIS_CUPS' | translate"></span>
-                    </div>
-                    <div data-ng-show="form.hascups===false" class="alert alert-warning" style="margin-top:5px" role="alert">
-                        <span data-ng-bind-html="'AVIS_NOCUPS' | translate"></span>
-                    </div>
-                </div>
-            </div>
         </wizard-page>
     </div>
 
