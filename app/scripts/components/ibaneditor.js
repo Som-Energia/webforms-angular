@@ -11,7 +11,9 @@ angular.module('newSomEnergiaWebformsApp')
             placeholder: '@?',
             required: '@?',
             checkurl: '@?',
+            helpText: '@?',
         },
+        transclude: true,
         templateUrl: 'scripts/components/ibaneditor.html',
         controller: 'ibanEditorCtrl',
         link: function(scope, element, attrs, ibanEditorCtrl) {
@@ -57,6 +59,12 @@ angular.module('newSomEnergiaWebformsApp')
             if ($scope.model.isRequiredMissing()) { return false; }
             return $scope._isValid === false;
         };
+        $scope.model.isOptionallyEmpty = function() {
+            if ($scope.model.inServerError()) { return false; }
+            if ($scope.model.isRequiredMissing()) { return false; }
+            if ($scope._isValid === false) { return false; }
+            return $scope.model.value === undefined;
+        }
 
         // Backward with order.js  
         $scope.formListener = function() {
@@ -88,6 +96,7 @@ angular.module('newSomEnergiaWebformsApp')
                         return;
                     }
                     $scope._isValid = response !== cfg.STATE_FALSE;
+                    $scope.model.data = response.data;
                 },
                 function(reason) {
                     // TODO: Translate 'Unknown'

@@ -75,30 +75,73 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-xs-12 form-group has-feedback">
                     <label for="address" class="sr-only">{{ 'ADRECA' | translate }}*:</label>
-                    <input type="text" name="address" data-ng-model="form.address" class="form-control" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener()" required />
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.address.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <input type="text" name="address" data-ng-model="form.address" class="form-control input-lg" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener()" required />
+                    <span class="form-control-feedback glyphicon "  data-ng-class="{
+                        'glyphicon-asterisk danger': form.address === undefined,
+                        'glyphicon-ok success': form.address !== undefined,
+                    }" style="dright:2em"></span>
+                    <span class="pull-right label label-success" data-ng-show="form.address!==undefined">{{ 'CORRECTE' | translate }}</span>
+                    <span class="pull-right label label-danger" data-ng-show="form.address===undefined">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-sm-4 col-xs-12">
-                    <label>{{ 'PROVINCIA' | translate }}*:</label>
-                    <select class="form-control width-70-percent" name="province" data-ng-model="form.province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity(form)" required>
+                <div class="form-group has-feedback col-xs-6">
+                    <label class="sr-only">{{ 'PROVINCIA' | translate }}*:</label>
+                    <select class="form-control input-lg" name="province" data-ng-model="form.province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity(form)" required>
                         <option value="">{{ 'PROVINCIA' | translate }}*</option>
                     </select>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.province.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="form-control-feedback glyphicon "  data-ng-class="{
+                        'glyphicon-asterisk danger': form.province === undefined && provinces.length,
+                        'glyphicon-refresh spinning warning': provinces.length === 0,
+                        'glyphicon-ok success': form.province !== undefined,
+                    }" style="dright:2em"></span>
+                    <span class="pull-right label label-success" data-ng-show="form.province!==undefined">{{ 'CORRECTE' | translate }}</span>
+                    <span class="pull-right label label-warning" data-ng-show="provinces.length===0">{{ 'CARREGANT' | translate }}</span>
+                    <span class="pull-right label label-danger" data-ng-show="provinces.length!=0 && form.province===undefined">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-                <div class="form-group col-sm-4 col-xs-12">
-                    <label>{{ 'POBLACIO' | translate }}*:</label>
-                    <select class="form-control width-70-percent" name="city" data-ng-model="form.city" data-ng-options="city.name for city in cities" data-ng-change="formListener()" required>
+                <div class="form-group has-feedback col-xs-6">
+                    <label class="sr-only">{{ 'POBLACIO' | translate }}*:</label>
+                    <select class="form-control input-lg" name="city" data-ng-model="form.city" data-ng-options="city.name for city in cities" data-ng-change="formListener()" required>
                         <option value="">{{ 'POBLACIO' | translate }}*</option>
                     </select>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.city.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="form-control-feedback glyphicon "  data-ng-class="{
+                        'glyphicon-asterisk danger': form.city === undefined && (cities.length || form.province===undefined),
+                        'glyphicon-refresh spinning warning': cities.length === 0 && form.province!==undefined,
+                        'glyphicon-ok success': form.city !== undefined,
+                    }" style="dright:2em"></span>
+                    <span class="pull-right label label-success" data-ng-show="form.city!==undefined">{{ 'CORRECTE' | translate }}</span>
+                    <span class="pull-right label label-warning" data-ng-show="cities.length===0 && form.province!==undefined">{{ 'CARREGANT' | translate }}</span>
+                    <span class="pull-right label label-danger" data-ng-show="form.city === undefined && (cities.length || form.province===undefined)">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
-            <hr>
             <div class="row">
+                <iban-editor
+                    class="col-xs-12"
+                    required
+                    inputid="cups"
+                    placeholder="{{'NUMERO_DE_CUPS' | translate}}"
+                    help-text="{{ 'HELP_POPOVER_CUPS' | translate }}"
+                    checkurl="check/cups/"
+                    model="cupsEditor"
+                >
+                    <span class="pull-right label label-danger" data-ng-show="cupsIsDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
+                </iban-editor>
+            </div>
+            <div class="row">
+                <iban-editor
+                    class="col-xs-12"
+                    notrequired
+                    inputid="cnae"
+                    placeholder="{{'CNAE' | translate}}"
+                    help-text="{{ 'HELP_POPOVER_CNAE' | translate }}"
+                    checkurl="check/cnae/"
+                    model="cnaeEditor"
+                >
+                    <span class="label label-success" data-ng-show="!cnaeIsInvalid && cnaeDescription">{{ cnaeDescription }}</span>
+                </iban-editor>
+<!--
                 <div class="col-sm-8 col-xs-12">
                     <div class="wrapper">
                         <label class="sr-only">{{ 'NUMERO_DE_CUPS' | translate }}*</label>
@@ -119,7 +162,9 @@
                     <span class="label label-danger" data-ng-show="cnaeIsInvalid">{{ 'INVALID' | translate }}</span>
                     <span class="label label-success" data-ng-show="!cnaeIsInvalid && cnaeDescription">{{ cnaeDescription }}</span>
                 </div>
+-->
             </div>
+            <hr>
             <div class="row">
                 <div class="form-group col-sm-6 col-xs-12">
                     <label class="combo-one-row">{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}*</label>
@@ -185,7 +230,7 @@
                 <div class="col-sm-5 col-xs-12">
                     <label for="catastre" class="sr-only">{{ 'REFERENCIA_CATASTRAL' | translate }}:</label>
                     <input type="text" name="catastre" data-ng-model="form.catastre" class="form-control width-70-percent combo-one-row" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener()"/>
-                    <span class="spc-html badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_REFERENCIA_CATASTRAL' | translate }}" data-placement="top">?</span>
+                    <span class="badge current small" popover-append-to-body="true" popover-toggle="popover" popover="{{ 'HELP_POPOVER_REFERENCIA_CATASTRAL' | translate }}" popover-placement="top">?</span>
                 </div>
             </div>
             <div class="row">

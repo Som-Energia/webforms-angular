@@ -96,7 +96,7 @@ angular.module('newSomEnergiaWebformsApp')
                         deferred.resolve(response.state);
                         $scope.formListener($scope.form);
                     } else if (response.status === cfg.STATUS_OFFLINE) {
-                        msg = 'API server response status offline recived (ref.002-' + errorCode + ')';
+                        msg = 'API server response status offline received (ref.002-' + errorCode + ')';
                         uiHandler.showErrorDialog(msg);
                         deferred.reject(msg);
                     } else {

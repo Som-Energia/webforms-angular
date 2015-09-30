@@ -23,6 +23,8 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.showAll = true;
         $scope.initForm = {};
         $scope.ibanEditor = {};
+        $scope.cupsEditor = {};
+        $scope.cnaeEditor = {};
 
         $scope.showAllSteps = function() {
             $scope.showAll = true;
@@ -50,8 +52,6 @@ angular.module('newSomEnergiaWebformsApp')
             if (step===8) { return $scope.step8Ready === true; }
             return step===0;
         };
-        $scope.cupsIsInvalid = false;
-        $scope.cnaeIsInvalid = false;
         $scope.rate20IsInvalid = false;
         $scope.rate21IsInvalid = false;
         $scope.rate3AIsInvalid = false;
@@ -111,14 +111,6 @@ angular.module('newSomEnergiaWebformsApp')
         var checkAccountEmail2Timer = false;
         ValidateHandler.validateEmail2($scope, 'form.accountemail2', checkAccountEmail2Timer);
 
-        // CUPS VALIDATION
-        var checkCupsTimer = false;
-        ValidateHandler.validateCups($scope, 'form.cups', checkCupsTimer);
-
-        // CNAE VALIDATION
-        var cnaeCupsTimer = false;
-        ValidateHandler.validateCnae($scope, 'form.cnae', cnaeCupsTimer);
-
         // POSTAL CODE VALIDATION
         ValidateHandler.validatePostalCode($scope, 'form.postalcode');
         ValidateHandler.validatePostalCode($scope, 'form.accountpostalcode');
@@ -139,12 +131,21 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
+            $scope.form.city=undefined;
+            $scope.cities=[];
+            if ($scope.form.province===undefined) { return; }
             AjaxHandler.getCities($scope, 1, $scope.form.province.id);
         };
         $scope.updateSelectedCity2 = function() {
+            $scope.form.city2=undefined;
+            $scope.cities2=[];
+            if ($scope.form.province2===undefined) { return; }
             AjaxHandler.getCities($scope, 2, $scope.form.province2.id);
         };
         $scope.updateSelectedCity3 = function() {
+            $scope.form.city3=undefined;
+            $scope.cities3=[];
+            if ($scope.form.province3===undefined) { return; }
             AjaxHandler.getCities($scope, 3, $scope.form.province3.id);
         };
 
@@ -181,11 +182,8 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.address !== undefined &&
                 $scope.form.province !== undefined &&
                 $scope.form.city !== undefined &&
-                $scope.form.cups !== undefined &&
-                $scope.form.cnae !== undefined &&
-                $scope.cupsIsInvalid === false &&
-                $scope.cupsIsDuplicated === false &&
-                $scope.cnaeIsInvalid === false &&
+                $scope.cupsEditor.isValid() &&
+                $scope.cnaeEditor.isValid() &&
                 $scope.form.rate !== undefined &&
                 (
                     (($scope.form.rate === cfg.RATE_20A || $scope.form.rate === cfg.RATE_20DHA || $scope.form.rate === cfg.RATE_20DHS) && $scope.form.power !== undefined && !$scope.rate20IsInvalid) ||
@@ -221,6 +219,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.emailNoIguals === false)
                 );
             $scope.isFinalStepButtonReady = $scope.isStep3ButtonReady &&
+                $scope.ibanEditor.isValid !== undefined &&
                 $scope.ibanEditor.isValid() &&
                 $scope.form.acceptaccountowner &&
                 $scope.form.voluntary !== undefined && ($scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ||
@@ -336,12 +335,12 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('titular_cp', $scope.form.isownerlink === 'yes' ? $scope.soci.cp : $scope.form.postalcode);
             formData.append('titular_provincia', $scope.form.isownerlink === 'yes' ? $scope.soci.provincia : $scope.form.province2.id);
             formData.append('tarifa', $scope.form.rate);
-            formData.append('cups', $scope.form.cups);
+            formData.append('cups', $scope.cupsEditor.value);
             formData.append('consum', $scope.form.estimation || '');
             formData.append('potencia', Math.round($scope.form.power * cfg.THOUSANDS_CONVERSION_FACTOR));
             formData.append('potencia_p2', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power2 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
             formData.append('potencia_p3', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power3 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
-            formData.append('cnae', $scope.form.cnae);
+            formData.append('cnae', $scope.cnaeEditor.value || '');
             formData.append('cups_adreca', $scope.form.address);
             formData.append('cups_provincia', $scope.form.province.id);
             formData.append('cups_municipi', $scope.form.city.id);
@@ -471,8 +470,8 @@ angular.module('newSomEnergiaWebformsApp')
 //            $scope.form.province = {id: 0, name: 'province'};
 //            $scope.form.city = {id: 0, name: 'city'};
             $scope.form.address = debugCfg.ADDRESS;
-            $scope.form.cups = debugCfg.CUPS;
-            $scope.form.cnae = debugCfg.CNAE;
+            $scope.cupsEditor.value = debugCfg.CUPS;
+            $scope.cnaeEditor.value = debugCfg.CNAE;
             $scope.form.power = debugCfg.POWER;
             $scope.form.rate = debugCfg.RATE;
             $scope.executeGetSociValues();
