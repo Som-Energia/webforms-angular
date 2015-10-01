@@ -21,13 +21,12 @@
             role="button"
             tabindex="@"
             class="btn btn-default input-group-addon"
-            popover-container="body"
-            popover-append-to-body="true"
-            popover-trigger="focus"
-            popover-placement="left"
-            popover="{{ helpText }}"
+            tooltip-append-to-body="true"
+            tooltip-trigger="focus"
+            tooltip-placement="left"
+            tooltip-html-unsafe="{{ helpText }}"
             >
-            <span class="badge current small" data-container="body" >?</span>
+            <span class="badge current small">?</span>
         </a>
     </div>
     <span class="form-control-feedback glyphicon "  data-ng-class="{
