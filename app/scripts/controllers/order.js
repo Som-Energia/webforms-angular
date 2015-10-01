@@ -20,7 +20,7 @@ angular.module('newSomEnergiaWebformsApp')
         }
 
         $scope.altesDeshabilitades = false;
-        $scope.showAll = false;
+        $scope.showAll = true;
 
         $scope.initForm = {};
         $scope.ibanEditor = {};
@@ -139,7 +139,9 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.esAlta = function() {
-            return  $scope.form.hasservice === true;
+            if ($scope.altesDeshabilitades) { return false; }
+            if ($scope.form.hasservice == undefined) { return undefined; }
+            return ! $scope.form.hasservice;
         };
 
         // CONTROL READY STEPS ON CHANGE FORM
