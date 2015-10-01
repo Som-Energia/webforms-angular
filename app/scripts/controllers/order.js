@@ -491,7 +491,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.email1 = debugCfg.EMAIL;
             $scope.form.email2 = debugCfg.EMAIL;
             $scope.form.accept = true;
-            $scope.ibanEditor.value = debugCfg.IBAN1
+            $scope.ibanEditor.value = debugCfg.IBAN1;
             $scope.ibanEditor.value += debugCfg.IBAN2;
             $scope.ibanEditor.value += debugCfg.IBAN3;
             $scope.ibanEditor.value += debugCfg.IBAN4;
