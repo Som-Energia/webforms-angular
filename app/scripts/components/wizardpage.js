@@ -19,7 +19,7 @@ angular.module('newSomEnergiaWebformsApp')
         transclude: true,
         templateUrl: 'scripts/components/wizardpage.html',
         controller: 'wizardPageCtrl',
-        link: function(scope, element, attrs, wizardPageCtrl, /*$transclude*/) {
+        link: function(scope, element, attrs, wizardPageCtrl /*, $transclude*/) {
             // Use parent scope for transcluded content, instead using a clone
 //            $transclude(scope.$parent, function(/*content*/) {});
             wizardPageCtrl.init(element, attrs);
