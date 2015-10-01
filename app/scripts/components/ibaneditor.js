@@ -64,7 +64,7 @@ angular.module('newSomEnergiaWebformsApp')
             if ($scope.model.isRequiredMissing()) { return false; }
             if ($scope._isValid === false) { return false; }
             return $scope.model.value === undefined;
-        }
+        };
 
         // Backward with order.js  
         $scope.formListener = function() {
