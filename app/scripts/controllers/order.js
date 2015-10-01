@@ -25,6 +25,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.ibanEditor = {};
         $scope.cupsEditor = {};
         $scope.cnaeEditor = {};
+        $scope.cadastreEditor = {};
 
         $scope.showAllSteps = function() {
             $scope.showAll = true;
@@ -344,7 +345,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('cups_adreca', $scope.form.address);
             formData.append('cups_provincia', $scope.form.province.id);
             formData.append('cups_municipi', $scope.form.city.id);
-            formData.append('referencia', $scope.form.catastre || '');
+            formData.append('referencia', $scope.cadastreEditor && $scope.cadastreEditor.value || '');
             formData.append('fitxer', jQuery('#fileuploaderinput')[0].files[0]);
             formData.append('payment_iban', $scope.getCompleteIban());
             formData.append('escull_pagador', $scope.form.choosepayer);

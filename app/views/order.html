@@ -76,8 +76,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group has-feedback">
-                    <label for="address" class="sr-only">{{ 'ADRECA' | translate }}*:</label>
-                    <input type="text" name="address" data-ng-model="form.address" class="form-control input-lg" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener()" required />
+                    <label for="address" class="sr-only">{{ 'ADRECA' | translate }}:</label>
+                    <input type="text" name="address" data-ng-model="form.address" class="form-control input-lg" placeholder="{{ 'ADRECA' | translate }}" data-ng-change="formListener()" required />
                     <span class="form-control-feedback glyphicon "  data-ng-class="{
                         'glyphicon-asterisk danger': form.address === undefined,
                         'glyphicon-ok success': form.address !== undefined,
@@ -88,9 +88,9 @@
             </div>
             <div class="row">
                 <div class="form-group has-feedback col-xs-6">
-                    <label class="sr-only">{{ 'PROVINCIA' | translate }}*:</label>
-                    <select class="form-control input-lg" name="province" data-ng-model="form.province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity(form)" required>
-                        <option value="">{{ 'PROVINCIA' | translate }}*</option>
+                    <label class="sr-only">{{ 'PROVINCIA' | translate }}:</label>
+                    <select class="form-control input-lg" placeholder name="province" data-ng-model="form.province" data-ng-options="province.name for province in provinces" data-ng-change="updateSelectedCity(form)" data-ng-disabled="provincies" required>
+                        <option value="">{{ 'PROVINCIA' | translate }}</option>
                     </select>
                     <span class="form-control-feedback glyphicon "  data-ng-class="{
                         'glyphicon-asterisk danger': form.province === undefined && provinces.length,
@@ -98,13 +98,13 @@
                         'glyphicon-ok success': form.province !== undefined,
                     }" style="dright:2em"></span>
                     <span class="pull-right label label-success" data-ng-show="form.province!==undefined">{{ 'CORRECTE' | translate }}</span>
-                    <span class="pull-right label label-warning" data-ng-show="provinces.length===0">{{ 'CARREGANT' | translate }}</span>
+                    <span class="pull-right label label-warning" data-ng-show="provinces.length===0">{{ 'CARREGANT_OPCIONS' | translate }}</span>
                     <span class="pull-right label label-danger" data-ng-show="provinces.length!=0 && form.province===undefined">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <div class="form-group has-feedback col-xs-6">
-                    <label class="sr-only">{{ 'POBLACIO' | translate }}*:</label>
-                    <select class="form-control input-lg" name="city" data-ng-model="form.city" data-ng-options="city.name for city in cities" data-ng-change="formListener()" required>
-                        <option value="">{{ 'POBLACIO' | translate }}*</option>
+                    <label class="sr-only">{{ 'POBLACIO' | translate }}:</label>
+                    <select class="form-control input-lg" placeholder name="city" data-ng-model="form.city" data-ng-options="city.name for city in cities" data-ng-change="formListener()" required>
+                        <option value="">{{ 'POBLACIO' | translate }}</option>
                     </select>
                     <span class="form-control-feedback glyphicon "  data-ng-class="{
                         'glyphicon-asterisk danger': form.city === undefined && (cities.length || form.province===undefined),
@@ -112,7 +112,7 @@
                         'glyphicon-ok success': form.city !== undefined,
                     }" style="dright:2em"></span>
                     <span class="pull-right label label-success" data-ng-show="form.city!==undefined">{{ 'CORRECTE' | translate }}</span>
-                    <span class="pull-right label label-warning" data-ng-show="cities.length===0 && form.province!==undefined">{{ 'CARREGANT' | translate }}</span>
+                    <span class="pull-right label label-warning" data-ng-show="cities.length===0 && form.province!==undefined">{{ 'CARREGANT_OPCIONS' | translate }}</span>
                     <span class="pull-right label label-danger" data-ng-show="form.city === undefined && (cities.length || form.province===undefined)">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
@@ -140,6 +140,17 @@
                     model="cnaeEditor"
                 >
                     <span class="label label-success" data-ng-show="!cnaeIsInvalid && cnaeDescription">{{ cnaeDescription }}</span>
+                </iban-editor>
+            </div>
+            <div class="row">
+                <iban-editor
+                    class="col-xs-12"
+                    notrequired
+                    inputid="cadastre"
+                    placeholder="{{'REFERENCIA_CATASTRAL' | translate}}"
+                    help-text="{{ 'HELP_POPOVER_REFERENCIA_CATASTRAL' | translate }}"
+                    model="cadastreEditor"
+                >
                 </iban-editor>
 <!--
                 <div class="col-sm-8 col-xs-12">
@@ -227,11 +238,13 @@
                     <label for="estimation" class="sr-only">{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}:</label>
                     <input type="text" name="estimation" data-ng-model="form.estimation" class="form-control" placeholder="{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}" data-ng-change="formListener()"/>
                 </div>
+<!--
                 <div class="col-sm-5 col-xs-12">
-                    <label for="catastre" class="sr-only">{{ 'REFERENCIA_CATASTRAL' | translate }}:</label>
-                    <input type="text" name="catastre" data-ng-model="form.catastre" class="form-control width-70-percent combo-one-row" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener()"/>
+                    <label for="cadastre" class="sr-only">{{ 'REFERENCIA_CATASTRAL' | translate }}:</label>
+                    <input type="text" name="cadastre" data-ng-model="form.cadastre" class="form-control width-70-percent combo-one-row" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener()"/>
                     <span class="badge current small" popover-append-to-body="true" popover-toggle="popover" popover="{{ 'HELP_POPOVER_REFERENCIA_CATASTRAL' | translate }}" popover-placement="top">?</span>
                 </div>
+-->
             </div>
             <div class="row">
                 <div class="col-xs-12">
