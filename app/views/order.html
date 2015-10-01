@@ -3,7 +3,7 @@
 
 <div ng-if='developing' data-ng-include data-src="'views/common/responsive-display.html'"></div>
 
-<div data-ng-show="!step4Ready">
+<div data-ng-show="!wizardPage.current!='confirmationPage' || showAll">
     <!-- Page: dadesSociPage -->
     <wizard-page
         model="wizardPage"
