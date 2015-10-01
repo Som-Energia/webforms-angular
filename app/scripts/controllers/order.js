@@ -20,7 +20,8 @@ angular.module('newSomEnergiaWebformsApp')
         }
 
         $scope.altesDeshabilitades = false;
-        $scope.showAll = true;
+        $scope.showAll = false;
+
         $scope.initForm = {};
         $scope.ibanEditor = {};
         $scope.cupsEditor = {};
@@ -29,29 +30,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.showAllSteps = function() {
             $scope.showAll = true;
-            $scope.step1Ready = true;
-            $scope.step2Ready = true;
-            $scope.step3Ready = true;
-            $scope.step8Ready = true;
-            $scope.currentStep = undefined;
-        };
-        $scope.setStep = function(step) {
-            $scope.step0Ready = step === 0;
-            $scope.step1Ready = step === 1;
-            $scope.step2Ready = step === 2;
-            $scope.step3Ready = step === 3;
-            $scope.step4Ready = step === 4;
-            $scope.step8Ready = step === 8;
-            $scope.currentStep = step;
-        };
-        $scope.isStep = function(step) {
-            if (step===0) { return $scope.step0Ready === true; }
-            if (step===1) { return $scope.step1Ready === true; }
-            if (step===2) { return $scope.step2Ready === true; }
-            if (step===3) { return $scope.step3Ready === true; }
-            if (step===4) { return $scope.step4Ready === true; }
-            if (step===8) { return $scope.step8Ready === true; }
-            return step===0;
         };
         $scope.rate20IsInvalid = false;
         $scope.rate21IsInvalid = false;
@@ -61,9 +39,12 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.invalidAttachFileExtension = false;
         $scope.overflowAttachFile = false;
         $scope.accountIsInvalid = false;
-        $scope.isStep2ButtonReady = false;
-        $scope.isStep3ButtonReady = false;
-        $scope.isFinalStepButtonReady = false;
+
+        $scope.isHaveLightPageComplete = false;
+        $scope.isSupplyPointPageComplete = false;
+        $scope.isOwnerPageComplete = false;
+        $scope.isPayerPageComplete = false;
+
         $scope.orderFormSubmitted = false;
         $scope.languages = [];
         $scope.provinces = [];
@@ -122,14 +103,6 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone1');
         ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone2');
 
-        // IBAN VALIDATION
-        ValidateHandler.validateIban($scope, 'form.accountbankiban1');
-        ValidateHandler.validateIban($scope, 'form.accountbankiban2');
-        ValidateHandler.validateIban($scope, 'form.accountbankiban3');
-        ValidateHandler.validateIban($scope, 'form.accountbankiban4');
-        ValidateHandler.validateIban($scope, 'form.accountbankiban5');
-        ValidateHandler.validateIban($scope, 'form.accountbankiban6');
-
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
             $scope.form.city=undefined;
@@ -171,15 +144,15 @@ angular.module('newSomEnergiaWebformsApp')
 
         // CONTROL READY STEPS ON CHANGE FORM
         $scope.formListener = function() {
-            $scope.isStepHaveLightReady =
+            $scope.isHaveLightPageComplete =
                 $scope.initForm !== undefined &&
                 $scope.initForm.isReady !== undefined &&
                 $scope.initForm.isReady() && (
                    $scope.esAlta() !== undefined ||
                    $scope.altesDeshabilitades
                 );
-            $scope.isStep2ButtonReady =
-                $scope.isStepHaveLightReady &&
+            $scope.isSupplyPointPageComplete =
+                $scope.isHaveLightPageComplete &&
                 $scope.form.address !== undefined &&
                 $scope.form.province !== undefined &&
                 $scope.form.city !== undefined &&
@@ -193,7 +166,7 @@ angular.module('newSomEnergiaWebformsApp')
                 ) &&
                 !$scope.overflowAttachFile;
 
-            $scope.isStep3ButtonReady = $scope.isStep2ButtonReady &&
+            $scope.isOwnerPageComplete = $scope.isSupplyPointPageComplete &&
                 $scope.form.changeowner !== undefined &&
                 $scope.form.accept === true &&
                 (
@@ -219,7 +192,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.emailIsInvalid === false &&
                         $scope.emailNoIguals === false)
                 );
-            $scope.isFinalStepButtonReady = $scope.isStep3ButtonReady &&
+            $scope.isPayerPageComplete = $scope.isOwnerPageComplete &&
                 $scope.ibanEditor.isValid !== undefined &&
                 $scope.ibanEditor.isValid() &&
                 $scope.form.acceptaccountowner &&
@@ -292,7 +265,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         // COMMON MOVE STEPS LOGIC
         $scope.setStepReady = function(enabledStep, pageName) {
-            $scope.setStep(enabledStep);
             $scope.wizardPage.current = pageName;
             if (debugEnabled) {
                 $log.log(pageName);
@@ -476,12 +448,6 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.power = debugCfg.POWER;
             $scope.form.rate = debugCfg.RATE;
             $scope.executeGetSociValues();
-            $scope.step0Ready = false;
-            $scope.step8Ready = true;
-            $scope.step1Ready = true;
-            $scope.step2Ready = true;
-            $scope.step3Ready = true;
-            $scope.step4Ready = true;
             $scope.form.representantdni = debugCfg.CIF;
             $scope.form.representantname = debugCfg.COMPANY;
             $scope.form.dni = debugCfg.DNI;

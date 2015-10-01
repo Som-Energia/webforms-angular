@@ -21,7 +21,6 @@
             soci="soci"
             model="initForm"
             formvalues="formsoci"
-            data-ng-show="isStep(0) || showAll"
             ></member-chooser>
     </wizard-page>
 
@@ -36,7 +35,7 @@
             prev-page="goToSociPage()"
             next-page="goToSupplyPointPage()"
             show-always='showAll'
-            ready="isStepHaveLightReady"
+            ready="isHaveLightPageComplete"
         >
             <div class="row">
                 <div class="form-group col-xs-12">
@@ -67,7 +66,7 @@
             prev-page="altesDeshabilitades ? goToSociPage() : goToHaveLightPage()"
             next-page="goToOwnerPage()"
             show-always='showAll'
-            ready="isStep2ButtonReady"
+            ready="isSupplyPointPageComplete"
         >
             <div class="row extra-margin-top">
                 <div class="col-xs-12">
@@ -264,7 +263,7 @@
             prev-page="goToSupplyPointPage()"
             next-page="goToPayerPage()"
             show-always='showAll'
-            ready="isStep3ButtonReady"
+            ready="isOwnerPageComplete"
         >
             <div class="row extra-margin-top">
                 <div class="form-group col-xs-12" data-ng-show="esAlta()">
@@ -513,7 +512,7 @@
             next-page="goToConfirmationPage()"
             next-text="{{ 'CONFIRMAR_CONTRACTACIO' | translate }}"
             show-always='showAll'
-            ready="isFinalStepButtonReady"
+            ready="isPayerPageComplete"
         >
         <!--FORTH STEP-->
             <div class="row extra-margin-top">
