@@ -171,7 +171,7 @@
                                 value="{{power}}"
                                 style="background-color: {{power > 10? '#ae7':'#df9' }}"
                                 >{{power}} kW</option>
-                            <option value='3.0A'>{{ 'MES_GRAN_DE_15KW' | translate}}</option>
+                            <option value='15'>{{ 'MES_GRAN_DE_15KW' | translate}}</option>
                         </select>
                         <a
                             role="button"
@@ -221,7 +221,7 @@
                         form.power < 10 ? '2.0' : (
                         form.power < 15 ? '2.1' :
                         '3.0')
-                     }}{{ {nodh:'A', dh:'DH', dhs:'DHS' }[form.discriminacio] }}</b>
+                     }}{{ {nodh:'A', dh:'DH', dhs:'DHS' }[form.power<15?form.discriminacio:'nodh']  }}</b>
                     </p>
                 </div>
             </div>
