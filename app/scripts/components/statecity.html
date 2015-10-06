@@ -1,10 +1,8 @@
-<div class="form-group has-feedback col-xs-12">
-The component
-</div>
 <div class="form-group has-feedback col-xs-6">
     <label class="sr-only">{{ 'PROVINCIA' | translate }}:</label>
     <select
-        class="form-control input-lg"
+        class="form-control"
+        ng-class="{'input-lg': small===undefined}"
         placeholder
         name="province"
         data-ng-model="stateModel"
@@ -27,7 +25,8 @@ The component
 <div class="form-group has-feedback col-xs-6">
     <label class="sr-only">{{ 'POBLACIO' | translate }}:</label>
     <select
-        class="form-control input-lg"
+        class="form-control"
+        ng-class="{'input-lg': small===undefined}"
         placeholder
         name="city"
         data-ng-model="cityModel"
@@ -45,4 +44,5 @@ The component
     <span class="pull-right label label-success" data-ng-show="cityModel!==undefined">{{ 'CORRECTE' | translate }}</span>
     <span class="pull-right label label-warning" data-ng-show="cities.length===0 && stateModel!==undefined">{{ 'CARREGANT_OPCIONS' | translate }}</span>
     <span class="pull-right label label-danger" data-ng-show="cityModel === undefined && (cities.length || stateModel===undefined)">{{ 'OBLIGATORI' | translate }}</span>
+    {{small}}
 </div>

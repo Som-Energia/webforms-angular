@@ -18,7 +18,8 @@ angular.module('newSomEnergiaWebformsApp')
         cfg,
         AjaxHandler,
         ValidateHandler,
-        $scope
+        $scope,
+        $log
         ) {
     var self = this;
     self.init = function(/*element, attrs*/) {
@@ -27,8 +28,19 @@ angular.module('newSomEnergiaWebformsApp')
             return (
                 $scope.form.language &&
                 $scope.form.name !== undefined &&
-                ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
-                ($scope.form.usertype === 'person' || $scope.form.usertype === 'company' && $scope.form.representantdni !== undefined && $scope.form.representantname !== undefined) &&
+                (
+                    $scope.form.usertype === 'company' || (
+                        $scope.form.usertype === 'person' &&
+                        $scope.form.surname !== undefined
+                    )
+                ) &&
+                (
+                    $scope.form.usertype === 'person' || (
+                        $scope.form.usertype === 'company' &&
+                        $scope.form.representantdni !== undefined &&
+                        $scope.form.representantname !== undefined
+                    )
+                ) &&
                 $scope.form.dni !== undefined &&
                 $scope.form.email1 !== undefined &&
                 $scope.form.email2 !== undefined &&
@@ -51,8 +63,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.cities = [];
         $scope.messages = null;
         $scope.form.language = {};
-        $scope.form.province = {};
-        $scope.form.city = {};
         $scope.form.usertype = 'person';
 
         $scope.dniRepresentantIsInvalid = false;
@@ -63,9 +73,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         // GET LANGUAGES
         AjaxHandler.getLanguages($scope);
-
-        // GET STATES
-        AjaxHandler.getStates($scope);
 
         // POSTAL CODE VALIDATION
         var checkPostalCodeTimer = false;
@@ -93,7 +100,7 @@ angular.module('newSomEnergiaWebformsApp')
 
     };
     $scope.formListener = function() {
-//        $log.debug($scope.form);
+        $log.debug($scope.form);
     };
 
 })

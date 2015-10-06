@@ -11,6 +11,7 @@ angular.module('newSomEnergiaWebformsApp')
             stateModel: '=',
             cityModel: '=',
             onChange: '&',
+            small: '@?',
         },
         link: function(scope, element, attrs, stateCityController) {
             stateCityController.init(element, attrs);
