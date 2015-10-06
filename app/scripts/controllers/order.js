@@ -140,7 +140,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.esAlta = function() {
             if ($scope.altesDeshabilitades) { return false; }
-            if ($scope.form.hasservice == undefined) { return undefined; }
+            if ($scope.form.hasservice === undefined) { return undefined; }
             return ! $scope.form.hasservice;
         };
 
