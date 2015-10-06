@@ -64,15 +64,10 @@
             page-name='supplyPointPage'
             header="1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}"
             prev-page="altesDeshabilitades ? goToSociPage() : goToHaveLightPage()"
-            next-page="goToOwnerPage()"
+            next-page="goToFarePage()"
             show-always='showAll'
             ready="isSupplyPointPageComplete"
         >
-            <div class="row extra-margin-top">
-                <div class="col-xs-12">
-                    <p>{{ 'DADES_PUNT_SUBMINISTRAMENT_HELPER' | translate }}</p>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-xs-12 form-group has-feedback">
                     <label for="address" class="sr-only">{{ 'ADRECA' | translate }}:</label>
@@ -113,7 +108,7 @@
                     checkurl="check/cnae/"
                     model="cnaeEditor"
                 >
-                    <span class="label label-success" data-ng-show="!cnaeIsInvalid && cnaeDescription">{{ cnaeDescription }}</span>
+                    <span class="label label-success" data-ng-showe="!cnaeIsInvalid && cnaeEditor.data.description">{{ cnaeDescription }}</span>
                 </iban-editor>
             </div>
             <div class="row">
@@ -126,30 +121,24 @@
                     model="cadastreEditor"
                 >
                 </iban-editor>
-<!--
-                <div class="col-sm-8 col-xs-12">
-                    <div class="wrapper">
-                        <label class="sr-only">{{ 'NUMERO_DE_CUPS' | translate }}*</label>
-                        <input type="text" name="cups" class="form-control width-80-percent" placeholder="{{ 'NUMERO_DE_CUPS' | translate }}*" data-ng-model="form.cups" data-ng-change="formListener()" data-ng-class="{'ng-invalid': cupsIsInvalid || cupsIsDuplicated}" required/>
-                        <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_CUPS' | translate }}" data-placement="top">?</span>
-                    </div>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.cups.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                    <span class="label label-danger" data-ng-show="cupsIsInvalid">{{ 'INVALID' | translate }}</span>
-                    <span class="label label-danger" data-ng-show="cupsIsDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
-                </div>
-                <div class="col-sm-4 col-xs-12">
-                    <div class="wrapper">
-                        <label class="sr-only">CNAE*</label>
-                        <input type="text" name="cnae" class="form-control width-80-percent" placeholder="CNAE*" data-ng-model="form.cnae" data-ng-change="formListener()" data-ng-class="{'ng-invalid': cnaeIsInvalid}" required/>
-                        <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_CNAE' | translate }}" data-placement="left">?</span>
-                    </div>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.cnae.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                    <span class="label label-danger" data-ng-show="cnaeIsInvalid">{{ 'INVALID' | translate }}</span>
-                    <span class="label label-success" data-ng-show="!cnaeIsInvalid && cnaeDescription">{{ cnaeDescription }}</span>
-                </div>
--->
             </div>
-            <hr>
+        </wizard-page>
+
+        <!-- Page: Fares -->
+        <wizard-page
+            model="wizardPage"
+            page-name='farePage'
+            header="2 {{ 'TARIFA_I_POTENCIA' | translate }}"
+            prev-page="goToSupplyPointPage()"
+            next-page="goToPayerPage()"
+            show-always='showAll'
+            ready="isFarePageComplete"
+        >
+            <div class="row extra-margin-top">
+                <div class="col-xs-12">
+                    <p>{{ 'DADES_PUNT_SUBMINISTRAMENT_HELPER' | translate }}</p>
+                </div>
+            </div>
             <div class="row">
                 <div class="form-group col-sm-6 col-xs-12">
                     <label class="combo-one-row">{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}*</label>

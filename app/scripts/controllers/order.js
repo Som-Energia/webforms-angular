@@ -160,6 +160,9 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.city !== undefined &&
                 $scope.cupsEditor.isValid() &&
                 $scope.cnaeEditor.isValid() &&
+                true;
+
+            $scope.isFarePageComplete =
                 $scope.form.rate !== undefined &&
                 (
                     (($scope.form.rate === cfg.RATE_20A || $scope.form.rate === cfg.RATE_20DHA || $scope.form.rate === cfg.RATE_20DHS) && $scope.form.power !== undefined && !$scope.rate20IsInvalid) ||
@@ -168,7 +171,9 @@ angular.module('newSomEnergiaWebformsApp')
                 ) &&
                 !$scope.overflowAttachFile;
 
-            $scope.isOwnerPageComplete = $scope.isSupplyPointPageComplete &&
+            $scope.isOwnerPageComplete = 
+                $scope.isSupplyPointPageComplete &&
+                $scope.isFarePageComplete &&
                 $scope.form.changeowner !== undefined &&
                 $scope.form.accept === true &&
                 (
@@ -250,6 +255,10 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.goToSupplyPointPage = function() {
             $scope.setStepReady(1, 'supplyPointPage');
+        };
+
+        $scope.goToParePage = function() {
+            $scope.setStepReady(7, 'farePage');
         };
 
         $scope.goToOwnerPage = function() {
