@@ -66,7 +66,7 @@
             prev-page="altesDeshabilitades ? goToSociPage() : goToHaveLightPage()"
             next-page="goToFarePage()"
             show-always='showAll'
-            ready="isSupplyPointPageComplete"
+            ready="isSupplyPointPageComplete()"
         >
             <div class="row">
                 <div class="col-xs-12 form-group has-feedback">
@@ -80,8 +80,8 @@
                     <span class="pull-right label label-danger" data-ng-show="form.address===undefined">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
                 <state-city
-                    state-model='form.province'
-                    city-model='form.city'
+                    state-model="form.province"
+                    city-model="form.city"
                     >
                 </state-city>
             </div>
@@ -132,8 +132,100 @@
             prev-page="goToSupplyPointPage()"
             next-page="goToPayerPage()"
             show-always='showAll'
-            ready="isFarePageComplete"
+            ready="isFarePageComplete()"
         >
+            <div class="row extra-margin-top form-group">
+                <div class="col-xs-4">
+                    <label for="phases">{{ 'TIPUS_INSTALLACIO' | translate }}:</label>
+                </div>
+                <div class="col-xs-8">
+                    <div class='input-group'>
+                        <select class="form-control input-lg" ng-model="form.phases" required>
+                            <option value="mono">{{ 'MONOFASICA_NORMAL' | translate}}</option>
+                            <option value="tri">{{ 'TRIFASICA_INDUSTRIAL' | translate}}</option>
+                        </select>
+                        <a
+                            role="button"
+                            tabindex="true"
+                            class="btn btn-default input-group-addon"
+                            tooltip-append-to-body="true"
+                            tooltip-trigger="focus"
+                            tooltip-placement="left"
+                            tooltip-html-unsafe="{{ 'HELP_INSTALL_TYPE' | translate }}"
+                            >
+                            <span class="badge current small">?</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row extra-margin-top form-group">
+                <div class="col-xs-4">
+                    <label>{{ 'POTENCIA_CONTRACTADA' | translate }}</label>
+                </div>
+                <div class="col-xs-8">
+                    <div class='input-group'>
+                        <select class="input-lg form-control" required ng-model='form.power' >
+                            <option value=''>{{ 'POTENCIA_CONTRACTADA' | translate}}</option>
+                            <option
+                                ng-repeat="power in availablePowers()"
+                                value="{{power}}"
+                                style="background-color: {{power > 10? '#ae7':'#df9' }}"
+                                >{{power}} kW</option>
+                            <option value='3.0A'>{{ 'MES_GRAN_DE_15KW' | translate}}</option>
+                        </select>
+                        <a
+                            role="button"
+                            tabindex="true"
+                            class="btn btn-default input-group-addon"
+                            tooltip-append-to-body="true"
+                            tooltip-trigger="focus"
+                            tooltip-placement="left"
+                            tooltip-html-unsafe="{{ 'HELP_POPOVER_POTENCIA' | translate }}"
+                            >
+                            <span class="badge current small">?</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row extra-margin-top">
+                <div class="col-xs-4">
+                    {{ 'PERFIL_HORARI' | translate }}
+                </div>
+                <div class="col-xs-8">
+                    <div class='input-group'>
+                        <select class="input-lg form-control" ng-model="form.discriminacio" required>
+                            <option value='nodh'>{{ 'SENSE_DISCRIMINACIO_HORARIA' | translate}}</option>
+                            <option value='dh'>{{ 'AMB_DISCRIMINACIO_HORARIA' | translate}}</option>
+                            <option value='dhs'>{{ 'TRES_TRAMS' | translate}}</option>
+                        </select>
+                        <a
+                            role="button"
+                            tabindex="true"
+                            class="btn btn-default input-group-addon"
+                            tooltip-append-to-body="true"
+                            tooltip-trigger="focus"
+                            tooltip-placement="left"
+                            tooltip-html-unsafe="{{ 'HELP_POPOVER_DISCRIMINACIO_HORARIA' | translate }}"
+                            >
+                            <span class="badge current small">?</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row extra-margin-top">
+                <div class="col-xs-12">
+                    <p>
+                    {{form.power}} kW - 
+                    {{ 'LA_TEVA_TARIFA_ES' | translate }}
+                    <b>{{ 
+                        form.power < 10 ? '2.0' : (
+                        form.power < 15 ? '2.1' :
+                        '3.0')
+                     }}{{ {nodh:'A', dh:'DH', dhs:'DHS' }[form.discriminacio] }}</b>
+                    </p>
+                </div>
+            </div>
+            <hr/>
             <div class="row extra-margin-top">
                 <div class="col-xs-12">
                     <p>{{ 'DADES_PUNT_SUBMINISTRAMENT_HELPER' | translate }}</p>
@@ -224,7 +316,7 @@
             model="wizardPage"
             page-name='ownerPage'
             header="2 {{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}"
-            prev-page="goToSupplyPointPage()"
+            prev-page="goToFarePage()"
             next-page="goToPayerPage()"
             show-always='showAll'
             ready="isOwnerPageComplete"

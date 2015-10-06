@@ -41,7 +41,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.accountIsInvalid = false;
 
         $scope.isHaveLightPageComplete = false;
-        $scope.isSupplyPointPageComplete = false;
         $scope.isOwnerPageComplete = false;
         $scope.isPayerPageComplete = false;
 
@@ -51,10 +50,62 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.cities = [];
         $scope.language = {};
         $scope.form = {};
+        $scope.form.phases = 'mono';
+        $scope.form.discriminacio = 'nodh';
         $scope.form.usertype = 'person';
         $scope.form.choosepayer = cfg.PAYER_TYPE_TITULAR;
         $scope.completeAccountNumber = '';
-        $scope.rates = [cfg.RATE_20A, cfg.RATE_20DHA, cfg.RATE_20DHS, cfg.RATE_21A, cfg.RATE_21DHA, cfg.RATE_21DHS, cfg.RATE_30A];
+        $scope.availablePowers = function() {
+            if ($scope.form.phases === 'mono') {
+                console.debug('availabeling mono');
+                return $scope.availablePowersMonophase;
+            }
+            console.debug('availabeling tri', $scope.form.phases);
+            return $scope.availablePowersTriphase;
+        };
+        $scope.rates = [
+            cfg.RATE_20A,
+            cfg.RATE_20DHA,
+            cfg.RATE_20DHS,
+            cfg.RATE_21A,
+            cfg.RATE_21DHA,
+            cfg.RATE_21DHS,
+            cfg.RATE_30A,
+        ];
+        $scope.availablePowersMonophase = [
+            0.345,
+            0.69,
+            0.805,
+            1.15,
+            1.725,
+            2.3,
+            3.45,
+            4.6,
+            5.75,
+            6.9,
+            8.05,
+            9.2,
+            10.35,
+            11.5,
+            14.49,
+        ];
+        $scope.availablePowersTriphase = [
+            1.039,
+            2.078,
+            2.425,
+            3.464,
+            5.196,
+            6.928,
+            10.392,
+            13.856,
+            17.321,
+            20.785,
+            24.249,
+            27.713,
+            31.177,
+            34.641,
+            43.648,
+        ];
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
@@ -145,6 +196,43 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         // CONTROL READY STEPS ON CHANGE FORM
+
+        $scope.isSupplyPointPageComplete = function() {
+            if (!$scope.isHaveLightPageComplete) { return false; }
+            if ($scope.form.address === undefined) { return false; }
+            if ($scope.form.province === undefined) { return false; }
+            if ($scope.form.city === undefined) { return false; }
+            if (!$scope.cupsEditor.isValid()) { return false; }
+            if (!$scope.cnaeEditor.isValid()) { return false; }
+            return true;
+        };
+
+        $scope.isFarePageComplete = function() {
+            if (!$scope.isSupplyPointPageComplete()) { return false; }
+            if ($scope.form.rate === undefined) { return false; }
+            if ($scope.overflowAttachFile) { return false; }
+            switch ($scope.form.rate) {
+                case cfg.RATE_20A:
+                case cfg.RATE_20DHA:
+                case cfg.RATE_20DHS:
+                    if ($scope.form.power === undefined) { return false;}
+                    if ($scope.rate20IsInvalid) { return false; }
+                    break;
+                case cfg.RATE_21A:
+                case cfg.RATE_21DHA:
+                case cfg.RATE_21DHS:
+                    if ($scope.form.power === undefined) {return false;}
+                    if ($scope.rate21IsInvalid) {return false;}
+                    break;
+                case cfg.RATE_30A:
+                    if ($scope.form.power === undefined) {return false;}
+                    if ($scope.form.power2 === undefined) {return false;}
+                    if ($scope.form.power3 === undefined) {return false;}
+                    if ($scope.rate3AIsInvalid) {return false;}
+                    break;
+            }
+            return true;
+        };
         $scope.formListener = function() {
             $scope.isHaveLightPageComplete =
                 $scope.initForm !== undefined &&
@@ -153,27 +241,10 @@ angular.module('newSomEnergiaWebformsApp')
                    $scope.esAlta() !== undefined ||
                    $scope.altesDeshabilitades
                 );
-            $scope.isSupplyPointPageComplete =
-                $scope.isHaveLightPageComplete &&
-                $scope.form.address !== undefined &&
-                $scope.form.province !== undefined &&
-                $scope.form.city !== undefined &&
-                $scope.cupsEditor.isValid() &&
-                $scope.cnaeEditor.isValid() &&
-                true;
 
-            $scope.isFarePageComplete =
-                $scope.form.rate !== undefined &&
-                (
-                    (($scope.form.rate === cfg.RATE_20A || $scope.form.rate === cfg.RATE_20DHA || $scope.form.rate === cfg.RATE_20DHS) && $scope.form.power !== undefined && !$scope.rate20IsInvalid) ||
-                    (($scope.form.rate === cfg.RATE_21A || $scope.form.rate === cfg.RATE_21DHA || $scope.form.rate === cfg.RATE_21DHS) && $scope.form.power !== undefined && !$scope.rate21IsInvalid) ||
-                    ($scope.form.rate === cfg.RATE_30A && $scope.form.power !== undefined && $scope.form.power2 !== undefined && $scope.form.power3 !== undefined && !$scope.rate3AIsInvalid)
-                ) &&
-                !$scope.overflowAttachFile;
-
-            $scope.isOwnerPageComplete = 
-                $scope.isSupplyPointPageComplete &&
-                $scope.isFarePageComplete &&
+            $scope.isOwnerPageComplete =
+                $scope.isSupplyPointPageComplete() &&
+                $scope.isFarePageComplete() &&
                 $scope.form.changeowner !== undefined &&
                 $scope.form.accept === true &&
                 (
@@ -257,7 +328,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.setStepReady(1, 'supplyPointPage');
         };
 
-        $scope.goToParePage = function() {
+        $scope.goToFarePage = function() {
             $scope.setStepReady(7, 'farePage');
         };
 
