@@ -1,0 +1,48 @@
+<div class="form-group has-feedback col-xs-12">
+The component
+</div>
+<div class="form-group has-feedback col-xs-6">
+    <label class="sr-only">{{ 'PROVINCIA' | translate }}:</label>
+    <select
+        class="form-control input-lg"
+        placeholder
+        name="province"
+        data-ng-model="stateModel"
+        data-ng-options="province.name for province in provinces"
+        data-ng-change="updateSelectedCity()"
+        data-ng-attr-disabled="!provinces"
+        required
+        >
+        <option value="">{{ 'PROVINCIA' | translate }}</option>
+    </select>
+    <span class="form-control-feedback glyphicon "  data-ng-class="{
+        'glyphicon-asterisk danger': stateModel === undefined && provinces.length,
+        'glyphicon-refresh spinning warning': provinces.length === 0,
+        'glyphicon-ok success': stateModel !== undefined,
+    }" style="dright:2em"></span>
+    <span class="pull-right label label-success" data-ng-show="stateModel!==undefined">{{ 'CORRECTE' | translate }}</span>
+    <span class="pull-right label label-warning" data-ng-show="provinces.length===0">{{ 'CARREGANT_OPCIONS' | translate }}</span>
+    <span class="pull-right label label-danger" data-ng-show="provinces.length!=0 && stateModel===undefined">{{ 'OBLIGATORI' | translate }}</span>
+</div>
+<div class="form-group has-feedback col-xs-6">
+    <label class="sr-only">{{ 'POBLACIO' | translate }}:</label>
+    <select
+        class="form-control input-lg"
+        placeholder
+        name="city"
+        data-ng-model="cityModel"
+        data-ng-options="city.name for city in cities"
+        data-ng-change="formListener()"
+        required
+        >
+        <option value="">{{ 'POBLACIO' | translate }}</option>
+    </select>
+    <span class="form-control-feedback glyphicon "  data-ng-class="{
+        'glyphicon-asterisk danger': cityModel === undefined && (cities.length || stateModel===undefined),
+        'glyphicon-refresh spinning warning': cities.length === 0 && stateModel!==undefined,
+        'glyphicon-ok success': cityModel !== undefined,
+    }" style="dright:2em"></span>
+    <span class="pull-right label label-success" data-ng-show="cityModel!==undefined">{{ 'CORRECTE' | translate }}</span>
+    <span class="pull-right label label-warning" data-ng-show="cities.length===0 && stateModel!==undefined">{{ 'CARREGANT_OPCIONS' | translate }}</span>
+    <span class="pull-right label label-danger" data-ng-show="cityModel === undefined && (cities.length || stateModel===undefined)">{{ 'OBLIGATORI' | translate }}</span>
+</div>
