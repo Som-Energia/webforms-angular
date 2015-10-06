@@ -84,11 +84,11 @@
                     <span class="pull-right label label-success" data-ng-show="form.address!==undefined">{{ 'CORRECTE' | translate }}</span>
                     <span class="pull-right label label-danger" data-ng-show="form.address===undefined">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
-		<state-city
-			state-model='form.province'
-			city-model='form.city'
-			>
-		</state-city>
+                <state-city
+                    state-model='form.province'
+                    city-model='form.city'
+                    >
+                </state-city>
             </div>
             <div class="row">
                 <iban-editor
