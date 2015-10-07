@@ -6,7 +6,6 @@ angular.module('newSomEnergiaWebformsApp')
         restrict: 'E',
         scope: {
             buttonText: '@',
-            soci: '=',
             formvalues: '=',
             model: '=',
             onproceed: '&',
@@ -28,7 +27,7 @@ angular.module('newSomEnergiaWebformsApp')
         ) {
     var self = this;
     self.init = function(element, attrs) {
-        $scope.soci = {};
+        $scope.model.soci = {};
         $scope.formvalues = {};
         $scope.mostraNomSociTrobat = attrs.showMemberName !== undefined;
         $scope.developing = false;
@@ -165,7 +164,7 @@ angular.module('newSomEnergiaWebformsApp')
 
                     if (response.state === cfg.STATE_TRUE) {
                         $log.log('Get partner info response received', response);
-                        $scope.soci = response.data.soci;
+                        $scope.model.soci = response.data.soci;
                         $scope.model._state = $scope._states.READY;
                     } else {
                         $scope.model._state = $scope._states.INVALIDMEMBER;

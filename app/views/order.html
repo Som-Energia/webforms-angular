@@ -18,7 +18,6 @@
             button-text="{{'INICIAR_CONTRACTACIO' | translate }}"
             show-member-name="true"
             onproceed="altesDeshabilitades ? goToSupplyPointPage() : goToHaveLightPage()"
-            soci="soci"
             model="initForm"
             formvalues="formsoci"
         ></member-chooser>
@@ -222,10 +221,9 @@
                 </div>
                 <div class="row extra-margin-top" data-ng-show="form.rate !== undefined">
                     <div class="col-xs-12">
-                        <p class="alert alert-success" style="text-align:center">
-                        {{ 'LA_TEVA_TARIFA_ES' | translate }}
-                        <span class="label label-success">{{ form.rate }}</span>
-                        </p>
+                        <div class="alert alert-info" style="text-align:center">
+                        <h4>{{ 'LA_TEVA_TARIFA_ES' | translate }} <span class="label label-success large">{{ form.rate }}</span></h4>
+                        </div>
                     </div>
                 </div>
                 <div data-ng-if="form.newpower == '15'">
@@ -397,13 +395,13 @@
             <div data-ng-show="form.ownerIsMember == 'yes'">
                 <div class="row">
                     <div class="col-sm-4 col-xs-12">
-                        <input type="text" name="ownername" data-ng-model="form.ownername" class="form-control" placeholder="{{ soci.nom }}" value="{{ soci.nom }}" disabled/>
+                        <input type="text" name="ownername" data-ng-model="form.ownername" class="form-control" placeholder="{{ initForm.soci.nom }}" value="{{ initForm.soci.nom }}" disabled/>
                     </div>
                     <div class="col-sm-4 col-xs-12">
-                        <input type="text" name="ownersurname" data-ng-model="form.ownersurname" class="form-control" placeholder="{{ soci.cognom }}" value="{{ soci.cognom }}" disabled/>
+                        <input type="text" name="ownersurname" data-ng-model="form.ownersurname" class="form-control" placeholder="{{ initForm.soci.cognom }}" value="{{ initForm.soci.cognom }}" disabled/>
                     </div>
                     <div class="col-sm-4 col-xs-12">
-                        <input type="text" name="ownerdni" data-ng-model="form.ownerdni" class="form-control" placeholder="{{ soci.dni }}" value="{{ soci.dni }}" disabled/>
+                        <input type="text" name="ownerdni" data-ng-model="form.ownerdni" class="form-control" placeholder="{{ initForm.soci.dni }}" value="{{ initForm.soci.dni }}" disabled/>
                     </div>
                 </div>
                 <hr class="dotted">

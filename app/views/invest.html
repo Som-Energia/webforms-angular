@@ -12,7 +12,7 @@
     </div>
     <div class="row" data-ng-show="isStep(0) || showAll">
         <div class="col-xs-12"
-                translate="APORTACIO_REQUERIMENT_SER_SOCIA">
+            translate="APORTACIO_REQUERIMENT_SER_SOCIA">
         </div>
     </div>
     <div class="row" data-ng-show="isStep(0) || showAll">
@@ -26,7 +26,6 @@
     <member-chooser
         button-text="{{'INICIAR_INVERSIO' | translate }}"
         onproceed="initFormSubmited()"
-        soci="soci"
         model="initForm"
         formvalues="formsoci"
         data-ng-show="isStep(0) && isPartner===true"
@@ -92,7 +91,7 @@
         <div class="row">
             <div class="col-xs-12 heading active">
                 <h1 translate="BENVINGUDA"
-                    translate-value-name="{{soci.nom}} {{soci.cognom}}"
+                    translate-value-name="{{initForm.soci.nom}} {{initForm.soci.cognom}}"
                     ></h1>
             </div>
         </div>
