@@ -57,10 +57,8 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.completeAccountNumber = '';
         $scope.availablePowers = function() {
             if ($scope.form.phases === 'mono') {
-                console.debug('availabeling mono');
                 return $scope.availablePowersMonophase;
             }
-            console.debug('availabeling tri', $scope.form.phases);
             return $scope.availablePowersTriphase;
         };
         $scope.rates = [
@@ -98,6 +96,7 @@ angular.module('newSomEnergiaWebformsApp')
             6.928,
             10.392,
             13.856,
+/*
             17.321,
             20.785,
             24.249,
@@ -105,6 +104,7 @@ angular.module('newSomEnergiaWebformsApp')
             31.177,
             34.641,
             43.648,
+*/
         ];
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
@@ -195,6 +195,31 @@ angular.module('newSomEnergiaWebformsApp')
             return ! $scope.form.hasservice;
         };
 
+        $scope.$watch('form.phases', function(oldvalue, newvalue) {
+            // Reseting newpower if we change phases
+            if (oldvalue!==newvalue) {
+                $scope.form.newpower = undefined;
+            }
+            $scope.formListener();
+        });
+        function recomputeFareFromAlta(oldvalue, newvalue) {
+            var newFare = (
+                $scope.form.newpower+0 < 10 ? '2.0' : (
+                $scope.form.newpower+0 < 15 ? '2.1' : (
+                $scope.form.newpower!==undefined ? '3.0' :
+                undefined)));
+            if (newFare !== undefined) {
+                var discrimination = $scope.form.newpower<15 ? $scope.form.discriminacio : 'nodh';
+                newFare += { nodh:'A', dh:'DHA', dhs:'DHS' }[discrimination];
+            }
+            $scope.form.rate = newFare;
+            if (newFare!=='3.0A' && newFare !== undefined) {
+                $scope.form.power=$scope.form.newpower;
+            }
+        }
+        $scope.$watch('form.newpower', recomputeFareFromAlta);
+        $scope.$watch('form.discriminacio', recomputeFareFromAlta);
+
         // CONTROL READY STEPS ON CHANGE FORM
 
         $scope.isSupplyPointPageComplete = function() {
@@ -204,13 +229,13 @@ angular.module('newSomEnergiaWebformsApp')
             if ($scope.form.city === undefined) { return false; }
             if (!$scope.cupsEditor.isValid()) { return false; }
             if (!$scope.cnaeEditor.isValid()) { return false; }
+            if ($scope.overflowAttachFile) { return false; }
             return true;
         };
 
         $scope.isFarePageComplete = function() {
             if (!$scope.isSupplyPointPageComplete()) { return false; }
             if ($scope.form.rate === undefined) { return false; }
-            if ($scope.overflowAttachFile) { return false; }
             switch ($scope.form.rate) {
                 case cfg.RATE_20A:
                 case cfg.RATE_20DHA:

@@ -142,164 +142,205 @@
             show-always='showAll'
             ready="isFarePageComplete()"
         >
-            <div class="row extra-margin-top form-group">
-                <div class="col-xs-4">
-                    <label for="phases">{{ 'TIPUS_INSTALLACIO' | translate }}:</label>
-                </div>
-                <div class="col-xs-8">
-                    <div class='input-group'>
-                        <select class="form-control input-lg" ng-model="form.phases" required>
-                            <option value="mono">{{ 'MONOFASICA_NORMAL' | translate}}</option>
-                            <option value="tri">{{ 'TRIFASICA_INDUSTRIAL' | translate}}</option>
-                        </select>
-                        <a
-                            role="button"
-                            tabindex="true"
-                            class="btn btn-default input-group-addon"
-                            tooltip-append-to-body="true"
-                            tooltip-trigger="focus"
-                            tooltip-placement="left"
-                            tooltip-html-unsafe="{{ 'HELP_INSTALL_TYPE' | translate }}"
-                            >
-                            <span class="badge current small">?</span>
-                        </a>
+            <div data-ng-show="esAlta() || showAll">
+                <div class="row extra-margin-top form-group">
+                    <div class="col-xs-4">
+                        <label for="phases">{{ 'TIPUS_INSTALLACIO' | translate }}:</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class='input-group'>
+                            <select class="form-control input-lg" ng-model="form.phases" required>
+                                <option value="mono">{{ 'MONOFASICA_NORMAL' | translate}}</option>
+                                <option value="tri">{{ 'TRIFASICA_INDUSTRIAL' | translate}}</option>
+                            </select>
+                            <a
+                                role="button"
+                                tabindex="true"
+                                class="btn btn-default input-group-addon"
+                                tooltip-append-to-body="true"
+                                tooltip-trigger="focus"
+                                tooltip-placement="left"
+                                tooltip-html-unsafe="{{ 'HELP_INSTALL_TYPE' | translate }}"
+                                >
+                                <span class="badge current small">?</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row extra-margin-top form-group">
-                <div class="col-xs-4">
-                    <label>{{ 'POTENCIA_CONTRACTADA' | translate }}</label>
-                </div>
-                <div class="col-xs-8">
-                    <div class='input-group'>
-                        <select class="input-lg form-control" required ng-model='form.power' >
-                            <option value='' selected>{{ 'SELECCIONA' | translate}}</option>
-                            <option
-                                ng-repeat="power in availablePowers()"
-                                value="{{power}}"
-                                style="background-color: {{power > 10? '#ae7':'#df9' }}"
-                                >{{power}} kW</option>
-                            <option ng-if="form.phases==='tri'" value='15'>{{ 'MES_GRAN_DE_15KW' | translate}}</option>
-                        </select>
-                        <a
-                            role="button"
-                            tabindex="true"
-                            class="btn btn-default input-group-addon"
-                            tooltip-append-to-body="true"
-                            tooltip-trigger="focus"
-                            tooltip-placement="left"
-                            tooltip-html-unsafe="{{ 'HELP_POPOVER_POTENCIA' | translate }}"
-                            >
-                            <span class="badge current small">?</span>
-                        </a>
+                <div class="row extra-margin-top form-group">
+                    <div class="col-xs-4">
+                        <label>{{ 'POTENCIA_A_CONTRACTAR' | translate }}</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class='input-group'>
+                            <select class="input-lg form-control" required ng-model='form.newpower' >
+                                <option value='' selected>{{ 'SELECCIONA' | translate}}</option>
+                                <option
+                                    ng-repeat="power in availablePowers()"
+                                    value="{{power}}"
+                                    style="background-color: {{power > 10? '#ae7':'#df9' }}"
+                                    >{{power}} kW</option>
+                                <option ng-if="form.phases==='tri'" value='15'>{{ 'MES_GRAN_DE_15KW' | translate}}</option>
+                            </select>
+                            <a
+                                role="button"
+                                tabindex="true"
+                                class="btn btn-default input-group-addon"
+                                tooltip-append-to-body="true"
+                                tooltip-trigger="focus"
+                                tooltip-placement="left"
+                                tooltip-html-unsafe="{{ 'HELP_POPOVER_POTENCIA' | translate }}"
+                                >
+                                <span class="badge current small">?</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row extra-margin-top" data-ng-hide="form.power=='15'">
-                <div class="col-xs-4">
-                    {{ 'PERFIL_HORARI' | translate }}
-                </div>
-                <div class="col-xs-8">
-                    <div class='input-group'>
-                        <select class="input-lg form-control" ng-model="form.discriminacio" required>
-                            <option value='nodh'>{{ 'SENSE_DISCRIMINACIO_HORARIA' | translate}}</option>
-                            <option value='dh'>{{ 'AMB_DISCRIMINACIO_HORARIA' | translate}}</option>
-                            <option value='dhs'>{{ 'TRES_TRAMS' | translate}}</option>
-                        </select>
-                        <a
-                            role="button"
-                            tabindex="true"
-                            class="btn btn-default input-group-addon"
-                            tooltip-append-to-body="true"
-                            tooltip-trigger="focus"
-                            tooltip-placement="left"
-                            tooltip-html-unsafe="{{ 'HELP_POPOVER_DISCRIMINACIO_HORARIA' | translate }}"
-                            >
-                            <span class="badge current small">?</span>
-                        </a>
+                <div class="row extra-margin-top" data-ng-hide="form.newpower=='15'">
+                    <div class="col-xs-4">
+                        {{ 'DISCRIMINACIO_HORARIA' | translate }}
+                    </div>
+                    <div class="col-xs-8">
+                        <div class='input-group'>
+                            <select class="input-lg form-control" ng-model="form.discriminacio" required>
+                                <option value='nodh'>{{ 'SENSE_DISCRIMINACIO_HORARIA' | translate}}</option>
+                                <option value='dh'>{{ 'AMB_DISCRIMINACIO_HORARIA' | translate}}</option>
+                            </select>
+                            <a
+                                role="button"
+                                tabindex="true"
+                                class="btn btn-default input-group-addon"
+                                tooltip-append-to-body="true"
+                                tooltip-trigger="focus"
+                                tooltip-placement="left"
+                                tooltip-html-unsafe="{{ 'HELP_POPOVER_DISCRIMINACIO_HORARIA' | translate }}"
+                                >
+                                <span class="badge current small">?</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row extra-margin-top">
-                <div class="col-xs-12">
-                    <p>
-                    {{form.power}} kW - 
-                    {{ 'LA_TEVA_TARIFA_ES' | translate }}
-                    <b>{{ 
-                        form.power < 10 ? '2.0' : (
-                        form.power < 15 ? '2.1' :
-                        '3.0')
-                     }}{{ {nodh:'A', dh:'DH', dhs:'DHS' }[form.power<15?form.discriminacio:'nodh']  }}</b>
-                    </p>
+                <div class="row extra-margin-top" data-ng-show="form.rate !== undefined">
+                    <div class="col-xs-12">
+                        <p class="alert alert-success" style="text-align:center">
+                        {{ 'LA_TEVA_TARIFA_ES' | translate }}
+                        <span class="label label-success">{{ form.rate }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div data-ng-if="form.newpower == '15'">
+                    <div class="row">
+                        <div class="form-group col-xs-12">
+                            <label class="combo-one-row">{{ 'ESCULL_LA_POTENCIA_DE_CADA_PERIODE' | translate }}</label>
+                            <a role="button" tabindex="@" tooltip-append-to-body="true" tooltip-trigger="hover" tooltip-html-unsafe="{{ 'HELP_POPOVER_POWER'+caca | translate }}" tooltip-placement="left"><span class="badge current small">?</span></a>
+                        </div>
+                        <div class="form-group col-sm-3 col-xs-4">
+                            <label class="combo-one-row">P1*</label>
+                            <div class='input-group'>
+                                <input type="text" class="form-control" data-ng-change="formListener()" required
+                                    data-ng-model="form.power" name="power"
+                                    />
+                                <span class="input-group-addon">kW</span>
+                            </div>
+                            <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                            <span class="pull-right label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
+                        </div>
+                        <div class="form-group col-sm-3 col-xs-4">
+                            <label class="combo-one-row">P2*</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" data-ng-change="formListener()" required
+                                    name="power2" data-ng-model="form.power2" 
+                                    />
+                                <span class="input-group-addon">kW</span>
+                            </div>
+                            <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                            <span class="pull-right label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
+                        </div>
+                        <div class="form-group col-sm-3 col-xs-4">
+                            <label class="combo-one-row">P3*</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" data-ng-change="formListener()" required
+                                    name="power3" data-ng-model="form.power3"
+                                    />
+                                <span class="input-group-addon">kW</span>
+                            </div>
+                            <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power3.$error.required ">{{ 'OBLIGATORI' | translate }}</span>
+                            <span class="pull-right label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr/>
-            <div class="row extra-margin-top">
-                <div class="col-xs-12">
-                    <p>{{ 'DADES_PUNT_SUBMINISTRAMENT_HELPER' | translate }}</p>
+            <div data-ng-show="!esAlta() || showAll">
+                <div class="row extra-margin-top">
+                    <div class="col-xs-12">
+                        <p>{{ 'DADES_PUNT_SUBMINISTRAMENT_HELPER' | translate }}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-sm-6 col-xs-12">
-                    <label class="combo-one-row">{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}*</label>
-                    <select class="form-control width-30-percent combo-one-row" name="rate" data-ng-model="form.rate" data-ng-change="updatePowerRatePopoverListener()" required>
-                        <option value="">{{ 'SELECCIONAR' | translate }}</option>
-                        <option data-ng-repeat="rate in rates" value="{{ rate }}" data-ng-selected="{{ rate == form.rate }}">{{ rate }}</option>
-                    </select>
-                    <span class="spc badge current small combo-one-row" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_RATE' | translate }}" data-placement="top">?</span>
-                </div>
-            </div>
-            <!--3.0A power rate NOT selected-->
-            <div data-ng-if="form.rate != '3.0A'">
                 <div class="row">
                     <div class="form-group col-sm-6 col-xs-12">
-                        <label class="combo-one-row">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
-                        <input type="text" name="power" class="form-control width-40-percent combo-one-row" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text" style="margin-right:5px;">kW</span>
-                        <span id="spc-rate-conditional" class="spc badge current small combo-one-row" style="margin-top:-17px;display:flex;padding-top:7px;padding-left:9px;" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_POWER' | translate }}" data-placement="left">?</span>
-                        <span class="label label-danger" data-ng-show="rate20IsInvalid">{{ 'INVALID' | translate }}</span>
-                        <span class="label label-danger" data-ng-show="rate21IsInvalid">{{ 'INVALID' | translate }}</span>
-                        <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                        <label class="combo-one-row">{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}*</label>
+                        <select class="form-control width-30-percent combo-one-row" name="rate" data-ng-model="form.rate" data-ng-change="updatePowerRatePopoverListener()" required>
+                            <option value="">{{ 'SELECCIONAR' | translate }}</option>
+                            <option data-ng-repeat="rate in rates" value="{{ rate }}" data-ng-selected="{{ rate == form.rate }}">{{ rate }}</option>
+                        </select>
+                        <span class="spc badge current small combo-one-row" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_RATE' | translate }}" data-placement="top">?</span>
                     </div>
                 </div>
-            </div>
-            <!--3.0A power rate selected-->
-            <div data-ng-if="form.rate == '3.0A'">
-                <div class="row">
-                    <div class="form-group col-xs-12">
-                        <label class="combo-one-row">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
-                        <span id="spc-rate-conditional" class="spc badge current small combo-one-row" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_POWER' | translate }}" data-placement="left">?</span>
-                    </div>
-                    <div class="form-group col-sm-3 col-xs-4">
-                        <label class="combo-one-row">P1*</label>
-                        <input type="text" name="power" class="form-control width-70-percent combo-one-row" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
-                        <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                        <span class="label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
-                    </div>
-                    <div class="form-group col-sm-3 col-xs-4">
-                        <label class="combo-one-row">P2*</label>
-                        <input type="text" name="power2" class="form-control width-70-percent combo-one-row" data-ng-model="form.power2" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
-                        <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                        <span class="label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
-                    </div>
-                    <div class="form-group col-sm-3 col-xs-4">
-                        <label class="combo-one-row">P3*</label>
-                        <input type="text" name="power3" class="form-control width-70-percent combo-one-row" data-ng-model="form.power3" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text">kW</span>
-                        <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power3.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                        <span class="label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
+                <!--3.0A power rate NOT selected-->
+                <div data-ng-if="form.rate != '3.0A'">
+                    <div class="row">
+                        <div class="form-group col-sm-6 col-xs-12">
+                            <label class="combo-one-row">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
+                            <input type="text" name="power" class="form-control width-40-percent combo-one-row" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text" style="margin-right:5px;">kW</span>
+                            <span id="spc-rate-conditional" class="spc badge current small combo-one-row" style="margin-top:-17px;display:flex;padding-top:7px;padding-left:9px;" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_POWER' | translate }}" data-placement="left">?</span>
+                            <span class="label label-danger" data-ng-show="rate20IsInvalid">{{ 'INVALID' | translate }}</span>
+                            <span class="label label-danger" data-ng-show="rate21IsInvalid">{{ 'INVALID' | translate }}</span>
+                            <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-xs-12">
-                    <span class="optional-info">{{ 'INFORMACIO_OPCIONAL' | translate }}</span>
-                    <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_OPTIONAL_INFO' | translate }}" data-placement="right">?</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-3 col-xs-12">
-                    <label for="estimation" class="sr-only">{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}:</label>
-                    <input type="text" name="estimation" data-ng-model="form.estimation" class="form-control" placeholder="{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}" data-ng-change="formListener()"/>
+                <!--3.0A power rate selected-->
+                <div data-ng-if="form.rate == '3.0A'">
+                    <div class="row">
+                        <div class="form-group col-xs-12">
+                            <label class="combo-one-row">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
+                            <a role="button" tabindex="@" tooltip-append-to-body="true" tooltip-trigger="hover" tooltip-html-unsafe="{{ 'HELP_POPOVER_POWER'+caca | translate }}" tooltip-placement="left"><span class="badge current small">?</span></a>
+                        </div>
+                        <div class="form-group col-sm-3 col-xs-4">
+                            <label class="combo-one-row">P1*</label>
+                            <div class='input-group'>
+                                <input type="text" class="form-control" data-ng-change="formListener()" required
+                                    data-ng-model="form.power" name="power"
+                                    />
+                                <span class="input-group-addon">kW</span>
+                            </div>
+                            <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                            <span class="pull-right label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
+                        </div>
+                        <div class="form-group col-sm-3 col-xs-4">
+                            <label class="combo-one-row">P2*</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" data-ng-change="formListener()" required
+                                    name="power2" data-ng-model="form.power2" 
+                                    />
+                                <span class="input-group-addon">kW</span>
+                            </div>
+                            <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                            <span class="pull-right label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
+                        </div>
+                        <div class="form-group col-sm-3 col-xs-4">
+                            <label class="combo-one-row">P3*</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" data-ng-change="formListener()" required
+                                    name="power3" data-ng-model="form.power3"
+                                    />
+                                <span class="input-group-addon">kW</span>
+                            </div>
+                            <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power3.$error.required ">{{ 'OBLIGATORI' | translate }}</span>
+                            <span class="pull-right label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </wizard-page>
@@ -567,6 +608,18 @@
         >
         <!--FORTH STEP-->
             <div class="row extra-margin-top">
+                <div class="col-xs-12">
+                    <span class="optional-info">{{ 'INFORMACIO_OPCIONAL' | translate }}</span>
+                    <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_OPTIONAL_INFO' | translate }}" data-placement="right">?</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-xs-12">
+                    <label for="estimation" class="sr-only">{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}:</label>
+                    <input type="text" name="estimation" data-ng-model="form.estimation" class="form-control" placeholder="{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}" data-ng-change="formListener()"/>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-7 col-xs-12">
                     <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}</label>
                     <select class="form-control width-70-percent" name="choosepayer" data-ng-model="form.choosepayer" data-ng-change="formListener()">
