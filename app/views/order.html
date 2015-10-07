@@ -21,7 +21,7 @@
             soci="soci"
             model="initForm"
             formvalues="formsoci"
-            ></member-chooser>
+        ></member-chooser>
     </wizard-page>
 
     <form name="orderForm" class="form-inline" role="form" enctype="multipart/form-data" novalidate>
@@ -122,6 +122,14 @@
                 >
                 </iban-editor>
             </div>
+            <div class="row" data-ng-show="!esAlta()">
+                <div class="col-xs-12">
+                    <label class="combo-one-row" for="file">{{ 'ADJUNTAR_ULTIMA_FACTURA' | translate }}</label>
+                    <input id="fileuploaderinput" type="file" name="file" data-ng-model="form.file" class="form-control combo-one-row input-lg" onchange="angular.element(this).scope().validateSelectedFileSize()"/>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && invalidAttachFileExtension">{{ 'BAD_EXTENSION' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="overflowAttachFile">{{ 'OVERFLOW_FILE' | translate }}</span>
+                </div>
+            </div>
         </wizard-page>
 
         <!-- Page: Fares -->
@@ -165,13 +173,13 @@
                 <div class="col-xs-8">
                     <div class='input-group'>
                         <select class="input-lg form-control" required ng-model='form.power' >
-                            <option value=''>{{ 'POTENCIA_CONTRACTADA' | translate}}</option>
+                            <option value='' selected>{{ 'SELECCIONA' | translate}}</option>
                             <option
                                 ng-repeat="power in availablePowers()"
                                 value="{{power}}"
                                 style="background-color: {{power > 10? '#ae7':'#df9' }}"
                                 >{{power}} kW</option>
-                            <option value='15'>{{ 'MES_GRAN_DE_15KW' | translate}}</option>
+                            <option ng-if="form.phases==='tri'" value='15'>{{ 'MES_GRAN_DE_15KW' | translate}}</option>
                         </select>
                         <a
                             role="button"
@@ -187,7 +195,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row extra-margin-top">
+            <div class="row extra-margin-top" data-ng-hide="form.power=='15'">
                 <div class="col-xs-4">
                     {{ 'PERFIL_HORARI' | translate }}
                 </div>
@@ -292,21 +300,6 @@
                 <div class="col-sm-3 col-xs-12">
                     <label for="estimation" class="sr-only">{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}:</label>
                     <input type="text" name="estimation" data-ng-model="form.estimation" class="form-control" placeholder="{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}" data-ng-change="formListener()"/>
-                </div>
-<!--
-                <div class="col-sm-5 col-xs-12">
-                    <label for="cadastre" class="sr-only">{{ 'REFERENCIA_CATASTRAL' | translate }}:</label>
-                    <input type="text" name="cadastre" data-ng-model="form.cadastre" class="form-control width-70-percent combo-one-row" placeholder="{{ 'REFERENCIA_CATASTRAL' | translate }}" data-ng-change="formListener()"/>
-                    <span class="badge current small" popover-append-to-body="true" popover-toggle="popover" popover="{{ 'HELP_POPOVER_REFERENCIA_CATASTRAL' | translate }}" popover-placement="top">?</span>
-                </div>
--->
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <label class="combo-one-row" for="file">{{ 'ADJUNTAR_ULTIMA_FACTURA' | translate }}</label>
-                    <input id="fileuploaderinput" type="file" name="file" data-ng-model="form.file" class="form-control combo-one-row" onchange="angular.element(this).scope().validateSelectedFileSize()"/>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && invalidAttachFileExtension">{{ 'BAD_EXTENSION' | translate }}</span>
-                    <span class="label label-danger" data-ng-show="overflowAttachFile">{{ 'OVERFLOW_FILE' | translate }}</span>
                 </div>
             </div>
         </wizard-page>
