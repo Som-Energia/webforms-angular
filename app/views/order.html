@@ -137,7 +137,7 @@
             page-name='farePage'
             header="2 {{ 'TARIFA_I_POTENCIA' | translate }}"
             prev-page="goToSupplyPointPage()"
-            next-page="goToPayerPage()"
+            next-page="goToOwnerPage()"
             show-always='showAll'
             ready="isFarePageComplete()"
         >
@@ -300,16 +300,29 @@
                     </div>
                 </div>
                 <!--3.0A power rate NOT selected-->
-                <div data-ng-if="form.rate != '3.0A'">
-                    <div class="row">
-                        <div class="form-group col-sm-6 col-xs-12">
-                            <label class="combo-one-row">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
-                            <input type="text" name="power" class="form-control width-40-percent combo-one-row" data-ng-model="form.power" data-ng-change="formListener()" required/>&nbsp;<span class="combo-one-row-text" style="margin-right:5px;">kW</span>
-                            <span id="spc-rate-conditional" class="spc badge current small combo-one-row" style="margin-top:-17px;display:flex;padding-top:7px;padding-left:9px;" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_POWER' | translate }}" data-placement="left">?</span>
-                            <span class="label label-danger" data-ng-show="rate20IsInvalid">{{ 'INVALID' | translate }}</span>
-                            <span class="label label-danger" data-ng-show="rate21IsInvalid">{{ 'INVALID' | translate }}</span>
-                            <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                <div class="row form-group" data-ng-if="form.rate != '3.0A'">
+                    <div class="col-xs-4">
+                        <label>{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="input-group">
+                            <input type="text" name="power" class="form-control input-lg" data-ng-model="form.power" data-ng-change="formListener()" required/>
+                            <span class="input-group-addon">kW</span>
+                            <a
+                                role="button"
+                                tabindex="true"
+                                class="btn btn-default input-group-addon"
+                                tooltip-append-to-body="true"
+                                tooltip-trigger="focus"
+                                tooltip-placement="left"
+                                tooltip-html-unsafe="{{ 'HELP_POPOVER_POWER' | translate }}"
+                                >
+                                <span class="badge current small">?</span>
+                            </a>
                         </div>
+                        <span class="pull-right label label-danger" data-ng-show="rate20IsInvalid">{{ 'INVALID' | translate }}</span>
+                        <span class="pull-right label label-danger" data-ng-show="rate21IsInvalid">{{ 'INVALID' | translate }}</span>
+                        <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     </div>
                 </div>
                 <!--3.0A power rate selected-->
