@@ -403,13 +403,16 @@
             </div>
             <hr data-ng-hide="esAlta()">
             <div class="row">
-                <div class="form-group col-sm-6 col-xs-12">
+                <div class="col-sm-7 col-xs-12">
                     <label>{{ 'EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE' | translate }}</label>
-                    <div class="btn-group">
-                        <label class="btn btn-default green" data-ng-model="form.ownerIsMember" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>
-                        <label class="btn btn-default green" data-ng-model="form.ownerIsMember" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>
-                    </div>
+                    <select class="form-control width-70-percent" data-ng-model="form.ownerIsMember" data-ng-change="formListener()">
+                        <option value="" selected>{{ 'SELECCIONAR' | translate }}</option>
+                        <option value="yes">{{ 'SOCI_SOM_ENERGIA' | translate }}: {{ initForm.soci.nom + ' ' + initForm.soci.cognom }}</option>
+                        <option value="no">{{ 'ALTRA_PERSONA' | translate }}</option>
+                    </select>
                 </div>
+            </div>
+            <div class="row">
                 <div class="form-group col-sm-6 col-xs-12" data-ng-show="form.ownerIsMember == 'no'">
                     <span>{{ 'EL_TITULAR_ES' | translate }}:&nbsp;</span>
                     <div class="btn-group">
