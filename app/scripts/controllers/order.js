@@ -519,7 +519,9 @@ angular.module('newSomEnergiaWebformsApp')
 
         // GET COMPLETE ACCOUNT NUMBER WITH FORMAT
         $scope.getCompleteIbanWithFormat = function() {
-            // TODO: Format it!
+            if (!$scope.ibanEditor) {
+                return 'INVALID';
+            }
             if (!$scope.ibanEditor.isValid()) {
                 return 'INVALID';
             }
