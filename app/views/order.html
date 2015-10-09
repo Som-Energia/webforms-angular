@@ -275,14 +275,28 @@
                         <p>{{ 'DADES_PUNT_SUBMINISTRAMENT_HELPER' | translate }}</p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group col-sm-6 col-xs-12">
-                        <label class="combo-one-row">{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}*</label>
-                        <select class="form-control width-30-percent combo-one-row" name="rate" data-ng-model="form.rate" data-ng-change="updatePowerRatePopoverListener()" required>
-                            <option value="">{{ 'SELECCIONAR' | translate }}</option>
-                            <option data-ng-repeat="rate in rates" value="{{ rate }}" data-ng-selected="{{ rate == form.rate }}">{{ rate }}</option>
-                        </select>
-                        <span class="spc badge current small combo-one-row" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_RATE' | translate }}" data-placement="top">?</span>
+                <div class="row form-group">
+                    <div class="col-xs-4">
+                        <label>{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}*</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="input-group">
+                            <select class="input-lg form-control" name="rate" data-ng-model="form.rate" required>
+                                <option value="">{{ 'SELECCIONAR' | translate }}</option>
+                                <option data-ng-repeat="rate in rates" value="{{ rate }}" data-ng-selected="{{ rate == form.rate }}">{{ rate }}</option>
+                            </select>
+                            <a
+                                role="button"
+                                tabindex="true"
+                                class="btn btn-default input-group-addon"
+                                tooltip-append-to-body="true"
+                                tooltip-trigger="focus"
+                                tooltip-placement="left"
+                                tooltip-html-unsafe="{{ 'HELP_POPOVER_RATE' | translate }}"
+                                >
+                                <span class="badge current small">?</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <!--3.0A power rate NOT selected-->
