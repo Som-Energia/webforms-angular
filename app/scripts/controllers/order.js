@@ -20,7 +20,7 @@ angular.module('newSomEnergiaWebformsApp')
         }
 
         $scope.altesDeshabilitades = false;
-        $scope.showAll = true;
+        $scope.showAll = false;
 
         $scope.initForm = {};
         $scope.ibanEditor = {};
@@ -196,7 +196,7 @@ angular.module('newSomEnergiaWebformsApp')
             }
             $scope.formListener();
         });
-        function recomputeFareFromAlta(oldvalue, newvalue) {
+        function recomputeFareFromAlta(/*oldvalue, newvalue*/) {
             var newFare = (
                 $scope.form.newpower+0 < 10 ? '2.0' : (
                 $scope.form.newpower+0 < 15 ? '2.1' : (
