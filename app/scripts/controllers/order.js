@@ -20,7 +20,7 @@ angular.module('newSomEnergiaWebformsApp')
         }
 
         $scope.altesDeshabilitades = false;
-        $scope.showAll = false;
+        $scope.showAll = true;
 
         $scope.initForm = {};
         $scope.ibanEditor = {};
@@ -264,7 +264,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.isOwnerPageComplete =
                 $scope.isSupplyPointPageComplete() &&
                 $scope.isFarePageComplete() &&
-                $scope.form.changeowner !== undefined &&
+                ($scope.esAlta() || $scope.form.changeowner !== undefined) &&
                 $scope.form.accept === true &&
                 (
                     ($scope.form.ownerIsMember === 'yes') ||
@@ -289,6 +289,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.emailIsInvalid === false &&
                         $scope.emailNoIguals === false)
                 );
+            console.log('OwnerPageComplete', $scope.isOwnerPageComplete);
             $scope.isPayerPageComplete = $scope.isOwnerPageComplete &&
                 $scope.ibanEditor.isValid !== undefined &&
                 $scope.ibanEditor.isValid() &&
@@ -389,13 +390,13 @@ angular.module('newSomEnergiaWebformsApp')
             var formData = new FormData();
             formData.append('id_soci', $scope.formsoci.socinumber);
             formData.append('dni', $scope.formsoci.dni);
-            formData.append('tipus_persona', $scope.form.usertype === 'person' ? 0 : 1);
             formData.append('soci_titular', $scope.form.ownerIsMember === 'yes' ? 1 : 0);
             formData.append('canvi_titular', $scope.form.changeowner === 'yes' ? 1 : 0);
             if (!$scope.altesDeshabilitades) {
                 formData.append('alta_subministre', $scope.esAlta() ? 1 : 0);
-                formData.append('proces', $scope.esAlta() ? 'A3' : $scope.form.ownerIsMember === 'yes' ? 'C2': 'C1');
+                formData.append('proces', $scope.esAlta() ? 'A3' : $scope.form.changeowner === 'yes' ? 'C2': 'C1');
             }
+            formData.append('tipus_persona', $scope.form.usertype === 'person' ? 0 : 1);
             formData.append('representant_nom', $scope.form.usertype === 'company' ? $scope.form.representantname : '');
             formData.append('representant_dni', $scope.form.usertype === 'company' ? $scope.form.representantdni : '');
             formData.append('titular_nom', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.nom : $scope.form.name);
