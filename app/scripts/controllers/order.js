@@ -128,22 +128,22 @@ angular.module('newSomEnergiaWebformsApp')
 //        var checkDniTimer = false;
 //        ValidateHandler.validateDni($scope, 'formsoci.dni', checkDniTimer);
         var checkDni2Timer = false;
-        ValidateHandler.validateDni($scope, 'form.dni', checkDni2Timer);
+        ValidateHandler.validateDni($scope, 'owner.dni', checkDni2Timer);
         var checkDni4Timer = false;
         ValidateHandler.validateDni($scope, 'payer.dni', checkDni4Timer);
 
         // EMAIL VALIDATION
         var checkEmail1Timer = false;
-        ValidateHandler.validateEmail1($scope, 'form.email1', checkEmail1Timer);
+        ValidateHandler.validateEmail1($scope, 'owner.email1', checkEmail1Timer);
         var checkEmail2Timer = false;
-        ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
+        ValidateHandler.validateEmail2($scope, 'owner.email2', checkEmail2Timer);
 
         // POSTAL CODE VALIDATION
         ValidateHandler.validatePostalCode($scope, 'form.postalcode');
 
         // TELEPHONE VALIDATION
-        ValidateHandler.validateTelephoneNumber($scope, 'form.phone1');
-        ValidateHandler.validateTelephoneNumber($scope, 'form.phone2');
+        ValidateHandler.validateTelephoneNumber($scope, 'owner.phone1');
+        ValidateHandler.validateTelephoneNumber($scope, 'owner.phone2');
 
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity2 = function() {
@@ -264,7 +264,7 @@ angular.module('newSomEnergiaWebformsApp')
                     ($scope.form.ownerIsMember === 'yes') ||
                     ($scope.form.ownerIsMember === 'no' &&
                         $scope.form.language !== undefined &&
-                        $scope.form.name !== undefined &&
+                        $scope.owner.name !== undefined &&
                         (
                             $scope.owner.representantname !== undefined &&
                             $scope.owner.usertype === 'company' ||
@@ -276,16 +276,16 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.owner.usertype === 'person'
                         ) &&
                         (
-                            $scope.form.surname !== undefined &&
+                            $scope.owner.surname !== undefined &&
                             $scope.owner.usertype === 'person' ||
                             $scope.owner.usertype === 'company'
                         ) &&
-                        $scope.form.dni !== undefined &&
-                        $scope.form.email1 !== undefined &&
-                        $scope.form.email2 !== undefined &&
-                        $scope.form.email1 === $scope.form.email2 &&
-                        $scope.form.phone1 !== undefined &&
-                        $scope.form.address2 !== undefined &&
+                        $scope.owner.dni !== undefined &&
+                        $scope.owner.email1 !== undefined &&
+                        $scope.owner.email2 !== undefined &&
+                        $scope.owner.email1 === $scope.owner.email2 &&
+                        $scope.owner.phone1 !== undefined &&
+                        $scope.owner.address !== undefined &&
                         $scope.form.postalcode !== undefined &&
                         $scope.form.province2 !== undefined &&
                         $scope.form.city2 !== undefined &&
@@ -394,13 +394,13 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('tipus_persona', $scope.owner.usertype === 'person' ? 0 : 1);
             formData.append('representant_nom', $scope.owner.usertype === 'company' ? $scope.owner.representantname : '');
             formData.append('representant_dni', $scope.owner.usertype === 'company' ? $scope.owner.representantdni : '');
-            formData.append('titular_nom', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.nom : $scope.form.name);
-            formData.append('titular_cognom', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.cognom : $scope.form.surname || '');
-            formData.append('titular_dni', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.dni : $scope.form.dni);
-            formData.append('titular_email', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.email : $scope.form.email1);
-            formData.append('titular_tel', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.tel : $scope.form.phone1);
-            formData.append('titular_tel2', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.tel2 : $scope.form.phone2 || '');
-            formData.append('titular_adreca', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.adreca : $scope.form.address2);
+            formData.append('titular_nom', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.nom : $scope.owner.name);
+            formData.append('titular_cognom', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.cognom : $scope.owner.surname || '');
+            formData.append('titular_dni', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.dni : $scope.owner.dni);
+            formData.append('titular_email', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.email : $scope.owner.email1);
+            formData.append('titular_tel', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.tel : $scope.owner.phone1);
+            formData.append('titular_tel2', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.tel2 : $scope.owner.phone2 || '');
+            formData.append('titular_adreca', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.adreca : $scope.owner.address);
             formData.append('titular_municipi', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.municipi : $scope.form.city2.id);
             formData.append('titular_cp', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.cp : $scope.form.postalcode);
             formData.append('titular_provincia', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.provincia : $scope.form.province2.id);
@@ -550,13 +550,13 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.executeGetSociValues();
             $scope.owner.representantdni = debugCfg.CIF;
             $scope.owner.representantname = debugCfg.COMPANY;
-            $scope.form.dni = debugCfg.DNI;
-            $scope.form.name = debugCfg.NAME;
-            $scope.form.surname = debugCfg.SURNAME;
-            $scope.form.address2 = debugCfg.ADDRESS;
-            $scope.form.phone1 = debugCfg.PHONE;
-            $scope.form.email1 = debugCfg.EMAIL;
-            $scope.form.email2 = debugCfg.EMAIL;
+            $scope.owner.dni = debugCfg.DNI;
+            $scope.owner.name = debugCfg.NAME;
+            $scope.owner.surname = debugCfg.SURNAME;
+            $scope.owner.address = debugCfg.ADDRESS;
+            $scope.owner.phone1 = debugCfg.PHONE;
+            $scope.owner.email1 = debugCfg.EMAIL;
+            $scope.owner.email2 = debugCfg.EMAIL;
             $scope.form.accept = true;
             $scope.ibanEditor.value = debugCfg.IBAN1;
             $scope.ibanEditor.value += debugCfg.IBAN2;

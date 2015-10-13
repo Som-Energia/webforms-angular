@@ -25,28 +25,28 @@
     </div>
     <div class="row">
         <div class="col-sm-3 col-xs-6">
-            <label class="confirm">{{ 'NOM' | translate }}:</label><span class="confirm">{{ form.ownerIsMember == 'yes' ? initForm.soci.nom : form.name }}</span>
+            <label class="confirm">{{ 'NOM' | translate }}:</label><span class="confirm">{{ form.ownerIsMember == 'yes' ? initForm.soci.nom : owner.name }}</span>
         </div>
         <div class="col-sm-9 col-xs-6">
-            <label class="confirm">{{ 'COGNOMS' | translate }}:</label><span class="confirm">{{ form.ownerIsMember == 'yes' ? initForm.soci.cognom : form.surname }}</span>
+            <label class="confirm">{{ 'COGNOMS' | translate }}:</label><span class="confirm">{{ form.ownerIsMember == 'yes' ? initForm.soci.cognom : owner.surname }}</span>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <label class="confirm">DNI/NIE/CIF:</label><span class="confirm">{{ form.ownerIsMember == 'yes' ? initForm.soci.dni : form.dni }}</span>
+            <label class="confirm">DNI/NIE/CIF:</label><span class="confirm">{{ form.ownerIsMember == 'yes' ? initForm.soci.dni : owner.dni }}</span>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3 col-xs-6">
-            <label class="confirm">{{ 'TELEFON' | translate }}:</label><span class="confirm">{{ form.ownerIsMember == 'yes' ? initForm.soci.tel : form.phone1 }}</span>
+            <label class="confirm">{{ 'TELEFON' | translate }}:</label><span class="confirm">{{ form.ownerIsMember == 'yes' ? initForm.soci.tel : owner.phone1 }}</span>
         </div>
-        <div data-ng-show="form.ownerIsMember == 'yes' && initForm.soci.tel2 || form.ownerIsMember == 'no' && form.phone2" class="col-sm-3 col-xs-6">
-            <label class="confirm">{{ 'TELEFON' | translate }} 2:</label><span class="confirm">{{ form.ownerIsMember == 'yes' ? initForm.soci.tel2 : form.phone2 }}</span>
+        <div data-ng-show="form.ownerIsMember == 'yes' && initForm.soci.tel2 || form.ownerIsMember == 'no' && owner.phone2" class="col-sm-3 col-xs-6">
+            <label class="confirm">{{ 'TELEFON' | translate }} 2:</label><span class="confirm">{{ form.ownerIsMember == 'yes' ? initForm.soci.tel2 : owner.phone2 }}</span>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <label class="confirm">Email:</label><span class="confirm">{{ form.ownerIsMember == 'yes' ? initForm.soci.email : form.email1 }}</span>
+            <label class="confirm">Email:</label><span class="confirm">{{ form.ownerIsMember == 'yes' ? initForm.soci.email : owner.email1 }}</span>
         </div>
     </div>
     <!--DADES_PUNT_SUBMINISTRAMENT-->
@@ -139,23 +139,23 @@
         <!--PAYER_OWNER-->
         <div class="row">
             <div class="col-xs-6">
-                <label class="confirm">{{ 'NOM_O_RAO_SOCIAL' | translate }}:</label><span class="confirm">{{ form.name }}</span>
+                <label class="confirm">{{ 'NOM_O_RAO_SOCIAL' | translate }}:</label><span class="confirm">{{ owner.name }}</span>
             </div>
             <div class="col-xs-6">
-                <label class="confirm">{{ 'COGNOMS' | translate }}:</label><span class="confirm">{{ form.surname }}</span>
+                <label class="confirm">{{ 'COGNOMS' | translate }}:</label><span class="confirm">{{ owner.surname }}</span>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-6">
-                <label class="confirm">DNI/NIE/CIF:</label><span class="confirm">{{ form.dni }}</span>
+                <label class="confirm">DNI/NIE/CIF:</label><span class="confirm">{{ owner.dni }}</span>
             </div>
             <div class="col-xs-6">
-                <label class="confirm">Email:</label><span class="confirm">{{ form.email1 }}</span>
+                <label class="confirm">Email:</label><span class="confirm">{{ owner.email1 }}</span>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <label class="confirm">{{ 'TELEFON' | translate }}:</label><span class="confirm">{{ form.phone1 }}</span>
+                <label class="confirm">{{ 'TELEFON' | translate }}:</label><span class="confirm">{{ owner.phone1 }}</span>
             </div>
         </div>
     </div>
