@@ -412,6 +412,11 @@
                     </select>
                 </div>
             </div>
+            <div class="well" data-ng-if="form.ownerIsMember === 'no'">
+                <personal-data
+                    model="owner"
+                ></personal-data>
+            </div>
             <!-- (TITULAR_PARTICULAR || TITULAR_EMPRESA) & SOCI_VINCULAT_SI (page 06 & 12) (page 09 & 15) -->
             <div data-ng-show="form.ownerIsMember == 'yes'">
                 <div class="row">

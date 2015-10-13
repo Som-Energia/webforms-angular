@@ -29,6 +29,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.cupsEditor = {};
         $scope.cnaeEditor = {};
         $scope.cadastreEditor = {};
+        $scope.owner = {};
         $scope.payer = {};
 
         $scope.showAllSteps = function() {
