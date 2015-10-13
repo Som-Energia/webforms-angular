@@ -123,14 +123,6 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validatePower($scope, 'form.power3');
         ValidateHandler.validateInteger($scope, 'form.estimation');
 
-        // ON CHANGE SELECTED STATE
-        $scope.updateSelectedCity2 = function() {
-            $scope.owner.city=undefined;
-            $scope.cities2=[];
-            if ($scope.owner.province===undefined) { return; }
-            AjaxHandler.getCities($scope, 2, $scope.owner.province.id);
-        };
-
         // ON CHANGE SELECTED FILE TO UPLOAD VALIDATION
         $scope.validateSelectedFileSize = function() {
             var file = jQuery('#fileuploaderinput')[0].files[0];
