@@ -51,7 +51,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.languages = [];
         $scope.provinces = [];
         $scope.cities = [];
-        $scope.language = {};
         $scope.form = {};
         $scope.form.phases = 'mono';
         $scope.form.discriminacio = 'nodh';
@@ -263,7 +262,7 @@ angular.module('newSomEnergiaWebformsApp')
                 (
                     ($scope.form.ownerIsMember === 'yes') ||
                     ($scope.form.ownerIsMember === 'no' &&
-                        $scope.form.language !== undefined &&
+                        $scope.owner.language !== undefined &&
                         $scope.owner.name !== undefined &&
                         (
                             $scope.owner.representantname !== undefined &&
@@ -392,6 +391,8 @@ angular.module('newSomEnergiaWebformsApp')
             }
             var ownerIsMember = $scope.form.ownerIsMember==='yes';
             formData.append('soci_titular', ownerIsMember ? 1 : 0);
+            // TODO: agafar tipus_persona, representant_nom, i representant_dni del soci quan toca
+            // TODO: estem ignorant l'idioma dels no socis (owner i payer)
             formData.append('tipus_persona', $scope.owner.usertype === 'person' ? 0 : 1);
             formData.append('representant_nom', $scope.owner.usertype === 'company' ? $scope.owner.representantname : '');
             formData.append('representant_dni', $scope.owner.usertype === 'company' ? $scope.owner.representantdni : '');
