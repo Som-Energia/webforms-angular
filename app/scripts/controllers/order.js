@@ -152,11 +152,6 @@ angular.module('newSomEnergiaWebformsApp')
             if ($scope.form.province2===undefined) { return; }
             AjaxHandler.getCities($scope, 2, $scope.form.province2.id);
         };
-        $scope.updateSelectedCity3 = function() {
-            $scope.payer.city=undefined;
-            if ($scope.payer.province===undefined) { return; }
-            AjaxHandler.getCities($scope, 3, $scope.payer.province.id);
-        };
 
         // ON CHANGE SELECTED FILE TO UPLOAD VALIDATION
         $scope.validateSelectedFileSize = function() {

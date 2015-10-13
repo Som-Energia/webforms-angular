@@ -104,8 +104,6 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.formvalues.dni = oldValue;
                     } else if (element === 'form.representantdni') {
                         $scope.form.representantdni = oldValue;
-                    } else if (element === 'payer.dni') {
-                        $scope.payer.dni = oldValue;
                     }
                     makeApiAsyncCheck = false;
                 }
@@ -124,8 +122,6 @@ angular.module('newSomEnergiaWebformsApp')
                                 } else if (element === 'form.representantdni') {
                                     $scope.dniRepresentantIsInvalid = response === cfg.STATE_FALSE;
                                     $scope.dni3IsInvalid = response === cfg.STATE_FALSE;
-                                } else if (element === 'payer.dni') {
-                                    $scope.dni4IsInvalid = response === cfg.STATE_FALSE;
                                 }
                                 $scope.formListener();
                             },
@@ -147,9 +143,6 @@ angular.module('newSomEnergiaWebformsApp')
                         if (element === 'form.email1') {
                             $scope.emailNoIguals = $scope.form.email2 !== undefined && newValue !== $scope.form.email2;
                             $scope.emailIsInvalid = !emailRE.test(newValue);
-                        } else if (element === 'payer.email1') {
-                            $scope.accountEmailNoIguals = $scope.payer.email2 !== undefined && newValue !== $scope.payer.email2;
-                            $scope.accountEmailIsInvalid = !emailRE.test(newValue);
                         }
                         $scope.formListener();
                     }
@@ -167,8 +160,6 @@ angular.module('newSomEnergiaWebformsApp')
                     if (newValue !== undefined) {
                         if (element === 'form.email2') {
                             $scope.emailNoIguals = ($scope.form.email1 !== undefined || $scope.form.email1 !== '') && newValue !== $scope.form.email1;
-                        } else if (element === 'payer.email2') {
-                            $scope.accountEmailNoIguals = ($scope.payer.email1 !== undefined || $scope.payer.email1 !== '') && newValue !== $scope.payer.email1;
                         }
                         $scope.formListener();
                     }
@@ -182,8 +173,6 @@ angular.module('newSomEnergiaWebformsApp')
                 if (newValue !== undefined && (!integerRE.test(newValue) || newValue.length > 5)) {
                     if (element === 'form.postalcode') {
                         $scope.form.postalcode = oldValue;
-                    } else if (element === 'payer.postalcode') {
-                        $scope.payer.postalcode = oldValue;
                     }
                 }
                 if (timer) {

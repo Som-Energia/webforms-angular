@@ -26,7 +26,6 @@ angular.module('newSomEnergiaWebformsApp')
                     if (response.state === cfg.STATE_TRUE) {
                         $scope.provinces  = response.data.provincies;
                         $scope.provinces2 = response.data.provincies;
-                        $scope.provinces3 = response.data.provincies;
                     } else {
                         uiHandler.showErrorDialog('GET response state false recived (ref.003-001)');
                     }
