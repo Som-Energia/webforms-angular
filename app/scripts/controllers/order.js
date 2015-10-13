@@ -130,12 +130,8 @@ angular.module('newSomEnergiaWebformsApp')
 //        ValidateHandler.validateDni($scope, 'formsoci.dni', checkDniTimer);
         var checkDni2Timer = false;
         ValidateHandler.validateDni($scope, 'form.dni', checkDni2Timer);
-        var checkDni3Timer = false;
-        ValidateHandler.validateDni($scope, 'form.representantdni', checkDni3Timer);
         var checkDni4Timer = false;
         ValidateHandler.validateDni($scope, 'form.accountdni', checkDni4Timer);
-        var checkDni5Timer = false;
-        ValidateHandler.validateDni($scope, 'form.accountrepresentantdni', checkDni5Timer);
 
         // EMAIL VALIDATION
         var checkEmail1Timer = false;
@@ -451,7 +447,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('compte_tel2', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountphone2);
             formData.append('compte_cp', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountpostalcode);
             formData.append('compte_representant_nom', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.payer.usertype === 'company' ? $scope.payer.representantname : '');
-            formData.append('compte_representant_dni', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.payer.usertype === 'company' ? $scope.form.accountrepresentantdni : '');
+            formData.append('compte_representant_dni', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.payer.usertype === 'company' ? $scope.payer.representantdni : '');
             formData.append('condicions', 1);
             formData.append('condicions_privacitat', 1);
             formData.append('condicions_titular', 1);

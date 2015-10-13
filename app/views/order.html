@@ -757,7 +757,7 @@
                     <div class="row">
                         <div class="form-group col-xs-3">
                             <label class="sr-only">CIF*:</label>
-                            <input type="text" name="accountrepresentantdni" class="form-control" placeholder="CIF*" data-ng-model="form.accountrepresentantdni" data-ng-change="formListener()" required/>
+                            <input type="text" name="accountrepresentantdni" class="form-control" placeholder="CIF*" data-ng-model="payer.representantdni" data-ng-change="formListener()" required/>
                             <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountrepresentantdni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                             <span class="label label-danger" data-ng-show="dni5IsInvalid">{{ 'INVALID' | translate }}</span>
                         </div>
