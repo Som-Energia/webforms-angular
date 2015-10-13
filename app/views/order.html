@@ -651,7 +651,7 @@
                     <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}</label>
                 </div>
                 <div class="col-xs-12">
-                    <select class="form-control width-70-percent" name="choosepayer" data-ng-model="form.choosepayer" data-ng-change="formListener()">
+                    <select class="form-control " name="choosepayer" data-ng-model="form.choosepayer" data-ng-change="formListener()">
                         <option value="titular">{{ 'TITULAR_CONTRACTE_ELECTRICITAT' | translate }}: {{
                             form.ownerIsMember === 'yes'?
                                 initForm.soci.nom + ' '+ initForm.soci.cognom:
