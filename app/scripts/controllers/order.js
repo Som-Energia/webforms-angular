@@ -131,7 +131,7 @@ angular.module('newSomEnergiaWebformsApp')
         var checkDni2Timer = false;
         ValidateHandler.validateDni($scope, 'form.dni', checkDni2Timer);
         var checkDni4Timer = false;
-        ValidateHandler.validateDni($scope, 'form.accountdni', checkDni4Timer);
+        ValidateHandler.validateDni($scope, 'payer.dni', checkDni4Timer);
 
         // EMAIL VALIDATION
         var checkEmail1Timer = false;
@@ -309,7 +309,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.payer.usertype !== undefined &&
                         $scope.payer.name !== undefined &&
                         ($scope.payer.usertype === 'company' || $scope.payer.usertype === 'person' && $scope.payer.surname !== undefined) &&
-                        $scope.form.accountdni !== undefined &&
+                        $scope.payer.dni !== undefined &&
                         $scope.form.accountemail1 !== undefined &&
                         $scope.form.accountemail2 !== undefined &&
                         $scope.form.accountemail1 === $scope.form.accountemail2 &&
@@ -439,7 +439,7 @@ angular.module('newSomEnergiaWebformsApp')
             var noPayer = $scope.form.choosepayer !== 'altre';
             formData.append('compte_nom', noPayer ? '' : $scope.payer.name);
             formData.append('compte_cognom', noPayer || $scope.payer.usertype !== 'person' ? '' : $scope.payer.surname);
-            formData.append('compte_dni', noPayer ? '' : $scope.form.accountdni);
+            formData.append('compte_dni', noPayer ? '' : $scope.payer.dni);
             formData.append('compte_adreca', noPayer ? '' : $scope.form.accountaddress);
             formData.append('compte_provincia', noPayer ? '' : $scope.form.province3.id);
             formData.append('compte_municipi', noPayer ? '' : $scope.form.city3.id);

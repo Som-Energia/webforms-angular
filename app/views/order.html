@@ -693,7 +693,7 @@
                     <div class="row">
                         <div class="form-group col-xs-4">
                             <label class="sr-only">DNI/NIE*:</label>
-                            <input type="text" name="accountdni" class="form-control" placeholder="DNI/NIE*" data-ng-model="form.accountdni" data-ng-change="formListener()" required/>
+                            <input type="text" name="accountdni" class="form-control" placeholder="DNI/NIE*" data-ng-model="payer.dni" data-ng-change="formListener()" required/>
                             <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountdni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                             <span class="label label-danger" data-ng-show="dni4IsInvalid">{{ 'INVALID' | translate }}</span>
                         </div>
@@ -770,7 +770,7 @@
                     <div class="row">
                         <div class="form-group col-xs-3">
                             <label class="sr-only">DNI/NIE*:</label>
-                            <input type="text" name="accountdni" class="form-control" placeholder="DNI/NIE*" data-ng-model="form.accountdni" data-ng-change="formListener()" required/>
+                            <input type="text" name="accountdni" class="form-control" placeholder="DNI/NIE*" data-ng-model="payer.dni" data-ng-change="formListener()" required/>
                             <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountdni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                             <span class="label label-danger" data-ng-show="dni4IsInvalid">{{ 'INVALID' | translate }}</span>
                         </div>
