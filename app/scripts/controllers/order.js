@@ -29,6 +29,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.cupsEditor = {};
         $scope.cnaeEditor = {};
         $scope.cadastreEditor = {};
+        $scope.payer = {};
 
         $scope.showAllSteps = function() {
             $scope.showAll = true;
@@ -309,9 +310,9 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.acceptaccountowner &&
                 $scope.form.voluntary !== undefined && ($scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ||
                 ($scope.form.choosepayer === cfg.PAYER_TYPE_OTHER &&
-                        $scope.form.payertype !== undefined &&
+                        $scope.payer.usertype !== undefined &&
                         $scope.form.accountname !== undefined &&
-                        ($scope.form.payertype === 'company' || $scope.form.payertype === 'person' && $scope.form.accountsurname !== undefined) &&
+                        ($scope.payer.usertype === 'company' || $scope.payer.usertype === 'person' && $scope.form.accountsurname !== undefined) &&
                         $scope.form.accountdni !== undefined &&
                         $scope.form.accountemail1 !== undefined &&
                         $scope.form.accountemail2 !== undefined &&
@@ -438,9 +439,9 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('fitxer', jQuery('#fileuploaderinput')[0].files[0]);
             formData.append('payment_iban', $scope.getCompleteIban());
             formData.append('escull_pagador', $scope.form.choosepayer);
-            formData.append('compte_tipus_persona', $scope.form.payertype === 'person' ? 0 : 1);
+            formData.append('compte_tipus_persona', $scope.payer.usertype === 'person' ? 0 : 1);
             formData.append('compte_nom', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountname);
-            formData.append('compte_cognom', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.form.payertype === 'person' ? $scope.form.accountsurname : '');
+            formData.append('compte_cognom', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.payer.usertype === 'person' ? $scope.form.accountsurname : '');
             formData.append('compte_dni', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountdni);
             formData.append('compte_adreca', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountaddress);
             formData.append('compte_provincia', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.province3.id);
@@ -449,8 +450,8 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('compte_tel', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountphone1);
             formData.append('compte_tel2', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountphone2);
             formData.append('compte_cp', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountpostalcode);
-            formData.append('compte_representant_nom', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.form.payertype === 'company' ? $scope.form.accountrepresentantname : '');
-            formData.append('compte_representant_dni', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.form.payertype === 'company' ? $scope.form.accountrepresentantdni : '');
+            formData.append('compte_representant_nom', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.payer.usertype === 'company' ? $scope.form.accountrepresentantname : '');
+            formData.append('compte_representant_dni', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.payer.usertype === 'company' ? $scope.form.accountrepresentantdni : '');
             formData.append('condicions', 1);
             formData.append('condicions_privacitat', 1);
             formData.append('condicions_titular', 1);

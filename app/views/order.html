@@ -664,17 +664,20 @@
                 </div>
             </div>
             <div data-ng-if="form.choosepayer == 'altre'">
+                <personal-data
+                    model="payer"
+                ></personal-data>
                 <div class="row">
                     <div class="form-group col-sm-6 col-xs-12">
                         <label>{{ 'SELECCIONA' | translate }}:</label>
                         <div class="btn-group">
-                            <label class="btn btn-default green" data-ng-model="form.payertype" data-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
-                            <label class="btn btn-default green" data-ng-model="form.payertype" data-btn-radio="'company'" data-ng-change="formListener()">{{ 'EMPRESA' | translate }}</label>
+                            <label class="btn btn-default green" data-ng-model="payer.usertype" data-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
+                            <label class="btn btn-default green" data-ng-model="payer.usertype" data-btn-radio="'company'" data-ng-change="formListener()">{{ 'EMPRESA' | translate }}</label>
                         </div>
                     </div>
                 </div>
                 <!-- PAYER_OTHER & PERSON (page 20) -->
-                <div data-ng-if="form.payertype == 'person'">
+                <div data-ng-if="payer.usertype == 'person'">
                     <div class="row">
                         <div class="form-group col-xs-5">
                             <label class="sr-only">{{ 'NOM' | translate }}*:</label>
@@ -751,7 +754,7 @@
                     </div>
                 </div>
                 <!-- PAYER_OTHER & COMPANY (page 21) -->
-                <div data-ng-if="form.payertype == 'company'">
+                <div data-ng-if="payer.usertype == 'company'">
                     <div class="row">
                         <div class="form-group col-xs-3">
                             <label class="sr-only">CIF*:</label>
