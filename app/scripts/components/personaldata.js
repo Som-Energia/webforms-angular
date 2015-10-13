@@ -52,7 +52,7 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.dniRepresentantIsInvalid === false &&
                 $scope.emailIsInvalid === false &&
                 $scope.emailNoIguals === false &&
-                !$scope.postalCodeIsInvalid &&
+                $scope.postalCodeIsInvalid === false &&
                 true
                 );
         };

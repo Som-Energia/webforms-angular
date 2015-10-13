@@ -38,7 +38,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.rate21IsInvalid = false;
         $scope.rate3AIsInvalid = false;
         $scope.postalCodeIsInvalid = false;
-        $scope.accountPostalCodeIsInvalid = false;
         $scope.invalidAttachFileExtension = false;
         $scope.overflowAttachFile = false;
         $scope.accountIsInvalid = false;
@@ -138,20 +137,13 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateEmail1($scope, 'form.email1', checkEmail1Timer);
         var checkEmail2Timer = false;
         ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
-        var checkAccountEmail1Timer = false;
-        ValidateHandler.validateEmail1($scope, 'payer.email1', checkAccountEmail1Timer);
-        var checkAccountEmail2Timer = false;
-        ValidateHandler.validateEmail2($scope, 'payer.email2', checkAccountEmail2Timer);
 
         // POSTAL CODE VALIDATION
         ValidateHandler.validatePostalCode($scope, 'form.postalcode');
-        ValidateHandler.validatePostalCode($scope, 'payer.postalcode');
 
         // TELEPHONE VALIDATION
         ValidateHandler.validateTelephoneNumber($scope, 'form.phone1');
         ValidateHandler.validateTelephoneNumber($scope, 'form.phone2');
-        ValidateHandler.validateTelephoneNumber($scope, 'payer.phone1');
-        ValidateHandler.validateTelephoneNumber($scope, 'payer.phone2');
 
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity2 = function() {
@@ -162,7 +154,6 @@ angular.module('newSomEnergiaWebformsApp')
         };
         $scope.updateSelectedCity3 = function() {
             $scope.payer.city=undefined;
-            $scope.cities3=[];
             if ($scope.payer.province===undefined) { return; }
             AjaxHandler.getCities($scope, 3, $scope.payer.province.id);
         };
@@ -269,7 +260,6 @@ angular.module('newSomEnergiaWebformsApp')
                    $scope.altesDeshabilitades
                 );
 
-            console.log('isHaveLightPageComplete', $scope.isHaveLightPageComplete);
             $scope.isOwnerPageComplete =
                 (!$scope.waitPreviousPages || $scope.isSupplyPointPageComplete()) &&
                 $scope.isFarePageComplete() &&
@@ -298,34 +288,21 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.emailIsInvalid === false &&
                         $scope.emailNoIguals === false)
                 );
-            console.log('isOwnerPageComplete', $scope.isOwnerPageComplete);
             $scope.isPayerPageComplete =
                 (!$scope.waitPreviousPages || $scope.isOwnerPageComplete()) &&
                 $scope.ibanEditor.isValid !== undefined &&
                 $scope.ibanEditor.isValid() &&
                 $scope.form.acceptaccountowner &&
-                $scope.form.voluntary !== undefined && ($scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ||
-                ($scope.form.choosepayer === cfg.PAYER_TYPE_OTHER &&
-                        $scope.payer.usertype !== undefined &&
-                        $scope.payer.name !== undefined &&
-                        ($scope.payer.usertype === 'company' || $scope.payer.usertype === 'person' && $scope.payer.surname !== undefined) &&
-                        $scope.payer.dni !== undefined &&
-                        $scope.payer.email1 !== undefined &&
-                        $scope.payer.email2 !== undefined &&
-                        $scope.payer.email1 === $scope.payer.email2 &&
-                        $scope.payer.phone1 !== undefined &&
-                        $scope.payer.address !== undefined &&
-                        $scope.payer.postalcode !== undefined &&
-                        $scope.payer.province !== undefined &&
-                        $scope.payer.city !== undefined &&
-                        $scope.form.accept2 !== undefined &&
-                        $scope.form.accept2 !== false &&
-                        $scope.dni4IsInvalid === false &&
-                        $scope.accountPostalCodeIsInvalid === false &&
-                        $scope.accountEmailIsInvalid === false &&
-                        $scope.accountEmailNoIguals === false))
+                $scope.form.voluntary !== undefined &&
+                (
+                    $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ||
+                    (
+                        $scope.payer.isReady !== undefined &&
+                        $scope.payer.isReady() &&
+                        $scope.form.accept2 === true
+                    )
+                )
                 ;
-            console.log('isPayerPageComplete', $scope.isPayerPageComplete);
         };
         $scope.formAccountIbanListener = function () {
             if ($scope.form.accountbankiban1 !== undefined && $scope.form.accountbankiban2 !== undefined && $scope.form.accountbankiban3 !== undefined && $scope.form.accountbankiban4 !== undefined && $scope.form.accountbankiban5 !== undefined && $scope.form.accountbankiban6 !== undefined) {

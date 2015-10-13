@@ -46,8 +46,6 @@ angular.module('newSomEnergiaWebformsApp')
                                 $scope.cities = response.data.municipis;
                             } else if (selector === 2) {
                                 $scope.cities2 = response.data.municipis;
-                            } else if (selector === 3) {
-                                $scope.cities3 = response.data.municipis;
                             }
                         } else {
                             uiHandler.showErrorDialog('GET response state false recived (ref.003-003)');

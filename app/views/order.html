@@ -647,6 +647,15 @@
                 </div>
             </div>
             <div class="row">
+                <div class="form-group checkbox col-xs-12">
+                    <label>
+                        <input type="checkbox" name="acceptaccountowner" value="accept" data-ng-model="form.acceptaccountowner" data-ng-change="formListener()" required/>
+                        <span data-ng-bind-html="'CONFIRMO_TITULAR_COMPTE_ACCEPTA_DOMICILIACIO' | translate"></span>
+                    </label>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-12">
                     <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}</label>
                 </div>
@@ -666,23 +675,14 @@
                 <personal-data
                     model="payer"
                 ></personal-data>
-            </div>
-            <div class="row">
-                <div class="form-group checkbox col-xs-12">
-                    <label>
-                        <input type="checkbox" name="acceptaccountowner" value="accept" data-ng-model="form.acceptaccountowner" data-ng-change="formListener()" required/>
-                        <span data-ng-bind-html="'CONFIRMO_TITULAR_COMPTE_ACCEPTA_DOMICILIACIO' | translate"></span>
-                    </label>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                </div>
-            </div>
-            <div class="row" data-ng-if="form.choosepayer == 'altre'">
-                <div class="form-group checkbox col-xs-12">
-                    <label>
-                        <input type="checkbox" name="accept2" value="accept" data-ng-model="form.accept2" data-ng-change="formListener()" required/>
-                        <span data-ng-bind-html="'ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT' | translate"></span>
-                    </label>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                <div class="row">
+                    <div class="form-group checkbox col-xs-12">
+                        <label>
+                            <input type="checkbox" name="accept2" value="accept" data-ng-model="form.accept2" data-ng-change="formListener()" required/>
+                            <span data-ng-bind-html="'ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT' | translate"></span>
+                        </label>
+                        <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    </div>
                 </div>
             </div>
             <!-- TODO: Explicar la primera estimada -->
