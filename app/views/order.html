@@ -550,13 +550,13 @@
                 <div class="row">
                     <div class="form-group col-xs-4">
                         <label class="sr-only">DNI/NIE*:</label>
-                        <input type="text" name="representantdni" class="form-control" placeholder="DNI/NIE*" data-ng-model="form.representantdni" data-ng-change="formListener()" required/>
+                        <input type="text" name="representantdni" class="form-control" placeholder="DNI/NIE*" data-ng-model="owner.representantdni" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.representantdni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                         <span class="label label-danger" data-ng-show="dni3IsInvalid">{{ 'INVALID' | translate }}</span>
                     </div>
                     <div class="form-group col-xs-8">
                         <label class="sr-only">{{ 'PERSONA_REPRESENTANT' | translate }}*:</label>
-                        <input type="text" name="representantname" class="form-control" placeholder="{{ 'PERSONA_REPRESENTANT' | translate }}*" data-ng-model="form.representantname" data-ng-change="formListener()" required/>
+                        <input type="text" name="representantname" class="form-control" placeholder="{{ 'PERSONA_REPRESENTANT' | translate }}*" data-ng-model="owner.representantname" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.representantname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     </div>
                 </div>

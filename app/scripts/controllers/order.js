@@ -266,7 +266,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.language !== undefined &&
                         $scope.form.name !== undefined &&
                         (
-                            $scope.form.representantname !== undefined &&
+                            $scope.owner.representantname !== undefined &&
                             $scope.owner.usertype === 'company' ||
                             $scope.owner.usertype === 'person'
                         ) &&
@@ -392,8 +392,8 @@ angular.module('newSomEnergiaWebformsApp')
             }
             formData.append('soci_titular', $scope.form.ownerIsMember === 'yes' ? 1 : 0);
             formData.append('tipus_persona', $scope.owner.usertype === 'person' ? 0 : 1);
-            formData.append('representant_nom', $scope.owner.usertype === 'company' ? $scope.form.representantname : '');
-            formData.append('representant_dni', $scope.owner.usertype === 'company' ? $scope.form.representantdni : '');
+            formData.append('representant_nom', $scope.owner.usertype === 'company' ? $scope.owner.representantname : '');
+            formData.append('representant_dni', $scope.owner.usertype === 'company' ? $scope.owner.representantdni : '');
             formData.append('titular_nom', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.nom : $scope.form.name);
             formData.append('titular_cognom', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.cognom : $scope.form.surname || '');
             formData.append('titular_dni', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.dni : $scope.form.dni);
@@ -548,8 +548,8 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.form.power = debugCfg.POWER;
             $scope.form.rate = debugCfg.RATE;
             $scope.executeGetSociValues();
-            $scope.form.representantdni = debugCfg.CIF;
-            $scope.form.representantname = debugCfg.COMPANY;
+            $scope.owner.representantdni = debugCfg.CIF;
+            $scope.owner.representantname = debugCfg.COMPANY;
             $scope.form.dni = debugCfg.DNI;
             $scope.form.name = debugCfg.NAME;
             $scope.form.surname = debugCfg.SURNAME;

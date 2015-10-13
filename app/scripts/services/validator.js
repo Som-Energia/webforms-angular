@@ -102,8 +102,6 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.dni = oldValue;
                     } else if (element === 'formvalues.init.dni') {
                         $scope.formvalues.dni = oldValue;
-                    } else if (element === 'form.representantdni') {
-                        $scope.form.representantdni = oldValue;
                     }
                     makeApiAsyncCheck = false;
                 }
@@ -119,7 +117,7 @@ angular.module('newSomEnergiaWebformsApp')
                                     $scope.dniIsInvalid = response === cfg.STATE_FALSE;
                                     $scope.dni2IsInvalid = response === cfg.STATE_FALSE;
                                     $scope.dniDuplicated = false;
-                                } else if (element === 'form.representantdni') {
+                                } else if (element === 'owner.representantdni') {
                                     $scope.dniRepresentantIsInvalid = response === cfg.STATE_FALSE;
                                     $scope.dni3IsInvalid = response === cfg.STATE_FALSE;
                                 }
