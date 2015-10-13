@@ -763,8 +763,8 @@
                         </div>
                         <div class="form-group col-xs-9">
                             <label class="sr-only">{{ 'RAO_SOCIAL' | translate }}*:</label>
-                            <input type="text" name="accountrepresentantname" class="form-control" placeholder="{{ 'RAO_SOCIAL' | translate }}*" data-ng-model="form.accountrepresentantname" data-ng-change="formListener()" required/>
-                            <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountrepresentantname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                            <input type="text" name="payer_name" class="form-control" placeholder="{{ 'RAO_SOCIAL' | translate }}*" data-ng-model="payer.representantname" data-ng-change="formListener()" required/>
+                            <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.payer_name.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                         </div>
                     </div>
                     <div class="row">

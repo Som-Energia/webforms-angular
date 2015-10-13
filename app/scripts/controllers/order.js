@@ -450,7 +450,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('compte_tel', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountphone1);
             formData.append('compte_tel2', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountphone2);
             formData.append('compte_cp', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountpostalcode);
-            formData.append('compte_representant_nom', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.payer.usertype === 'company' ? $scope.form.accountrepresentantname : '');
+            formData.append('compte_representant_nom', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.payer.usertype === 'company' ? $scope.payer.representantname : '');
             formData.append('compte_representant_dni', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.payer.usertype === 'company' ? $scope.form.accountrepresentantdni : '');
             formData.append('condicions', 1);
             formData.append('condicions_privacitat', 1);
