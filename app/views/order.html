@@ -503,7 +503,7 @@
                     </div>
                     <div class="form-group col-sm-2 col-xs-4">
                         <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
-                        <input type="text" name="postalcode" class="form-control" data-ng-model="form.postalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
+                        <input type="text" name="postalcode" class="form-control" data-ng-model="owner.postalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.postalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                         <span class="label label-danger" data-ng-show="postalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
                     </div>
@@ -595,7 +595,7 @@
                     </div>
                     <div class="form-group col-sm-2 col-xs-4">
                         <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
-                        <input type="text" name="postalcode" class="form-control" data-ng-model="form.postalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
+                        <input type="text" name="postalcode" class="form-control" data-ng-model="owner.postalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                         <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.postalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                         <span class="label label-danger" data-ng-show="postalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
                     </div>

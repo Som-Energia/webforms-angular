@@ -139,7 +139,7 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateEmail2($scope, 'owner.email2', checkEmail2Timer);
 
         // POSTAL CODE VALIDATION
-        ValidateHandler.validatePostalCode($scope, 'form.postalcode');
+        ValidateHandler.validatePostalCode($scope, 'owner.postalcode');
 
         // TELEPHONE VALIDATION
         ValidateHandler.validateTelephoneNumber($scope, 'owner.phone1');
@@ -286,7 +286,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.owner.email1 === $scope.owner.email2 &&
                         $scope.owner.phone1 !== undefined &&
                         $scope.owner.address !== undefined &&
-                        $scope.form.postalcode !== undefined &&
+                        $scope.owner.postalcode !== undefined &&
                         $scope.owner.province !== undefined &&
                         $scope.owner.city !== undefined &&
                         $scope.postalCodeIsInvalid === false &&
@@ -390,20 +390,21 @@ angular.module('newSomEnergiaWebformsApp')
                 formData.append('alta_subministre', $scope.esAlta() ? 1 : 0);
                 formData.append('proces', $scope.esAlta() ? 'A3' : $scope.form.changeowner === 'yes' ? 'C2': 'C1');
             }
-            formData.append('soci_titular', $scope.form.ownerIsMember === 'yes' ? 1 : 0);
+            var ownerIsMember = $scope.form.ownerIsMember==='yes';
+            formData.append('soci_titular', ownerIsMember ? 1 : 0);
             formData.append('tipus_persona', $scope.owner.usertype === 'person' ? 0 : 1);
             formData.append('representant_nom', $scope.owner.usertype === 'company' ? $scope.owner.representantname : '');
             formData.append('representant_dni', $scope.owner.usertype === 'company' ? $scope.owner.representantdni : '');
-            formData.append('titular_nom', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.nom : $scope.owner.name);
-            formData.append('titular_cognom', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.cognom : $scope.owner.surname || '');
-            formData.append('titular_dni', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.dni : $scope.owner.dni);
-            formData.append('titular_email', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.email : $scope.owner.email1);
-            formData.append('titular_tel', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.tel : $scope.owner.phone1);
-            formData.append('titular_tel2', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.tel2 : $scope.owner.phone2 || '');
-            formData.append('titular_adreca', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.adreca : $scope.owner.address);
-            formData.append('titular_municipi', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.municipi : $scope.owner.city.id);
-            formData.append('titular_cp', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.cp : $scope.form.postalcode);
-            formData.append('titular_provincia', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.provincia : $scope.owner.province.id);
+            formData.append('titular_nom', ownerIsMember ? $scope.initForm.soci.nom : $scope.owner.name);
+            formData.append('titular_cognom', ownerIsMember ? $scope.initForm.soci.cognom : $scope.owner.surname || '');
+            formData.append('titular_dni', ownerIsMember ? $scope.initForm.soci.dni : $scope.owner.dni);
+            formData.append('titular_email', ownerIsMember ? $scope.initForm.soci.email : $scope.owner.email1);
+            formData.append('titular_tel', ownerIsMember ? $scope.initForm.soci.tel : $scope.owner.phone1);
+            formData.append('titular_tel2', ownerIsMember ? $scope.initForm.soci.tel2 : $scope.owner.phone2 || '');
+            formData.append('titular_adreca', ownerIsMember ? $scope.initForm.soci.adreca : $scope.owner.address);
+            formData.append('titular_municipi', ownerIsMember ? $scope.initForm.soci.municipi : $scope.owner.city.id);
+            formData.append('titular_cp', ownerIsMember ? $scope.initForm.soci.cp : $scope.owner.postalcode);
+            formData.append('titular_provincia', ownerIsMember ? $scope.initForm.soci.provincia : $scope.owner.province.id);
             formData.append('tarifa', $scope.form.rate);
             formData.append('cups', $scope.cupsEditor.value);
             formData.append('consum', $scope.form.estimation || '');
