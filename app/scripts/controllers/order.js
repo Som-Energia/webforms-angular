@@ -139,7 +139,7 @@ angular.module('newSomEnergiaWebformsApp')
         var checkEmail2Timer = false;
         ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
         var checkAccountEmail1Timer = false;
-        ValidateHandler.validateEmail1($scope, 'form.accountemail1', checkAccountEmail1Timer);
+        ValidateHandler.validateEmail1($scope, 'payer.email1', checkAccountEmail1Timer);
         var checkAccountEmail2Timer = false;
         ValidateHandler.validateEmail2($scope, 'form.accountemail2', checkAccountEmail2Timer);
 
@@ -310,9 +310,9 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.payer.name !== undefined &&
                         ($scope.payer.usertype === 'company' || $scope.payer.usertype === 'person' && $scope.payer.surname !== undefined) &&
                         $scope.payer.dni !== undefined &&
-                        $scope.form.accountemail1 !== undefined &&
+                        $scope.payer.email1 !== undefined &&
                         $scope.form.accountemail2 !== undefined &&
-                        $scope.form.accountemail1 === $scope.form.accountemail2 &&
+                        $scope.payer.email1 === $scope.form.accountemail2 &&
                         $scope.form.accountphone1 !== undefined &&
                         $scope.payer.address !== undefined &&
                         $scope.form.accountpostalcode !== undefined &&
@@ -443,7 +443,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('compte_adreca', noPayer ? '' : $scope.payer.address);
             formData.append('compte_provincia', noPayer ? '' : $scope.payer.province.id);
             formData.append('compte_municipi', noPayer ? '' : $scope.payer.city.id);
-            formData.append('compte_email', noPayer ? '' : $scope.form.accountemail1);
+            formData.append('compte_email', noPayer ? '' : $scope.payer.email1);
             formData.append('compte_tel', noPayer ? '' : $scope.form.accountphone1);
             formData.append('compte_tel2', noPayer ? '' : $scope.form.accountphone2);
             formData.append('compte_cp', noPayer ? '' : $scope.form.accountpostalcode);

@@ -699,7 +699,7 @@
                         </div>
                         <div class="form-group col-xs-4">
                             <label class="sr-only">Email*:</label>
-                            <input type="text" name="accountemail1" class="form-control" placeholder="Email*" data-ng-model="form.accountemail1" data-ng-change="formListener()" data-ng-class="{'ng-invalid': accountEmailIsInvalid}" required/>
+                            <input type="text" name="accountemail1" class="form-control" placeholder="Email*" data-ng-model="payer.email1" data-ng-change="formListener()" data-ng-class="{'ng-invalid': accountEmailIsInvalid}" required/>
                             <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountemail1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                             <span class="label label-danger" data-ng-show="accountEmailIsInvalid">{{ 'INVALID' | translate }}</span>
                         </div>
@@ -784,7 +784,7 @@
                     <div class="row">
                         <div class="form-group col-xs-6">
                             <label class="sr-only">Email*:</label>
-                            <input type="text" name="accountemail1" class="form-control" placeholder="Email*" data-ng-model="form.accountemail1" data-ng-change="formListener()" data-ng-class="{'ng-invalid': accountEmailIsInvalid}" required/>
+                            <input type="text" name="accountemail1" class="form-control" placeholder="Email*" data-ng-model="payer.email1" data-ng-change="formListener()" data-ng-class="{'ng-invalid': accountEmailIsInvalid}" required/>
                             <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountemail1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                             <span class="label label-danger" data-ng-show="accountEmailIsInvalid">{{ 'INVALID' | translate }}</span>
                         </div>
