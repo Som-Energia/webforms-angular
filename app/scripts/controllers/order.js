@@ -314,7 +314,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.accountemail2 !== undefined &&
                         $scope.form.accountemail1 === $scope.form.accountemail2 &&
                         $scope.form.accountphone1 !== undefined &&
-                        $scope.form.accountaddress !== undefined &&
+                        $scope.payer.address !== undefined &&
                         $scope.form.accountpostalcode !== undefined &&
                         $scope.form.province3 !== undefined &&
                         $scope.form.city3 !== undefined &&
@@ -440,7 +440,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('compte_nom', noPayer ? '' : $scope.payer.name);
             formData.append('compte_cognom', noPayer || $scope.payer.usertype !== 'person' ? '' : $scope.payer.surname);
             formData.append('compte_dni', noPayer ? '' : $scope.payer.dni);
-            formData.append('compte_adreca', noPayer ? '' : $scope.form.accountaddress);
+            formData.append('compte_adreca', noPayer ? '' : $scope.payer.address);
             formData.append('compte_provincia', noPayer ? '' : $scope.form.province3.id);
             formData.append('compte_municipi', noPayer ? '' : $scope.form.city3.id);
             formData.append('compte_email', noPayer ? '' : $scope.form.accountemail1);
