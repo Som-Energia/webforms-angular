@@ -705,7 +705,7 @@
                         </div>
                         <div class="form-group col-xs-4">
                             <label class="sr-only">{{ 'REPETEIX_EMAIL' | translate }}*:</label>
-                            <input type="text" name="accountemail2" class="form-control" placeholder="{{ 'REPETEIX_EMAIL' | translate }}*" data-ng-model="form.accountemail2" data-ng-change="formListener()" data-ng-class="{'ng-invalid': accountEmailNoIguals}" required/>
+                            <input type="text" name="accountemail2" class="form-control" placeholder="{{ 'REPETEIX_EMAIL' | translate }}*" data-ng-model="payer.email2" data-ng-change="formListener()" data-ng-class="{'ng-invalid': accountEmailNoIguals}" required/>
                             <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountemail2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                             <span class="label label-danger" data-ng-show="accountEmailNoIguals">{{ 'EMAIL_NO_IGUALS' | translate }}</span>
                         </div>
@@ -790,7 +790,7 @@
                         </div>
                         <div class="form-group col-xs-6">
                             <label class="sr-only">{{ 'REPETEIX_EMAIL' | translate }}*:</label>
-                            <input type="text" name="accountemail2" class="form-control" placeholder="{{ 'REPETEIX_EMAIL' | translate }}*" data-ng-model="form.accountemail2" data-ng-change="formListener()" data-ng-class="{'ng-invalid': accountEmailNoIguals}" required/>
+                            <input type="text" name="accountemail2" class="form-control" placeholder="{{ 'REPETEIX_EMAIL' | translate }}*" data-ng-model="payer.email2" data-ng-change="formListener()" data-ng-class="{'ng-invalid': accountEmailNoIguals}" required/>
                             <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountemail2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                             <span class="label label-danger" data-ng-show="accountEmailNoIguals">{{ 'EMAIL_NO_IGUALS' | translate }}</span>
                         </div>

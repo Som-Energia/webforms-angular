@@ -141,7 +141,7 @@ angular.module('newSomEnergiaWebformsApp')
         var checkAccountEmail1Timer = false;
         ValidateHandler.validateEmail1($scope, 'payer.email1', checkAccountEmail1Timer);
         var checkAccountEmail2Timer = false;
-        ValidateHandler.validateEmail2($scope, 'form.accountemail2', checkAccountEmail2Timer);
+        ValidateHandler.validateEmail2($scope, 'payer.email2', checkAccountEmail2Timer);
 
         // POSTAL CODE VALIDATION
         ValidateHandler.validatePostalCode($scope, 'form.postalcode');
@@ -311,8 +311,8 @@ angular.module('newSomEnergiaWebformsApp')
                         ($scope.payer.usertype === 'company' || $scope.payer.usertype === 'person' && $scope.payer.surname !== undefined) &&
                         $scope.payer.dni !== undefined &&
                         $scope.payer.email1 !== undefined &&
-                        $scope.form.accountemail2 !== undefined &&
-                        $scope.payer.email1 === $scope.form.accountemail2 &&
+                        $scope.payer.email2 !== undefined &&
+                        $scope.payer.email1 === $scope.payer.email2 &&
                         $scope.form.accountphone1 !== undefined &&
                         $scope.payer.address !== undefined &&
                         $scope.form.accountpostalcode !== undefined &&
