@@ -622,7 +622,6 @@
                 </div>
             </div>
         </wizard-page>
-
         <!-- Page: Payer data -->
         <wizard-page
             model="wizardPage"
@@ -686,7 +685,7 @@
                         </div>
                         <div class="form-group col-xs-7">
                             <label class="sr-only">{{ 'COGNOMS' | translate }}*:</label>
-                            <input type="text" name="accountsurname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}*" data-ng-model="form.accountsurname" data-ng-change="formListener()" required/>
+                            <input type="text" name="accountsurname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}*" data-ng-model="payer.surname" data-ng-change="formListener()" required/>
                             <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountsurname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                         </div>
                     </div>

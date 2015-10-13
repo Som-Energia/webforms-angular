@@ -23,7 +23,6 @@ angular.module('newSomEnergiaWebformsApp')
         ) {
     var self = this;
     self.init = function(/*element, attrs*/) {
-        $scope.form = {};
         $scope.form.isReady = function() {
             return (
                 $scope.form.language &&
