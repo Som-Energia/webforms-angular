@@ -182,8 +182,8 @@ angular.module('newSomEnergiaWebformsApp')
                 if (newValue !== undefined && (!integerRE.test(newValue) || newValue.length > 5)) {
                     if (element === 'form.postalcode') {
                         $scope.form.postalcode = oldValue;
-                    } else if (element === 'form.accountpostalcode') {
-                        $scope.form.accountpostalcode = oldValue;
+                    } else if (element === 'payer.postalcode') {
+                        $scope.payer.postalcode = oldValue;
                     }
                 }
                 if (timer) {
@@ -193,7 +193,7 @@ angular.module('newSomEnergiaWebformsApp')
                     var valueToApply = newValue !== undefined && newValue.length < 5;
                     if (element === 'form.postalcode') {
                         $scope.postalCodeIsInvalid = valueToApply;
-                    } else if (element === 'form.accountpostalcode') {
+                    } else if (element === 'payer.postalcode') {
                         $scope.accountPostalCodeIsInvalid = valueToApply;
                     }
                     $scope.formListener();
@@ -211,8 +211,8 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.phone2 = oldValue;
                     } else if (element === 'payer.phone1') {
                         $scope.payer.phone1 = oldValue;
-                    } else if (element === 'form.accountphone2') {
-                        $scope.form.accountphone2 = oldValue;
+                    } else if (element === 'payer.phone2') {
+                        $scope.payer.phone2 = oldValue;
                     }
                 }
             });

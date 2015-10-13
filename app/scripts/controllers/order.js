@@ -145,13 +145,13 @@ angular.module('newSomEnergiaWebformsApp')
 
         // POSTAL CODE VALIDATION
         ValidateHandler.validatePostalCode($scope, 'form.postalcode');
-        ValidateHandler.validatePostalCode($scope, 'form.accountpostalcode');
+        ValidateHandler.validatePostalCode($scope, 'payer.postalcode');
 
         // TELEPHONE VALIDATION
         ValidateHandler.validateTelephoneNumber($scope, 'form.phone1');
         ValidateHandler.validateTelephoneNumber($scope, 'form.phone2');
         ValidateHandler.validateTelephoneNumber($scope, 'payer.phone1');
-        ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone2');
+        ValidateHandler.validateTelephoneNumber($scope, 'payer.phone2');
 
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity2 = function() {
@@ -315,7 +315,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.payer.email1 === $scope.payer.email2 &&
                         $scope.payer.phone1 !== undefined &&
                         $scope.payer.address !== undefined &&
-                        $scope.form.accountpostalcode !== undefined &&
+                        $scope.payer.postalcode !== undefined &&
                         $scope.payer.province !== undefined &&
                         $scope.payer.city !== undefined &&
                         $scope.form.accept2 !== undefined &&
@@ -445,8 +445,8 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('compte_municipi', noPayer ? '' : $scope.payer.city.id);
             formData.append('compte_email', noPayer ? '' : $scope.payer.email1);
             formData.append('compte_tel', noPayer ? '' : $scope.payer.phone1);
-            formData.append('compte_tel2', noPayer ? '' : $scope.form.accountphone2);
-            formData.append('compte_cp', noPayer ? '' : $scope.form.accountpostalcode);
+            formData.append('compte_tel2', noPayer ? '' : $scope.payer.phone2);
+            formData.append('compte_cp', noPayer ? '' : $scope.payer.postalcode);
             formData.append('compte_representant_nom', noPayer || $scope.payer.usertype !== 'company' ? '' : $scope.payer.representantname);
             formData.append('compte_representant_dni', noPayer || $scope.payer.usertype !== 'company' ? '' : $scope.payer.representantdni);
             formData.append('condicions', 1);

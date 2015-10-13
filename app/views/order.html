@@ -718,7 +718,7 @@
                         </div>
                         <div class="form-group col-xs-6">
                             <label class="sr-only">{{ 'TELEFON' | translate }} 2:</label>
-                            <input type="text" name="accountphone2" class="form-control" placeholder="{{ 'TELEFON' | translate }} 2" data-ng-model="form.accountphone2"/>
+                            <input type="text" name="accountphone2" class="form-control" placeholder="{{ 'TELEFON' | translate }} 2" data-ng-model="payer.phone2"/>
                         </div>
                     </div>
                     <hr class="dotted">
@@ -730,7 +730,7 @@
                         </div>
                         <div class="form-group col-sm-3 col-xs-4">
                             <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
-                            <input type="text" name="accountpostalcode" class="form-control" data-ng-model="form.accountpostalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
+                            <input type="text" name="accountpostalcode" class="form-control" data-ng-model="payer.postalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                             <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountpostalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                             <span class="label label-danger" data-ng-show="accountPostalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
                         </div>
@@ -803,7 +803,7 @@
                         </div>
                         <div class="form-group col-xs-6">
                             <label class="sr-only">{{ 'TELEFON' | translate }} 2:</label>
-                            <input type="text" name="accountphone2" class="form-control" placeholder="{{ 'TELEFON' | translate }} 2" data-ng-model="form.accountphone2"/>
+                            <input type="text" name="accountphone2" class="form-control" placeholder="{{ 'TELEFON' | translate }} 2" data-ng-model="payer.phone2"/>
                         </div>
                     </div>
                     <hr class="dotted">
@@ -815,7 +815,7 @@
                         </div>
                         <div class="form-group col-sm-3 col-xs-4">
                             <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
-                            <input type="text" name="accountpostalcode" class="form-control" data-ng-model="form.accountpostalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
+                            <input type="text" name="accountpostalcode" class="form-control" data-ng-model="payer.postalcode" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
                             <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accountpostalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                             <span class="label label-danger" data-ng-show="accountPostalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
                         </div>
