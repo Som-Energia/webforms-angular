@@ -123,27 +123,6 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validatePower($scope, 'form.power3');
         ValidateHandler.validateInteger($scope, 'form.estimation');
 
-        // DNI VALIDATION
-//        var checkDniTimer = false;
-//        ValidateHandler.validateDni($scope, 'formsoci.dni', checkDniTimer);
-        var checkDni2Timer = false;
-        ValidateHandler.validateDni($scope, 'owner.dni', checkDni2Timer);
-        var checkDni4Timer = false;
-        ValidateHandler.validateDni($scope, 'payer.dni', checkDni4Timer);
-
-        // EMAIL VALIDATION
-        var checkEmail1Timer = false;
-        ValidateHandler.validateEmail1($scope, 'owner.email1', checkEmail1Timer);
-        var checkEmail2Timer = false;
-        ValidateHandler.validateEmail2($scope, 'owner.email2', checkEmail2Timer);
-
-        // POSTAL CODE VALIDATION
-        ValidateHandler.validatePostalCode($scope, 'owner.postalcode');
-
-        // TELEPHONE VALIDATION
-        ValidateHandler.validateTelephoneNumber($scope, 'owner.phone1');
-        ValidateHandler.validateTelephoneNumber($scope, 'owner.phone2');
-
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity2 = function() {
             $scope.owner.city=undefined;
