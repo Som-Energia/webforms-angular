@@ -55,7 +55,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.form = {};
         $scope.form.phases = 'mono';
         $scope.form.discriminacio = 'nodh';
-        $scope.form.usertype = 'person';
         $scope.form.choosepayer = cfg.PAYER_TYPE_TITULAR;
         $scope.completeAccountNumber = '';
         $scope.availablePowers = function() {
@@ -266,9 +265,21 @@ angular.module('newSomEnergiaWebformsApp')
                     ($scope.form.ownerIsMember === 'no' &&
                         $scope.form.language !== undefined &&
                         $scope.form.name !== undefined &&
-                        ($scope.form.representantname !== undefined && $scope.form.usertype === 'company' || $scope.form.usertype === 'person') &&
-                        $scope.form.changeowner !== undefined &&
-                        ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
+                        (
+                            $scope.form.representantname !== undefined &&
+                            $scope.owner.usertype === 'company' ||
+                            $scope.owner.usertype === 'person'
+                        ) &&
+                        (
+                            $scope.dni3IsInvalid === false &&
+                            $scope.owner.usertype === 'company' ||
+                            $scope.owner.usertype === 'person'
+                        ) &&
+                        (
+                            $scope.form.surname !== undefined &&
+                            $scope.owner.usertype === 'person' ||
+                            $scope.owner.usertype === 'company'
+                        ) &&
                         $scope.form.dni !== undefined &&
                         $scope.form.email1 !== undefined &&
                         $scope.form.email2 !== undefined &&
@@ -280,7 +291,6 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.city2 !== undefined &&
                         $scope.postalCodeIsInvalid === false &&
                         $scope.dni2IsInvalid === false &&
-                        ($scope.dni3IsInvalid === false && $scope.form.usertype === 'company' || $scope.form.usertype === 'person') &&
                         $scope.emailIsInvalid === false &&
                         $scope.emailNoIguals === false)
                 );
@@ -381,9 +391,9 @@ angular.module('newSomEnergiaWebformsApp')
                 formData.append('proces', $scope.esAlta() ? 'A3' : $scope.form.changeowner === 'yes' ? 'C2': 'C1');
             }
             formData.append('soci_titular', $scope.form.ownerIsMember === 'yes' ? 1 : 0);
-            formData.append('tipus_persona', $scope.form.usertype === 'person' ? 0 : 1);
-            formData.append('representant_nom', $scope.form.usertype === 'company' ? $scope.form.representantname : '');
-            formData.append('representant_dni', $scope.form.usertype === 'company' ? $scope.form.representantdni : '');
+            formData.append('tipus_persona', $scope.owner.usertype === 'person' ? 0 : 1);
+            formData.append('representant_nom', $scope.owner.usertype === 'company' ? $scope.form.representantname : '');
+            formData.append('representant_dni', $scope.owner.usertype === 'company' ? $scope.form.representantdni : '');
             formData.append('titular_nom', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.nom : $scope.form.name);
             formData.append('titular_cognom', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.cognom : $scope.form.surname || '');
             formData.append('titular_dni', $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci.dni : $scope.form.dni);
