@@ -150,7 +150,7 @@ angular.module('newSomEnergiaWebformsApp')
         // TELEPHONE VALIDATION
         ValidateHandler.validateTelephoneNumber($scope, 'form.phone1');
         ValidateHandler.validateTelephoneNumber($scope, 'form.phone2');
-        ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone1');
+        ValidateHandler.validateTelephoneNumber($scope, 'payer.phone1');
         ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone2');
 
         // ON CHANGE SELECTED STATE
@@ -313,7 +313,7 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.payer.email1 !== undefined &&
                         $scope.payer.email2 !== undefined &&
                         $scope.payer.email1 === $scope.payer.email2 &&
-                        $scope.form.accountphone1 !== undefined &&
+                        $scope.payer.phone1 !== undefined &&
                         $scope.payer.address !== undefined &&
                         $scope.form.accountpostalcode !== undefined &&
                         $scope.payer.province !== undefined &&
@@ -444,7 +444,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('compte_provincia', noPayer ? '' : $scope.payer.province.id);
             formData.append('compte_municipi', noPayer ? '' : $scope.payer.city.id);
             formData.append('compte_email', noPayer ? '' : $scope.payer.email1);
-            formData.append('compte_tel', noPayer ? '' : $scope.form.accountphone1);
+            formData.append('compte_tel', noPayer ? '' : $scope.payer.phone1);
             formData.append('compte_tel2', noPayer ? '' : $scope.form.accountphone2);
             formData.append('compte_cp', noPayer ? '' : $scope.form.accountpostalcode);
             formData.append('compte_representant_nom', noPayer || $scope.payer.usertype !== 'company' ? '' : $scope.payer.representantname);
