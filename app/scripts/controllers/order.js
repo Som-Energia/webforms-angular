@@ -21,6 +21,8 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.altesDeshabilitades = false;
         $scope.showAll = true;
+        // To false to debug one page completion state independently from the others
+        $scope.waitPreviousPages = false;
 
         $scope.initForm = {};
         $scope.ibanEditor = {};
@@ -215,9 +217,18 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.$watch('form.discriminacio', recomputeFareFromAlta);
 
         // CONTROL READY STEPS ON CHANGE FORM
+        $scope.isPartnerPageComplete = function() {
+            return (
+                $scope.initForm !== undefined &&
+                $scope.initForm.isReady !== undefined &&
+                $scope.initForm.isReady()
+            );
+        };
 
         $scope.isSupplyPointPageComplete = function() {
-            if (!$scope.isHaveLightPageComplete) { return false; }
+            if ($scope.waitPreviousPages) {
+                if (!$scope.isHaveLightPageComplete) { return false; }
+            }
             if ($scope.form.address === undefined) { return false; }
             if ($scope.form.province === undefined) { return false; }
             if ($scope.form.city === undefined) { return false; }
@@ -228,7 +239,9 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.isFarePageComplete = function() {
-            if (!$scope.isSupplyPointPageComplete()) { return false; }
+            if ($scope.waitPreviousPages) {
+                if (!$scope.isSupplyPointPageComplete()) { return false; }
+            }
             if ($scope.form.rate === undefined) { return false; }
             switch ($scope.form.rate) {
                 case cfg.RATE_20A:
@@ -254,15 +267,14 @@ angular.module('newSomEnergiaWebformsApp')
         };
         $scope.formListener = function() {
             $scope.isHaveLightPageComplete =
-                $scope.initForm !== undefined &&
-                $scope.initForm.isReady !== undefined &&
-                $scope.initForm.isReady() && (
+                (!$scope.waitPreviousPages || $scope.isPartnerPageComplete()) && (
                    $scope.esAlta() !== undefined ||
                    $scope.altesDeshabilitades
                 );
 
+            console.log('isHaveLightPageComplete', $scope.isHaveLightPageComplete);
             $scope.isOwnerPageComplete =
-                $scope.isSupplyPointPageComplete() &&
+                (!$scope.waitPreviousPages || $scope.isSupplyPointPageComplete()) &&
                 $scope.isFarePageComplete() &&
                 ($scope.esAlta() || $scope.form.changeowner !== undefined) &&
                 $scope.form.accept === true &&
@@ -289,8 +301,9 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.emailIsInvalid === false &&
                         $scope.emailNoIguals === false)
                 );
-            console.log('OwnerPageComplete', $scope.isOwnerPageComplete);
-            $scope.isPayerPageComplete = $scope.isOwnerPageComplete &&
+            console.log('isOwnerPageComplete', $scope.isOwnerPageComplete);
+            $scope.isPayerPageComplete =
+                (!$scope.waitPreviousPages || $scope.isOwnerPageComplete()) &&
                 $scope.ibanEditor.isValid !== undefined &&
                 $scope.ibanEditor.isValid() &&
                 $scope.form.acceptaccountowner &&
@@ -314,7 +327,8 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.accountPostalCodeIsInvalid === false &&
                         $scope.accountEmailIsInvalid === false &&
                         $scope.accountEmailNoIguals === false))
-            ;
+                ;
+            console.log('isPayerPageComplete', $scope.isPayerPageComplete);
         };
         $scope.formAccountIbanListener = function () {
             if ($scope.form.accountbankiban1 !== undefined && $scope.form.accountbankiban2 !== undefined && $scope.form.accountbankiban3 !== undefined && $scope.form.accountbankiban4 !== undefined && $scope.form.accountbankiban5 !== undefined && $scope.form.accountbankiban6 !== undefined) {
@@ -387,15 +401,16 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.orderForm.file.$setValidity('exist', true);
             uiHandler.showLoadingDialog();
             // Prepare request data
+            var postData = {};
             var formData = new FormData();
             formData.append('id_soci', $scope.formsoci.socinumber);
             formData.append('dni', $scope.formsoci.dni);
-            formData.append('soci_titular', $scope.form.ownerIsMember === 'yes' ? 1 : 0);
             formData.append('canvi_titular', $scope.form.changeowner === 'yes' ? 1 : 0);
             if (!$scope.altesDeshabilitades) {
                 formData.append('alta_subministre', $scope.esAlta() ? 1 : 0);
                 formData.append('proces', $scope.esAlta() ? 'A3' : $scope.form.changeowner === 'yes' ? 'C2': 'C1');
             }
+            formData.append('soci_titular', $scope.form.ownerIsMember === 'yes' ? 1 : 0);
             formData.append('tipus_persona', $scope.form.usertype === 'person' ? 0 : 1);
             formData.append('representant_nom', $scope.form.usertype === 'company' ? $scope.form.representantname : '');
             formData.append('representant_dni', $scope.form.usertype === 'company' ? $scope.form.representantdni : '');

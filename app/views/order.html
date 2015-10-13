@@ -232,7 +232,7 @@
                             <label class="combo-one-row">{{ 'ESCULL_LA_POTENCIA_DE_CADA_PERIODE' | translate }}</label>
                             <a role="button" tabindex="@" tooltip-append-to-body="true" tooltip-trigger="hover" tooltip-html-unsafe="{{ 'HELP_POPOVER_POWER'+caca | translate }}" tooltip-placement="left"><span class="badge current small">?</span></a>
                         </div>
-                        <div class="form-group col-sm-3 col-xs-4">
+                        <div class="form-group col-xs-4">
                             <label class="combo-one-row">P1*</label>
                             <div class='input-group'>
                                 <input type="text" class="form-control" data-ng-change="formListener()" required
@@ -243,7 +243,7 @@
                             <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                             <span class="pull-right label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
                         </div>
-                        <div class="form-group col-sm-3 col-xs-4">
+                        <div class="form-group col-xs-4">
                             <label class="combo-one-row">P2*</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" data-ng-change="formListener()" required
@@ -254,7 +254,7 @@
                             <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                             <span class="pull-right label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
                         </div>
-                        <div class="form-group col-sm-3 col-xs-4">
+                        <div class="form-group col-xs-4">
                             <label class="combo-one-row">P3*</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" data-ng-change="formListener()" required
@@ -412,15 +412,6 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group col-sm-6 col-xs-12" data-ng-show="form.ownerIsMember == 'no'">
-                    <span>{{ 'EL_TITULAR_ES' | translate }}:&nbsp;</span>
-                    <div class="btn-group">
-                        <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
-                        <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'company'" data-ng-change="formListener()">{{ 'EMPRESA' | translate }}</label>
-                    </div>
-                </div>
-            </div>
             <!-- (TITULAR_PARTICULAR || TITULAR_EMPRESA) & SOCI_VINCULAT_SI (page 06 & 12) (page 09 & 15) -->
             <div data-ng-show="form.ownerIsMember == 'yes'">
                 <div class="row">
@@ -437,6 +428,15 @@
                 <hr class="dotted">
             </div>
             <!-- TITULAR_PARTICULAR & SOCI_VINCULAT_NO (page 07 & 13) -->
+            <div class="row">
+                <div class="form-group col-sm-6 col-xs-12" data-ng-show="form.ownerIsMember == 'no'">
+                    <span>{{ 'EL_TITULAR_ES' | translate }}:&nbsp;</span>
+                    <div class="btn-group">
+                        <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
+                        <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'company'" data-ng-change="formListener()">{{ 'EMPRESA' | translate }}</label>
+                    </div>
+                </div>
+            </div>
             <div data-ng-if="form.usertype == 'person' && form.ownerIsMember == 'no'">
                 <div class="row">
                     <div class="form-group col-sm-6 col-xs-12">
@@ -634,22 +634,24 @@
             show-always='showAll'
             ready="isPayerPageComplete"
         >
-        <!--FORTH STEP-->
             <div class="row extra-margin-top">
+                <iban-editor
+                    class="col-sm-8 col-xs-12"
+                    required
+                    inputid="accountbankiban"
+                    placeholder="{{'CODI_IBAN_DEL_COMPTE' | translate}}"
+                    help="accountbankibanHelp"
+                    model="ibanEditor"
+                ></iban-editor>
                 <div class="col-xs-12">
-                    <span class="optional-info">{{ 'INFORMACIO_OPCIONAL' | translate }}</span>
-                    <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_OPTIONAL_INFO' | translate }}" data-placement="right">?</span>
+                    <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>{{ 'EXEMPLE_IBAN' | translate }}</div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-3 col-xs-12">
-                    <label for="estimation" class="sr-only">{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}:</label>
-                    <input type="text" name="estimation" data-ng-model="form.estimation" class="form-control" placeholder="{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}" data-ng-change="formListener()"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-7 col-xs-12">
+                <div class="col-xs-12">
                     <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}</label>
+                </div>
+                <div class="col-xs-12">
                     <select class="form-control width-70-percent" name="choosepayer" data-ng-model="form.choosepayer" data-ng-change="formListener()">
                         <option value="titular">{{ 'TITULAR_CONTRACTE_ELECTRICITAT' | translate }}: {{
                             form.ownerIsMember === 'yes'?
@@ -834,19 +836,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row no-margin-bottom">
-                <iban-editor
-                    class="col-sm-8 col-xs-12"
-                    required
-                    inputid="accountbankiban"
-                    placeholder="{{'CODI_IBAN_DEL_COMPTE' | translate}}"
-                    help="accountbankibanHelp"
-                    model="ibanEditor"
-                ></iban-editor>
-                <div class="col-xs-12">
-                    <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>{{ 'EXEMPLE_IBAN' | translate }}</div>
-                </div>
-            </div>
             <div class="row">
                 <div class="form-group checkbox col-xs-12">
                     <label>
@@ -863,6 +852,21 @@
                         <span data-ng-bind-html="'ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT' | translate"></span>
                     </label>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+            </div>
+            <!-- TODO: Explicar la primera estimada -->
+            <!--
+            <div class="row extra-margin-top">
+                <div class="col-xs-12">
+                    <span class="optional-info">{{ 'INFORMACIO_OPCIONAL' | translate }}</span>
+                    <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_OPTIONAL_INFO' | translate }}" data-placement="right">?</span>
+                </div>
+            </div>
+            -->
+            <div class="row extra-margin-top">
+                <div class="col-sm-3 col-xs-12">
+                    <label for="estimation" class="sr-only">{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}:</label>
+                    <input type="text" name="estimation" data-ng-model="form.estimation" class="form-control" placeholder="{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}" data-ng-change="formListener()"/>
                 </div>
             </div>
             <div class="row">
