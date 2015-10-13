@@ -92,11 +92,6 @@ angular.module('newSomEnergiaWebformsApp')
         var checkEmail2Timer = false;
         ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
 
-        // ON CHANGE SELECTED STATE
-        $scope.updateSelectedCity = function() {
-            AjaxHandler.getCities($scope, 1, $scope.form.province.id);
-        };
-
     };
     $scope.formListener = function() {
         $log.debug($scope.form);
