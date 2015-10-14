@@ -132,12 +132,6 @@ angular.module('newSomEnergiaWebformsApp')
             });
         };
 
-        // ON CHANGE SELECTED POWER RATE
-        $scope.updatePowerRatePopoverListener = function() {
-            $timeout(function() { jQuery('#spc-rate-conditional').popover({trigger : 'hover'}); }, 100);
-            $scope.formListener();
-        };
-
         $scope.esAlta = function() {
             if ($scope.altesDeshabilitades) { return false; }
             if ($scope.form.hasservice === undefined) { return undefined; }
@@ -231,38 +225,11 @@ angular.module('newSomEnergiaWebformsApp')
                 ($scope.esAlta() || $scope.form.changeowner !== undefined) &&
                 $scope.form.accept === true &&
                 (
-                    ($scope.form.ownerIsMember === 'yes') ||
-                    ($scope.form.ownerIsMember === 'no' &&
-                        $scope.owner.language !== undefined &&
-                        $scope.owner.name !== undefined &&
-                        (
-                            $scope.owner.representantname !== undefined &&
-                            $scope.owner.usertype === 'company' ||
-                            $scope.owner.usertype === 'person'
-                        ) &&
-                        (
-                            $scope.dni3IsInvalid === false &&
-                            $scope.owner.usertype === 'company' ||
-                            $scope.owner.usertype === 'person'
-                        ) &&
-                        (
-                            $scope.owner.surname !== undefined &&
-                            $scope.owner.usertype === 'person' ||
-                            $scope.owner.usertype === 'company'
-                        ) &&
-                        $scope.owner.dni !== undefined &&
-                        $scope.owner.email1 !== undefined &&
-                        $scope.owner.email2 !== undefined &&
-                        $scope.owner.email1 === $scope.owner.email2 &&
-                        $scope.owner.phone1 !== undefined &&
-                        $scope.owner.address !== undefined &&
-                        $scope.owner.postalcode !== undefined &&
-                        $scope.owner.province !== undefined &&
-                        $scope.owner.city !== undefined &&
-                        $scope.postalCodeIsInvalid === false &&
-                        $scope.dni2IsInvalid === false &&
-                        $scope.emailIsInvalid === false &&
-                        $scope.emailNoIguals === false)
+                    $scope.form.ownerIsMember === 'yes' ||
+                    (
+                        $scope.owner.isReady !== undefined &&
+                        $scope.owner.isReady()
+                    )
                 );
             $scope.isPayerPageComplete =
                 (!$scope.waitPreviousPages || $scope.isOwnerPageComplete()) &&
