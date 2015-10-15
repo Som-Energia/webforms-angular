@@ -171,6 +171,15 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.initForm.isReady()
             );
         };
+        $scope.setOnwerAndPayerLanguage=function(soci) {
+            console.log('owner from order:', $scope.owner);
+            console.log('payer from order:', $scope.payer);
+
+            $scope.payer.setLanguage('ca_ES');
+            $scope.owner.setLanguage('ca_ES');
+            console.log('payer',$scope.payer);
+            console.log('owner',$scope.owner);
+        };
 
         $scope.isSupplyPointPageComplete = function() {
             if ($scope.waitPreviousPages) {
@@ -310,8 +319,8 @@ angular.module('newSomEnergiaWebformsApp')
             }
             var ownerIsMember = $scope.form.ownerIsMember==='yes';
             formData.append('soci_titular', ownerIsMember ? 1 : 0);
-            // TODO: agafar tipus_persona, representant_nom, i representant_dni del soci quan toca
             // TODO: estem ignorant l'idioma dels no socis (owner i payer)
+            // TODO: agafar tipus_persona, representant_nom, i representant_dni del soci quan toca
             formData.append('tipus_persona', $scope.owner.usertype === 'person' ? 0 : 1);
             formData.append('representant_nom', $scope.owner.usertype === 'company' ? $scope.owner.representantname : '');
             formData.append('representant_dni', $scope.owner.usertype === 'company' ? $scope.owner.representantdni : '');
