@@ -6,18 +6,34 @@
                 <label class="sr-only">{{ 'NUMERO_SOCI' | translate }}*</label>
                 <div class="input-group" style="width: 100%">
                     <input type="text" name="socinumber" class="form-control input-lg" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="formvalues.socinumber" data-ng-change="formListener()" required/>
-                    <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>
-                        <span class="spc-html badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_SOCIA' | translate }}" data-placement="top">?</span>
-                    </span>
+                    <a
+                        role="button"
+                        tabindex="0"
+                        class="btn btn-default input-group-addon"
+                        tooltip-append-to-body="true"
+                        tooltip-trigger="focus"
+                        tooltip-placement="top"
+                        tooltip-html-unsafe="{{ 'HELP_POPOVER_SOCIA' | translate }}"
+                        >
+                        <span class="badge current small">?</span>
+                    </a>
                </div>
             </div>
             <div class="form-group col-xs-6 col-sm-5 col-md-4 col-lg-3" >
                 <label class="sr-only">DNI/NIE/CIF*</label>
                 <div class="input-group" style="width: 100%">
                     <input type="text" name="dni" class="form-control input-lg" placeholder="DNI/NIE/CIF*" data-ng-model="formvalues.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': isInvalidId()}" required/>
-                    <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>
-                        <span class="spc-html badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_DNI' | translate }}" data-placement="top">?</span>
-                    </span>
+                    <a
+                        role="button"
+                        tabindex="0"
+                        class="btn btn-default input-group-addon"
+                        tooltip-append-to-body="true"
+                        tooltip-trigger="focus"
+                        tooltip-placement="top"
+                        tooltip-html-unsafe="{{ 'HELP_POPOVER_DNI' | translate }}"
+                        >
+                        <span class="badge current small">?</span>
+                    </a>
                 </div>
                 <span></span>
                 <span class="label label-danger" style="position:absolute;" data-ng-show="isInvalidId()">{{ 'INVALID' | translate }}</span>
