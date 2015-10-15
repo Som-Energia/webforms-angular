@@ -17,7 +17,7 @@
         <member-chooser
             button-text="{{'INICIAR_CONTRACTACIO' | translate }}"
             show-member-name="true"
-            onproceed="altesDeshabilitades ? goToSupplyPointPage() : goToHaveLightPage()"
+            onproceed="setOnwerAndPayerLanguage(initForm.soci); altesDeshabilitades ? goToSupplyPointPage() : goToHaveLightPage()"
             model="initForm"
             formvalues="formsoci"
         ></member-chooser>
@@ -154,7 +154,7 @@
                             </select>
                             <a
                                 role="button"
-                                tabindex="true"
+                                tabindex="0"
                                 class="btn btn-default input-group-addon"
                                 tooltip-append-to-body="true"
                                 tooltip-trigger="focus"
@@ -183,7 +183,7 @@
                             </select>
                             <a
                                 role="button"
-                                tabindex="true"
+                                tabindex="0"
                                 class="btn btn-default input-group-addon"
                                 tooltip-append-to-body="true"
                                 tooltip-trigger="focus"
@@ -207,7 +207,7 @@
                             </select>
                             <a
                                 role="button"
-                                tabindex="true"
+                                tabindex="0"
                                 class="btn btn-default input-group-addon"
                                 tooltip-append-to-body="true"
                                 tooltip-trigger="focus"
@@ -230,7 +230,7 @@
                     <div class="row">
                         <div class="form-group col-xs-12">
                             <label class="combo-one-row">{{ 'ESCULL_LA_POTENCIA_DE_CADA_PERIODE' | translate }}</label>
-                            <a role="button" tabindex="@" tooltip-append-to-body="true" tooltip-trigger="hover" tooltip-html-unsafe="{{ 'HELP_POPOVER_POWER'+caca | translate }}" tooltip-placement="left"><span class="badge current small">?</span></a>
+                            <a role="button" tabindex="0" tooltip-append-to-body="true" tooltip-trigger="hover" tooltip-html-unsafe="{{ 'HELP_POPOVER_POWER'+caca | translate }}" tooltip-placement="left"><span class="badge current small">?</span></a>
                         </div>
                         <div class="form-group col-xs-4">
                             <label class="combo-one-row">P1*</label>
@@ -287,7 +287,7 @@
                             </select>
                             <a
                                 role="button"
-                                tabindex="true"
+                                tabindex="0"
                                 class="btn btn-default input-group-addon"
                                 tooltip-append-to-body="true"
                                 tooltip-trigger="focus"
@@ -310,7 +310,7 @@
                             <span class="input-group-addon">kW</span>
                             <a
                                 role="button"
-                                tabindex="true"
+                                tabindex="0"
                                 class="btn btn-default input-group-addon"
                                 tooltip-append-to-body="true"
                                 tooltip-trigger="focus"
@@ -330,7 +330,7 @@
                     <div class="row">
                         <div class="form-group col-xs-12">
                             <label class="combo-one-row">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
-                            <a role="button" tabindex="@" tooltip-append-to-body="true" tooltip-trigger="hover" tooltip-html-unsafe="{{ 'HELP_POPOVER_POWER'+caca | translate }}" tooltip-placement="left"><span class="badge current small">?</span></a>
+                            <a role="button" tabindex="0" tooltip-append-to-body="true" tooltip-trigger="hover" tooltip-html-unsafe="{{ 'HELP_POPOVER_POWER'+caca | translate }}" tooltip-placement="left"><span class="badge current small">?</span></a>
                         </div>
                         <div class="form-group col-sm-3 col-xs-4">
                             <label class="combo-one-row">P1*</label>
