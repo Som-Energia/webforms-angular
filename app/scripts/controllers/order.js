@@ -172,13 +172,10 @@ angular.module('newSomEnergiaWebformsApp')
             );
         };
         $scope.setOnwerAndPayerLanguage=function(soci) {
-            console.log('owner from order:', $scope.owner);
-            console.log('payer from order:', $scope.payer);
-
-            $scope.payer.setLanguage('ca_ES');
-            $scope.owner.setLanguage('ca_ES');
-            console.log('payer',$scope.payer);
-            console.log('owner',$scope.owner);
+            // TODO: Take it from soci
+            var language = $routeParams.locale + '_ES'
+            $scope.payer.setLanguage(language);
+            $scope.owner.setLanguage(language);
         };
 
         $scope.isSupplyPointPageComplete = function() {
