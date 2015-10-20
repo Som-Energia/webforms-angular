@@ -36,20 +36,20 @@
             show-always='showAll'
             ready="isHaveLightPageComplete"
         >
-            <div class="row">
-                <div class="form-group col-xs-12">
+            <div class="row extra-margin-top">
+                <div class="col-xs-12 form-group">
                     <div>
                         <label>{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}</label>
                     </div>
                     <div class="btn-group">
-                        <label class="btn btn-default green" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="true">{{ 'SI' | translate }}</label>
-                        <label class="btn btn-default green" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="false" >{{ 'NO' | translate }}</label>
-                    </div>
-                    <div data-ng-show="form.hasservice===true" class="alert alert-warning" style="margin-top:5px" role="alert">
-                        <span data-ng-bind-html="'AVIS_CANVI_COMERCIALITZADORA' | translate"></span>
-                    </div>
-                    <div data-ng-show="form.hasservice===false" class="alert alert-warning" style="margin-top:5px" role="alert">
-                        <span data-ng-bind-html="'AVIS_ALTA_DE_SERVEI' | translate"></span>
+                        <div class="well">
+                            <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="true">{{ 'SI' | translate }}</label>
+                            <span data-ng-bind-html="'AVIS_CANVI_COMERCIALITZADORA' | translate"></span>
+                        </div>
+                        <div class="well">
+                            <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="false" >{{ 'NO' | translate }}</label>
+                            <span data-ng-bind-html="'AVIS_ALTA_DE_SERVEI' | translate"></span>
+                        </div>
                     </div>
                 </div>
             </div>

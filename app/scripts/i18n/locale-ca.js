@@ -166,12 +166,13 @@ angular.module('newSomEnergiaWebformsApp')
                 PREVISIO_GENERATION_URL: 'http://ca.support.somenergia.coop/article/582-que-representa-una-accio-energetica',
 
                 // Under development
+                
                 CARREGANT_OPCIONS: 'Carregant opcions...',
                 OPCIONAL: 'Opcional',
                 TENS_LLUM: 'Tens llum?',
-                HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: 'Hi ha llum al punt de subministrament actualment?',
-                AVIS_ALTA_DE_SERVEI: 'El punt de suministre no té servei i vols fer l\'alta directament amb Som Energia',
-                AVIS_CANVI_COMERCIALITZADORA: 'El punt de subministre ja té servei amb altre comercialitzadora i vols passar-te a Som Energia',
+                HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: 'Hi ha llum, actualment, en el punt de subministrament?',
+                AVIS_CANVI_COMERCIALITZADORA: 'Hi ha llum amb una altra comercialitzadora i vull canviar a Som Energia.',
+                AVIS_ALTA_DE_SERVEI: 'No hi ha suministre, i vull donar-la d\'alta directament amb Som Energia.',
             })
         ;
     });
