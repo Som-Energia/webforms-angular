@@ -412,7 +412,7 @@
                     </select>
                 </div>
             </div>
-            <div class="well" data-ng-if="form.ownerIsMember === 'no'">
+            <div class="well" data-ng-show="form.ownerIsMember === 'no'">
                 <personal-data
                     model="owner"
                 ></personal-data>
@@ -491,7 +491,7 @@
                     </select>
                 </div>
             </div>
-            <div class="well" data-ng-if="form.choosepayer == 'altre'">
+            <div class="well" data-ng-show="form.choosepayer == 'altre'">
                 <personal-data
                     model="payer"
                 ></personal-data>

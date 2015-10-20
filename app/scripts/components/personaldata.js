@@ -23,10 +23,8 @@ angular.module('newSomEnergiaWebformsApp')
         ) {
     var self = this;
     self.init = function(/*element, attrs*/) {
-        console.log('initing personalDataCtrl', $scope);
     };
 
-    console.log('creating personalDataCtrl', $scope);
     $scope.form.isReady = function() {
         return (
             $scope.form.language &&
@@ -61,12 +59,12 @@ angular.module('newSomEnergiaWebformsApp')
             );
     };
     $scope.form.setLanguage = function(languageCode) {
-        for (var i=0; i<$scope.languages; i++) {
+        for (var i=0; i<$scope.languages.length; i++) {
             if ($scope.languages[i].code !== languageCode) { continue; }
-            $scope.language = $scope.languages[i];
+            $scope.form.language = $scope.languages[i];
             return;
         }
-        console.log('Idiom',languageCode,'not available using', $scope.languages[0]);
+        $scope.form.language = $scope.languages[0];
     };
 
     $scope.languages = [];
