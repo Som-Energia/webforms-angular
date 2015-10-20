@@ -293,6 +293,11 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.goToSociPage();
 
+        $scope.HELP_INSTALL_TYPE_URL = $translate.instant('HELP_INSTALL_TYPE_URL');
+        $scope.HELP_POTENCIA_URL = $translate.instant('HELP_POTENCIA_URL');
+        $scope.HELP_DISCRIMINACIO_HORARIA_URL = $translate.instant('HELP_DISCRIMINACIO_HORARIA_URL');
+        $scope.HELP_POWER_30_URL = $translate.instant('HELP_POWER_30_URL');
+
 
         // ON SUBMIT FORM
         $scope.submitOrder = function() {

@@ -115,8 +115,8 @@
                     class="col-xs-12"
                     notrequired
                     inputid="cadastre"
-                    placeholder="{{'REFERENCIA_CATASTRAL' | translate}}"
-                    help-text="{{ 'HELP_POPOVER_REFERENCIA_CATASTRAL' | translate }}"
+                    placeholder="{{'REFERENCIA_CADASTRAL' | translate}}"
+                    help-text="{{ 'HELP_POPOVER_REFERENCIA_CADASTRAL' | translate }}"
                     model="cadastreEditor"
                 >
                 </iban-editor>
@@ -144,13 +144,13 @@
             <div data-ng-show="esAlta() || showAll">
                 <div class="row extra-margin-top form-group">
                     <div class="col-xs-4">
-                        <label for="phases">{{ 'TIPUS_INSTALLACIO' | translate }}:</label>
+                        <label for="phases">{{ 'TIPUS_INSTALLACIO' | translate }}</label>
                     </div>
                     <div class="col-xs-8">
                         <div class='input-group'>
                             <select class="form-control input-lg" ng-model="form.phases" required>
                                 <option value="mono">{{ 'MONOFASICA_NORMAL' | translate}}</option>
-                                <option value="tri">{{ 'TRIFASICA_INDUSTRIAL' | translate}}</option>
+                                <option value="tri">{{ 'TRIFASICA' | translate}}</option>
                             </select>
                             <a
                                 role="button"
@@ -159,7 +159,7 @@
                                 tooltip-append-to-body="true"
                                 tooltip-trigger="focus"
                                 tooltip-placement="left"
-                                tooltip-html-unsafe="{{ 'HELP_INSTALL_TYPE' | translate }}"
+                                tooltip-html-unsafe="{{ 'HELP_INSTALL_TYPE' | translate: '{url: HELP_INSTALL_TYPE_URL }' }}"
                                 >
                                 <span class="badge current small">?</span>
                             </a>
@@ -188,7 +188,7 @@
                                 tooltip-append-to-body="true"
                                 tooltip-trigger="focus"
                                 tooltip-placement="left"
-                                tooltip-html-unsafe="{{ 'HELP_POPOVER_POTENCIA' | translate }}"
+                                tooltip-html-unsafe="{{ 'HELP_POTENCIA' | translate: '{url: HELP_POTENCIA_URL }' }}"
                                 >
                                 <span class="badge current small">?</span>
                             </a>
@@ -212,17 +212,10 @@
                                 tooltip-append-to-body="true"
                                 tooltip-trigger="focus"
                                 tooltip-placement="left"
-                                tooltip-html-unsafe="{{ 'HELP_POPOVER_DISCRIMINACIO_HORARIA' | translate }}"
+                                tooltip-html-unsafe="{{ 'HELP_DISCRIMINACIO_HORARIA' | translate: '{url: HELP_DISCRIMINACIO_HORARIA_URL}' }}"
                                 >
                                 <span class="badge current small">?</span>
                             </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row extra-margin-top" data-ng-show="form.rate !== undefined">
-                    <div class="col-xs-12">
-                        <div class="alert alert-info" style="text-align:center">
-                        <h4>{{ 'LA_TEVA_TARIFA_ES' | translate }} <span class="label label-success large">{{ form.rate }}</span></h4>
                         </div>
                     </div>
                 </div>
@@ -230,7 +223,16 @@
                     <div class="row">
                         <div class="form-group col-xs-12">
                             <label class="combo-one-row">{{ 'ESCULL_LA_POTENCIA_DE_CADA_PERIODE' | translate }}</label>
-                            <a role="button" tabindex="0" tooltip-append-to-body="true" tooltip-trigger="hover" tooltip-html-unsafe="{{ 'HELP_POPOVER_POWER'+caca | translate }}" tooltip-placement="left"><span class="badge current small">?</span></a>
+                            <a
+                                class='btn btn-default'
+                                role="button"
+                                tabindex="0"
+                                tooltip-append-to-body="true"
+                                tooltip-trigger="focus"
+                                tooltip-html-unsafe="{{ 'HELP_POWER_30' | translate: '{url: HELP_POWER_30_URL}' }}"
+                                tooltip-placement="right"
+                                >
+                                <span class="badge current small">?</span></a>
                         </div>
                         <div class="form-group col-xs-4">
                             <label class="combo-one-row">P1*</label>
@@ -267,12 +269,19 @@
                         </div>
                     </div>
                 </div>
+                <div class="row extra-margin-top" data-ng-show="form.rate !== undefined">
+                    <div class="col-xs-12">
+                        <div class="well" style="text-align:center">
+                        <h4>{{ 'LA_TEVA_TARIFA_ES' | translate }} <span class="label label-success large">{{ form.rate }}</span></h4>
+                        </div>
+                    </div>
+                </div>
             </div>
             <hr/>
             <div data-ng-show="!esAlta() || showAll">
                 <div class="row extra-margin-top">
                     <div class="col-xs-12">
-                        <p>{{ 'DADES_PUNT_SUBMINISTRAMENT_HELPER' | translate }}</p>
+                        <p translate="HELP_TARIFA_CANVI_COMERCIALITZADORA"></p>
                     </div>
                 </div>
                 <div class="row form-group">
@@ -382,19 +391,24 @@
         >
             <div class="row extra-margin-top">
                 <div class="form-group col-xs-12">
-                    <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_ALTA_HELPER' | translate}}</p>
+                    <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_HELPER' | translate}}</p>
                 </div>
             </div>
             <div class="row extra-margin-top" data-ng-hide="esAlta()">
                 <div class="form-group col-xs-11">
-                    <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_HELPER' | translate }}</p>
                     <label>{{ 'VOLS_FER_CANVI_TITULAR' | translate }}</label>
                     <div class="btn-group">
-                        <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'yes'" data-ng-change="formListener()">{{ 'SI' | translate }}</label>
-                        <label class="btn btn-default green" data-ng-model="form.changeowner" data-btn-radio="'no'" data-ng-change="formListener()">{{ 'NO' | translate }}</label>
-                    </div>
-                    <div data-ng-show="form.changeowner" class="alert alert-warning" style="margin-top:5px" role="alert">
-                        <span data-ng-bind-html="'AVIS_CANVI_TITULAR' | translate"></span>
+                        <div class="well">
+                            <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.changeowner" data-btn-radio="'yes'">{{ 'SI' | translate }}</label>
+                            <span data-ng-bind-html="'SI_CANVI_DE_TITULAR' | translate"></span>
+                            <div data-ng-show="form.changeowner" class="alert alert-warning" style="margin-top:5px" role="alert">
+                                <span data-ng-bind-html="'AVIS_CANVI_TITULAR' | translate"></span>
+                            </div>
+                        </div>
+                        <div class="well">
+                            <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.changeowner" data-btn-radio="'no'" >{{ 'NO' | translate }}</label>
+                            <span data-ng-bind-html="'NO_CANVI_DE_TITULAR' | translate"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-1" data-ng-hide="esAlta()">
