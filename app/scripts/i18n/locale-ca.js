@@ -167,7 +167,7 @@ angular.module('newSomEnergiaWebformsApp')
                 TENS_LLUM: 'Tens llum?',
                 HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: 'Hi ha llum, actualment, en el punt de subministrament?',
                 AVIS_CANVI_COMERCIALITZADORA: 'Hi ha llum amb una altra comercialitzadora i vull canviar a Som Energia.',
-                AVIS_ALTA_DE_SERVEI: 'No hi ha suministre, i vull donar-la d\'alta directament amb Som Energia.',
+                AVIS_ALTA_DE_SERVEI: 'No hi ha llum, i vull donar-la d\'alta directament amb Som Energia.',
                 REFERENCIA_CADASTRAL: 'Referència cadastral de l\'immoble',
                 HELP_POPOVER_REFERENCIA_CADASTRAL: 'És opcional, ens és útil per resoldre incongruències a les dades.<br/>Pots trobar-la aquí:<br/><a target="_blank" href="https://www1.sedecatastro.gob.es/OVCFrames.aspx?TIPO=CONSULTA">Espanya</a><br/><a target="_blank" href="http://www.bizkaia.net/home2/Temas/DetalleTema.asp?Tem_Codigo=5181&Idioma=CA">Bizkaia</a><br/><a target="_blank" href="http://catastroalava.tracasa.es/navegar/?lang=es">Araba</a><br/><a target="_blank" href="http://www4.gipuzkoa.net/ogasuna/catastro/presenta.asp">Guipuzkoa</a><br/><a target="_blank" href="https://catastro.navarra.es/">Navarra</a>',
                 TARIFA_I_POTENCIA: 'Tarifa i potència',
