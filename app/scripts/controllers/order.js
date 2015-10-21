@@ -52,6 +52,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.provinces = [];
         $scope.cities = [];
         $scope.form = {};
+        $scope.form.ownerIsMember='yes';
         $scope.form.phases = 'mono';
         $scope.form.discriminacio = 'nodh';
         $scope.form.choosepayer = cfg.PAYER_TYPE_TITULAR;

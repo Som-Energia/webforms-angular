@@ -127,6 +127,11 @@
             ready="isFarePageComplete()"
         >
             <div data-ng-show="esAlta() || showAll">
+                <div class="row extra-margin-top">
+                    <div class="col-xs-12">
+                        <p translate="HELP_TARIFA_ALTA"></p>
+                    </div>
+                </div>
                 <div class="row extra-margin-top form-group">
                     <div class="col-xs-4">
                         <label for="phases">{{ 'TIPUS_INSTALLACIO' | translate }}</label>
@@ -386,39 +391,35 @@
             show-always='showAll'
             ready="isOwnerPageComplete"
         >
-            <div class="row extra-margin-top">
-                <div class="form-group col-xs-12">
-                    <p>{{ 'DADES_TITULAR_NOU_CONTRACTE_HELPER' | translate}}</p>
-                </div>
-            </div>
-            <div class="row extra-margin-top" data-ng-hide="esAlta()">
-                <div class="form-group col-xs-11">
-                    <label>{{ 'VOLS_FER_CANVI_TITULAR' | translate }}</label>
-                    <div class="btn-group">
-                        <div class="well">
-                            <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.changeowner" data-btn-radio="'yes'">{{ 'SI' | translate }}</label>
-                            <span data-ng-bind-html="'SI_CANVI_DE_TITULAR' | translate"></span>
-                            <div data-ng-show="form.changeowner" class="alert alert-warning" style="margin-top:5px" role="alert">
-                                <span data-ng-bind-html="'AVIS_CANVI_TITULAR' | translate"></span>
+            <div data-ng-hide='esAlta()' class="row extra-margin-top">
+                <div class="col-xs-12 form-group">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading" style="text-align:center">{{ 'VOLS_MANTENIR_EL_TITULAR' | translate }}
+                            <div class="col-xs-1" data-ng-hide="esAlta()">
+                                <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_OWNER' | translate }}" data-placement="left">?</span>
                             </div>
                         </div>
-                        <div class="well">
-                            <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.changeowner" data-btn-radio="'no'" >{{ 'NO' | translate }}</label>
-                            <span data-ng-bind-html="'NO_CANVI_DE_TITULAR' | translate"></span>
+                        <div class="panel-body">
+                            <div style="display:inline-block;width:100%">
+                                <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.changeowner" data-btn-radio="'no'" >{{ 'SI' | translate }}</label>
+                                <span data-ng-bind-html="'NO_CANVI_DE_TITULAR' | translate"></span>
+                            </div>
+                            <div style="display:inline-block;width:100%">
+                                <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.changeowner" data-btn-radio="'yes'">{{ 'NO' | translate }}</label>
+                                <div data-ng-bind-html="'SI_CANVI_DE_TITULAR' | translate"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-1" data-ng-hide="esAlta()">
-                    <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_OWNER' | translate }}" data-placement="left">?</span>
+                    <div data-ng-show="form.changeowner==='yes'" class="alert alert-warning" style="margin-top:5px" role="alert">
+                        <span data-ng-bind-html="'AVIS_CANVI_TITULAR' | translate"></span>
+                    </div>
                 </div>
             </div>
-            <hr data-ng-hide="esAlta()">
-            <div class="row">
+            <div class="row" ng-class="{'extra-margin-top': esAlta()}">
                 <div class="col-sm-7 col-xs-12">
-                    <label>{{ 'EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE' | translate }}</label>
-                    <select class="form-control width-70-percent" data-ng-model="form.ownerIsMember" data-ng-change="formListener()">
-                        <option value="" selected>{{ 'SELECCIONAR' | translate }}</option>
-                        <option value="yes">{{ 'SOCI_SOM_ENERGIA' | translate }}: {{ initForm.soci.nom + ' ' + initForm.soci.cognom }}</option>
+                    <label>{{ 'QUI_ES_LA_PERSONA_TITULAR' | translate }}</label>
+                    <select class="form-control input-lg" data-ng-model="form.ownerIsMember" data-ng-change="formListener()">
+                        <option value="yes" selected>{{ initForm.soci.nom + ' ' + initForm.soci.cognom }} ({{ 'SOCI_SOM_ENERGIA' | translate }}) </option>
                         <option value="no">{{ 'ALTRA_PERSONA' | translate }}</option>
                     </select>
                 </div>
@@ -430,25 +431,11 @@
                 ></personal-data>
             </div>
             <!-- (TITULAR_PARTICULAR || TITULAR_EMPRESA) & SOCI_VINCULAT_SI (page 06 & 12) (page 09 & 15) -->
-            <div data-ng-show="form.ownerIsMember == 'yes'">
-                <div class="row">
-                    <div class="col-sm-4 col-xs-12">
-                        <input type="text" name="ownername" class="form-control" placeholder="{{ initForm.soci.nom }}" value="{{ initForm.soci.nom }}" disabled/>
-                    </div>
-                    <div class="col-sm-4 col-xs-12">
-                        <input type="text" name="ownersurname" class="form-control" placeholder="{{ initForm.soci.cognom }}" value="{{ initForm.soci.cognom }}" disabled/>
-                    </div>
-                    <div class="col-sm-4 col-xs-12">
-                        <input type="text" name="ownerdni" class="form-control" placeholder="{{ initForm.soci.dni }}" value="{{ initForm.soci.dni }}" disabled/>
-                    </div>
-                </div>
-                <hr class="dotted">
-            </div>
             <div class="row">
                 <div class="form-group checkbox col-xs-12">
                     <label>
                         <input type="checkbox" name="accept" value="accept" data-ng-model="form.accept" data-ng-change="formListener()" required/>
-                        <span data-ng-bind-html="'ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT' | translate"></span>
+                        <span data-ng-bind-html="'ACCEPTO_CONDICIONS_GENERALS' | translate"></span>
                     </label>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
