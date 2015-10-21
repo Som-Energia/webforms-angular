@@ -6,6 +6,7 @@ angular.module('newSomEnergiaWebformsApp')
         restrict: 'E',
         scope: {
             form: '=model',
+            onchanged: '&?',
         },
         templateUrl: 'scripts/components/personaldata.html',
         controller: 'personalDataCtrl',
@@ -55,6 +56,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.emailIsInvalid === false &&
             $scope.emailNoIguals === false &&
             $scope.postalCodeIsInvalid === false &&
+            $scope.form.accept === true &&
             true
             );
     };
@@ -102,7 +104,10 @@ angular.module('newSomEnergiaWebformsApp')
     ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
 
     $scope.formListener = function() {
-        $log.debug($scope.form);
+        $log.debug('Personal data changed:', $scope.form);
+        if ($scope.onchanged) {
+            $scope.onchanged();
+        }
     };
 
 })

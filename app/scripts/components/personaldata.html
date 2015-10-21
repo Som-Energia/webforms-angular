@@ -148,6 +148,15 @@
         <span class="label label-danger" data-ng-show="submitted && form.language.$invalid">{{ 'OBLIGATORI' | translate }}</span>
     </div>
 
+    <div class="row">
+        <div class="form-group checkbox col-xs-12">
+            <label>
+                <input type="checkbox" name="accept" value="accept" data-ng-model="form.accept" data-ng-change="formListener()" required/>
+                <span data-ng-bind-html="'ACCEPTO_POLITICA_PRIVACITAT' | translate"></span>
+            </label>
+            <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+        </div>
+    </div>
 
 <script type="text/javascript">
     jQuery(document).ready(function() {

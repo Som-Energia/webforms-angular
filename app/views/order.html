@@ -17,7 +17,7 @@
         <member-chooser
             button-text="{{'INICIAR_CONTRACTACIO' | translate }}"
             show-member-name="true"
-            onproceed="setOnwerAndPayerLanguage(initForm.soci); altesDeshabilitades ? goToSupplyPointPage() : goToHaveLightPage()"
+            onproceed="setOnwerAndPayerLanguage(initForm.soci); goToSupplyPointPage()"
             model="initForm"
             formvalues="formsoci"
         ></member-chooser>
@@ -25,49 +25,34 @@
 
     <form name="orderForm" class="form-inline" role="form" enctype="multipart/form-data" novalidate>
 
-    <!-- PAGE: HAS LIGHT -->
-    <div data-ng-hide='altesDeshabilitades'>
-        <wizard-page
-            model="wizardPage"
-            page-name='hasLightPage'
-            header="1 {{ 'TENS_LLUM' | translate }}"
-            prev-page="goToSociPage()"
-            next-page="goToSupplyPointPage()"
-            show-always='showAll'
-            ready="isHaveLightPageComplete"
-        >
-            <div class="row extra-margin-top">
-                <div class="col-xs-12 form-group">
-                    <div>
-                        <label>{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}</label>
-                    </div>
-                    <div class="btn-group">
-                        <div class="well">
-                            <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="true">{{ 'SI' | translate }}</label>
-                            <span data-ng-bind-html="'AVIS_CANVI_COMERCIALITZADORA' | translate"></span>
-                        </div>
-                        <div class="well">
-                            <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="false" >{{ 'NO' | translate }}</label>
-                            <span data-ng-bind-html="'AVIS_ALTA_DE_SERVEI' | translate"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </wizard-page>
-    </div>
-
-
         <!-- PAGE: Supply Point -->
         <wizard-page
             model="wizardPage"
             page-name='supplyPointPage'
-            header="2 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}"
-            prev-page="altesDeshabilitades ? goToSociPage() : goToHaveLightPage()"
+            header="1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}"
+            prev-page="goToSociPage()"
             next-page="goToFarePage()"
             show-always='showAll'
             ready="isSupplyPointPageComplete()"
         >
-            <div class="row extra-margin-top">
+            <div data-ng-hide='altesDeshabilitades' class="row extra-margin-top">
+                <div class="col-xs-12 form-group">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading" style="text-align:center">{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}</div>
+                        <div class="panel-body">
+                            <label class="" for="hasservice_true">
+                                <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="true" id="hasservice_true">{{ 'SI' | translate }}</label>
+                                <div for="hasservice_true" data-ng-bind-html="'AVIS_CANVI_COMERCIALITZADORA' | translate"></div>
+                            </label>
+                            <div class="">
+                                <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="false" >{{ 'NO' | translate }}</label>
+                                <span data-ng-bind-html="'AVIS_ALTA_DE_SERVEI' | translate"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-12 form-group has-feedback">
                     <label for="address" class="sr-only">{{ 'ADRECA' | translate }}:</label>
                     <input type="text" name="address" data-ng-model="form.address" class="form-control input-lg" placeholder="{{ 'ADRECA' | translate }}" data-ng-change="formListener()" required />
@@ -102,7 +87,7 @@
                     class="col-xs-12"
                     notrequired
                     inputid="cnae"
-                    placeholder="{{'CNAE' | translate}}"
+                    placeholder="{{'CNAE' | translate}} ({{'OPCIONAL' | translate }})"
                     help-text="{{ 'HELP_POPOVER_CNAE' | translate }}"
                     checkurl="check/cnae/"
                     model="cnaeEditor"
@@ -115,7 +100,7 @@
                     class="col-xs-12"
                     notrequired
                     inputid="cadastre"
-                    placeholder="{{'REFERENCIA_CADASTRAL' | translate}}"
+                    placeholder="{{'REFERENCIA_CADASTRAL' | translate}} ({{'OPCIONAL' | translate }})"
                     help-text="{{ 'HELP_POPOVER_REFERENCIA_CADASTRAL' | translate }}"
                     model="cadastreEditor"
                 >
@@ -135,7 +120,7 @@
         <wizard-page
             model="wizardPage"
             page-name='farePage'
-            header="3 {{ 'TARIFA_I_POTENCIA' | translate }}"
+            header="2 {{ 'TARIFA_I_POTENCIA' | translate }}"
             prev-page="goToSupplyPointPage()"
             next-page="goToOwnerPage()"
             show-always='showAll'
@@ -171,7 +156,7 @@
                         <label>{{ 'POTENCIA_A_CONTRACTAR' | translate }}</label>
                     </div>
                     <div class="col-xs-8">
-                        <div class='input-group'>
+                        <div class='input-group has-feedback'>
                             <select class="input-lg form-control" required ng-model='form.newpower' >
                                 <option value='' selected>{{ 'SELECCIONA' | translate}}</option>
                                 <option
@@ -181,6 +166,10 @@
                                     >{{power}} kW</option>
                                 <option ng-if="form.phases==='tri'" value='15'>{{ 'MES_GRAN_DE_15KW' | translate}}</option>
                             </select>
+                            <span class="form-control-feedback glyphicon "  data-ng-class="{
+                                'glyphicon-asterisk danger': form.newpower === undefined,
+                                'glyphicon-ok success': form.newpower !== undefined,
+                            }" style="right:4em"></span>
                             <a
                                 role="button"
                                 tabindex="0"
@@ -286,14 +275,18 @@
                 </div>
                 <div class="row form-group">
                     <div class="col-xs-4">
-                        <label>{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}*</label>
+                        <label>{{ 'QUINA_TARIFA_TENS_CONTRACTADA' | translate }}</label>
                     </div>
                     <div class="col-xs-8">
-                        <div class="input-group">
+                        <div class="input-group has-feedback">
                             <select class="input-lg form-control" name="rate" data-ng-model="form.rate" required>
                                 <option value="">{{ 'SELECCIONAR' | translate }}</option>
                                 <option data-ng-repeat="rate in rates" value="{{ rate }}" data-ng-selected="{{ rate == form.rate }}">{{ rate }}</option>
                             </select>
+                            <span class="form-control-feedback glyphicon "  data-ng-class="{
+                                'glyphicon-asterisk danger': form.rate === undefined,
+                                'glyphicon-ok success': form.rate !== undefined,
+                            }" style="right:4em"></span>
                             <a
                                 role="button"
                                 tabindex="0"
@@ -311,10 +304,10 @@
                 <!--3.0A power rate NOT selected-->
                 <div class="row form-group" data-ng-if="form.rate != '3.0A'">
                     <div class="col-xs-4">
-                        <label>{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
+                        <label>{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}</label>
                     </div>
                     <div class="col-xs-8">
-                        <div class="input-group">
+                        <div class="input-group has-feedback">
                             <input type="text" name="power" class="form-control input-lg" data-ng-model="form.power" data-ng-change="formListener()" required/>
                             <span class="input-group-addon">kW</span>
                             <a
@@ -328,6 +321,10 @@
                                 >
                                 <span class="badge current small">?</span>
                             </a>
+                            <span class="form-control-feedback glyphicon "  data-ng-class="{
+                                'glyphicon-asterisk danger': form.power === undefined,
+                                'glyphicon-ok success': form.power !== undefined,
+                            }" style="right:7em"></span>
                         </div>
                         <span class="pull-right label label-danger" data-ng-show="rate20IsInvalid">{{ 'INVALID' | translate }}</span>
                         <span class="pull-right label label-danger" data-ng-show="rate21IsInvalid">{{ 'INVALID' | translate }}</span>
@@ -383,7 +380,7 @@
         <wizard-page
             model="wizardPage"
             page-name='ownerPage'
-            header="4 {{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}"
+            header="3 {{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}"
             prev-page="goToFarePage()"
             next-page="goToPayerPage()"
             show-always='showAll'
@@ -429,6 +426,7 @@
             <div class="well" data-ng-show="form.ownerIsMember === 'no'">
                 <personal-data
                     model="owner"
+                    onchanged="formListener()"
                 ></personal-data>
             </div>
             <!-- (TITULAR_PARTICULAR || TITULAR_EMPRESA) & SOCI_VINCULAT_SI (page 06 & 12) (page 09 & 15) -->
@@ -460,7 +458,7 @@
         <wizard-page
             model="wizardPage"
             page-name='payerPage'
-            header="5 {{ 'DADES_PAGAMENT' | translate }}"
+            header="4 {{ 'DADES_PAGAMENT' | translate }}"
             prev-page="goToOwnerPage()"
             next-page="goToConfirmationPage()"
             next-text="{{ 'CONFIRMAR_CONTRACTACIO' | translate }}"
@@ -508,15 +506,16 @@
             <div class="well" data-ng-show="form.choosepayer == 'altre'">
                 <personal-data
                     model="payer"
+                    onchanged="formListener()"
                 ></personal-data>
-                <div class="row">
-                    <div class="form-group checkbox col-xs-12">
-                        <label>
-                            <input type="checkbox" name="accept2" value="accept" data-ng-model="form.accept2" data-ng-change="formListener()" required/>
-                            <span data-ng-bind-html="'ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT' | translate"></span>
-                        </label>
-                        <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="form-group checkbox col-xs-12">
+                    <label>
+                        <input type="checkbox" name="accept2" value="accept" data-ng-model="form.accept2" data-ng-change="formListener()" required/>
+                        <span data-ng-bind-html="'ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT' | translate"></span>
+                    </label>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
             <!-- TODO: Explicar la primera estimada -->

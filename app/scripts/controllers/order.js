@@ -180,7 +180,10 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.isSupplyPointPageComplete = function() {
             if ($scope.waitPreviousPages) {
-                if (!$scope.isHaveLightPageComplete) { return false; }
+                if (!$scope.isPartnerPageComplete()) { return false; }
+            }
+            if (!$scope.altesDeshabilitades) {
+                if ($scope.esAlta() === undefined) { return false; }
             }
             if ($scope.form.address === undefined) { return false; }
             if ($scope.form.province === undefined) { return false; }
@@ -219,6 +222,7 @@ angular.module('newSomEnergiaWebformsApp')
             return true;
         };
         $scope.formListener = function() {
+            console.log('listener');
             $scope.isHaveLightPageComplete =
                 (!$scope.waitPreviousPages || $scope.isPartnerPageComplete()) && (
                    $scope.esAlta() !== undefined ||
@@ -256,10 +260,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.goToSociPage = function() {
             $scope.setStepReady(0, 'dadesSociPage');
-        };
-
-        $scope.goToHaveLightPage = function() {
-            $scope.setStepReady(8, 'hasLightPage');
         };
 
         $scope.goToSupplyPointPage = function() {

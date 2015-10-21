@@ -164,8 +164,7 @@ angular.module('newSomEnergiaWebformsApp')
                 
                 CARREGANT_OPCIONS: 'Carregant opcions...',
                 OPCIONAL: 'Opcional',
-                TENS_LLUM: 'Tens llum?',
-                HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: 'Hi ha llum, actualment, en el punt de subministrament?',
+                HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: 'Hi ha llum, actualment?',
                 AVIS_CANVI_COMERCIALITZADORA: 'Hi ha llum amb una altra comercialitzadora i vull canviar a Som Energia.',
                 AVIS_ALTA_DE_SERVEI: 'No hi ha llum, i vull donar-la d\'alta directament amb Som Energia.',
                 REFERENCIA_CADASTRAL: 'Referència cadastral de l\'immoble',
