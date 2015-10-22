@@ -13,6 +13,7 @@ angular.module('newSomEnergiaWebformsApp')
             checkurl: '@?',
             helpText: '@?',
             onchanged: '&?',
+            oktext: '@?',
         },
         transclude: true,
         templateUrl: 'scripts/components/ibaneditor.html',
@@ -99,8 +100,9 @@ angular.module('newSomEnergiaWebformsApp')
                         // Changed while waiting a response, ignore
                         return;
                     }
-                    $scope._isValid = response !== cfg.STATE_FALSE;
+                    $scope._isValid = response.state !== cfg.STATE_FALSE;
                     $scope.model.data = response.data;
+                    $scope.model.error = response.data.invalid_fields[0].error;
                     $scope.formListener();
                 },
                 function(reason) {

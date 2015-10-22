@@ -42,6 +42,6 @@
     <span class="pull-right label label-danger"  data-ng-show="model.isRequiredMissing()">{{ 'REQUERIT' | translate }}</span>
     <span class="pull-right label label-danger"  data-ng-show="model.isInvalid()">{{ 'INVALID' | translate }}</span>
     <span class="pull-right label label-warning" data-ng-show="model.isValidating()">{{ 'COMPROVANT' | translate }}</span>
-    <span class="pull-right label label-success" data-ng-show="model.isValid() && ! model.isOptionallyEmpty()">{{ 'CORRECTE' | translate }}</span>
+    <span class="pull-right label label-success" data-ng-show="model.isValid() && !model.isOptionallyEmpty()">{{ oktext || ('CORRECTE' | translate) }} </span>
     <span class="pull-right label label-success" data-ng-show="model.isValid() && model.isOptionallyEmpty()">{{ 'OPCIONAL' | translate }}</span>
 </div>

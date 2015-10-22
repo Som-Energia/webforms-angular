@@ -122,7 +122,7 @@ angular.module('newSomEnergiaWebformsApp')
                 var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/iban/' + $scope.completeAccountNumber, '017');
                 accountPromise.then(
                     function (response) {
-                        $scope.accountIsInvalid = response === cfg.STATE_FALSE;
+                        $scope.accountIsInvalid = response.state === cfg.STATE_FALSE;
                         $scope.ibanValidated = true;
                         $scope.partnerForm.accountbankiban1.$setValidity('invalid', !$scope.accountIsInvalid);
                         $scope.partnerForm.accountbankiban2.$setValidity('invalid', !$scope.accountIsInvalid);

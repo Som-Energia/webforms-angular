@@ -114,12 +114,12 @@ angular.module('newSomEnergiaWebformsApp')
                         dniPromise.then(
                             function (response) {
                                 if (element === 'form.dni' || element === 'formvalues.dni') {
-                                    $scope.dniIsInvalid = response === cfg.STATE_FALSE;
-                                    $scope.dni2IsInvalid = response === cfg.STATE_FALSE;
+                                    $scope.dniIsInvalid = response.state === cfg.STATE_FALSE;
+                                    $scope.dni2IsInvalid = response.state === cfg.STATE_FALSE;
                                     $scope.dniDuplicated = false;
                                 } else if (element === 'form.representantdni') {
-                                    $scope.dniRepresentantIsInvalid = response === cfg.STATE_FALSE;
-                                    $scope.dni3IsInvalid = response === cfg.STATE_FALSE;
+                                    $scope.dniRepresentantIsInvalid = response.state === cfg.STATE_FALSE;
+                                    $scope.dni3IsInvalid = response.state === cfg.STATE_FALSE;
                                 }
                                 $scope.formListener();
                             },

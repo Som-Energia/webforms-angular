@@ -80,7 +80,7 @@
                     model="cupsEditor"
                     onchanged="formListener()"
                 >
-                    <span class="pull-right label label-danger" data-ng-show="cupsIsDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
+                    <span class="pull-right label label-danger" data-ng-show="cupsEditor.error==='exist'">{{ 'REGISTRE_EXISTENT' | translate }}</span>
                 </iban-editor>
             </div>
             <div class="row">
@@ -92,9 +92,9 @@
                     help-text="{{ 'HELP_POPOVER_CNAE' | translate }}"
                     checkurl="check/cnae/"
                     model="cnaeEditor"
+                    oktext="{{cnaeEditor.data.description}}"
                     onchanged="formListener()"
                 >
-                    <span class="label label-success" data-ng-showe="!cnaeIsInvalid && cnaeEditor.data.description">{{ cnaeDescription }}</span>
                 </iban-editor>
             </div>
             <div class="row">

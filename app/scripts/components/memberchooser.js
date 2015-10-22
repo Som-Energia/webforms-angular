@@ -124,7 +124,8 @@ angular.module('newSomEnergiaWebformsApp')
                             //console.log('Ignorant validació del DNI '+dniPromise.dni+' perque ja val '+$scope.formvalues.dni);
                             return;
                         }
-                        $scope.dniIsInvalid  = response === cfg.STATE_FALSE;
+                        console.log(response);
+                        $scope.dniIsInvalid  = response.state === cfg.STATE_FALSE;
                         if ($scope.dniIsInvalid) {
                             $scope.model._state = $scope._states.INVALIDID;
                             return;
