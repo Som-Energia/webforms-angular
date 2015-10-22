@@ -78,6 +78,7 @@
                     help-text="{{ (esAlta() ? 'HELP_POPOVER_CUPS_ALTA' : 'HELP_POPOVER_CUPS') | translate: {url: t.HELP_POPOVER_CUPS_ALTA_URL } }}"
                     checkurl="check/cups/"
                     model="cupsEditor"
+                    onchanged="formListener()"
                 >
                     <span class="pull-right label label-danger" data-ng-show="cupsIsDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
                 </iban-editor>
@@ -91,6 +92,7 @@
                     help-text="{{ 'HELP_POPOVER_CNAE' | translate }}"
                     checkurl="check/cnae/"
                     model="cnaeEditor"
+                    onchanged="formListener()"
                 >
                     <span class="label label-success" data-ng-showe="!cnaeIsInvalid && cnaeEditor.data.description">{{ cnaeDescription }}</span>
                 </iban-editor>
@@ -103,6 +105,7 @@
                     placeholder="{{'REFERENCIA_CADASTRAL' | translate}} ({{'OPCIONAL' | translate }})"
                     help-text="{{ 'HELP_POPOVER_REFERENCIA_CADASTRAL' | translate }}"
                     model="cadastreEditor"
+                    onchanged="formListener()"
                 >
                 </iban-editor>
             </div>
@@ -497,8 +500,10 @@
                     required
                     inputid="accountbankiban"
                     placeholder="{{'CODI_IBAN_DEL_COMPTE' | translate}}"
+                    help-text="{{ 'EXEMPLE_IBAN' | translate }}"
                     help="accountbankibanHelp"
                     model="ibanEditor"
+                    onchanged="formListener()"
                 ></iban-editor>
                 <div class="col-xs-12">
                     <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>{{ 'EXEMPLE_IBAN' | translate }}</div>
