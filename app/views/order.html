@@ -75,7 +75,7 @@
                     required
                     inputid="cups"
                     placeholder="{{'NUMERO_DE_CUPS' | translate}}"
-                    help-text="{{ 'HELP_POPOVER_CUPS' | translate }}"
+                    help-text="{{ (esAlta() ? 'HELP_POPOVER_CUPS_ALTA' : 'HELP_POPOVER_CUPS') | translate: {url: t.HELP_POPOVER_CUPS_ALTA_URL } }}"
                     checkurl="check/cups/"
                     model="cupsEditor"
                 >
@@ -85,9 +85,9 @@
             <div class="row">
                 <iban-editor
                     class="col-xs-12"
-                    notrequired
+                    required
                     inputid="cnae"
-                    placeholder="{{'CNAE' | translate}} ({{'OPCIONAL' | translate }})"
+                    placeholder="{{'CNAE' | translate}}"
                     help-text="{{ 'HELP_POPOVER_CNAE' | translate }}"
                     checkurl="check/cnae/"
                     model="cnaeEditor"
@@ -395,9 +395,17 @@
                 <div class="col-xs-12 form-group">
                     <div class="panel panel-warning">
                         <div class="panel-heading" style="text-align:center">{{ 'VOLS_MANTENIR_EL_TITULAR' | translate }}
-                            <div class="col-xs-1" data-ng-hide="esAlta()">
-                                <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_OWNER' | translate }}" data-placement="left">?</span>
-                            </div>
+                            <a
+                                role="button"
+                                tabindex="0"
+                                class="btn btn-default"
+                                tooltip-append-to-body="true"
+                                tooltip-trigger="focus"
+                                tooltip-placement="left"
+                                tooltip-html-unsafe="{{ 'HELP_POPOVER_OWNER' | translate }}"
+                                >
+                                <span class="badge current small">?</span>
+                            </a>
                         </div>
                         <div class="panel-body">
                             <div style="display:inline-block;width:100%">
@@ -434,10 +442,10 @@
             <div class="row">
                 <div class="form-group checkbox col-xs-12">
                     <label>
-                        <input type="checkbox" name="accept" value="accept" data-ng-model="form.accept" data-ng-change="formListener()" required/>
+                        <input type="checkbox" name="ownerAcceptsGeneralConditions" value="accept" data-ng-model="form.ownerAcceptsGeneralConditions" data-ng-change="formListener()" required/>
                         <span data-ng-bind-html="'ACCEPTO_CONDICIONS_GENERALS' | translate"></span>
                     </label>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.ownerAcceptsGeneralConditions.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 </div>
             </div>
         </wizard-page>
@@ -453,6 +461,37 @@
             ready="isPayerPageComplete"
         >
             <div class="row extra-margin-top">
+                <div class="col-xs-12">
+                    <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}</label>
+                </div>
+                <div class="col-xs-12">
+                    <select class="form-control input-lg" name="choosepayer" data-ng-model="form.choosepayer" data-ng-change="formListener()">
+                        <option value="titular">{{
+                            form.ownerIsMember === 'yes'?
+                                initForm.soci.nom + ' '+ initForm.soci.cognom:
+                                owner.name + ' ' + owner.surname
+}} ({{ 'TITULAR_CONTRACTE_ELECTRICITAT' | translate }})</option>
+                        <option value="soci" ng-hide="form.ownerIsMember==='yes'">{{ initForm.soci.nom + ' ' + initForm.soci.cognom }} ({{ 'SOCI_SOM_ENERGIA' | translate }})</option>
+                        <option value="altre">{{ 'ALTRA_PERSONA' | translate }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="well" data-ng-show="form.choosepayer === 'altre'">
+                <personal-data
+                    model="payer"
+                    onchanged="formListener()"
+                ></personal-data>
+            </div>
+            <div class="row" ng-hide="form.choosepayer === 'titular'">
+                <div class="form-group checkbox col-xs-12">
+                    <label>
+                        <input type="checkbox" name="payerAcceptsGeneralConditions" value="accept" data-ng-model="form.payerAcceptsGeneralConditions" data-ng-change="formListener()" required/>
+                        <span data-ng-bind-html="'ACCEPTO_CONDICIONS_GENERALS' | translate"></span>
+                    </label>
+                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.payerAcceptsGeneralConditions.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                </div>
+            </div>
+            <div class="row">
                 <iban-editor
                     class="col-sm-8 col-xs-12"
                     required
@@ -472,52 +511,6 @@
                         <span data-ng-bind-html="'CONFIRMO_TITULAR_COMPTE_ACCEPTA_DOMICILIACIO' | translate"></span>
                     </label>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}</label>
-                </div>
-                <div class="col-xs-12">
-                    <select class="form-control input-lg" name="choosepayer" data-ng-model="form.choosepayer" data-ng-change="formListener()">
-                        <option value="titular">{{ 'TITULAR_CONTRACTE_ELECTRICITAT' | translate }}: {{
-                            form.ownerIsMember === 'yes'?
-                                initForm.soci.nom + ' '+ initForm.soci.cognom:
-                                owner.name + ' ' + owner.surname
-}}</option>
-                        <option value="soci" ng-hide="form.ownerIsMember==='yes'">{{ 'SOCI_SOM_ENERGIA' | translate }}: {{ initForm.soci.nom + ' ' + initForm.soci.cognom }}</option>
-                        <option value="altre">{{ 'ALTRA_PERSONA' | translate }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="well" data-ng-show="form.choosepayer == 'altre'">
-                <personal-data
-                    model="payer"
-                    onchanged="formListener()"
-                ></personal-data>
-            </div>
-            <div class="row">
-                <div class="form-group checkbox col-xs-12">
-                    <label>
-                        <input type="checkbox" name="accept2" value="accept" data-ng-model="form.accept2" data-ng-change="formListener()" required/>
-                        <span data-ng-bind-html="'ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT' | translate"></span>
-                    </label>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                </div>
-            </div>
-            <!-- TODO: Explicar la primera estimada -->
-            <!--
-            <div class="row extra-margin-top">
-                <div class="col-xs-12">
-                    <span class="optional-info">{{ 'INFORMACIO_OPCIONAL' | translate }}</span>
-                    <span class="spc badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_OPTIONAL_INFO' | translate }}" data-placement="right">?</span>
-                </div>
-            </div>
-            -->
-            <div class="row extra-margin-top">
-                <div class="col-sm-3 col-xs-12">
-                    <label for="estimation" class="sr-only">{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}:</label>
-                    <input type="text" name="estimation" data-ng-model="form.estimation" class="form-control" placeholder="{{ 'CONSUM_ANUAL_ESTIMAT' | translate }}" data-ng-change="formListener()"/>
                 </div>
             </div>
             <div class="row">

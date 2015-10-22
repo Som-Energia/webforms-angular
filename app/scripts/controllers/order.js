@@ -234,7 +234,7 @@ angular.module('newSomEnergiaWebformsApp')
                 (!$scope.waitPreviousPages || $scope.isSupplyPointPageComplete()) &&
                 $scope.isFarePageComplete() &&
                 ($scope.esAlta() || $scope.form.changeowner !== undefined) &&
-                $scope.form.accept === true &&
+                $scope.form.ownerAcceptsGeneralConditions === true &&
                 (
                     $scope.form.ownerIsMember === 'yes' ||
                     (
@@ -252,9 +252,12 @@ angular.module('newSomEnergiaWebformsApp')
                     $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ||
                     (
                         $scope.payer.isReady !== undefined &&
-                        $scope.payer.isReady() &&
-                        $scope.form.accept2 === true
+                        $scope.payer.isReady()
                     )
+                ) &&
+                (
+                    $scope.form.choosepayer === cfg.PAYER_TYPE_TITULAR ||
+                        $scope.form.payerAcceptsGeneralConditions === true
                 )
                 ;
         };
@@ -294,10 +297,14 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.goToSociPage();
 
+        // KLUDGE: how to translate params of a translation
         $scope.HELP_INSTALL_TYPE_URL = $translate.instant('HELP_INSTALL_TYPE_URL');
         $scope.HELP_POTENCIA_URL = $translate.instant('HELP_POTENCIA_URL');
         $scope.HELP_DISCRIMINACIO_HORARIA_URL = $translate.instant('HELP_DISCRIMINACIO_HORARIA_URL');
         $scope.HELP_POWER_30_URL = $translate.instant('HELP_POWER_30_URL');
+        // DOUBLE: how to translate params of a translation and passing it to the child scopes
+        $scope.t={};
+        $scope.t.HELP_POPOVER_CUPS_ALTA_URL = $translate.instant('HELP_POPOVER_CUPS_ALTA_URL');
 
 
         // ON SUBMIT FORM
@@ -339,7 +346,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('titular_provincia', ownerIsMember ? $scope.initForm.soci.provincia : $scope.owner.province.id);
             formData.append('tarifa', $scope.form.rate);
             formData.append('cups', $scope.cupsEditor.value);
-            formData.append('consum', $scope.form.estimation || '');
+            formData.append('consum', $scope.form.estimation || ''); // TODO: Remove this when it is clear is not used anymore
             formData.append('potencia', Math.round($scope.form.power * cfg.THOUSANDS_CONVERSION_FACTOR));
             formData.append('potencia_p2', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power2 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
             formData.append('potencia_p3', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power3 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
@@ -490,7 +497,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.owner.phone1 = debugCfg.PHONE;
             $scope.owner.email1 = debugCfg.EMAIL;
             $scope.owner.email2 = debugCfg.EMAIL;
-            $scope.form.accept = true;
+            $scope.form.ownerAcceptsGeneralConditions = true;
             $scope.ibanEditor.value = debugCfg.IBAN1;
             $scope.ibanEditor.value += debugCfg.IBAN2;
             $scope.ibanEditor.value += debugCfg.IBAN3;

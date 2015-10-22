@@ -53,8 +53,6 @@ angular.module('newSomEnergiaWebformsApp')
                 SELECCIONAR: 'Seleccionar',
                 HELP_POPOVER_RATE: 'Ho trobareu a la vostra factura actual. Podeu trobar més informació a l\'apartat FAQ',
                 INFORMACIO_OPCIONAL: 'Informació opcional',
-                HELP_POPOVER_OPTIONAL_INFO: 'La dada de consum anual podria ser útil per a emetre les nostres primeres factures.',
-                CONSUM_ANUAL_ESTIMAT: 'Consum anual estimat (kWh)',
                 ADJUNTAR_ULTIMA_FACTURA: 'Adjuntar última factura elèctrica (PDF o JPG) - 10Mb màxim',
                 BAD_EXTENSION: 'Adjuntar només arxius PDF o JPG',
                 OVERFLOW_FILE: 'L\'arxiu adjunt NO pot ocupar més de 10Mb',
@@ -63,9 +61,7 @@ angular.module('newSomEnergiaWebformsApp')
                 AVIS_CANVI_TITULAR: '<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;Atenció: En alguns casos, la distribuïdora pot demanar la renovació del Butlletí de la Instal·lació, si aquest està caducat (20 anys). Més informació <a target="_blank" href="http://ca.support.somenergia.coop/article/500-que-es-el-butlleti-electric">aquí</a>',
                 SI: 'Sí',
                 NO: 'No',
-                HELP_POPOVER_OWNER: 'Comparat amb el vostre contracte actual, al nou contracte voleu posar a una altra persona de titular?',
                 DADES_PAGAMENT: 'Dades de pagament',
-                QUI_ES_TITULAR_COMPTE_BANCARI: 'Qui és titular del compte bancari?',
                 TITULAR_CONTRACTE_ELECTRICITAT: 'Titular del contracte d\'electricitat',
                 SOCI_SOM_ENERGIA: 'Soci/a de Som Energia',
                 ALTRE_TITULAR: 'Un altre titular',
@@ -191,6 +187,7 @@ angular.module('newSomEnergiaWebformsApp')
                 HELP_TARIFA_ALTA: 'Per completar els següents camps us recomanem clicar als botons d\'ajuda.',
                 DADES_TITULAR_NOU_CONTRACTE: 'Titular del contracte',
                 VOLS_MANTENIR_EL_TITULAR: 'Vols mantenir la mateixa persona titular?',
+                HELP_POPOVER_OWNER: 'El contracte amb la comercialitzadora actual i el nou contracte amb Som Energia tindran de titular la mateixa persona?',
                 NO_CANVI_DE_TITULAR: 'Vull mantenir de titular la mateixa persona que hi ha actualment',
                 SI_CANVI_DE_TITULAR: 'Vull canviar la persona titular, aprofitant el canvi a Som Energia',
                 EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE: 'El titular és el soci/a vinculat a aquest contracte?',
@@ -198,6 +195,7 @@ angular.module('newSomEnergiaWebformsApp')
                 ALTRA_PERSONA: 'Una altra persona',
                 ACCEPTO_CONDICIONS_GENERALS: 'Accepto les <strong><a target="_blank" href="{{url}}">condicions generals del contracte</a></strong>',
                 ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/ca/condicions-del-contracte-de-som-energia/',
+                QUI_ES_TITULAR_COMPTE_BANCARI: 'A nom de qui està el compte on es domiciliaran els rebuts?',
             })
         ;
     });
