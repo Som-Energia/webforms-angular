@@ -29,6 +29,9 @@ angular.module('newSomEnergiaWebformsApp')
                     var match = re.exec(newValue);
                     var result = match[0].replace(',', '.');
                     result = result.replace('\'', '.');
+                    $scope.rate20IsInvalid = false;
+                    $scope.rate21IsInvalid = false;
+                    $scope.rate3AIsInvalid = false;
                     if (element === 'form.power') {
                         var valueToApply = result;
                         if ($scope.form.rate === cfg.RATE_20A || $scope.form.rate === cfg.RATE_20DHA || $scope.form.rate === cfg.RATE_20DHS) {
@@ -36,60 +39,44 @@ angular.module('newSomEnergiaWebformsApp')
                                 valueToApply = oldValue;
                             }
                             $scope.rate20IsInvalid = result <= 0;
-                            $scope.rate21IsInvalid = false;
-                            $scope.rate3AIsInvalid = false;
-
-                            //$log.log(oldValue, newValue, result);
-                            //$log.log($scope.rate20IsInvalid, $scope.rate21IsInvalid, $scope.rate3AIsInvalid);
-
 
                         } else if ($scope.form.rate === cfg.RATE_21A || $scope.form.rate === cfg.RATE_21DHA || $scope.form.rate === cfg.RATE_21DHS) {
                             if ((newValue < 10 && newValue.length > 1) || result > 15) {
                                 valueToApply = oldValue;
                             }
-                            $scope.rate20IsInvalid = false;
                             $scope.rate21IsInvalid = result <= 10 || result > 15;
-                            $scope.rate3AIsInvalid = false;
 
                             $log.log(oldValue, newValue, result);
                             $log.log($scope.rate20IsInvalid, $scope.rate21IsInvalid, $scope.rate3AIsInvalid);
 
                         } else if ($scope.form.rate === cfg.RATE_30A) {
-                            if (result > 450) {
-                                valueToApply = oldValue;
-                            }
-                            $scope.rate20IsInvalid = false;
-                            $scope.rate21IsInvalid = false;
-                            $scope.rate3AIsInvalid = $scope.form.power2 !== undefined && $scope.form.power3 !== undefined && valueToApply <= 15 && $scope.form.power2 <= 15 && $scope.form.power3 <= 15;
-
-                            //$log.log(oldValue, newValue, result);
-                            //$log.log($scope.rate20IsInvalid, $scope.rate21IsInvalid, $scope.rate3AIsInvalid);
-
+                            $scope.form.power = result > 450 ? oldValue : result;
+                            $scope.rate3AIsInvalid =
+                                $scope.form.power2 !== undefined &&
+                                $scope.form.power3 !== undefined &&
+                                $scope.form.power <= 15 &&
+                                $scope.form.power2 <= 15 &&
+                                $scope.form.power3 <= 15;
                         }
-                        $scope.form.power = valueToApply;
                     } else if (element === 'form.power2') {
-                        if (result > 450) {
-                            $scope.form.power2 = oldValue;
-                        } else {
-                            $scope.form.power2 = result;
-                        }
-                        $scope.rate20IsInvalid = false;
-                        $scope.rate21IsInvalid = false;
-                        $scope.rate3AIsInvalid = $scope.form.power !== undefined && $scope.form.power3 !== undefined && $scope.form.power <= 15 && result <= 15 && $scope.form.power3 <= 15;
-                        //$log.log($scope.form.power <= 15, result <= 15, $scope.form.power3 <= 15);
+                        $scope.form.power2 = result > 450 ? oldValue : result;
+                        $scope.rate3AIsInvalid =
+                            $scope.form.power !== undefined &&
+                            $scope.form.power3 !== undefined &&
+                            $scope.form.power <= 15 &&
+                            $scope.form.power2 <= 15 &&
+                            $scope.form.power3 <= 15;
                     } else if (element === 'form.power3') {
-                        if (result > 450) {
-                            $scope.form.power3 = oldValue;
-                        } else {
-                            $scope.form.power3 = result;
-                        }
-                        $scope.rate20IsInvalid = false;
-                        $scope.rate21IsInvalid = false;
-                        $scope.rate3AIsInvalid = $scope.form.power !== undefined && $scope.form.power2 !== undefined && $scope.form.power <= 15 && $scope.form.power2 <= 15 && result <= 15;
-                        //$log.log($scope.form.power <= 15, $scope.form.power2 <= 15, result <= 15);
+                        $scope.form.power3 = result > 450 ? oldValue : result;
+                        $scope.rate3AIsInvalid =
+                            $scope.form.power !== undefined &&
+                            $scope.form.power2 !== undefined &&
+                            $scope.form.power <= 15 &&
+                            $scope.form.power2 <= 15 &&
+                            $scope.form.power3 <= 15;
                     }
-                    $scope.formListener();
                 }
+                $scope.formListener();
             });
         };
         

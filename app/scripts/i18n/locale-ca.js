@@ -183,7 +183,7 @@ angular.module('newSomEnergiaWebformsApp')
                 HELP_POWER_30: 'Mes informació sobre els <a target="_blank" href="{{url}}">períodes de la 3.0</a>',
                 HELP_POWER_30_URL: 'http://ca.support.somenergia.coop/article/255-quins-horaris-tenen-els-periodes-de-la-tarifa-3-0a',
                 LA_TEVA_TARIFA_ES: 'La teva tarifa és',
-                HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Per evitar problemes de tramitació, poseu <b>la mateixa tarifa i potència que surt a la factura actual</b>. Si voleu fer canvis de tarifa o potència, un cop activat el contracte podeu sol·licitar-ho.',
+                HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Per evitar problemes de tramitació, poseu <b>la mateixa tarifa i potència que surt a la factura actual</b>. Si voleu fer canvis de tarifa o potència, un cop activat el contracte, podeu sol·licitar-ho.',
                 HELP_TARIFA_ALTA: 'Per completar els següents camps us recomanem clicar als botons d\'ajuda.',
                 DADES_TITULAR_NOU_CONTRACTE: 'Titular del contracte',
                 VOLS_MANTENIR_EL_TITULAR: 'Vols mantenir la mateixa persona titular?',
@@ -196,6 +196,7 @@ angular.module('newSomEnergiaWebformsApp')
                 ACCEPTO_CONDICIONS_GENERALS: 'Accepto les <strong><a target="_blank" href="{{url}}">condicions generals del contracte</a></strong>',
                 ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/ca/condicions-del-contracte-de-som-energia/',
                 QUI_ES_TITULAR_COMPTE_BANCARI: 'A nom de qui està el compte on es domiciliaran els rebuts?',
+                ALGUN_DELS_TRES_PERIODES_MAJOR_QUE_15: 'Algun dels tres periodes ha de tenir més de 15kW',
             })
         ;
     });

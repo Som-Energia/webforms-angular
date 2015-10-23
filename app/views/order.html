@@ -132,7 +132,7 @@
             <div data-ng-show="esAlta() || showAll">
                 <div class="row extra-margin-top">
                     <div class="col-xs-12">
-                        <p translate="HELP_TARIFA_ALTA"></p>
+                        <p class="lead" translate="HELP_TARIFA_ALTA"></p>
                     </div>
                 </div>
                 <div class="row extra-margin-top form-group">
@@ -217,52 +217,61 @@
                     </div>
                 </div>
                 <div data-ng-if="form.newpower == '15'">
-                    <div class="row">
-                        <div class="form-group col-xs-12">
+                    <div class="row from-group">
+                        <div class="col-xs-4">
                             <label class="combo-one-row">{{ 'ESCULL_LA_POTENCIA_DE_CADA_PERIODE' | translate }}</label>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class='input-group has-feedback'>
+                                <span class="input-group-addon">P1</span>
+                                <input type="text" class="input-lg form-control" data-ng-change="formListener()" required
+                                    data-ng-model="form.power" name="power"
+                                    />
+                                <span class="form-control-feedback glyphicon "  data-ng-class="{
+                                    'glyphicon-remove danger': rate3AIsInvalid,
+                                    'glyphicon-asterisk danger': form.power === undefined || form.power === '',
+                                    'glyphicon-ok success': form.power !== undefined && form.power !== '',
+                                }" style="right:4em"></span>
+                                <span class="input-group-addon">kW</span>
+                            </div>
+                            <div class="input-group has-feedback">
+                                <span class="input-group-addon">P2</span>
+                                <input type="text" class="input-lg form-control" data-ng-change="formListener()" required
+                                    name="power2" data-ng-model="form.power2" 
+                                    />
+                                <span class="input-group-addon">kW</span>
+                                <span class="form-control-feedback glyphicon "  data-ng-class="{
+                                    'glyphicon-asterisk danger': form.power2 === undefined || form.power === '',
+                                    'glyphicon-remove danger': rate3AIsInvalid,
+                                    'glyphicon-ok success': form.power2 !== undefined,
+                                }" style="right:4em"></span>
+                            </div>
+                            <div class="input-group has-feedback">
+                                <span class="input-group-addon">P3</span>
+                                <input type="text" class="input-lg form-control" data-ng-change="formListener()" required
+                                    name="power3" data-ng-model="form.power3"
+                                    />
+                                <span class="form-control-feedback glyphicon "  data-ng-class="{
+                                    'glyphicon-remove danger': rate3AIsInvalid,
+                                    'glyphicon-asterisk danger': form.power3 === undefined || form.power === '',
+                                    'glyphicon-ok success': form.power3 !== undefined,
+                                }" style="right:4em"></span>
+                                <span class="input-group-addon">kW</span>
+                            </div>
+                            <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power3.$error.required ">{{ 'OBLIGATORI' | translate }}</span>
+                            <span class="pull-right label label-danger" data-ng-show="rate3AIsInvalid">{{ 'ALGUN_DELS_TRES_PERIODES_MAJOR_QUE_15' | translate }}</span>
+                        </div>
+                        <div class="col-xs-1">
                             <a
-                                class='btn btn-default'
+                                class='btn btn-default pull-right'
                                 role="button"
                                 tabindex="0"
                                 tooltip-append-to-body="true"
                                 tooltip-trigger="focus"
                                 tooltip-html-unsafe="{{ 'HELP_POWER_30' | translate: '{url: HELP_POWER_30_URL}' }}"
-                                tooltip-placement="right"
+                                tooltip-placement="left"
                                 >
                                 <span class="badge current small">?</span></a>
-                        </div>
-                        <div class="form-group col-xs-4">
-                            <label class="combo-one-row">P1*</label>
-                            <div class='input-group'>
-                                <input type="text" class="form-control" data-ng-change="formListener()" required
-                                    data-ng-model="form.power" name="power"
-                                    />
-                                <span class="input-group-addon">kW</span>
-                            </div>
-                            <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                            <span class="pull-right label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
-                        </div>
-                        <div class="form-group col-xs-4">
-                            <label class="combo-one-row">P2*</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" data-ng-change="formListener()" required
-                                    name="power2" data-ng-model="form.power2" 
-                                    />
-                                <span class="input-group-addon">kW</span>
-                            </div>
-                            <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                            <span class="pull-right label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
-                        </div>
-                        <div class="form-group col-xs-4">
-                            <label class="combo-one-row">P3*</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" data-ng-change="formListener()" required
-                                    name="power3" data-ng-model="form.power3"
-                                    />
-                                <span class="input-group-addon">kW</span>
-                            </div>
-                            <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power3.$error.required ">{{ 'OBLIGATORI' | translate }}</span>
-                            <span class="pull-right label label-danger" data-ng-show="rate3AIsInvalid">{{ 'INVALID' | translate }}</span>
                         </div>
                     </div>
                 </div>
@@ -274,11 +283,11 @@
                     </div>
                 </div>
             </div>
-            <hr/>
+            <hr data-ng-show="showAll" />
             <div data-ng-show="!esAlta() || showAll">
                 <div class="row extra-margin-top">
                     <div class="col-xs-12">
-                        <p translate="HELP_TARIFA_CANVI_COMERCIALITZADORA"></p>
+                        <p class="lead" translate="HELP_TARIFA_CANVI_COMERCIALITZADORA"></p>
                     </div>
                 </div>
                 <div class="row form-group">
@@ -344,7 +353,16 @@
                     <div class="row">
                         <div class="form-group col-xs-12">
                             <label class="combo-one-row">{{ 'QUINA_POTENCIA_TENS_CONTRACTADA' | translate }}*</label>
-                            <a role="button" tabindex="0" tooltip-append-to-body="true" tooltip-trigger="hover" tooltip-html-unsafe="{{ 'HELP_POPOVER_POWER'+caca | translate }}" tooltip-placement="left"><span class="badge current small">?</span></a>
+                            <a
+                                role="button"
+                                tabindex="0"
+                                tooltip-append-to-body="true"
+                                tooltip-trigger="hover"
+                                tooltip-html-unsafe="{{ 'HELP_POPOVER_POWER' | translate }}"
+                                tooltip-placement="left"
+                                >
+                                <span class="badge current small">?</span>
+                            </a>
                         </div>
                         <div class="form-group col-sm-3 col-xs-4">
                             <label class="combo-one-row">P1*</label>
