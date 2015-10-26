@@ -78,6 +78,7 @@
                     help-text="{{ (esAlta() ? 'HELP_POPOVER_CUPS_ALTA' : 'HELP_POPOVER_CUPS') | translate: {url: t.HELP_POPOVER_CUPS_ALTA_URL } }}"
                     checkurl="check/cups/"
                     model="cupsEditor"
+                    quietlabels='true'
                     onchanged="formListener()"
                 >
                     <span class="pull-right label label-danger" data-ng-show="cupsEditor.error==='exist'">{{ 'REGISTRE_EXISTENT' | translate }}</span>
@@ -93,6 +94,7 @@
                     checkurl="check/cnae/"
                     model="cnaeEditor"
                     oktext="{{cnaeEditor.data.description}}"
+                    quietlabels='true'
                     onchanged="formListener()"
                 >
                 </iban-editor>
@@ -105,6 +107,7 @@
                     placeholder="{{'REFERENCIA_CADASTRAL' | translate}} ({{'OPCIONAL' | translate }})"
                     help-text="{{ 'HELP_POPOVER_REFERENCIA_CADASTRAL' | translate }}"
                     model="cadastreEditor"
+                    quietlabels='true'
                     onchanged="formListener()"
                 >
                 </iban-editor>

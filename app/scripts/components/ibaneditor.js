@@ -10,6 +10,7 @@ angular.module('newSomEnergiaWebformsApp')
             inputid: '@',
             placeholder: '@?',
             required: '@?',
+            quietlabels: '@?', /* hide 'optional' and 'required' texts */
             checkurl: '@?',
             helpText: '@?',
             onchanged: '&?',

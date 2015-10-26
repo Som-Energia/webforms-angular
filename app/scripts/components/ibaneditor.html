@@ -39,9 +39,9 @@
     }" ng-attr-style="{{helpText && 'right:60px' || undefined}}"></span>
     <span ng-transclude></span>
     <span class="pull-right label label-danger"  data-ng-show="model.inServerError()">{{ 'SERVER_ERROR' | translate }} {{model.serverError}}</span>
-    <span class="pull-right label label-danger"  data-ng-show="model.isRequiredMissing()">{{ 'REQUERIT' | translate }}</span>
+    <span class="pull-right label label-danger"  data-ng-show="model.isRequiredMissing() && !quietlabels">{{ 'REQUERIT' | translate }}</span>
     <span class="pull-right label label-danger"  data-ng-show="model.isInvalid()">{{ 'INVALID' | translate }}</span>
     <span class="pull-right label label-warning" data-ng-show="model.isValidating()">{{ 'COMPROVANT' | translate }}</span>
     <span class="pull-right label label-success" data-ng-show="model.isValid() && !model.isOptionallyEmpty()">{{ oktext || ('CORRECTE' | translate) }} </span>
-    <span class="pull-right label label-success" data-ng-show="model.isValid() && model.isOptionallyEmpty()">{{ 'OPCIONAL' | translate }}</span>
+    <span class="pull-right label label-success" data-ng-show="model.isValid() && model.isOptionallyEmpty() && !quietlabels">{{ 'OPCIONAL' | translate }}</span>
 </div>
