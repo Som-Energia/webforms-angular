@@ -147,11 +147,16 @@
                         <label for="phases">{{ 'TIPUS_INSTALLACIO' | translate }}</label>
                     </div>
                     <div class="col-xs-8">
-                        <div class='input-group'>
+                        <div class='input-group has-feedback'>
                             <select class="form-control input-lg" ng-model="form.phases" required>
+                                <option value='' selected>{{ 'SELECCIONA' | translate}}</option>
                                 <option value="mono">{{ 'MONOFASICA_NORMAL' | translate}}</option>
                                 <option value="tri">{{ 'TRIFASICA' | translate}}</option>
                             </select>
+                            <span class="form-control-feedback glyphicon "  data-ng-class="{
+                                'glyphicon-asterisk danger': form.phases === undefined,
+                                'glyphicon-ok success': form.phases !== undefined,
+                            }" style="right:4em"></span>
                             <a
                                 role="button"
                                 tabindex="0"
@@ -204,11 +209,16 @@
                         {{ 'DISCRIMINACIO_HORARIA' | translate }}
                     </div>
                     <div class="col-xs-8">
-                        <div class='input-group'>
+                        <div class='input-group has-feedback'>
                             <select class="input-lg form-control" ng-model="form.discriminacio" required>
+                                <option value='' selected>{{ 'SELECCIONA' | translate}}</option>
                                 <option value='nodh'>{{ 'SENSE_DISCRIMINACIO_HORARIA' | translate}}</option>
                                 <option value='dh'>{{ 'AMB_DISCRIMINACIO_HORARIA' | translate}}</option>
                             </select>
+                            <span class="form-control-feedback glyphicon "  data-ng-class="{
+                                'glyphicon-asterisk danger': form.discriminacio === undefined,
+                                'glyphicon-ok success': form.discriminacio !== undefined,
+                            }" style="right:4em"></span>
                             <a
                                 role="button"
                                 tabindex="0"

@@ -26,8 +26,8 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.form = {};
         $scope.form.ownerIsMember='yes';
-        $scope.form.phases = 'mono';
-        $scope.form.discriminacio = 'nodh';
+        $scope.form.phases = undefined;
+        $scope.form.discriminacio = undefined;
         $scope.form.choosepayer = cfg.PAYER_TYPE_TITULAR;
 	$scope.form.address = {};
         $scope.initForm = {};
@@ -200,22 +200,24 @@ angular.module('newSomEnergiaWebformsApp')
             if ($scope.waitPreviousPages) {
                 if (!$scope.isSupplyPointPageComplete()) { return false; }
             }
+	    if ($scope.esAlta()!==false) {
+		if ($scope.form.phases===undefined) { return false; }
+		if ($scope.form.discriminacio===undefined) { return false; }
+	    }
             if ($scope.form.rate === undefined) { return false; }
+            if ($scope.form.power === undefined) { return false;}
             switch ($scope.form.rate) {
                 case cfg.RATE_20A:
                 case cfg.RATE_20DHA:
                 case cfg.RATE_20DHS:
-                    if ($scope.form.power === undefined) { return false;}
                     if ($scope.rate20IsInvalid) { return false; }
                     break;
                 case cfg.RATE_21A:
                 case cfg.RATE_21DHA:
                 case cfg.RATE_21DHS:
-                    if ($scope.form.power === undefined) {return false;}
                     if ($scope.rate21IsInvalid) {return false;}
                     break;
                 case cfg.RATE_30A:
-                    if ($scope.form.power === undefined) {return false;}
                     if ($scope.form.power2 === undefined) {return false;}
                     if ($scope.form.power3 === undefined) {return false;}
                     if ($scope.rate3AIsInvalid) {return false;}
