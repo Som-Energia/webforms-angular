@@ -24,6 +24,12 @@ angular.module('newSomEnergiaWebformsApp')
         // To false to debug one page completion state independently from the others
         $scope.waitPreviousPages = false;
 
+        $scope.form = {};
+        $scope.form.ownerIsMember='yes';
+        $scope.form.phases = 'mono';
+        $scope.form.discriminacio = 'nodh';
+        $scope.form.choosepayer = cfg.PAYER_TYPE_TITULAR;
+	$scope.form.address = {};
         $scope.initForm = {};
         $scope.ibanEditor = {};
         $scope.cupsEditor = {};
@@ -51,11 +57,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.languages = [];
         $scope.provinces = [];
         $scope.cities = [];
-        $scope.form = {};
-        $scope.form.ownerIsMember='yes';
-        $scope.form.phases = 'mono';
-        $scope.form.discriminacio = 'nodh';
-        $scope.form.choosepayer = cfg.PAYER_TYPE_TITULAR;
         $scope.completeAccountNumber = '';
         $scope.availablePowers = function() {
             if ($scope.form.phases === 'mono') {
@@ -186,7 +187,7 @@ angular.module('newSomEnergiaWebformsApp')
             if (!$scope.altesDeshabilitades) {
                 if ($scope.esAlta() === undefined) { return false; }
             }
-            if ($scope.form.address === undefined) { return false; }
+            if ($scope.form.address.value === undefined) { return false; }
             if ($scope.form.province === undefined) { return false; }
             if ($scope.form.city === undefined) { return false; }
             if (!$scope.cupsEditor.isValid()) { return false; }
@@ -351,7 +352,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('potencia_p2', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power2 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
             formData.append('potencia_p3', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power3 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
             formData.append('cnae', $scope.cnaeEditor.value || '');
-            formData.append('cups_adreca', $scope.form.address);
+            formData.append('cups_adreca', $scope.form.address.value);
             formData.append('cups_provincia', $scope.form.province.id);
             formData.append('cups_municipi', $scope.form.city.id);
             formData.append('referencia', $scope.cadastreEditor.value || '');
@@ -482,7 +483,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.formsoci.dni = debugCfg.DNI;
 //            $scope.form.province = {id: 0, name: 'province'};
 //            $scope.form.city = {id: 0, name: 'city'};
-            $scope.form.address = debugCfg.ADDRESS;
+            $scope.form.address.value = debugCfg.ADDRESS;
             $scope.cupsEditor.value = debugCfg.CUPS;
             $scope.cnaeEditor.value = debugCfg.CNAE;
             $scope.form.power = debugCfg.POWER;

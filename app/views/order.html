@@ -53,21 +53,23 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 form-group has-feedback">
-                    <input type="text" name="address" data-ng-model="form.address" class="form-control input-lg" placeholder="{{ 'ADRECA' | translate }}" data-ng-change="formListener()" required />
-                    <span class="form-control-feedback glyphicon "  data-ng-class="{
-                        'glyphicon-asterisk danger': form.address === undefined,
-                        'glyphicon-ok success': form.address !== undefined,
-                    }"></span>
-                    <span></span>
-                    <span class="pull-right label label-success" data-ng-show="form.address!==undefined">{{ 'CORRECTE' | translate }}</span>
-                    <span class="pull-right label label-success" style="opacity:0" data-ng-show="form.address===undefined">{{ 'REQUERIT' | translate }}</span>
-
-                </div>
+                <iban-editor
+                    class="col-sm-8 col-xs-12"
+                    required
+                    inputid="address"
+                    placeholder="{{'ADRECA' | translate}}"
+                    help="adrecaHelp"
+                    model="form.address"
+                    quietlabels='true'
+                    onchanged="formListener()"
+                    >
+                </iban-editor>
+            </div>
+            <div class="row">
                 <state-city
                     state-model="form.province"
                     city-model="form.city"
-                    quietlabels
+                    quietlabels='true'
                     >
                 </state-city>
             </div>
