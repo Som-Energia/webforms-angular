@@ -10,7 +10,7 @@ angular.module('newSomEnergiaWebformsApp')
             inputid: '@',
             placeholder: '@?',
             required: '@?',
-            quietlabels: '@?', /* hide 'optional' and 'required' texts */
+            quietlabels: '@?', // hide 'optional' and 'required' texts
             checkurl: '@?',
             helpText: '@?',
             onchanged: '&?',
@@ -103,7 +103,7 @@ angular.module('newSomEnergiaWebformsApp')
                     }
                     $scope._isValid = response.state !== cfg.STATE_FALSE;
                     $scope.model.data = response.data;
-                    if (response.data !== undefined) {
+                    if (response.data !== undefined && response.data.invalid_fields !== undefined) {
                         $scope.model.error = response.data.invalid_fields[0].error;
                     }
                     $scope.formListener();
