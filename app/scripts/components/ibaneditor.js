@@ -85,13 +85,18 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.formListener();
                 return;
             }
+            if ($scope.checkurl === undefined) {
+                $scope._isValid = true;
+                $scope.formListener();
+                return;
+            }
             $scope._isValid = undefined; // checking
             if ($scope._lastPromise !== undefined) {
                 $scope._lastPromise.abort();
             }
             var promise = AjaxHandler.getStateRequest(
                 $scope, cfg.API_BASE_URL +
-                ($scope.checkurl || 'check/iban/') + $scope.model.value,
+                $scope.checkurl + $scope.model.value,
                 '017');
             $scope._lastPromise = promise;
             promise.value = $scope.model.value;
