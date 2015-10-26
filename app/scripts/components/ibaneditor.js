@@ -102,7 +102,9 @@ angular.module('newSomEnergiaWebformsApp')
                     }
                     $scope._isValid = response.state !== cfg.STATE_FALSE;
                     $scope.model.data = response.data;
-                    $scope.model.error = response.data.invalid_fields[0].error;
+                    if (response.data !== undefined) {
+                        $scope.model.error = response.data.invalid_fields[0].error;
+                    }
                     $scope.formListener();
                 },
                 function(reason) {

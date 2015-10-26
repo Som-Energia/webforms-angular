@@ -33,7 +33,6 @@ angular.module('newSomEnergiaWebformsApp')
                     $scope.rate21IsInvalid = false;
                     $scope.rate3AIsInvalid = false;
                     if (element === 'form.power') {
-                        var valueToApply = result;
                         if ($scope.form.rate === cfg.RATE_20A || $scope.form.rate === cfg.RATE_20DHA || $scope.form.rate === cfg.RATE_20DHS) {
                             $scope.form.power = result <= 0 || result > 10 ? oldValue : result;
                             $scope.rate20IsInvalid = result <= 0 || result > 10; // TODO: Never occurs

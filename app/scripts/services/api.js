@@ -84,7 +84,7 @@ angular.module('newSomEnergiaWebformsApp')
             var aborter = $q.defer();
             var deferred = $q.defer();
             deferred.promise.abort = function() {
-                aborter.resolve('Aborted');
+                aborter.reject('Aborted');
             };
             $http.get(URL, {timeout: aborter} )
                 .success(function (response) {
