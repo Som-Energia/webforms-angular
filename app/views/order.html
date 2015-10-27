@@ -1,4 +1,5 @@
 <!--GLOBAL MESSAGES-->
+<div ng-cloak>
 <div class="row" data-ng-include data-src="'views/common/global-messages.html'"></div>
 
 <div ng-if='developing' data-ng-include data-src="'views/common/responsive-display.html'"></div>
@@ -131,8 +132,8 @@
                 <som-file-field
                     class="col-xs-12"
                     data-ng-show="esAlta() === true"
-                    inputid="butlleti"
-                    model="form.butlleti"
+                    inputid="bulletin"
+                    model="form.bulletin"
                     description="{{'ADJUNTAR_BUTLLETI' | translate}}"
                     help-text="{{'HELPER_ADJUNTAR_BUTLLETI' | translate}}"
                     formats="image/jpeg,application/pdf"
@@ -637,3 +638,4 @@
         setTimeout(function () { jQuery("#spc-rate-conditional").popover({trigger : 'hover'}); }, 1000);
     });
 </script>
+</div>
