@@ -12,30 +12,40 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app>
+  <body ng-app ng-init="idiom='ca'; page='contractacio'">
 
 	<div>
-		<div>Idioma</div>
-		<select ng-model="idiom" ng-init="idiom='ca'">
+		<div>Idioma {{idiom}}</div>
+		<select ng-model="idiom">
 			<option value='ca'>Català</a>
 			<option value='es'>Castellano</a>
 			<option value='gl'>Galego</a>
 			<option value='eu'>Euskara</a>
 		</select>
-		<div>Pagina</div>
-		<select ng-model="page" ng-init"page='contractacio'">
+		<div>Formulari {{page}}</div>
+		<select ng-model="page">
 			<option value='main'>Nou Soci/a</a>
-			<option value='contractacio'>Contractació</a>
+			<option value='contractacio' selected>Contractació</a>
 			<option value='generationkwh'>Generation kWh</a>
 			<option value='aportacionsvoluntaries'>Aportacions volutaries</a>
 		</select>
 	</div>
-	</div>
-		{{idiom}} {{page}}
-	</div>
 	<div>
-		<iframe width="783px" height="1100px" style="max-width:100%" src="{{'index.html#/'+idiom+'/'+page}}">
+		<iframe width="780px" height="1100px" style="max-width:100%"
+			ng-attr-src="{{'index.html#/'+idiom+'/'+page + '/'}}">
 		</iframe>
+<script type="text/javascript">
+document.domain = 'somenergia.coop';
+  jQuery(document).on(
+    'moveStep',
+    {},
+    function(event, parameter) {
+      //console.log(parameter);
+      jQuery(document).scrollTop(0);
+      jQuery("#wf-iframe").contents().children().animate({ scrollTop: 0 }, 0);
+    }
+  );
+</script>
 	</div>
 
     <!--[if lte IE 9]>
