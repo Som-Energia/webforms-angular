@@ -62,6 +62,9 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.cities = [];
         $scope.completeAccountNumber = '';
         $scope.availablePowers = function() {
+            if ($scope.form.phases === undefined) {
+                return [];
+            }
             if ($scope.form.phases === 'mono') {
                 return $scope.availablePowersMonophase;
             }
@@ -147,14 +150,18 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.newpower+0 < 15 ? '2.1' : (
                 $scope.form.newpower!==undefined ? '3.0' :
                 undefined)));
-            if (newFare !== undefined) {
-                var discrimination = $scope.form.newpower<15 ? $scope.form.discriminacio : 'nodh';
-                newFare += { nodh:'A', dh:'DHA', dhs:'DHS' }[discrimination];
-            }
-            $scope.form.rate = newFare;
             if (newFare!=='3.0A' && newFare !== undefined) {
                 $scope.form.power=$scope.form.newpower;
             }
+            if (newFare !== undefined) {
+                var discrimination = $scope.form.newpower<15 ? $scope.form.discriminacio : 'nodh';
+                if (discrimination===undefined) {
+                    newFare = undefined;
+                } else {
+                    newFare += { nodh:'A', dh:'DHA', dhs:'DHS' }[discrimination];
+                }
+            }
+            $scope.form.rate = newFare;
         }
         $scope.$watch('form.newpower', recomputeFareFromAlta);
         $scope.$watch('form.discriminacio', recomputeFareFromAlta);
