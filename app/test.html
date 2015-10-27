@@ -13,6 +13,9 @@
     <!-- endbuild -->
   </head>
   <body ng-app ng-init="idiom='ca'; page='contractacio'">
+	<script type="text/javascript">
+		document.domain = 'somenergia.coop';
+	</script>
 
 	<div>
 		<div>Idioma {{idiom}}</div>
@@ -30,22 +33,10 @@
 			<option value='aportacionsvoluntaries'>Aportacions volutaries</a>
 		</select>
 	</div>
-	<div>
-		<iframe width="780px" height="1100px" style="max-width:100%"
+	<div style="width: 100%">
+		<iframe width="750px" height="1100px" style="max-width:100%; margin-left:auto; margin-right: auto"
 			ng-attr-src="{{'index.html#/'+idiom+'/'+page + '/'}}">
 		</iframe>
-<script type="text/javascript">
-document.domain = 'somenergia.coop';
-  jQuery(document).on(
-    'moveStep',
-    {},
-    function(event, parameter) {
-      //console.log(parameter);
-      jQuery(document).scrollTop(0);
-      jQuery("#wf-iframe").contents().children().animate({ scrollTop: 0 }, 0);
-    }
-  );
-</script>
 	</div>
 
     <!--[if lte IE 9]>

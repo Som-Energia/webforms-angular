@@ -198,6 +198,10 @@ angular.module('newSomEnergiaWebformsApp')
                 QUI_ES_TITULAR_COMPTE_BANCARI: 'A nom de qui està el compte on es domiciliaran els rebuts?',
                 ALGUN_DELS_TRES_PERIODES_MAJOR_QUE_15: 'Algun dels tres periodes ha de tenir més de 15kW',
                 CUPS_EXISTENT: 'Ja tenim un contracte amb aquest codi CUPS',
+                CAP_ARXIU_SELECCIONAT: 'Cap arxiu seleccionat',
+                HELPER_ADJUNTAR_ULTIMA_FACTURA: 'Un scanejat de la darrera factura amb la actual distribuidora ens ajuda a comprovar qualsevol inconsistència en les dades que has introduït',
+                ADJUNTAR_BUTLLETI: 'Adjuntar el butlletí de la instal·lació (PDF o JPG) - 10Mb màxim',
+                HELPER_ADJUNTAR_BUTLLETI: 'La distribuidora ha de tenir el butlletí de la instal·lació per fer una alta, si encara no el té ens ho pots adjuntar i nosaltres li fem arribar.',
             })
         ;
     });

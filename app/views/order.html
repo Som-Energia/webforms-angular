@@ -85,7 +85,7 @@
                     quietlabels='true'
                     onchanged="formListener()"
                 >
-                    <span class="pull-right label label-danger" data-ng-show="cupsEditor.error==='exist'">{{ 'REGISTRE_EXISTENT' | translate }}</span>
+                    <span class="pull-right label label-danger" data-ng-show="cupsEditor.error==='exist'">{{ 'CUPS_EXISTENT' | translate }}</span>
                 </iban-editor>
             </div>
             <div class="row">
@@ -116,13 +116,29 @@
                 >
                 </iban-editor>
             </div>
-            <div class="row" data-ng-show="!esAlta()">
-                <div class="col-xs-12">
-                    <label class="combo-one-row" for="file">{{ 'ADJUNTAR_ULTIMA_FACTURA' | translate }}</label>
-                    <input id="fileuploaderinput" type="file" name="file" data-ng-model="form.file" class="form-control combo-one-row input-lg" onchange="angular.element(this).scope().validateSelectedFileSize()"/>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && invalidAttachFileExtension">{{ 'BAD_EXTENSION' | translate }}</span>
-                    <span class="label label-danger" data-ng-show="overflowAttachFile">{{ 'OVERFLOW_FILE' | translate }}</span>
-                </div>
+            <div class="row">
+                <som-file-field
+                    data-ng-show="!esAlta()"
+                    class="col-xs-12"
+                    inputid="fileuploaderinput"
+                    model="form.invoice"
+                    description="{{'ADJUNTAR_ULTIMA_FACTURA' | translate}}"
+                    help-text="{{'HELPER_ADJUNTAR_ULTIMA_FACTURA' | translate}}"
+                    formats="image/jpeg,application/pdf"
+                    maxsize="{{maxfilesize}}"
+                    onchanged="formListener()"
+                ></som-file-field>
+                <som-file-field
+                    class="col-xs-12"
+                    data-ng-show="esAlta() === true"
+                    inputid="butlleti"
+                    model="form.butlleti"
+                    description="{{'ADJUNTAR_BUTLLETI' | translate}}"
+                    help-text="{{'HELPER_ADJUNTAR_BUTLLETI' | translate}}"
+                    formats="image/jpeg,application/pdf"
+                    maxsize="{{maxfilesize}}"
+                    onchanged="formListener()"
+                ></som-file-field>
             </div>
         </wizard-page>
 

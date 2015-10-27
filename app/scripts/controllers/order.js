@@ -29,7 +29,9 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.form.phases = undefined;
         $scope.form.discriminacio = undefined;
         $scope.form.choosepayer = cfg.PAYER_TYPE_TITULAR;
-	$scope.form.address = {};
+        $scope.form.address = {};
+        $scope.form.invoice = {};
+        $scope.form.butlleti = {};
         $scope.initForm = {};
         $scope.ibanEditor = {};
         $scope.cupsEditor = {};
@@ -37,6 +39,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.cadastreEditor = {};
         $scope.owner = {};
         $scope.payer = {};
+        $scope.maxfilesize = cfg.MAX_MB_FILE_SIZE;
 
         $scope.showAllSteps = function() {
             $scope.showAll = true;
@@ -125,15 +128,6 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validatePower($scope, 'form.power3');
         ValidateHandler.validateInteger($scope, 'form.estimation');
 
-        // ON CHANGE SELECTED FILE TO UPLOAD VALIDATION
-        $scope.validateSelectedFileSize = function() {
-            var file = jQuery('#fileuploaderinput')[0].files[0];
-            $scope.$apply(function() {
-                $scope.overflowAttachFile = (file.size / 1024 / 1024) > cfg.MAX_MB_FILE_SIZE;
-                $scope.formListener();
-            });
-        };
-
         $scope.esAlta = function() {
             if ($scope.altesDeshabilitades) { return false; }
             if ($scope.form.hasservice === undefined) { return undefined; }
@@ -200,10 +194,10 @@ angular.module('newSomEnergiaWebformsApp')
             if ($scope.waitPreviousPages) {
                 if (!$scope.isSupplyPointPageComplete()) { return false; }
             }
-	    if ($scope.esAlta()!==false) {
-		if ($scope.form.phases===undefined) { return false; }
-		if ($scope.form.discriminacio===undefined) { return false; }
-	    }
+            if ($scope.esAlta()!==false) {
+                if ($scope.form.phases===undefined) { return false; }
+                if ($scope.form.discriminacio===undefined) { return false; }
+            }
             if ($scope.form.rate === undefined) { return false; }
             if ($scope.form.power === undefined) { return false;}
             switch ($scope.form.rate) {
@@ -358,7 +352,8 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('cups_provincia', $scope.form.province.id);
             formData.append('cups_municipi', $scope.form.city.id);
             formData.append('referencia', $scope.cadastreEditor.value || '');
-            formData.append('fitxer', jQuery('#fileuploaderinput')[0].files[0]);
+            formData.append('fitxer', $scope.form.invoice.file()); // Disable it in altas
+//            formData.append('butlleti', $scope.form.butlleti.file()); // TODO: Activate it
             formData.append('payment_iban', $scope.getCompleteIban());
             formData.append('escull_pagador', $scope.form.choosepayer);
             formData.append('compte_tipus_persona', $scope.payer.usertype === 'person' ? 0 : 1);
