@@ -4,7 +4,9 @@
         'ng-invalid': ! model.isValid()
     }"
     >
-    <div class='input-group' style='width:100%'>
+    <div class="input-group"
+        style='width:100%'
+        >
         <input
             type="text"
             class="form-control input-lg"
@@ -17,10 +19,11 @@
             aria-describedby="{{help}}"
             />
         <a
-            data-ng-show="helpText !== undefined"
+            data-ng-if="helpText !== undefined"
             role="button"
             tabindex="0"
             class="btn btn-default input-group-addon"
+            style="width: 1em"
             tooltip-append-to-body="true"
             tooltip-trigger="focus"
             tooltip-placement="left"
@@ -36,7 +39,7 @@
         'glyphicon-refresh spinning warning': model.isValidating(),
         'glyphicon-ok success': model.isValid() && ! model.isOptionallyEmpty(),
         'glyphicon-minus success': model.isValid() && model.isOptionallyEmpty(),
-    }" ng-attr-style="{{helpText ? 'right:60px' : undefined}}"></span>
+    }" ng-attr-style="{{helpText ? 'right:50px' : undefined}}"></span>
     <span class="pull-right label label-danger"  data-ng-show="model.inServerError()">{{ 'SERVER_ERROR' | translate }} {{model.serverError}}</span>
     <span class="pull-right label label-danger"  data-ng-show="model.isRequiredMissing() && !quietlabels">{{ 'REQUERIT' | translate }}</span>
     <span class="pull-right label label-danger"  data-ng-show="model.isInvalid()">{{ 'INVALID' | translate }}</span>
