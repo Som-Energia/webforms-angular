@@ -15,6 +15,8 @@ angular.module('newSomEnergiaWebformsApp')
             helpText: '@?',
             onchanged: '&?',
             oktext: '@?',
+            suffix: '@?',
+            prefix: '@?',
         },
         transclude: true,
         templateUrl: 'scripts/components/ibaneditor.html',

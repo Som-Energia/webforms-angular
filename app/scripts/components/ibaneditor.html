@@ -4,7 +4,7 @@
         'ng-invalid': ! model.isValid()
     }"
     >
-    <div class="input-group"
+    <div ng-class="{'input-group': helpText!==undefined }"
         style='width:100%'
         >
         <input
