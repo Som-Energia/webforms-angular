@@ -118,7 +118,7 @@ angular.module('newSomEnergiaWebformsApp')
                 CONFIRMO_CONDICIONS_INVERSIO: 'Kontu-korrontearen titularra naizela ziurtatzen dut, helbideratzea baimentzen dut eta onartzen ditut <a target="_blank" href="https://somenergia.coop/es/condiciones-generales-inversion">inbertsioaren baldintza-orokorrak</a> baita <a target="_blank" href="https://www.somenergia.coop/es/politica-de-privacidad-cookies-y-aviso-legal/">pribatutasun-politika ere</a>',
                 CONFIRMAR_INVERSIO: 'Egiaztatu inbertsioa',
                 COMPROVANT: 'Egiaztatzen...',
-                CORRECTE: 'Zuzena.',
+                CORRECTE: 'Zuzena',
                 INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/eu/aportacion-realizada-correctamente/', // TODO: Translate url
                 CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
                 GENERATION_OK_REDIRECT_URL: 'http://www.generationkwh.org/eu/inbertsioa-egin/',

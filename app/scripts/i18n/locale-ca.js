@@ -105,7 +105,7 @@ angular.module('newSomEnergiaWebformsApp')
                 CONFIRMO_CONDICIONS_INVERSIO: 'Confirmo que sóc titular del compte corrent, autoritzo la domiciliació i accepto les <a target="_blank" href="https://somenergia.coop/ca/condicions-generals-inversio">condicions generals de la inversió</a> i la <a target="_blank" href="https://www.somenergia.coop/ca/politica-de-privacitat-cookies-i-avis-legal/">política de privacitat</a>',
                 CONFIRMAR_INVERSIO: 'Confirmar inversió',
                 COMPROVANT: 'Comprovant...',
-                CORRECTE: 'Correcte.',
+                CORRECTE: 'Correcte',
                 INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/ca/aportacio-realitzada-correctament/',
                 CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
                 GENERATION_OK_REDIRECT_URL: 'http://www.generationkwh.org/ca/inversio-realitzada/',
@@ -197,6 +197,7 @@ angular.module('newSomEnergiaWebformsApp')
                 ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/ca/condicions-del-contracte-de-som-energia/',
                 QUI_ES_TITULAR_COMPTE_BANCARI: 'A nom de qui està el compte on es domiciliaran els rebuts?',
                 ALGUN_DELS_TRES_PERIODES_MAJOR_QUE_15: 'Algun dels tres periodes ha de tenir més de 15kW',
+                CUPS_EXISTENT: 'Ja tenim un contracte amb aquest codi CUPS',
             })
         ;
     });

@@ -118,7 +118,7 @@ angular.module('newSomEnergiaWebformsApp')
                 CONFIRMO_CONDICIONS_INVERSIO: 'Confirmo que son titular da conta corrente, autorizo a domiciliación e acepto as <a target="_blank" href="https://somenergia.coop/es/condiciones-generales-inversion">condicións xerais do investimento</a> e a <a target="_blank" href="https://www.somenergia.coop/es/politica-de-privacidad-cookies-y-aviso-legal/">política de privacidade</a>',
                 CONFIRMAR_INVERSIO: 'Confirmar investimento',
                 COMPROVANT: 'A comprobar...',
-                CORRECTE: 'Correcto.',
+                CORRECTE: 'Correcto',
                 INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/gl/aportacion-realizada-correctamente/', // TODO: Translate url
                 CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
                 GENERATION_OK_REDIRECT_URL: 'http://www.generationkwh.org/gl/investimento-feito/',
