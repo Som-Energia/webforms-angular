@@ -302,12 +302,12 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.goToSociPage();
 
         // KLUDGE: how to translate params of a translation
-        $scope.HELP_INSTALL_TYPE_URL = $translate.instant('HELP_INSTALL_TYPE_URL');
-        $scope.HELP_POTENCIA_URL = $translate.instant('HELP_POTENCIA_URL');
-        $scope.HELP_DISCRIMINACIO_HORARIA_URL = $translate.instant('HELP_DISCRIMINACIO_HORARIA_URL');
-        $scope.HELP_POWER_30_URL = $translate.instant('HELP_POWER_30_URL');
         // DOUBLE: how to translate params of a translation and passing it to the child scopes
         $scope.t={};
+        $scope.t.HELP_INSTALL_TYPE_URL = $translate.instant('HELP_INSTALL_TYPE_URL');
+        $scope.t.HELP_POTENCIA_URL = $translate.instant('HELP_POTENCIA_URL');
+        $scope.t.HELP_DISCRIMINACIO_HORARIA_URL = $translate.instant('HELP_DISCRIMINACIO_HORARIA_URL');
+        $scope.t.HELP_POWER_30_URL = $translate.instant('HELP_POWER_30_URL');
         $scope.t.HELP_POPOVER_CUPS_ALTA_URL = $translate.instant('HELP_POPOVER_CUPS_ALTA_URL');
 
 
