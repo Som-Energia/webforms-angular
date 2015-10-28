@@ -160,7 +160,7 @@ angular.module('newSomEnergiaWebformsApp')
                 AVIS_CANVI_COMERCIALITZADORA: 'Hi ha llum amb una altra comercialitzadora i vull canviar a Som Energia.',
                 AVIS_ALTA_DE_SERVEI: 'No hi ha llum, i vull donar-la d\'alta directament amb Som Energia.',
                 HELP_POPOVER_CUPS: 'Ho trobareu a la vostra factura actual. És un codi de l\'estil ES0031031321313W0F.',
-                HELP_POPOVER_CUPS_ALTA: 'És un codi que s\'indica a la factura, de l\'estil ES0031031321313W0F. Si no el tens clica <a target="_blank" href="{{url}}">aquest enllaç</a>',
+                HELP_POPOVER_CUPS_ALTA: 'És un codi que s\'indica a la factura, de l\'estil ES0031031321313W0F. Si no el tens, clica <a target="_blank" href="{{url}}">aquest enllaç</a>',
                 HELP_POPOVER_CUPS_ALTA_URL: 'http://ca.support.somenergia.coop/article/225-no-tinc-llum-actualment-puc-sol-licitar-un-nou-punt-de-consum',
                 REFERENCIA_CADASTRAL: 'Referència cadastral de l\'immoble',
                 HELP_POPOVER_REFERENCIA_CADASTRAL: 'És opcional, ens és útil per resoldre incongruències a les dades.<br/>Pots trobar-la aquí:<br/><a target="_blank" href="https://www1.sedecatastro.gob.es/OVCFrames.aspx?TIPO=CONSULTA">Espanya</a><br/><a target="_blank" href="http://www.bizkaia.net/home2/Temas/DetalleTema.asp?Tem_Codigo=5181&Idioma=CA">Bizkaia</a><br/><a target="_blank" href="http://catastroalava.tracasa.es/navegar/?lang=es">Araba</a><br/><a target="_blank" href="http://www4.gipuzkoa.net/ogasuna/catastro/presenta.asp">Guipuzkoa</a><br/><a target="_blank" href="https://catastro.navarra.es/">Navarra</a>',
