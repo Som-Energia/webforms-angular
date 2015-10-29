@@ -157,7 +157,7 @@ angular.module('newSomEnergiaWebformsApp')
                 CARREGANT_OPCIONS: 'Carregant opcions...',
                 OPCIONAL: 'Opcional',
                 HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: 'Hi ha llum, actualment?',
-                AVIS_CANVI_COMERCIALITZADORA: 'Hi ha llum amb una altra comercialitzadora i vull canviar a Som Energia.',
+                AVIS_CANVI_COMERCIALITZADORA: 'Sí que hi ha llum, però és amb una altra comercialitzadora i vull canviar a Som Energia.',
                 AVIS_ALTA_DE_SERVEI: 'No hi ha llum, i vull donar-la d\'alta directament amb Som Energia.',
                 HELP_POPOVER_CUPS: 'Ho trobareu a la vostra factura actual. És un codi de l\'estil ES0031031321313W0F.',
                 HELP_POPOVER_CUPS_ALTA: 'És un codi que s\'indica a la factura, de l\'estil ES0031031321313W0F. Si no el tens, clica <a target="_blank" href="{{url}}">aquest enllaç</a>',

@@ -39,16 +39,14 @@
             <div data-ng-hide='altesDeshabilitades' class="row extra-margin-top">
                 <div class="col-xs-12 form-group">
                     <div class="panel panel-warning">
-                        <div class="panel-heading" style="text-align:center">{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}</div>
-                        <div class="panel-body">
-                            <label class="" for="hasservice_true">
-                                <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="true" id="hasservice_true">{{ 'SI' | translate }}</label>
-                                <div for="hasservice_true" data-ng-bind-html="'AVIS_CANVI_COMERCIALITZADORA' | translate"></div>
-                            </label>
-                            <div class="">
-                                <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="false" >{{ 'NO' | translate }}</label>
-                                <span data-ng-bind-html="'AVIS_ALTA_DE_SERVEI' | translate"></span>
-                            </div>
+                        <div class="panel-heading" style="text-align:center">{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}
+                            <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
+                                'glyphicon-asterisk danger': form.hasservice === undefined,
+                            }" style="right:4em"></span>
+                        </div>
+                        <div class="panel-body" style="text-align:center">
+                            <label class="btn btn-default green" style="width:100%;white-space:normal" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="true" id="hasservice_true" data-ng-bind-html="'AVIS_CANVI_COMERCIALITZADORA' | translate">{{ 'SI' | translate }}</label>
+                            <label class="btn btn-default green" style="width:100%;white-space:normal" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="false" data-ng-bind-html="'AVIS_ALTA_DE_SERVEI' | translate"></label>
                         </div>
                     </div>
                 </div>
