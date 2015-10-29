@@ -143,7 +143,7 @@ angular.module('newSomEnergiaWebformsApp')
                 APORTACIO_REQUERIMENT_SER_SOCIA: 'Per a participar en aquesta inversió cal ser de Som Energia. Quin és el teu cas?',
                 APORTACIO_CONDICIONS_URL: 'https://somenergia.coop/ca/condicions-generals-inversio',
                 DADES_ALTA: 'Dades de l\'alta a la cooperativa',
-                HELP_JURIDICA: 'Persones jurídiques són les empreses, associacions i d\'altres entitats. Les persones físiques som les persones de carn i ossos.',
+                HELP_JURIDICA: 'Persones jurídiques són les empreses, associacions i d\'altres entitats. Les persones físiques som les persones de carn i óssos.',
                 COM_CONTACTEM: 'Dades de contacte',
                 DOMICILI: 'Domicili',
                 TELEFON_ALTERNATIU: 'Telèfon alternatiu',
