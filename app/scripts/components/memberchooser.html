@@ -9,7 +9,7 @@
                     <input type="text" name="socinumber" class="form-control input-lg" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="formvalues.socinumber" data-ng-change="formListener()" required/>
                     <a
                         role="button"
-                        tabindex="0"
+                        tabindex="-1"
                         class="btn btn-default input-group-addon"
                         tooltip-append-to-body="true"
                         tooltip-trigger="focus"
@@ -26,7 +26,7 @@
                     <input type="text" name="dni" class="form-control input-lg" placeholder="DNI/NIE/CIF*" data-ng-model="formvalues.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': isInvalidId()}" required/>
                     <a
                         role="button"
-                        tabindex="0"
+                        tabindex="-1"
                         class="btn btn-default input-group-addon"
                         tooltip-append-to-body="true"
                         tooltip-trigger="focus"

@@ -20,7 +20,7 @@ angular.module('newSomEnergiaWebformsApp')
         }
 
         $scope.altesDeshabilitades = false;
-        $scope.showAll = true;
+        $scope.showAll = false;
         // To false to debug one page completion state independently from the others
         $scope.waitPreviousPages = false;
 
