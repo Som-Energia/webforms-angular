@@ -42,7 +42,7 @@
                         <div class="panel-heading" style="text-align:center">{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}
                             <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
                                 'glyphicon-asterisk danger': form.hasservice === undefined,
-                            }" style="right:4em"></span>
+                            }" style="right:2em"></span>
                         </div>
                         <div class="panel-body" style="text-align:center">
                             <label class="btn btn-default green" style="width:100%;white-space:normal" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="true" id="hasservice_true" data-ng-bind-html="'AVIS_CANVI_COMERCIALITZADORA' | translate">{{ 'SI' | translate }}</label>
@@ -457,27 +457,25 @@
                 <div class="col-xs-12 form-group">
                     <div class="panel panel-warning">
                         <div class="panel-heading" style="text-align:center">{{ 'VOLS_MANTENIR_EL_TITULAR' | translate }}
-                            <a
-                                role="button"
-                                tabindex="0"
-                                class="btn btn-default"
-                                tooltip-append-to-body="true"
-                                tooltip-trigger="focus"
-                                tooltip-placement="left"
-                                tooltip-html="'HELP_POPOVER_OWNER' | translate"
-                                >
-                                <span class="badge current small">?</span>
-                            </a>
+                            <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
+                                'glyphicon-asterisk danger': form.changeowner === undefined,
+                            }" style="right:2em"></span>
                         </div>
-                        <div class="panel-body">
-                            <div style="display:inline-block;width:100%">
-                                <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.changeowner" data-btn-radio="'no'" >{{ 'SI' | translate }}</label>
-                                <span data-ng-bind-html="'NO_CANVI_DE_TITULAR' | translate"></span>
-                            </div>
-                            <div style="display:inline-block;width:100%">
-                                <label class="btn btn-default green pull-left" data-ng-change="formListener()" data-ng-model="form.changeowner" data-btn-radio="'yes'">{{ 'NO' | translate }}</label>
-                                <div data-ng-bind-html="'SI_CANVI_DE_TITULAR' | translate"></div>
-                            </div>
+                        <div class="panel-body" style="text-align:center">
+                            <label class="btn btn-default green"
+                                style="width:100%;white-space:normal"
+                                data-ng-change="formListener()"
+                                data-ng-model="form.changeowner"
+                                data-btn-radio="'no'"
+                                data-ng-bind-html="'NO_CANVI_DE_TITULAR' | translate"
+                                >{{ 'SI' | translate }}<br></label>
+                            <label class="btn btn-default green"
+                                style="width:100%;white-space:normal"
+                                data-ng-change="formListener()"
+                                data-ng-model="form.changeowner"
+                                data-btn-radio="'yes'"
+                                data-ng-bind-html="'SI_CANVI_DE_TITULAR' | translate"
+                                >{{ 'NO' | translate }}</br></label>
                         </div>
                     </div>
                     <div data-ng-show="form.changeowner==='yes'" class="alert alert-warning" style="margin-top:5px" role="alert">
