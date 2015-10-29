@@ -51,7 +51,6 @@ angular.module('newSomEnergiaWebformsApp')
                 HELP_POPOVER_POWER: 'Anota la potència ACTUAL del teu contracte',
                 QUINA_TARIFA_TENS_CONTRACTADA: 'Quina tarifa tens contractada?',
                 SELECCIONAR: 'Seleccionar',
-                HELP_POPOVER_RATE: 'Ho trobareu a la vostra factura actual. Podeu trobar més informació a l\'apartat FAQ',
                 INFORMACIO_OPCIONAL: 'Informació opcional',
                 ADJUNTAR_ULTIMA_FACTURA: 'Adjuntar última factura elèctrica (PDF o JPG) - 10Mb màxim',
                 BAD_EXTENSION: 'Adjuntar només arxius PDF o JPG',
@@ -183,7 +182,7 @@ angular.module('newSomEnergiaWebformsApp')
                 HELP_POWER_30: 'Mes informació sobre els <a target="_blank" href="{{url}}">períodes de la 3.0</a>',
                 HELP_POWER_30_URL: 'http://ca.support.somenergia.coop/article/255-quins-horaris-tenen-els-periodes-de-la-tarifa-3-0a',
                 LA_TEVA_TARIFA_ES: 'La teva tarifa és',
-                HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Per evitar problemes de tramitació, poseu <b>la mateixa tarifa i potència que surt a la factura actual</b>. Si voleu fer canvis de tarifa o potència, un cop activat el contracte, podeu sol·licitar-ho.',
+                HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Per evitar problemes de tramitació, poseu <b>la mateixa tarifa i potència que apareix a la factura actual</b>. Si voleu fer canvis de tarifa o potència, un cop activat el contracte, podeu sol·licitar-ho.',
                 HELP_TARIFA_ALTA: 'Per completar els següents camps us recomanem clicar als botons d\'ajuda.',
                 DADES_TITULAR_NOU_CONTRACTE: 'Titular del contracte',
                 VOLS_MANTENIR_EL_TITULAR: 'Es manté la persona titular de l\'actual contracte?',
@@ -201,6 +200,8 @@ angular.module('newSomEnergiaWebformsApp')
                 HELPER_ADJUNTAR_ULTIMA_FACTURA: 'Un scanejat de la darrera factura amb la actual distribuidora ens ajuda a comprovar qualsevol inconsistència en les dades que has introduït',
                 ADJUNTAR_BUTLLETI: 'Adjuntar el butlletí de la instal·lació (PDF o JPG) - 10Mb màxim',
                 HELPER_ADJUNTAR_BUTLLETI: 'La distribuidora ha de tenir el butlletí de la instal·lació per fer una alta, si encara no el té ens ho pots adjuntar i nosaltres li fem arribar.',
+                HELP_POPOVER_RATE: 'Ho trobareu a la vostra factura actual. A vegades com a "Peatge d\'accés".<br/>Podeu trobar més informació a <a target="_blank" href="{{url}}">l\'apartat FAQ</a>',
+                HELP_POPOVER_RATE_URL: 'http://ca.support.somenergia.coop/article/220-quines-tarifes-ofereix-la-cooperativa-i-a-quin-preu',
             })
         ;
     });

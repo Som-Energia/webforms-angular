@@ -69,6 +69,7 @@
                     state-model="form.province"
                     city-model="form.city"
                     quietlabels='true'
+                    onchanged="formListener()"
                     >
                 </state-city>
             </div>
@@ -343,7 +344,7 @@
                                 tooltip-append-to-body="true"
                                 tooltip-trigger="focus"
                                 tooltip-placement="left"
-                                tooltip-html="'HELP_POPOVER_RATE' | translate"
+                                tooltip-html="'HELP_POPOVER_RATE' | translate: {url: t.HELP_POPOVER_RATE_URL}"
                                 >
                                 <span class="badge current small">?</span>
                             </a>
