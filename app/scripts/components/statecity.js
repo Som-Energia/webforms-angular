@@ -10,8 +10,9 @@ angular.module('newSomEnergiaWebformsApp')
             model: '=',
             stateModel: '=',
             cityModel: '=',
-            onChange: '&?',
+            onchanged: '&?',
             small: '@?',
+            quietlabels: '@?',
         },
         link: function(scope, element, attrs, stateCityController) {
             stateCityController.init(element, attrs);
@@ -40,8 +41,9 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.formListener = function() {
-            console.log('stateCityController.formListener called');
-            $scope.onChange();
+            if ($scope.onchanged !== undefined) {
+                $scope.onchanged();
+            }
         };
     };
     self.getStates = function($scope) {

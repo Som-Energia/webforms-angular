@@ -46,6 +46,6 @@
     <span class="pull-right label label-warning" data-ng-show="model.isValidating()">{{ 'COMPROVANT' | translate }}</span>
     <span class="pull-right label label-success" data-ng-show="model.isValid() && !model.isOptionallyEmpty()">{{ oktext || ('CORRECTE' | translate) }} </span>
     <span class="pull-right label label-success" data-ng-show="model.isValid() && model.isOptionallyEmpty() && !quietlabels">{{ 'OPCIONAL' | translate }}</span>
-    <span class="pull-right label label-success" style="opacity:0">placeholder</span>
     <span ng-transclude></span>
+    <span class="pull-right label label-default" style="opacity:0">&nbsp;</span>
 </div>
