@@ -53,7 +53,7 @@
             </div>
             <div class="row">
                 <iban-editor
-                    class="col-sm-8 col-xs-12"
+                    class="col-xs-12 col-sm-8"
                     required
                     inputid="address"
                     placeholder="{{'ADRECA' | translate}}"
@@ -74,7 +74,7 @@
             </div>
             <div class="row">
                 <iban-editor
-                    class="col-xs-12"
+                    class="col-xs-12 col-sm-8"
                     required
                     inputid="cups"
                     placeholder="{{'NUMERO_DE_CUPS' | translate}}"
@@ -89,7 +89,7 @@
             </div>
             <div class="row">
                 <iban-editor
-                    class="col-xs-12"
+                    class="col-xs-12 col-sm-8"
                     required
                     inputid="cnae"
                     placeholder="{{'CNAE' | translate}}"
@@ -104,7 +104,7 @@
             </div>
             <div class="row">
                 <iban-editor
-                    class="col-xs-12"
+                    class="col-xs-12 col-sm-8"
                     notrequired
                     inputid="cadastre"
                     placeholder="{{'REFERENCIA_CADASTRAL' | translate}} ({{'OPCIONAL' | translate }})"
@@ -118,7 +118,7 @@
             <div class="row">
                 <som-file-field
                     data-ng-show="!esAlta()"
-                    class="col-xs-12"
+                    class="col-xs-12 col-sm-8"
                     inputid="fileuploaderinput"
                     model="form.invoice"
                     description="{{'ADJUNTAR_ULTIMA_FACTURA' | translate}}"
@@ -128,7 +128,7 @@
                     onchanged="formListener()"
                 ></som-file-field>
                 <som-file-field
-                    class="col-xs-12"
+                    class="col-xs-12 col-sm-8"
                     data-ng-show="esAlta() === true"
                     inputid="bulletin"
                     model="form.bulletin"
@@ -561,6 +561,7 @@
                     help="accountbankibanHelp"
                     model="ibanEditor"
                     checkurl="check/iban/"
+                    quietlabels='true'
                     onchanged="formListener()"
                 ></iban-editor>
             </div>
