@@ -7,29 +7,64 @@
         </div>
     </div>
     <div class="form-group col-xs-2">
-        <span id="help-popover-person" class="badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_JURIDICA' | translate }}" data-placement="left">?</span>
+        <a
+            tabindex="-1"
+            style="width:3em"
+            tooltip-append-to-body="true"
+            tooltip-trigger="focus"
+            tooltip-placement="top"
+            tooltip-html="'HELP_JURIDICA' | translate"
+            >
+            <span class="badge current small">?</span>
+        </a>
     </div>
 </div>
 
 <!--PARTICULAR-->
 <div data-ng-if="form.usertype == 'person'">
     <div class="row">
-        <div class="form-group col-xs-5">
-            <label class="sr-only">{{ 'NOM' | translate }}*:</label>
-            <input type="text" name="name" class="form-control" placeholder="{{ 'NOM' | translate }}*" data-ng-model="form.name" data-ng-change="formListener()" required/>
-            <span class="label label-danger" data-ng-show="submitted && form.name.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+        <div class="col-xs-5">
+            <div class="form-group has-feedback">
+                <label class="sr-only">{{ 'NOM' | translate }}:</label>
+                <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    placeholder="{{ 'NOM' | translate }}*"
+                    data-ng-model="form.name"
+                    data-ng-change="formListener()"
+                    required
+                    />
+                <span class="form-control-feedback glyphicon "  data-ng-class="{
+                    'glyphicon-asterisk danger': form.name === undefined,
+                    'glyphicon-ok success': form.name !== undefined,
+                }" style="rdight:2em"></span>
+            </div>
         </div>
-        <div class="form-group col-xs-7">
-            <label class="sr-only">{{ 'COGNOMS' | translate }}*:</label>
-            <input type="text" name="surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}*" data-ng-model="form.surname" data-ng-change="formListener()" required/>
-            <span class="label label-danger" data-ng-show="submitted && form.surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+        <div class="col-xs-7">
+            <div class="form-group has-feedback">
+                <label class="sr-only">{{ 'COGNOMS' | translate }}*:</label>
+                <input type="text" name="surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}*" data-ng-model="form.surname" data-ng-change="formListener()" required/>
+                <span class="label label-danger" data-ng-show="submitted && form.surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                <span class="form-control-feedback glyphicon "  data-ng-class="{
+                    'glyphicon-asterisk danger': form.surname === undefined,
+                    'glyphicon-ok success': form.surname !== undefined,
+                }" style="rdight:2em"></span>
+            </div>
         </div>
-        <div class="form-group col-sm-4 col-xs-12">
-            <label class="sr-only">DNI/NIE*:</label>
-            <input type="text" name="dni" class="form-control" placeholder="DNI/NIE*" data-ng-model="form.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': dniIsInvalid || dniDuplicated}" required/>
-            <span class="label label-danger" data-ng-show="submitted && form.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-            <span class="label label-danger" data-ng-show="dniIsInvalid">{{ 'INVALID' | translate }}</span>
-            <span class="label label-danger" data-ng-show="dniDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
+        <div class="col-sm-4 col-xs-12">
+            <div class="form-group has-feedback">
+                <label class="sr-only">DNI/NIE*:</label>
+                <input type="text" name="dni" class="form-control" placeholder="DNI/NIE*" data-ng-model="form.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': dniIsInvalid || dniDuplicated}" required/>
+                <span class="form-control-feedback glyphicon "  data-ng-class="{
+                    'glyphicon-asterisk danger': form.dni === undefined,
+                    'glyphicon-ok success': form.dni !== undefined && !dniIsInvalid && !dniDuplicated,
+                    'glyphicon-remove danger': form.dni !== undefined && (dniIsInvalid || dniDuplicated),
+                }" style="rdight:2em"></span>
+            </div>
+            <span class="label label-danger pull-right" data-ng-show="submitted && form.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            <span class="label label-danger pull-right" data-ng-show="form.dni !== undefined && dniIsInvalid">{{ 'INVALID' | translate }}</span>
+            <span class="label label-danger pull-right" data-ng-show="form.dni !== undefined && dniDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
         </div>
     </div>
 
@@ -88,6 +123,7 @@
             small
             state-model="form.province"
             city-model="form.city"
+            quietlabels='true'
         >
         </state-city>
     </div>
@@ -155,12 +191,9 @@
                 <span data-ng-bind-html="'ACCEPTO_POLITICA_PRIVACITAT' | translate"></span>
             </label>
             <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
+                'glyphicon-asterisk danger': form.accept === undefined,
+            }" style="right:2em"></span>
         </div>
     </div>
 
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        jQuery("#help-popover-language").popover({trigger : 'hover'});
-        jQuery("#help-popover-person").popover({trigger : 'hover'});
-    });
-</script>
