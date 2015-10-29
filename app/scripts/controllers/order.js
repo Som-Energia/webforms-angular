@@ -150,7 +150,7 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.newpower+0 < 15 ? '2.1' : (
                 $scope.form.newpower!==undefined ? '3.0' :
                 undefined)));
-            if (newFare!=='3.0A' && newFare !== undefined) {
+            if (newFare!=='3.0' && newFare !== undefined) {
                 $scope.form.power=$scope.form.newpower;
             }
             if (newFare !== undefined) {
