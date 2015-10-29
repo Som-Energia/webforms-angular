@@ -507,6 +507,9 @@
                         <span data-ng-bind-html="'ACCEPTO_CONDICIONS_GENERALS' | translate"></span>
                     </label>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.ownerAcceptsGeneralConditions.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
+                        'glyphicon-asterisk danger': form.ownerAcceptsGeneralConditions === undefined,
+                    }" style="right:2em"></span>
                 </div>
             </div>
         </wizard-page>
@@ -550,6 +553,9 @@
                         <span data-ng-bind-html="'ACCEPTO_CONDICIONS_GENERALS' | translate"></span>
                     </label>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.payerAcceptsGeneralConditions.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
+                        'glyphicon-asterisk danger': form.payerAcceptsGeneralConditions === undefined,
+                    }" style="right:2em"></span>
                 </div>
             </div>
             <div class="row">
@@ -573,6 +579,9 @@
                         <span data-ng-bind-html="'CONFIRMO_TITULAR_COMPTE_ACCEPTA_DOMICILIACIO' | translate"></span>
                     </label>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
+                        'glyphicon-asterisk danger': form.acceptaccountowner === undefined,
+                    }" style="right:2em"></span>
                 </div>
             </div>
             <div class="row">
