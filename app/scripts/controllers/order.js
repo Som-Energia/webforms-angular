@@ -232,9 +232,10 @@ angular.module('newSomEnergiaWebformsApp')
         };
         $scope.formListener = function() {
             console.log('listener');
+            $scope.effectiveOwner = $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci : $scope.owner;
+            $scope.effectivePayer = $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER ? $scope.payer :
+                $scope.form.choosepayer=== cfg.PAYER_TYPE_TITULAR ? $scope.effectiveOwner : $scope.initForm.soci;
 
-            $scope.effectiveOwner = $scope.form.ownerIsMember ? $scope.initForm.soci : $scope.owner;
-            $scope.effectivePayer = $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER ? $scope.payer : $scope.effectiveOwner;
             $scope.isHaveLightPageComplete =
                 (!$scope.waitPreviousPages || $scope.isPartnerPageComplete()) && (
                    $scope.esAlta() !== undefined ||
