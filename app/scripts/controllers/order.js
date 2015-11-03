@@ -318,7 +318,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.t.HELP_POWER_30_URL = $translate.instant('HELP_POWER_30_URL');
         $scope.t.HELP_POPOVER_CUPS_ALTA_URL = $translate.instant('HELP_POPOVER_CUPS_ALTA_URL');
         $scope.t.HELP_POPOVER_RATE_URL = $translate.instant('HELP_POPOVER_RATE_URL');
-        $scope.t.ACCEPTO_CONDICIONS_GENERALS_URL = $translate.instant('ACCEPTO_CONDICIONS_GENERALS_URL');
 
 
         // ON SUBMIT FORM
