@@ -504,7 +504,7 @@
                 <div class="form-group checkbox col-xs-12">
                     <label>
                         <input type="checkbox" name="ownerAcceptsGeneralConditions" value="accept" data-ng-model="form.ownerAcceptsGeneralConditions" data-ng-change="formListener()" required/>
-                        <span data-ng-bind-html="'ACCEPTO_CONDICIONS_GENERALS' | translate: {url: t.ACCEPTO_CONDICIONS_GENERALS_URL }"></span>
+                        <span translate="ACCEPTO_CONDICIONS_GENERALS" translate-value-url="{{ 'ACCEPTO_CONDICIONS_GENERALS_URL' | translate}}"></span>
                     </label>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.ownerAcceptsGeneralConditions.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
@@ -550,7 +550,7 @@
                 <div class="form-group checkbox col-xs-12">
                     <label>
                         <input type="checkbox" name="payerAcceptsGeneralConditions" value="accept" data-ng-model="form.payerAcceptsGeneralConditions" data-ng-change="formListener()" required/>
-                        <span data-ng-bind-html="'ACCEPTO_CONDICIONS_GENERALS' | translate: {url: t.ACCEPTO_CONDICIONS_GENERALS_URL }"></span>
+                        <span translate="ACCEPTO_CONDICIONS_GENERALS" translate-value-url="{{ 'ACCEPTO_CONDICIONS_GENERALS_URL' | translate}}"></span>
                     </label>
                     <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.payerAcceptsGeneralConditions.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
