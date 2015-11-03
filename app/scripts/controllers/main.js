@@ -178,7 +178,7 @@ angular.module('newSomEnergiaWebformsApp')
                         jQuery('#webformsGlobalMessagesModal').modal('show');
                     } else if (response.state === cfg.STATE_TRUE) {
                         // well done
-                        $log.log('response recived', response);
+                        $log.log('response received', response);
                         prepaymentService.setData(response.data);
                         $location.path('/prepagament');
                     }

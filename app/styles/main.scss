@@ -170,11 +170,6 @@ span {
     float: left;
     margin-top: 5px;
   }
-  &.confirm {
-    font-weight: bold;
-    font-size: 15px;
-    color: $grey-darkest;
-  }
   &.last-help-title {
     font-size: 18px;
     font-weight: bold;
@@ -190,6 +185,20 @@ span {
       text-decoration: underline;
     }
   }
+}
+
+.confirm {
+    label {
+        font-weight: bold;
+        font-size: 15px;
+        color: $grey;
+    }
+    h4 {
+        font-size: 22px;
+        font-weight: bold;
+        border-bottom: solid 2px $grey-light;
+        padding-bottom: 5px;
+    }
 }
 
 button {
@@ -258,11 +267,6 @@ label {
     float: left;
     margin-top: 5px;
   }
-  &.confirm {
-    font-weight: bold;
-    font-size: 15px;
-    color: $grey;
-  }
 }
 
 h1 { font-size: 25px; }
@@ -273,15 +277,6 @@ h1, h2, h3, h4 {
   &.green {
     color: $green;
     margin:0;
-  }
-}
-
-h4 {
-  &.confirm {
-    font-size: 22px;
-    font-weight: bold;
-    border-bottom: solid 2px $grey-light;
-    padding-bottom: 5px;
   }
 }
 

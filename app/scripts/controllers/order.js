@@ -232,6 +232,9 @@ angular.module('newSomEnergiaWebformsApp')
         };
         $scope.formListener = function() {
             console.log('listener');
+
+            $scope.effectiveOwner = $scope.form.ownerIsMember ? $scope.initForm.soci : $scope.owner;
+            $scope.effectivePayer = $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER ? $scope.payer : $scope.effectiveOwner;
             $scope.isHaveLightPageComplete =
                 (!$scope.waitPreviousPages || $scope.isPartnerPageComplete()) && (
                    $scope.esAlta() !== undefined ||
@@ -328,7 +331,8 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.orderForm.file.$setValidity('exist', true);
             uiHandler.showLoadingDialog();
             // Prepare request data
-            var postData = {};
+            var postData = {
+            };
             var formData = new FormData();
             formData.append('id_soci', $scope.formsoci.socinumber);
             formData.append('dni', $scope.formsoci.dni);
@@ -468,6 +472,9 @@ angular.module('newSomEnergiaWebformsApp')
         // GET COMPLETE ACCOUNT NUMBER WITH FORMAT
         $scope.getCompleteIbanWithFormat = function() {
             if (!$scope.ibanEditor) {
+                return 'INVALID';
+            }
+            if ($scope.ibanEditor.isValid===undefined) {
                 return 'INVALID';
             }
             if (!$scope.ibanEditor.isValid()) {

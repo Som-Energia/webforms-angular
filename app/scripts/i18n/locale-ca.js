@@ -202,6 +202,10 @@ angular.module('newSomEnergiaWebformsApp')
                 HELPER_ADJUNTAR_BUTLLETI: 'La distribuidora ha de tenir el butlletí de la instal·lació per fer una alta, si encara no el té ens ho pots adjuntar i nosaltres li fem arribar.',
                 HELP_POPOVER_RATE: 'Ho trobareu a la vostra factura actual. A vegades com a "Peatge d\'accés".<br/>Podeu trobar més informació a <a target="_blank" href="{{url}}">l\'apartat FAQ</a>',
                 HELP_POPOVER_RATE_URL: 'http://ca.support.somenergia.coop/article/220-quines-tarifes-ofereix-la-cooperativa-i-a-quin-preu',
+                TIPUS_DE_CONTRACTACIO: 'Tipus de contractació',
+                ALTA: 'Alta d\'un punt sense subministrament',
+                CANVI_DE_COMERCIALITZADORA_I_TITULAR: 'Canvi de comercialitzadora modificant el titular',
+                CANVI_DE_COMERCIALITZADORA: 'Canvi de comercialitzadora mantenint la persona titular',
             })
         ;
     });
