@@ -629,17 +629,4 @@
     <div class="modal-dialog modal-lg" data-ng-include data-src="'views/common/well-done-modal.html'"></div>
 </div>
 
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        jQuery(".spc-html").popover(
-                {
-                    html : true,
-                    trigger : 'hover',
-                    delay : { show : 0, hide : 2500 }
-                }
-        );
-        jQuery(".spc").popover({trigger : 'hover'});
-        setTimeout(function () { jQuery("#spc-rate-conditional").popover({trigger : 'hover'}); }, 1000);
-    });
-</script>
 </div>
