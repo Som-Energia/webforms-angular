@@ -3,15 +3,15 @@
 angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
-        // DEBUG MODE
-        var debugEnabled = false;
-
         // INIT
-        $scope.developing = cfg.DEVELOPMENT; // TODO change xorigin domain on index.html && replace grunt sftp source environment
-
+        $scope.developing = cfg.DEVELOPMENT;
         // MUST APPLY TO EMBED WITH WORDPRESS (detects inside frame)
         if (window !== window.top) { // Inside a frame
-            document.domain = cfg.BASE_DOMAIN;
+            try {
+                document.domain = cfg.BASE_DOMAIN;
+            } catch(err) {
+                console.log("While setting document domain:", err);
+            }
         }
 
         // Just when developing, show untranslated strings instead of falling back to spanish
@@ -302,9 +302,7 @@ angular.module('newSomEnergiaWebformsApp')
         // COMMON MOVE STEPS LOGIC
         $scope.setStepReady = function(enabledStep, pageName) {
             $scope.wizardPage.current = pageName;
-            if (debugEnabled) {
-                $log.log(pageName);
-            }
+//            $log.log(pageName);
         };
 
         $scope.goToSociPage();
@@ -494,36 +492,6 @@ angular.module('newSomEnergiaWebformsApp')
             ].join(' ');
         };
 
-        // DEBUG (only apply on development environment)
-        if (debugEnabled) {
-            $scope.formsoci.socinumber = debugCfg.SOCI;
-            $scope.formsoci.dni = debugCfg.DNI;
-//            $scope.form.province = {id: 0, name: 'province'};
-//            $scope.form.city = {id: 0, name: 'city'};
-            $scope.form.address.value = debugCfg.ADDRESS;
-            $scope.cupsEditor.value = debugCfg.CUPS;
-            $scope.cnaeEditor.value = debugCfg.CNAE;
-            $scope.form.power = debugCfg.POWER;
-            $scope.form.rate = debugCfg.RATE;
-            $scope.executeGetSociValues();
-            $scope.owner.representantdni = debugCfg.CIF;
-            $scope.owner.representantname = debugCfg.COMPANY;
-            $scope.owner.dni = debugCfg.DNI;
-            $scope.owner.name = debugCfg.NAME;
-            $scope.owner.surname = debugCfg.SURNAME;
-            $scope.owner.address = debugCfg.ADDRESS;
-            $scope.owner.phone1 = debugCfg.PHONE;
-            $scope.owner.email1 = debugCfg.EMAIL;
-            $scope.owner.email2 = debugCfg.EMAIL;
-            $scope.form.ownerAcceptsGeneralConditions = true;
-            $scope.ibanEditor.value = debugCfg.IBAN1;
-            $scope.ibanEditor.value += debugCfg.IBAN2;
-            $scope.ibanEditor.value += debugCfg.IBAN3;
-            $scope.ibanEditor.value += debugCfg.IBAN4;
-            $scope.ibanEditor.value += debugCfg.IBAN5;
-            $scope.ibanEditor.value += debugCfg.IBAN6;
-            cfg.API_BASE_URL = 'https://sompre.gisce.net:5001/';
-        }
     });
 
 

@@ -7,7 +7,11 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.developing = cfg.DEVELOPMENT;
         // MUST APPLY TO EMBED WITH WORDPRESS
         if (window !== window.top) { // Inside a frame
-            document.domain = cfg.BASE_DOMAIN;
+            try {
+                document.domain = cfg.BASE_DOMAIN;
+            } catch(err) {
+                console.log("While setting document domain:", err);
+            }
         }
 
         // Just when developing, show untranslated strings instead of falling back to spanish
