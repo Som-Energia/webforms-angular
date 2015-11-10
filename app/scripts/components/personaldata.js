@@ -74,6 +74,8 @@ angular.module('newSomEnergiaWebformsApp')
     $scope.cities = [];
     $scope.messages = null;
     $scope.form.usertype = 'person';
+    $scope.form.dniEditor = {};
+    $scope.form.representantdniEditor = {};
 
     $scope.dniRepresentantIsInvalid = false;
     $scope.dniDuplicated = false;

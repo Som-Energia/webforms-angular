@@ -30,7 +30,7 @@
                     type="text"
                     name="name"
                     class="form-control"
-                    placeholder="{{ 'NOM' | translate }}*"
+                    placeholder="{{ 'NOM' | translate }}"
                     data-ng-model="form.name"
                     data-ng-change="formListener()"
                     required
@@ -52,20 +52,20 @@
                 }" style="rdight:2em"></span>
             </div>
         </div>
-        <div class="col-sm-4 col-xs-12">
-            <div class="form-group has-feedback">
-                <label class="sr-only">DNI/NIE*:</label>
-                <input type="text" name="dni" class="form-control" placeholder="DNI/NIE*" data-ng-model="form.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': dniIsInvalid || dniDuplicated}" required/>
-                <span class="form-control-feedback glyphicon "  data-ng-class="{
-                    'glyphicon-asterisk danger': form.dni === undefined,
-                    'glyphicon-ok success': form.dni !== undefined && !dniIsInvalid && !dniDuplicated,
-                    'glyphicon-remove danger': form.dni !== undefined && (dniIsInvalid || dniDuplicated),
-                }" style="rdight:2em"></span>
-            </div>
-            <span class="label label-danger pull-right" data-ng-show="submitted && form.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-            <span class="label label-danger pull-right" data-ng-show="form.dni !== undefined && dniIsInvalid">{{ 'INVALID' | translate }}</span>
+        <iban-editor
+            class="col-sm-4 col-xs-12"
+            small
+            required
+            inputid="dni"
+            value="form.dni"
+            placeholder="DNI/NIE"
+            model="form.dniEditor"
+            checkurl="check/vat/"
+            quietlabels='true'
+            onchanged="formListener()"
+            >
             <span class="label label-danger pull-right" data-ng-show="form.dni !== undefined && dniDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
-        </div>
+        </iban-editor>
     </div>
 
 </div>
@@ -78,13 +78,20 @@
             <input type="text" name="name" class="form-control" placeholder="{{ 'RAO_SOCIAL' | translate }}*" data-ng-model="form.name" data-ng-change="formListener()" required/>
             <span class="label label-danger" data-ng-show="submitted && form.name.$error.required">{{ 'OBLIGATORI' | translate }}</span>
         </div>
-        <div class="form-group col-sm-3 col-xs-6">
-            <label class="sr-only">CIF*:</label>
-            <input type="text" name="dni" class="form-control" placeholder="CIF*" data-ng-model="form.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': dniIsInvalid || dniDuplicated}" required/>
-            <span class="label label-danger" data-ng-show="submitted && form.dni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-            <span class="label label-danger" data-ng-show="dniIsInvalid">{{ 'INVALID' | translate }}</span>
-            <span class="label label-danger" data-ng-show="dniDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
-        </div>
+        <iban-editor
+            class="col-sm-3 col-xs-6"
+            small
+            required
+            inputid="dni"
+            value="form.dni"
+            placeholder="CIF"
+            model="form.dniEditor"
+            checkurl="check/vat/"
+            quietlabels='true'
+            onchanged="formListener()"
+            >
+            <span class="label label-danger pull-right" data-ng-show="form.dni !== undefined && dniDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
+        </iban-editor>
     </div>
     <div class="row">
         <div class="form-group col-sm-9 col-xs-6">
@@ -92,12 +99,19 @@
             <input type="text" name="representantname" class="form-control" placeholder="{{ 'PERSONA_REPRESENTANT' | translate }}*" data-ng-model="form.representantname" data-ng-change="formListener()" required/>
             <span class="label label-danger" data-ng-show="submitted && form.representantname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
         </div>
-        <div class="form-group col-sm-3 col-xs-6">
-            <label class="sr-only">DNI/NIE*:</label>
-            <input type="text" name="representantdni" class="form-control" placeholder="DNI/NIE*" data-ng-model="form.representantdni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': dniRepresentantIsInvalid }" required/>
-            <span class="label label-danger" data-ng-show="submitted && form.representantdni.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-            <span class="label label-danger" data-ng-show="dniRepresentantIsInvalid">{{ 'INVALID' | translate }}</span>
-        </div>
+        <iban-editor
+            class="col-sm-3 col-xs-6"
+            small
+            required
+            inputid="representantdni"
+            value="form.representantdni"
+            placeholder="{{'DNI/NIE' | translate}}"
+            model="form.representantdniEditor"
+            checkurl="check/vat/"
+            quietlabels='true'
+            onchanged="formListener()"
+            >
+        </iban-editor>
     </div>
 
 </div>
@@ -106,16 +120,44 @@
 <div data-ng-show="form.usertype">
     <h4 translate="DOMICILI"></h4>
     <div class="row">
-        <div class="form-group col-sm-9 col-xs-12">
-            <label class="sr-only">{{ 'ADRECA' | translate }}*:</label>
-            <input type="text" name="address" data-ng-model="form.address" class="form-control" placeholder="{{ 'ADRECA' | translate }}*" data-ng-change="formListener()" required/>
-            <span class="label label-danger" data-ng-show="submitted && form.address.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+        <div class="col-sm-9 col-xs-12">
+            <div class="form-group has-feedback">
+                <label class="sr-only">{{ 'ADRECA' | translate }}:</label>
+                <input
+                    type="text"
+                    name="address"
+                    class="form-control"
+                    placeholder="{{ 'ADRECA' | translate }}"
+                    data-ng-model="form.address"
+                    data-ng-change="formListener()"
+                    required
+                    />
+                <span class="form-control-feedback glyphicon "  data-ng-class="{
+                    'glyphicon-asterisk danger': form.address === undefined,
+                    'glyphicon-ok success': form.address !== undefined,
+                }" style="rdight:2em"></span>
+            </div>
         </div>
-        <div class="form-group col-sm-3 col-xs-12">
-            <label class="sr-only">{{ 'CODI_POSTAL' | translate }}*:</label>
-            <input type="text" name="postalcode" data-ng-model="form.postalcode" class="form-control" placeholder="{{ 'CODI_POSTAL' | translate }}*" data-ng-change="formListener()" required/>
-            <span class="label label-danger" data-ng-show="submitted && form.postalcode.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-            <span class="label label-danger" data-ng-show="postalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
+        <div class="col-sm-3 col-xs-12">
+            <div class="form-group has-feedback">
+                <label class="sr-only">{{ 'CODI_POSTAL' | translate }}:</label>
+                <input
+                    type="text"
+                    name="postalcode"
+                    class="form-control"
+                    placeholder="{{ 'CODI_POSTAL' | translate }}"
+                    data-ng-model="form.postalcode"
+                    data-ng-change="formListener()"
+                    required
+                    />
+                <span class="form-control-feedback glyphicon "  data-ng-class="{
+                    'glyphicon-refresh spinning warning': validatingPostalCode,
+                    'glyphicon-remove danger': postalCodeIsInvalid,
+                    'glyphicon-asterisk danger': form.postalcode === undefined,
+                    'glyphicon-ok success': form.postalcode !== undefined && ! postalCodeIsInvalid,
+                }" style="rdight:2em"></span>
+                <span class="pull-right label label-danger" data-ng-show="postalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
+            </div>
         </div>
     </div>
     <div class="row">
