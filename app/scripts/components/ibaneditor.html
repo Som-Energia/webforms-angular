@@ -1,10 +1,8 @@
 <div
     class='form-group has-feedback'
-    data-ng-class="{
-        'ng-invalid': ! model.isValid()
-    }"
     >
-    <div ng-class="{'input-group': helpText!==undefined }"
+    <div
+        ng-class="{ 'input-group': helpText!==undefined }"
         style='width:100%'
         >
         <input
@@ -17,6 +15,10 @@
             data-ng-model="model.value"
             data-ng-change="onChange()"
             aria-describedby="{{help}}"
+            ng-class="{
+                'ng-invalid': model.isInvalid(),
+                'ng-valid': model.isValid(),
+                }"
             />
         <a
             data-ng-if="helpText !== undefined"
