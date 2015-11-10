@@ -406,9 +406,10 @@ angular.module('newSomEnergiaWebformsApp')
                             $window.top.location.href = $translate.instant('CONTRACT_OK_REDIRECT_URL');
                         } else {
                             // error
+                            $scope.modalTitle = $translate.instant('ERROR_POST_CONTRACTE');
                             $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
                             $scope.submitReady = false;
-                            $scope.rawReason = response;
+                            $scope.rawReason = JSON.stringify(reason,null,'  ');
                             jQuery('#webformsGlobalMessagesModal').modal('show');
                         }
                     } else if (response.data.status === cfg.STATUS_OFFLINE) {
@@ -427,7 +428,7 @@ angular.module('newSomEnergiaWebformsApp')
                     }
                     $scope.overflowAttachFile = true;
                     $scope.showAllSteps();
-                    $scope.rawReason = reason;
+                    $scope.rawReason = JSON.stringify(reason,null,'  ');
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
             );
@@ -440,7 +441,9 @@ angular.module('newSomEnergiaWebformsApp')
             var result = '';
             if (arrayResponse.required_fields !== undefined) {
                 for (var i = 0; i < arrayResponse.required_fields.length; i++) {
-                    result = result + 'ERROR REQUIRED FIELD:' + arrayResponse.required_fields[i] + ' ';
+                    result += '<li>'+$translate.instant('ERROR_REQUIRED_FIELD', {
+                        field: arrayResponse.required_fields[i],
+                    })+'</li>';
                 }
             }
             if (arrayResponse.invalid_fields !== undefined) {
@@ -451,14 +454,16 @@ angular.module('newSomEnergiaWebformsApp')
                     } else if (arrayResponse.invalid_fields[j].field === 'fitxer' && arrayResponse.invalid_fields[j].error === 'bad_extension') {
                         $scope.invalidAttachFileExtension = true;
                         $scope.orderForm.file.$setValidity('exist', false);
-                    } else {
-                        result = result + 'ERROR INVALID FIELD: ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error + ' ';
                     }
+                    result += '<li>'+$translate.instant('ERROR_INVALID_FIELD', {
+                        field: arrayResponse.invalid_fields[j].field,
+                        reason: arrayResponse.invalid_fields[j].error
+                    })+'</li>';
                 }
             }
             $scope.showAllSteps();
-
-            return result;
+            if (result === '') {return '';} // TODO: Manage case
+            return '<ul>'+result+'</ul>';
         };
 
         // GET COMPLETE ACCOUNT NUMBER

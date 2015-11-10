@@ -206,6 +206,7 @@ angular.module('newSomEnergiaWebformsApp')
                 ALTA: 'Alta d\'un punt sense subministrament',
                 CANVI_DE_COMERCIALITZADORA_I_TITULAR: 'Canvi de comercialitzadora modificant el titular',
                 CANVI_DE_COMERCIALITZADORA: 'Canvi de comercialitzadora mantenint la persona titular',
+                ERROR_POST_CONTRACTE: 'Error enviant el contracte',
             })
         ;
     });

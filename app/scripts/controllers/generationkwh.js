@@ -209,7 +209,7 @@ angular.module('newSomEnergiaWebformsApp')
                 function (reason) {
                     $log.error('Post data failed', reason);
                     $scope.modalTitle = $translate.instant('ERROR_POST_NOVASOCIA');
-                    $scope.rawReason = reason;
+                    $scope.rawReason = JSON.stringify(reason,null,'  ');
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
             );
