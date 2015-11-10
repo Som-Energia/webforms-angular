@@ -5,12 +5,12 @@ angular.module('newSomEnergiaWebformsApp')
 
         // INIT
         $scope.developing = cfg.DEVELOPMENT;
-        // MUST APPLY TO EMBED WITH WORDPRESS
+        // MUST APPLY TO EMBED WITH WORDPRESS (detects inside frame)
         if (window !== window.top) { // Inside a frame
             try {
                 document.domain = cfg.BASE_DOMAIN;
             } catch(err) {
-                console.log("While setting document domain:", err);
+                console.log('While setting document domain:', err);
             }
         }
 

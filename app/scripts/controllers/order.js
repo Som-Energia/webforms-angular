@@ -10,13 +10,16 @@ angular.module('newSomEnergiaWebformsApp')
             try {
                 document.domain = cfg.BASE_DOMAIN;
             } catch(err) {
-                console.log("While setting document domain:", err);
+                console.log('While setting document domain:', err);
             }
         }
 
         // Just when developing, show untranslated strings instead of falling back to spanish
         if (!$scope.developing ) {
             $translate.fallbackLanguage('es');
+        }
+        if ($routeParams.locale !== undefined) {
+            $translate.use($routeParams.locale);
         }
 
         $scope.altesDeshabilitades = false;
@@ -119,10 +122,6 @@ angular.module('newSomEnergiaWebformsApp')
             43.648,
 */
         ];
-        if ($routeParams.locale !== undefined) {
-            $translate.use($routeParams.locale);
-        }
-
         // GET LANGUAGES
         AjaxHandler.getLanguages($scope);
 
