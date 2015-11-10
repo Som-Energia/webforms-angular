@@ -90,7 +90,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.isNewPartnerReady = function() {
             if ($scope.newPartner === undefined) { return false; }
             if ($scope.newPartner.isReady === undefined) { return false; }
-            return $scope.newPartner.isReady() && $scope.form.acceptprivacypolicy;
+            return $scope.newPartner.isReady();
         };
 
         $scope.newPartnerSubmitted = function() {
