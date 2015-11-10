@@ -7,7 +7,7 @@
         >
         <input
             type="text"
-            class="form-control input-lg"
+            class="form-control"
             placeholder="{{placeholder}}"
             ng-required="{{required}}"
             id="{inputid}"
@@ -16,6 +16,7 @@
             data-ng-change="onChange()"
             aria-describedby="{{help}}"
             ng-class="{
+                'input-lg': small===undefined,
                 'ng-invalid': model.isInvalid(),
                 'ng-valid': model.isValid(),
                 }"

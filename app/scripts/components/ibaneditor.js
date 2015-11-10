@@ -6,8 +6,10 @@ angular.module('newSomEnergiaWebformsApp')
         restrict: 'E',
         scope: {
             model: '=',
+            value: '=?',
             help: '@',
             inputid: '@',
+            small: '@?',
             placeholder: '@?',
             required: '@?',
             quietlabels: '@?', // hide 'optional' and 'required' texts
@@ -77,6 +79,7 @@ angular.module('newSomEnergiaWebformsApp')
             }
         };
         $scope.onChange = function () {
+            $scope.value = $scope.model.value;
             $scope.model.serverError = undefined;
             // Unify value for some browsers when not required
             if ($scope.model.value === '') {
