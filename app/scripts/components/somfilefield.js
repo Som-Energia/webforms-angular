@@ -2,7 +2,6 @@
 
 angular.module('newSomEnergiaWebformsApp')
 .directive('somFileField', function () {
-    console.log('directive');
     return {
         restrict: 'E',
         scope: {
@@ -15,6 +14,7 @@ angular.module('newSomEnergiaWebformsApp')
             required: '@?',
             helpText: '@?',
             onchanged: '&?',
+            multiple: '@?',
         },
         templateUrl: 'scripts/components/somfilefield.html',
         controller: 'somFileFieldCtrl',
@@ -39,8 +39,11 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.check = function(input) {
-            console.log('input:', input);
             $scope.$apply(function() {
+                $scope.files = [];
+                angular.forEach(input.files, function(value) {
+                    $scope.files.push(value.name);
+                });
                 var file = input.files[0];
                 $scope.model.filename = file.name;
                 $scope.model.size = file.size;
