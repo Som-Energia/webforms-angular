@@ -74,9 +74,13 @@
 <div data-ng-if="form.usertype == 'company'">
     <div class="row">
         <div class="form-group col-sm-9 col-xs-6">
-            <label class="sr-only">{{ 'RAO_SOCIAL' | translate }}*:</label>
-            <input type="text" name="name" class="form-control" placeholder="{{ 'RAO_SOCIAL' | translate }}*" data-ng-model="form.name" data-ng-change="formListener()" required/>
+            <label class="sr-only">{{ 'RAO_SOCIAL' | translate }}:</label>
+            <input type="text" name="name" class="form-control" placeholder="{{ 'RAO_SOCIAL' | translate }}" data-ng-model="form.name" data-ng-change="formListener()" required/>
             <span class="label label-danger" data-ng-show="submitted && form.name.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            <span class="form-control-feedback glyphicon "  data-ng-class="{
+                'glyphicon-asterisk danger': form.name === undefined,
+                'glyphicon-ok success': form.name !== undefined,
+            }" style="right:2em"></span>
         </div>
         <iban-editor
             class="col-sm-3 col-xs-6"
@@ -97,6 +101,10 @@
         <div class="form-group col-sm-9 col-xs-6">
             <label class="sr-only">{{ 'PERSONA_REPRESENTANT' | translate }}*:</label>
             <input type="text" name="representantname" class="form-control" placeholder="{{ 'PERSONA_REPRESENTANT' | translate }}*" data-ng-model="form.representantname" data-ng-change="formListener()" required/>
+            <span class="form-control-feedback glyphicon "  data-ng-class="{
+                'glyphicon-asterisk danger': form.representantname === undefined,
+                'glyphicon-ok success': form.representantname !== undefined,
+            }" style="right:2em"></span>
             <span class="label label-danger" data-ng-show="submitted && form.representantname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
         </div>
         <iban-editor
@@ -210,6 +218,11 @@
                     >
                     <option value="">{{ 'SELECCIONA_IDIOMA' | translate }}</option>
                 </select>
+                <span class="form-control-feedback glyphicon "  data-ng-class="{
+                    'glyphicon-asterisk danger': form.language === undefined && (languages.length || stateModel===undefined),
+                    'glyphicon-refresh spinning warning': languages.length === 0 && stateModel!==undefined,
+                    'glyphicon-ok success': form.language !== undefined,
+                }" style="right:4em"></span>
                 <a
                     class="btn btn-default input-group-addon"
                     role="button"
