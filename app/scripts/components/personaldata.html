@@ -160,9 +160,9 @@
                     />
                 <span class="form-control-feedback glyphicon "  data-ng-class="{
                     'glyphicon-refresh spinning warning': validatingPostalCode,
-                    'glyphicon-remove danger': postalCodeIsInvalid,
-                    'glyphicon-asterisk danger': form.postalcode === undefined,
-                    'glyphicon-ok success': form.postalcode !== undefined && ! postalCodeIsInvalid,
+                    'glyphicon-remove danger': !validatingPostalCode && postalCodeIsInvalid,
+                    'glyphicon-asterisk danger': !validatingPostalCode && form.postalcode === undefined,
+                    'glyphicon-ok success': !validatingPostalCode && form.postalcode !== undefined && ! postalCodeIsInvalid,
                 }" style="rdight:2em"></span>
                 <span class="pull-right label label-danger" data-ng-show="postalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
             </div>
@@ -181,28 +181,44 @@
     <h4 translate="COM_CONTACTEM"></h4>
     <div class="row">
         <div class="form-group col-xs-6">
-            <label class="sr-only">Email*:</label>
-            <input type="text" name="email1" class="form-control" placeholder="Email*" data-ng-model="form.email1" data-ng-change="formListener()" data-ng-class="{'ng-invalid': emailIsInvalid}" required/>
-            <span class="label label-danger" data-ng-show="submitted && form.email1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-            <span class="label label-danger" data-ng-show="emailIsInvalid">{{ 'INVALID' | translate }}</span>
+            <label class="sr-only">Email:</label>
+            <input type="text" name="email1" class="form-control" placeholder="Email" data-ng-model="form.email1" data-ng-change="formListener()" data-ng-class="{'ng-invalid': emailIsInvalid}" required/>
+            <span class="form-control-feedback glyphicon "  data-ng-class="{
+                'glyphicon-refresh spinning warning': validatingEmail===true,
+                'glyphicon-remove danger': emailIsInvalid,
+                'glyphicon-asterisk danger': form.email1 === undefined,
+                'glyphicon-ok success': form.email1 !== undefined && ! emailIsInvalid,
+            }" style="right:2em"></span>
+            <span class="pull-right label label-danger" data-ng-show="submitted && form.email1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            <span class="pull-right label label-danger" data-ng-show="emailIsInvalid">{{ 'INVALID' | translate }}</span>
         </div>
         <div class="form-group col-xs-6">
-            <label class="sr-only">{{ 'REPETEIX_EMAIL' | translate }}*:</label>
-            <input type="text" name="email2" class="form-control" placeholder="{{ 'REPETEIX_EMAIL' | translate }}*" data-ng-model="form.email2" data-ng-change="formListener()" data-ng-class="{'ng-invalid': emailNoIguals}" required/>
-            <span class="label label-danger" data-ng-show="submitted && form.email2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-            <span class="label label-danger" data-ng-show="emailNoIguals">{{ 'EMAIL_NO_IGUALS' | translate }}</span>
+            <label class="sr-only">{{ 'REPETEIX_EMAIL' | translate }}:</label>
+            <input type="text" name="email2" class="form-control" placeholder="{{ 'REPETEIX_EMAIL' | translate }}" data-ng-model="form.email2" data-ng-change="formListener()" data-ng-class="{'ng-invalid': emailNoIguals}" required/>
+            <span class="form-control-feedback glyphicon "  data-ng-class="{
+                'glyphicon-refresh spinning warning': form.email2 !==undefined && (validatingEmail2===true || validatingEmail==true),
+                'glyphicon-remove danger': emailNoIguals,
+                'glyphicon-asterisk danger': form.email2 === undefined,
+                'glyphicon-ok success': form.email2 !== undefined && ! emailNoIguals,
+            }" style="right:2em"></span>
+            <span class="pull-right label label-danger" data-ng-show="submitted && form.email2.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            <span class="pull-right label label-danger" data-ng-show="emailNoIguals">{{ 'EMAIL_NO_IGUALS' | translate }}</span>
         </div>
     </div>
 
     <div class="row">
         <div class="form-group col-xs-6">
-            <label class="sr-only">{{ 'TELEFON' | translate }}*:</label>
-            <input type="text" name="phone1" data-ng-model="form.phone1" class="form-control" placeholder="{{ 'TELEFON' | translate }}*" data-ng-change="formListener()" required/>
+            <label class="sr-only">{{ 'TELEFON' | translate }}:</label>
+            <input type="text" name="phone1" data-ng-model="form.phone1" class="form-control" placeholder="{{ 'TELEFON' | translate }}" data-ng-change="formListener()" required/>
             <span class="label label-danger" data-ng-show="submitted && form.phone1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+            <span class="form-control-feedback glyphicon "  data-ng-class="{
+                'glyphicon-asterisk danger': form.phone1 === undefined,
+                'glyphicon-ok success': form.phone1 !== undefined,
+            }" style="right:2em"></span>
         </div>
         <div class="form-group col-xs-6">
             <label class="sr-only">{{ 'TELEFON_ALTERNATIU' | translate }}:</label>
-            <input type="text" name="phone2" data-ng-model="form.phone2" class="form-control" placeholder="{{ 'TELEFON_ALTERNATIU' | translate }}" />
+            <input type="text" name="phone2" data-ng-model="form.phone2" class="form-control" placeholder="{{ 'TELEFON_ALTERNATIU' | translate }} ({{ 'OPCIONAL'| translate}})" />
         </div>
     </div>
 </div>

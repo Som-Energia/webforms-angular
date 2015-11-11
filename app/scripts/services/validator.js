@@ -115,7 +115,11 @@ angular.module('newSomEnergiaWebformsApp')
                 if (timer) {
                     $timeout.cancel(timer);
                 }
+                $scope.validatingEmail = true;
+                $scope.emailNoIguals = undefined;
+                $scope.emailIsInvalid = undefined;
                 timer = $timeout(function() {
+                    $scope.validatingEmail = undefined;
                     if (newValue !== undefined) {
                         if (element === 'form.email1') {
                             $scope.emailNoIguals = $scope.form.email2 !== undefined && newValue !== $scope.form.email2;
@@ -133,13 +137,16 @@ angular.module('newSomEnergiaWebformsApp')
                 if (timer) {
                     $timeout.cancel(timer);
                 }
+                $scope.validatingEmail2 = true;
+                $scope.emailNoIguals = undefined;
                 timer = $timeout(function() {
+                    $scope.validatingEmail2 = undefined;
                     if (newValue !== undefined) {
                         if (element === 'form.email2') {
                             $scope.emailNoIguals = ($scope.form.email1 !== undefined || $scope.form.email1 !== '') && newValue !== $scope.form.email1;
                         }
-                        $scope.formListener();
                     }
+                    $scope.formListener();
                 }, cfg.DEFAULT_MILLISECONDS_DELAY);
             });
         };

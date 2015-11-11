@@ -106,7 +106,7 @@ angular.module('newSomEnergiaWebformsApp')
     ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
 
     $scope.formListener = function() {
-        $log.debug('Personal data changed:', $scope.form);
+//        $log.debug('Personal data changed:', $scope.form);
         if ($scope.onchanged) {
             $scope.onchanged();
         }
