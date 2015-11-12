@@ -364,8 +364,8 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('cups_provincia', $scope.form.province.id);
             formData.append('cups_municipi', $scope.form.city.id);
             formData.append('referencia', $scope.cadastreEditor.value || '');
-            formData.append('fitxer', $scope.form.invoice.file()); // Disable it in altas
-            formData.append('documentacio_alta', $scope.form.bulletin.file()); // TODO: Activate it
+            formData.append('fitxer', $scope.form.invoice.file().files[0]);
+            formData.append('documentacio_alta', $scope.form.bulletin.file().files);
             formData.append('payment_iban', $scope.getCompleteIban());
             formData.append('escull_pagador', $scope.form.choosepayer);
             formData.append('compte_tipus_persona', $scope.payer.usertype === 'person' ? 0 : 1);
