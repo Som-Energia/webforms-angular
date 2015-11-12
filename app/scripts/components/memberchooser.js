@@ -28,7 +28,6 @@ angular.module('newSomEnergiaWebformsApp')
     var self = this;
     self.init = function(element, attrs) {
         $scope.model.soci = {};
-        $scope.formvalues = {};
         $scope.mostraNomSociTrobat = attrs.showMemberName !== undefined;
         $scope.developing = false;
         $scope.dniIsInvalid = true;

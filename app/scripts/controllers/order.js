@@ -36,6 +36,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.form.invoice = {};
         $scope.form.bulletin = {};
         $scope.initForm = {};
+        $scope.formsoci = {};
         $scope.ibanEditor = {};
         $scope.cupsEditor = {};
         $scope.cnaeEditor = {};
@@ -60,9 +61,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.isPayerPageComplete = false;
 
         $scope.orderFormSubmitted = false;
-        $scope.languages = [];
-        $scope.provinces = [];
-        $scope.cities = [];
         $scope.completeAccountNumber = '';
         $scope.availablePowers = function() {
             if ($scope.form.phases === undefined) {
@@ -178,8 +176,8 @@ angular.module('newSomEnergiaWebformsApp')
             );
         };
         $scope.setOnwerAndPayerLanguage=function(soci) {
-            // TODO: Take it from soci
-            var language = $routeParams.locale + '_ES';
+            var language = soci.lang;
+            soci.langname = soci.lang==='ca_ES'?'Catalan':'Español';
             $scope.payer.setLanguage(language);
             $scope.owner.setLanguage(language);
         };
@@ -325,7 +323,6 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.invalidAttachFileExtension = false;
             $scope.overflowAttachFile = false;
             $scope.orderForm.cups.$setValidity('exist', true);
-            $scope.orderForm.file.$setValidity('exist', true);
             uiHandler.showLoadingDialog();
             // Prepare request data
             var postData = {
@@ -355,6 +352,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('titular_municipi', ownerIsMember ? $scope.initForm.soci.municipi : $scope.owner.city.id);
             formData.append('titular_cp', ownerIsMember ? $scope.initForm.soci.cp : $scope.owner.postalcode);
             formData.append('titular_provincia', ownerIsMember ? $scope.initForm.soci.provincia : $scope.owner.province.id);
+            formData.append('titular_lang', ownerIsMember ? $scope.initForm.soci.lang : $scope.owner.language.code);
             formData.append('tarifa', $scope.form.rate);
             formData.append('cups', $scope.cupsEditor.value);
             formData.append('consum', $scope.form.estimation || ''); // TODO: Remove this when it is clear is not used anymore
@@ -384,6 +382,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('compte_cp', noPayer ? '' : $scope.payer.postalcode);
             formData.append('compte_representant_nom', noPayer || $scope.payer.usertype !== 'company' ? '' : $scope.payer.representantname);
             formData.append('compte_representant_dni', noPayer || $scope.payer.usertype !== 'company' ? '' : $scope.payer.representantdni);
+            formData.append('compte_lang', noPayer ? '' : $scope.payer.language.code);
             formData.append('condicions', 1);
             formData.append('condicions_privacitat', 1);
             formData.append('condicions_titular', 1);
@@ -409,7 +408,7 @@ angular.module('newSomEnergiaWebformsApp')
                             $scope.modalTitle = $translate.instant('ERROR_POST_CONTRACTE');
                             $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
                             $scope.submitReady = false;
-                            $scope.rawReason = JSON.stringify(reason,null,'  ');
+                            $scope.rawReason = JSON.stringify(response.data, null,'  ');
                             jQuery('#webformsGlobalMessagesModal').modal('show');
                         }
                     } else if (response.data.status === cfg.STATUS_OFFLINE) {

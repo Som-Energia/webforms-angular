@@ -100,6 +100,11 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
+                <label>{{ 'IDIOMA' | translate}}:</label><span>{{ form.ownerIsMember == 'yes' ? initForm.soci.langname : owner.language.name }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
                 <label>Email:</label><span>{{ form.ownerIsMember == 'yes' ? initForm.soci.email : owner.email1 }}</span>
             </div>
         </div>
@@ -135,6 +140,11 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-xs-12">
+                    <label>{{ 'IDIOMA' | translate}}:</label><span>{{ initForm.soci.langname }}</span>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-6">
                     <label>Email:</label><span>{{ initForm.soci.email }}</span>
                 </div>
@@ -162,6 +172,13 @@
                 <div class="col-xs-6">
                     <label>DNI/NIE/CIF:</label><span>{{ owner.dni }}</span>
                 </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label>{{ 'IDIOMA' | translate}}:</label><span>{{ owner.language.name }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-6">
                     <label>Email:</label><span>{{ owner.email1 }}</span>
                 </div>
@@ -195,6 +212,10 @@
                 <div class="col-xs-6">
                     <label>Email:</label>
                         <span>{{ payer.email1 }}</span>
+                </div>
+                <div class="col-xs-6">
+                    <label>{{ 'IDIOMA' | translate }}:</label>
+                        <span>{{ payer.language.name }}</span>
                 </div>
             </div>
             <div class="row">
