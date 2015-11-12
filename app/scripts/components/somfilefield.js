@@ -41,13 +41,15 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.check = function(input) {
             $scope.$apply(function() {
                 $scope.files = [];
+                var totalSize = 0;
                 angular.forEach(input.files, function(value) {
                     $scope.files.push(value.name);
+                    totalSize += value.size;
                 });
                 var file = input.files[0];
                 $scope.model.filename = file.name;
                 $scope.model.size = file.size;
-                $scope.overflowAttachFile = (file.size / 1024 / 1024) > $scope.maxsize;
+                $scope.overflowAttachFile = (totalSize / 1024 / 1024) > $scope.maxsize;
                 $scope.formListener();
             });
         };
