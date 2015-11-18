@@ -131,8 +131,8 @@
                 <som-file-field
                     class="col-xs-12 col-sm-8"
                     data-ng-show="esAlta() === true"
-                    inputid="bulletin"
-                    model="form.bulletin"
+                    inputid="documentation"
+                    model="form.documentation"
                     description="{{'ADJUNTAR_BUTLLETI' | translate}}"
                     help-text="{{'HELP_ADJUNTAR_BUTLLETI' | translate}}"
                     multiple
@@ -579,7 +579,6 @@
                         <input type="checkbox" name="acceptaccountowner" value="accept" data-ng-model="form.acceptaccountowner" data-ng-change="formListener()" required/>
                         <span data-ng-bind-html="'CONFIRMO_TITULAR_COMPTE_ACCEPTA_DOMICILIACIO' | translate"></span>
                     </label>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.accept.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
                         'glyphicon-asterisk danger': form.acceptaccountowner === undefined,
                     }" style="right:2em"></span>
