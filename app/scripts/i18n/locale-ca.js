@@ -162,7 +162,7 @@ angular.module('newSomEnergiaWebformsApp')
                 HELP_POPOVER_CUPS_ALTA: 'És un codi que s\'indica a la factura, de l\'estil ES0031031321313W0F. Si no el tens, clica <a target="_blank" href="{{url}}">aquest enllaç</a>',
                 HELP_POPOVER_CUPS_ALTA_URL: 'http://ca.support.somenergia.coop/article/225-no-tinc-llum-actualment-puc-sol-licitar-un-nou-punt-de-consum',
                 REFERENCIA_CADASTRAL: 'Referència cadastral de l\'immoble',
-                HELP_POPOVER_REFERENCIA_CADASTRAL: 'És opcional, ens és útil per resoldre incongruències a les dades.<br/>Pots trobar-la aquí:<br/><a target="_blank" href="https://www1.sedecatastro.gob.es/OVCFrames.aspx?TIPO=CONSULTA">Espanya</a><br/><a target="_blank" href="http://www.bizkaia.net/home2/Temas/DetalleTema.asp?Tem_Codigo=5181&Idioma=CA">Bizkaia</a><br/><a target="_blank" href="http://catastroalava.tracasa.es/navegar/?lang=es">Araba</a><br/><a target="_blank" href="http://www4.gipuzkoa.net/ogasuna/catastro/presenta.asp">Guipuzkoa</a><br/><a target="_blank" href="https://catastro.navarra.es/">Navarra</a>',
+                HELP_POPOVER_REFERENCIA_CADASTRAL: 'És opcional, ens és útil per resoldre incongruències en les dades.<br/>Pots trobar-la aquí:<br/><a target="_blank" href="https://www1.sedecatastro.gob.es/OVCFrames.aspx?TIPO=CONSULTA">Espanya</a><br/><a target="_blank" href="http://www.bizkaia.net/home2/Temas/DetalleTema.asp?Tem_Codigo=5181&Idioma=CA">Bizkaia</a><br/><a target="_blank" href="http://catastroalava.tracasa.es/navegar/?lang=es">Araba</a><br/><a target="_blank" href="http://www4.gipuzkoa.net/ogasuna/catastro/presenta.asp">Guipuzkoa</a><br/><a target="_blank" href="https://catastro.navarra.es/">Navarra</a>',
                 TARIFA_I_POTENCIA: 'Tarifa i potència',
                 TIPUS_INSTALLACIO: 'Quin tipus d\'instal·lació tens?',
                 MONOFASICA_NORMAL: 'Monofàsica (Normal)',
@@ -182,11 +182,11 @@ angular.module('newSomEnergiaWebformsApp')
                 HELP_POWER_30: 'Mes informació sobre els <a target="_blank" href="{{url}}">períodes de la 3.0</a>',
                 HELP_POWER_30_URL: 'http://ca.support.somenergia.coop/article/255-quins-horaris-tenen-els-periodes-de-la-tarifa-3-0a',
                 LA_TEVA_TARIFA_ES: 'La teva tarifa és',
-                HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Per evitar problemes de tramitació, poseu <b>la mateixa tarifa i potència que apareix a la factura actual</b>. Si voleu fer canvis de tarifa o potència, un cop activat el contracte, podeu sol·licitar-ho.',
+                HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Per evitar problemes de tramitació, poseu <b>la mateixa tarifa i potència que apareix a la factura actual</b>. Ens podreu sol·licitar canvis de tarifa o potència una vegada estigui el contracte activat amb nosaltres.',
                 HELP_TARIFA_ALTA: 'Per completar els següents camps us recomanem clicar als botons d\'ajuda.',
                 DADES_TITULAR_NOU_CONTRACTE: 'Titular del contracte',
                 VOLS_MANTENIR_EL_TITULAR: 'Es manté la persona titular de l\'actual contracte?',
-                NO_CANVI_DE_TITULAR: 'Si.<br/>El titular no es canvia',
+                NO_CANVI_DE_TITULAR: 'Si.<br/>No vull canviar el titular',
                 SI_CANVI_DE_TITULAR: 'No.<br/>Vull canviar la persona titular aprofitant el canvi a Som Energia',
                 EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE: 'El titular és el soci/a vinculat a aquest contracte?',
                 QUI_ES_LA_PERSONA_TITULAR: 'Qui serà la persona titular?',
@@ -197,9 +197,9 @@ angular.module('newSomEnergiaWebformsApp')
                 ALGUN_DELS_TRES_PERIODES_MAJOR_QUE_15: 'Algun dels tres periodes ha de tenir més de 15kW',
                 CUPS_EXISTENT: 'Ja tenim un contracte amb aquest codi CUPS',
                 CAP_ARXIU_SELECCIONAT: 'Cap arxiu seleccionat',
-                HELPER_ADJUNTAR_ULTIMA_FACTURA: 'Un scanejat de la darrera factura amb la actual distribuidora ens ajuda a comprovar qualsevol inconsistència en les dades que has introduït',
+                HELPER_ADJUNTAR_ULTIMA_FACTURA: 'Un escanejat de la darrera factura amb l\'actual distribuïdora ens ajuda a comprovar qualsevol inconsistència en les dades que has introduït',
                 ADJUNTAR_BUTLLETI: 'Adjuntar la documentació per l\'alta de subministrament (PDF o JPG) - 10Mb màxim',
-                HELP_ADJUNTAR_BUTLLETI: 'Podràs adjuntar diferents fitxers. La distribuïdora de la teva zona, o un instal·lador autoritzat,  podran indicar-te quina és la documentació necessària.',
+                HELP_ADJUNTAR_BUTLLETI: 'Podràs adjuntar diferents fitxers. La distribuïdora de la teva zona, o un instal·lador autoritzat, podrà indicar-te quina és la documentació necessària.',
                 HELP_POPOVER_RATE: 'Ho trobareu a la vostra factura actual. A vegades com a "Peatge d\'accés".<br/>Podeu trobar més informació al <a target="_blank" href="{{url}}">centre de suport</a>',
                 HELP_POPOVER_RATE_URL: 'http://ca.support.somenergia.coop/article/220-quines-tarifes-ofereix-la-cooperativa-i-a-quin-preu',
                 TIPUS_DE_CONTRACTACIO: 'Tipus de contractació',
@@ -210,4 +210,4 @@ angular.module('newSomEnergiaWebformsApp')
             })
         ;
     });
-
+    
