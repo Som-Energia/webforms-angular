@@ -151,7 +151,7 @@ angular.module('newSomEnergiaWebformsApp')
                 AUTOPRODUCCIO_ANUAL: 'Autoproducció anual',
                 PREVISIO_GENERATION_URL: 'http://ca.support.somenergia.coop/article/582-que-representa-una-accio-energetica',
 
-                // Under development
+                // Added or changed since 1.3.2
 
                 CARREGANT_OPCIONS: 'Carregant opcions...',
                 OPCIONAL: 'Opcional',
@@ -159,7 +159,7 @@ angular.module('newSomEnergiaWebformsApp')
                 AVIS_CANVI_COMERCIALITZADORA: 'Sí que hi ha llum.<br/>Amb una altra comercialitzadora i vull canviar a Som Energia.',
                 AVIS_ALTA_DE_SERVEI: 'No hi ha llum.<br/>Vull donar-la d\'alta directament amb Som Energia.',
                 HELP_POPOVER_CUPS: 'Ho trobareu a la vostra factura actual. És un codi de l\'estil ES0031031321313W0F.',
-                HELP_POPOVER_CUPS_ALTA: 'És un codi que s\'indica a la factura, de l\'estil ES0031031321313W0F. Si no el tens, clica <a target="_blank" href="{{url}}">aquest enllaç</a>',
+                HELP_POPOVER_CUPS_ALTA: 'És un codi que s\'indica a la factura, de l\'estil ES0031031321313W0F.<br/>Si no el tens, clica <a target="_blank" href="{{url}}">aquest enllaç</a>',
                 HELP_POPOVER_CUPS_ALTA_URL: 'http://ca.support.somenergia.coop/article/225-no-tinc-llum-actualment-puc-sol-licitar-un-nou-punt-de-consum',
                 REFERENCIA_CADASTRAL: 'Referència cadastral de l\'immoble',
                 HELP_POPOVER_REFERENCIA_CADASTRAL: 'És opcional, ens és útil per resoldre incongruències en les dades.<br/>Pots trobar-la aquí:<br/><a target="_blank" href="https://www1.sedecatastro.gob.es/OVCFrames.aspx?TIPO=CONSULTA">Espanya</a><br/><a target="_blank" href="http://www.bizkaia.net/home2/Temas/DetalleTema.asp?Tem_Codigo=5181&Idioma=CA">Bizkaia</a><br/><a target="_blank" href="http://catastroalava.tracasa.es/navegar/?lang=es">Araba</a><br/><a target="_blank" href="http://www4.gipuzkoa.net/ogasuna/catastro/presenta.asp">Guipuzkoa</a><br/><a target="_blank" href="https://catastro.navarra.es/">Navarra</a>',
@@ -167,11 +167,11 @@ angular.module('newSomEnergiaWebformsApp')
                 TIPUS_INSTALLACIO: 'Quin tipus d\'instal·lació tens?',
                 MONOFASICA_NORMAL: 'Monofàsica (Normal)',
                 TRIFASICA: 'Trifàsica',
-                HELP_INSTALL_TYPE: 'Com identificar si una instalació és <a target="_blank" href="{{url}}">trifàsica o monofàsica</a>',
+                HELP_INSTALL_TYPE: 'Com identificar si una instal·lació és <a target="_blank" href="{{url}}">trifàsica o monofàsica</a>',
                 HELP_INSTALL_TYPE_URL: 'http://ca.support.somenergia.coop/article/479-tinc-una-instal-lacio-monofasica-o-trifasica',
                 POTENCIA_A_CONTRACTAR: 'Quina potència vols contractar?',
                 MES_GRAN_DE_15KW: 'Superior a 15kW',
-                HELP_POTENCIA: 'Com esbrinar <a target="_blank" href="{{url}}">la potència que necessito?</a>',
+                HELP_POTENCIA: 'Com esbrinar <a target="_blank" href="{{url}}">la potència que necessito</a>',
                 HELP_POTENCIA_URL: 'http://ca.support.somenergia.coop/article/269-com-puc-saber-la-potencia-que-necessito',
                 DISCRIMINACIO_HORARIA: 'Vols discriminació horària?',
                 SENSE_DISCRIMINACIO_HORARIA: 'Sense discriminació horària',
@@ -179,7 +179,7 @@ angular.module('newSomEnergiaWebformsApp')
                 HELP_DISCRIMINACIO_HORARIA: 'Com puc saber <a target="_blank" href="{{url}}">si em convé discriminació horària o no</a>',
                 HELP_DISCRIMINACIO_HORARIA_URL: 'http://ca.support.somenergia.coop/article/270-com-puc-saber-si-em-surt-a-compte-tenir-discriminacio-horaria',
                 ESCULL_LA_POTENCIA_DE_CADA_PERIODE: 'Escull la potència de cada període',
-                HELP_POWER_30: 'Mes informació sobre els <a target="_blank" href="{{url}}">períodes de la 3.0</a>',
+                HELP_POWER_30: 'Més informació sobre els <a target="_blank" href="{{url}}">períodes de la 3.0</a>',
                 HELP_POWER_30_URL: 'http://ca.support.somenergia.coop/article/255-quins-horaris-tenen-els-periodes-de-la-tarifa-3-0a',
                 LA_TEVA_TARIFA_ES: 'La teva tarifa és',
                 HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Per evitar problemes de tramitació, poseu <b>la mateixa tarifa i potència que apareix a la factura actual</b>. Ens podreu sol·licitar canvis de tarifa o potència una vegada estigui el contracte activat amb nosaltres.',
@@ -188,7 +188,6 @@ angular.module('newSomEnergiaWebformsApp')
                 VOLS_MANTENIR_EL_TITULAR: 'Es manté la persona titular de l\'actual contracte?',
                 NO_CANVI_DE_TITULAR: 'Si.<br/>No vull canviar el titular',
                 SI_CANVI_DE_TITULAR: 'No.<br/>Vull canviar la persona titular aprofitant el canvi a Som Energia',
-                EL_TITULAR_ES_SOCI_VINCULAT_AL_CONTRACTE: 'El titular és el soci/a vinculat a aquest contracte?',
                 QUI_ES_LA_PERSONA_TITULAR: 'Qui serà la persona titular?',
                 ALTRA_PERSONA: 'Una altra persona',
                 ACCEPTO_CONDICIONS_GENERALS: 'Accepto les <strong><a target="_blank" href="{{url}}">condicions generals del contracte</a></strong>',
@@ -205,9 +204,12 @@ angular.module('newSomEnergiaWebformsApp')
                 HELP_POPOVER_RATE_URL: 'http://ca.support.somenergia.coop/article/220-quines-tarifes-ofereix-la-cooperativa-i-a-quin-preu',
                 TIPUS_DE_CONTRACTACIO: 'Tipus de contractació',
                 ALTA: 'Alta d\'un punt sense subministrament',
-                CANVI_DE_COMERCIALITZADORA_I_TITULAR: 'Canvi de comercialitzadora modificant el titular',
+                CANVI_DE_COMERCIALITZADORA_I_TITULAR: 'Canvi de comercialitzadora modificant la persona titular',
                 CANVI_DE_COMERCIALITZADORA: 'Canvi de comercialitzadora mantenint la persona titular',
                 ERROR_POST_CONTRACTE: 'Error enviant el contracte',
+
+                // Under development
+
             })
         ;
     });
