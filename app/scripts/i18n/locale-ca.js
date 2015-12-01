@@ -152,7 +152,7 @@ angular.module('newSomEnergiaWebformsApp')
                 PREVISIO_GENERATION_URL: 'http://ca.support.somenergia.coop/article/582-que-representa-una-accio-energetica',
 
                 // Under development
-                
+
                 CARREGANT_OPCIONS: 'Carregant opcions...',
                 OPCIONAL: 'Opcional',
                 HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT: 'Hi ha llum, actualment?',
@@ -211,4 +211,4 @@ angular.module('newSomEnergiaWebformsApp')
             })
         ;
     });
-    
+
