@@ -333,7 +333,6 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('dni', $scope.formsoci.dni);
             formData.append('canvi_titular', $scope.form.changeowner === 'yes' ? 1 : 0);
             if (!$scope.altesDeshabilitades) {
-                formData.append('alta_subministre', $scope.esAlta() ? 1 : 0);
                 formData.append('proces', $scope.esAlta() ? 'A3' : $scope.form.changeowner === 'yes' ? 'C2': 'C1');
             }
             var ownerIsMember = $scope.form.ownerIsMember==='yes';
