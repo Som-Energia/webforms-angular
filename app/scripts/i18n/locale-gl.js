@@ -86,11 +86,11 @@ angular.module('newSomEnergiaWebformsApp')
                 SI_TOT_CORRECTE: 'Si, todo correcto',
 
                 HELP_POPOVER_SOCIA: 'Non lembras o teu nº de socio/a? Búscao no apartado "Datos Persoais" da <a target="_blank" href="https://oficinavirtual.somenergia.coop/">Oficina Virtual</a>.',
-                HELP_POPOVER_DNI: 'Exemplo DNI: 12345678P (con letra final)',
+                HELP_POPOVER_NIF: 'Exemplo NIF: 12345678P (con letra final)',
                 SOCIA_TROBADA: 'Socio/a encontrado/a',
                 VALIDANT_ID: 'A validar o documento de identificación...',
                 IDENTIFICANT_SOCIA: 'A identificar socio/a...',
-                DNI_INVALID: 'Código de DNI/NIE/CIF incorrecto.',
+                NIF_INVALID: 'Código de NIF incorrecto.',
                 SERVER_ERROR: 'Houbo un erro ao acceder ao servidor:',
                 INICIAR_INVERSIO: 'Iniciar Investimento',
                 FORMULARI_D_INVERSIO: 'Formulario de <b>investimento</b>',

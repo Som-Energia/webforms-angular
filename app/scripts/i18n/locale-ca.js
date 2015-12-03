@@ -86,11 +86,11 @@ angular.module('newSomEnergiaWebformsApp')
                 SI_TOT_CORRECTE: 'Sí, tot correcte',
 
                 HELP_POPOVER_SOCIA: 'No recordes el teu número? El pots veure dins l\'apartat "Dades Personals" de l\'<a target="_blank" href="https://oficinavirtual.somenergia.coop/">Oficina Virtual</a>.',
-                HELP_POPOVER_DNI: 'Exemple DNI: 12345678P (amb lletra final)',
+                HELP_POPOVER_NIF: 'Exemple NIF: 12345678P (amb lletra final)',
                 SOCIA_TROBADA: 'Soci/sòcia trobat/da!',
                 VALIDANT_ID: 'Validant document d\'identificació...',
                 IDENTIFICANT_SOCIA: 'Identificant soci/sòcia...',
-                DNI_INVALID: 'Codi del DNI/NIE/CIF invàlid.',
+                NIF_INVALID: 'Codi NIF invàlid.',
                 SERVER_ERROR: 'Error accedint al servidor:',
                 INICIAR_INVERSIO: 'Iniciar Inversió',
                 FORMULARI_D_INVERSIO: 'Formulari d\'<b>inversió</b>',

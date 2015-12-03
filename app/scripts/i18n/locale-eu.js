@@ -86,11 +86,11 @@ angular.module('newSomEnergiaWebformsApp')
                 SI_TOT_CORRECTE: 'Bai, dena zuzena da',
 
                 HELP_POPOVER_SOCIA: 'Zure bazkidearen zenbakia ez duzu gogoratzen? Asma ezazu web orriaren "Datu pertsonalak" atalean <a target="_blank" href="https://oficinavirtual.somenergia.coop/">Bulego Birtuala</a>.',
-                HELP_POPOVER_DNI: 'Adibide NAN: 12345678P (amaierako letrarekin)',
+                HELP_POPOVER_NIF: 'Adibide IFZ: 12345678P (amaierako letrarekin)',
                 SOCIA_TROBADA: 'Bazkide aurkituta',
                 VALIDANT_ID: 'Nortasun-agiria balioztatzen...',
                 IDENTIFICANT_SOCIA: 'Bazkidea identifikatzen...',
-                DNI_INVALID: 'Nortasun-agiriaren kode okerra.',
+                NIF_INVALID: 'Nortasun-agiriaren kode okerra.',
                 SERVER_ERROR: 'Hutsegitea serbidorean sartzen:',
                 INICIAR_INVERSIO: 'Hasi inbertsioa',
                 FORMULARI_D_INVERSIO: 'Inbertsio <b>formulario</b>',

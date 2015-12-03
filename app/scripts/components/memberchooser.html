@@ -21,9 +21,9 @@
                </div>
             </div>
             <div class="form-group col-xs-6 col-sm-5 col-md-4 col-lg-3" >
-                <label class="sr-only">DNI/NIE/CIF*</label>
+                <label class="sr-only">NIF*</label>
                 <div class="input-group" style="width: 100%">
-                    <input type="text" name="dni" class="form-control input-lg" placeholder="DNI/NIE/CIF*" data-ng-model="formvalues.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': isInvalidId()}" required/>
+                    <input type="text" name="dni" class="form-control input-lg" placeholder="NIF*" data-ng-model="formvalues.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': isInvalidId()}" required/>
                     <a
                         role="button"
                         tabindex="-1"
@@ -31,7 +31,7 @@
                         tooltip-append-to-body="true"
                         tooltip-trigger="focus"
                         tooltip-placement="top"
-                        tooltip-html="'HELP_POPOVER_DNI' | translate"
+                        tooltip-html="'HELP_POPOVER_NIF' | translate"
                         >
                         <span class="badge current small">?</span>
                     </a>
@@ -67,7 +67,7 @@
                 ng-if="isInvalidId()"
                 style="margin-bottom:4ex"
                 class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
-                >{{ 'DNI_INVALID' | translate}}</p>
+                >{{ 'NIF_INVALID' | translate}}</p>
             <p
                 ng-if="isApiError()"
                 style="margin-bottom:4ex"
