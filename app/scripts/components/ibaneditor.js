@@ -96,6 +96,7 @@ angular.module('newSomEnergiaWebformsApp')
                 return;
             }
             $scope._isValid = undefined; // checking
+            $scope.model.error = undefined;
             if ($scope._lastPromise !== undefined) {
                 $scope._lastPromise.abort();
             }
@@ -114,6 +115,7 @@ angular.module('newSomEnergiaWebformsApp')
                     $scope._isValid = response.state !== cfg.STATE_FALSE;
                     $scope.model.data = response.data;
                     if (response.data !== undefined && response.data.invalid_fields !== undefined) {
+                        $scope._isValid = false;
                         $scope.model.error = response.data.invalid_fields[0].error;
                     }
                     $scope.formListener();
