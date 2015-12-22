@@ -1,3 +1,4 @@
+<div>
     <!-- BEGIN INIT FORM-->
     <form class="form-inline" role="form" novalidate>
         <!--FIRST STEP-->
@@ -6,18 +7,34 @@
                 <label class="sr-only">{{ 'NUMERO_SOCI' | translate }}*</label>
                 <div class="input-group" style="width: 100%">
                     <input type="text" name="socinumber" class="form-control input-lg" placeholder="{{ 'NUMERO_SOCI' | translate }}*" data-ng-model="formvalues.socinumber" data-ng-change="formListener()" required/>
-                    <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>
-                        <span class="spc-html badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_SOCIA' | translate }}" data-placement="top">?</span>
-                    </span>
+                    <a
+                        role="button"
+                        tabindex="-1"
+                        class="btn btn-default input-group-addon"
+                        tooltip-append-to-body="true"
+                        tooltip-trigger="focus"
+                        tooltip-placement="top"
+                        tooltip-html="'HELP_POPOVER_SOCIA' | translate"
+                        >
+                        <span class="badge current small">?</span>
+                    </a>
                </div>
             </div>
             <div class="form-group col-xs-6 col-sm-5 col-md-4 col-lg-3" >
-                <label class="sr-only">DNI/NIE/CIF*</label>
+                <label class="sr-only">NIF*</label>
                 <div class="input-group" style="width: 100%">
-                    <input type="text" name="dni" class="form-control input-lg" placeholder="DNI/NIE/CIF*" data-ng-model="formvalues.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': isInvalidId()}" required/>
-                    <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>
-                        <span class="spc-html badge current small" data-container="body" data-toggle="popover" data-content="{{ 'HELP_POPOVER_DNI' | translate }}" data-placement="top">?</span>
-                    </span>
+                    <input type="text" name="dni" class="form-control input-lg" placeholder="NIF*" data-ng-model="formvalues.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': isInvalidId()}" required/>
+                    <a
+                        role="button"
+                        tabindex="-1"
+                        class="btn btn-default input-group-addon"
+                        tooltip-append-to-body="true"
+                        tooltip-trigger="focus"
+                        tooltip-placement="top"
+                        tooltip-html="'HELP_POPOVER_NIF' | translate"
+                        >
+                        <span class="badge current small">?</span>
+                    </a>
                 </div>
                 <span></span>
                 <span class="label label-danger" style="position:absolute;" data-ng-show="isInvalidId()">{{ 'INVALID' | translate }}</span>
@@ -25,10 +42,10 @@
         </div>
         <div class="row">
             <p
-                ng-if='isReady()'
+                ng-if="isReady()"
                 class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-success"
                 style="margin-bottom:4ex"
-                >{{ 'SOCIA_TROBADA' | translate }}{{ mostraNomSociTrobat ? ': ' + soci.nom+' '+soci.cognom :''}}</p>
+                >{{ 'SOCIA_TROBADA' | translate }}{{ mostraNomSociTrobat ? ': ' + model.soci.nom+' '+model.soci.cognom :''}}</p>
             <p
                 ng-if='isValidatingId()'
                 style="margin-bottom:4ex"
@@ -50,7 +67,7 @@
                 ng-if="isInvalidId()"
                 style="margin-bottom:4ex"
                 class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
-                >{{ 'DNI_INVALID' | translate}}</p>
+                >{{ 'NIF_INVALID' | translate}}</p>
             <p
                 ng-if="isApiError()"
                 style="margin-bottom:4ex"
@@ -75,18 +92,4 @@
         </div>
     </form>
     <!--END INIT FORM-->
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        jQuery(".spc-html").popover(
-                {
-                    html : true,
-                    trigger : 'hover',
-                    delay : { show : 0, hide : 2500 }
-                }
-        );
-        jQuery(".spc").popover({trigger : 'hover'});
-        setTimeout(function () { jQuery("#spc-rate-conditional").popover({trigger : 'hover'}); }, 1000);
-    });
-</script>
-
+</div>

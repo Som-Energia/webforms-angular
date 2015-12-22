@@ -12,7 +12,7 @@
     </div>
     <div class="row" data-ng-show="isStep(0) || showAll">
         <div class="col-xs-12"
-                translate="APORTACIO_REQUERIMENT_SER_SOCIA">
+            translate="APORTACIO_REQUERIMENT_SER_SOCIA">
         </div>
     </div>
     <div class="row" data-ng-show="isStep(0) || showAll">
@@ -26,7 +26,6 @@
     <member-chooser
         button-text="{{'INICIAR_INVERSIO' | translate }}"
         onproceed="initFormSubmited()"
-        soci="soci"
         model="initForm"
         formvalues="formsoci"
         data-ng-show="isStep(0) && isPartner===true"
@@ -65,14 +64,6 @@
         <personal-data
             model='newPartner'
         ></personal-data>
-        <div class="row" data-ng-show="isPartner!==undefined">
-            <div class="form-group checkbox col-xs-12">
-                <label>
-                    <input type="checkbox" name="acceptprivacypolicy" value="accept" data-ng-model="form.acceptprivacypolicy" required/>
-                    <span translate="ACCEPTO_POLITICA_PRIVACITAT" ></span>
-                </label>
-            </div>
-        </div>
         <div class="row">
             <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right">
                 <button
@@ -92,7 +83,7 @@
         <div class="row">
             <div class="col-xs-12 heading active">
                 <h1 translate="BENVINGUDA"
-                    translate-value-name="{{soci.nom}} {{soci.cognom}}"
+                    translate-value-name="{{initForm.soci.nom}} {{initForm.soci.cognom}}"
                     ></h1>
             </div>
         </div>
@@ -149,6 +140,7 @@
                     placeholder="{{'CODI_IBAN_DEL_COMPTE' | translate}}"
                     help="accountbankibanHelp"
                     model="ibanEditor"
+                    checkurl="check/iban/"
                 ></iban-editor>
                 <div class="col-xs-12">
                     <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>{{ 'EXEMPLE_IBAN' | translate }}</div>
@@ -205,16 +197,3 @@
     <div class="modal-dialog modal-lg" data-ng-include data-src="'views/common/well-done-modal.html'"></div>
 </div>
 
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        jQuery(".spc-html").popover(
-                {
-                    html : true,
-                    trigger : 'hover',
-                    delay : { show : 0, hide : 2500 }
-                }
-        );
-        jQuery(".spc").popover({trigger : 'hover'});
-        setTimeout(function () { jQuery("#spc-rate-conditional").popover({trigger : 'hover'}); }, 1000);
-    });
-</script>

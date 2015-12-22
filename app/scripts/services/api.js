@@ -26,7 +26,6 @@ angular.module('newSomEnergiaWebformsApp')
                     if (response.state === cfg.STATE_TRUE) {
                         $scope.provinces  = response.data.provincies;
                         $scope.provinces2 = response.data.provincies;
-                        $scope.provinces3 = response.data.provincies;
                     } else {
                         uiHandler.showErrorDialog('GET response state false recived (ref.003-001)');
                     }
@@ -46,8 +45,6 @@ angular.module('newSomEnergiaWebformsApp')
                                 $scope.cities = response.data.municipis;
                             } else if (selector === 2) {
                                 $scope.cities2 = response.data.municipis;
-                            } else if (selector === 3) {
-                                $scope.cities3 = response.data.municipis;
                             }
                         } else {
                             uiHandler.showErrorDialog('GET response state false recived (ref.003-003)');
@@ -87,16 +84,16 @@ angular.module('newSomEnergiaWebformsApp')
             var aborter = $q.defer();
             var deferred = $q.defer();
             deferred.promise.abort = function() {
-                aborter.resolve('Aborted');
+                aborter.reject('Aborted');
             };
             $http.get(URL, {timeout: aborter} )
                 .success(function (response) {
                     var msg;
                     if (response.status === cfg.STATUS_ONLINE) {
-                        deferred.resolve(response.state);
+                        deferred.resolve(response);
                         $scope.formListener($scope.form);
                     } else if (response.status === cfg.STATUS_OFFLINE) {
-                        msg = 'API server response status offline recived (ref.002-' + errorCode + ')';
+                        msg = 'API server response status offline received (ref.002-' + errorCode + ')';
                         uiHandler.showErrorDialog(msg);
                         deferred.reject(msg);
                     } else {

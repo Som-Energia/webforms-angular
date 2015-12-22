@@ -1,30 +1,54 @@
 <div
     class='form-group has-feedback'
-    data-ng-class="{
-        'ng-invalid': ! model.isValid()
-    }"
     >
-    <input
-        type="text"
-        class="form-control input-lg"
-        placeholder="{{placeholder}}"
-        ng-required="{{required}}"
-        id="{inputid}"
-        name="{{inputid}}"
-        data-ng-model="model.value"
-        data-ng-change="onChange()"
-        aria-describedby="{{help}}"
-        />
+    <div
+        ng-class="{ 'input-group': helpText!==undefined }"
+        style='width:100%'
+        >
+        <input
+            type="text"
+            class="form-control"
+            placeholder="{{placeholder}}"
+            ng-required="{{required}}"
+            id="{inputid}"
+            name="{{inputid}}"
+            data-ng-model="model.value"
+            data-ng-change="onChange()"
+            aria-describedby="{{help}}"
+            ng-class="{
+                'input-lg': small===undefined,
+                'ng-invalid': model.isInvalid(),
+                'ng-valid': model.isValid(),
+                }"
+            />
+        <a
+            data-ng-if="helpText !== undefined"
+            role="button"
+            tabindex="-1"
+            class="btn btn-default input-group-addon"
+            style="width: 1em"
+            tooltip-append-to-body="true"
+            tooltip-trigger="focus"
+            tooltip-placement="left"
+            tooltip-html="helpText"
+            >
+            <span class="badge current small">?</span>
+        </a>
+    </div>
     <span class="form-control-feedback glyphicon "  data-ng-class="{
         'glyphicon-warning-sign danger': model.inServerError(),
         'glyphicon-asterisk danger': model.isRequiredMissing(),
         'glyphicon-remove danger': model.isInvalid(),
         'glyphicon-refresh spinning warning': model.isValidating(),
-        'glyphicon-ok success': model.isValid()
-    }"></span>
+        'glyphicon-ok success': model.isValid() && ! model.isOptionallyEmpty(),
+        'glyphicon-minus success': model.isValid() && model.isOptionallyEmpty(),
+    }" ng-attr-style="{{helpText ? 'right:50px' : undefined}}"></span>
     <span class="pull-right label label-danger"  data-ng-show="model.inServerError()">{{ 'SERVER_ERROR' | translate }} {{model.serverError}}</span>
-    <span class="pull-right label label-danger"  data-ng-show="model.isRequiredMissing()">{{ 'REQUERIT' | translate }}</span>
+    <span class="pull-right label label-danger"  data-ng-show="model.isRequiredMissing() && !quietlabels">{{ 'REQUERIT' | translate }}</span>
     <span class="pull-right label label-danger"  data-ng-show="model.isInvalid()">{{ 'INVALID' | translate }}</span>
     <span class="pull-right label label-warning" data-ng-show="model.isValidating()">{{ 'COMPROVANT' | translate }}</span>
-    <span class="pull-right label label-success" data-ng-show="model.isValid()">{{ 'CORRECTE' | translate }}</span>
+    <span class="pull-right label label-success" data-ng-show="model.isValid() && !model.isOptionallyEmpty()">{{ oktext || ('CORRECTE' | translate) }} </span>
+    <span class="pull-right label label-success" data-ng-show="model.isValid() && model.isOptionallyEmpty() && !quietlabels">{{ 'OPCIONAL' | translate }}</span>
+    <span ng-transclude></span>
+    <span class="pull-right label label-default" style="opacity:0">&nbsp;</span>
 </div>

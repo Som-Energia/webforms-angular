@@ -2,7 +2,7 @@
 $icon-font-path: "/fonts/";
 
 // bower:scss
-@import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
 /* Variables */
@@ -170,11 +170,6 @@ span {
     float: left;
     margin-top: 5px;
   }
-  &.confirm {
-    font-weight: bold;
-    font-size: 15px;
-    color: $grey-darkest;
-  }
   &.last-help-title {
     font-size: 18px;
     font-weight: bold;
@@ -190,6 +185,20 @@ span {
       text-decoration: underline;
     }
   }
+}
+
+.confirm {
+    label {
+        font-weight: bold;
+        font-size: 15px;
+        color: $grey;
+    }
+    h4 {
+        font-size: 22px;
+        font-weight: bold;
+        border-bottom: solid 2px $grey-light;
+        padding-bottom: 5px;
+    }
 }
 
 button {
@@ -250,6 +259,12 @@ label {
         &.active {
           background-color: $green;
           border-color: $grey;
+            &:hover {
+              opacity: 0.8;
+            }
+        }
+        &:hover {
+            opacity: 0.8;
         }
       }
     }
@@ -257,11 +272,6 @@ label {
   &.combo-one-row {
     float: left;
     margin-top: 5px;
-  }
-  &.confirm {
-    font-weight: bold;
-    font-size: 15px;
-    color: $grey;
   }
 }
 
@@ -273,15 +283,6 @@ h1, h2, h3, h4 {
   &.green {
     color: $green;
     margin:0;
-  }
-}
-
-h4 {
-  &.confirm {
-    font-size: 22px;
-    font-weight: bold;
-    border-bottom: solid 2px $grey-light;
-    padding-bottom: 5px;
   }
 }
 
@@ -509,4 +510,31 @@ table.contractTable {
         }
     }
 }
+
+/* Custom file widget */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+.btn-file input[readonly] {
+  color: white !important;
+  cursor: text !important;
+}
+
+
 

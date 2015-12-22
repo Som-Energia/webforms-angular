@@ -29,67 +29,46 @@ angular.module('newSomEnergiaWebformsApp')
                     var match = re.exec(newValue);
                     var result = match[0].replace(',', '.');
                     result = result.replace('\'', '.');
+                    $scope.rate20IsInvalid = false;
+                    $scope.rate21IsInvalid = false;
+                    $scope.rate3AIsInvalid = false;
                     if (element === 'form.power') {
-                        var valueToApply = result;
                         if ($scope.form.rate === cfg.RATE_20A || $scope.form.rate === cfg.RATE_20DHA || $scope.form.rate === cfg.RATE_20DHS) {
-                            if (result > 10) {
-                                valueToApply = oldValue;
-                            }
-                            $scope.rate20IsInvalid = result <= 0;
-                            $scope.rate21IsInvalid = false;
-                            $scope.rate3AIsInvalid = false;
-
-                            //$log.log(oldValue, newValue, result);
-                            //$log.log($scope.rate20IsInvalid, $scope.rate21IsInvalid, $scope.rate3AIsInvalid);
-
+                            $scope.form.power = result <= 0 || result > 10 ? oldValue : result;
+                            $scope.rate20IsInvalid = result <= 0 || result > 10; // TODO: Never occurs
 
                         } else if ($scope.form.rate === cfg.RATE_21A || $scope.form.rate === cfg.RATE_21DHA || $scope.form.rate === cfg.RATE_21DHS) {
-                            if ((newValue < 10 && newValue.length > 1) || result > 15) {
-                                valueToApply = oldValue;
-                            }
-                            $scope.rate20IsInvalid = false;
+                            $scope.form.power =((newValue < 10 && newValue.length > 1) || result > 15) ? oldValue : result;
                             $scope.rate21IsInvalid = result <= 10 || result > 15;
-                            $scope.rate3AIsInvalid = false;
-
-                            $log.log(oldValue, newValue, result);
-                            $log.log($scope.rate20IsInvalid, $scope.rate21IsInvalid, $scope.rate3AIsInvalid);
 
                         } else if ($scope.form.rate === cfg.RATE_30A) {
-                            if (result > 450) {
-                                valueToApply = oldValue;
-                            }
-                            $scope.rate20IsInvalid = false;
-                            $scope.rate21IsInvalid = false;
-                            $scope.rate3AIsInvalid = $scope.form.power2 !== undefined && $scope.form.power3 !== undefined && valueToApply <= 15 && $scope.form.power2 <= 15 && $scope.form.power3 <= 15;
-
-                            //$log.log(oldValue, newValue, result);
-                            //$log.log($scope.rate20IsInvalid, $scope.rate21IsInvalid, $scope.rate3AIsInvalid);
-
+                            $scope.form.power = result > 450 ? oldValue : result;
+                            $scope.rate3AIsInvalid =
+                                $scope.form.power2 !== undefined &&
+                                $scope.form.power3 !== undefined &&
+                                $scope.form.power <= 15 &&
+                                $scope.form.power2 <= 15 &&
+                                $scope.form.power3 <= 15;
                         }
-                        $scope.form.power = valueToApply;
                     } else if (element === 'form.power2') {
-                        if (result > 450) {
-                            $scope.form.power2 = oldValue;
-                        } else {
-                            $scope.form.power2 = result;
-                        }
-                        $scope.rate20IsInvalid = false;
-                        $scope.rate21IsInvalid = false;
-                        $scope.rate3AIsInvalid = $scope.form.power !== undefined && $scope.form.power3 !== undefined && $scope.form.power <= 15 && result <= 15 && $scope.form.power3 <= 15;
-                        //$log.log($scope.form.power <= 15, result <= 15, $scope.form.power3 <= 15);
+                        $scope.form.power2 = result > 450 ? oldValue : result;
+                        $scope.rate3AIsInvalid =
+                            $scope.form.power !== undefined &&
+                            $scope.form.power3 !== undefined &&
+                            $scope.form.power <= 15 &&
+                            $scope.form.power2 <= 15 &&
+                            $scope.form.power3 <= 15;
                     } else if (element === 'form.power3') {
-                        if (result > 450) {
-                            $scope.form.power3 = oldValue;
-                        } else {
-                            $scope.form.power3 = result;
-                        }
-                        $scope.rate20IsInvalid = false;
-                        $scope.rate21IsInvalid = false;
-                        $scope.rate3AIsInvalid = $scope.form.power !== undefined && $scope.form.power2 !== undefined && $scope.form.power <= 15 && $scope.form.power2 <= 15 && result <= 15;
-                        //$log.log($scope.form.power <= 15, $scope.form.power2 <= 15, result <= 15);
+                        $scope.form.power3 = result > 450 ? oldValue : result;
+                        $scope.rate3AIsInvalid =
+                            $scope.form.power !== undefined &&
+                            $scope.form.power2 !== undefined &&
+                            $scope.form.power <= 15 &&
+                            $scope.form.power2 <= 15 &&
+                            $scope.form.power3 <= 15;
                     }
-                    $scope.formListener();
                 }
+                $scope.formListener();
             });
         };
         
@@ -102,12 +81,6 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.dni = oldValue;
                     } else if (element === 'formvalues.init.dni') {
                         $scope.formvalues.dni = oldValue;
-                    } else if (element === 'form.representantdni') {
-                        $scope.form.representantdni = oldValue;
-                    } else if (element === 'form.accountdni') {
-                        $scope.form.accountdni = oldValue;
-                    } else if (element === 'form.accountrepresentantdni') {
-                        $scope.form.accountrepresentantdni = oldValue;
                     }
                     makeApiAsyncCheck = false;
                 }
@@ -120,16 +93,12 @@ angular.module('newSomEnergiaWebformsApp')
                         dniPromise.then(
                             function (response) {
                                 if (element === 'form.dni' || element === 'formvalues.dni') {
-                                    $scope.dniIsInvalid = response === cfg.STATE_FALSE;
-                                    $scope.dni2IsInvalid = response === cfg.STATE_FALSE;
+                                    $scope.dniIsInvalid = response.state === cfg.STATE_FALSE;
+                                    $scope.dni2IsInvalid = response.state === cfg.STATE_FALSE;
                                     $scope.dniDuplicated = false;
                                 } else if (element === 'form.representantdni') {
-                                    $scope.dniRepresentantIsInvalid = response === cfg.STATE_FALSE;
-                                    $scope.dni3IsInvalid = response === cfg.STATE_FALSE;
-                                } else if (element === 'form.accountdni') {
-                                    $scope.dni4IsInvalid = response === cfg.STATE_FALSE;
-                                } else if (element === 'form.accountrepresentantdni') {
-                                    $scope.dni5IsInvalid = response === cfg.STATE_FALSE;
+                                    $scope.dniRepresentantIsInvalid = response.state === cfg.STATE_FALSE;
+                                    $scope.dni3IsInvalid = response.state === cfg.STATE_FALSE;
                                 }
                                 $scope.formListener();
                             },
@@ -146,14 +115,15 @@ angular.module('newSomEnergiaWebformsApp')
                 if (timer) {
                     $timeout.cancel(timer);
                 }
+                $scope.validatingEmail = true;
+                $scope.emailNoIguals = undefined;
+                $scope.emailIsInvalid = undefined;
                 timer = $timeout(function() {
+                    $scope.validatingEmail = undefined;
                     if (newValue !== undefined) {
                         if (element === 'form.email1') {
                             $scope.emailNoIguals = $scope.form.email2 !== undefined && newValue !== $scope.form.email2;
                             $scope.emailIsInvalid = !emailRE.test(newValue);
-                        } else if (element === 'form.accountemail1') {
-                            $scope.accountEmailNoIguals = $scope.form.accountemail2 !== undefined && newValue !== $scope.form.accountemail2;
-                            $scope.accountEmailIsInvalid = !emailRE.test(newValue);
                         }
                         $scope.formListener();
                     }
@@ -167,15 +137,16 @@ angular.module('newSomEnergiaWebformsApp')
                 if (timer) {
                     $timeout.cancel(timer);
                 }
+                $scope.validatingEmail2 = true;
+                $scope.emailNoIguals = undefined;
                 timer = $timeout(function() {
+                    $scope.validatingEmail2 = undefined;
                     if (newValue !== undefined) {
                         if (element === 'form.email2') {
                             $scope.emailNoIguals = ($scope.form.email1 !== undefined || $scope.form.email1 !== '') && newValue !== $scope.form.email1;
-                        } else if (element === 'form.accountemail2') {
-                            $scope.accountEmailNoIguals = ($scope.form.accountemail1 !== undefined || $scope.form.accountemail1 !== '') && newValue !== $scope.form.accountemail1;
                         }
-                        $scope.formListener();
                     }
+                    $scope.formListener();
                 }, cfg.DEFAULT_MILLISECONDS_DELAY);
             });
         };
@@ -186,19 +157,18 @@ angular.module('newSomEnergiaWebformsApp')
                 if (newValue !== undefined && (!integerRE.test(newValue) || newValue.length > 5)) {
                     if (element === 'form.postalcode') {
                         $scope.form.postalcode = oldValue;
-                    } else if (element === 'form.accountpostalcode') {
-                        $scope.form.accountpostalcode = oldValue;
                     }
                 }
                 if (timer) {
                     $timeout.cancel(timer);
                 }
+                $scope.postalCodeIsInvalid=false;
+                $scope.validatingPostalCode=true;
                 timer = $timeout(function() {
+                    $scope.validatingPostalCode=undefined;
                     var valueToApply = newValue !== undefined && newValue.length < 5;
                     if (element === 'form.postalcode') {
                         $scope.postalCodeIsInvalid = valueToApply;
-                    } else if (element === 'form.accountpostalcode') {
-                        $scope.accountPostalCodeIsInvalid = valueToApply;
                     }
                     $scope.formListener();
                 }, cfg.DEFAULT_MILLISECONDS_DELAY);
@@ -213,10 +183,6 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.form.phone1 = oldValue;
                     } else if (element === 'form.phone2') {
                         $scope.form.phone2 = oldValue;
-                    } else if (element === 'form.accountphone1') {
-                        $scope.form.accountphone1 = oldValue;
-                    } else if (element === 'form.accountphone2') {
-                        $scope.form.accountphone2 = oldValue;
                     }
                 }
             });

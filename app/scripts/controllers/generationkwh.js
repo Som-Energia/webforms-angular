@@ -5,9 +5,13 @@ angular.module('newSomEnergiaWebformsApp')
 
         // INIT
         $scope.developing = cfg.DEVELOPMENT;
-        // MUST APPLY TO EMBED WITH WORDPRESS
+        // MUST APPLY TO EMBED WITH WORDPRESS (detects inside frame)
         if (window !== window.top) { // Inside a frame
-            document.domain = cfg.BASE_DOMAIN;
+            try {
+                document.domain = cfg.BASE_DOMAIN;
+            } catch(err) {
+                console.log('While setting document domain:', err);
+            }
         }
 
         // Just when developing, show untranslated strings instead of falling back to spanish
@@ -43,6 +47,8 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
         $scope.isPartner = true;
         $scope.newPartner = {};
+        $scope.initForm = {};
+        $scope.ibanEditor = {};
 
         $scope.energeticActionsCost = function() {
             return ($scope.form.energeticActions||0) * $scope.preuPerAccio;
@@ -89,7 +95,7 @@ angular.module('newSomEnergiaWebformsApp')
         });
 
         $scope.isInvestmentFormReady = function() {
-            if ($scope.ibanEditor === undefined) {return false;}
+            if ($scope.ibanEditor.isValid === undefined) {return false;}
             if (!$scope.ibanEditor.isValid()) {return false;}
             if (!$scope.energeticActionsCost()) {return false;}
             if ($scope.form.acceptaccountowner === false) {return false;}
@@ -111,13 +117,13 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.isNewPartnerReady = function() {
             if ($scope.newPartner === undefined) { return false; }
             if ($scope.newPartner.isReady === undefined) { return false; }
-            return $scope.newPartner.isReady() && $scope.form.acceptprivacypolicy;
+            return $scope.newPartner.isReady();
         };
 
         $scope.newPartnerSubmitted = function() {
             $scope.setStep(1);
-            $scope.soci.nom = $scope.newPartner.name;
-            $scope.soci.cognom = $scope.newPartner.surname;
+            $scope.initForm.soci.nom = $scope.newPartner.name;
+            $scope.initForm.soci.cognom = $scope.newPartner.surname;
 
 //            $scope.updateAnnualUse();
         };
@@ -203,7 +209,7 @@ angular.module('newSomEnergiaWebformsApp')
                 function (reason) {
                     $log.error('Post data failed', reason);
                     $scope.modalTitle = $translate.instant('ERROR_POST_NOVASOCIA');
-                    $scope.rawReason = reason;
+                    $scope.rawReason = JSON.stringify(reason,null,'  ');
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
             );

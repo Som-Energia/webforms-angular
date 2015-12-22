@@ -1,0 +1,73 @@
+<div ng-cloack>
+<label for="{{inputid}}">{{ description }}</label>
+<div
+        class="form-group has-feedback"
+        data-ng-class="{
+            'ng-invalid': overflowAttachFile || invalidAttachFileExtension
+        }"
+    >
+    <div class="input-group">
+        <span class="input-group-btn">
+            <span class="btn btn-lg btn-default btn-file ">
+                <span class="glyphicon glyphicon-folder-open"></span>&nbsp;
+                {{ 'SELECCIONA' | translate }}&hellip;
+                <div ng-if="multiple===undefined">
+                    <input
+                        type="file"
+                        id="{{inputid}}"
+                        name="{{inputid}}"
+                        accept="{{formats}}"
+                        onchange="angular.element(this).scope().check(this)"/>
+                </div>
+                <div ng-if="multiple!==undefined">
+                    <input
+                        multiple
+                        type="file"
+                        id="{{inputid}}"
+                        name="{{inputid}}"
+                        accept="{{formats}}"
+                        onchange="angular.element(this).scope().check(this)"/>
+                </div>
+            </span>
+        </span>
+        <input
+            ng-if="!files"
+            type="text"
+            class="input-lg form-control"
+            placeholder="{{placeholder || ('CAP_ARXIU_SELECCIONAT' | translate )}}"
+            ng-model="model.filename"
+            readonly
+            disabled>
+        </input>
+        <input
+            ng-repeat="file in files"
+            type="text"
+            class="input-lg form-control"
+            placeholder="{{placeholder || ('CAP_ARXIU_SELECCIONAT' | translate )}}"
+            value="{{file}}"
+            readonly
+            disabled>
+        </input>
+        <a
+            data-ng-if="helpText !== undefined"
+            role="button"
+            tabindex="-1"
+            class="btn btn-default input-group-addon"
+            style="width: 1em"
+            tooltip-append-to-body="true"
+            tooltip-trigger="focus"
+            tooltip-placement="left"
+            tooltip-html="helpText"
+            >
+            <span class="badge current small">?</span>
+        </a>
+    </div>
+    <span class="form-control-feedback glyphicon "  data-ng-class="{
+        'glyphicon-asterisk danger': required && !model.filename,
+        'glyphicon-remove danger': overflowAttachFile || invalidAttachFileExtension,
+        'glyphicon-refresh spinning warning': model.isValidating(),
+    }" ng-attr-style="{{helpText ? 'right:50px' : undefined}}"></span>
+    <span class="label label-danger pull-right" data-ng-show="orderFormSubmitted && invalidAttachFileExtension">{{ 'BAD_EXTENSION' | translate }}</span>
+    <span class="label label-danger pull-right" data-ng-show="overflowAttachFile">{{ 'OVERFLOW_FILE' | translate }}</span>
+</div>
+</div>

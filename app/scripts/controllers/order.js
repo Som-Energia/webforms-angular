@@ -3,82 +3,128 @@
 angular.module('newSomEnergiaWebformsApp')
     .controller('OrderCtrl', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
-        // DEBUG MODE
-        var debugEnabled = false;
-
         // INIT
-        $scope.developing = cfg.DEVELOPMENT; // TODO change xorigin domain on index.html && replace grunt sftp source environment
-
+        $scope.developing = cfg.DEVELOPMENT;
         // MUST APPLY TO EMBED WITH WORDPRESS (detects inside frame)
         if (window !== window.top) { // Inside a frame
-            document.domain = cfg.BASE_DOMAIN;
+            try {
+                document.domain = cfg.BASE_DOMAIN;
+            } catch(err) {
+                console.log('While setting document domain:', err);
+            }
         }
 
         // Just when developing, show untranslated strings instead of falling back to spanish
         if (!$scope.developing ) {
             $translate.fallbackLanguage('es');
         }
-
-        $scope.altesDeshabilitades = true;
-        $scope.showAll = false;
-
-        $scope.showAllSteps = function() {
-            $scope.step1Ready = true;
-            $scope.step2Ready = true;
-            $scope.step3Ready = true;
-            $scope.currentStep = undefined;
-        };
-        $scope.setStep = function(step) {
-            $scope.step0Ready = step === 0;
-            $scope.step1Ready = step === 1;
-            $scope.step2Ready = step === 2;
-            $scope.step3Ready = step === 3;
-            $scope.step4Ready = step === 4;
-            $scope.currentStep = step;
-        };
-        $scope.isStep = function(step) {
-            if (step===0) { return $scope.step0Ready === true; }
-            if (step===1) { return $scope.step1Ready === true; }
-            if (step===2) { return $scope.step2Ready === true; }
-            if (step===3) { return $scope.step3Ready === true; }
-            if (step===4) { return $scope.step4Ready === true; }
-            return step===0;
-        };
-        $scope.setStep(0);
-
-        $scope.cupsIsInvalid = false;
-        $scope.cnaeIsInvalid = false;
-        $scope.rate20IsInvalid = false;
-        $scope.rate21IsInvalid = false;
-        $scope.rate3AIsInvalid = false;
-        $scope.postalCodeIsInvalid = false;
-        $scope.accountPostalCodeIsInvalid = false;
-        $scope.invalidAttachFileExtension = false;
-        $scope.overflowAttachFile = false;
-        $scope.accountIsInvalid = false;
-        $scope.isStep2ButtonReady = false;
-        $scope.isStep3ButtonReady = false;
-        $scope.isFinalStepButtonReady = false;
-        $scope.orderFormSubmitted = false;
-        $scope.languages = [];
-        $scope.provinces = [];
-        $scope.cities = [];
-        $scope.language = {};
-        $scope.form = {};
-        $scope.form.usertype = 'person';
-        $scope.form.choosepayer = cfg.PAYER_TYPE_TITULAR;
-        $scope.completeAccountNumber = '';
-        $scope.rates = [cfg.RATE_20A, cfg.RATE_20DHA, cfg.RATE_20DHS, cfg.RATE_21A, cfg.RATE_21DHA, cfg.RATE_21DHS, cfg.RATE_30A];
-//        $scope.form.accountbankiban1 = 'ES';
         if ($routeParams.locale !== undefined) {
             $translate.use($routeParams.locale);
         }
 
+        $scope.altesDeshabilitades = false;
+        $scope.showAll = false;
+        // To false to debug one page completion state independently from the others
+        $scope.waitPreviousPages = false;
+
+        $scope.form = {};
+        $scope.form.ownerIsMember='yes';
+        $scope.form.phases = undefined;
+        $scope.form.discriminacio = undefined;
+        $scope.form.choosepayer = cfg.PAYER_TYPE_TITULAR;
+        $scope.form.address = {};
+        $scope.form.invoice = {};
+        $scope.form.documentation = {};
+        $scope.initForm = {};
+        $scope.formsoci = {};
+        $scope.ibanEditor = {};
+        $scope.cupsEditor = {};
+        $scope.cnaeEditor = {};
+        $scope.cadastreEditor = {};
+        $scope.owner = {};
+        $scope.payer = {};
+        $scope.maxfilesize = cfg.MAX_MB_FILE_SIZE;
+
+        $scope.showAllSteps = function() {
+            $scope.showAll = true;
+        };
+        $scope.rate20IsInvalid = false;
+        $scope.rate21IsInvalid = false;
+        $scope.rate3AIsInvalid = false;
+        $scope.postalCodeIsInvalid = false;
+        $scope.invalidAttachFileExtension = false;
+        $scope.overflowAttachFile = false;
+        $scope.accountIsInvalid = false;
+
+        $scope.isHaveLightPageComplete = false;
+        $scope.isOwnerPageComplete = false;
+        $scope.isPayerPageComplete = false;
+
+        $scope.orderFormSubmitted = false;
+        $scope.completeAccountNumber = '';
+        $scope.availablePowers = function() {
+            if ($scope.form.phases === undefined) {
+                return [];
+            }
+            if ($scope.form.phases === 'mono') {
+                return $scope.availablePowersMonophase;
+            }
+            return $scope.availablePowersTriphase;
+        };
+        $scope.rates = [
+            cfg.RATE_20A,
+            cfg.RATE_20DHA,
+            cfg.RATE_20DHS,
+            cfg.RATE_21A,
+            cfg.RATE_21DHA,
+            cfg.RATE_21DHS,
+            cfg.RATE_30A,
+        ];
+        $scope.availablePowersMonophase = [
+/*
+            0.345,
+            0.69,
+            0.805,
+            1.15,
+            1.725,
+*/
+            2.3,
+            3.45,
+            4.6,
+            5.75,
+            6.9,
+            8.05,
+            9.2,
+            10.35,
+            11.5,
+            14.49,
+        ];
+        $scope.availablePowersTriphase = [
+/*
+            1.039,
+            2.078,
+            2.425,
+            3.464,
+*/
+            5.196,
+            6.928,
+            10.392,
+            13.856,
+/*
+            17.321,
+            20.785,
+            24.249,
+            27.713,
+            31.177,
+            34.641,
+            43.648,
+*/
+        ];
         // GET LANGUAGES
         AjaxHandler.getLanguages($scope);
 
         // GET STATES
-        AjaxHandler.getStates($scope);
+        AjaxHandler.getStates($scope); // TODO: Remove it when in components
 
         // POWER VALIDATION
         ValidateHandler.validatePower($scope, 'form.power');
@@ -86,254 +132,188 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validatePower($scope, 'form.power3');
         ValidateHandler.validateInteger($scope, 'form.estimation');
 
-        // DNI VALIDATION
-//        var checkDniTimer = false;
-//        ValidateHandler.validateDni($scope, 'formsoci.dni', checkDniTimer);
-        var checkDni2Timer = false;
-        ValidateHandler.validateDni($scope, 'form.dni', checkDni2Timer);
-        var checkDni3Timer = false;
-        ValidateHandler.validateDni($scope, 'form.representantdni', checkDni3Timer);
-        var checkDni4Timer = false;
-        ValidateHandler.validateDni($scope, 'form.accountdni', checkDni4Timer);
-        var checkDni5Timer = false;
-        ValidateHandler.validateDni($scope, 'form.accountrepresentantdni', checkDni5Timer);
-
-        // EMAIL VALIDATION
-        var checkEmail1Timer = false;
-        ValidateHandler.validateEmail1($scope, 'form.email1', checkEmail1Timer);
-        var checkEmail2Timer = false;
-        ValidateHandler.validateEmail2($scope, 'form.email2', checkEmail2Timer);
-        var checkAccountEmail1Timer = false;
-        ValidateHandler.validateEmail1($scope, 'form.accountemail1', checkAccountEmail1Timer);
-        var checkAccountEmail2Timer = false;
-        ValidateHandler.validateEmail2($scope, 'form.accountemail2', checkAccountEmail2Timer);
-
-        // CUPS VALIDATION
-        var checkCupsTimer = false;
-        ValidateHandler.validateCups($scope, 'form.cups', checkCupsTimer);
-
-        // CNAE VALIDATION
-        var cnaeCupsTimer = false;
-        ValidateHandler.validateCnae($scope, 'form.cnae', cnaeCupsTimer);
-
-        // POSTAL CODE VALIDATION
-        ValidateHandler.validatePostalCode($scope, 'form.postalcode');
-        ValidateHandler.validatePostalCode($scope, 'form.accountpostalcode');
-
-        // TELEPHONE VALIDATION
-        ValidateHandler.validateTelephoneNumber($scope, 'form.phone1');
-        ValidateHandler.validateTelephoneNumber($scope, 'form.phone2');
-        ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone1');
-        ValidateHandler.validateTelephoneNumber($scope, 'form.accountphone2');
-
-        // BANK ACCOUNT VALIDATION
-        //ValidateHandler.validateBankAccountInteger($scope, 'form.accountbank');
-        //ValidateHandler.validateBankAccountInteger($scope, 'form.accountoffice');
-        //ValidateHandler.validateBankAccountInteger($scope, 'form.accountchecksum');
-        //ValidateHandler.validateBankAccountInteger($scope, 'form.accountnumber');
-
-        // IBAN VALIDATION
-        ValidateHandler.validateIban($scope, 'form.accountbankiban1');
-        ValidateHandler.validateIban($scope, 'form.accountbankiban2');
-        ValidateHandler.validateIban($scope, 'form.accountbankiban3');
-        ValidateHandler.validateIban($scope, 'form.accountbankiban4');
-        ValidateHandler.validateIban($scope, 'form.accountbankiban5');
-        ValidateHandler.validateIban($scope, 'form.accountbankiban6');
-
-        // ON CHANGE SELECTED STATE
-        $scope.updateSelectedCity = function() {
-            AjaxHandler.getCities($scope, 1, $scope.form.province.id);
-        };
-        $scope.updateSelectedCity2 = function() {
-            AjaxHandler.getCities($scope, 2, $scope.form.province2.id);
-        };
-        $scope.updateSelectedCity3 = function() {
-            AjaxHandler.getCities($scope, 3, $scope.form.province3.id);
-        };
-
-        // ON CHANGE SELECTED FILE TO UPLOAD VALIDATION
-        $scope.validateSelectedFileSize = function() {
-            var file = jQuery('#fileuploaderinput')[0].files[0];
-            $scope.$apply(function() {
-                $scope.overflowAttachFile = (file.size / 1024 / 1024) > cfg.MAX_MB_FILE_SIZE;
-                $scope.formListener();
-            });
-        };
-
-        // ON CHANGE SELECTED POWER RATE
-        $scope.updatePowerRatePopoverListener = function() {
-            $timeout(function() { jQuery('#spc-rate-conditional').popover({trigger : 'hover'}); }, 100);
-            $scope.formListener();
-        };
-
         $scope.esAlta = function() {
-            $log.log($scope.form.hasservice);
-            return  $scope.form.hasservice === 'no';
+            if ($scope.altesDeshabilitades) { return false; }
+            if ($scope.form.hasservice === undefined) { return undefined; }
+            return ! $scope.form.hasservice;
         };
+
+        $scope.$watch('form.phases', function(oldvalue, newvalue) {
+            // Reseting newpower if we change phases
+            if (oldvalue!==newvalue) {
+                $scope.form.newpower = undefined;
+            }
+            $scope.formListener();
+        });
+        function recomputeFareFromAlta(/*oldvalue, newvalue*/) {
+            var newFare = (
+                $scope.form.newpower+0 < 10 ? '2.0' : (
+                $scope.form.newpower+0 < 15 ? '2.1' : (
+                $scope.form.newpower!==undefined ? '3.0' :
+                undefined)));
+            if (newFare!=='3.0' && newFare !== undefined) {
+                $scope.form.power=$scope.form.newpower;
+            }
+            if (newFare !== undefined) {
+                var discrimination = $scope.form.newpower<15 ? $scope.form.discriminacio : 'nodh';
+                if (discrimination===undefined) {
+                    newFare = undefined;
+                } else {
+                    newFare += { nodh:'A', dh:'DHA', dhs:'DHS' }[discrimination];
+                }
+            }
+            $scope.form.rate = newFare;
+        }
+        $scope.$watch('form.newpower', recomputeFareFromAlta);
+        $scope.$watch('form.discriminacio', recomputeFareFromAlta);
 
         // CONTROL READY STEPS ON CHANGE FORM
+        $scope.isPartnerPageComplete = function() {
+            return (
+                $scope.initForm !== undefined &&
+                $scope.initForm.isReady !== undefined &&
+                $scope.initForm.isReady()
+            );
+        };
+        $scope.setOnwerAndPayerLanguage=function(soci) {
+            var language = soci.lang;
+            soci.langname = soci.lang==='ca_ES'?'Catalan':'Español';
+            $scope.payer.setLanguage(language);
+            $scope.owner.setLanguage(language);
+        };
+
+        $scope.isSupplyPointPageComplete = function() {
+            if ($scope.waitPreviousPages) {
+                if (!$scope.isPartnerPageComplete()) { return false; }
+            }
+            if (!$scope.altesDeshabilitades) {
+                if ($scope.esAlta() === undefined) { return false; }
+            }
+            if ($scope.form.address.value === undefined) { return false; }
+            if ($scope.form.province === undefined) { return false; }
+            if ($scope.form.city === undefined) { return false; }
+            if (!$scope.cupsEditor.isValid()) { return false; }
+            if (!$scope.cnaeEditor.isValid()) { return false; }
+            if ($scope.overflowAttachFile) { return false; }
+            return true;
+        };
+
+        $scope.isFarePageComplete = function() {
+            if ($scope.waitPreviousPages) {
+                if (!$scope.isSupplyPointPageComplete()) { return false; }
+            }
+            if ($scope.esAlta()!==false) {
+                if ($scope.form.phases===undefined) { return false; }
+                if ($scope.form.discriminacio===undefined) { return false; }
+            }
+            if ($scope.form.rate === undefined) { return false; }
+            if ($scope.form.power === undefined) { return false;}
+            switch ($scope.form.rate) {
+                case cfg.RATE_20A:
+                case cfg.RATE_20DHA:
+                case cfg.RATE_20DHS:
+                    if ($scope.rate20IsInvalid) { return false; }
+                    break;
+                case cfg.RATE_21A:
+                case cfg.RATE_21DHA:
+                case cfg.RATE_21DHS:
+                    if ($scope.rate21IsInvalid) {return false;}
+                    break;
+                case cfg.RATE_30A:
+                    if ($scope.form.power2 === undefined) {return false;}
+                    if ($scope.form.power3 === undefined) {return false;}
+                    if ($scope.rate3AIsInvalid) {return false;}
+                    break;
+            }
+            return true;
+        };
         $scope.formListener = function() {
-            $scope.isStep2ButtonReady = $scope.initForm.isReady() &&
-                ($scope.form.hasservice !== undefined || $scope.altesDeshabilitades) &&
-                $scope.form.address !== undefined &&
-                $scope.form.province !== undefined &&
-                $scope.form.city !== undefined &&
-                $scope.form.cups !== undefined &&
-                $scope.form.cnae !== undefined &&
-                $scope.cupsIsInvalid === false &&
-                $scope.cupsIsDuplicated === false &&
-                $scope.cnaeIsInvalid === false &&
-                $scope.form.rate !== undefined &&
-                (
-                    (($scope.form.rate === cfg.RATE_20A || $scope.form.rate === cfg.RATE_20DHA || $scope.form.rate === cfg.RATE_20DHS) && $scope.form.power !== undefined && !$scope.rate20IsInvalid) ||
-                    (($scope.form.rate === cfg.RATE_21A || $scope.form.rate === cfg.RATE_21DHA || $scope.form.rate === cfg.RATE_21DHS) && $scope.form.power !== undefined && !$scope.rate21IsInvalid) ||
-                    ($scope.form.rate === cfg.RATE_30A && $scope.form.power !== undefined && $scope.form.power2 !== undefined && $scope.form.power3 !== undefined && !$scope.rate3AIsInvalid)
-                ) &&
-                !$scope.overflowAttachFile;
-            $scope.isStep3ButtonReady = $scope.isStep2ButtonReady &&
-                $scope.form.changeowner !== undefined &&
-                $scope.form.accept === true &&
-                (
-                    ($scope.form.isownerlink === 'yes') ||
-                    ($scope.form.isownerlink === 'no' &&
-                        $scope.form.language !== undefined &&
-                        $scope.form.name !== undefined &&
-                        ($scope.form.representantname !== undefined && $scope.form.usertype === 'company' || $scope.form.usertype === 'person') &&
-                        $scope.form.changeowner !== undefined &&
-                        ($scope.form.surname !== undefined && $scope.form.usertype === 'person' || $scope.form.usertype === 'company') &&
-                        $scope.form.dni !== undefined &&
-                        $scope.form.email1 !== undefined &&
-                        $scope.form.email2 !== undefined &&
-                        $scope.form.email1 === $scope.form.email2 &&
-                        $scope.form.phone1 !== undefined &&
-                        $scope.form.address2 !== undefined &&
-                        $scope.form.postalcode !== undefined &&
-                        $scope.form.province2 !== undefined &&
-                        $scope.form.city2 !== undefined &&
-                        $scope.postalCodeIsInvalid === false &&
-                        $scope.dni2IsInvalid === false &&
-                        ($scope.dni3IsInvalid === false && $scope.form.usertype === 'company' || $scope.form.usertype === 'person') &&
-                        $scope.emailIsInvalid === false &&
-                        $scope.emailNoIguals === false)
+            console.log('listener');
+            $scope.effectiveOwner = $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci : $scope.owner;
+            $scope.effectivePayer = $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER ? $scope.payer :
+                $scope.form.choosepayer=== cfg.PAYER_TYPE_TITULAR ? $scope.effectiveOwner : $scope.initForm.soci;
+
+            $scope.isHaveLightPageComplete =
+                (!$scope.waitPreviousPages || $scope.isPartnerPageComplete()) && (
+                   $scope.esAlta() !== undefined ||
+                   $scope.altesDeshabilitades
                 );
-            $scope.isFinalStepButtonReady = $scope.isStep3ButtonReady &&
-                !$scope.accountIsInvalid &&
-                $scope.completeAccountNumber.length > 0 &&
+
+            $scope.isOwnerPageComplete =
+                (!$scope.waitPreviousPages || $scope.isSupplyPointPageComplete()) &&
+                $scope.isFarePageComplete() &&
+                ($scope.esAlta() || $scope.form.changeowner !== undefined) &&
+                $scope.form.ownerAcceptsGeneralConditions === true &&
+                (
+                    $scope.form.ownerIsMember === 'yes' ||
+                    (
+                        $scope.owner.isReady !== undefined &&
+                        $scope.owner.isReady()
+                    )
+                );
+            $scope.isPayerPageComplete =
+                (!$scope.waitPreviousPages || $scope.isOwnerPageComplete()) &&
+                $scope.ibanEditor.isValid !== undefined &&
+                $scope.ibanEditor.isValid() &&
                 $scope.form.acceptaccountowner &&
-                $scope.form.voluntary !== undefined && ($scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ||
-                ($scope.form.choosepayer === cfg.PAYER_TYPE_OTHER &&
-                        $scope.form.payertype !== undefined &&
-                        $scope.form.accountname !== undefined &&
-                        ($scope.form.payertype === 'company' || $scope.form.payertype === 'person' && $scope.form.accountsurname !== undefined) &&
-                        $scope.form.accountdni !== undefined &&
-                        $scope.form.accountemail1 !== undefined &&
-                        $scope.form.accountemail2 !== undefined &&
-                        $scope.form.accountemail1 === $scope.form.accountemail2 &&
-                        $scope.form.accountphone1 !== undefined &&
-                        $scope.form.accountaddress !== undefined &&
-                        $scope.form.accountpostalcode !== undefined &&
-                        $scope.form.province3 !== undefined &&
-                        $scope.form.city3 !== undefined &&
-                        $scope.form.accept2 !== undefined &&
-                        $scope.form.accept2 !== false &&
-                        $scope.dni4IsInvalid === false &&
-                        $scope.accountPostalCodeIsInvalid === false &&
-                        $scope.accountEmailIsInvalid === false &&
-                        $scope.accountEmailNoIguals === false))
-            ;
-        };
-        $scope.formAccountListener = function () {
-            if ($scope.form.accountbank !== undefined && $scope.form.accountoffice !== undefined && $scope.form.accountchecksum !== undefined && $scope.form.accountnumber !== undefined) {
-                $scope.completeAccountNumber = $scope.getCompleteAccountNumber();
-                var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/bank/' + $scope.completeAccountNumber, '017');
-                accountPromise.then(
-                    function (response) {
-                        $scope.accountIsInvalid = response === cfg.STATE_FALSE;
-                        $scope.orderForm.accountbank.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountoffice.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountchecksum.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountnumber.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.formListener($scope.form);
-                    },
-                    function(reason) {
-                        $scope.apiError = reason;
-                        $log.error('Check account number failed', reason);
-                    }
-                );
-            }
-        };
-        $scope.formAccountIbanListener = function () {
-            if ($scope.form.accountbankiban1 !== undefined && $scope.form.accountbankiban2 !== undefined && $scope.form.accountbankiban3 !== undefined && $scope.form.accountbankiban4 !== undefined && $scope.form.accountbankiban5 !== undefined && $scope.form.accountbankiban6 !== undefined) {
-                $scope.completeAccountNumber = $scope.getCompleteIban();
-                var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/iban/' + $scope.completeAccountNumber, '017');
-                accountPromise.then(
-                    function (response) {
-                        $scope.accountIsInvalid = response === cfg.STATE_FALSE;
-                        $scope.orderForm.accountbankiban1.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountbankiban2.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountbankiban3.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountbankiban4.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountbankiban5.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.orderForm.accountbankiban6.$setValidity('invalid', !$scope.accountIsInvalid);
-                        $scope.formListener($scope.form);
-                    },
-                    function(reason) { $log.error('Check IBAN failed', reason); }
-                );
-            }
+                $scope.form.voluntary !== undefined &&
+                (
+                    $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ||
+                    (
+                        $scope.payer.isReady !== undefined &&
+                        $scope.payer.isReady()
+                    )
+                ) &&
+                (
+                    $scope.form.choosepayer === cfg.PAYER_TYPE_TITULAR ||
+                        $scope.form.payerAcceptsGeneralConditions === true
+                )
+                ;
         };
 
-        // MOVE TO STEP 1 FORM
-        $scope.initFormSubmited = function() {
-            $scope.setStepReady(1, 'initFormSubmited');
+        $scope.goToSociPage = function() {
+            $scope.setStepReady(0, 'dadesSociPage');
         };
 
-        // BACK TO STEP 1 FORM
-        $scope.backToStep1Form = function() {
-            $scope.setStepReady(0, 'backToStep1Form');
+        $scope.goToSupplyPointPage = function() {
+            $scope.setStepReady(1, 'supplyPointPage');
         };
 
-        // MOVE TO STEP 2 FORM
-        $scope.moveToStep2Form = function() {
-            $scope.setStepReady(2, 'moveToStep2Form');
+        $scope.goToFarePage = function() {
+            $scope.setStepReady(7, 'farePage');
         };
 
-        // BACK TO STEP 2 FORM
-        $scope.backToStep2Form = function() {
-            $scope.setStepReady(1, 'backToStep2Form');
+        $scope.goToOwnerPage = function() {
+            $scope.setStepReady(2, 'ownerPage');
         };
 
-        // MOVE TO STEP 3 FORM
-        $scope.moveToStep3Form = function() {
-            $scope.setStepReady(3, 'moveToStep3Form');
+        $scope.goToPayerPage = function() {
+            $scope.setStepReady(3, 'payerPage');
         };
 
-        // BACK TO STEP 3 FORM
-        $scope.backToStep3Form = function() {
-            $scope.setStepReady(2, 'backToStep3Form');
+        $scope.goToConfirmationPage = function() {
+            $scope.setStepReady(4, 'confirmationPage');
         };
-
-        // MOVE TO STEP 4 FORM
-        $scope.moveToStep4Form = function() {
-            $scope.setStepReady(4, 'moveToStep4Form');
-        };
-
-        // BACK TO STEP 4 FORM
-        $scope.backToStep4Form = function() {
-            $scope.setStepReady(3, 'backToStep4Form');
-        };
+        $scope.wizardPage = {};
 
         // COMMON MOVE STEPS LOGIC
-        $scope.setStepReady = function(enabledStep, eventArgument) {
-            $scope.setStep(enabledStep);
-            if (debugEnabled) {
-                $log.log(eventArgument);
-            }
-            if ($scope.developing) {
-                jQuery(document).trigger('moveStep', [eventArgument]);
-            } else {
-                parent.jQuery('body').trigger('moveStep', [eventArgument]);
-            }
+        $scope.setStepReady = function(enabledStep, pageName) {
+            $scope.wizardPage.current = pageName;
+//            $log.log(pageName);
         };
+
+        $scope.goToSociPage();
+
+        // KLUDGE: how to translate params of a translation
+        // DOUBLE: how to translate params of a translation and passing it to the child scopes
+        $scope.t={};
+        $scope.t.HELP_INSTALL_TYPE_URL = $translate.instant('HELP_INSTALL_TYPE_URL');
+        $scope.t.HELP_POTENCIA_URL = $translate.instant('HELP_POTENCIA_URL');
+        $scope.t.HELP_DISCRIMINACIO_HORARIA_URL = $translate.instant('HELP_DISCRIMINACIO_HORARIA_URL');
+        $scope.t.HELP_POWER_30_URL = $translate.instant('HELP_POWER_30_URL');
+        $scope.t.HELP_POPOVER_CUPS_ALTA_URL = $translate.instant('HELP_POPOVER_CUPS_ALTA_URL');
+        $scope.t.HELP_POPOVER_RATE_URL = $translate.instant('HELP_POPOVER_RATE_URL');
+        $scope.t.HELP_ADJUNTAR_BUTLLETI_URL = $translate.instant('HELP_ADJUNTAR_BUTLLETI_URL');
 
 
         // ON SUBMIT FORM
@@ -344,62 +324,68 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.invalidAttachFileExtension = false;
             $scope.overflowAttachFile = false;
             $scope.orderForm.cups.$setValidity('exist', true);
-            $scope.orderForm.file.$setValidity('exist', true);
             uiHandler.showLoadingDialog();
             // Prepare request data
+            var postData = {
+            };
             var formData = new FormData();
             formData.append('id_soci', $scope.formsoci.socinumber);
             formData.append('dni', $scope.formsoci.dni);
-            formData.append('tipus_persona', $scope.form.usertype === 'person' ? 0 : 1);
-            formData.append('soci_titular', $scope.form.isownerlink === 'yes' ? 1 : 0);
             formData.append('canvi_titular', $scope.form.changeowner === 'yes' ? 1 : 0);
             if (!$scope.altesDeshabilitades) {
-                formData.append('alta_subministre', $scope.esAlta() ? 1 : 0);
-                formData.append('proces', $scope.esAlta() ? 'A3' : $scope.form.isownerlink === 'yes' ? 'C2': 'C1');
+                formData.append('proces', $scope.esAlta() ? 'A3' : $scope.form.changeowner === 'yes' ? 'C2': 'C1');
             }
-            formData.append('representant_nom', $scope.form.usertype === 'company' ? $scope.form.representantname : '');
-            formData.append('representant_dni', $scope.form.usertype === 'company' ? $scope.form.representantdni : '');
-            formData.append('titular_nom', $scope.form.isownerlink === 'yes' ? $scope.soci.nom : $scope.form.name);
-            formData.append('titular_cognom', $scope.form.isownerlink === 'yes' ? $scope.soci.cognom : $scope.form.surname || '');
-            formData.append('titular_dni', $scope.form.isownerlink === 'yes' ? $scope.soci.dni : $scope.form.dni);
-            formData.append('titular_email', $scope.form.isownerlink === 'yes' ? $scope.soci.email : $scope.form.email1);
-            formData.append('titular_tel', $scope.form.isownerlink === 'yes' ? $scope.soci.tel : $scope.form.phone1);
-            formData.append('titular_tel2', $scope.form.isownerlink === 'yes' ? $scope.soci.tel2 : $scope.form.phone2 || '');
-            formData.append('titular_adreca', $scope.form.isownerlink === 'yes' ? $scope.soci.adreca : $scope.form.address2);
-            formData.append('titular_municipi', $scope.form.isownerlink === 'yes' ? $scope.soci.municipi : $scope.form.city2.id);
-            formData.append('titular_cp', $scope.form.isownerlink === 'yes' ? $scope.soci.cp : $scope.form.postalcode);
-            formData.append('titular_provincia', $scope.form.isownerlink === 'yes' ? $scope.soci.provincia : $scope.form.province2.id);
+            var ownerIsMember = $scope.form.ownerIsMember==='yes';
+            formData.append('soci_titular', ownerIsMember ? 1 : 0);
+            // TODO: estem ignorant l'idioma dels no socis (owner i payer)
+            // TODO: agafar tipus_persona, representant_nom, i representant_dni del soci quan toca
+            formData.append('tipus_persona', $scope.owner.usertype === 'person' ? 0 : 1);
+            formData.append('representant_nom', $scope.owner.usertype === 'company' ? $scope.owner.representantname : '');
+            formData.append('representant_dni', $scope.owner.usertype === 'company' ? $scope.owner.representantdni : '');
+            formData.append('titular_nom', ownerIsMember ? $scope.initForm.soci.nom : $scope.owner.name);
+            formData.append('titular_cognom', ownerIsMember ? $scope.initForm.soci.cognom : $scope.owner.surname || '');
+            formData.append('titular_dni', ownerIsMember ? $scope.initForm.soci.dni : $scope.owner.dni);
+            formData.append('titular_email', ownerIsMember ? $scope.initForm.soci.email : $scope.owner.email1);
+            formData.append('titular_tel', ownerIsMember ? $scope.initForm.soci.tel : $scope.owner.phone1);
+            formData.append('titular_tel2', ownerIsMember ? $scope.initForm.soci.tel2 : $scope.owner.phone2 || '');
+            formData.append('titular_adreca', ownerIsMember ? $scope.initForm.soci.adreca : $scope.owner.address);
+            formData.append('titular_municipi', ownerIsMember ? $scope.initForm.soci.municipi : $scope.owner.city.id);
+            formData.append('titular_cp', ownerIsMember ? $scope.initForm.soci.cp : $scope.owner.postalcode);
+            formData.append('titular_provincia', ownerIsMember ? $scope.initForm.soci.provincia : $scope.owner.province.id);
+            formData.append('titular_lang', ownerIsMember ? $scope.initForm.soci.lang : $scope.owner.language.code);
             formData.append('tarifa', $scope.form.rate);
-            formData.append('cups', $scope.form.cups);
-            formData.append('consum', $scope.form.estimation || '');
+            formData.append('cups', $scope.cupsEditor.value);
+            formData.append('consum', $scope.form.estimation || ''); // TODO: Remove this when it is clear is not used anymore
             formData.append('potencia', Math.round($scope.form.power * cfg.THOUSANDS_CONVERSION_FACTOR));
             formData.append('potencia_p2', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power2 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
             formData.append('potencia_p3', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power3 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
-            formData.append('cnae', $scope.form.cnae);
-            formData.append('cups_adreca', $scope.form.address);
+            formData.append('cnae', $scope.cnaeEditor.value || '');
+            formData.append('cups_adreca', $scope.form.address.value);
             formData.append('cups_provincia', $scope.form.province.id);
             formData.append('cups_municipi', $scope.form.city.id);
-            formData.append('referencia', $scope.form.catastre || '');
-            formData.append('fitxer', jQuery('#fileuploaderinput')[0].files[0]);
-            //formData.append('entitat', $scope.form.accountbank);
-            //formData.append('sucursal', $scope.form.accountoffice);
-            //formData.append('control', $scope.form.accountchecksum);
-            //formData.append('ncompte', $scope.form.accountnumber);
+            formData.append('referencia', $scope.cadastreEditor.value || '');
+            formData.append('fitxer', $scope.form.invoice.file().files[0]);
+            var documentationFiles = $scope.form.documentation.file();
+            jQuery.each(documentationFiles.files, function(j, file) {
+                formData.append('documentacio_alta', file);
+            });
             formData.append('payment_iban', $scope.getCompleteIban());
             formData.append('escull_pagador', $scope.form.choosepayer);
-            formData.append('compte_tipus_persona', $scope.form.payertype === 'person' ? 0 : 1);
-            formData.append('compte_nom', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountname);
-            formData.append('compte_cognom', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.form.payertype === 'person' ? $scope.form.accountsurname : '');
-            formData.append('compte_dni', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountdni);
-            formData.append('compte_adreca', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountaddress);
-            formData.append('compte_provincia', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.province3.id);
-            formData.append('compte_municipi', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.city3.id);
-            formData.append('compte_email', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountemail1);
-            formData.append('compte_tel', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountphone1);
-            formData.append('compte_tel2', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountphone2);
-            formData.append('compte_cp', $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ? '' : $scope.form.accountpostalcode);
-            formData.append('compte_representant_nom', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.form.payertype === 'company' ? $scope.form.accountrepresentantname : '');
-            formData.append('compte_representant_dni', $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER && $scope.form.payertype === 'company' ? $scope.form.accountrepresentantdni : '');
+            formData.append('compte_tipus_persona', $scope.payer.usertype === 'person' ? 0 : 1);
+            var noPayer = $scope.form.choosepayer !== 'altre';
+            formData.append('compte_nom', noPayer ? '' : $scope.payer.name);
+            formData.append('compte_cognom', noPayer || $scope.payer.usertype !== 'person' ? '' : $scope.payer.surname);
+            formData.append('compte_dni', noPayer ? '' : $scope.payer.dni);
+            formData.append('compte_adreca', noPayer ? '' : $scope.payer.address);
+            formData.append('compte_provincia', noPayer ? '' : $scope.payer.province.id);
+            formData.append('compte_municipi', noPayer ? '' : $scope.payer.city.id);
+            formData.append('compte_email', noPayer ? '' : $scope.payer.email1);
+            formData.append('compte_tel', noPayer ? '' : $scope.payer.phone1);
+            formData.append('compte_tel2', noPayer ? '' : $scope.payer.phone2);
+            formData.append('compte_cp', noPayer ? '' : $scope.payer.postalcode);
+            formData.append('compte_representant_nom', noPayer || $scope.payer.usertype !== 'company' ? '' : $scope.payer.representantname);
+            formData.append('compte_representant_dni', noPayer || $scope.payer.usertype !== 'company' ? '' : $scope.payer.representantdni);
+            formData.append('compte_lang', noPayer ? '' : $scope.payer.language.code);
             formData.append('condicions', 1);
             formData.append('condicions_privacitat', 1);
             formData.append('condicions_titular', 1);
@@ -422,9 +408,10 @@ angular.module('newSomEnergiaWebformsApp')
                             $window.top.location.href = $translate.instant('CONTRACT_OK_REDIRECT_URL');
                         } else {
                             // error
+                            $scope.modalTitle = $translate.instant('ERROR_POST_CONTRACTE');
                             $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
                             $scope.submitReady = false;
-                            $scope.rawReason = response;
+                            $scope.rawReason = JSON.stringify(response.data, null,'  ');
                             jQuery('#webformsGlobalMessagesModal').modal('show');
                         }
                     } else if (response.data.status === cfg.STATUS_OFFLINE) {
@@ -443,7 +430,7 @@ angular.module('newSomEnergiaWebformsApp')
                     }
                     $scope.overflowAttachFile = true;
                     $scope.showAllSteps();
-                    $scope.rawReason = reason;
+                    $scope.rawReason = JSON.stringify(reason,null,'  ');
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
             );
@@ -456,7 +443,9 @@ angular.module('newSomEnergiaWebformsApp')
             var result = '';
             if (arrayResponse.required_fields !== undefined) {
                 for (var i = 0; i < arrayResponse.required_fields.length; i++) {
-                    result = result + 'ERROR REQUIRED FIELD:' + arrayResponse.required_fields[i] + ' ';
+                    result += '<li>'+$translate.instant('ERROR_REQUIRED_FIELD', {
+                        field: arrayResponse.required_fields[i],
+                    })+'</li>';
                 }
             }
             if (arrayResponse.invalid_fields !== undefined) {
@@ -467,69 +456,48 @@ angular.module('newSomEnergiaWebformsApp')
                     } else if (arrayResponse.invalid_fields[j].field === 'fitxer' && arrayResponse.invalid_fields[j].error === 'bad_extension') {
                         $scope.invalidAttachFileExtension = true;
                         $scope.orderForm.file.$setValidity('exist', false);
-                    } else {
-                        result = result + 'ERROR INVALID FIELD: ' + arrayResponse.invalid_fields[j].field + '·' + arrayResponse.invalid_fields[j].error + ' ';
                     }
+                    result += '<li>'+$translate.instant('ERROR_INVALID_FIELD', {
+                        field: arrayResponse.invalid_fields[j].field,
+                        reason: arrayResponse.invalid_fields[j].error
+                    })+'</li>';
                 }
             }
             $scope.showAllSteps();
-
-            return result;
+            if (result === '') {return '';} // TODO: Manage case
+            return '<ul>'+result+'</ul>';
         };
 
         // GET COMPLETE ACCOUNT NUMBER
-        $scope.getCompleteAccountNumber = function() {
-            return $scope.form.accountbank + $scope.form.accountoffice + $scope.form.accountchecksum + $scope.form.accountnumber;
-        };
         $scope.getCompleteIban = function() {
-            return $scope.form.accountbankiban1 + $scope.form.accountbankiban2 + $scope.form.accountbankiban3 + $scope.form.accountbankiban4 + $scope.form.accountbankiban5 + $scope.form.accountbankiban6;
+            return $scope.ibanEditor.value;
         };
 
         // GET COMPLETE ACCOUNT NUMBER WITH FORMAT
-        $scope.getCompleteAccountNumberWithFormat = function() {
-            return $scope.form.accountbank + '-' + $scope.form.accountoffice + '-' + $scope.form.accountchecksum + '-' + $scope.form.accountnumber;
-        };
         $scope.getCompleteIbanWithFormat = function() {
-            return $scope.form.accountbankiban1 + ' ' + $scope.form.accountbankiban2 + ' ' + $scope.form.accountbankiban3 + ' ' + $scope.form.accountbankiban4 + ' ' + $scope.form.accountbankiban5 + ' ' + $scope.form.accountbankiban6;
+            if (!$scope.ibanEditor) {
+                return 'INVALID';
+            }
+            if ($scope.ibanEditor.isValid===undefined) {
+                return 'INVALID';
+            }
+            if (!$scope.ibanEditor.isValid()) {
+                return 'INVALID';
+            }
+            var joined = $scope.ibanEditor.value.toUpperCase();
+            joined = joined.split(' ').join('');
+            joined = joined.split('-').join('');
+            joined = joined.split('.').join('');
+            return [
+                joined.slice(0,4),
+                joined.slice(4,8),
+                joined.slice(8,12),
+                joined.slice(12,16),
+                joined.slice(16,20),
+                joined.slice(20,24),
+            ].join(' ');
         };
 
-        // DEBUG (only apply on development environment)
-        if (debugEnabled) {
-            $scope.formsoci.socinumber = debugCfg.SOCI;
-            $scope.formsoci.dni = debugCfg.DNI;
-//            $scope.form.province = {id: 0, name: 'province'};
-//            $scope.form.city = {id: 0, name: 'city'};
-            $scope.form.address = debugCfg.ADDRESS;
-            $scope.form.cups = debugCfg.CUPS;
-            $scope.form.cnae = debugCfg.CNAE;
-            $scope.form.power = debugCfg.POWER;
-            $scope.form.rate = debugCfg.RATE;
-            $scope.executeGetSociValues();
-            $scope.step0Ready = false;
-            $scope.step1Ready = true;
-            $scope.step2Ready = true;
-            $scope.step3Ready = true;
-            $scope.step4Ready = true;
-            $scope.form.accountbank = debugCfg.ACCOUNT_BANK;
-            $scope.form.accountoffice = debugCfg.ACCOUNT_OFFICE;
-            $scope.form.accountchecksum = debugCfg.ACCOUNT_CHECKSUM;
-            $scope.form.accountnumber = debugCfg.ACCOUNT_NUMBER;
-            $scope.form.representantdni = debugCfg.CIF;
-            $scope.form.representantname = debugCfg.COMPANY;
-            $scope.form.dni = debugCfg.DNI;
-            $scope.form.name = debugCfg.NAME;
-            $scope.form.surname = debugCfg.SURNAME;
-            $scope.form.address2 = debugCfg.ADDRESS;
-            $scope.form.phone1 = debugCfg.PHONE;
-            $scope.form.email1 = debugCfg.EMAIL;
-            $scope.form.email2 = debugCfg.EMAIL;
-            $scope.form.accept = true;
-            $scope.form.accountbankiban1 = debugCfg.IBAN1;
-            $scope.form.accountbankiban2 = debugCfg.IBAN2;
-            $scope.form.accountbankiban3 = debugCfg.IBAN3;
-            $scope.form.accountbankiban4 = debugCfg.IBAN4;
-            $scope.form.accountbankiban5 = debugCfg.IBAN5;
-            $scope.form.accountbankiban6 = debugCfg.IBAN6;
-            cfg.API_BASE_URL = 'https://sompre.gisce.net:5001/';
-        }
     });
+
+
