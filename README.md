@@ -77,37 +77,40 @@ ensure:
 - Your secret.json is pointing to `/home/somenergia/webforms2-devel`
 - Execute
 
+    $ grunt build
     $ grunt sftp
 
-It will be available at 
+It will be available at: http://testforms.somenergia.coop/
 
 ### Deploy on production
 
-To publish on the sftp server specifiet at secret.json 
-
-- You are in the master branch
-- Changes have been merged from devel
-- Your secret.json is pointing to `/home/somenergia/webforms2`  (without `-devel`)
-- Execute:
-
-    $ grunt sftp
-
-It will be available at:
-
-### Wordpress
-
-Wordpress integrates the forms in two ways:
+Webforms are integrated in Wordpress in two ways:
 
 - As an iframe (most forms)
 - Embeding the index.html code (becoming-a-partner form)
 
+Forms based on iframes rely on sftp upload.
+Embeded forms rely on rawgit using a version tag.
 
-The later, is based rawgit following a version tag.
 
-    git tag v1.4.0
-    git push --tags
+We deploy production from `master` branch.
+We should merge devel.
 
-Such version tag is referenced and must be updated on:
+***Your secret.json is pointing to `/home/somenergia/webforms2`
+(without `-devel`)***
+
+    $ git checkout master
+    $ git merge devel
+    $ grunt build
+
+Test it in local with `grunt serve`.
+
+    $ git push
+    $ git tag v1.4.0 # change to the next version!!
+    $ git push --tags
+    $ grunt sftp
+
+Update the version tag on the rawgit urls you find at:
 
 `~somenergia/www2/wp-content/themes/superior/footer-forms.php`
 
@@ -116,6 +119,14 @@ WP does not realize it happened and
 you should invalidate the wp cache.
 
 WP Dashboard -> Page Cache -> Empty all caches
+
+
+It will be available at: http://www.somenergia.coop
+
+
+
+
+
 
 
 
