@@ -28,7 +28,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.messages = null;
         $scope.accountIsInvalid = false;
         $scope.ibanValidated = false;
-        $scope.form.payment = 'creditcard';
+        $scope.form.payment = 'bankaccount';
         $scope.form.accountbankiban1 = 'ES';
         $scope.completeAccountNumber = '';
         $translate.fallbackLanguage('es');
