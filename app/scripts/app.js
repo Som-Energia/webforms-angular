@@ -59,6 +59,7 @@ angular.module('newSomEnergiaWebformsApp', [
         $sceDelegateProvider.resourceUrlWhitelist([
             'self',
             new RegExp('^(http[s]?):\/\/rawgit.com/.+$'),
+            new RegExp('^(http[s]?):\/\/cdn.rawgit.com/.+$'),
         ]);
     })
     .config(function($translateProvider) {
