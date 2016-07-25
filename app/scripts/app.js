@@ -20,7 +20,7 @@ angular.module('newSomEnergiaWebformsApp', [
     .config(function ($routeProvider, $sceDelegateProvider/*, $locationProvider*/) {
         var base = (
             developmentMode ? '' :
-            '//rawgit.com/Som-Energia/new-api-webforms/master/app/'
+            '//cdn.rawgit.com/Som-Energia/new-api-webforms/v1.4.3/app/'
             );
 
         $routeProvider
@@ -59,6 +59,7 @@ angular.module('newSomEnergiaWebformsApp', [
         $sceDelegateProvider.resourceUrlWhitelist([
             'self',
             new RegExp('^(http[s]?):\/\/rawgit.com/.+$'),
+            new RegExp('^(http[s]?):\/\/cdn.rawgit.com/.+$'),
         ]);
     })
     .config(function($translateProvider) {
