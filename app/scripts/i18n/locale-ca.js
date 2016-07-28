@@ -227,6 +227,9 @@ angular.module('newSomEnergiaWebformsApp')
                 INVALID_POWER_21: 'La potència per tarifes 2.1 hauria ha d\'estar entre 10kW i 15kW',
                 INVALID_POWER_30: 'Al menys un període ha de tenir una potència superior o igual a 15kW',
                 NO_HOURLY_DISCRIMINATION_CHOSEN: 'No has especificat si vols fer discriminació horària',
+                OWNER_CHANGED_NOT_CHOSEN: 'Cal indicar si es manté l\'actual titular del contracte',
+                MISSING_OWNER_DATA: 'Falten dades personals', // TODO: quines?
+                UNACCEPTED_GENERAL_CONDITIONS: 'Cal aceptar les condicions generals del contracte',
             })
         ;
     });

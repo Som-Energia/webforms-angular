@@ -24,7 +24,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.showAll = false;
         // To false to debug one page completion state independently from the others
-        $scope.waitPreviousPages = false;
+        $scope.waitPreviousPages = true;
 
         $scope.form = {};
         $scope.form.ownerIsMember='yes';
@@ -184,12 +184,14 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.isSupplyPointPageComplete = function() {
-			function error(message) {
-				$scope.supplyPointPageError = message;
-				return false;
-			}
+            console.log('- isSupplyPointPageComplete');
+            function error(message) {
+                $scope.supplyPointPageError = message;
+                console.log(message);
+                return false;
+            }
 
-			$scope.supplyPointPageError = undefined;
+            $scope.supplyPointPageError = undefined;
 
             if ($scope.waitPreviousPages) {
                 if (!$scope.isPartnerPageComplete()) {
@@ -221,22 +223,24 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.isFarePageComplete = function() {
-			function error(message) {
-				$scope.farePageError = message;
-				return false;
-			}
+            console.log('- isFarePageComplete');
+            function error(message) {
+                $scope.farePageError = message;
+                console.log(message);
+                return false;
+            }
 
-			$scope.farePageError = undefined;
+            $scope.farePageError = undefined;
 
             if ($scope.waitPreviousPages) {
-                if (!$scope.isSupplyPointPageComplete()) {
+                if ($scope.isSupplyPointPageComplete()===false) {
                     return error('INCOMPLETE_PREVIOUS_STEP');
                 }
             }
             if ($scope.esAlta()===true) {
                 if ($scope.form.phases===undefined) {
-					return error('NO_MONOPHASE_CHOICE');
-				}
+                    return error('NO_MONOPHASE_CHOICE');
+                }
             }
             if ($scope.esAlta()===false) {
                 if ($scope.form.rate === undefined) {
@@ -283,6 +287,36 @@ angular.module('newSomEnergiaWebformsApp')
             return true;
         };
 
+        $scope.isOwnerPageComplete = function() {
+            console.log('- isOwnerPageComplete');
+            function error(message) {
+                $scope.ownerPageError = message;
+                console.log(message);
+                return false;
+            }
+            $scope.ownerPageError = undefined;
+
+            if ($scope.waitPreviousPages) {
+                if (!$scope.isFarePageComplete()) {
+                    return error('INCOMPLETE_PREVIOUS_STEP');
+                }
+            }
+            if (!$scope.esAlta()) {
+                if ($scope.form.changeowner === undefined) {
+                    return error('OWNER_CHANGED_NOT_CHOSEN');
+                }
+            }
+            if ($scope.form.ownerIsMember !== 'yes') {
+                if ($scope.owner.isReady === undefined || !$scope.owner.isReady()) {
+                    return error('MISSING_OWNER_DATA');
+                }
+            }
+            if ($scope.form.ownerAcceptsGeneralConditions !== true) {
+                return error('UNACCEPTED_GENERAL_CONDITIONS');
+            }
+            return true;
+        };
+
         $scope.formListener = function() {
             console.log('listener');
             $scope.effectiveOwner = $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci : $scope.owner;
@@ -294,18 +328,6 @@ angular.module('newSomEnergiaWebformsApp')
                    $scope.esAlta() !== undefined
                 );
 
-            $scope.isOwnerPageComplete =
-                (!$scope.waitPreviousPages || $scope.isSupplyPointPageComplete()) &&
-                $scope.isFarePageComplete() &&
-                ($scope.esAlta() || $scope.form.changeowner !== undefined) &&
-                $scope.form.ownerAcceptsGeneralConditions === true &&
-                (
-                    $scope.form.ownerIsMember === 'yes' ||
-                    (
-                        $scope.owner.isReady !== undefined &&
-                        $scope.owner.isReady()
-                    )
-                );
             $scope.isPayerPageComplete =
                 (!$scope.waitPreviousPages || $scope.isOwnerPageComplete()) &&
                 $scope.ibanEditor.isValid !== undefined &&

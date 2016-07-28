@@ -459,7 +459,7 @@
             prev-page="goToFarePage()"
             next-page="goToPayerPage()"
             show-always='showAll'
-            ready="isOwnerPageComplete"
+            ready="isOwnerPageComplete()"
         >
             <div data-ng-hide='esAlta()' class="row extra-margin-top">
                 <div class="col-xs-12 form-group">
@@ -518,6 +518,9 @@
                         'glyphicon-asterisk danger': form.ownerAcceptsGeneralConditions === undefined,
                     }" style="right:2em"></span>
                 </div>
+            </div>
+            <div class="row extra-margin-top" data-ng-show="ownerPageError">
+                <div class="alert alert-danger" translate="{{ownerPageError}}">boo</div>
             </div>
         </wizard-page>
         <!-- Page: Payer data -->
