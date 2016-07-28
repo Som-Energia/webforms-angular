@@ -532,7 +532,7 @@
             next-page="goToConfirmationPage()"
             next-text="{{ 'CONFIRMAR_CONTRACTACIO' | translate }}"
             show-always='showAll'
-            ready="isPayerPageComplete"
+            ready="isPayerPageComplete()"
         >
             <div class="row extra-margin-top">
                 <div class="col-xs-12">
@@ -615,6 +615,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row extra-margin-top" data-ng-show="payerPageError">
+                <div class="alert alert-danger" translate="{{payerPageError}}">boo</div>
             </div>
         </wizard-page>
     </form>

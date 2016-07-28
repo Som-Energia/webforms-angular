@@ -24,7 +24,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.showAll = true;
         // To false to debug one page completion state independently from the others
-        $scope.waitPreviousPages = true;
+        $scope.waitPreviousPages = false;
 
         $scope.form = {};
         $scope.form.ownerIsMember='yes';
@@ -59,6 +59,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.farePageError = undefined;
         $scope.supplyPointPageError = undefined;
         $scope.ownerPageError = undefined;
+        $scope.payerPageError = undefined;
 
         $scope.orderFormSubmitted = false;
         $scope.completeAccountNumber = '';
@@ -315,30 +316,54 @@ angular.module('newSomEnergiaWebformsApp')
             return true;
         };
 
+        $scope.isPayerPageComplete = function() {
+            console.log('- isPayerPageComplete');
+            function error(message) {
+                $scope.payerPageError = message;
+                console.log(message);
+                return false;
+            }
+            $scope.payerPageError = undefined;
+            if ($scope.waitPreviousPages) {
+                if (!$scope.isOwnerPageComplete()) {
+                    return error('INCOMPLETE_PREVIOUS_STEP');
+                }
+            }
+            if ($scope.form.choosepayer === cfg.PAYER_TYPE_OTHER) {
+                if ($scope.payer.isReady === undefined) {
+                    return false; // Just initializing
+                }
+                if ($scope.payer.isReady()!==true) {
+                    return error('MISSING_PAYER_DATA');
+                }
+            }
+            if ($scope.form.choosepayer !== cfg.PAYER_TYPE_TITULAR) {
+                if ($scope.form.payerAcceptsGeneralConditions !== true) {
+                    return error('UNACCEPTED_GENERAL_CONDITIONS_NON_OWNER_PAYER');
+                }
+            }
+            if ($scope.ibanEditor.isValid === undefined) {
+                return false; // Just initializing
+            }
+            if ($scope.ibanEditor.isValid() !== true) {
+                return error('INVALID_PAYER_IBAN');
+            }
+            if ($scope.form.acceptaccountowner !== true) {
+                return error('UNCONFIRMED_ACCOUNT_OWNER');
+            }
+            if ($scope.form.voluntary === undefined) {
+                return error('NO_VOLUNTARY_DONATION_CHOICE_TAKEN');
+            }
+            return true;
+        };
+
         $scope.formListener = function() {
             console.log('listener');
             $scope.effectiveOwner = $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci : $scope.owner;
             $scope.effectivePayer = $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER ? $scope.payer :
                 $scope.form.choosepayer=== cfg.PAYER_TYPE_TITULAR ? $scope.effectiveOwner : $scope.initForm.soci;
 
-            $scope.isPayerPageComplete =
-                (!$scope.waitPreviousPages || $scope.isOwnerPageComplete()) &&
-                $scope.ibanEditor.isValid !== undefined &&
-                $scope.ibanEditor.isValid() &&
-                $scope.form.acceptaccountowner &&
-                $scope.form.voluntary !== undefined &&
-                (
-                    $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ||
-                    (
-                        $scope.payer.isReady !== undefined &&
-                        $scope.payer.isReady()
-                    )
-                ) &&
-                (
-                    $scope.form.choosepayer === cfg.PAYER_TYPE_TITULAR ||
-                        $scope.form.payerAcceptsGeneralConditions === true
-                )
-                ;
+            $scope.isPayerPageComplete();
         };
 
         $scope.goToSociPage = function() {
