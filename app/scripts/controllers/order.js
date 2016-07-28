@@ -22,7 +22,7 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.use($routeParams.locale);
         }
 
-        $scope.showAll = false;
+        $scope.showAll = true;
         // To false to debug one page completion state independently from the others
         $scope.waitPreviousPages = true;
 
@@ -55,8 +55,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.overflowAttachFile = false;
         $scope.accountIsInvalid = false;
 
-        $scope.isHaveLightPageComplete = false;
-        $scope.isOwnerPageComplete = false;
         $scope.isPayerPageComplete = false;
         $scope.farePageError = undefined;
         $scope.supplyPointPageError = undefined;
@@ -322,11 +320,6 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.effectiveOwner = $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci : $scope.owner;
             $scope.effectivePayer = $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER ? $scope.payer :
                 $scope.form.choosepayer=== cfg.PAYER_TYPE_TITULAR ? $scope.effectiveOwner : $scope.initForm.soci;
-
-            $scope.isHaveLightPageComplete =
-                (!$scope.waitPreviousPages || $scope.isPartnerPageComplete()) && (
-                   $scope.esAlta() !== undefined
-                );
 
             $scope.isPayerPageComplete =
                 (!$scope.waitPreviousPages || $scope.isOwnerPageComplete()) &&
