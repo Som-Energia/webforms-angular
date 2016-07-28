@@ -10,7 +10,7 @@
         model="wizardPage"
         header="{{ 'FORMULARI_CONTRACTACIO' | translate }}"
         page-name='dadesSociPage'
-        next-page="altesDeshabilitades ? goToSupplyPointPage() : goToHaveLightPage()"
+        next-page="goToHaveLightPage()"
         show-always='showAll'
         ready="initForm.isReady()"
         hide-buttons
@@ -36,7 +36,7 @@
             show-always='showAll'
             ready="isSupplyPointPageComplete()"
         >
-            <div data-ng-hide='altesDeshabilitades' class="row extra-margin-top">
+            <div class="row extra-margin-top">
                 <div class="col-xs-12 form-group">
                     <div class="panel panel-warning">
                         <div class="panel-heading" style="text-align:center">{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}
@@ -447,7 +447,7 @@
                 </div>
             </div>
             <div class="row extra-margin-top" data-ng-show="farePageError">
-                <div class="alert alert-danger">{{ farePageError | translate }}</div>
+                <div class="alert alert-danger" translate="{{farePageError}}"></div>
             </div>
         </wizard-page>
 

@@ -22,7 +22,6 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.use($routeParams.locale);
         }
 
-        $scope.altesDeshabilitades = false;
         $scope.showAll = false;
         // To false to debug one page completion state independently from the others
         $scope.waitPreviousPages = false;
@@ -136,7 +135,6 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateInteger($scope, 'form.estimation');
 
         $scope.esAlta = function() {
-            if ($scope.altesDeshabilitades) { return false; }
             if ($scope.form.hasservice === undefined) { return undefined; }
             return ! $scope.form.hasservice;
         };
@@ -198,10 +196,8 @@ angular.module('newSomEnergiaWebformsApp')
                     return error('INCOMPLETE_PREVIOUS_STEP');
                 }
             }
-            if (!$scope.altesDeshabilitades) {
-                if ($scope.esAlta() === undefined) {
-                    return error('UNSELECTED_NEW_SUPPLY_POINT');
-                }
+            if ($scope.esAlta() === undefined) {
+                return error('UNSELECTED_NEW_SUPPLY_POINT');
             }
             if ($scope.form.address.value === undefined) {
                 return error('NO_SUPPLY_POINT_ADDRESS');
@@ -295,8 +291,7 @@ angular.module('newSomEnergiaWebformsApp')
 
             $scope.isHaveLightPageComplete =
                 (!$scope.waitPreviousPages || $scope.isPartnerPageComplete()) && (
-                   $scope.esAlta() !== undefined ||
-                   $scope.altesDeshabilitades
+                   $scope.esAlta() !== undefined
                 );
 
             $scope.isOwnerPageComplete =
@@ -392,9 +387,7 @@ angular.module('newSomEnergiaWebformsApp')
             formData.append('id_soci', $scope.formsoci.socinumber);
             formData.append('dni', $scope.formsoci.dni);
             formData.append('canvi_titular', $scope.form.changeowner === 'yes' ? 1 : 0);
-            if (!$scope.altesDeshabilitades) {
-                formData.append('proces', $scope.esAlta() ? 'A3' : $scope.form.changeowner === 'yes' ? 'C2': 'C1');
-            }
+            formData.append('proces', $scope.esAlta() ? 'A3' : $scope.form.changeowner === 'yes' ? 'C2': 'C1');
             var ownerIsMember = $scope.form.ownerIsMember==='yes';
             formData.append('soci_titular', ownerIsMember ? 1 : 0);
             // TODO: estem ignorant l'idioma dels no socis (owner i payer)
