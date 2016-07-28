@@ -23,7 +23,7 @@ angular.module('newSomEnergiaWebformsApp')
         }
 
         $scope.altesDeshabilitades = false;
-        $scope.showAll = true;
+        $scope.showAll = false;
         // To false to debug one page completion state independently from the others
         $scope.waitPreviousPages = false;
 
@@ -332,32 +332,32 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.goToSociPage = function() {
-            $scope.setStepReady(0, 'dadesSociPage');
+            $scope.setStepReady('dadesSociPage');
         };
 
         $scope.goToSupplyPointPage = function() {
-            $scope.setStepReady(1, 'supplyPointPage');
+            $scope.setStepReady('supplyPointPage');
         };
 
         $scope.goToFarePage = function() {
-            $scope.setStepReady(7, 'farePage');
+            $scope.setStepReady('farePage');
         };
 
         $scope.goToOwnerPage = function() {
-            $scope.setStepReady(2, 'ownerPage');
+            $scope.setStepReady('ownerPage');
         };
 
         $scope.goToPayerPage = function() {
-            $scope.setStepReady(3, 'payerPage');
+            $scope.setStepReady('payerPage');
         };
 
         $scope.goToConfirmationPage = function() {
-            $scope.setStepReady(4, 'confirmationPage');
+            $scope.setStepReady('confirmationPage');
         };
         $scope.wizardPage = {};
 
         // COMMON MOVE STEPS LOGIC
-        $scope.setStepReady = function(enabledStep, pageName) {
+        $scope.setStepReady = function(pageName) {
             $scope.wizardPage.current = pageName;
 //            $log.log(pageName);
         };
