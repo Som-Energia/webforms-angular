@@ -141,6 +141,9 @@
                     onchanged="formListener()"
                 ></som-file-field>
             </div>
+            <div class="row extra-margin-top" data-ng-show="supplyPointPageError">
+                <div class="alert alert-danger" translate="{{supplyPointPageError}}"></div>
+            </div>
         </wizard-page>
 
         <!-- Page: Fares -->
@@ -442,6 +445,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row extra-margin-top" data-ng-show="farePageError">
+                <div class="alert alert-danger">{{ farePageError | translate }}</div>
             </div>
         </wizard-page>
 

@@ -210,6 +210,23 @@ angular.module('newSomEnergiaWebformsApp')
 
                 // Under development
 
+                INCOMPLETE_PREVIOUS_STEP: 'No has completat el pas anterior',
+                UNSELECTED_NEW_SUPPLY_POINT: 'No has especificat si és un nou punt de subministrament o ja hi ha llum amb una altra comercialitzadora',
+                NO_SUPPLY_POINT_ADDRESS: 'No has especificat l\'<b>adreça</b> del punt de subministrament',
+                NO_SUPPLY_POINT_STATE: 'No has especificat la <b>província</b> del punt de subministrament',
+                NO_SUPPLY_POINT_CITY: 'No has especificat el <b>municipi</b> del punt de subministrament',
+                INVALID_SUPPLY_POINT_CUPS: 'No has especificat un <b>identifidor CUPS</b> vàlid pel punt de subministrament',
+                INVALID_SUPPLY_POINT_CNAE: 'No has especificat un <b>codi CNAE</b> vàlid pel punt de subministrament',
+                INVALID_SUPPLY_POINT_ATTACHMENT: 'L\'arxiu adjunt supera el limit de 10Mbytes',
+                NO_MONOPHASE_CHOICE: 'No has especificat si la instal·lació és monoofàsica o trifàsica',
+                NO_FARE_CHOSEN: 'No has especificat la tarifa',
+                NO_POWER_CHOSEN: 'No has especificat la potència',
+                NO_POWER_CHOSEN_P2: 'No has especificat la potència pel període P2',
+                NO_POWER_CHOSEN_P3: 'No has especificat la potència pel període P3',
+                INVALID_POWER_20: 'La potència per tarifes 2.0 ha de ser inferior a 10kW',
+                INVALID_POWER_21: 'La potència per tarifes 2.1 hauria ha d\'estar entre 10kW i 15kW',
+                INVALID_POWER_30: 'Al menys un període ha de tenir una potència superior o igual a 15kW',
+                NO_HOURLY_DISCRIMINATION_CHOSEN: 'No has especificat si vols fer discriminació horària',
             })
         ;
     });
