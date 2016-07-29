@@ -162,7 +162,7 @@ angular.module('newSomEnergiaWebformsApp')
                 if (timer) {
                     $timeout.cancel(timer);
                 }
-                $scope.postalCodeIsInvalid=false;
+                $scope.postalCodeIsInvalid=undefined;
                 $scope.validatingPostalCode=true;
                 timer = $timeout(function() {
                     $scope.validatingPostalCode=undefined;
