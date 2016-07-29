@@ -228,13 +228,26 @@ angular.module('newSomEnergiaWebformsApp')
                 INVALID_POWER_30: 'Al menys un període ha de tenir una potència superior o igual a 15kW',
                 NO_HOURLY_DISCRIMINATION_CHOSEN: 'No has especificat si vols fer discriminació horària',
                 OWNER_CHANGED_NOT_CHOSEN: 'Cal indicar si es manté l\'actual titular del contracte',
-                MISSING_OWNER_DATA: 'Falten dades personals del titular', // TODO: quines?
-                MISSING_PAYER_DATA: 'Falten dades personals del pagador', // TODO: quines?
                 UNACCEPTED_GENERAL_CONDITIONS: 'Cal aceptar les condicions generals del contracte',
                 INVALID_PAYER_IBAN: 'No has especificat correctament l\'<b>IBAN</b> del compte on domiciliar',
                 NO_VOLUNTARY_DONATION_CHOICE_TAKEN: 'Cal dir si vols o no fer el donatiu voluntari',
-                UNCONFIRMED_ACCOUNT_OWNER: 'Cal marcar la casella per confirmar que la persona indicada és el titular del compte',
+                UNCONFIRMED_ACCOUNT_OWNER: 'Cal marcar la casella per confirmar que la persona indicada és la persona titular del compte',
                 UNACCEPTED_GENERAL_CONDITIONS_NON_OWNER_PAYER: 'Si la persona pagadora és diferent de la titular, també ha d\'acceptar les condicions generals del contracte marcant la casella',
+                NO_PERSON_TYPE: 'No has especificat si és una persona física o jurídica',
+                NO_NAME: 'No has especificat el nom',
+                NO_SURNAME: 'No has especificat els cognoms',
+                NO_NIF: 'No has especificat el NIF',
+                NO_PROXY_NAME: 'No has especificat el nom del representant',
+                NO_PROXY_NIF: 'No has especificat el NIF del representant',
+                NO_ADDRESS: 'No has especificat l\'adreça',
+                NO_POSTALCODE: 'No has especificat un codi postal corecte',
+                NO_STATE: 'No has especificat la província',
+                NO_CITY: 'No has especificat el municipi',
+                NO_EMAIL: 'No has especificat un correu electrònic correcte',
+                NO_REPEATED_EMAIL: 'No has repetit el correu electrònic correctament',
+                NO_PHONE: 'No has especificat un telèfon correcte',
+                NO_LANGUAGE: 'No has especificat l\'idioma',
+                UNACCEPTED_PRIVACY_POLICY: 'Has d\'aceptar la política de privacitat',
             })
         ;
     });

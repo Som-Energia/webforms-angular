@@ -224,8 +224,10 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.isFarePageComplete = function() {
             console.log('- isFarePageComplete');
             function error(message) {
-                $scope.farePageError = message;
-                console.log(message);
+                if ($scope.farePageError !== message) {
+                    $scope.farePageError = message;
+                    console.log(message);
+                }
                 return false;
             }
 
@@ -289,8 +291,10 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.isOwnerPageComplete = function() {
             console.log('- isOwnerPageComplete');
             function error(message) {
-                $scope.ownerPageError = message;
-                console.log(message);
+                if ($scope.ownerPageError !== message) {
+                    $scope.ownerPageError = message;
+                    console.log(message);
+                }
                 return false;
             }
             $scope.ownerPageError = undefined;
@@ -307,7 +311,7 @@ angular.module('newSomEnergiaWebformsApp')
             }
             if ($scope.form.ownerIsMember !== 'yes') {
                 if ($scope.owner.isReady === undefined || !$scope.owner.isReady()) {
-                    return error('MISSING_OWNER_DATA');
+                    return error($scope.owner.error);
                 }
             }
             if ($scope.form.ownerAcceptsGeneralConditions !== true) {
@@ -319,8 +323,10 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.isPayerPageComplete = function() {
             console.log('- isPayerPageComplete');
             function error(message) {
-                $scope.payerPageError = message;
-                console.log(message);
+                if ($scope.payerPageError !== message) {
+                    $scope.payerPageError = message;
+                    console.log(message);
+                }
                 return false;
             }
             $scope.payerPageError = undefined;
@@ -334,7 +340,7 @@ angular.module('newSomEnergiaWebformsApp')
                     return false; // Just initializing
                 }
                 if ($scope.payer.isReady()!==true) {
-                    return error('MISSING_PAYER_DATA');
+                    return error($scope.payer.error);
                 }
             }
             if ($scope.form.choosepayer !== cfg.PAYER_TYPE_TITULAR) {
