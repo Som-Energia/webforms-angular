@@ -46,8 +46,7 @@ angular.module('newSomEnergiaWebformsApp')
                 return error('NO_SURNAME');
             }
         }
-        if ($scope.form.dni === undefined) {
-            // TODO: invalid dni do not block
+        if (!$scope.form.dniEditor.isValid()) {
             return error('NO_NIF');
         }
         if ($scope.form.usertype === 'company') {
@@ -63,7 +62,6 @@ angular.module('newSomEnergiaWebformsApp')
             return error('NO_ADDRESS');
         }
         if ($scope.form.postalcode === undefined || $scope.postalCodeIsInvalid!==false) {
-            // TODO: While checking should block
             return error('NO_POSTALCODE');
         }
         if ($scope.form.province === undefined) {
