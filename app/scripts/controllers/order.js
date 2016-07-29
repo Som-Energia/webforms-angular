@@ -22,7 +22,7 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.use($routeParams.locale);
         }
 
-        $scope.showAll = true;
+        $scope.showAll = false;
         // To false to debug one page completion state independently from the others
         $scope.waitPreviousPages = false;
 
@@ -183,10 +183,10 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.isSupplyPointPageComplete = function() {
-            console.log('- isSupplyPointPageComplete');
+            //console.log('- isSupplyPointPageComplete');
             function error(message) {
                 $scope.supplyPointPageError = message;
-                console.log(message);
+                //console.log(message);
                 return false;
             }
 
@@ -222,11 +222,11 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.isFarePageComplete = function() {
-            console.log('- isFarePageComplete');
+            //console.log('- isFarePageComplete');
             function error(message) {
                 if ($scope.farePageError !== message) {
                     $scope.farePageError = message;
-                    console.log(message);
+                    //console.log(message);
                 }
                 return false;
             }
@@ -289,11 +289,11 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.isOwnerPageComplete = function() {
-            console.log('- isOwnerPageComplete');
+            //console.log('- isOwnerPageComplete');
             function error(message) {
                 if ($scope.ownerPageError !== message) {
                     $scope.ownerPageError = message;
-                    console.log(message);
+                    //console.log(message);
                 }
                 return false;
             }
@@ -321,11 +321,11 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.isPayerPageComplete = function() {
-            console.log('- isPayerPageComplete');
+            //console.log('- isPayerPageComplete');
             function error(message) {
                 if ($scope.payerPageError !== message) {
                     $scope.payerPageError = message;
-                    console.log(message);
+                    //console.log(message);
                 }
                 return false;
             }
@@ -364,12 +364,12 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.formListener = function() {
-            console.log('listener');
+            //console.log('listener');
             $scope.effectiveOwner = $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci : $scope.owner;
             $scope.effectivePayer = $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER ? $scope.payer :
                 $scope.form.choosepayer=== cfg.PAYER_TYPE_TITULAR ? $scope.effectiveOwner : $scope.initForm.soci;
 
-            $scope.isPayerPageComplete();
+//            $scope.isPayerPageComplete();
         };
 
         $scope.goToSociPage = function() {
