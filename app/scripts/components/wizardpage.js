@@ -42,11 +42,11 @@ angular.module('newSomEnergiaWebformsApp')
         }
         $scope.prev = function() {
             $scope.prevPage();
-			window.scrollTo(0,0);
+            window.scrollTo(0,0);
         };
         $scope.next = function() {
             $scope.nextPage();
-			window.scrollTo(0,0);
+            window.scrollTo(0,0);
         };
     };
 });
