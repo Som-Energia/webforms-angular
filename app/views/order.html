@@ -45,8 +45,22 @@
                             }" style="right:2em"></span>
                         </div>
                         <div class="panel-body" style="text-align:center">
-                            <label class="btn btn-default green" style="width:100%;white-space:normal" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="true" id="hasservice_true" data-ng-bind-html="'AVIS_CANVI_COMERCIALITZADORA' | translate">{{ 'SI' | translate }}</label>
-                            <label class="btn btn-default green" style="width:100%;white-space:normal" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="false" data-ng-bind-html="'AVIS_ALTA_DE_SERVEI' | translate"></label>
+                            <div class="btn-group btn-group-justified">
+                                <label class="btn btn-default green"
+                                    style="white-space:normal"
+                                    data-ng-change="formListener()"
+                                    data-ng-model="form.hasservice"
+                                    data-btn-radio="true"
+                                    data-ng-bind-html="'AVIS_CANVI_COMERCIALITZADORA' | translate"
+                                    ></label>
+                                <label class="btn btn-default green"
+                                    style="white-space:normal"
+                                    data-ng-change="formListener()"
+                                    data-ng-model="form.hasservice"
+                                    data-btn-radio="false"
+                                    data-ng-bind-html="'AVIS_ALTA_DE_SERVEI' | translate"
+                                    ></label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -470,20 +484,22 @@
                             }" style="right:2em"></span>
                         </div>
                         <div class="panel-body" style="text-align:center">
-                            <label class="btn btn-default green"
-                                style="width:100%;white-space:normal"
-                                data-ng-change="formListener()"
-                                data-ng-model="form.changeowner"
-                                data-btn-radio="'no'"
-                                data-ng-bind-html="'NO_CANVI_DE_TITULAR' | translate"
-                                >{{ 'SI' | translate }}<br></label>
-                            <label class="btn btn-default green"
-                                style="width:100%;white-space:normal"
-                                data-ng-change="formListener()"
-                                data-ng-model="form.changeowner"
-                                data-btn-radio="'yes'"
-                                data-ng-bind-html="'SI_CANVI_DE_TITULAR' | translate"
-                                >{{ 'NO' | translate }}</br></label>
+                            <div class="btn-group btn-group-justified">
+                                <label class="btn btn-default green"
+                                    style="white-space:normal"
+                                    data-ng-change="formListener()"
+                                    data-ng-model="form.changeowner"
+                                    data-btn-radio="'no'"
+                                    data-ng-bind-html="'NO_CANVI_DE_TITULAR' | translate"
+                                    ></label>
+                                <label class="btn btn-default green"
+                                    style="white-space:normal"
+                                    data-ng-change="formListener()"
+                                    data-ng-model="form.changeowner"
+                                    data-btn-radio="'yes'"
+                                    data-ng-bind-html="'SI_CANVI_DE_TITULAR' | translate"
+                                    ></label>
+                            </div>
                         </div>
                     </div>
                     <div data-ng-show="form.changeowner==='yes'" class="alert alert-warning" style="margin-top:5px" role="alert">
