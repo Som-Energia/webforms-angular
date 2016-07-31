@@ -215,7 +215,7 @@ angular.module('newSomEnergiaWebformsApp')
                 NO_SUPPLY_POINT_ADDRESS: 'No has especificat l\'<b>adreça</b> del punt de subministrament',
                 NO_SUPPLY_POINT_STATE: 'No has especificat la <b>província</b> del punt de subministrament',
                 NO_SUPPLY_POINT_CITY: 'No has especificat el <b>municipi</b> del punt de subministrament',
-                INVALID_SUPPLY_POINT_CUPS: 'No has especificat un <b>identifidor CUPS</b> vàlid pel punt de subministrament',
+                INVALID_SUPPLY_POINT_CUPS: 'No has especificat un <b>identificador CUPS</b> vàlid pel punt de subministrament',
                 INVALID_SUPPLY_POINT_CNAE: 'No has especificat un <b>codi CNAE</b> vàlid pel punt de subministrament',
                 INVALID_SUPPLY_POINT_ATTACHMENT: 'L\'arxiu adjunt supera el limit de 10Mbytes',
                 NO_MONOPHASE_CHOICE: 'No has especificat si la instal·lació és de tipus monofàsica o trifàsica',
