@@ -12,9 +12,9 @@
             <div class="row">
                 <div class="form-group col-xs-12">
                     <label>{{ 'SELECCIONA' | translate }}:</label>
-                    <div class="btn-group">
-                        <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
-                        <label class="btn btn-default green" data-ng-model="form.usertype" data-btn-radio="'company'" data-ng-change="formListener()">{{ 'EMPRESA' | translate }}</label>
+                    <div class="btn-group btn-group-justified">
+                        <label class="btn btn-default green" data-ng-model="form.usertype" data-uib-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
+                        <label class="btn btn-default green" data-ng-model="form.usertype" data-uib-btn-radio="'company'" data-ng-change="formListener()">{{ 'EMPRESA' | translate }}</label>
                     </div>
                 </div>
             </div>
@@ -182,9 +182,9 @@
             <div class="row">
                 <div class="form-group col-xs-12">
                     <label>{{ 'METODE_PAGAMENT' | translate }} ({{ 'COST' | translate }})</label>
-                    <div class="btn-group">
-                        <label class="btn btn-default green" data-ng-disabled="!step3Ready" data-ng-model="form.payment" data-btn-radio="'bankaccount'" data-ng-change="formListener()">{{ 'REBUT_BANCARI' | translate }} (0 €)</label>
-                        <label class="btn btn-default green" data-ng-disabled="!step3Ready" data-ng-model="form.payment" data-btn-radio="'creditcard'" data-ng-change="formListener()">{{ 'TARGETA_CREDIT' | translate }} (1,8 €)</label>
+                    <div class="btn-group btn-group-justified">
+                        <label class="btn btn-default green" data-ng-disabled="!step3Ready" data-ng-model="form.payment" data-uib-btn-radio="'bankaccount'" data-ng-change="formListener()">{{ 'REBUT_BANCARI' | translate }} (0 €)</label>
+                        <label class="btn btn-default green" data-ng-disabled="!step3Ready" data-ng-model="form.payment" data-uib-btn-radio="'creditcard'" data-ng-change="formListener()">{{ 'TARGETA_CREDIT' | translate }} (1,8 €)</label>
                     </div>
                 </div>
             </div>
