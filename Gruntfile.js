@@ -303,6 +303,22 @@ module.exports = function (grunt) {
             }
         },
 
+        ngtemplates:    {
+            dist: {
+                cwd: 'app/',
+                src: [
+                    'views/{,*/}*.html',
+                    'scripts/components/*.html'
+                    ],
+                dest: '.tmp/templates.js',
+                options:    {
+                    module: 'newSomEnergiaWebformsApp',
+                    usemin: '<%= yeoman.dist %>/scripts/scripts.js',
+                    htmlmin:  '<%= htmlmin.dist %>'
+                }
+            }
+        },
+
         // ng-annotate tries to make the code safe for minification automatically by
         // using the Angular long form for dependency injection. It doesn't work on
         // things like resolve or inject so those have to be done manually.
@@ -456,6 +472,7 @@ module.exports = function (grunt) {
         'useminPrepare',
         'concurrent:dist',
         'autoprefixer',
+        'ngtemplates',
         'concat',
         'ngAnnotate',
         'copy:dist',
@@ -474,4 +491,5 @@ module.exports = function (grunt) {
     ]);
 
     grunt.loadNpmTasks('grunt-ssh');
+    grunt.loadNpmTasks('grunt-angular-templates');
 };

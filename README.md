@@ -124,6 +124,19 @@ WP Dashboard -> Page Cache -> Empty all caches
 It will be available at: http://www.somenergia.coop
 
 
+### Dependencies management
+
+
+To upgrade/add a run-time dependency:
+
+- update the bower.json file
+- run `bower install`
+
+
+To upgrade/add a development dependency:
+
+npm install
+
 
 
 
