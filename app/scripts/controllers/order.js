@@ -22,7 +22,7 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.use($routeParams.locale);
         }
 
-        $scope.showAll = true;
+        $scope.showAll = false;
         // To false to debug one page completion state independently from the others
         $scope.waitPreviousPages = false;
 
@@ -43,6 +43,8 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.owner = {};
         $scope.payer = {};
         $scope.maxfilesize = cfg.MAX_MB_FILE_SIZE;
+        ApiSomEnergia.preloadStates();
+        ApiSomEnergia.preloadLanguages();
 
         $scope.showAllSteps = function() {
             $scope.showAll = true;
