@@ -31,7 +31,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.form = {};
         $scope.provinces = [];
         $scope.cities = [];
-        self.getStates($scope);
+        AjaxHandler.loadStates($scope);
 
         $scope.updateCities = function() {
             $scope.cityModel=undefined;
@@ -45,11 +45,6 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.onchanged();
             }
         };
-    };
-
-
-    self.getStates = function($scope) {
-        AjaxHandler.loadStates($scope);
     };
 
     // Get cities
