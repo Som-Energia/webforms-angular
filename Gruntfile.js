@@ -309,7 +309,7 @@ module.exports = function (grunt) {
                 src: [
                     'views/{,*/}*.html',
                     'scripts/components/*.html'
-                    ],
+				],
                 dest: '.tmp/templates.js',
                 options:    {
                     module: 'newSomEnergiaWebformsApp',
