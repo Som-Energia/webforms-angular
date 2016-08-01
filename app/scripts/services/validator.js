@@ -254,7 +254,7 @@ angular.module('newSomEnergiaWebformsApp')
                 }
                 timer = $timeout(function() {
                     if (newValue !== undefined) {
-                        var cupsPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'check/cups/' + newValue, '006');
+                        var cupsPromise = AjaxHandler.dataRequest('check/cups/' + newValue, '006');
                         cupsPromise.then(
                             function(response) {
                                 if (response.state === cfg.STATE_TRUE) {
@@ -281,7 +281,7 @@ angular.module('newSomEnergiaWebformsApp')
                 }
                 timer = $timeout(function() {
                     if (newValue !== undefined) {
-                        var cnaePromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'check/cnae/' + newValue, '007');
+                        var cnaePromise = AjaxHandler.dataRequest('check/cnae/' + newValue, '007');
                         cnaePromise.then(
                             function(response) {
                                 $scope.cnaeIsInvalid = response.state === cfg.STATE_FALSE;

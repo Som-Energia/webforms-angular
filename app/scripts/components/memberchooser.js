@@ -154,7 +154,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // GET PARTNER DATA
         $scope.executeGetSociValues = function() {
-            var sociPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/soci/' + $scope.formvalues.socinumber + '/' + $scope.formvalues.dni, '001');
+            var sociPromise = AjaxHandler.dataRequest('data/soci/' + $scope.formvalues.socinumber + '/' + $scope.formvalues.dni, '001');
             sociPromise.soci = $scope.formvalues.socinumber;
             sociPromise.dni = $scope.formvalues.dni;
             sociPromise.then(
