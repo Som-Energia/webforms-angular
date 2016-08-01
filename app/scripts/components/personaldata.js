@@ -102,8 +102,8 @@ angular.module('newSomEnergiaWebformsApp')
     };
 
     $scope.languages = [];
-    $scope.provinces = [];
-    $scope.cities = [];
+    AjaxHandler.loadLanguages($scope);
+    AjaxHandler.preloadStates();
     $scope.messages = null;
     $scope.form.usertype = 'person';
     $scope.form.dniEditor = {};
@@ -115,8 +115,6 @@ angular.module('newSomEnergiaWebformsApp')
     $scope.emailNoIguals = false;
     $scope.postalCodeIsInvalid = false;
 
-    // GET LANGUAGES
-    AjaxHandler.getLanguages($scope);
 
     // POSTAL CODE VALIDATION
     var checkPostalCodeTimer = false;
@@ -146,5 +144,3 @@ angular.module('newSomEnergiaWebformsApp')
 
 })
 ;
-
-

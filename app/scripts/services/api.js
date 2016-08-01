@@ -3,41 +3,89 @@
 angular.module('newSomEnergiaWebformsApp')
     .service('AjaxHandler', ['cfg', 'uiHandler', '$http', '$q', '$log', function(cfg, uiHandler, $http, $q, $log) {
 
-        // Get languages
-        this.getLanguages = function($scope) {
-            var languagesPromise = this.getDataRequest($scope, cfg.API_BASE_URL + 'data/idiomes', '002');
-            languagesPromise.then(
-                function (response) {
-                    if (response.state === cfg.STATE_TRUE) {
-                        $scope.languages = response.data.idiomes;
-                    } else {
-                        uiHandler.showErrorDialog('GET response state false recived (ref.003-002)');
-                    }
-                },
-                function (reason) { uiHandler.showErrorDialog('Get languages failed ' + reason); }
-            );
+        var service = this;
+        /// Joins asynchronous petitions to an API
+        var Loader = function(attribute, url, errorCode, dataGetter) {
+            var self = this;
+            self.data = undefined;
+            self.promise = undefined;
+            self.waitingScopes = [];
+            self.attribute = attribute;
+            self.url = url;
+            self.errorCode = errorCode;
+            self.dataGetter = dataGetter;
+
+            self.load = function(scope) {
+                if (self.data !== undefined) {
+                    scope[self.attribute] = self.data;
+                    return;
+                }
+                self.waitingScopes.push(scope);
+                self.preload();
+            };
+
+            self.preload = function() {
+                if (self.promise !== undefined) {
+                    return;
+                }
+                self.promise = true; // early reserve
+                self.promise = service.dataRequest(self.url, self.errorCode);
+                self.promise.then(
+                    function (response) {
+                        if (response.state !== cfg.STATE_TRUE) {
+                            uiHandler.showErrorDialog('GET response state false recived (ref.003-'+self.errorCode+')');
+                            return;
+                        }
+                        self.data = self.dataGetter(response);
+                        while (true) {
+                            if (self.waitingScopes.length === 0) { break; }
+                            var s = self.waitingScopes.shift();
+                            s[self.attribute] = self.data;
+                        }
+                    },
+                    function (reason) { uiHandler.showErrorDialog('Get '+attribute+' failed ' + reason); }
+                );
+            };
         };
 
-        // Get states
-        this.getStates = function($scope) {
-            var statesPromise = this.getDataRequest($scope, cfg.API_BASE_URL + 'data/provincies', '001');
-            statesPromise.then(
-                function (response) {
-                    if (response.state === cfg.STATE_TRUE) {
-                        $scope.provinces  = response.data.provincies;
-                        $scope.provinces2 = response.data.provincies;
-                    } else {
-                        uiHandler.showErrorDialog('GET response state false recived (ref.003-001)');
-                    }
-                },
-                function (reason) { uiHandler.showErrorDialog('Get states failed ' + reason); }
+        this.languages = new Loader(
+            'languages', 'data/idiomes', '002',
+            function(response) { return response.data.idiomes; }
             );
+
+        // TODO: Deprecated
+        this.getLanguages = function($scope) {
+            this.loadLanguages($scope);
+        };
+
+        this.loadLanguages = function($scope) {
+            this.languages.load($scope);
+        };
+
+        this.preloadLanguages = function() {
+            this.languages.preload();
+        };
+
+        this.states = new Loader(
+            'provinces', 'data/provincies', '001',
+            function(response) { return response.data.provincies; }
+            );
+
+        // TODO: Deprecated
+        this.getStates = function($scope) {
+            this.loadStates($scope);
+        };
+        this.loadStates = function($scope) {
+            this.states.load($scope);
+        };
+        this.preloadStates = function() {
+            this.states.preload();
         };
 
         // Get cities
         this.getCities = function($scope, selector, provinceId) {
             if (provinceId !== undefined) {
-                var citiesPromise = this.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  provinceId, '003');
+                var citiesPromise = this.dataRequest('data/municipis/' +  provinceId, '003');
                 citiesPromise.then(
                     function (response) {
                         if (response.state === cfg.STATE_TRUE) {
@@ -54,6 +102,10 @@ angular.module('newSomEnergiaWebformsApp')
                 );
                 $scope.formListener();
             }
+        };
+        this.dataRequest = function(URL, errorCode) {
+            return this.getDataRequest(undefined/*scope*/,
+                cfg.API_BASE_URL+URL, errorCode);
         };
 
         // Async GET data call

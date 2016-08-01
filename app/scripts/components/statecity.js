@@ -24,7 +24,6 @@ angular.module('newSomEnergiaWebformsApp')
     cfg,
     $scope,
     AjaxHandler,
-    stateCityApi,
     uiHandler
 ) {
     var self = this;
@@ -50,14 +49,14 @@ angular.module('newSomEnergiaWebformsApp')
 
 
     self.getStates = function($scope) {
-        stateCityApi.loadStates($scope);
+        AjaxHandler.loadStates($scope);
     };
 
     // Get cities
     self.getCities = function($scope, provinceId) {
         if (provinceId === undefined) { return; }
 
-        var citiesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/municipis/' +  provinceId, '003');
+        var citiesPromise = AjaxHandler.dataRequest('data/municipis/' +  provinceId, '003');
         citiesPromise.then(
             function (response) {
                 if (response.state === cfg.STATE_TRUE) {
@@ -71,42 +70,6 @@ angular.module('newSomEnergiaWebformsApp')
             }
         );
         $scope.formListener();
-    };
-})
-.service('stateCityApi', function(cfg, uiHandler, AjaxHandler) {
-    var self = this;
-    self.states = undefined;
-    self.statesPromise = undefined;
-    self.scopesWaitingStates = [];
-
-
-    self.loadStates = function($scope) {
-        if (self.states !== undefined) {
-            $scope.provinces  = self.states;
-            return;
-        }
-        self.scopesWaitingStates.push($scope);
-        self.preloadStates();
-    };
-    self.preloadStates = function() {
-        if (self.statesPromise!==undefined) {
-            return;
-        }
-        self.statesPromise = true; // take it
-        self.statesPromise = AjaxHandler.getDataRequest(undefined/*scope*/, cfg.API_BASE_URL + 'data/provincies', '001');
-        self.statesPromise.then(
-            function (response) {
-                if (response.state !== cfg.STATE_TRUE) {
-                    uiHandler.showErrorDialog('GET response state false recived (ref.003-001)');
-                    return;
-                }
-                self.states = response.data.provincies;
-                jQuery.each(self.scopesWaitingStates, function(i,s) {
-                    s.provinces = self.states;
-                });
-            },
-            function (reason) { uiHandler.showErrorDialog('Get states failed ' + reason); }
-        );
     };
 })
 ;

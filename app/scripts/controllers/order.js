@@ -22,7 +22,7 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.use($routeParams.locale);
         }
 
-        $scope.showAll = false;
+        $scope.showAll = true;
         // To false to debug one page completion state independently from the others
         $scope.waitPreviousPages = false;
 
