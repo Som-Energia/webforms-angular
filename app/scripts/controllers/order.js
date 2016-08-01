@@ -124,9 +124,6 @@ angular.module('newSomEnergiaWebformsApp')
         // GET LANGUAGES
         AjaxHandler.getLanguages($scope);
 
-        // GET STATES
-        AjaxHandler.getStates($scope); // TODO: Remove it when in components
-
         // POWER VALIDATION
         ValidateHandler.validatePower($scope, 'form.power');
         ValidateHandler.validatePower($scope, 'form.power2');

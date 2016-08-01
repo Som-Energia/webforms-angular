@@ -58,6 +58,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // Async GET data call
         this.getDataRequest = function($scope, URL, errorCode) {
+            // TODO: Remove unused $scope
             var deferred = $q.defer();
             $http.get(URL)
                 .success(function (response) {

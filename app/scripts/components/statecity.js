@@ -1,9 +1,5 @@
 'use strict';
 
-var sharedStates;
-var sharedStatesPromise;
-var statesWaitingScopes = [];
-
 angular.module('newSomEnergiaWebformsApp')
 .directive('stateCity', function(
 ) {
@@ -28,6 +24,7 @@ angular.module('newSomEnergiaWebformsApp')
     cfg,
     $scope,
     AjaxHandler,
+    stateCityApi,
     uiHandler
 ) {
     var self = this;
@@ -37,7 +34,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.cities = [];
         self.getStates($scope);
 
-        $scope.updateSelectedCity = function() {
+        $scope.updateCities = function() {
             $scope.cityModel=undefined;
             $scope.cities=[];
             if ($scope.stateModel===undefined) { return; }
@@ -53,34 +50,7 @@ angular.module('newSomEnergiaWebformsApp')
 
 
     self.getStates = function($scope) {
-        console.log('getStates', sharedStates, sharedStatesPromise);
-
-        // already called and have the result
-        if (sharedStates !== undefined) {
-            $scope.provinces  = sharedStates;
-            return;
-		}
-        // already called but no result yet
-        if (sharedStatesPromise!==undefined) {
-            statesWaitingScopes.push($scope);
-            return;
-        }
-
-        sharedStatesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/provincies', '001');
-        sharedStatesPromise.then(
-            function (response) {
-                if (response.state === cfg.STATE_TRUE) {
-                    sharedStates = $scope.provinces  = response.data.provincies;
-                    jQuery.each(statesWaitingScopes, function(i,s) {
-                        console.log(s);
-                        s.provinces=$scope.provinces;
-                    });
-                } else {
-                    uiHandler.showErrorDialog('GET response state false recived (ref.003-001)');
-                }
-            },
-            function (reason) { uiHandler.showErrorDialog('Get states failed ' + reason); }
-        );
+        stateCityApi.loadStates($scope);
     };
 
     // Get cities
@@ -101,6 +71,42 @@ angular.module('newSomEnergiaWebformsApp')
             }
         );
         $scope.formListener();
+    };
+})
+.service('stateCityApi', function(cfg, uiHandler, AjaxHandler) {
+    var self = this;
+    self.states = undefined;
+    self.statesPromise = undefined;
+    self.scopesWaitingStates = [];
+
+
+    self.loadStates = function($scope) {
+        if (self.states !== undefined) {
+            $scope.provinces  = self.states;
+            return;
+        }
+        self.scopesWaitingStates.push($scope);
+        self.preloadStates();
+    };
+    self.preloadStates = function() {
+        if (self.statesPromise!==undefined) {
+            return;
+        }
+        self.statesPromise = true; // take it
+        self.statesPromise = AjaxHandler.getDataRequest(undefined/*scope*/, cfg.API_BASE_URL + 'data/provincies', '001');
+        self.statesPromise.then(
+            function (response) {
+                if (response.state !== cfg.STATE_TRUE) {
+                    uiHandler.showErrorDialog('GET response state false recived (ref.003-001)');
+                    return;
+                }
+                self.states = response.data.provincies;
+                jQuery.each(self.scopesWaitingStates, function(i,s) {
+                    s.provinces = self.states;
+                });
+            },
+            function (reason) { uiHandler.showErrorDialog('Get states failed ' + reason); }
+        );
     };
 })
 ;
