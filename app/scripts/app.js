@@ -41,11 +41,11 @@ angular.module('newSomEnergiaWebformsApp', [
                 controller: 'MainCtrl'
             })
             .when('/:locale/contractacio', {
-                templateUrl: 'views/order.html', // DGG: No base??
+                templateUrl: 'views/order.html',
                 controller: 'OrderCtrl'
             })
             .when('/:locale/aportacionsvoluntaries', {
-                templateUrl: 'views/invest.html', // DGG: No base??
+                templateUrl: 'views/invest.html',
                 controller: 'AportacioVoluntariaCtrl'
             })
             .when('/:locale/generationkwh', {
