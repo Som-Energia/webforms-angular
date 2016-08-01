@@ -1,5 +1,9 @@
 'use strict';
 
+var sharedStates;
+var sharedStatesPromise;
+var statesWaitingScopes = [];
+
 angular.module('newSomEnergiaWebformsApp')
 .directive('stateCity', function(
 ) {
@@ -15,7 +19,7 @@ angular.module('newSomEnergiaWebformsApp')
             quietlabels: '@?',
         },
         link: function(scope, element, attrs, stateCityController) {
-            stateCityController.init(element, attrs);
+            stateCityController.init(/*element, attrs*/);
         },
         controller: 'stateCityController',
     };
@@ -27,11 +31,11 @@ angular.module('newSomEnergiaWebformsApp')
     uiHandler
 ) {
     var self = this;
-    self.init = function(element,attrs) {
+    self.init = function(/*element,attrs*/) {
         $scope.form = {};
         $scope.provinces = [];
         $scope.cities = [];
-        AjaxHandler.getStates($scope);
+        self.getStates($scope);
 
         $scope.updateSelectedCity = function() {
             $scope.cityModel=undefined;
@@ -46,12 +50,31 @@ angular.module('newSomEnergiaWebformsApp')
             }
         };
     };
+
+
     self.getStates = function($scope) {
-        var statesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/provincies', '001');
-        statesPromise.then(
+        console.log('getStates', sharedStates, sharedStatesPromise);
+
+        // already called and have the result
+        if (sharedStates !== undefined) {
+            $scope.provinces  = sharedStates;
+            return;
+		}
+        // already called but no result yet
+        if (sharedStatesPromise!==undefined) {
+            statesWaitingScopes.push($scope);
+            return;
+        }
+
+        sharedStatesPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'data/provincies', '001');
+        sharedStatesPromise.then(
             function (response) {
                 if (response.state === cfg.STATE_TRUE) {
-                    $scope.provinces  = response.data.provincies;
+                    sharedStates = $scope.provinces  = response.data.provincies;
+                    jQuery.each(statesWaitingScopes, function(i,s) {
+                        console.log(s);
+                        s.provinces=$scope.provinces;
+                    });
                 } else {
                     uiHandler.showErrorDialog('GET response state false recived (ref.003-001)');
                 }
