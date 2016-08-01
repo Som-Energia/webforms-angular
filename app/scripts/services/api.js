@@ -103,20 +103,14 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.formListener();
             }
         };
-        this.dataRequest = function(URL, errorCode) {
-            return this.getDataRequest(undefined/*scope*/,
-                cfg.API_BASE_URL+URL, errorCode);
-        };
-
-        // Async GET data call
-        this.getDataRequest = function($scope, URL, errorCode) {
-            // TODO: Remove unused $scope
+        this.dataRequest = function(urlpath, errorCode) {
+            var url = cfg.API_BASE_URL+urlpath;
             var deferred = $q.defer();
-            $http.get(URL)
+            $http.get(url)
                 .success(function (response) {
                     if (response.status === cfg.STATUS_ONLINE) {
                         if (response.state !== cfg.STATE_TRUE) {
-                            $log.error('AjaxHandler GET request ' + URL + ' error response recived', response);
+                            $log.error('AjaxHandler GET request ' + urlpath + ' error response recived', response);
                         }
                         deferred.resolve(response);
                     } else if (response.status === cfg.STATUS_OFFLINE) {
