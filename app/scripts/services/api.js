@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .service('AjaxHandler', ['cfg', 'uiHandler', '$http', '$q', '$log', function(cfg, uiHandler, $http, $q, $log) {
+    .service('ApiSomEnergia', ['cfg', 'uiHandler', '$http', '$q', '$log', function(cfg, uiHandler, $http, $q, $log) {
 
         var service = this;
         /// Joins asynchronous petitions to an API
@@ -110,7 +110,7 @@ angular.module('newSomEnergiaWebformsApp')
                 .success(function (response) {
                     if (response.status === cfg.STATUS_ONLINE) {
                         if (response.state !== cfg.STATE_TRUE) {
-                            $log.error('AjaxHandler GET request ' + urlpath + ' error response recived', response);
+                            $log.error('ApiSomEnergia GET request ' + urlpath + ' error response recived', response);
                         }
                         deferred.resolve(response);
                     } else if (response.status === cfg.STATUS_OFFLINE) {
@@ -164,10 +164,10 @@ angular.module('newSomEnergiaWebformsApp')
                 .success(function (response) {
                     if (response.status === cfg.STATUS_ONLINE) {
                         if (response.state === cfg.STATE_TRUE) {
-                            $log.log('AjaxHandler POST request ' + URL + ' response recived', response);
+                            $log.log('ApiSomEnergia POST request ' + URL + ' response recived', response);
                             //uiHandler.showWellDoneDialog();
                         } else {
-                            $log.error('AjaxHandler POST request ' + URL + ' error response recived', response);
+                            $log.error('ApiSomEnergia POST request ' + URL + ' error response recived', response);
                         }
                         deferred.resolve(response);
                     } else if (response.status === cfg.STATUS_OFFLINE) {

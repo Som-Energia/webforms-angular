@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('OrderCtrl', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
+    .controller('OrderCtrl', function (cfg, debugCfg, ApiSomEnergia, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // INIT
         $scope.developing = cfg.DEVELOPMENT;
@@ -122,7 +122,7 @@ angular.module('newSomEnergiaWebformsApp')
 */
         ];
         // GET LANGUAGES
-        AjaxHandler.getLanguages($scope);
+        ApiSomEnergia.getLanguages($scope);
 
         // POWER VALIDATION
         ValidateHandler.validatePower($scope, 'form.power');

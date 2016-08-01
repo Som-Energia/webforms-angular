@@ -23,7 +23,7 @@ angular.module('newSomEnergiaWebformsApp')
 .controller('stateCityController', function(
     cfg,
     $scope,
-    AjaxHandler,
+    ApiSomEnergia,
     uiHandler
 ) {
     var self = this;
@@ -31,7 +31,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.form = {};
         $scope.provinces = [];
         $scope.cities = [];
-        AjaxHandler.loadStates($scope);
+        ApiSomEnergia.loadStates($scope);
 
         $scope.updateCities = function() {
             $scope.cityModel=undefined;
@@ -51,7 +51,7 @@ angular.module('newSomEnergiaWebformsApp')
     self.getCities = function($scope, provinceId) {
         if (provinceId === undefined) { return; }
 
-        var citiesPromise = AjaxHandler.dataRequest('data/municipis/' +  provinceId, '003');
+        var citiesPromise = ApiSomEnergia.dataRequest('data/municipis/' +  provinceId, '003');
         citiesPromise.then(
             function (response) {
                 if (response.state === cfg.STATE_TRUE) {

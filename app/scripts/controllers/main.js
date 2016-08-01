@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('MainCtrl', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
+    .controller('MainCtrl', function (cfg, debugCfg, ApiSomEnergia, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
 
         // DEBUG MODE
         var debugEnabled = false;
@@ -45,10 +45,10 @@ angular.module('newSomEnergiaWebformsApp')
         }
 
         // GET LANGUAGES
-        AjaxHandler.getLanguages($scope);
+        ApiSomEnergia.getLanguages($scope);
 
         // GET STATES
-        AjaxHandler.getStates($scope);
+        ApiSomEnergia.getStates($scope);
 
         // POSTAL CODE VALIDATION
         var checkPostalCodeTimer = false;
@@ -80,7 +80,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
-            AjaxHandler.getCities($scope, 1, $scope.form.province.id);
+            ApiSomEnergia.getCities($scope, 1, $scope.form.province.id);
         };
 
         // CONTROL READY STEPS ON CHANGE FORM
@@ -119,7 +119,7 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.accountbankiban6 !== undefined) {
                 $scope.completeAccountNumber = $scope.form.accountbankiban1 + $scope.form.accountbankiban2 + $scope.form.accountbankiban3 + $scope.form.accountbankiban4 + $scope.form.accountbankiban5 + $scope.form.accountbankiban6;
                 $scope.ibanValidated = false;
-                var accountPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/iban/' + $scope.completeAccountNumber, '017');
+                var accountPromise = ApiSomEnergia.getStateRequest($scope, cfg.API_BASE_URL + 'check/iban/' + $scope.completeAccountNumber, '017');
                 accountPromise.then(
                     function (response) {
                         $scope.accountIsInvalid = response.state === cfg.STATE_FALSE;
@@ -168,7 +168,7 @@ angular.module('newSomEnergiaWebformsApp')
             }
             $log.log('request postData', postData);
             // Send request data POST
-            var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData, '004');
+            var postPromise = ApiSomEnergia.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData, '004');
             postPromise.then(
                 function (response) {
                     if (response.state === cfg.STATE_FALSE) {

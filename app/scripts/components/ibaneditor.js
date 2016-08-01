@@ -33,7 +33,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope,
         $timeout,
         $log,
-        AjaxHandler
+        ApiSomEnergia
         ) {
     var self = this;
     self.init = function(/*element, attrs*/) {
@@ -100,7 +100,7 @@ angular.module('newSomEnergiaWebformsApp')
             if ($scope._lastPromise !== undefined) {
                 $scope._lastPromise.abort();
             }
-            var promise = AjaxHandler.getStateRequest(
+            var promise = ApiSomEnergia.getStateRequest(
                 $scope, cfg.API_BASE_URL +
                 $scope.checkurl + $scope.model.value,
                 '017');

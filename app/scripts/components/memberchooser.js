@@ -22,7 +22,7 @@ angular.module('newSomEnergiaWebformsApp')
         $scope,
         $timeout,
         $log,
-        AjaxHandler,
+        ApiSomEnergia,
         ValidateHandler
         ) {
     var self = this;
@@ -115,7 +115,7 @@ angular.module('newSomEnergiaWebformsApp')
                 $timeout.cancel(timeoutCheckDni);
             }
             timeoutCheckDni = $timeout(function() {
-                var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
+                var dniPromise = ApiSomEnergia.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
                 dniPromise.dni = newValue;
                 dniPromise.then(
                     function (response) {
@@ -154,7 +154,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // GET PARTNER DATA
         $scope.executeGetSociValues = function() {
-            var sociPromise = AjaxHandler.dataRequest('data/soci/' + $scope.formvalues.socinumber + '/' + $scope.formvalues.dni, '001');
+            var sociPromise = ApiSomEnergia.dataRequest('data/soci/' + $scope.formvalues.socinumber + '/' + $scope.formvalues.dni, '001');
             sociPromise.soci = $scope.formvalues.socinumber;
             sociPromise.dni = $scope.formvalues.dni;
             sociPromise.then(

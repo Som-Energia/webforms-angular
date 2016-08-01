@@ -17,7 +17,7 @@ angular.module('newSomEnergiaWebformsApp')
 })
 .controller('personalDataCtrl', function(
         cfg,
-        AjaxHandler,
+        ApiSomEnergia,
 //      $log,
         ValidateHandler,
         $scope
@@ -102,8 +102,8 @@ angular.module('newSomEnergiaWebformsApp')
     };
 
     $scope.languages = [];
-    AjaxHandler.loadLanguages($scope);
-    AjaxHandler.preloadStates();
+    ApiSomEnergia.loadLanguages($scope);
+    ApiSomEnergia.preloadStates();
     $scope.messages = null;
     $scope.form.usertype = 'person';
     $scope.form.dniEditor = {};
