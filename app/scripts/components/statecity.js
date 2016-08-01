@@ -21,10 +21,8 @@ angular.module('newSomEnergiaWebformsApp')
     };
 })
 .controller('stateCityController', function(
-    cfg,
     $scope,
-    ApiSomEnergia,
-    uiHandler
+    ApiSomEnergia
 ) {
     var self = this;
     self.init = function(/*element,attrs*/) {
@@ -34,10 +32,10 @@ angular.module('newSomEnergiaWebformsApp')
         ApiSomEnergia.loadStates($scope);
 
         $scope.updateCities = function() {
-            $scope.cityModel=undefined;
+            $scope.cityModel = undefined;
             $scope.cities=[];
             if ($scope.stateModel===undefined) { return; }
-            self.getCities($scope, $scope.stateModel.id);
+            ApiSomEnergia.loadCities($scope, $scope.stateModel.id);
         };
 
         $scope.formListener = function() {
@@ -45,26 +43,6 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.onchanged();
             }
         };
-    };
-
-    // Get cities
-    self.getCities = function($scope, provinceId) {
-        if (provinceId === undefined) { return; }
-
-        var citiesPromise = ApiSomEnergia.dataRequest('data/municipis/' +  provinceId, '003');
-        citiesPromise.then(
-            function (response) {
-                if (response.state === cfg.STATE_TRUE) {
-                    $scope.cities = response.data.municipis;
-                } else {
-                    uiHandler.showErrorDialog('GET response state false recived (ref.003-003)');
-                }
-            },
-            function (reason) {
-                uiHandler.showErrorDialog('Update city select failed ' + reason);
-            }
-        );
-        $scope.formListener();
     };
 })
 ;

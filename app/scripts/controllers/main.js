@@ -45,10 +45,10 @@ angular.module('newSomEnergiaWebformsApp')
         }
 
         // GET LANGUAGES
-        ApiSomEnergia.getLanguages($scope);
+        ApiSomEnergia.loadLanguages($scope);
 
         // GET STATES
-        ApiSomEnergia.getStates($scope);
+        ApiSomEnergia.loadStates($scope);
 
         // POSTAL CODE VALIDATION
         var checkPostalCodeTimer = false;
@@ -80,7 +80,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // ON CHANGE SELECTED STATE
         $scope.updateSelectedCity = function() {
-            ApiSomEnergia.getCities($scope, 1, $scope.form.province.id);
+            ApiSomEnergia.loadCities($scope, $scope.form.province.id);
         };
 
         // CONTROL READY STEPS ON CHANGE FORM
