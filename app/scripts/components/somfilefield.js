@@ -25,10 +25,7 @@ angular.module('newSomEnergiaWebformsApp')
 })
 .controller('somFileFieldCtrl', function (
         cfg,
-        $scope,
-        $timeout,
-        $log,
-        AjaxHandler
+        $scope
         ) {
     var self = this;
     self.init = function(/*element, attrs*/) {
