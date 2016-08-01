@@ -427,8 +427,6 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.orderForm.cups.$setValidity('exist', true);
             uiHandler.showLoadingDialog();
             // Prepare request data
-            var postData = {
-            };
             var formData = new FormData();
             formData.append('id_soci', $scope.formsoci.socinumber);
             formData.append('dni', $scope.formsoci.dni);
