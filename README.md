@@ -135,11 +135,15 @@ To upgrade/add a run-time dependency:
 
 To upgrade/add a development dependency:
 
+```bash
 npm install
+```
 
+To install a new dependency:
 
-
-
+```bash
+bower install <newmodule> --save
+```
 
 
 
