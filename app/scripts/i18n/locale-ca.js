@@ -249,6 +249,7 @@ angular.module('newSomEnergiaWebformsApp')
                 NO_LANGUAGE: 'No has especificat l\'idioma',
                 UNACCEPTED_PRIVACY_POLICY: 'Has d\'acceptar la política de privacitat',
                 NEW_MEMBER_FORM: 'Nova persona socia',
+                MEMBER_CONTRIBUTION_PAYMENT: 'Pagament de l\'aportació',
 
             })
         ;
