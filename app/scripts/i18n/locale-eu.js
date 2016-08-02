@@ -106,7 +106,7 @@ angular.module('newSomEnergiaWebformsApp')
                 COMPROVANT: 'Egiaztatzen...',
                 CORRECTE: 'Zuzena',
                 INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/eu/aportacion-realizada-correctamente/', // TODO: Translate url
-                CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
+                CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/eu/contratacion-realizada/',
                 GENERATION_OK_REDIRECT_URL: 'http://www.generationkwh.org/eu/inbertsioa-egin/',
 
                 // Added or changed since 1.2.6
