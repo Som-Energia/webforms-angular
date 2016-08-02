@@ -106,7 +106,7 @@ angular.module('newSomEnergiaWebformsApp')
                 COMPROVANT: 'A comprobar...',
                 CORRECTE: 'Correcto',
                 INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/gl/aportacion-realizada-correctamente/', // TODO: Translate url
-                CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
+                CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/gl/contratacion-realizada/',
                 GENERATION_OK_REDIRECT_URL: 'http://www.generationkwh.org/gl/investimento-feito/',
 
                 // Added or changed since 1.2.6
