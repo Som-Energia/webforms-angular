@@ -217,7 +217,7 @@ angular.module('newSomEnergiaWebformsApp')
                 NO_SUPPLY_POINT_CITY: 'No has especificat el <b>municipi</b> del punt de subministrament',
                 INVALID_SUPPLY_POINT_CUPS: 'No has especificat un <b>identificador CUPS</b> vàlid pel punt de subministrament',
                 INVALID_SUPPLY_POINT_CNAE: 'No has especificat un <b>codi CNAE</b> vàlid pel punt de subministrament',
-                INVALID_SUPPLY_POINT_ATTACHMENT: 'L\'arxiu adjunt supera el limit de 10Mbytes',
+                INVALID_SUPPLY_POINT_ATTACHMENT: 'L\'arxiu adjunt supera el límit de 10Mbytes',
                 NO_MONOPHASE_CHOICE: 'No has especificat si la instal·lació és de tipus monofàsica o trifàsica',
                 NO_FARE_CHOSEN: 'No has especificat la tarifa',
                 NO_POWER_CHOSEN: 'No has especificat la potència',
@@ -228,7 +228,7 @@ angular.module('newSomEnergiaWebformsApp')
                 INVALID_POWER_30: 'Al menys un període ha de tenir una potència superior o igual a 15kW',
                 NO_HOURLY_DISCRIMINATION_CHOSEN: 'No has especificat si vols fer discriminació horària',
                 OWNER_CHANGED_NOT_CHOSEN: 'Cal indicar si es manté l\'actual titular del contracte',
-                UNACCEPTED_GENERAL_CONDITIONS: 'Cal aceptar les condicions generals del contracte',
+                UNACCEPTED_GENERAL_CONDITIONS: 'Cal acceptar les condicions generals del contracte',
                 INVALID_PAYER_IBAN: 'No has especificat correctament l\'<b>IBAN</b> del compte on domiciliar',
                 NO_VOLUNTARY_DONATION_CHOICE_TAKEN: 'Cal dir si vols o no fer el donatiu voluntari',
                 UNCONFIRMED_ACCOUNT_OWNER: 'Cal marcar la casella per confirmar que la persona indicada és la persona titular del compte',
@@ -240,14 +240,16 @@ angular.module('newSomEnergiaWebformsApp')
                 NO_PROXY_NAME: 'No has especificat el nom del representant',
                 NO_PROXY_NIF: 'No has especificat el NIF del representant',
                 NO_ADDRESS: 'No has especificat l\'adreça',
-                NO_POSTALCODE: 'No has especificat un codi postal corecte',
+                NO_POSTALCODE: 'No has especificat un codi postal correcte',
                 NO_STATE: 'No has especificat la província',
                 NO_CITY: 'No has especificat el municipi',
                 NO_EMAIL: 'No has especificat un correu electrònic correcte',
                 NO_REPEATED_EMAIL: 'No has repetit el correu electrònic correctament',
                 NO_PHONE: 'No has especificat un telèfon correcte',
                 NO_LANGUAGE: 'No has especificat l\'idioma',
-                UNACCEPTED_PRIVACY_POLICY: 'Has d\'aceptar la política de privacitat',
+                UNACCEPTED_PRIVACY_POLICY: 'Has d\'acceptar la política de privacitat',
+                NEW_MEMBER_FORM: 'Nova persona socia',
+
             })
         ;
     });
