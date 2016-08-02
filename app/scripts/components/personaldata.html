@@ -45,8 +45,8 @@
         </div>
         <div class="col-xs-7">
             <div class="form-group has-feedback">
-                <label class="sr-only">{{ 'COGNOMS' | translate }}*:</label>
-                <input type="text" name="surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}*" data-ng-model="form.surname" data-ng-change="formListener()" required/>
+                <label class="sr-only">{{ 'COGNOMS' | translate }}:</label>
+                <input type="text" name="surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}" data-ng-model="form.surname" data-ng-change="formListener()" required/>
                 <span class="label label-danger" data-ng-show="submitted && form.surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 <span class="form-control-feedback glyphicon "  data-ng-class="{
                     'glyphicon-asterisk danger': form.surname === undefined,
@@ -101,8 +101,8 @@
     </div>
     <div class="row">
         <div class="form-group col-sm-9 col-xs-6">
-            <label class="sr-only">{{ 'PERSONA_REPRESENTANT' | translate }}*:</label>
-            <input type="text" name="representantname" class="form-control" placeholder="{{ 'PERSONA_REPRESENTANT' | translate }}*" data-ng-model="form.representantname" data-ng-change="formListener()" required/>
+            <label class="sr-only">{{ 'PERSONA_REPRESENTANT' | translate }}:</label>
+            <input type="text" name="representantname" class="form-control" placeholder="{{ 'PERSONA_REPRESENTANT' | translate }}" data-ng-model="form.representantname" data-ng-change="formListener()" required/>
             <span class="form-control-feedback glyphicon "  data-ng-class="{
                 'glyphicon-asterisk danger': form.representantname === undefined,
                 'glyphicon-ok success': form.representantname !== undefined,
@@ -226,7 +226,7 @@
 </div>
     <div class="row">
         <div class="form-group col-xs-12">
-            <label class="sr-only">{{ 'IDIOMA' | translate }}*:</label>
+            <label class="sr-only">{{ 'IDIOMA' | translate }}:</label>
             <div class="input-group">
                 <select class="form-control input-lg" name="language"
                     data-ng-model="form.language"
