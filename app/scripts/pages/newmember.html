@@ -1,6 +1,9 @@
 <div data-ng-cloak ng-show="newPartner.isReady!==undefined">
 <!--GLOBAL MESSAGES-->
+<div ng-cloak>
 <div class="row" data-ng-include data-src="'views/common/global-messages.html'"></div>
+
+<div ng-if='developing' data-ng-include data-src="'views/common/responsive-display.html'"></div>
 
 <div class="row">
     <div class="col-xs-12">

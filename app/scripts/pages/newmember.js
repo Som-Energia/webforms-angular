@@ -4,6 +4,26 @@ angular.module('newSomEnergiaWebformsApp')
     .controller('MainCtrl', function (cfg, debugCfg, ApiSomEnergia, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
 
         // INIT
+        $scope.developing = cfg.DEVELOPMENT;
+        // MUST APPLY TO EMBED WITH WORDPRESS (detects inside frame)
+        if (window !== window.top) { // Inside a frame
+            try {
+                document.domain = cfg.BASE_DOMAIN;
+            } catch(err) {
+                console.log('While setting document domain:', err);
+            }
+        }
+
+        // Just when developing, show untranslated strings instead of falling back to spanish
+        if (!$scope.developing ) {
+            $translate.fallbackLanguage('es');
+        }
+        if ($routeParams.locale !== undefined) {
+            $translate.use($routeParams.locale);
+        }
+
+        $scope.form = {};
+        $scope.form.payment = 'bankaccount';
         $scope.newPartner = {};
         $scope.ibanEditor = {};
         $scope.stopErrors = undefined;
@@ -11,22 +31,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.dniDuplicated = false;
         $scope.submitted = false;
-        $scope.form = {};
-        $scope.form.payment = 'bankaccount';
         $scope.messages = null;
-
-        $translate.fallbackLanguage('es');
-        if ($routeParams.locale !== undefined) {
-            $translate.use($routeParams.locale);
-        }
-        var absUrl = $location.absUrl();
-        if (absUrl.indexOf('/ca/') !== -1) {
-            $translate.use('ca');
-        } else if (absUrl.indexOf('/eu/') !== -1) {
-            $translate.use('eu');
-        } else if (absUrl.indexOf('/gl/') !== -1) {
-            $translate.use('gl');
-        }
 
         // GET LANGUAGES
         ApiSomEnergia.loadLanguages($scope);
