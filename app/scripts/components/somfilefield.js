@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('newSomEnergiaWebformsApp')
+angular.module('SomEnergiaWebForms')
 .directive('somFileField', function () {
     return {
         restrict: 'E',

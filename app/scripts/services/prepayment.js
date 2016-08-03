@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('newSomEnergiaWebformsApp')
+angular.module('SomEnergiaWebForms')
     .service('prepaymentService', ['$log', function($log) {
 
         var data;

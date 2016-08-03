@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('newSomEnergiaWebformsApp')
+angular.module('SomEnergiaWebForms')
     .config(function($translateProvider) {
         $translateProvider
             .translations('es', {

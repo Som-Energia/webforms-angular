@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('newSomEnergiaWebformsApp')
+angular.module('SomEnergiaWebForms')
 .controller('ApiErrorCtrl', function ($scope, $uibModalInstance, errorMsg, errorDetails) {
     $scope.errorMsg = errorMsg;
     $scope.errorDetails = errorDetails;

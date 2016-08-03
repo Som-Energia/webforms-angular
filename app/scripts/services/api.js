@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('newSomEnergiaWebformsApp')
+angular.module('SomEnergiaWebForms')
     .service('ApiSomEnergia', ['cfg', 'uiHandler', '$http', '$q', '$log', function(cfg, uiHandler, $http, $q, $log) {
 
         var service = this;

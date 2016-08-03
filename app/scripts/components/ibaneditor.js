@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('newSomEnergiaWebformsApp')
+angular.module('SomEnergiaWebForms')
 .directive('ibanEditor', function () {
     return {
         restrict: 'E',

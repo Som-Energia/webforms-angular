@@ -2,7 +2,7 @@
 
 var developmentMode = true;
 
-angular.module('newSomEnergiaWebformsApp', [
+angular.module('SomEnergiaWebForms', [
         'ngCookies',
         'ngResource',
         'ngSanitize',
