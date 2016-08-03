@@ -300,7 +300,8 @@ module.exports = function (grunt) {
                             '*.html',
                             'scripts/fragments/*.html',
                             'scripts/components/*.html',
-                            'scripts/pages/*.html'],
+                            'scripts/pages/*.html'
+                        ],
                         dest: '<%= yeoman.dist %>'
                     }
                 ]
