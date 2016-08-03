@@ -41,7 +41,7 @@ angular.module('newSomEnergiaWebformsApp', [
             })
             .when('/:locale/aportacionsvoluntaries', {
                 templateUrl: 'scripts/pages/invest.html',
-                controller: 'AportacioVoluntariaCtrl'
+                controller: 'InvestCtrl'
             })
             .when('/:locale/generationkwh', {
                 templateUrl: 'scripts/pages/generationkwh.html',
