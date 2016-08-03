@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('newSomEnergiaWebformsApp')
-    .controller('MainCtrl', function (cfg, debugCfg, ApiSomEnergia, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
+    .controller('NewMemberCtrl', function (cfg, debugCfg, ApiSomEnergia, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
 
         // INIT
         $scope.developing = cfg.DEVELOPMENT;

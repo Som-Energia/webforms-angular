@@ -21,15 +21,15 @@ angular.module('newSomEnergiaWebformsApp', [
         $routeProvider
             .when('/', {
                 templateUrl: 'scripts/pages/newmember.html',
-                controller: 'MainCtrl'
+                controller: 'NewMemberCtrl'
             })
             .when('/:locale', {
                 templateUrl: 'scripts/pages/newmember.html',
-                controller: 'MainCtrl'
+                controller: 'NewMemberCtrl'
             })
             .when('/:locale/soci', {
                 templateUrl: 'scripts/pages/newmember.html',
-                controller: 'MainCtrl'
+                controller: 'NewMemberCtrl'
             })
             .when('/prepagament', {
                 templateUrl: 'scripts/pages/prepayment.html',
