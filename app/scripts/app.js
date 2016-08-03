@@ -18,38 +18,33 @@ angular.module('newSomEnergiaWebformsApp', [
 //        $httpProvider.defaults.useXDomain = true;
     })
     .config(function ($routeProvider, $sceDelegateProvider/*, $locationProvider*/) {
-        var base = (
-            developmentMode ? '' :
-            '//cdn.rawgit.com/Som-Energia/new-api-webforms/v1.4.3/app/'
-            );
-
         $routeProvider
             .when('/', {
-                templateUrl: base+'views/main.html',
+                templateUrl: 'scripts/pages/newmember.html',
                 controller: 'MainCtrl'
             })
-            .when('/prepagament', {
-                templateUrl: base+'views/prepayment.html',
-                controller: 'PrepaymentCtrl'
-            })
             .when('/:locale', {
-                templateUrl: base+'views/main.html',
+                templateUrl: 'scripts/pages/newmember.html',
                 controller: 'MainCtrl'
             })
             .when('/:locale/soci', {
-                templateUrl: base+'views/main.html',
+                templateUrl: 'scripts/pages/newmember.html',
                 controller: 'MainCtrl'
             })
+            .when('/prepagament', {
+                templateUrl: 'scripts/pages/prepayment.html',
+                controller: 'PrepaymentCtrl'
+            })
             .when('/:locale/contractacio', {
-                templateUrl: 'views/order.html',
+                templateUrl: 'scripts/pages/contract.html',
                 controller: 'OrderCtrl'
             })
             .when('/:locale/aportacionsvoluntaries', {
-                templateUrl: 'views/invest.html',
+                templateUrl: 'scripts/pages/invest.html',
                 controller: 'AportacioVoluntariaCtrl'
             })
             .when('/:locale/generationkwh', {
-                templateUrl: 'views/generationkwh.html',
+                templateUrl: 'scripts/pages/generationkwh.html',
                 controller: 'GenerationKwhCtrl'
             })
             .otherwise({

@@ -296,7 +296,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '<%= yeoman.dist %>',
-                        src: ['*.html', 'views/{,*/}*.html', 'scripts/components/*.html'],
+                        src: ['*.html', 'views/{,*/}*.html', 'scripts/components/*.html', 'scripts/pages/*.html'],
                         dest: '<%= yeoman.dist %>'
                     }
                 ]
@@ -308,7 +308,8 @@ module.exports = function (grunt) {
                 cwd: 'app/',
                 src: [
                     'views/{,*/}*.html',
-                    'scripts/components/*.html'
+                    'scripts/components/*.html',
+                    'scripts/pages/*.html'
 				],
                 dest: '.tmp/templates.js',
                 options:    {
@@ -357,6 +358,7 @@ module.exports = function (grunt) {
                             '*.html',
                             'views/{,*/}*.html',
                             'scripts/components/*.html',
+                            'scripts/pages/*.html',
                             'images/{,*/}*.{webp}',
                             'fonts/*',
                             'styles/fonts/{,*/}*.*'
