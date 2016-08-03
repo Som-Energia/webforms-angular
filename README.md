@@ -87,16 +87,14 @@ It will be available at: http://testforms.somenergia.coop/
 Webforms are integrated in Wordpress in two ways:
 
 - As an iframe (most forms)
-- Embeding the index.html code (becoming-a-partner form)
-
-Forms based on iframes rely on sftp upload.
-Embeded forms rely on rawgit using a version tag.
-
+	- rely on sftp upload
+- Embeding the index.html code (just `newpartner` form)
+	- relies on rawgit plus a version tag
 
 We deploy production from `master` branch.
 We should merge devel.
 
-***Your secret.json is pointing to `/home/somenergia/webforms2`
+***Ensure your secret.json is pointing to `/home/somenergia/webforms2`
 (without `-devel`)***
 
     $ git checkout master
@@ -124,26 +122,36 @@ WP Dashboard -> Page Cache -> Empty all caches
 It will be available at: http://www.somenergia.coop
 
 
+### Development aids
+
+- **Development mode:**
+	- Development branch and main branch have different value in `developmentMode` var at `app.js`.
+	- Such value is accessible to the other modules through the `cfg.DEVELOPMENT`. And by convention set into every scope it needs it as `$scope.developing`.
+- **Development/Responsive indicator:** all pages include a fixed div only visible on development at top right saying which responsive mode is used (XS,SM,LG).
+- **Target API:**
+	- While in development mode, the form uses api at _testing_ server instead of production one.
+	- If you are developing the api at `localhost`, you need to change manually `API_BASE_URL` at `app.js`.
+- **Wizard aids** To be activated in each page if you need to:
+	- `$scope.showAll`: forces all pages to be visible
+	- `$scope.waitPreviousPages`: removes the constraint for a page to wait the previous one, to easy test local readyness.
+- Test page: display `test.html`
+
+
 ### Dependencies management
 
 
 To upgrade/add a run-time dependency:
 
 - update the bower.json file
-- run `bower install`
+- run `bower update`
 
 
 To upgrade/add a development dependency:
 
 ```bash
-npm install
+npm install <dependency>
 ```
 
-To install a new dependency:
-
-```bash
-bower install <newmodule> --save
-```
 
 
 
