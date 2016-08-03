@@ -33,7 +33,7 @@ angular.module('newSomEnergiaWebformsApp')
                 self.promise.then(
                     function (response) {
                         if (response.state !== cfg.STATE_TRUE) {
-                            uiHandler.showErrorDialog({}, 'GET response state false recived (ref.003-'+self.errorCode+')');
+                            uiHandler.showErrorDialog('GET response state false recived (ref.003-'+self.errorCode+')');
                             return;
                         }
                         self.data = self.dataGetter(response);
@@ -43,7 +43,7 @@ angular.module('newSomEnergiaWebformsApp')
                             s[self.attribute] = self.data;
                         }
                     },
-                    function (reason) { uiHandler.showErrorDialog({}, 'Get '+attribute+' failed ' + reason); }
+                    function (reason) { uiHandler.showErrorDialog('Get '+attribute+' failed ' + reason); }
                 );
             };
         };
@@ -81,16 +81,16 @@ angular.module('newSomEnergiaWebformsApp')
         this.loadCities = function($scope, provinceId) {
             if (provinceId === undefined) { return; }
 
-            var citiesPromise = this.dataRequest('data/municipis/' +  provinceId, '003');
+            var citiesPromise = this.dataRequest('data/unicipis/' +  provinceId, '003');
             citiesPromise.then(
                 function (response) {
                     if (response.state !== cfg.STATE_TRUE) {
-                        uiHandler.showErrorDialog($scope, 'GET response state false recived (ref.003-003)');
+                        uiHandler.showErrorDialog('GET response state false recived (ref.003-003)');
                         return;
                     }
                     $scope.cities = response.data.municipis;
                 },
-                function (reason) { uiHandler.showErrorDialog($scope, 'Failed to update city list.\n' + reason); }
+                function (reason) { uiHandler.showErrorDialog('Failed to update city list.\n' + reason); }
             );
             $scope.formListener();
         };
@@ -105,9 +105,9 @@ angular.module('newSomEnergiaWebformsApp')
                         }
                         deferred.resolve(response);
                     } else if (response.status === cfg.STATUS_OFFLINE) {
-                        uiHandler.showErrorDialog({},'API server response status offline recived (ref.002-' + errorCode + ')');
+                        uiHandler.showErrorDialog('API server response status offline recived (ref.002-' + errorCode + ')');
                     } else {
-                        uiHandler.showErrorDialog({},'API server response unknown status recived (ref.001-' + errorCode + ')');
+                        uiHandler.showErrorDialog('API server response unknown status recived (ref.001-' + errorCode + ')');
                     }
                 })
                 .error(function (data) {
