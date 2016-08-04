@@ -415,7 +415,6 @@ angular.module('SomEnergiaWebForms')
         $scope.t.HELP_POPOVER_RATE_URL = $translate.instant('HELP_POPOVER_RATE_URL');
         $scope.t.HELP_ADJUNTAR_BUTLLETI_URL = $translate.instant('HELP_ADJUNTAR_BUTLLETI_URL');
 
-
         // ON SUBMIT FORM
         $scope.submitOrder = function() {
             $scope.messages = null;

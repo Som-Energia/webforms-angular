@@ -16,7 +16,6 @@ angular.module('SomEnergiaWebForms')
     this.showErrorDialog = function(msg, details) {
         console.log('API Error:', msg, details);
         $uibModal.open({
-            animation: true,
             templateUrl: 'scripts/fragments/api-error-modal.html',
             controller: 'ApiErrorCtrl',
             resolve: {
@@ -30,7 +29,6 @@ angular.module('SomEnergiaWebForms')
         });
     };
 
-    // SHOW WELL DONE MODAL DIALOG
     this.showWellDoneDialog = function() {
         jQuery('#well-done-modal').modal({
             backdrop: 'static',
@@ -39,18 +37,19 @@ angular.module('SomEnergiaWebForms')
         });
     };
 
-    // LOADING DIALOG
     this.showLoadingDialog = function() {
-        jQuery('#loading-modal').modal({
-            backdrop: 'static',
+        this.loading = $uibModal.open({
+            size: 'lg',
             keyboard: false,
-            show: true
+            backdrop: 'static',
+            templateUrl: 'scripts/fragments/loading-api-modal.html'
         });
+        return this.loading;
     };
 
-    // HIDE LOADING DIALOG
     this.hideLoadingDialog = function() {
-        jQuery('#loading-modal').modal('hide');
+        this.loading.close();
+        this.loading = undefined;
     };
 
 })
