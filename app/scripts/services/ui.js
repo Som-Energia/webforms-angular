@@ -30,10 +30,11 @@ angular.module('SomEnergiaWebForms')
     };
 
     this.showWellDoneDialog = function() {
-        jQuery('#well-done-modal').modal({
-            backdrop: 'static',
+        $uibModal.open({
+            size: 'lg',
             keyboard: false,
-            show: true
+            backdrop: 'static',
+            templateUrl: 'scripts/fragments/well-done-modal.html'
         });
     };
 
