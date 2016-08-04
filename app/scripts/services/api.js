@@ -81,7 +81,7 @@ angular.module('SomEnergiaWebForms')
         this.loadCities = function($scope, provinceId) {
             if (provinceId === undefined) { return; }
 
-            var citiesPromise = this.dataRequest('data/unicipis/' +  provinceId, '003');
+            var citiesPromise = this.dataRequest('data/municipis/' +  provinceId, '003');
             citiesPromise.then(
                 function (response) {
                     if (response.state !== cfg.STATE_TRUE) {
