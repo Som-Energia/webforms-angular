@@ -318,7 +318,7 @@ module.exports = function (grunt) {
 				],
                 dest: '.tmp/templates.js',
                 options:    {
-                    module: 'newSomEnergiaWebformsApp',
+                    module: 'SomEnergiaWebForms',
                     usemin: '<%= yeoman.dist %>/scripts/scripts.js',
                     htmlmin:  '<%= htmlmin.dist %>'
                 }

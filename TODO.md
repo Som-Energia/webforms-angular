@@ -8,7 +8,7 @@
 + Loading dialog as a service
 + Success dialog as a service
 - "La persona pagadora acepta"
-- remove consum/estimation field
+- remove consum/estimation field (as soon as api don't need it)
 - check dni api call with empty (deleting written digits) fails
 - en checkbox de confirmar cuenta sale el asterisco encima del texto
 - Repassar crides showErrorDialog missatges traduibles
