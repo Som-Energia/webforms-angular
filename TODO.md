@@ -10,12 +10,12 @@
 - "La persona pagadora acepta"
 - remove consum/estimation field (as soon as api don't need it)
 - check dni api call with empty (deleting written digits) fails
-- en checkbox de confirmar cuenta sale el asterisco encima del texto
+- En checkbox de confirmar cuenta, sale el asterisco encima del texto
 - Repassar crides showErrorDialog missatges traduibles
 - Repassar crides showErrorDialog partir detalls
-- production and testing configs
 - selfcontained globalMessage (like apierror, loading and welldone)
 - Rethink modals usage and need
+- production and testing configs
 - newmember: manage dni duplicated
 	- already a member
 	- not a newmember, just owner or payer
@@ -25,4 +25,8 @@
 - contract payer: manage dni duplicated
 - generation: manage dni duplicated
 - invest: manage dni duplicated
+- Manage case CUPS existing in API
+	- Already active contract
+	- Exists but not an active contract
+- Modals should scroll top to be visible when form was scrolled down
 

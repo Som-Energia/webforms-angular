@@ -464,7 +464,7 @@ angular.module('SomEnergiaWebForms')
             jQuery.each(documentationFiles.files, function(j, file) {
                 formData.append('documentacio_alta', file);
             });
-            formData.append('payment_iban', $scope.getCompleteIban());
+            formData.append('payment_iban', $scope.ibanEditor.value);
             formData.append('escull_pagador', $scope.form.choosepayer);
             formData.append('compte_tipus_persona', $scope.payer.usertype === 'person' ? 0 : 1);
             var noPayer = $scope.form.choosepayer !== 'altre';
@@ -535,14 +535,6 @@ angular.module('SomEnergiaWebForms')
 
         // GET HUMANIZED API RESPONSE
         $scope.getHumanizedAPIResponse = function(arrayResponse) {
-            var result = '';
-            if (arrayResponse.required_fields !== undefined) {
-                for (var i = 0; i < arrayResponse.required_fields.length; i++) {
-                    result += '<li>'+$translate.instant('ERROR_REQUIRED_FIELD', {
-                        field: arrayResponse.required_fields[i],
-                    })+'</li>';
-                }
-            }
             if (arrayResponse.invalid_fields !== undefined) {
                 for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
                     if (arrayResponse.invalid_fields[j].field === 'cups' && arrayResponse.invalid_fields[j].error === 'exist') {
@@ -552,20 +544,10 @@ angular.module('SomEnergiaWebForms')
                         $scope.invalidAttachFileExtension = true;
                         $scope.orderForm.file.$setValidity('exist', false);
                     }
-                    result += '<li>'+$translate.instant('ERROR_INVALID_FIELD', {
-                        field: arrayResponse.invalid_fields[j].field,
-                        reason: arrayResponse.invalid_fields[j].error
-                    })+'</li>';
                 }
             }
             $scope.showAllSteps();
-            if (result === '') {return '';} // TODO: Manage case
-            return '<ul>'+result+'</ul>';
-        };
-
-        // GET COMPLETE ACCOUNT NUMBER
-        $scope.getCompleteIban = function() {
-            return $scope.ibanEditor.value;
+            return ApiSomEnergia.humanizedResponse(arrayResponse);
         };
 
         // GET COMPLETE ACCOUNT NUMBER WITH FORMAT
