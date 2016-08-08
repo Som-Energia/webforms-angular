@@ -1,7 +1,16 @@
 'use strict';
 
 angular.module('SomEnergiaWebForms')
-    .controller('PrepaymentCtrl', function (cfg, prepaymentService, $http, $scope, $sce) {
+    .controller('PrepaymentCtrl', function (cfg, prepaymentService, $http, $scope, $sce, $translate) {
+
+        $scope.developing = cfg.DEVELOPMENT;
+
+        if (!$scope.developing ) {
+            $translate.fallbackLanguage('es');
+        }
+        if ($routeParams.locale !== undefined) {
+            $translate.use($routeParams.locale);
+        }
 
         $scope.data = prepaymentService.getData();
 
