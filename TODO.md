@@ -16,4 +16,13 @@
 - production and testing configs
 - selfcontained globalMessage (like apierror, loading and welldone)
 - Rethink modals usage and need
+- newmember: manage dni duplicated
+	- already a member
+	- not a newmember, just owner or payer
+	- former member/owner/payer
+- contract owner: manage dni duplicated
+	- what to do with new personal data
+- contract payer: manage dni duplicated
+- generation: manage dni duplicated
+- invest: manage dni duplicated
 

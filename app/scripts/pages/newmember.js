@@ -29,7 +29,6 @@ angular.module('SomEnergiaWebForms')
         $scope.stopErrors = undefined;
         $scope.ready = false;
 
-        $scope.dniDuplicated = false;
         $scope.submitted = false;
         $scope.messages = null;
 
@@ -111,7 +110,7 @@ angular.module('SomEnergiaWebForms')
                         // well done
                         $log.log('response received', response);
                         prepaymentService.setData(response.data);
-                        $location.path('/prepagament');
+                        $location.path('/'+$routeParams.locale+'/prepagament');
                     }
                 },
                 function (reason) {
@@ -126,7 +125,6 @@ angular.module('SomEnergiaWebForms')
 
         // GET HUMANIZED API RESPONSE
         $scope.getHumanizedAPIResponse = function(arrayResponse) {
-            var result = '';
             if (arrayResponse.required_fields !== undefined) {
                 for (var i = 0; i < arrayResponse.required_fields.length; i++) {
                     if (arrayResponse.required_fields[i] === 'provincia') {
@@ -134,25 +132,17 @@ angular.module('SomEnergiaWebForms')
                     } else if (arrayResponse.required_fields[i] === 'municipi') {
                         $scope.partnerForm.city.$setValidity('requiredm', false);
                     }
-                    result += '<li>'+$translate.instant('ERROR_REQUIRED_FIELD', {
-                        field: arrayResponse.required_fields[i],
-                    })+'</li>';
                 }
             }
             if (arrayResponse.invalid_fields !== undefined) {
                 for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
                     if (arrayResponse.invalid_fields[j].field === 'dni' && arrayResponse.invalid_fields[j].error === 'exist') {
-                        $scope.dniDuplicated = true;
+                        $scope.newPartner.dniDuplicated = true;
                         $scope.partnerForm.dni.$setValidity('exist', false);
                     }
-                    result += '<li>'+$translate.instant('ERROR_INVALID_FIELD', {
-                        field: arrayResponse.invalid_fields[j].field,
-                        reason: arrayResponse.invalid_fields[j].error
-                    })+'</li>';
                 }
             }
-            if (result === '') {return '';} // TODO: Manage case
-            return '<ul>'+result+'</ul>';
+			return ApiSomEnergia.humanizedResponse(arrayResponse);
         };
 
     });

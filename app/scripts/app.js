@@ -31,7 +31,7 @@ angular.module('SomEnergiaWebForms', [
                 templateUrl: 'scripts/pages/newmember.html',
                 controller: 'NewMemberCtrl'
             })
-            .when('/prepagament', {
+            .when('/:locale/prepagament', {
                 templateUrl: 'scripts/pages/prepayment.html',
                 controller: 'PrepaymentCtrl'
             })
@@ -48,6 +48,7 @@ angular.module('SomEnergiaWebForms', [
                 controller: 'GenerationKwhCtrl'
             })
             .otherwise({
+				// TODO: An error page, just to know we are doing something wrong
                 redirectTo: '/'
             });
         //$locationProvider.html5Mode(true);

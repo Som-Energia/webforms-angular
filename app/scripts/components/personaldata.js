@@ -110,7 +110,8 @@ angular.module('SomEnergiaWebForms')
     $scope.form.representantdniEditor = {};
 
     $scope.dniRepresentantIsInvalid = false;
-    $scope.dniDuplicated = false;
+    // TODO: in form because for submit check who sets it, it should be inner check
+    $scope.form.dniDuplicated = false;
     $scope.emailIsInvalid = false;
     $scope.emailNoIguals = false;
     $scope.postalCodeIsInvalid = false;

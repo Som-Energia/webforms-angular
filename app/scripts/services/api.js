@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('SomEnergiaWebForms')
-    .service('ApiSomEnergia', ['cfg', 'uiHandler', '$http', '$q', '$log', function(cfg, uiHandler, $http, $q, $log) {
+    .service('ApiSomEnergia', function(cfg, uiHandler, $http, $q, $log, $translate) {
 
         var service = this;
         /// Joins asynchronous petitions to an API
@@ -174,4 +174,25 @@ angular.module('SomEnergiaWebForms')
             return deferred.promise;
         };
 
-    }]);
+        this.humanizedResponse = function(response) {
+            var result = '';
+            if (response.required_fields !== undefined) {
+                for (var i = 0; i < response.required_fields.length; i++) {
+                    result += '<li>'+$translate.instant('ERROR_REQUIRED_FIELD', {
+                        field: response.required_fields[i],
+                    })+'</li>';
+                }
+            }
+            if (response.invalid_fields !== undefined) {
+                for (var j = 0; j < response.invalid_fields.length; j++) {
+                    result += '<li>'+$translate.instant('ERROR_INVALID_FIELD', {
+                        field: response.invalid_fields[j].field,
+                        reason: response.invalid_fields[j].error
+                    })+'</li>';
+                }
+            }
+            if (result === '') {return '';} // TODO: Manage case
+            return '<ul>'+result+'</ul>';
+        };
+
+    });

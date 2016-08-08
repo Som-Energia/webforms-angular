@@ -236,25 +236,9 @@ angular.module('SomEnergiaWebForms')
 
         // GET HUMANIZED API RESPONSE
         $scope.getHumanizedAPIResponse = function(arrayResponse) {
-            var result = '';
-            if (arrayResponse.required_fields !== undefined) {
-                for (var i = 0; i < arrayResponse.required_fields.length; i++) {
-                    result += '<li>'+$translate.instant('ERROR_REQUIRED_FIELD', {
-                        field: arrayResponse.required_fields[i],
-                    })+'</li>';
-                }
-            }
-            if (arrayResponse.invalid_fields !== undefined) {
-                for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
-                    result += '<li>'+$translate.instant('ERROR_INVALID_FIELD', {
-                        field: arrayResponse.invalid_fields[j].field,
-                        reason: arrayResponse.invalid_fields[j].error
-                    })+'</li>';
-                }
-            }
-            if (result === '') {return '';} // TODO: Manage case
-            return '<ul>'+result+'</ul>';
+			return ApiSomEnergia.humanizedResponse(arrayResponse);
         };
 
     });
+
 
