@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('SomEnergiaWebForms')
-    .controller('PrepaymentCtrl', function (cfg, prepaymentService, $http, $scope, $sce, $translate) {
+    .controller('PrepaymentCtrl', function (cfg, prepaymentService, $http, $scope, $sce, $translate, $routeParams) {
 
         $scope.developing = cfg.DEVELOPMENT;
 
