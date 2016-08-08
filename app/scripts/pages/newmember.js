@@ -32,13 +32,6 @@ angular.module('SomEnergiaWebForms')
         $scope.submitted = false;
         $scope.messages = null;
 
-        // GET LANGUAGES
-        ApiSomEnergia.loadLanguages($scope);
-
-        // GET STATES
-        ApiSomEnergia.loadStates($scope);
-
-
         // Form error check
         $scope.checkErrors = function() {
             function error(msg) {
@@ -74,6 +67,7 @@ angular.module('SomEnergiaWebForms')
         $scope.submit = function() {
             $scope.submitted = true;
             $scope.messages = null;
+            $scope.newPartner.dniDuplicated = false;
             // Prepare request data
             var postData = {
                 tipuspersona: $scope.newPartner.usertype === 'person' ? cfg.USER_TYPE_PERSON : cfg.USER_TYPE_COMPANY,
