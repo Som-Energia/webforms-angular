@@ -46,7 +46,7 @@ angular.module('SomEnergiaWebForms')
             if ($scope.newPartner.isReady()!==true) {
                 return error($scope.newPartner.error);
             }
-            if ($scope.form.payment === 'bankaccount') {
+            if ($scope.form.payment !== 'creditcard') {
                 if ($scope.ibanEditor.isValid === undefined) {
                     return false; // Just initializing
                 }
@@ -81,7 +81,11 @@ angular.module('SomEnergiaWebForms')
                 adreca: $scope.newPartner.address,
                 municipi: $scope.newPartner.city.id,
                 idioma: $scope.newPartner.language.code,
-                payment_method: $scope.form.payment === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : cfg.PAYMENT_METHOD_CREDIT_CARD,
+                payment_method:
+                    $scope.form.payment === 'bankaccount' ? cfg.PAYMENT_METHOD_BANK_ACCOUNT : (
+                    $scope.form.payment === 'creditcard' ?  cfg.PAYMENT_METHOD_CREDIT_CARD:
+                    cfg.PAYMENT_METHOD_PAYMENT_ORDER
+                ),
                 payment_iban: $scope.ibanEditor.value,
             };
             if ($scope.newPartner.usertype === 'person') {
@@ -101,10 +105,18 @@ angular.module('SomEnergiaWebForms')
                         $scope.messages = $scope.getHumanizedAPIResponse(response.data);
                         jQuery('#webformsGlobalMessagesModal').modal('show');
                     } else if (response.state === cfg.STATE_TRUE) {
-                        // well done
-                        $log.log('response received', response);
-                        prepaymentService.setData(response.data);
-                        $location.path('/'+$routeParams.locale+'/prepagament');
+                        if (response.data.endpoint === undefined) {
+                            // Later payment order
+                            window.top.location.href = $translate.instant('NEWMEMBER_OK_REDIRECT_URL');
+                        }
+                        else if (true) {
+                            // Credit card or bank 
+                            $log.log('response received', response);
+                            prepaymentService.setData(response.data);
+                            $location.path('/'+$routeParams.locale+'/prepagament');
+                        }
+                        else {
+                        }
                     }
                 },
                 function (reason) {

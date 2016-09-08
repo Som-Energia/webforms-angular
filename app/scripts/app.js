@@ -76,6 +76,7 @@ angular.module('SomEnergiaWebForms', [
         STATE_TRUE: true,
         STATE_FALSE: false,
         PAYMENT_METHOD_BANK_ACCOUNT: 'rebut',
+        PAYMENT_METHOD_PAYMENT_ORDER: 'remesa',
         PAYMENT_METHOD_CREDIT_CARD: 'tpv',
         USER_TYPE_PERSON: 'fisica',
         USER_TYPE_COMPANY: 'juridica',

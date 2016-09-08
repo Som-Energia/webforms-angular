@@ -28,11 +28,12 @@
         <label>{{ 'METODE_PAGAMENT' | translate }} ({{ 'COST' | translate }})</label>
         <div class="btn-group btn-group-justified">
             <label class="btn btn-default green" data-ng-model="form.payment" data-uib-btn-radio="'bankaccount'" data-ng-change="formListener()">{{ 'REBUT_BANCARI' | translate }} (0 €)</label>
+            <label class="btn btn-default green" data-ng-model="form.payment" data-uib-btn-radio="'remesa'" data-ng-change="formListener()">{{ 'REMESA' | translate }} (0 €)</label>
             <label class="btn btn-default green" data-ng-model="form.payment" data-uib-btn-radio="'creditcard'" data-ng-change="formListener()">{{ 'TARGETA_CREDIT' | translate }} (1,8 €)</label>
         </div>
     </div>
 </div>
-<div class="row no-margin-bottom" data-ng-show="form.payment==='bankaccount'">
+<div class="row no-margin-bottom" data-ng-show="form.payment!=='creditcard'">
     <iban-editor
         class="col-sm-8 col-xs-12"
         required
