@@ -252,6 +252,7 @@ angular.module('SomEnergiaWebForms')
                 MEMBER_CONTRIBUTION_PAYMENT: 'Pago de la aportación',
                 NEWMEMBER_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/pago-realizado/',
                 NEWMEMBER_KO_REDIRECT_URL: 'https://www.somenergia.coop/es/pago-cancelado/',
+                DIRECT_DEBIT: 'Recibo domiciliado',
             })
         ;
     });
