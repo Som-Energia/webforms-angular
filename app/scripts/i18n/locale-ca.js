@@ -250,9 +250,9 @@ angular.module('SomEnergiaWebForms')
                 UNACCEPTED_PRIVACY_POLICY: 'Has d\'acceptar la política de privacitat',
                 NEW_MEMBER_FORM: 'Nova persona socia',
                 MEMBER_CONTRIBUTION_PAYMENT: 'Pagament de l\'aportació',
+                DIRECT_DEBIT: 'Rebut domiciliat',
                 NEWMEMBER_OK_REDIRECT_URL: 'https://www.somenergia.coop/ca/pagament-realitzat/',
                 NEWMEMBER_KO_REDIRECT_URL: 'https://www.somenergia.coop/ca/pagament-cancellat/',
-                DIRECT_DEBIT: 'Rebut domiciliat',
             })
         ;
     });
