@@ -87,6 +87,8 @@ angular.module('SomEnergiaWebForms')
                     cfg.PAYMENT_METHOD_PAYMENT_ORDER
                 ),
                 payment_iban: $scope.ibanEditor.value,
+                urlok: $translate.instant('NEWMEMBER_OK_REDIRECT_URL'),
+                urlko: $translate.instant('NEWMEMBER_KO_REDIRECT_URL'),
             };
             if ($scope.newPartner.usertype === 'person') {
                 postData.cognom = $scope.newPartner.surname;
@@ -106,7 +108,7 @@ angular.module('SomEnergiaWebForms')
                         jQuery('#webformsGlobalMessagesModal').modal('show');
                     } else if (response.state === cfg.STATE_TRUE) {
                         if (response.data.endpoint === undefined) {
-                            // Later payment order
+                            // Direct debit, no payment platform required
                             window.top.location.href = $translate.instant('NEWMEMBER_OK_REDIRECT_URL');
                         }
                         else if (true) {
