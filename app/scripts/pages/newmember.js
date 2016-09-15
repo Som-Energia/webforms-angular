@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('SomEnergiaWebForms')
-    .controller('NewMemberCtrl', function (cfg, ApiSomEnergia, ValidateHandler, uiHandler, prepaymentService, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
+    .controller('NewMemberCtrl', function (cfg, ApiSomEnergia, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $location, $log) {
 
         // INIT
         $scope.developing = cfg.DEVELOPMENT;
@@ -114,7 +114,6 @@ angular.module('SomEnergiaWebForms')
                         else if (true) {
                             // Credit card or bank 
                             $log.log('response received', response);
-                            prepaymentService.setData(response.data);
                             $location.path('/'+$routeParams.locale+'/prepagament');
                             window.top.location.href = $location.absUrl();
                         }
