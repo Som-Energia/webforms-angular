@@ -116,6 +116,7 @@ angular.module('SomEnergiaWebForms')
                             $log.log('response received', response);
                             prepaymentService.setData(response.data);
                             $location.path('/'+$routeParams.locale+'/prepagament');
+                            window.top.location.href = $location.absUrl();
                         }
                         else {
                         }
