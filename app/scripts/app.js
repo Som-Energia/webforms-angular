@@ -11,7 +11,11 @@ angular.module('SomEnergiaWebForms', [
         'ui.bootstrap'
     ])
     .config(function ($httpProvider) {
-        $httpProvider.defaults.headers.post = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
+        $httpProvider.defaults.withCredentials = true;
+        $httpProvider.defaults.crossDomain = true;
+        $httpProvider.defaults.headers.post = {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        };
         $httpProvider.defaults.transformRequest = function(data) {
             return data === undefined ? data : jQuery.param(data);
         };
