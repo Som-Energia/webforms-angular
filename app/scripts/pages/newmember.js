@@ -23,7 +23,7 @@ angular.module('SomEnergiaWebForms')
         }
 
         $scope.form = {};
-        $scope.form.payment = 'bankaccount';
+        $scope.form.payment = 'remesa';
         $scope.newPartner = {};
         $scope.ibanEditor = {};
         $scope.stopErrors = undefined;
