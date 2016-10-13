@@ -1,39 +1,57 @@
 'use strict';
 
-angular.module('newSomEnergiaWebformsApp')
-    .service('uiHandler', function() {
+angular.module('SomEnergiaWebForms')
+.controller('ApiErrorCtrl', function ($scope, $uibModalInstance, errorMsg, errorDetails) {
+    $scope.errorMsg = errorMsg;
+    $scope.errorDetails = errorDetails;
+    $scope.ok = function () {
+        $uibModalInstance.close();
+    };
 
-        // SHOW ERROR MODAL DIALOG
-        this.showErrorDialog = function($scope, msg) {
-            $scope.errorMsg = msg;
-            jQuery('#api-server-offline-modal').modal({
-                backdrop: 'static',
-                keyboard: false,
-                show: true
-            });
-        };
+})
+.service('uiHandler', function(
+    $uibModal
+) {
 
-        // SHOW WELL DONE MODAL DIALOG
-        this.showWellDoneDialog = function() {
-            jQuery('#well-done-modal').modal({
-                backdrop: 'static',
-                keyboard: false,
-                show: true
-            });
-        };
+    this.showErrorDialog = function(msg, details) {
+        console.log('API Error:', msg, details);
+        $uibModal.open({
+            templateUrl: 'scripts/fragments/api-error-modal.html',
+            controller: 'ApiErrorCtrl',
+            resolve: {
+                errorMsg: function() {
+                    return msg;
+                },
+                errorDetails: function() {
+                    return details;
+                }
+            }
+        });
+    };
 
-        // LOADING DIALOG
-        this.showLoadingDialog = function() {
-            jQuery('#loading-modal').modal({
-                backdrop: 'static',
-                keyboard: false,
-                show: true
-            });
-        };
+    this.showWellDoneDialog = function() {
+        $uibModal.open({
+            size: 'lg',
+            keyboard: false,
+            backdrop: 'static',
+            templateUrl: 'scripts/fragments/well-done-modal.html'
+        });
+    };
 
-        // HIDE LOADING DIALOG
-        this.hideLoadingDialog = function() {
-            jQuery('#loading-modal').modal('hide');
-        };
+    this.showLoadingDialog = function() {
+        this.loading = $uibModal.open({
+            size: 'lg',
+            keyboard: false,
+            backdrop: 'static',
+            templateUrl: 'scripts/fragments/loading-api-modal.html'
+        });
+        return this.loading;
+    };
 
-    });
+    this.hideLoadingDialog = function() {
+        this.loading.close();
+        this.loading = undefined;
+    };
+
+})
+;

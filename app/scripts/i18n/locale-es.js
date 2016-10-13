@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('newSomEnergiaWebformsApp')
+angular.module('SomEnergiaWebForms')
     .config(function($translateProvider) {
         $translateProvider
             .translations('es', {
@@ -9,7 +9,7 @@ angular.module('newSomEnergiaWebformsApp')
                 EMPRESA: 'Persona jurídica',
                 OBLIGATORI: 'Obligatorio',
                 IDIOMA: 'Idioma',
-                SELECCIONA_IDIOMA: 'Selecciona idioma',
+                SELECCIONA_IDIOMA: 'Selecciona el idioma',
                 NOM: 'Nombre',
                 COGNOMS: 'Apellidos',
                 RAO_SOCIAL: 'Razón social',
@@ -210,6 +210,49 @@ angular.module('newSomEnergiaWebformsApp')
 
                 // Under development
 
+                INCOMPLETE_PREVIOUS_STEP: 'No has completado el paso anterior',
+                UNSELECTED_NEW_SUPPLY_POINT: 'No has especificado si ya hay luz con otra comercializadora o es un nuevo punto de suministro sin luz',
+                NO_SUPPLY_POINT_ADDRESS: 'No has especificado la dirección del punto de suministro',
+                NO_SUPPLY_POINT_STATE: 'No has especificado la <b>provincia</b> del punto de suministro',
+                NO_SUPPLY_POINT_CITY: 'No has especificado el <b>municipio</b> del punto de suministro',
+                INVALID_SUPPLY_POINT_CUPS: 'No has especificado un <b>identificador CUPS</b> válido para el punto de suministro',
+                INVALID_SUPPLY_POINT_CNAE: 'No has especificado un <b>codi CNAE</b> válido para el punto de suministro',
+                INVALID_SUPPLY_POINT_ATTACHMENT: 'El archivo adjunto supera el límite de 10Mbytes',
+                NO_MONOPHASE_CHOICE: 'No has especificado si la instalación es de tipo monofásico o trifásico',
+                NO_FARE_CHOSEN: 'No has especificado la tarifa',
+                NO_POWER_CHOSEN: 'No has especificado la potencia',
+                NO_POWER_CHOSEN_P2: 'No has especificado la potencia para el período P2',
+                NO_POWER_CHOSEN_P3: 'No has especificado la potencia para el período P3',
+                INVALID_POWER_20: 'La potencia para tarifas 2.0 tiene que ser inferior a 10kW',
+                INVALID_POWER_21: 'La potencia para tarifas 2.1 tendría que estar entre 10kW y 15kW',
+                INVALID_POWER_30: 'Al menos un período tiene que tener una potencia superior o igual a 15kW',
+                NO_HOURLY_DISCRIMINATION_CHOSEN: 'No has especificado si quieres discriminación horaria',
+                OWNER_CHANGED_NOT_CHOSEN: 'Hay que indicar si se mantiene la actual persona titular del contrato',
+                UNACCEPTED_GENERAL_CONDITIONS: 'Hay que aceptar las condiciones generales del contrato',
+                INVALID_PAYER_IBAN: 'No has especificado correctamente el <b>IBAN</b> de la cuenta donde domiciliar',
+                NO_VOLUNTARY_DONATION_CHOICE_TAKEN: 'Hay que indicar si quieres o no hacer el donativo voluntario',
+                UNCONFIRMED_ACCOUNT_OWNER: 'Hay que marcar la casilla para confirmar que la persona indicada es la persona titular de la cuenta',
+                UNACCEPTED_GENERAL_CONDITIONS_NON_OWNER_PAYER: 'Si la persona pagadora es diferente de la titular, también tendrá que aceptar las condiciones generales del contrato marcando la casilla',
+                NO_PERSON_TYPE: 'No has especificado si es una persona física o jurídica',
+                NO_NAME: 'No has especificado el nombre',
+                NO_SURNAME: 'No has especificado los apellidos',
+                NO_NIF: 'No has especificado el NIF',
+                NO_PROXY_NAME: 'No has especificado el nombre de la persona representante',
+                NO_PROXY_NIF: 'No has especificado el NIF de la persona representante',
+                NO_ADDRESS: 'No has especificado la dirección',
+                NO_POSTALCODE: 'No has especificado un código postal correcto',
+                NO_STATE: 'No has especificado la provincia',
+                NO_CITY: 'No has especificado el municipio',
+                NO_EMAIL: 'No has especificado un correo electrónico correcto',
+                NO_REPEATED_EMAIL: 'No has repetido el correo electrónico correctamente',
+                NO_PHONE: 'No has especificado un teléfono correcto',
+                NO_LANGUAGE: 'No has especificado el idioma',
+                UNACCEPTED_PRIVACY_POLICY: 'Hay que aceptar la política de privacidad',
+                NEW_MEMBER_FORM: 'Nueva persona socia',
+                MEMBER_CONTRIBUTION_PAYMENT: 'Pago de la aportación',
+                DIRECT_DEBIT: 'Recibo domiciliado',
+                NEWMEMBER_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/pago-realizado/',
+                NEWMEMBER_KO_REDIRECT_URL: 'https://www.somenergia.coop/es/pago-cancelado/',
             })
         ;
     });

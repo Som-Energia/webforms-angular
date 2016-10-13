@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('newSomEnergiaWebformsApp')
+angular.module('SomEnergiaWebForms')
 .directive('somFileField', function () {
     return {
         restrict: 'E',
@@ -25,10 +25,7 @@ angular.module('newSomEnergiaWebformsApp')
 })
 .controller('somFileFieldCtrl', function (
         cfg,
-        $scope,
-        $timeout,
-        $log,
-        AjaxHandler
+        $scope
         ) {
     var self = this;
     self.init = function(/*element, attrs*/) {

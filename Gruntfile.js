@@ -296,10 +296,32 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '<%= yeoman.dist %>',
-                        src: ['*.html', 'views/{,*/}*.html', 'scripts/components/*.html'],
+                        src: [
+                            '*.html',
+                            'scripts/fragments/*.html',
+                            'scripts/components/*.html',
+                            'scripts/pages/*.html'
+                        ],
                         dest: '<%= yeoman.dist %>'
                     }
                 ]
+            }
+        },
+
+        ngtemplates:    {
+            dist: {
+                cwd: 'app/',
+                src: [
+                    'scripts/fragments/*.html',
+                    'scripts/components/*.html',
+                    'scripts/pages/*.html'
+				],
+                dest: '.tmp/templates.js',
+                options:    {
+                    module: 'SomEnergiaWebForms',
+                    usemin: '<%= yeoman.dist %>/scripts/scripts.js',
+                    htmlmin:  '<%= htmlmin.dist %>'
+                }
             }
         },
 
@@ -339,8 +361,9 @@ module.exports = function (grunt) {
                             '*.{ico,png,txt}',
                             '.htaccess',
                             '*.html',
-                            'views/{,*/}*.html',
+                            'scripts/fragments/*.html',
                             'scripts/components/*.html',
+                            'scripts/pages/*.html',
                             'images/{,*/}*.{webp}',
                             'fonts/*',
                             'styles/fonts/{,*/}*.*'
@@ -456,6 +479,7 @@ module.exports = function (grunt) {
         'useminPrepare',
         'concurrent:dist',
         'autoprefixer',
+        'ngtemplates',
         'concat',
         'ngAnnotate',
         'copy:dist',
@@ -474,4 +498,5 @@ module.exports = function (grunt) {
     ]);
 
     grunt.loadNpmTasks('grunt-ssh');
+    grunt.loadNpmTasks('grunt-angular-templates');
 };

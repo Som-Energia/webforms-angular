@@ -1,8 +1,8 @@
 <!--GLOBAL MESSAGES-->
 <div ng-cloak>
-<div class="row" data-ng-include data-src="'views/common/global-messages.html'"></div>
+<div class="row" data-ng-include data-src="'scripts/fragments/global-messages.html'"></div>
 
-<div ng-if='developing' data-ng-include data-src="'views/common/responsive-display.html'"></div>
+<div ng-if='developing' data-ng-include data-src="'scripts/fragments/responsive-display.html'"></div>
 
 <div data-ng-show="!wizardPage.current!='confirmationPage' || showAll">
     <!-- Page: dadesSociPage -->
@@ -10,7 +10,7 @@
         model="wizardPage"
         header="{{ 'FORMULARI_CONTRACTACIO' | translate }}"
         page-name='dadesSociPage'
-        next-page="altesDeshabilitades ? goToSupplyPointPage() : goToHaveLightPage()"
+        next-page="goToHaveLightPage()"
         show-always='showAll'
         ready="initForm.isReady()"
         hide-buttons
@@ -18,7 +18,7 @@
         <member-chooser
             button-text="{{'INICIAR_CONTRACTACIO' | translate }}"
             show-member-name="true"
-            onproceed="setOnwerAndPayerLanguage(initForm.soci); goToSupplyPointPage()"
+            onproceed="setOwnerAndPayerLanguage(initForm.soci); goToSupplyPointPage()"
             model="initForm"
             formvalues="formsoci"
         ></member-chooser>
@@ -36,7 +36,7 @@
             show-always='showAll'
             ready="isSupplyPointPageComplete()"
         >
-            <div data-ng-hide='altesDeshabilitades' class="row extra-margin-top">
+            <div class="row extra-margin-top">
                 <div class="col-xs-12 form-group">
                     <div class="panel panel-warning">
                         <div class="panel-heading" style="text-align:center">{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}
@@ -45,8 +45,22 @@
                             }" style="right:2em"></span>
                         </div>
                         <div class="panel-body" style="text-align:center">
-                            <label class="btn btn-default green" style="width:100%;white-space:normal" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="true" id="hasservice_true" data-ng-bind-html="'AVIS_CANVI_COMERCIALITZADORA' | translate">{{ 'SI' | translate }}</label>
-                            <label class="btn btn-default green" style="width:100%;white-space:normal" data-ng-change="formListener()" data-ng-model="form.hasservice" data-btn-radio="false" data-ng-bind-html="'AVIS_ALTA_DE_SERVEI' | translate"></label>
+                            <div class="btn-group btn-group-justified">
+                                <label class="btn btn-default green"
+                                    style="white-space:normal"
+                                    data-ng-change="formListener()"
+                                    data-ng-model="form.hasservice"
+                                    data-uib-btn-radio="true"
+                                    data-ng-bind-html="'AVIS_CANVI_COMERCIALITZADORA' | translate"
+                                    ></label>
+                                <label class="btn btn-default green"
+                                    style="white-space:normal"
+                                    data-ng-change="formListener()"
+                                    data-ng-model="form.hasservice"
+                                    data-uib-btn-radio="false"
+                                    data-ng-bind-html="'AVIS_ALTA_DE_SERVEI' | translate"
+                                    ></label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -141,6 +155,9 @@
                     onchanged="formListener()"
                 ></som-file-field>
             </div>
+            <div class="row extra-margin-top" data-ng-show="supplyPointPageError">
+                <div class="alert alert-danger" translate="{{supplyPointPageError}}"></div>
+            </div>
         </wizard-page>
 
         <!-- Page: Fares -->
@@ -179,9 +196,9 @@
                                 tabindex="-1"
                                 class="btn btn-default input-group-addon"
                                 tooltip-append-to-body="true"
-                                tooltip-trigger="focus"
+                                tooltip-trigger="'focus'"
                                 tooltip-placement="left"
-                                tooltip-html="'HELP_INSTALL_TYPE' | translate: {url: t.HELP_INSTALL_TYPE_URL }"
+                                uib-tooltip-html="'HELP_INSTALL_TYPE' | translate: {url: t.HELP_INSTALL_TYPE_URL }"
                                 >
                                 <span class="badge current small">?</span>
                             </a>
@@ -212,9 +229,9 @@
                                 tabindex="-1"
                                 class="btn btn-default input-group-addon"
                                 tooltip-append-to-body="true"
-                                tooltip-trigger="focus"
+                                tooltip-trigger="'focus'"
                                 tooltip-placement="left"
-                                tooltip-html="'HELP_POTENCIA' | translate: {url: t.HELP_POTENCIA_URL }"
+                                uib-tooltip-html="'HELP_POTENCIA' | translate: {url: t.HELP_POTENCIA_URL }"
                                 >
                                 <span class="badge current small">?</span>
                             </a>
@@ -241,9 +258,9 @@
                                 tabindex="-1"
                                 class="btn btn-default input-group-addon"
                                 tooltip-append-to-body="true"
-                                tooltip-trigger="focus"
+                                tooltip-trigger="'focus'"
                                 tooltip-placement="left"
-                                tooltip-html="'HELP_DISCRIMINACIO_HORARIA' | translate: {url: t.HELP_DISCRIMINACIO_HORARIA_URL}"
+                                uib-tooltip-html="'HELP_DISCRIMINACIO_HORARIA' | translate: {url: t.HELP_DISCRIMINACIO_HORARIA_URL}"
                                 >
                                 <span class="badge current small">?</span>
                             </a>
@@ -301,9 +318,9 @@
                                 role="button"
                                 tabindex="-1"
                                 tooltip-append-to-body="true"
-                                tooltip-trigger="focus"
-                                tooltip-html="'HELP_POWER_30' | translate: {url: t.HELP_POWER_30_URL}"
+                                tooltip-trigger="'focus'"
                                 tooltip-placement="left"
+                                uib-tooltip-html="'HELP_POWER_30' | translate: {url: t.HELP_POWER_30_URL}"
                                 >
                                 <span class="badge current small">?</span></a>
                         </div>
@@ -343,9 +360,9 @@
                                 tabindex="-1"
                                 class="btn btn-default input-group-addon"
                                 tooltip-append-to-body="true"
-                                tooltip-trigger="focus"
+                                tooltip-trigger="'focus'"
                                 tooltip-placement="left"
-                                tooltip-html="'HELP_POPOVER_RATE' | translate: {url: t.HELP_POPOVER_RATE_URL}"
+                                uib-tooltip-html="'HELP_POPOVER_RATE' | translate: {url: t.HELP_POPOVER_RATE_URL}"
                                 >
                                 <span class="badge current small">?</span>
                             </a>
@@ -366,9 +383,9 @@
                                 tabindex="-1"
                                 class="btn btn-default input-group-addon"
                                 tooltip-append-to-body="true"
-                                tooltip-trigger="focus"
+                                tooltip-trigger="'focus'"
                                 tooltip-placement="left"
-                                tooltip-html="'HELP_POPOVER_POWER' | translate"
+                                uib-tooltip-html="'HELP_POPOVER_POWER' | translate"
                                 >
                                 <span class="badge current small">?</span>
                             </a>
@@ -434,14 +451,17 @@
                                 role="button"
                                 tabindex="-1"
                                 tooltip-append-to-body="true"
-                                tooltip-trigger="focus"
-                                tooltip-html="'HELP_POWER_30' | translate: {url: t.HELP_POWER_30_URL}"
+                                tooltip-trigger="'focus'"
                                 tooltip-placement="left"
+                                uib-tooltip-html="'HELP_POWER_30' | translate: {url: t.HELP_POWER_30_URL}"
                                 >
                                 <span class="badge current small">?</span></a>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row extra-margin-top" data-ng-show="farePageError">
+                <div class="alert alert-danger" translate="{{farePageError}}"></div>
             </div>
         </wizard-page>
 
@@ -453,7 +473,7 @@
             prev-page="goToFarePage()"
             next-page="goToPayerPage()"
             show-always='showAll'
-            ready="isOwnerPageComplete"
+            ready="isOwnerPageComplete()"
         >
             <div data-ng-hide='esAlta()' class="row extra-margin-top">
                 <div class="col-xs-12 form-group">
@@ -464,20 +484,22 @@
                             }" style="right:2em"></span>
                         </div>
                         <div class="panel-body" style="text-align:center">
-                            <label class="btn btn-default green"
-                                style="width:100%;white-space:normal"
-                                data-ng-change="formListener()"
-                                data-ng-model="form.changeowner"
-                                data-btn-radio="'no'"
-                                data-ng-bind-html="'NO_CANVI_DE_TITULAR' | translate"
-                                >{{ 'SI' | translate }}<br></label>
-                            <label class="btn btn-default green"
-                                style="width:100%;white-space:normal"
-                                data-ng-change="formListener()"
-                                data-ng-model="form.changeowner"
-                                data-btn-radio="'yes'"
-                                data-ng-bind-html="'SI_CANVI_DE_TITULAR' | translate"
-                                >{{ 'NO' | translate }}</br></label>
+                            <div class="btn-group btn-group-justified">
+                                <label class="btn btn-default green"
+                                    style="white-space:normal"
+                                    data-ng-change="formListener()"
+                                    data-ng-model="form.changeowner"
+                                    data-uib-btn-radio="'no'"
+                                    data-ng-bind-html="'NO_CANVI_DE_TITULAR' | translate"
+                                    ></label>
+                                <label class="btn btn-default green"
+                                    style="white-space:normal"
+                                    data-ng-change="formListener()"
+                                    data-ng-model="form.changeowner"
+                                    data-uib-btn-radio="'yes'"
+                                    data-ng-bind-html="'SI_CANVI_DE_TITULAR' | translate"
+                                    ></label>
+                            </div>
                         </div>
                     </div>
                     <div data-ng-show="form.changeowner==='yes'" class="alert alert-warning" style="margin-top:5px" role="alert">
@@ -513,6 +535,9 @@
                     }" style="right:2em"></span>
                 </div>
             </div>
+            <div class="row extra-margin-top" data-ng-show="ownerPageError">
+                <div class="alert alert-danger" translate="{{ownerPageError}}">boo</div>
+            </div>
         </wizard-page>
         <!-- Page: Payer data -->
         <wizard-page
@@ -523,7 +548,7 @@
             next-page="goToConfirmationPage()"
             next-text="{{ 'CONFIRMAR_CONTRACTACIO' | translate }}"
             show-always='showAll'
-            ready="isPayerPageComplete"
+            ready="isPayerPageComplete()"
         >
             <div class="row extra-margin-top">
                 <div class="col-xs-12">
@@ -607,26 +632,14 @@
                     </div>
                 </div>
             </div>
+            <div class="row extra-margin-top" data-ng-show="payerPageError">
+                <div class="alert alert-danger" translate="{{payerPageError}}"></div>
+            </div>
         </wizard-page>
     </form>
 </div>
 
 <!--CONFIRM TEMPLATE-->
-<div data-ng-include data-src="'views/confirm.html'"></div>
-
-<!--OFFLINE API MODAL-->
-<div id="api-server-offline-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="WebformsOfflineApi" data-aria-hidden="true">
-    <div class="modal-dialog modal-lg" data-ng-include data-src="'views/common/offline-api-modal.html'"></div>
-</div>
-
-<!--LOADING API MODAL-->
-<div id="loading-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="WebformsLoadingApi" data-aria-hidden="true">
-    <div class="modal-dialog modal-lg" data-ng-include data-src="'views/common/loading-api-modal.html'"></div>
-</div>
-
-<!--WELL DONE MODAL-->
-<div id="well-done-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="WebformsWellDone" data-aria-hidden="true">
-    <div class="modal-dialog modal-lg" data-ng-include data-src="'views/common/well-done-modal.html'"></div>
-</div>
+<div data-ng-include data-src="'scripts/pages/contract-confirmation.html'"></div>
 
 </div>

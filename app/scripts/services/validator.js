@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('newSomEnergiaWebformsApp')
-    .service('ValidateHandler', ['$timeout', '$log', 'AjaxHandler', 'cfg', function($timeout, $log, AjaxHandler, cfg) {
+angular.module('SomEnergiaWebForms')
+    .service('ValidateHandler', ['$timeout', '$log', 'ApiSomEnergia', 'cfg', function($timeout, $log, ApiSomEnergia, cfg) {
 
         var emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var integerRE = /^\d*$/;
@@ -89,7 +89,7 @@ angular.module('newSomEnergiaWebformsApp')
                 }
                 timer = $timeout(function() {
                     if (newValue !== undefined && makeApiAsyncCheck) {
-                        var dniPromise = AjaxHandler.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
+                        var dniPromise = ApiSomEnergia.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
                         dniPromise.then(
                             function (response) {
                                 if (element === 'form.dni' || element === 'formvalues.dni') {
@@ -162,7 +162,7 @@ angular.module('newSomEnergiaWebformsApp')
                 if (timer) {
                     $timeout.cancel(timer);
                 }
-                $scope.postalCodeIsInvalid=false;
+                $scope.postalCodeIsInvalid=undefined;
                 $scope.validatingPostalCode=true;
                 timer = $timeout(function() {
                     $scope.validatingPostalCode=undefined;
@@ -254,7 +254,7 @@ angular.module('newSomEnergiaWebformsApp')
                 }
                 timer = $timeout(function() {
                     if (newValue !== undefined) {
-                        var cupsPromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'check/cups/' + newValue, '006');
+                        var cupsPromise = ApiSomEnergia.dataRequest('check/cups/' + newValue, '006');
                         cupsPromise.then(
                             function(response) {
                                 if (response.state === cfg.STATE_TRUE) {
@@ -281,7 +281,7 @@ angular.module('newSomEnergiaWebformsApp')
                 }
                 timer = $timeout(function() {
                     if (newValue !== undefined) {
-                        var cnaePromise = AjaxHandler.getDataRequest($scope, cfg.API_BASE_URL + 'check/cnae/' + newValue, '007');
+                        var cnaePromise = ApiSomEnergia.dataRequest('check/cnae/' + newValue, '007');
                         cnaePromise.then(
                             function(response) {
                                 $scope.cnaeIsInvalid = response.state === cfg.STATE_FALSE;

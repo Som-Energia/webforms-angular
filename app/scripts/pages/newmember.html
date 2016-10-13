@@ -1,0 +1,67 @@
+<div data-ng-cloak ng-show="newPartner.isReady!==undefined">
+<!--GLOBAL MESSAGES-->
+<div ng-cloak>
+<div class="row" data-ng-include data-src="'scripts/fragments/global-messages.html'"></div>
+
+<div ng-if='developing' data-ng-include data-src="'scripts/fragments/responsive-display.html'"></div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <h1 class="green extra-margin" translate="NEW_MEMBER_FORM"></h1>
+    </div>
+</div>
+
+<form name="partnerForm" class="form-inline" role="form" novalidate>
+<personal-data
+    model='newPartner'
+    onchanged='formListener()'
+></personal-data>
+
+<h4 translate="MEMBER_CONTRIBUTION_PAYMENT"></h4>
+
+<div class="alert alert-info grey">
+    <span data-ng-bind-html="'INFO_APORTACIO' | translate"></span>
+</div>
+
+<div class="row">
+    <div class="form-group col-xs-12">
+        <label>{{ 'METODE_PAGAMENT' | translate }} ({{ 'COST' | translate }})</label>
+        <div class="btn-group btn-group-justified">
+<!--
+            <label class="btn btn-default green" data-ng-model="form.payment" data-uib-btn-radio="'bankaccount'" data-ng-change="formListener()">{{ 'REBUT_BANCARI' | translate }} (0 €)</label>
+-->
+            <label class="btn btn-default green" data-ng-model="form.payment" data-uib-btn-radio="'remesa'" data-ng-change="formListener()">{{ 'DIRECT_DEBIT' | translate }} (0 €)</label>
+            <label class="btn btn-default green" data-ng-model="form.payment" data-uib-btn-radio="'creditcard'" data-ng-change="formListener()">{{ 'TARGETA_CREDIT' | translate }} (1,8 €)</label>
+        </div>
+    </div>
+</div>
+<div class="row no-margin-bottom" data-ng-show="form.payment!=='creditcard'">
+    <iban-editor
+        class="col-sm-8 col-xs-12"
+        required
+        inputid="accountbankiban"
+        placeholder="{{'CODI_IBAN_DEL_COMPTE' | translate}}"
+        help="accountbankibanHelp"
+        model="ibanEditor"
+        checkurl="check/iban/"
+    ></iban-editor>
+    <div class="col-xs-12">
+        <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>{{ 'EXEMPLE_IBAN' | translate }}</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="alert alert-danger" data-ng-show="stopErrors!==undefined" translate="{{stopErrors}}"></div>
+    </div>
+    <div class="col-xs-12">
+        <div class="wrapper-continue-process" data-ng-class="{ready: checkErrors()===true}">
+            <button data-ng-disabled="stopErrors!==undefined" data-ng-click="submit()" class="btn btn-default transparent pull-right submit" type="button">{{ 'FINALITZA_PROCES' | translate }}</button>
+        </div>
+    </div>
+</div>
+
+</form>
+
+</div>
+

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('newSomEnergiaWebformsApp')
+angular.module('SomEnergiaWebForms')
     .config(function($translateProvider) {
         $translateProvider
             .translations('gl', {
@@ -106,7 +106,7 @@ angular.module('newSomEnergiaWebformsApp')
                 COMPROVANT: 'A comprobar...',
                 CORRECTE: 'Correcto',
                 INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/gl/aportacion-realizada-correctamente/', // TODO: Translate url
-                CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
+                CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/gl/contratacion-realizada/',
                 GENERATION_OK_REDIRECT_URL: 'http://www.generationkwh.org/gl/investimento-feito/',
 
                 // Added or changed since 1.2.6
@@ -208,8 +208,51 @@ angular.module('newSomEnergiaWebformsApp')
                 CANVI_DE_COMERCIALITZADORA: 'Cambio de comercializadora mantendo a persoa titular',
                 ERROR_POST_CONTRACTE: 'Houbo un erro ao enviar o contrato',
 
-                // Under development
+                // Translation pending
 
+                INCOMPLETE_PREVIOUS_STEP: 'Non completaches o paso anterior',
+                UNSELECTED_NEW_SUPPLY_POINT: 'Non especificaches se xa hai luz con outra comercializadora ou é un novo punto de subministración sen luz',
+                NO_SUPPLY_POINT_ADDRESS: 'Non especificaches o enderezo do punto de subministración',
+                NO_SUPPLY_POINT_STATE: 'Non especificaches a <b>provincia</b> do punto de subministración',
+                NO_SUPPLY_POINT_CITY: 'Non especificaches o <b>municipio</b> do punto de subministración',
+                INVALID_SUPPLY_POINT_CUPS: 'Non especificaches un <b>identificador CUPS</b> válido para o punto de subministración',
+                INVALID_SUPPLY_POINT_CNAE: 'Non especificaches un <b>codi CNAE</b> válido para o punto de subministración',
+                INVALID_SUPPLY_POINT_ATTACHMENT: 'O arquivo adxunto supera o límite de 10Mbytes',
+                NO_MONOPHASE_CHOICE: 'Non especificaches se a instalación é de tipo monofásico ou trifásico',
+                NO_FARE_CHOSEN: 'Non especificaches a tarifa',
+                NO_POWER_CHOSEN: 'Non especificaches a potencia',
+                NO_POWER_CHOSEN_P2: 'Non especificaches a potencia para o período P2',
+                NO_POWER_CHOSEN_P3: 'Non especificaches a potencia para o período P3',
+                INVALID_POWER_20: 'A potencia para tarifas 2.0 ten que ser inferior a 10kW',
+                INVALID_POWER_21: 'A potencia para tarifas 2.1 tería que estar entre 10kW e 15kW',
+                INVALID_POWER_30: 'Polo menos un período ten que ter unha potencia superior ou igual a 15kW',
+                NO_HOURLY_DISCRIMINATION_CHOSEN: 'Non especificaches se queres discriminación horaria',
+                OWNER_CHANGED_NOT_CHOSEN: 'Hai que indicar se se mantén a actual persoa titular do contrato',
+                UNACCEPTED_GENERAL_CONDITIONS: 'Hai que aceptar as condicións xerais do contrato',
+                INVALID_PAYER_IBAN: 'Non especificaches correctamente o <b>IBAN</b> da conta onde domiciliar',
+                NO_VOLUNTARY_DONATION_CHOICE_TAKEN: 'Hai que indicar se queres ou non facer o donativo voluntario',
+                UNCONFIRMED_ACCOUNT_OWNER: 'Hai que marcar a casiña para confirmar que a persoa indicada é a persoa titular da conta',
+                UNACCEPTED_GENERAL_CONDITIONS_NON_OWNER_PAYER: 'Se a persoa pagadora é diferente da titular, tamén terá que aceptar as condicións xerais do contrato marcando a casiña',
+                NO_PERSON_TYPE: 'Non especificaches se é unha persoa física ou xurídica',
+                NO_NAME: 'Non especificaches o nome',
+                NO_SURNAME: 'Non especificaches os apelidos',
+                NO_NIF: 'Non especificaches o NIF',
+                NO_PROXY_NAME: 'Non especificaches o nome da persoa representante',
+                NO_PROXY_NIF: 'Non especificaches o NIF da persoa representante',
+                NO_ADDRESS: 'Non especificaches o enderezo',
+                NO_POSTALCODE: 'Non especificaches un código postal correcto',
+                NO_STATE: 'Non especificaches a provincia',
+                NO_CITY: 'Non especificaches o municipio',
+                NO_EMAIL: 'Non especificaches un correo electrónico correcto',
+                NO_REPEATED_EMAIL: 'Non repetiches o correo electrónico correctamente',
+                NO_PHONE: 'Non especificaches un teléfono correcto',
+                NO_LANGUAGE: 'Non especificaches o idioma',
+                UNACCEPTED_PRIVACY_POLICY: 'Hai que aceptar a política de privacidade',
+                NEW_MEMBER_FORM: 'Nova persoa socia',
+                MEMBER_CONTRIBUTION_PAYMENT: 'Pagamento da aportación',
+                DIRECT_DEBIT: 'Recibo domiciliado',
+                NEWMEMBER_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/pago-realizado/',
+                NEWMEMBER_KO_REDIRECT_URL: 'https://www.somenergia.coop/es/pago-cancelado/',
             })
         ;
     });

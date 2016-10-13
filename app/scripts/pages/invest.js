@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('newSomEnergiaWebformsApp')
-    .controller('GenerationKwhCtrl', function (cfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
+angular.module('SomEnergiaWebForms')
+    .controller('InvestCtrl', function (cfg, ApiSomEnergia, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // INIT
         $scope.developing = cfg.DEVELOPMENT;
@@ -34,70 +34,48 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.setStep(0);
 
         // Configurable constants
-        $scope.estimatedMeanHomeUse = 2800; // kWh
-        $scope.kwhPerAccio = 170;
-        $scope.preuPerAccio = 100;
-        $scope.recommendedMax = 70; // percent
+        $scope.aportacioMinima = 100;
+        $scope.aportacioMaxima = 25000;
+        $scope.aportacioSalts = 100;
+        $scope.amountAboveMax = false;
+        $scope.amountUnderMin = false;
+        $scope.amountNotHundred = false;
 
         $scope.form = {};
-        $scope.form.energeticActions = 1;
+        $scope.form.amount = $scope.aportacioMinima;
         $scope.form.acceptaccountowner = false;
         $scope.form.acceptcontract = false;
-        $scope.partnerContracts = [];
-        $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
         $scope.isPartner = true;
         $scope.newPartner = {};
         $scope.initForm = {};
         $scope.ibanEditor = {};
 
-        $scope.energeticActionsCost = function() {
-            return ($scope.form.energeticActions||0) * $scope.preuPerAccio;
-        };
-        $scope.energeticActionsThrowput = function() {
-            return ($scope.form.energeticActions||0) * $scope.kwhPerAccio;
-        };
-        $scope.percentatgeCobert = function() {
-            if (!$scope.totalYearlyKwh) { return '?'; }
-            return (100 * $scope.energeticActionsThrowput() / $scope.totalYearlyKwh).toFixed(1);
-        };
-        $scope.orangeBarLength = function() {
-            return Math.min(100-$scope.recommendedMax,Math.max(0,$scope.percentatgeCobert()-$scope.recommendedMax));
-        };
-        $scope.greenBarLength = function() {
-            return Math.min($scope.recommendedMax,$scope.percentatgeCobert());
-        };
-        $scope.incrementShares = function(amount) {
-            if (amount + $scope.form.energeticActions>0) {
-                $scope.form.energeticActions+=amount;
-                return;
-            }
-            $scope.form.energeticActions = 1;
+        $scope.investedAmount = function() {
+            return parseInt($scope.form.amount||0);
         };
 
-        $scope.$watch('form.energeticActions', function(newValue, oldValue) {
+        $scope.$watch('form.amount', function(newValue, oldValue) {
             if (newValue === undefined) {
+                $scope.amountAboveMax = false;
+                $scope.amountNotHundred = false;
+                $scope.amountUnderMin = false;
                 return;
             }
-            var intValue = parseInt(newValue);
-            if (isNaN(intValue)) {
-                $scope.form.energeticActions = oldValue;
+            if (! /^\d+$/.test(newValue)) {
+                $scope.form.amount = oldValue;
                 return;
             }
-            if (intValue<1) {
-                $scope.form.energeticActions = 1;
-                return;
-            }
-            if (intValue>9999) {
-                $scope.form.energeticActions = 9999;
-                return;
-            }
-            $scope.form.energeticActions = intValue;
+            $scope.amountAboveMax = (newValue > $scope.aportacioMaxima)? true : false;
+            $scope.amountNotHundred = (newValue % $scope.aportacioSalts) !== 0;
+            $scope.amountUnderMin = newValue < $scope.aportacioMinima;
         });
 
         $scope.isInvestmentFormReady = function() {
             if ($scope.ibanEditor.isValid === undefined) {return false;}
             if (!$scope.ibanEditor.isValid()) {return false;}
-            if (!$scope.energeticActionsCost()) {return false;}
+            if ($scope.amountUnderMin) {return false;}
+            if ($scope.amountAboveMax) {return false;}
+            if ($scope.amountNotHundred) {return false;}
             if ($scope.form.acceptaccountowner === false) {return false;}
             if ($scope.form.acceptcontract === false) {return false;}
             return true;
@@ -107,7 +85,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         $scope.initFormSubmited = function() {
             $scope.setStep(1);
-            $scope.updateAnnualUse();
         };
 
         $scope.newPartnerProceed = function() {
@@ -130,30 +107,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         // Backward with order.js  
         $scope.formListener = function() {
-        };
-
-        $scope.updateAnnualUse = function() {
-            $scope.partnerContracts = undefined;
-            $scope.totalYearlyKwh = undefined;
-            var promise = $http.get(cfg.API_BASE_URL +
-               'data/consumanualsoci/' + $scope.formsoci.socinumber+'/'+ $scope.formsoci.dni);
-            promise.soci = $scope.formsoci.socinumber;
-            promise.success(function(response) {
-                $log.log(response.data.consums);
-                $scope.partnerContracts = response.data.consums;
-                $scope.totalYearlyKwh = $scope.partnerContracts.reduce(
-                    function(sum, contract) {
-                        return sum + (contract.annual_use_kwh || 0);
-                    }, 0);
-                if ( $scope.totalYearlyKwh === 0 ) {
-                    $scope.partnerContracts = [];
-                    $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
-                }
-            });
-            promise.error(function() {
-                $scope.partnerContracts = [];
-                $scope.totalYearlyKwh = $scope.estimatedMeanHomeUse;
-            });
         };
 
         $scope.proceed = function() {
@@ -190,7 +143,7 @@ angular.module('newSomEnergiaWebformsApp')
             }
             $log.log('request postData', postData);
             // Send request data POST
-            var postPromise = AjaxHandler.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData, '004');
+            var postPromise = ApiSomEnergia.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData, '004');
             postPromise.then(
                 function (response) {
                     if (response.state === cfg.STATE_TRUE) { // well done
@@ -228,7 +181,7 @@ angular.module('newSomEnergiaWebformsApp')
                 socinumber: $scope.formsoci.socinumber,
                 dni: $scope.formsoci.dni,
                 accountbankiban: $scope.ibanEditor.value,
-                amount: $scope.energeticActionsCost(),
+                amount: $scope.form.amount,
                 acceptaccountowner: 1
             }, function(value, key) {
                 console.log(key, value);
@@ -238,7 +191,7 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.submitButtonText = $translate.instant('SENDING');
             $http({
                 method: 'POST',
-                url: cfg.API_BASE_URL + 'form/generationkwh',
+                url: cfg.API_BASE_URL + 'form/inversio',
                 headers: {'Content-Type': undefined},
                 data: formData,
                 transformRequest: angular.identity,
@@ -263,7 +216,7 @@ angular.module('newSomEnergiaWebformsApp')
                     }
 
                     uiHandler.showWellDoneDialog();
-                    $window.top.location.href = $translate.instant('GENERATION_OK_REDIRECT_URL');
+                    $window.top.location.href = $translate.instant('INVEST_OK_REDIRECT_URL');
                 },
                 function(reason) {
                     $log.error('Send POST failed', reason);
@@ -283,24 +236,7 @@ angular.module('newSomEnergiaWebformsApp')
 
         // GET HUMANIZED API RESPONSE
         $scope.getHumanizedAPIResponse = function(arrayResponse) {
-            var result = '';
-            if (arrayResponse.required_fields !== undefined) {
-                for (var i = 0; i < arrayResponse.required_fields.length; i++) {
-                    result += '<li>'+$translate.instant('ERROR_REQUIRED_FIELD', {
-                        field: arrayResponse.required_fields[i],
-                    })+'</li>';
-                }
-            }
-            if (arrayResponse.invalid_fields !== undefined) {
-                for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
-                    result += '<li>'+$translate.instant('ERROR_INVALID_FIELD', {
-                        field: arrayResponse.invalid_fields[j].field,
-                        reason: arrayResponse.invalid_fields[j].error
-                    })+'</li>';
-                }
-            }
-            if (result === '') {return '';} // TODO: Manage case
-            return '<ul>'+result+'</ul>';
+			return ApiSomEnergia.humanizedResponse(arrayResponse);
         };
 
     });

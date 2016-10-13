@@ -2,7 +2,7 @@
 
 var developmentMode = false;
 
-angular.module('newSomEnergiaWebformsApp', [
+angular.module('SomEnergiaWebForms', [
         'ngCookies',
         'ngResource',
         'ngSanitize',
@@ -11,48 +11,48 @@ angular.module('newSomEnergiaWebformsApp', [
         'ui.bootstrap'
     ])
     .config(function ($httpProvider) {
-        $httpProvider.defaults.headers.post = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
+        $httpProvider.defaults.withCredentials = true;
+        $httpProvider.defaults.crossDomain = true;
+        $httpProvider.defaults.headers.post = {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        };
         $httpProvider.defaults.transformRequest = function(data) {
             return data === undefined ? data : jQuery.param(data);
         };
 //        $httpProvider.defaults.useXDomain = true;
     })
     .config(function ($routeProvider, $sceDelegateProvider/*, $locationProvider*/) {
-        var base = (
-            developmentMode ? '' :
-            '//cdn.rawgit.com/Som-Energia/new-api-webforms/v1.4.3/app/'
-            );
-
         $routeProvider
             .when('/', {
-                templateUrl: base+'views/main.html',
-                controller: 'MainCtrl'
-            })
-            .when('/prepagament', {
-                templateUrl: base+'views/prepayment.html',
-                controller: 'PrepaymentCtrl'
+                templateUrl: 'scripts/pages/newmember.html',
+                controller: 'NewMemberCtrl'
             })
             .when('/:locale', {
-                templateUrl: base+'views/main.html',
-                controller: 'MainCtrl'
+                templateUrl: 'scripts/pages/newmember.html',
+                controller: 'NewMemberCtrl'
             })
             .when('/:locale/soci', {
-                templateUrl: base+'views/main.html',
-                controller: 'MainCtrl'
+                templateUrl: 'scripts/pages/newmember.html',
+                controller: 'NewMemberCtrl'
+            })
+            .when('/:locale/prepagament', {
+                templateUrl: 'scripts/pages/prepayment.html',
+                controller: 'PrepaymentCtrl'
             })
             .when('/:locale/contractacio', {
-                templateUrl: 'views/order.html', // DGG: No base??
+                templateUrl: 'scripts/pages/contract.html',
                 controller: 'OrderCtrl'
             })
             .when('/:locale/aportacionsvoluntaries', {
-                templateUrl: 'views/invest.html', // DGG: No base??
-                controller: 'AportacioVoluntariaCtrl'
+                templateUrl: 'scripts/pages/invest.html',
+                controller: 'InvestCtrl'
             })
             .when('/:locale/generationkwh', {
-                templateUrl: 'views/generationkwh.html',
+                templateUrl: 'scripts/pages/generationkwh.html',
                 controller: 'GenerationKwhCtrl'
             })
             .otherwise({
+				// TODO: An error page, just to know we are doing something wrong
                 redirectTo: '/'
             });
         //$locationProvider.html5Mode(true);
@@ -72,13 +72,15 @@ angular.module('newSomEnergiaWebformsApp', [
         BASE_DOMAIN: 'somenergia.coop',
         API_BASE_URL: (developmentMode ?
 //            'http://localhost:5001/': // development api
-            'https://testing.somenergia.coop:5001/': // testing api
+//            'http://testing.somenergia.coop:5001/': // testing api
+            'https://testing.somenergia.coop/': // testing api
             'https://api.somenergia.coop/'),  // production api
         STATUS_OFFLINE: 'OFFLINE',
         STATUS_ONLINE: 'ONLINE',
         STATE_TRUE: true,
         STATE_FALSE: false,
         PAYMENT_METHOD_BANK_ACCOUNT: 'rebut',
+        PAYMENT_METHOD_PAYMENT_ORDER: 'remesa',
         PAYMENT_METHOD_CREDIT_CARD: 'tpv',
         USER_TYPE_PERSON: 'fisica',
         USER_TYPE_COMPANY: 'juridica',

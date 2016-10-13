@@ -1,19 +1,21 @@
 <div class="row">
-    <div class="form-group col-xs-10">
+    <div class="form-group col-xs-12">
         <label>{{ 'SELECCIONA' | translate }}:</label>
-        <div class="btn-group" display="inline">
-            <label class="btn btn-default btn-lg green" data-ng-model="form.usertype" data-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
-            <label class="btn btn-default btn-lg green" data-ng-model="form.usertype" data-btn-radio="'company'" data-ng-change="formListener()">{{ 'EMPRESA' | translate }}</label>
+    </div>
+    <div class="form-group col-xs-10">
+        <div class="btn-group btn-group-justified">
+            <label class="btn btn-default btn-lg green" style="white-space:normal" data-ng-model="form.usertype" data-uib-btn-radio="'person'" data-ng-change="formListener()">{{ 'PARTICULAR' | translate }}</label>
+            <label class="btn btn-default btn-lg green" style="white-space:normal" data-ng-model="form.usertype" data-uib-btn-radio="'company'" data-ng-change="formListener()">{{ 'EMPRESA' | translate }}</label>
         </div>
     </div>
     <div class="form-group col-xs-2">
         <a
+            class="btn btn-default green"
             tabindex="-1"
-            style="width:3em"
             tooltip-append-to-body="true"
-            tooltip-trigger="focus"
+            tooltip-trigger="'focus'"
             tooltip-placement="top"
-            tooltip-html="'HELP_JURIDICA' | translate"
+            uib-tooltip-html="'HELP_JURIDICA' | translate"
             >
             <span class="badge current small">?</span>
         </a>
@@ -43,8 +45,8 @@
         </div>
         <div class="col-xs-7">
             <div class="form-group has-feedback">
-                <label class="sr-only">{{ 'COGNOMS' | translate }}*:</label>
-                <input type="text" name="surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}*" data-ng-model="form.surname" data-ng-change="formListener()" required/>
+                <label class="sr-only">{{ 'COGNOMS' | translate }}:</label>
+                <input type="text" name="surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}" data-ng-model="form.surname" data-ng-change="formListener()" required/>
                 <span class="label label-danger" data-ng-show="submitted && form.surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                 <span class="form-control-feedback glyphicon "  data-ng-class="{
                     'glyphicon-asterisk danger': form.surname === undefined,
@@ -64,7 +66,7 @@
             quietlabels='true'
             onchanged="formListener()"
             >
-            <span class="label label-danger pull-right" data-ng-show="form.dni !== undefined && dniDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
+            <span class="label label-danger pull-right" data-ng-show="form.dni !== undefined && form.dniDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
         </iban-editor>
     </div>
 
@@ -94,13 +96,13 @@
             quietlabels='true'
             onchanged="formListener()"
             >
-            <span class="label label-danger pull-right" data-ng-show="form.dni !== undefined && dniDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
+            <span class="label label-danger pull-right" data-ng-show="form.dni !== undefined && form.dniDuplicated">{{ 'REGISTRE_EXISTENT' | translate }}</span>
         </iban-editor>
     </div>
     <div class="row">
         <div class="form-group col-sm-9 col-xs-6">
-            <label class="sr-only">{{ 'PERSONA_REPRESENTANT' | translate }}*:</label>
-            <input type="text" name="representantname" class="form-control" placeholder="{{ 'PERSONA_REPRESENTANT' | translate }}*" data-ng-model="form.representantname" data-ng-change="formListener()" required/>
+            <label class="sr-only">{{ 'PERSONA_REPRESENTANT' | translate }}:</label>
+            <input type="text" name="representantname" class="form-control" placeholder="{{ 'PERSONA_REPRESENTANT' | translate }}" data-ng-model="form.representantname" data-ng-change="formListener()" required/>
             <span class="form-control-feedback glyphicon "  data-ng-class="{
                 'glyphicon-asterisk danger': form.representantname === undefined,
                 'glyphicon-ok success': form.representantname !== undefined,
@@ -224,7 +226,7 @@
 </div>
     <div class="row">
         <div class="form-group col-xs-12">
-            <label class="sr-only">{{ 'IDIOMA' | translate }}*:</label>
+            <label class="sr-only">{{ 'IDIOMA' | translate }}:</label>
             <div class="input-group">
                 <select class="form-control input-lg" name="language"
                     data-ng-model="form.language"
@@ -243,10 +245,10 @@
                     class="btn btn-default input-group-addon"
                     role="button"
                     tabindex="-1"
-                    tooltip-html="'HELP_POPOVER_IDIOMA' | translate"
                     tooltip-append-to-body="true"
-                    tooltip-trigger="focus"
+                    tooltip-trigger="'focus'"
                     tooltip-placement="left"
+                    uib-tooltip-html="'HELP_POPOVER_IDIOMA' | translate"
                     >
                     <span class="badge current small">?</span>
                 </a>

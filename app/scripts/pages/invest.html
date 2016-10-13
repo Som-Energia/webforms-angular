@@ -1,7 +1,7 @@
 <!--GLOBAL MESSAGES-->
-<div class="row" data-ng-include data-src="'views/common/global-messages.html'"></div>
+<div class="row" data-ng-include data-src="'scripts/fragments/global-messages.html'"></div>
 
-<div ng-if='developing' data-ng-include data-src="'views/common/responsive-display.html'"></div>
+<div ng-if='developing' data-ng-include data-src="'scripts/fragments/responsive-display.html'"></div>
 
 <div>
     <!--HEADER-->
@@ -17,9 +17,9 @@
     </div>
     <div class="row" data-ng-show="isStep(0) || showAll">
         <div class="form-group col-xs-12">
-            <div class="btn-group" style="text-align: center; width:100%">
-                <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-btn-radio="true" >{{ 'JA_SOC_SOCIA' | translate }}</label>
-                <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-btn-radio="false">{{ 'EM_VULL_FER_SOCIA' | translate }}</label>
+            <div class="btn-group btn-group-justified">
+                <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-uib-btn-radio="true" >{{ 'JA_SOC_SOCIA' | translate }}</label>
+                <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-uib-btn-radio="false">{{ 'EM_VULL_FER_SOCIA' | translate }}</label>
             </div>
         </div>
     </div>
@@ -182,18 +182,4 @@
     </form>
 </div>
 
-<!--OFFLINE API MODAL-->
-<div id="api-server-offline-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="WebformsOfflineApi" data-aria-hidden="true">
-    <div class="modal-dialog modal-lg" data-ng-include data-src="'views/common/offline-api-modal.html'"></div>
-</div>
-
-<!--LOADING API MODAL-->
-<div id="loading-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="WebformsLoadingApi" data-aria-hidden="true">
-    <div class="modal-dialog modal-lg" data-ng-include data-src="'views/common/loading-api-modal.html'"></div>
-</div>
-
-<!--WELL DONE MODAL-->
-<div id="well-done-modal" class="modal fade" tabindex="-1" role="dialog" data-aria-labelledby="WebformsWellDone" data-aria-hidden="true">
-    <div class="modal-dialog modal-lg" data-ng-include data-src="'views/common/well-done-modal.html'"></div>
-</div>
 

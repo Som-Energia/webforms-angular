@@ -27,13 +27,13 @@
 		</select>
 		<div>Formulari {{page}}</div>
 		<select class='form-control' ng-model="page">
-			<option value='main'>Nou Soci/a</a>
+			<option value='soci'>Nou Soci/a</a>
 			<option value='contractacio' selected>Contractació</a>
 			<option value='generationkwh'>Generation kWh</a>
 			<option value='aportacionsvoluntaries'>Aportacions volutaries</a>
 		</select>
 	</div>
-	<div style="width: 100%">
+	<div style="margin-left:auto; margin-right:auto;width:800px">
 		<iframe width="750px" height="1100px" style="max-width:100%; margin-left:auto; margin-right: auto"
 			ng-attr-src="{{'index.html#/'+idiom+'/'+page + '/'}}">
 		</iframe>

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('newSomEnergiaWebformsApp')
+angular.module('SomEnergiaWebForms')
     .config(function($translateProvider) {
         $translateProvider
             .translations('ca', {
@@ -106,7 +106,7 @@ angular.module('newSomEnergiaWebformsApp')
                 COMPROVANT: 'Comprovant...',
                 CORRECTE: 'Correcte',
                 INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/ca/aportacio-realitzada-correctament/',
-                CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/contratacion-realizada/',
+                CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/ca/contratacio-realitzada/',
                 GENERATION_OK_REDIRECT_URL: 'http://www.generationkwh.org/ca/inversio-realitzada/',
 
                 // Added or changed since 1.2.6
@@ -210,6 +210,49 @@ angular.module('newSomEnergiaWebformsApp')
 
                 // Under development
 
+                INCOMPLETE_PREVIOUS_STEP: 'No has completat el pas anterior',
+                UNSELECTED_NEW_SUPPLY_POINT: 'No has especificat si ja hi ha llum amb una altra comercialitzadora o és un nou punt de subministrament sense llum',
+                NO_SUPPLY_POINT_ADDRESS: 'No has especificat l\'<b>adreça</b> del punt de subministrament',
+                NO_SUPPLY_POINT_STATE: 'No has especificat la <b>província</b> del punt de subministrament',
+                NO_SUPPLY_POINT_CITY: 'No has especificat el <b>municipi</b> del punt de subministrament',
+                INVALID_SUPPLY_POINT_CUPS: 'No has especificat un <b>identificador CUPS</b> vàlid pel punt de subministrament',
+                INVALID_SUPPLY_POINT_CNAE: 'No has especificat un <b>codi CNAE</b> vàlid pel punt de subministrament',
+                INVALID_SUPPLY_POINT_ATTACHMENT: 'L\'arxiu adjunt supera el límit de 10Mbytes',
+                NO_MONOPHASE_CHOICE: 'No has especificat si la instal·lació és de tipus monofàsica o trifàsica',
+                NO_FARE_CHOSEN: 'No has especificat la tarifa',
+                NO_POWER_CHOSEN: 'No has especificat la potència',
+                NO_POWER_CHOSEN_P2: 'No has especificat la potència pel període P2',
+                NO_POWER_CHOSEN_P3: 'No has especificat la potència pel període P3',
+                INVALID_POWER_20: 'La potència per tarifes 2.0 ha de ser inferior a 10kW',
+                INVALID_POWER_21: 'La potència per tarifes 2.1 hauria ha d\'estar entre 10kW i 15kW',
+                INVALID_POWER_30: 'Al menys un període ha de tenir una potència superior o igual a 15kW',
+                NO_HOURLY_DISCRIMINATION_CHOSEN: 'No has especificat si vols fer discriminació horària',
+                OWNER_CHANGED_NOT_CHOSEN: 'Cal indicar si es manté l\'actual titular del contracte',
+                UNACCEPTED_GENERAL_CONDITIONS: 'Cal acceptar les condicions generals del contracte',
+                INVALID_PAYER_IBAN: 'No has especificat correctament l\'<b>IBAN</b> del compte on domiciliar',
+                NO_VOLUNTARY_DONATION_CHOICE_TAKEN: 'Cal dir si vols o no fer el donatiu voluntari',
+                UNCONFIRMED_ACCOUNT_OWNER: 'Cal marcar la casella per confirmar que la persona indicada és la persona titular del compte',
+                UNACCEPTED_GENERAL_CONDITIONS_NON_OWNER_PAYER: 'Si la persona pagadora és diferent de la titular, també ha d\'acceptar les condicions generals del contracte marcant la casella',
+                NO_PERSON_TYPE: 'No has especificat si és una persona física o jurídica',
+                NO_NAME: 'No has especificat el nom',
+                NO_SURNAME: 'No has especificat els cognoms',
+                NO_NIF: 'No has especificat el NIF',
+                NO_PROXY_NAME: 'No has especificat el nom de la persona representant',
+                NO_PROXY_NIF: 'No has especificat el NIF de la persona representant',
+                NO_ADDRESS: 'No has especificat l\'adreça',
+                NO_POSTALCODE: 'No has especificat un codi postal correcte',
+                NO_STATE: 'No has especificat la província',
+                NO_CITY: 'No has especificat el municipi',
+                NO_EMAIL: 'No has especificat un correu electrònic correcte',
+                NO_REPEATED_EMAIL: 'No has repetit el correu electrònic correctament',
+                NO_PHONE: 'No has especificat un telèfon correcte',
+                NO_LANGUAGE: 'No has especificat l\'idioma',
+                UNACCEPTED_PRIVACY_POLICY: 'Has d\'acceptar la política de privacitat',
+                NEW_MEMBER_FORM: 'Nova persona socia',
+                MEMBER_CONTRIBUTION_PAYMENT: 'Pagament de l\'aportació',
+                DIRECT_DEBIT: 'Rebut domiciliat',
+                NEWMEMBER_OK_REDIRECT_URL: 'https://www.somenergia.coop/ca/pagament-realitzat/',
+                NEWMEMBER_KO_REDIRECT_URL: 'https://www.somenergia.coop/ca/pagament-cancellat/',
             })
         ;
     });

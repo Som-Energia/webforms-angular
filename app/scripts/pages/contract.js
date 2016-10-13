@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('newSomEnergiaWebformsApp')
-    .controller('OrderCtrl', function (cfg, debugCfg, AjaxHandler, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
+angular.module('SomEnergiaWebForms')
+    .controller('OrderCtrl', function (cfg, ApiSomEnergia, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // INIT
         $scope.developing = cfg.DEVELOPMENT;
@@ -22,7 +22,6 @@ angular.module('newSomEnergiaWebformsApp')
             $translate.use($routeParams.locale);
         }
 
-        $scope.altesDeshabilitades = false;
         $scope.showAll = false;
         // To false to debug one page completion state independently from the others
         $scope.waitPreviousPages = false;
@@ -44,6 +43,8 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.owner = {};
         $scope.payer = {};
         $scope.maxfilesize = cfg.MAX_MB_FILE_SIZE;
+        ApiSomEnergia.preloadStates();
+        ApiSomEnergia.preloadLanguages();
 
         $scope.showAllSteps = function() {
             $scope.showAll = true;
@@ -56,9 +57,11 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.overflowAttachFile = false;
         $scope.accountIsInvalid = false;
 
-        $scope.isHaveLightPageComplete = false;
-        $scope.isOwnerPageComplete = false;
         $scope.isPayerPageComplete = false;
+        $scope.farePageError = undefined;
+        $scope.supplyPointPageError = undefined;
+        $scope.ownerPageError = undefined;
+        $scope.payerPageError = undefined;
 
         $scope.orderFormSubmitted = false;
         $scope.completeAccountNumber = '';
@@ -121,10 +124,7 @@ angular.module('newSomEnergiaWebformsApp')
 */
         ];
         // GET LANGUAGES
-        AjaxHandler.getLanguages($scope);
-
-        // GET STATES
-        AjaxHandler.getStates($scope); // TODO: Remove it when in components
+        ApiSomEnergia.getLanguages($scope);
 
         // POWER VALIDATION
         ValidateHandler.validatePower($scope, 'form.power');
@@ -133,7 +133,6 @@ angular.module('newSomEnergiaWebformsApp')
         ValidateHandler.validateInteger($scope, 'form.estimation');
 
         $scope.esAlta = function() {
-            if ($scope.altesDeshabilitades) { return false; }
             if ($scope.form.hasservice === undefined) { return undefined; }
             return ! $scope.form.hasservice;
         };
@@ -155,7 +154,7 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.form.power=$scope.form.newpower;
             }
             if (newFare !== undefined) {
-                var discrimination = $scope.form.newpower<15 ? $scope.form.discriminacio : 'nodh';
+                var discrimination = $scope.form.newpower+0<15 ? $scope.form.discriminacio : 'nodh';
                 if (discrimination===undefined) {
                     newFare = undefined;
                 } else {
@@ -175,7 +174,7 @@ angular.module('newSomEnergiaWebformsApp')
                 $scope.initForm.isReady()
             );
         };
-        $scope.setOnwerAndPayerLanguage=function(soci) {
+        $scope.setOwnerAndPayerLanguage=function(soci) {
             var language = soci.lang;
             soci.langname = soci.lang==='ca_ES'?'Catalan':'Español';
             $scope.payer.setLanguage(language);
@@ -183,121 +182,222 @@ angular.module('newSomEnergiaWebformsApp')
         };
 
         $scope.isSupplyPointPageComplete = function() {
+            //console.log('- isSupplyPointPageComplete');
+            function error(message) {
+                $scope.supplyPointPageError = message;
+                //console.log(message);
+                return false;
+            }
+
+            $scope.supplyPointPageError = undefined;
+
             if ($scope.waitPreviousPages) {
-                if (!$scope.isPartnerPageComplete()) { return false; }
+                if (!$scope.isPartnerPageComplete()) {
+                    return error('INCOMPLETE_PREVIOUS_STEP');
+                }
             }
-            if (!$scope.altesDeshabilitades) {
-                if ($scope.esAlta() === undefined) { return false; }
+            if ($scope.esAlta() === undefined) {
+                return error('UNSELECTED_NEW_SUPPLY_POINT');
             }
-            if ($scope.form.address.value === undefined) { return false; }
-            if ($scope.form.province === undefined) { return false; }
-            if ($scope.form.city === undefined) { return false; }
-            if (!$scope.cupsEditor.isValid()) { return false; }
-            if (!$scope.cnaeEditor.isValid()) { return false; }
-            if ($scope.overflowAttachFile) { return false; }
+            if ($scope.form.address.value === undefined) {
+                return error('NO_SUPPLY_POINT_ADDRESS');
+            }
+            if ($scope.form.province === undefined) {
+                return error('NO_SUPPLY_POINT_STATE');
+            }
+            if ($scope.form.city === undefined) {
+                return error('NO_SUPPLY_POINT_CITY');
+            }
+            if (!$scope.cupsEditor.isValid()) {
+                return error('INVALID_SUPPLY_POINT_CUPS');
+            }
+            if (!$scope.cnaeEditor.isValid()) {
+                return error('INVALID_SUPPLY_POINT_CNAE');
+            }
+            if ($scope.overflowAttachFile) {
+                return error('INVALID_SUPPLY_POINT_ATTACHMENT');
+            }
             return true;
         };
 
         $scope.isFarePageComplete = function() {
+            //console.log('- isFarePageComplete');
+            function error(message) {
+                if ($scope.farePageError !== message) {
+                    $scope.farePageError = message;
+                    //console.log(message);
+                }
+                return false;
+            }
+
+            $scope.farePageError = undefined;
+
             if ($scope.waitPreviousPages) {
-                if (!$scope.isSupplyPointPageComplete()) { return false; }
+                if ($scope.isSupplyPointPageComplete()===false) {
+                    return error('INCOMPLETE_PREVIOUS_STEP');
+                }
             }
-            if ($scope.esAlta()!==false) {
-                if ($scope.form.phases===undefined) { return false; }
-                if ($scope.form.discriminacio===undefined) { return false; }
+            if ($scope.esAlta()===true) {
+                if ($scope.form.phases===undefined) {
+                    return error('NO_MONOPHASE_CHOICE');
+                }
             }
-            if ($scope.form.rate === undefined) { return false; }
-            if ($scope.form.power === undefined) { return false;}
+            if ($scope.esAlta()===false) {
+                if ($scope.form.rate === undefined) {
+                    return error('NO_FARE_CHOSEN');
+                }
+            }
+            if ($scope.form.power === undefined) {
+                return error('NO_POWER_CHOSEN');
+            }
             switch ($scope.form.rate) {
                 case cfg.RATE_20A:
                 case cfg.RATE_20DHA:
                 case cfg.RATE_20DHS:
-                    if ($scope.rate20IsInvalid) { return false; }
+                    if ($scope.rate20IsInvalid) {
+                        return error('INVALID_POWER_20');
+                    }
                     break;
                 case cfg.RATE_21A:
                 case cfg.RATE_21DHA:
                 case cfg.RATE_21DHS:
-                    if ($scope.rate21IsInvalid) {return false;}
+                    if ($scope.rate21IsInvalid) {
+                        return error('INVALID_POWER_21');
+                    }
                     break;
                 case cfg.RATE_30A:
-                    if ($scope.form.power2 === undefined) {return false;}
-                    if ($scope.form.power3 === undefined) {return false;}
-                    if ($scope.rate3AIsInvalid) {return false;}
+                    if ($scope.form.power2 === undefined) {
+                        return error('NO_POWER_CHOSEN_P2');
+                    }
+                    if ($scope.form.power3 === undefined) {
+                        return error('NO_POWER_CHOSEN_P3');
+                    }
+                    if ($scope.rate3AIsInvalid) {
+                        return error('INVALID_POWER_30');
+                    }
                     break;
+            }
+            if ($scope.esAlta()===true) {
+                if  ($scope.form.rate !== cfg.RATE_30A) {
+                    if ($scope.form.discriminacio===undefined) {
+                        return error('NO_HOURLY_DISCRIMINATION_CHOSEN');
+                    }
+                }
             }
             return true;
         };
+
+        $scope.isOwnerPageComplete = function() {
+            //console.log('- isOwnerPageComplete');
+            function error(message) {
+                if ($scope.ownerPageError !== message) {
+                    $scope.ownerPageError = message;
+                    //console.log(message);
+                }
+                return false;
+            }
+            $scope.ownerPageError = undefined;
+
+            if ($scope.waitPreviousPages) {
+                if (!$scope.isFarePageComplete()) {
+                    return error('INCOMPLETE_PREVIOUS_STEP');
+                }
+            }
+            if (!$scope.esAlta()) {
+                if ($scope.form.changeowner === undefined) {
+                    return error('OWNER_CHANGED_NOT_CHOSEN');
+                }
+            }
+            if ($scope.form.ownerIsMember !== 'yes') {
+                if ($scope.owner.isReady === undefined || !$scope.owner.isReady()) {
+                    return error($scope.owner.error);
+                }
+            }
+            if ($scope.form.ownerAcceptsGeneralConditions !== true) {
+                return error('UNACCEPTED_GENERAL_CONDITIONS');
+            }
+            return true;
+        };
+
+        $scope.isPayerPageComplete = function() {
+            //console.log('- isPayerPageComplete');
+            function error(message) {
+                if ($scope.payerPageError !== message) {
+                    $scope.payerPageError = message;
+                    //console.log(message);
+                }
+                return false;
+            }
+            $scope.payerPageError = undefined;
+            if ($scope.waitPreviousPages) {
+                if (!$scope.isOwnerPageComplete()) {
+                    return error('INCOMPLETE_PREVIOUS_STEP');
+                }
+            }
+            if ($scope.form.choosepayer === cfg.PAYER_TYPE_OTHER) {
+                if ($scope.payer.isReady === undefined) {
+                    return false; // Just initializing
+                }
+                if ($scope.payer.isReady()!==true) {
+                    return error($scope.payer.error);
+                }
+            }
+            if ($scope.form.choosepayer !== cfg.PAYER_TYPE_TITULAR) {
+                if ($scope.form.payerAcceptsGeneralConditions !== true) {
+                    return error('UNACCEPTED_GENERAL_CONDITIONS_NON_OWNER_PAYER');
+                }
+            }
+            if ($scope.ibanEditor.isValid === undefined) {
+                return false; // Just initializing
+            }
+            if ($scope.ibanEditor.isValid() !== true) {
+                return error('INVALID_PAYER_IBAN');
+            }
+            if ($scope.form.acceptaccountowner !== true) {
+                return error('UNCONFIRMED_ACCOUNT_OWNER');
+            }
+            if ($scope.form.voluntary === undefined) {
+                return error('NO_VOLUNTARY_DONATION_CHOICE_TAKEN');
+            }
+            return true;
+        };
+
         $scope.formListener = function() {
-            console.log('listener');
+            //console.log('listener');
             $scope.effectiveOwner = $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci : $scope.owner;
             $scope.effectivePayer = $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER ? $scope.payer :
                 $scope.form.choosepayer=== cfg.PAYER_TYPE_TITULAR ? $scope.effectiveOwner : $scope.initForm.soci;
 
-            $scope.isHaveLightPageComplete =
-                (!$scope.waitPreviousPages || $scope.isPartnerPageComplete()) && (
-                   $scope.esAlta() !== undefined ||
-                   $scope.altesDeshabilitades
-                );
-
-            $scope.isOwnerPageComplete =
-                (!$scope.waitPreviousPages || $scope.isSupplyPointPageComplete()) &&
-                $scope.isFarePageComplete() &&
-                ($scope.esAlta() || $scope.form.changeowner !== undefined) &&
-                $scope.form.ownerAcceptsGeneralConditions === true &&
-                (
-                    $scope.form.ownerIsMember === 'yes' ||
-                    (
-                        $scope.owner.isReady !== undefined &&
-                        $scope.owner.isReady()
-                    )
-                );
-            $scope.isPayerPageComplete =
-                (!$scope.waitPreviousPages || $scope.isOwnerPageComplete()) &&
-                $scope.ibanEditor.isValid !== undefined &&
-                $scope.ibanEditor.isValid() &&
-                $scope.form.acceptaccountowner &&
-                $scope.form.voluntary !== undefined &&
-                (
-                    $scope.form.choosepayer !== cfg.PAYER_TYPE_OTHER ||
-                    (
-                        $scope.payer.isReady !== undefined &&
-                        $scope.payer.isReady()
-                    )
-                ) &&
-                (
-                    $scope.form.choosepayer === cfg.PAYER_TYPE_TITULAR ||
-                        $scope.form.payerAcceptsGeneralConditions === true
-                )
-                ;
+//            $scope.isPayerPageComplete();
         };
 
         $scope.goToSociPage = function() {
-            $scope.setStepReady(0, 'dadesSociPage');
+            $scope.setStepReady('dadesSociPage');
         };
 
         $scope.goToSupplyPointPage = function() {
-            $scope.setStepReady(1, 'supplyPointPage');
+            $scope.setStepReady('supplyPointPage');
         };
 
         $scope.goToFarePage = function() {
-            $scope.setStepReady(7, 'farePage');
+            $scope.setStepReady('farePage');
         };
 
         $scope.goToOwnerPage = function() {
-            $scope.setStepReady(2, 'ownerPage');
+            $scope.setStepReady('ownerPage');
         };
 
         $scope.goToPayerPage = function() {
-            $scope.setStepReady(3, 'payerPage');
+            $scope.setStepReady('payerPage');
         };
 
         $scope.goToConfirmationPage = function() {
-            $scope.setStepReady(4, 'confirmationPage');
+            $scope.setStepReady('confirmationPage');
         };
         $scope.wizardPage = {};
 
         // COMMON MOVE STEPS LOGIC
-        $scope.setStepReady = function(enabledStep, pageName) {
+        $scope.setStepReady = function(pageName) {
             $scope.wizardPage.current = pageName;
 //            $log.log(pageName);
         };
@@ -315,7 +415,6 @@ angular.module('newSomEnergiaWebformsApp')
         $scope.t.HELP_POPOVER_RATE_URL = $translate.instant('HELP_POPOVER_RATE_URL');
         $scope.t.HELP_ADJUNTAR_BUTLLETI_URL = $translate.instant('HELP_ADJUNTAR_BUTLLETI_URL');
 
-
         // ON SUBMIT FORM
         $scope.submitOrder = function() {
             $scope.messages = null;
@@ -326,15 +425,11 @@ angular.module('newSomEnergiaWebformsApp')
             $scope.orderForm.cups.$setValidity('exist', true);
             uiHandler.showLoadingDialog();
             // Prepare request data
-            var postData = {
-            };
             var formData = new FormData();
             formData.append('id_soci', $scope.formsoci.socinumber);
             formData.append('dni', $scope.formsoci.dni);
             formData.append('canvi_titular', $scope.form.changeowner === 'yes' ? 1 : 0);
-            if (!$scope.altesDeshabilitades) {
-                formData.append('proces', $scope.esAlta() ? 'A3' : $scope.form.changeowner === 'yes' ? 'C2': 'C1');
-            }
+            formData.append('proces', $scope.esAlta() ? 'A3' : $scope.form.changeowner === 'yes' ? 'C2': 'C1');
             var ownerIsMember = $scope.form.ownerIsMember==='yes';
             formData.append('soci_titular', ownerIsMember ? 1 : 0);
             // TODO: estem ignorant l'idioma dels no socis (owner i payer)
@@ -369,7 +464,7 @@ angular.module('newSomEnergiaWebformsApp')
             jQuery.each(documentationFiles.files, function(j, file) {
                 formData.append('documentacio_alta', file);
             });
-            formData.append('payment_iban', $scope.getCompleteIban());
+            formData.append('payment_iban', $scope.ibanEditor.value);
             formData.append('escull_pagador', $scope.form.choosepayer);
             formData.append('compte_tipus_persona', $scope.payer.usertype === 'person' ? 0 : 1);
             var noPayer = $scope.form.choosepayer !== 'altre';
@@ -440,14 +535,6 @@ angular.module('newSomEnergiaWebformsApp')
 
         // GET HUMANIZED API RESPONSE
         $scope.getHumanizedAPIResponse = function(arrayResponse) {
-            var result = '';
-            if (arrayResponse.required_fields !== undefined) {
-                for (var i = 0; i < arrayResponse.required_fields.length; i++) {
-                    result += '<li>'+$translate.instant('ERROR_REQUIRED_FIELD', {
-                        field: arrayResponse.required_fields[i],
-                    })+'</li>';
-                }
-            }
             if (arrayResponse.invalid_fields !== undefined) {
                 for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
                     if (arrayResponse.invalid_fields[j].field === 'cups' && arrayResponse.invalid_fields[j].error === 'exist') {
@@ -457,20 +544,10 @@ angular.module('newSomEnergiaWebformsApp')
                         $scope.invalidAttachFileExtension = true;
                         $scope.orderForm.file.$setValidity('exist', false);
                     }
-                    result += '<li>'+$translate.instant('ERROR_INVALID_FIELD', {
-                        field: arrayResponse.invalid_fields[j].field,
-                        reason: arrayResponse.invalid_fields[j].error
-                    })+'</li>';
                 }
             }
             $scope.showAllSteps();
-            if (result === '') {return '';} // TODO: Manage case
-            return '<ul>'+result+'</ul>';
-        };
-
-        // GET COMPLETE ACCOUNT NUMBER
-        $scope.getCompleteIban = function() {
-            return $scope.ibanEditor.value;
+            return ApiSomEnergia.humanizedResponse(arrayResponse);
         };
 
         // GET COMPLETE ACCOUNT NUMBER WITH FORMAT
