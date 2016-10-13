@@ -17,7 +17,7 @@ angular.module('SomEnergiaWebForms')
                 return $sce.trustAsResourceUrl($scope.data.endpoint);
         };
 
-        var dataPromise = ApiSomEnergia.dataRequest('paament/redirectiondata','010');
+        var dataPromise = ApiSomEnergia.dataRequest('pagament/redirectiondata','010');
         // TODO: Posar als errors la referencia del pagament
         dataPromise.then(
             function (response) {
