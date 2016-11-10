@@ -13,8 +13,9 @@ angular.module('SomEnergiaWebForms')
         }
 
         $scope.getTrustPostAction = function() {
-            if ($scope.data.endpoint)
+            if ($scope.data.endpoint) {
                 return $sce.trustAsResourceUrl($scope.data.endpoint);
+            }
         };
 
         var dataPromise = ApiSomEnergia.dataRequest('pagament/redirectiondata','010');
@@ -39,7 +40,7 @@ angular.module('SomEnergiaWebForms')
                     if ($scope.target) {
                         setTimeout(function () {
                             jQuery('#prepayment-webform').submit();
-                            }, 1000);
+                        }, 1000);
                     }
                 }
             },
