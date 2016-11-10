@@ -51,6 +51,10 @@ angular.module('SomEnergiaWebForms', [
                 templateUrl: 'scripts/pages/generationkwh.html',
                 controller: 'GenerationKwhCtrl'
             })
+            .when('/:locale/modifica', {
+                templateUrl: 'scripts/pages/modify.html',
+                controller: 'ModifyCtrl'
+            })
             .otherwise({
 				// TODO: An error page, just to know we are doing something wrong
                 redirectTo: '/'
