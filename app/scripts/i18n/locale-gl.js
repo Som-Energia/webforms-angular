@@ -208,8 +208,6 @@ angular.module('SomEnergiaWebForms')
                 CANVI_DE_COMERCIALITZADORA: 'Cambio de comercializadora mantendo a persoa titular',
                 ERROR_POST_CONTRACTE: 'Houbo un erro ao enviar o contrato',
 
-                // Translation pending
-
                 INCOMPLETE_PREVIOUS_STEP: 'Non completaches o paso anterior',
                 UNSELECTED_NEW_SUPPLY_POINT: 'Non especificaches se xa hai luz con outra comercializadora ou é un novo punto de subministración sen luz',
                 NO_SUPPLY_POINT_ADDRESS: 'Non especificaches o enderezo do punto de subministración',
@@ -253,6 +251,11 @@ angular.module('SomEnergiaWebForms')
                 DIRECT_DEBIT: 'Recibo domiciliado',
                 NEWMEMBER_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/pago-realizado/',
                 NEWMEMBER_KO_REDIRECT_URL: 'https://www.somenergia.coop/es/pago-cancelado/',
+
+                // Under development
+
+                CONTRACT_MODIFICATION_FORM: 'Modificación contractual',
+
             })
         ;
     });
