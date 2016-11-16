@@ -27,24 +27,8 @@ angular.module('SomEnergiaWebForms')
         $scope.waitPreviousPages = false;
 
         $scope.form = {};
-        $scope.form.ownerIsMember='yes';
         $scope.form.phases = undefined;
         $scope.form.discriminacio = undefined;
-        $scope.form.choosepayer = cfg.PAYER_TYPE_TITULAR;
-        $scope.form.address = {};
-        $scope.form.invoice = {};
-        $scope.form.documentation = {};
-        $scope.initForm = {};
-        $scope.formsoci = {};
-        $scope.ibanEditor = {};
-        $scope.cupsEditor = {};
-        $scope.cnaeEditor = {};
-        $scope.cadastreEditor = {};
-        $scope.owner = {};
-        $scope.payer = {};
-        $scope.maxfilesize = cfg.MAX_MB_FILE_SIZE;
-        ApiSomEnergia.preloadStates();
-        ApiSomEnergia.preloadLanguages();
 
         $scope.showAllSteps = function() {
             $scope.showAll = true;
@@ -52,19 +36,10 @@ angular.module('SomEnergiaWebForms')
         $scope.rate20IsInvalid = false;
         $scope.rate21IsInvalid = false;
         $scope.rate3AIsInvalid = false;
-        $scope.postalCodeIsInvalid = false;
-        $scope.invalidAttachFileExtension = false;
-        $scope.overflowAttachFile = false;
-        $scope.accountIsInvalid = false;
 
-        $scope.isPayerPageComplete = false;
         $scope.farePageError = undefined;
-        $scope.supplyPointPageError = undefined;
-        $scope.ownerPageError = undefined;
-        $scope.payerPageError = undefined;
 
-        $scope.orderFormSubmitted = false;
-        $scope.completeAccountNumber = '';
+        $scope.formSubmitted = false;
         $scope.availablePowers = function() {
             if ($scope.form.phases === undefined) {
                 return [];
@@ -123,8 +98,6 @@ angular.module('SomEnergiaWebForms')
             43.648,
 */
         ];
-        // GET LANGUAGES
-        ApiSomEnergia.getLanguages($scope);
 
         // POWER VALIDATION
         ValidateHandler.validatePower($scope, 'form.power');
@@ -133,8 +106,7 @@ angular.module('SomEnergiaWebForms')
         ValidateHandler.validateInteger($scope, 'form.estimation');
 
         $scope.esAlta = function() {
-            if ($scope.form.hasservice === undefined) { return undefined; }
-            return ! $scope.form.hasservice;
+            return true;
         };
 
         $scope.$watch('form.phases', function(oldvalue, newvalue) {
@@ -166,60 +138,6 @@ angular.module('SomEnergiaWebForms')
         $scope.$watch('form.newpower', recomputeFareFromAlta);
         $scope.$watch('form.discriminacio', recomputeFareFromAlta);
 
-        // CONTROL READY STEPS ON CHANGE FORM
-        $scope.isPartnerPageComplete = function() {
-            return (
-                $scope.initForm !== undefined &&
-                $scope.initForm.isReady !== undefined &&
-                $scope.initForm.isReady()
-            );
-        };
-        $scope.setOwnerAndPayerLanguage=function(soci) {
-            var language = soci.lang;
-            soci.langname = soci.lang==='ca_ES'?'Catalan':'Español';
-            $scope.payer.setLanguage(language);
-            $scope.owner.setLanguage(language);
-        };
-
-        $scope.isSupplyPointPageComplete = function() {
-            //console.log('- isSupplyPointPageComplete');
-            function error(message) {
-                $scope.supplyPointPageError = message;
-                //console.log(message);
-                return false;
-            }
-
-            $scope.supplyPointPageError = undefined;
-
-            if ($scope.waitPreviousPages) {
-                if (!$scope.isPartnerPageComplete()) {
-                    return error('INCOMPLETE_PREVIOUS_STEP');
-                }
-            }
-            if ($scope.esAlta() === undefined) {
-                return error('UNSELECTED_NEW_SUPPLY_POINT');
-            }
-            if ($scope.form.address.value === undefined) {
-                return error('NO_SUPPLY_POINT_ADDRESS');
-            }
-            if ($scope.form.province === undefined) {
-                return error('NO_SUPPLY_POINT_STATE');
-            }
-            if ($scope.form.city === undefined) {
-                return error('NO_SUPPLY_POINT_CITY');
-            }
-            if (!$scope.cupsEditor.isValid()) {
-                return error('INVALID_SUPPLY_POINT_CUPS');
-            }
-            if (!$scope.cnaeEditor.isValid()) {
-                return error('INVALID_SUPPLY_POINT_CNAE');
-            }
-            if ($scope.overflowAttachFile) {
-                return error('INVALID_SUPPLY_POINT_ATTACHMENT');
-            }
-            return true;
-        };
-
         $scope.isFarePageComplete = function() {
             //console.log('- isFarePageComplete');
             function error(message) {
@@ -232,11 +150,6 @@ angular.module('SomEnergiaWebForms')
 
             $scope.farePageError = undefined;
 
-            if ($scope.waitPreviousPages) {
-                if ($scope.isSupplyPointPageComplete()===false) {
-                    return error('INCOMPLETE_PREVIOUS_STEP');
-                }
-            }
             if ($scope.esAlta()===true) {
                 if ($scope.form.phases===undefined) {
                     return error('NO_MONOPHASE_CHOICE');
@@ -287,122 +200,11 @@ angular.module('SomEnergiaWebForms')
             return true;
         };
 
-        $scope.isOwnerPageComplete = function() {
-            //console.log('- isOwnerPageComplete');
-            function error(message) {
-                if ($scope.ownerPageError !== message) {
-                    $scope.ownerPageError = message;
-                    //console.log(message);
-                }
-                return false;
-            }
-            $scope.ownerPageError = undefined;
-
-            if ($scope.waitPreviousPages) {
-                if (!$scope.isFarePageComplete()) {
-                    return error('INCOMPLETE_PREVIOUS_STEP');
-                }
-            }
-            if (!$scope.esAlta()) {
-                if ($scope.form.changeowner === undefined) {
-                    return error('OWNER_CHANGED_NOT_CHOSEN');
-                }
-            }
-            if ($scope.form.ownerIsMember !== 'yes') {
-                if ($scope.owner.isReady === undefined || !$scope.owner.isReady()) {
-                    return error($scope.owner.error);
-                }
-            }
-            if ($scope.form.ownerAcceptsGeneralConditions !== true) {
-                return error('UNACCEPTED_GENERAL_CONDITIONS');
-            }
-            return true;
-        };
-
-        $scope.isPayerPageComplete = function() {
-            //console.log('- isPayerPageComplete');
-            function error(message) {
-                if ($scope.payerPageError !== message) {
-                    $scope.payerPageError = message;
-                    //console.log(message);
-                }
-                return false;
-            }
-            $scope.payerPageError = undefined;
-            if ($scope.waitPreviousPages) {
-                if (!$scope.isOwnerPageComplete()) {
-                    return error('INCOMPLETE_PREVIOUS_STEP');
-                }
-            }
-            if ($scope.form.choosepayer === cfg.PAYER_TYPE_OTHER) {
-                if ($scope.payer.isReady === undefined) {
-                    return false; // Just initializing
-                }
-                if ($scope.payer.isReady()!==true) {
-                    return error($scope.payer.error);
-                }
-            }
-            if ($scope.form.choosepayer !== cfg.PAYER_TYPE_TITULAR) {
-                if ($scope.form.payerAcceptsGeneralConditions !== true) {
-                    return error('UNACCEPTED_GENERAL_CONDITIONS_NON_OWNER_PAYER');
-                }
-            }
-            if ($scope.ibanEditor.isValid === undefined) {
-                return false; // Just initializing
-            }
-            if ($scope.ibanEditor.isValid() !== true) {
-                return error('INVALID_PAYER_IBAN');
-            }
-            if ($scope.form.acceptaccountowner !== true) {
-                return error('UNCONFIRMED_ACCOUNT_OWNER');
-            }
-            if ($scope.form.voluntary === undefined) {
-                return error('NO_VOLUNTARY_DONATION_CHOICE_TAKEN');
-            }
-            return true;
-        };
 
         $scope.formListener = function() {
             //console.log('listener');
-            $scope.effectiveOwner = $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci : $scope.owner;
-            $scope.effectivePayer = $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER ? $scope.payer :
-                $scope.form.choosepayer=== cfg.PAYER_TYPE_TITULAR ? $scope.effectiveOwner : $scope.initForm.soci;
-
 //            $scope.isPayerPageComplete();
         };
-
-        $scope.goToSociPage = function() {
-            $scope.setStepReady('dadesSociPage');
-        };
-
-        $scope.goToSupplyPointPage = function() {
-            $scope.setStepReady('supplyPointPage');
-        };
-
-        $scope.goToFarePage = function() {
-            $scope.setStepReady('farePage');
-        };
-
-        $scope.goToOwnerPage = function() {
-            $scope.setStepReady('ownerPage');
-        };
-
-        $scope.goToPayerPage = function() {
-            $scope.setStepReady('payerPage');
-        };
-
-        $scope.goToConfirmationPage = function() {
-            $scope.setStepReady('confirmationPage');
-        };
-        $scope.wizardPage = {};
-
-        // COMMON MOVE STEPS LOGIC
-        $scope.setStepReady = function(pageName) {
-            $scope.wizardPage.current = pageName;
-//            $log.log(pageName);
-        };
-
-        $scope.goToSociPage();
 
         // KLUDGE: how to translate params of a translation
         // DOUBLE: how to translate params of a translation and passing it to the child scopes
@@ -413,82 +215,27 @@ angular.module('SomEnergiaWebForms')
         $scope.t.HELP_POWER_30_URL = $translate.instant('HELP_POWER_30_URL');
         $scope.t.HELP_POPOVER_CUPS_ALTA_URL = $translate.instant('HELP_POPOVER_CUPS_ALTA_URL');
         $scope.t.HELP_POPOVER_RATE_URL = $translate.instant('HELP_POPOVER_RATE_URL');
-        $scope.t.HELP_ADJUNTAR_BUTLLETI_URL = $translate.instant('HELP_ADJUNTAR_BUTLLETI_URL');
 
         // ON SUBMIT FORM
-        $scope.submitOrder = function() {
+        $scope.submit = function() {
             $scope.messages = null;
-            $scope.orderFormSubmitted = true;
+            $scope.formSubmitted = true;
             $scope.cupsIsDuplicated = false;
             $scope.invalidAttachFileExtension = false;
             $scope.overflowAttachFile = false;
-            $scope.orderForm.cups.$setValidity('exist', true);
             uiHandler.showLoadingDialog();
             // Prepare request data
             var formData = new FormData();
-            formData.append('id_soci', $scope.formsoci.socinumber);
-            formData.append('dni', $scope.formsoci.dni);
-            formData.append('canvi_titular', $scope.form.changeowner === 'yes' ? 1 : 0);
-            formData.append('proces', $scope.esAlta() ? 'A3' : $scope.form.changeowner === 'yes' ? 'C2': 'C1');
-            var ownerIsMember = $scope.form.ownerIsMember==='yes';
-            formData.append('soci_titular', ownerIsMember ? 1 : 0);
-            // TODO: estem ignorant l'idioma dels no socis (owner i payer)
-            // TODO: agafar tipus_persona, representant_nom, i representant_dni del soci quan toca
-            formData.append('tipus_persona', $scope.owner.usertype === 'person' ? 0 : 1);
-            formData.append('representant_nom', $scope.owner.usertype === 'company' ? $scope.owner.representantname : '');
-            formData.append('representant_dni', $scope.owner.usertype === 'company' ? $scope.owner.representantdni : '');
-            formData.append('titular_nom', ownerIsMember ? $scope.initForm.soci.nom : $scope.owner.name);
-            formData.append('titular_cognom', ownerIsMember ? $scope.initForm.soci.cognom : $scope.owner.surname || '');
-            formData.append('titular_dni', ownerIsMember ? $scope.initForm.soci.dni : $scope.owner.dni);
-            formData.append('titular_email', ownerIsMember ? $scope.initForm.soci.email : $scope.owner.email1);
-            formData.append('titular_tel', ownerIsMember ? $scope.initForm.soci.tel : $scope.owner.phone1);
-            formData.append('titular_tel2', ownerIsMember ? $scope.initForm.soci.tel2 : $scope.owner.phone2 || '');
-            formData.append('titular_adreca', ownerIsMember ? $scope.initForm.soci.adreca : $scope.owner.address);
-            formData.append('titular_municipi', ownerIsMember ? $scope.initForm.soci.municipi : $scope.owner.city.id);
-            formData.append('titular_cp', ownerIsMember ? $scope.initForm.soci.cp : $scope.owner.postalcode);
-            formData.append('titular_provincia', ownerIsMember ? $scope.initForm.soci.provincia : $scope.owner.province.id);
-            formData.append('titular_lang', ownerIsMember ? $scope.initForm.soci.lang : $scope.owner.language.code);
+            formData.append('proces', 'M1'); // TODO: Needed?
             formData.append('tarifa', $scope.form.rate);
-            formData.append('cups', $scope.cupsEditor.value);
-            formData.append('consum', $scope.form.estimation || ''); // TODO: Remove this when it is clear is not used anymore
             formData.append('potencia', Math.round($scope.form.power * cfg.THOUSANDS_CONVERSION_FACTOR));
             formData.append('potencia_p2', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power2 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
             formData.append('potencia_p3', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power3 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
-            formData.append('cnae', $scope.cnaeEditor.value || '');
-            formData.append('cups_adreca', $scope.form.address.value);
-            formData.append('cups_provincia', $scope.form.province.id);
-            formData.append('cups_municipi', $scope.form.city.id);
-            formData.append('referencia', $scope.cadastreEditor.value || '');
-            formData.append('fitxer', $scope.form.invoice.file().files[0]);
-            var documentationFiles = $scope.form.documentation.file();
-            jQuery.each(documentationFiles.files, function(j, file) {
-                formData.append('documentacio_alta', file);
-            });
-            formData.append('payment_iban', $scope.ibanEditor.value);
-            formData.append('escull_pagador', $scope.form.choosepayer);
-            formData.append('compte_tipus_persona', $scope.payer.usertype === 'person' ? 0 : 1);
-            var noPayer = $scope.form.choosepayer !== 'altre';
-            formData.append('compte_nom', noPayer ? '' : $scope.payer.name);
-            formData.append('compte_cognom', noPayer || $scope.payer.usertype !== 'person' ? '' : $scope.payer.surname);
-            formData.append('compte_dni', noPayer ? '' : $scope.payer.dni);
-            formData.append('compte_adreca', noPayer ? '' : $scope.payer.address);
-            formData.append('compte_provincia', noPayer ? '' : $scope.payer.province.id);
-            formData.append('compte_municipi', noPayer ? '' : $scope.payer.city.id);
-            formData.append('compte_email', noPayer ? '' : $scope.payer.email1);
-            formData.append('compte_tel', noPayer ? '' : $scope.payer.phone1);
-            formData.append('compte_tel2', noPayer ? '' : $scope.payer.phone2);
-            formData.append('compte_cp', noPayer ? '' : $scope.payer.postalcode);
-            formData.append('compte_representant_nom', noPayer || $scope.payer.usertype !== 'company' ? '' : $scope.payer.representantname);
-            formData.append('compte_representant_dni', noPayer || $scope.payer.usertype !== 'company' ? '' : $scope.payer.representantdni);
-            formData.append('compte_lang', noPayer ? '' : $scope.payer.language.code);
-            formData.append('condicions', 1);
-            formData.append('condicions_privacitat', 1);
-            formData.append('condicions_titular', 1);
-            formData.append('donatiu', $scope.form.voluntary === 'yes' ? 1 : 0);
+            formData.append('token', $routeParams.token);
             // Send request data POST
             $http({
                 method: 'POST',
-                url: cfg.API_BASE_URL + 'form/contractacio',
+                url: cfg.API_BASE_URL + 'form/modificacio',
                 headers: {'Content-Type': undefined},
                 data: formData,
                 transformRequest: angular.identity
@@ -539,40 +286,13 @@ angular.module('SomEnergiaWebForms')
                 for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
                     if (arrayResponse.invalid_fields[j].field === 'cups' && arrayResponse.invalid_fields[j].error === 'exist') {
                         $scope.cupsIsDuplicated = true;
-                        $scope.orderForm.cups.$setValidity('exist', false);
                     } else if (arrayResponse.invalid_fields[j].field === 'fitxer' && arrayResponse.invalid_fields[j].error === 'bad_extension') {
                         $scope.invalidAttachFileExtension = true;
-                        $scope.orderForm.file.$setValidity('exist', false);
                     }
                 }
             }
             $scope.showAllSteps();
             return ApiSomEnergia.humanizedResponse(arrayResponse);
-        };
-
-        // GET COMPLETE ACCOUNT NUMBER WITH FORMAT
-        $scope.getCompleteIbanWithFormat = function() {
-            if (!$scope.ibanEditor) {
-                return 'INVALID';
-            }
-            if ($scope.ibanEditor.isValid===undefined) {
-                return 'INVALID';
-            }
-            if (!$scope.ibanEditor.isValid()) {
-                return 'INVALID';
-            }
-            var joined = $scope.ibanEditor.value.toUpperCase();
-            joined = joined.split(' ').join('');
-            joined = joined.split('-').join('');
-            joined = joined.split('.').join('');
-            return [
-                joined.slice(0,4),
-                joined.slice(4,8),
-                joined.slice(8,12),
-                joined.slice(12,16),
-                joined.slice(16,20),
-                joined.slice(20,24),
-            ].join(' ');
         };
 
     });

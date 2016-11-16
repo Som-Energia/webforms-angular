@@ -4,172 +4,14 @@
 
 <div ng-if='developing' data-ng-include data-src="'scripts/fragments/responsive-display.html'"></div>
 
-<div data-ng-show="!wizardPage.current!='confirmationPage' || showAll">
-    <!-- Page: dadesSociPage -->
-    <wizard-page
-        model="wizardPage"
-        header="{{ 'FORMULARI_CONTRACTACIO' | translate }}"
-        page-name='dadesSociPage'
-        next-page="goToHaveLightPage()"
-        show-always='showAll'
-        ready="initForm.isReady()"
-        hide-buttons
-    >
-        <member-chooser
-            button-text="{{'INICIAR_CONTRACTACIO' | translate }}"
-            show-member-name="true"
-            onproceed="setOwnerAndPayerLanguage(initForm.soci); goToSupplyPointPage()"
-            model="initForm"
-            formvalues="formsoci"
-        ></member-chooser>
-    </wizard-page>
+<div class="row">
+    <div class="col-xs-12">
+        <h1 class="green extra-margin" translate="CONTRACT_MODIFICATION_FORM"></h1>
+    </div>
+</div>
 
     <form name="orderForm" class="form-inline" role="form" enctype="multipart/form-data" novalidate>
 
-        <!-- PAGE: Supply Point -->
-        <wizard-page
-            model="wizardPage"
-            page-name='supplyPointPage'
-            header="1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}"
-            prev-page="goToSociPage()"
-            next-page="goToFarePage()"
-            show-always='showAll'
-            ready="isSupplyPointPageComplete()"
-        >
-            <div class="row extra-margin-top">
-                <div class="col-xs-12 form-group">
-                    <div class="panel panel-warning">
-                        <div class="panel-heading" style="text-align:center">{{ 'HI_HA_LLUM_AL_PUNT_DE_SUBMINISTRAMENT' | translate }}
-                            <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
-                                'glyphicon-asterisk danger': form.hasservice === undefined,
-                            }" style="right:2em"></span>
-                        </div>
-                        <div class="panel-body" style="text-align:center">
-                            <div class="btn-group btn-group-justified">
-                                <label class="btn btn-default green"
-                                    style="white-space:normal"
-                                    data-ng-change="formListener()"
-                                    data-ng-model="form.hasservice"
-                                    data-uib-btn-radio="true"
-                                    data-ng-bind-html="'AVIS_CANVI_COMERCIALITZADORA' | translate"
-                                    ></label>
-                                <label class="btn btn-default green"
-                                    style="white-space:normal"
-                                    data-ng-change="formListener()"
-                                    data-ng-model="form.hasservice"
-                                    data-uib-btn-radio="false"
-                                    data-ng-bind-html="'AVIS_ALTA_DE_SERVEI' | translate"
-                                    ></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <iban-editor
-                    class="col-xs-12 col-sm-8"
-                    required
-                    inputid="address"
-                    placeholder="{{'ADRECA' | translate}}"
-                    help="adrecaHelp"
-                    model="form.address"
-                    quietlabels='true'
-                    onchanged="formListener()"
-                    >
-                </iban-editor>
-            </div>
-            <div class="row">
-                <state-city
-                    state-model="form.province"
-                    city-model="form.city"
-                    quietlabels='true'
-                    onchanged="formListener()"
-                    >
-                </state-city>
-            </div>
-            <div class="row">
-                <iban-editor
-                    class="col-xs-12 col-sm-8"
-                    required
-                    inputid="cups"
-                    placeholder="{{'NUMERO_DE_CUPS' | translate}}"
-                    help-text="{{ (esAlta() ? 'HELP_POPOVER_CUPS_ALTA' : 'HELP_POPOVER_CUPS') | translate: {url: t.HELP_POPOVER_CUPS_ALTA_URL } }}"
-                    checkurl="check/cups/"
-                    model="cupsEditor"
-                    quietlabels='true'
-                    onchanged="formListener()"
-                >
-                    <span class="pull-right label label-danger" data-ng-show="cupsEditor.error==='exist'">{{ 'CUPS_EXISTENT' | translate }}</span>
-                </iban-editor>
-            </div>
-            <div class="row">
-                <iban-editor
-                    class="col-xs-12 col-sm-8"
-                    required
-                    inputid="cnae"
-                    placeholder="{{'CNAE' | translate}}"
-                    help-text="{{ 'HELP_POPOVER_CNAE' | translate }}"
-                    checkurl="check/cnae/"
-                    model="cnaeEditor"
-                    oktext="{{cnaeEditor.data.description}}"
-                    quietlabels='true'
-                    onchanged="formListener()"
-                >
-                </iban-editor>
-            </div>
-            <div class="row">
-                <iban-editor
-                    class="col-xs-12 col-sm-8"
-                    notrequired
-                    inputid="cadastre"
-                    placeholder="{{'REFERENCIA_CADASTRAL' | translate}} ({{'OPCIONAL' | translate }})"
-                    help-text="{{ 'HELP_POPOVER_REFERENCIA_CADASTRAL' | translate }}"
-                    model="cadastreEditor"
-                    quietlabels='true'
-                    onchanged="formListener()"
-                >
-                </iban-editor>
-            </div>
-            <div class="row">
-                <som-file-field
-                    data-ng-show="!esAlta()"
-                    class="col-xs-12 col-sm-8"
-                    inputid="fileuploaderinput"
-                    model="form.invoice"
-                    description="{{'ADJUNTAR_ULTIMA_FACTURA' | translate}}"
-                    help-text="{{'HELPER_ADJUNTAR_ULTIMA_FACTURA' | translate}}"
-                    formats="image/jpeg,application/pdf"
-                    maxsize="{{maxfilesize}}"
-                    onchanged="formListener()"
-                ></som-file-field>
-                <som-file-field
-                    class="col-xs-12 col-sm-8"
-                    data-ng-show="esAlta() === true"
-                    inputid="documentation"
-                    model="form.documentation"
-                    description="{{'ADJUNTAR_BUTLLETI' | translate}}"
-                    help-text="{{'HELP_ADJUNTAR_BUTLLETI' | translate: {url: t.HELP_ADJUNTAR_BUTLLETI_URL } }}"
-                    multiple
-                    formats="image/jpeg,application/pdf"
-                    maxsize="{{maxfilesize}}"
-                    onchanged="formListener()"
-                ></som-file-field>
-            </div>
-            <div class="row extra-margin-top" data-ng-show="supplyPointPageError">
-                <div class="alert alert-danger" translate="{{supplyPointPageError}}"></div>
-            </div>
-        </wizard-page>
-
-        <!-- Page: Fares -->
-        <wizard-page
-            model="wizardPage"
-            page-name='farePage'
-            header="2 {{ 'TARIFA_I_POTENCIA' | translate }}"
-            prev-page="goToSupplyPointPage()"
-            next-page="goToOwnerPage()"
-            show-always='showAll'
-            ready="isFarePageComplete()"
-        >
             <div data-ng-show="esAlta() || showAll">
                 <div class="row extra-margin-top">
                     <div class="col-xs-12">
@@ -309,7 +151,7 @@
                                 }" style="right:4em"></span>
                                 <span class="input-group-addon">kW</span>
                             </div>
-                            <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power3.$error.required ">{{ 'OBLIGATORI' | translate }}</span>
+                            <span class="pull-right label label-danger" data-ng-show="formSubmitted && orderForm.power3.$error.required ">{{ 'OBLIGATORI' | translate }}</span>
                             <span class="pull-right label label-danger" data-ng-show="rate3AIsInvalid">{{ 'ALGUN_DELS_TRES_PERIODES_MAJOR_QUE_15' | translate }}</span>
                         </div>
                         <div class="col-xs-1">
@@ -396,7 +238,7 @@
                         </div>
                         <span class="pull-right label label-danger" data-ng-show="rate20IsInvalid">{{ 'INVALID' | translate }}</span>
                         <span class="pull-right label label-danger" data-ng-show="rate21IsInvalid">{{ 'INVALID' | translate }}</span>
-                        <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                        <span class="pull-right label label-danger" data-ng-show="formSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     </div>
                 </div>
                 <!--3.0A power rate selected-->
@@ -442,7 +284,7 @@
                                 }" style="right:4em"></span>
                                 <span class="input-group-addon">kW</span>
                             </div>
-                            <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power3.$error.required ">{{ 'OBLIGATORI' | translate }}</span>
+                            <span class="pull-right label label-danger" data-ng-show="formSubmitted && orderForm.power3.$error.required ">{{ 'OBLIGATORI' | translate }}</span>
                             <span class="pull-right label label-danger" data-ng-show="rate3AIsInvalid">{{ 'ALGUN_DELS_TRES_PERIODES_MAJOR_QUE_15' | translate }}</span>
                         </div>
                         <div class="col-xs-1">
@@ -463,183 +305,19 @@
             <div class="row extra-margin-top" data-ng-show="farePageError">
                 <div class="alert alert-danger" translate="{{farePageError}}"></div>
             </div>
-        </wizard-page>
 
-        <!-- Page: Owner data -->
-        <wizard-page
-            model="wizardPage"
-            page-name='ownerPage'
-            header="3 {{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}"
-            prev-page="goToFarePage()"
-            next-page="goToPayerPage()"
-            show-always='showAll'
-            ready="isOwnerPageComplete()"
-        >
-            <div data-ng-hide='esAlta()' class="row extra-margin-top">
-                <div class="col-xs-12 form-group">
-                    <div class="panel panel-warning">
-                        <div class="panel-heading" style="text-align:center">{{ 'VOLS_MANTENIR_EL_TITULAR' | translate }}
-                            <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
-                                'glyphicon-asterisk danger': form.changeowner === undefined,
-                            }" style="right:2em"></span>
-                        </div>
-                        <div class="panel-body" style="text-align:center">
-                            <div class="btn-group btn-group-justified">
-                                <label class="btn btn-default green"
-                                    style="white-space:normal"
-                                    data-ng-change="formListener()"
-                                    data-ng-model="form.changeowner"
-                                    data-uib-btn-radio="'no'"
-                                    data-ng-bind-html="'NO_CANVI_DE_TITULAR' | translate"
-                                    ></label>
-                                <label class="btn btn-default green"
-                                    style="white-space:normal"
-                                    data-ng-change="formListener()"
-                                    data-ng-model="form.changeowner"
-                                    data-uib-btn-radio="'yes'"
-                                    data-ng-bind-html="'SI_CANVI_DE_TITULAR' | translate"
-                                    ></label>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-ng-show="form.changeowner==='yes'" class="alert alert-warning" style="margin-top:5px" role="alert">
-                        <span data-ng-bind-html="'AVIS_CANVI_TITULAR' | translate"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row" ng-class="{'extra-margin-top': esAlta()}">
-                <div class="col-sm-7 col-xs-12">
-                    <label>{{ 'QUI_ES_LA_PERSONA_TITULAR' | translate }}</label>
-                    <select class="form-control input-lg" data-ng-model="form.ownerIsMember" data-ng-change="formListener()">
-                        <option value="yes" selected>{{ initForm.soci.nom + ' ' + initForm.soci.cognom }} ({{ 'SOCI_SOM_ENERGIA' | translate }}) </option>
-                        <option value="no">{{ 'ALTRA_PERSONA' | translate }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="well" data-ng-show="form.ownerIsMember === 'no'">
-                <personal-data
-                    model="owner"
-                    onchanged="formListener()"
-                ></personal-data>
-            </div>
-            <!-- (TITULAR_PARTICULAR || TITULAR_EMPRESA) & SOCI_VINCULAT_SI (page 06 & 12) (page 09 & 15) -->
-            <div class="row">
-                <div class="form-group checkbox col-xs-12">
-                    <label>
-                        <input type="checkbox" name="ownerAcceptsGeneralConditions" value="accept" data-ng-model="form.ownerAcceptsGeneralConditions" data-ng-change="formListener()" required/>
-                        <span translate="ACCEPTO_CONDICIONS_GENERALS" translate-value-url="{{ 'ACCEPTO_CONDICIONS_GENERALS_URL' | translate}}"></span>
-                    </label>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.ownerAcceptsGeneralConditions.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                    <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
-                        'glyphicon-asterisk danger': form.ownerAcceptsGeneralConditions === undefined,
-                    }" style="right:2em"></span>
-                </div>
-            </div>
-            <div class="row extra-margin-top" data-ng-show="ownerPageError">
-                <div class="alert alert-danger" translate="{{ownerPageError}}">boo</div>
-            </div>
-        </wizard-page>
-        <!-- Page: Payer data -->
-        <wizard-page
-            model="wizardPage"
-            page-name='payerPage'
-            header="4 {{ 'DADES_PAGAMENT' | translate }}"
-            prev-page="goToOwnerPage()"
-            next-page="goToConfirmationPage()"
-            next-text="{{ 'CONFIRMAR_CONTRACTACIO' | translate }}"
-            show-always='showAll'
-            ready="isPayerPageComplete()"
-        >
-            <div class="row extra-margin-top">
+            <div class="row no-margin-bottom">
                 <div class="col-xs-12">
-                    <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}</label>
-                </div>
-                <div class="col-xs-12">
-                    <select class="form-control input-lg" name="choosepayer" data-ng-model="form.choosepayer" data-ng-change="formListener()">
-                        <option value="titular">{{
-                            form.ownerIsMember === 'yes'?
-                                initForm.soci.nom + ' '+ initForm.soci.cognom:
-                                owner.name + ' ' + owner.surname
-}} ({{ 'TITULAR_CONTRACTE_ELECTRICITAT' | translate }})</option>
-                        <option value="soci" ng-hide="form.ownerIsMember==='yes'">{{ initForm.soci.nom + ' ' + initForm.soci.cognom }} ({{ 'SOCI_SOM_ENERGIA' | translate }})</option>
-                        <option value="altre">{{ 'ALTRA_PERSONA' | translate }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="well" data-ng-show="form.choosepayer === 'altre'">
-                <personal-data
-                    model="payer"
-                    onchanged="formListener()"
-                ></personal-data>
-            </div>
-            <div class="row" ng-hide="form.choosepayer === 'titular'">
-                <div class="form-group checkbox col-xs-12">
-                    <label>
-                        <input type="checkbox" name="payerAcceptsGeneralConditions" value="accept" data-ng-model="form.payerAcceptsGeneralConditions" data-ng-change="formListener()" required/>
-                        <span translate="ACCEPTO_CONDICIONS_GENERALS" translate-value-url="{{ 'ACCEPTO_CONDICIONS_GENERALS_URL' | translate}}"></span>
-                    </label>
-                    <span class="label label-danger" data-ng-show="orderFormSubmitted && orderForm.payerAcceptsGeneralConditions.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                    <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
-                        'glyphicon-asterisk danger': form.payerAcceptsGeneralConditions === undefined,
-                    }" style="right:2em"></span>
-                </div>
-            </div>
-            <div class="row">
-                <iban-editor
-                    class="col-sm-8 col-xs-12"
-                    required
-                    inputid="accountbankiban"
-                    placeholder="{{'CODI_IBAN_DEL_COMPTE' | translate}}"
-                    help-text="{{ 'EXEMPLE_IBAN' | translate }}"
-                    help="accountbankibanHelp"
-                    model="ibanEditor"
-                    checkurl="check/iban/"
-                    quietlabels='true'
-                    onchanged="formListener()"
-                ></iban-editor>
-            </div>
-            <div class="row">
-                <div class="form-group checkbox col-xs-12">
-                    <label>
-                        <input type="checkbox" name="acceptaccountowner" value="accept" data-ng-model="form.acceptaccountowner" data-ng-change="formListener()" required/>
-                        <span data-ng-bind-html="'CONFIRMO_TITULAR_COMPTE_ACCEPTA_DOMICILIACIO' | translate"></span>
-                    </label>
-                    <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
-                        'glyphicon-asterisk danger': form.acceptaccountowner === undefined,
-                    }" style="right:2em"></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="well custom-ad-top">
-                        <h6>{{ 'SOM_UNA_COOPERATIVA_SENSE_ANIM_DE_LUCRE' | translate }}.</h6>
-                        <h5>{{ 'VOLS_PARTICIPAR_AMB_LA_TEVA_ENERGIA' | translate }}</h5>
-                    </div>
-                    <div class="container-xs-height">
-                        <div class="row row-xs-height">
-                            <div class="col-xs-5 col-xs-height col-middle custom-ad-bottom-left">
-                                <label>{{ 'DONATIU_VOLUNTARI' | translate }}</label>
-                                <select class="form-control" name="voluntary" data-ng-model="form.voluntary" data-ng-change="formListener()" required>
-                                    <option value="">{{ 'SELECCIONA' | translate }}</option>
-                                    <option value="yes">{{ 'SI' | translate }}</option>
-                                    <option value="no">{{ 'NO' | translate }}</option>
-                                </select>
-                            </div>
-                            <div class="col-xs-7 col-xs-height col-middle custom-ad-bottom-right">
-                                <p>{{ 'ELS_SOCIS_I_SOCIES_QUE_HO_DESITGIN_PODEN_REALITZAR_UN_DONATIU_VOLUNTARI' | translate }}</p>
-                            </div>
-                        </div>
+                    <div class="wrapper-continue-process" data-ng-class="{ready: isFarePageComplete()}">
+                        <button
+                            data-ng-disabled="!isFarePageComplete()"
+                            data-ng-click="submit()"
+                            class="btn btn-default transparent pull-right submit"
+                            type="button">{{ 'FINALITZA_PROCES' | translate }}</button>
                     </div>
                 </div>
             </div>
-            <div class="row extra-margin-top" data-ng-show="payerPageError">
-                <div class="alert alert-danger" translate="{{payerPageError}}"></div>
-            </div>
-        </wizard-page>
+
     </form>
-</div>
-
-<!--CONFIRM TEMPLATE-->
-<div data-ng-include data-src="'scripts/pages/contract-confirmation.html'"></div>
 
 </div>
