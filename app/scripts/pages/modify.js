@@ -29,6 +29,10 @@ angular.module('SomEnergiaWebForms')
         $scope.form = {};
         $scope.form.phases = undefined;
         $scope.form.discriminacio = undefined;
+        $scope.form.contact_name = undefined;
+        $scope.form.contact_surname1 = undefined;
+        $scope.form.contact_surname2 = undefined;
+        $scope.form.contact_phone = undefined;
 
         $scope.showAllSteps = function() {
             $scope.showAll = true;
