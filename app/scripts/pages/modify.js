@@ -30,8 +30,7 @@ angular.module('SomEnergiaWebForms')
         $scope.form.phases = undefined;
         $scope.form.discriminacio = undefined;
         $scope.form.contact_name = undefined;
-        $scope.form.contact_surname1 = undefined;
-        $scope.form.contact_surname2 = undefined;
+        $scope.form.contact_surname = undefined;
         $scope.form.contact_phone = undefined;
 
         $scope.showAllSteps = function() {
@@ -108,7 +107,7 @@ angular.module('SomEnergiaWebForms')
         ValidateHandler.validatePower($scope, 'form.power2');
         ValidateHandler.validatePower($scope, 'form.power3');
         ValidateHandler.validateInteger($scope, 'form.estimation');
-        ValidateHandler.validateTelephoneNumber($scope, 'form.phone1');
+        ValidateHandler.validateTelephoneNumber($scope, 'form.contact_phone');
 
         $scope.esAlta = function() {
             return true;
@@ -219,7 +218,7 @@ angular.module('SomEnergiaWebForms')
             if ($scope.form.surname === undefined) {
                 return error('NO_SURNAME');
             }
-            if ($scope.form.phone1 === undefined) {
+            if ($scope.form.contact_phone === undefined) {
                 return error('NO_PHONE');
             }
             return true;
