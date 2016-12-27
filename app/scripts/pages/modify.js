@@ -257,6 +257,9 @@ angular.module('SomEnergiaWebForms')
             formData.append('potencia', Math.round($scope.form.power * cfg.THOUSANDS_CONVERSION_FACTOR));
             formData.append('potencia_p2', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power2 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
             formData.append('potencia_p3', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power3 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
+            formData.append('contact_name', $scope.form.contact_name);
+            formData.append('contact_surname', $scope.form.contact_surname);
+            formData.append('contact_phone', $scope.form.contact_phone);
             formData.append('token', $routeParams.token);
             // Send request data POST
             $http({
