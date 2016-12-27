@@ -303,11 +303,56 @@
                 </div>
             </div>
 
+            <!-- Contact info -->
+
             <div class="row extra-margin-top">
                 <div class="col-xs-12">
                     <p class="lead" translate="HELP_CONTACT_INFO"></p>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group has-feedback">
+                        <label class="sr-only">{{ 'NOM' | translate }}:</label>
+                        <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            placeholder="{{ 'NOM' | translate }}"
+                            data-ng-model="form.name"
+                            data-ng-change="formListener()"
+                            required
+                            />
+                        <span class="form-control-feedback glyphicon "  data-ng-class="{
+                            'glyphicon-asterisk danger': form.name === undefined,
+                            'glyphicon-ok success': form.name !== undefined,
+                        }" style="rdight:2em"></span>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group has-feedback">
+                        <label class="sr-only">{{ 'COGNOMS' | translate }}:</label>
+                        <input type="text" name="surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}" data-ng-model="form.surname" data-ng-change="formListener()" required/>
+                        <span class="label label-danger" data-ng-show="submitted && form.surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                        <span class="form-control-feedback glyphicon "  data-ng-class="{
+                            'glyphicon-asterisk danger': form.surname === undefined,
+                            'glyphicon-ok success': form.surname !== undefined,
+                        }" style="rdight:2em"></span>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12">
+                    <label class="sr-only">{{ 'TELEFON' | translate }}:</label>
+                    <input type="text" name="phone" data-ng-model="form.phone1" class="form-control" placeholder="{{ 'TELEFON' | translate }}" data-ng-change="formListener()" required/>
+                    <span class="label label-danger" data-ng-show="submitted && form.phone1.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="form-control-feedback glyphicon "  data-ng-class="{
+                        'glyphicon-asterisk danger': form.phone1 === undefined,
+                        'glyphicon-ok success': form.phone1 !== undefined,
+                    }" style="right:2em"></span>
+                </div>
+            </div>
+
+
 
             <div class="row extra-margin-top" data-ng-show="farePageError">
                 <div class="alert alert-danger" translate="{{farePageError}}"></div>
@@ -315,9 +360,9 @@
 
             <div class="row no-margin-bottom">
                 <div class="col-xs-12">
-                    <div class="wrapper-continue-process" data-ng-class="{ready: isFarePageComplete()}">
+                    <div class="wrapper-continue-process" data-ng-class="{ready: isFarePageComplete() && isContactInfoComplete()}">
                         <button
-                            data-ng-disabled="!isFarePageComplete()"
+                            data-ng-disabled="!isFarePageComplete() && isContactInfoComplete()"
                             data-ng-click="submit()"
                             class="btn btn-default transparent pull-right submit"
                             type="button">{{ 'FINALITZA_PROCES' | translate }}</button>

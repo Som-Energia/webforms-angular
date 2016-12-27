@@ -108,6 +108,7 @@ angular.module('SomEnergiaWebForms')
         ValidateHandler.validatePower($scope, 'form.power2');
         ValidateHandler.validatePower($scope, 'form.power3');
         ValidateHandler.validateInteger($scope, 'form.estimation');
+        ValidateHandler.validateTelephoneNumber($scope, 'form.phone1');
 
         $scope.esAlta = function() {
             return true;
@@ -203,6 +204,28 @@ angular.module('SomEnergiaWebForms')
             }
             return true;
         };
+
+        $scope.isContactInfoComplete = function() {
+            function error(message) {
+                if ($scope.farePageError !== message) {
+                    $scope.farePageError = message;
+                    //console.log(message);
+                }
+                return false;
+            }
+            if ($scope.form.name === undefined) {
+                return error('NO_NAME');
+            }
+            if ($scope.form.surname === undefined) {
+                return error('NO_SURNAME');
+            }
+            if ($scope.form.phone1 === undefined) {
+                return error('NO_PHONE');
+            }
+            return true;
+        };
+
+
 
 
         $scope.formListener = function() {
