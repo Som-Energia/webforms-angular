@@ -317,27 +317,27 @@
                         <label class="sr-only">{{ 'NOM' | translate }}:</label>
                         <input
                             type="text"
-                            name="name"
+                            name="contact_name"
                             class="form-control"
                             placeholder="{{ 'NOM' | translate }}"
-                            data-ng-model="form.name"
+                            data-ng-model="form.contact_name"
                             data-ng-change="formListener()"
                             required
                             />
                         <span class="form-control-feedback glyphicon "  data-ng-class="{
-                            'glyphicon-asterisk danger': form.name === undefined,
-                            'glyphicon-ok success': form.name !== undefined,
+                            'glyphicon-asterisk danger': form.contact_name === undefined,
+                            'glyphicon-ok success': form.contact_name !== undefined,
                         }" style="rdight:2em"></span>
                     </div>
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group has-feedback">
                         <label class="sr-only">{{ 'COGNOMS' | translate }}:</label>
-                        <input type="text" name="surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}" data-ng-model="form.surname" data-ng-change="formListener()" required/>
-                        <span class="label label-danger" data-ng-show="submitted && form.surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                        <input type="text" name="contact_surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}" data-ng-model="form.contact_surname" data-ng-change="formListener()" required/>
+                        <span class="label label-danger" data-ng-show="submitted && form.contact_surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                         <span class="form-control-feedback glyphicon "  data-ng-class="{
-                            'glyphicon-asterisk danger': form.surname === undefined,
-                            'glyphicon-ok success': form.surname !== undefined,
+                            'glyphicon-asterisk danger': form.contact_surname === undefined,
+                            'glyphicon-ok success': form.contact_surname !== undefined,
                         }" style="rdight:2em"></span>
                     </div>
                 </div>

@@ -212,10 +212,10 @@ angular.module('SomEnergiaWebForms')
                 }
                 return false;
             }
-            if ($scope.form.name === undefined) {
+            if ($scope.form.contact_name === undefined) {
                 return error('NO_NAME');
             }
-            if ($scope.form.surname === undefined) {
+            if ($scope.form.contact_surname === undefined) {
                 return error('NO_SURNAME');
             }
             if ($scope.form.contact_phone === undefined) {
