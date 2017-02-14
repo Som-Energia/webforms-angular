@@ -18,11 +18,11 @@
                         <p class="lead" translate="HELP_TARIFA_ALTA"></p>
                     </div>
                 </div>
-                <div class="row extra-margin-top form-group">
-                    <div class="col-xs-4">
+                <div class="row extra-margin-top">
+                    <div class="col-xs-4 col-md-4">
                         <label for="phases">{{ 'TIPUS_INSTALLACIO' | translate }}</label>
                     </div>
-                    <div class="col-xs-8">
+                    <div class="col-xs-8 col-md-8">
                         <div class='input-group has-feedback'>
                             <select class="form-control input-lg" ng-model="form.phases" required>
                                 <option value='' selected>{{ 'SELECCIONA' | translate}}</option>
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row extra-margin-top form-group">
+                <div class="row extra-margin-top">
                     <div class="col-xs-4">
                         <label>{{ 'POTENCIA_A_CONTRACTAR' | translate }}</label>
                     </div>
@@ -312,43 +312,39 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="form-group has-feedback">
-                        <label class="sr-only">{{ 'NOM' | translate }}:</label>
-                        <input
-                            type="text"
-                            name="contact_name"
-                            class="form-control"
-                            placeholder="{{ 'NOM' | translate }}"
-                            data-ng-model="form.contact_name"
-                            data-ng-change="formListener()"
-                            required
-                            />
-                        <span class="form-control-feedback glyphicon "  data-ng-class="{
-                            'glyphicon-asterisk danger': form.contact_name === undefined,
-                            'glyphicon-ok success': form.contact_name !== undefined,
-                        }" style="rdight:2em"></span>
-                    </div>
+                <div class="col-xs-12 form-group has-feedback">
+                    <label class="sr-only">{{ 'NOM' | translate }}:</label>
+                    <input
+                        type="text"
+                        name="contact_name"
+                        class="form-control"
+                        placeholder="{{ 'NOM' | translate }}"
+                        data-ng-model="form.contact_name"
+                        data-ng-change="formListener()"
+                        required
+                        />
+                    <span class="form-control-feedback glyphicon "  data-ng-class="{
+                        'glyphicon-asterisk danger': form.contact_name === undefined,
+                        'glyphicon-ok success': form.contact_name !== undefined,
+                    }"></span>
                 </div>
-                <div class="col-xs-12">
-                    <div class="form-group has-feedback">
-                        <label class="sr-only">{{ 'COGNOMS' | translate }}:</label>
-                        <input type="text" name="contact_surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}" data-ng-model="form.contact_surname" data-ng-change="formListener()" required/>
-                        <span class="label label-danger" data-ng-show="submitted && form.contact_surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
-                        <span class="form-control-feedback glyphicon "  data-ng-class="{
-                            'glyphicon-asterisk danger': form.contact_surname === undefined,
-                            'glyphicon-ok success': form.contact_surname !== undefined,
-                        }" style="rdight:2em"></span>
-                    </div>
+                <div class="col-xs-12 form-group has-feedback">
+                    <label class="sr-only">{{ 'COGNOMS' | translate }}:</label>
+                    <input type="text" name="contact_surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}" data-ng-model="form.contact_surname" data-ng-change="formListener()" required/>
+                    <span class="label label-danger" data-ng-show="submitted && form.contact_surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                    <span class="form-control-feedback glyphicon "  data-ng-class="{
+                        'glyphicon-asterisk danger': form.contact_surname === undefined,
+                        'glyphicon-ok success': form.contact_surname !== undefined,
+                    }"></span>
                 </div>
-                <div class="form-group col-xs-12">
+                <div class="form-group col-xs-12 has-feedback">
                     <label class="sr-only">{{ 'TELEFON' | translate }}:</label>
-                    <input type="text" name="phone" data-ng-model="form.contact_phone" class="form-control" placeholder="{{ 'TELEFON' | translate }}" data-ng-change="formListener()" required/>
+                    <input type="text" name="phone" class="form-control" placeholder="{{ 'TELEFON' | translate }}" data-ng-model="form.contact_phone" data-ng-change="formListener()" required/>
                     <span class="label label-danger" data-ng-show="submitted && form.contact_phone.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     <span class="form-control-feedback glyphicon "  data-ng-class="{
                         'glyphicon-asterisk danger': form.contact_phone === undefined,
                         'glyphicon-ok success': form.contact_phone !== undefined,
-                    }" style="right:2em"></span>
+                    }"></span>
                 </div>
             </div>
 
