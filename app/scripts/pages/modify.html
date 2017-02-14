@@ -358,7 +358,7 @@
                 <div class="col-xs-12">
                     <div class="wrapper-continue-process" data-ng-class="{ready: isFarePageComplete() && isContactInfoComplete()}">
                         <button
-                            data-ng-disabled="!isFarePageComplete() && isContactInfoComplete()"
+                            data-ng-disabled="!isFarePageComplete() || !isContactInfoComplete()"
                             data-ng-click="submit()"
                             class="btn btn-default transparent pull-right submit"
                             type="button">{{ 'FINALITZA_PROCES' | translate }}</button>
