@@ -131,6 +131,11 @@ input, select {
 }
 
 span {
+  &.img-badge {
+    width: 30px;
+    display: block;
+    color: transparent;
+  }
   &.optional-info {
     float: left;
     margin-right: 10px;
@@ -417,6 +422,11 @@ select[disabled] { color: $grey; }
         margin-bottom: 30px;
     }
 }
+
+.form-group {
+	width: 100%;
+}
+
 
 /* colored feedback icons */
 .form-control-feedback.primary {
