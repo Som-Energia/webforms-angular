@@ -76,7 +76,6 @@ angular.module('SomEnergiaWebForms', [
         BASE_DOMAIN: 'somenergia.coop',
         API_BASE_URL: (developmentMode ?
 //            'http://localhost:5001/': // development api
-//            'http://testing.somenergia.coop:5001/': // testing api
             'https://testing.somenergia.coop/': // testing api
             'https://api.somenergia.coop/'),  // production api
         STATUS_OFFLINE: 'OFFLINE',
