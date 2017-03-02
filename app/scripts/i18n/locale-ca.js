@@ -208,8 +208,6 @@ angular.module('SomEnergiaWebForms')
                 CANVI_DE_COMERCIALITZADORA: 'Canvi de comercialitzadora mantenint la persona titular',
                 ERROR_POST_CONTRACTE: 'Error enviant el contracte',
 
-                // Under development
-
                 INCOMPLETE_PREVIOUS_STEP: 'No has completat el pas anterior',
                 UNSELECTED_NEW_SUPPLY_POINT: 'No has especificat si ja hi ha llum amb una altra comercialitzadora o és un nou punt de subministrament sense llum',
                 NO_SUPPLY_POINT_ADDRESS: 'No has especificat l\'<b>adreça</b> del punt de subministrament',
@@ -253,6 +251,12 @@ angular.module('SomEnergiaWebForms')
                 DIRECT_DEBIT: 'Rebut domiciliat',
                 NEWMEMBER_OK_REDIRECT_URL: 'https://www.somenergia.coop/ca/pagament-realitzat/',
                 NEWMEMBER_KO_REDIRECT_URL: 'https://www.somenergia.coop/ca/pagament-cancellat/',
+
+                // Under development
+
+                CONTRACT_MODIFICATION_FORM: 'Modificació contractual',
+                HELP_CONTACT_INFO: 'Les dades de contacte són necessàries per a que s\'et pugui localitzar per accedir a la instal·lació si calguès PIXAR FORA DE TEST',
+
             })
         ;
     });

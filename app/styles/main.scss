@@ -135,27 +135,6 @@ span {
     width: 30px;
     display: block;
     color: transparent;
-    &.first-step-number {
-      background: url("//cdn.rawgit.com/Som-Energia/new-api-webforms/master/app/images/number-01.png") no-repeat 100% -30px;
-      height: 30px;
-      &.current {
-        background: url("//cdn.rawgit.com/Som-Energia/new-api-webforms/master/app/images/number-01.png") no-repeat 100% 0;
-      }
-    }
-    &.second-step-number {
-      background: url("//cdn.rawgit.com/Som-Energia/new-api-webforms/master/app/images/number-02.png") no-repeat 100% -30px;
-      height: 30px;
-      &.current {
-        background: url("//cdn.rawgit.com/Som-Energia/new-api-webforms/master/app/images/number-02.png") no-repeat 100% 0;
-      }
-    }
-    &.third-step-number {
-      background: url("//cdn.rawgit.com/Som-Energia/new-api-webforms/master/app/images/number-03.png") no-repeat 100% -30px;
-      height: 30px;
-      &.current {
-        background: url("//cdn.rawgit.com/Som-Energia/new-api-webforms/master/app/images/number-03.png") no-repeat 100% 0;
-      }
-    }
   }
   &.optional-info {
     float: left;
@@ -317,12 +296,12 @@ div.alert {
 }
 
 div.wrapper-continue-process {
-  background: url("//cdn.rawgit.com/Som-Energia/new-api-webforms/master/app/images/continue-process.png") no-repeat 100% -47px;
+  background: url("../images/continue-process.png") no-repeat 100% -47px;
   height: 47px;
   margin-top: -3px;
   &.ready {
-    background: url("//cdn.rawgit.com/Som-Energia/new-api-webforms/master/app/images/continue-process.png") no-repeat 100% 0;
-  }
+		background: url("../images/continue-process.png") no-repeat 100% 0;
+	  }
 }
 
 div.well.custom-ad-top {
@@ -443,6 +422,11 @@ select[disabled] { color: $grey; }
         margin-bottom: 30px;
     }
 }
+
+.form-group {
+	width: 100%;
+}
+
 
 /* colored feedback icons */
 .form-control-feedback.primary {

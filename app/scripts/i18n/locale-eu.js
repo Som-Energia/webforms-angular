@@ -253,6 +253,11 @@ angular.module('SomEnergiaWebForms')
                 DIRECT_DEBIT: 'Recibo domiciliado',
                 NEWMEMBER_OK_REDIRECT_URL: 'https://www.somenergia.coop/eu/pago-realizado/',
                 NEWMEMBER_KO_REDIRECT_URL: 'https://www.somenergia.coop/eu/pago-cancelado/',
+
+                // Under development
+
+                CONTRACT_MODIFICATION_FORM: 'Modificación contractual',
+
             })
         ;
     });

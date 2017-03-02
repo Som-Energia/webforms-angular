@@ -51,6 +51,10 @@ angular.module('SomEnergiaWebForms', [
                 templateUrl: 'scripts/pages/generationkwh.html',
                 controller: 'GenerationKwhCtrl'
             })
+            .when('/:locale/modifica', {
+                templateUrl: 'scripts/pages/modify.html',
+                controller: 'ModifyCtrl'
+            })
             .otherwise({
 				// TODO: An error page, just to know we are doing something wrong
                 redirectTo: '/'
@@ -72,7 +76,6 @@ angular.module('SomEnergiaWebForms', [
         BASE_DOMAIN: 'somenergia.coop',
         API_BASE_URL: (developmentMode ?
 //            'http://localhost:5001/': // development api
-//            'http://testing.somenergia.coop:5001/': // testing api
             'https://testing.somenergia.coop/': // testing api
             'https://api.somenergia.coop/'),  // production api
         STATUS_OFFLINE: 'OFFLINE',

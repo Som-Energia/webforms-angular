@@ -183,6 +183,8 @@ angular.module('SomEnergiaWebForms')
                         $scope.form.phone1 = oldValue;
                     } else if (element === 'form.phone2') {
                         $scope.form.phone2 = oldValue;
+                    } else if (element === 'form.contact_phone') {
+                        $scope.form.contact_phone = oldValue;
                     }
                 }
             });
