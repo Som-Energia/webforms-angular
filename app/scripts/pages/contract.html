@@ -218,7 +218,7 @@
                                     value="{{power}}"
                                     style="background-color: {{power > 10? '#ae7':'#df9' }}"
                                     >{{power}} kW</option>
-                                <option ng-if="form.phases==='tri'" value='15'>{{ 'MES_GRAN_DE_15KW' | translate}}</option>
+                                <option ng-if="form.phases==='tri'" style="background-color:#9d6" value='15'>{{ 'MES_GRAN_DE_15KW' | translate}}</option>
                             </select>
                             <span class="form-control-feedback glyphicon "  data-ng-class="{
                                 'glyphicon-asterisk danger': form.newpower === undefined,
