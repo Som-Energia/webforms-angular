@@ -1,6 +1,6 @@
 <div class="modal-body">
     <div class="alert alert-success">
-        <h3>{{ 'REGISTRE_OK' | translate }}</h3>
-        <p>{{ 'REGISTRE_OK_MSG' | translate }}</p>
+        <h3>{{ (successTitle || 'REGISTRE_OK' | translate }}</h3>
+        <p>{{ (successMessage || 'REGISTRE_OK_MSG') | translate: successParams || {} }}</p>
     </div>
 </div>

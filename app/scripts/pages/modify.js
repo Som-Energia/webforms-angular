@@ -275,9 +275,14 @@ angular.module('SomEnergiaWebForms')
                     $log.log('response received', response);
                     if (response.data.status === cfg.STATUS_ONLINE) {
                         if (response.data.state === cfg.STATE_TRUE) {
+                            $scope.successTitle = 'MODIFY_POTTAR_SUCCESS_TITTLE';
+                            $scope.successMessage = 'MODIFY_POTTAR_SUCCESS_MESSAGE';
+                            $scope.successParams = {
+                                'url': 'http://canvoki.net', // TODO: take it from query
+                            };
                             // well done
                             uiHandler.showWellDoneDialog();
-                            $window.top.location.href = $translate.instant('CONTRACT_OK_REDIRECT_URL');
+//                          $window.top.location.href = $translate.instant('CONTRACT_OK_REDIRECT_URL');
                         } else {
                             // error
                             $scope.modalTitle = $translate.instant('ERROR_POST_CONTRACTE');
