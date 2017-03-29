@@ -300,7 +300,10 @@ angular.module('SomEnergiaWebForms')
                 function(reason) {
                     $log.error('Send POST failed', reason);
                     uiHandler.hideLoadingDialog();
-                    if (reason.status === 413) {
+                    if (reason.status === -1) {
+                        $scope.messages = 'ERROR_CONNECTION';
+                    }
+                    else if (reason.status === 413) {
                         $scope.messages = 'ERROR 413';
                     } else {
                         $scope.messages = 'ERROR';
