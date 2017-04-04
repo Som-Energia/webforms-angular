@@ -271,31 +271,46 @@ angular.module('SomEnergiaWebForms')
                 function(response) {
                     uiHandler.hideLoadingDialog();
                     $log.log('response received', response);
-                    if (response.data.status === cfg.STATUS_ONLINE) {
-                        if (response.data.state === cfg.STATE_TRUE) {
-                            $scope.successTitle = 'MODIFY_POTTAR_SUCCESS_TITTLE';
-                            $scope.successMessage = 'MODIFY_POTTAR_SUCCESS_MESSAGE';
-                            $scope.successParams = {
-                                'url': $routeParams.backurl,
-                            };
-                            // well done
-                            uiHandler.showWellDoneDialog();
-                        } else {
-                            // error
+                    if (response.data.status === cfg.STATUS_OFFLINE) {
+                        // TODO: Error for humans
+                        uiHandler.showErrorDialog('API server status offline (ref.022-022)');
+                        return;
+                    }
+                    if (response.data.status !== cfg.STATUS_ONLINE) {
+                        // TODO: Error for humans
+                        uiHandler.showErrorDialog('API server unknown status (ref.021-021)');
+                        return;
+                    }
+                    if (response.data.state === cfg.STATE_TRUE) {
+                        $scope.successTitle = 'MODIFY_POTTAR_SUCCESS_TITTLE';
+                        $scope.successMessage = 'MODIFY_POTTAR_SUCCESS_MESSAGE';
+                        $scope.successParams = {
+                            'url': $routeParams.backurl,
+                        };
+                        // well done
+                        uiHandler.showWellDoneDialog();
+                    } else {
+                        // error
+                        $scope.submitReady = false;
+                        if (response.data.invalid_fields) {
                             $scope.modalTitle = $translate.instant('ERROR_POST_MODIFY');
                             $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
-                            $scope.submitReady = false;
+                        } else {
+                            var errorMap = {
+                                ongoingprocess: 'MODIFY_POTTAR_ONGOING_PROCESS',
+                                inactivecontract: 'MODIFY_POTTAR_INACTIVE_CONTRACT',
+                                notallowed: 'MODIFY_POTTAR_NOT_ALLOWED',
+                                badtoken: 'MODIFY_POTTAR_BAD_TOKEN',
+                            };
+                            var errorString = errorMap[response.data.data.error] || 'MODIFY_POTTAR_UNEXPECTED';
+
                             uiHandler.postError(
                                 $translate.instant('ERROR_POST_MODIFY'),
-                                $translate.instant('MODIFY_POTTAR_ONGOING_PROCESS'),
-                                $translate.instant('MODIFY_POTTAR_ONGOING_PROCESS_DETAILS'),
-                                JSON.stringify(response.data, null,'  '),
+                                $translate.instant(errorString),
+                                $translate.instant(errorString + '_DETAILS'),
+                                JSON.stringify(response.data, null,'  ')
                                 );
                         }
-                    } else if (response.data.status === cfg.STATUS_OFFLINE) {
-                        uiHandler.showErrorDialog('API server status offline (ref.022-022)');
-                    } else {
-                        uiHandler.showErrorDialog('API server unknown status (ref.021-021)');
                     }
                 },
                 function(reason) {

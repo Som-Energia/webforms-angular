@@ -262,6 +262,14 @@ angular.module('SomEnergiaWebForms')
                 ERROR_POST_MODIFY: 'S\'ha detectat un error',
                 MODIFY_POTTAR_ONGOING_PROCESS: 'Aquest contracte té un altre procés pendent de resoldre.',
                 MODIFY_POTTAR_ONGOING_PROCESS_DETAILS: 'No es poden començar nous processos fins que no es resolgui el pendent. Torna a intentar-ho un cop hagis rebut per correu la resolució del procés pendent.',
+                MODIFY_POTTAR_NOT_ALLOWED: 'No estàs autoritzat a fer aquesta operació.',
+                MODIFY_POTTAR_NOT_ALLOWED_DETAILS: 'Vols venir a treballar amb nosaltres?',
+                MODIFY_POTTAR_INACTIVE_CONTRACT: 'El contracte a modificar no està d\'alta',
+                MODIFY_POTTAR_INACTIVE_CONTRACT_DETAILS: 'Només es poden modificar els contractes que estan d\'alta.',
+                MODIFY_POTTAR_BAD_TOKEN: 'La sessió ha expirat.',
+                MODIFY_POTTAR_BAD_TOKEN_DETAILS:'Et recomanem tornar a accedir a l\'Oficina virtual i intentar-ho de nou.',
+                MODIFY_POTTAR_UNEXPECTED: 'S\'ha produit un error no esperat.',
+                MODIFY_POTTAR_UNEXPECTED_DETAILS: 'Poseu-vos en contacte amb modifica@somenergia.coop per a que us podem donar un cop de mà. Per identificar-vos necessitarem saber el vostre NIF i el número del contracte que voleu modificar.',
                 SERVER_ERROR_DESCRIPTION: 'Hem detectat problemes amb la connexió al nostre web. Comprova que la teva connexió a internet està funcionant correctament. Si no és aquest el problema, contacta amb Som Energia per verificar que el tràmit s\'ha processat correctament',
             })
         ;
