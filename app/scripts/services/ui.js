@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('SomEnergiaWebForms')
-.controller('ApiErrorCtrl', function ($scope, $uibModalInstance, errorMsg, errorDetails) {
+.controller('ApiErrorCtrl', function ($scope, $uibModalInstance, title, errorMsg, errorDetails) {
+    $scope.title = title;
     $scope.errorMsg = errorMsg;
     $scope.errorDetails = errorDetails;
     $scope.ok = function () {
@@ -29,6 +30,24 @@ angular.module('SomEnergiaWebForms')
         });
     };
 
+    this.postError = function(title, description, details) {
+        console.log('API Error:', title, description, details);
+        $uibModal.open({
+            templateUrl: 'scripts/fragments/post-error-modal.html',
+            controller: 'ApiErrorCtrl',
+            resolve: {
+                title: function() {
+                    return title;
+                },
+                errorMsg: function() {
+                    return description;
+                },
+                errorDetails: function() {
+                    return details;
+                }
+            }
+        });
+    };
     this.showWellDoneDialog = function() {
         $uibModal.open({
             size: 'lg',

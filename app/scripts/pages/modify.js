@@ -247,8 +247,6 @@ angular.module('SomEnergiaWebForms')
         $scope.submit = function() {
             $scope.messages = null;
             $scope.formSubmitted = true;
-            $scope.cupsIsDuplicated = false;
-            $scope.invalidAttachFileExtension = false;
             $scope.overflowAttachFile = false;
             uiHandler.showLoadingDialog();
             // Prepare request data
@@ -278,18 +276,21 @@ angular.module('SomEnergiaWebForms')
                             $scope.successTitle = 'MODIFY_POTTAR_SUCCESS_TITTLE';
                             $scope.successMessage = 'MODIFY_POTTAR_SUCCESS_MESSAGE';
                             $scope.successParams = {
-                                'url': 'http://canvoki.net', // TODO: take it from query
+                                'url': $routeParams.backurl,
                             };
                             // well done
                             uiHandler.showWellDoneDialog();
-//                          $window.top.location.href = $translate.instant('CONTRACT_OK_REDIRECT_URL');
                         } else {
                             // error
-                            $scope.modalTitle = $translate.instant('ERROR_POST_CONTRACTE');
+                            $scope.modalTitle = $translate.instant('ERROR_POST_MODIFY');
                             $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
                             $scope.submitReady = false;
-                            $scope.rawReason = JSON.stringify(response.data, null,'  ');
-                            jQuery('#webformsGlobalMessagesModal').modal('show');
+                            uiHandler.postError(
+                                $translate.instant('ERROR_POST_MODIFY'),
+                                $translate.instant('MODIFY_POTTAR_ONGOING_PROCESS'),
+                                $translate.instant('MODIFY_POTTAR_ONGOING_PROCESS_DETAILS'),
+                                JSON.stringify(response.data, null,'  '),
+                                );
                         }
                     } else if (response.data.status === cfg.STATUS_OFFLINE) {
                         uiHandler.showErrorDialog('API server status offline (ref.022-022)');
@@ -323,9 +324,8 @@ angular.module('SomEnergiaWebForms')
             if (arrayResponse.invalid_fields !== undefined) {
                 for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
                     if (arrayResponse.invalid_fields[j].field === 'cups' && arrayResponse.invalid_fields[j].error === 'exist') {
-                        $scope.cupsIsDuplicated = true;
-                    } else if (arrayResponse.invalid_fields[j].field === 'fitxer' && arrayResponse.invalid_fields[j].error === 'bad_extension') {
-                        $scope.invalidAttachFileExtension = true;
+                    } else
+                    if (arrayResponse.invalid_fields[j].field === 'fitxer' && arrayResponse.invalid_fields[j].error === 'bad_extension') {
                     }
                 }
             }
