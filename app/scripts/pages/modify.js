@@ -22,7 +22,6 @@ angular.module('SomEnergiaWebForms')
             $translate.use($routeParams.locale);
         }
 
-        $scope.showAll = false;
         // To false to debug one page completion state independently from the others
         $scope.waitPreviousPages = false;
 
@@ -33,9 +32,6 @@ angular.module('SomEnergiaWebForms')
         $scope.form.contact_surname = undefined;
         $scope.form.contact_phone = undefined;
 
-        $scope.showAllSteps = function() {
-            $scope.showAll = true;
-        };
         $scope.rate20IsInvalid = false;
         $scope.rate21IsInvalid = false;
         $scope.rate3AIsInvalid = false;
@@ -271,62 +267,67 @@ angular.module('SomEnergiaWebForms')
                 function(response) {
                     uiHandler.hideLoadingDialog();
                     $log.log('response received', response);
-                    if (response.data.status === cfg.STATUS_OFFLINE) {
-                        // TODO: Error for humans
-                        uiHandler.showErrorDialog('API server status offline (ref.022-022)');
-                        return;
-                    }
                     if (response.data.status !== cfg.STATUS_ONLINE) {
-                        // TODO: Error for humans
-                        uiHandler.showErrorDialog('API server unknown status (ref.021-021)');
-                        return;
+                        return uiHandler.postError(
+                            $translate.instant('ERROR_POST_MODIFY'),
+                            $translate.instant('API_SERVER_OFFLINE'),
+                            $translate.instant('API_SERVER_OFFLINE_DETAILS'),
+                            JSON.stringify(response.data, null,'  ')
+                            );
                     }
                     if (response.data.state === cfg.STATE_TRUE) {
+                        // Success!
                         $scope.successTitle = 'MODIFY_POTTAR_SUCCESS_TITTLE';
                         $scope.successMessage = 'MODIFY_POTTAR_SUCCESS_MESSAGE';
                         $scope.successParams = {
                             'url': $routeParams.backurl,
                         };
-                        // well done
                         uiHandler.showWellDoneDialog();
-                    } else {
-                        // error
-                        $scope.submitReady = false;
-                        if (response.data.invalid_fields) {
-                            $scope.modalTitle = $translate.instant('ERROR_POST_MODIFY');
-                            $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
-                        } else {
-                            var errorMap = {
-                                ongoingprocess: 'MODIFY_POTTAR_ONGOING_PROCESS',
-                                inactivecontract: 'MODIFY_POTTAR_INACTIVE_CONTRACT',
-                                notallowed: 'MODIFY_POTTAR_NOT_ALLOWED',
-                                badtoken: 'MODIFY_POTTAR_BAD_TOKEN',
-                            };
-                            var errorString = errorMap[response.data.data.error] || 'MODIFY_POTTAR_UNEXPECTED';
-
-                            uiHandler.postError(
-                                $translate.instant('ERROR_POST_MODIFY'),
-                                $translate.instant(errorString),
-                                $translate.instant(errorString + '_DETAILS'),
-                                JSON.stringify(response.data, null,'  ')
-                                );
-                        }
+                        return;
                     }
+                    // error
+                    $scope.submitReady = false;
+                    if (response.data.data.invalid_fields!==undefined) {
+                        var details = $scope.getHumanizedAPIResponse(response.data.data);
+                        return uiHandler.postError(
+                            $translate.instant('ERROR_POST_MODIFY'),
+                            $translate.instant('MODIFY_POTTAR_INVALID_FIELD'),
+                            details,
+                            JSON.stringify(response.data, null,'  ')
+                            );
+                    }
+                    var errorMap = {
+                        ongoingprocess: 'MODIFY_POTTAR_ONGOING_PROCESS',
+                        inactivecontract: 'MODIFY_POTTAR_INACTIVE_CONTRACT',
+                        notallowed: 'MODIFY_POTTAR_NOT_ALLOWED',
+                        badtoken: 'MODIFY_POTTAR_BAD_TOKEN',
+                    };
+                    var errorString = errorMap[response.data.data.error] || 'MODIFY_POTTAR_UNEXPECTED';
+
+                    uiHandler.postError(
+                        $translate.instant('ERROR_POST_MODIFY'),
+                        $translate.instant(errorString),
+                        $translate.instant(errorString + '_DETAILS'),
+                        JSON.stringify(response.data, null,'  ')
+                        );
                 },
                 function(reason) {
                     $log.error('Send POST failed', reason);
+                    var rawReason = JSON.stringify(reason,null,'  ');
                     uiHandler.hideLoadingDialog();
                     if (reason.status === -1) {
-                        $scope.messages = 'ERROR_CONNECTION';
+                        return uiHandler.postError(
+                            $translate.instant('ERROR_POST_MODIFY'),
+                            $translate.instant('API_SERVER_ERROR'),
+                            $translate.instant('API_SERVER_ERROR_DETAILS'),
+                            rawReason
+                            );
                     }
                     else if (reason.status === 413) {
                         $scope.messages = 'ERROR 413';
                     } else {
                         $scope.messages = 'ERROR';
                     }
-                    $scope.overflowAttachFile = true;
-                    $scope.showAllSteps();
-                    $scope.rawReason = JSON.stringify(reason,null,'  ');
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
             );
@@ -344,7 +345,6 @@ angular.module('SomEnergiaWebForms')
                     }
                 }
             }
-            $scope.showAllSteps();
             return ApiSomEnergia.humanizedResponse(arrayResponse);
         };
 

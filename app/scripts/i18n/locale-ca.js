@@ -270,7 +270,11 @@ angular.module('SomEnergiaWebForms')
                 MODIFY_POTTAR_BAD_TOKEN_DETAILS:'Et recomanem tornar a accedir a l\'Oficina virtual i intentar-ho de nou.',
                 MODIFY_POTTAR_UNEXPECTED: 'S\'ha produit un error no esperat.',
                 MODIFY_POTTAR_UNEXPECTED_DETAILS: 'Poseu-vos en contacte amb modifica@somenergia.coop per a que us podem donar un cop de mà. Per identificar-vos necessitarem saber el vostre NIF i el número del contracte que voleu modificar.',
-                SERVER_ERROR_DESCRIPTION: 'Hem detectat problemes amb la connexió al nostre web. Comprova que la teva connexió a internet està funcionant correctament. Si no és aquest el problema, contacta amb Som Energia per verificar que el tràmit s\'ha processat correctament',
+                API_SERVER_ERROR: 'Error connectant al servidor.',
+                API_SERVER_ERROR_DETAILS: 'Hem detectat problemes amb la connexió al nostre web. Comprova que la teva connexió a internet està funcionant correctament. Si no és aquest el problema, contacta amb Som Energia per verificar que el tràmit s\'ha processat correctament.',
+                API_SERVER_OFFLINE: 'Els nostres servidors no responen.',
+                API_SERVER_OFFLINE_DETAILS: 'És possible que estiguem fent tasques de manteniment. Torneu a provar-ho més tard. Perdoneu les molèsties.',
+                MODIFY_POTTAR_INVALID_FIELD: 'Les dades no són correctes.',
             })
         ;
     });
