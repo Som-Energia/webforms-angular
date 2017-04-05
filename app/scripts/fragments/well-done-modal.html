@@ -1,6 +1,7 @@
 <div class="modal-body">
     <div class="alert alert-success">
-        <h3>{{ (successTitle || 'REGISTRE_OK') | translate }}</h3>
-        <p>{{ (successMessage || 'REGISTRE_OK_MSG') | translate: successParams || {} }}</p>
+        <h3>{{ data.title | translate }}</h3>
+        <p>{{ data.message | translate: data.params }}</p>
+        <p data-ng-if="data.params.backlink" data-ng-bind-html="data.params.backlink | translate: data.params"></p>
     </div>
 </div>

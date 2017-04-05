@@ -278,13 +278,14 @@ angular.module('SomEnergiaWebForms')
                     }
                     if (response.data.state === cfg.STATE_TRUE) {
                         // Funciona!
-                        $scope.successTitle = 'MODIFY_POTTAR_SUCCESS_TITTLE';
-                        $scope.successMessage = 'MODIFY_POTTAR_SUCCESS_MESSAGE';
-                        $scope.successParams = {
-                            'url': $routeParams.backurl,
-                        };
-                        uiHandler.showWellDoneDialog();
-                        return;
+                        return uiHandler.showWellDoneDialog(
+                            'MODIFY_POTTAR_SUCCESS_TITTLE',
+                            'MODIFY_POTTAR_SUCCESS_MESSAGE',
+                            {
+                                'backlink': 'MODIFY_POTTAR_SUCCESS_REDIRECT',
+                                'url': $routeParams.backurl,
+                            }
+                        );
                     }
                     // error
                     $scope.submitReady = false;
@@ -295,24 +296,23 @@ angular.module('SomEnergiaWebForms')
                             $translate.instant('MODIFY_POTTAR_UNEXPECTED'),
                             $translate.instant('MODIFY_POTTAR_UNEXPECTED_DETAILS'),
                             JSON.stringify(response.data, null,'  ')
-                            );                    }
+                            );
+                    }
                     if (response.data.data.invalid_fields!==undefined) {
                         // Camp invalid
-                        var details = $scope.getHumanizedAPIResponse(response.data.data);
                         return uiHandler.postError(
                             $translate.instant('ERROR_POST_MODIFY'),
                             $translate.instant('MODIFY_POTTAR_INVALID_FIELD'),
-                            details,
+                            $scope.getHumanizedAPIResponse(response.data.data),
                             JSON.stringify(response.data, null,'  ')
                             );
                     }
                     if (response.data.data.required_fields!==undefined) {
                         // Camp requerit
-                        var details = $scope.getHumanizedAPIResponse(response.data.data);
                         return uiHandler.postError(
                             $translate.instant('ERROR_POST_MODIFY'),
                             $translate.instant('MODIFY_POTTAR_REQUIRED_FIELD'),
-                            details,
+                            $scope.getHumanizedAPIResponse(response.data.data),
                             JSON.stringify(response.data, null,'  ')
                             );
                     }
@@ -322,8 +322,7 @@ angular.module('SomEnergiaWebForms')
                         notallowed: 'MODIFY_POTTAR_NOT_ALLOWED', // Turbio
                         badtoken: 'MODIFY_POTTAR_BAD_TOKEN', // Sessió expirada
                     };
-                    var errorString = errorMap[response.data.data.error]
-                        || 'MODIFY_POTTAR_UNEXPECTED'; // Error no esperat
+                    var errorString = errorMap[response.data.data.error] || 'MODIFY_POTTAR_UNEXPECTED'; // Error no esperat
                     uiHandler.postError(
                         $translate.instant('ERROR_POST_MODIFY'),
                         $translate.instant(errorString),

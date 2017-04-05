@@ -105,7 +105,7 @@ angular.module('SomEnergiaWebForms')
 //            $scope.updateAnnualUse();
         };
 
-        // Backward with order.js  
+        // Backward with order.js
         $scope.formListener = function() {
         };
 
@@ -216,7 +216,7 @@ angular.module('SomEnergiaWebForms')
                     }
 
                     uiHandler.showWellDoneDialog();
-                    $window.top.location.href = $translate.instant('INVEST_OK_REDIRECT_URL');
+                    //$window.top.location.href = $translate.instant('INVEST_OK_REDIRECT_URL');
                 },
                 function(reason) {
                     $log.error('Send POST failed', reason);

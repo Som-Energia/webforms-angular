@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('SomEnergiaWebForms')
-.controller('ApiErrorCtrl', function ($scope, $uibModalInstance, title, errorMsg, errorDetails) {
-    $scope.title = title;
-    $scope.errorMsg = errorMsg;
-    $scope.errorDetails = errorDetails;
+.controller('ApiErrorCtrl', function ($scope, $uibModalInstance, $log, data) {
+    $log.log('controller', data)
+    $scope.data = data;
     $scope.ok = function () {
         $uibModalInstance.close();
     };
@@ -20,11 +19,11 @@ angular.module('SomEnergiaWebForms')
             templateUrl: 'scripts/fragments/api-error-modal.html',
             controller: 'ApiErrorCtrl',
             resolve: {
-                errorMsg: function() {
-                    return msg;
-                },
-                errorDetails: function() {
-                    return details;
+                data: function() {
+                    return {
+                        errorMsg: msg,
+                        errorDetails: details,
+                    };
                 }
             }
         });
@@ -36,24 +35,32 @@ angular.module('SomEnergiaWebForms')
             templateUrl: 'scripts/fragments/post-error-modal.html',
             controller: 'ApiErrorCtrl',
             resolve: {
-                title: function() {
-                    return title;
+                data: function() {
+                    return {
+                        'title': title,
+                        'description': description,
+                        'details': details,
+                    };
                 },
-                errorMsg: function() {
-                    return description;
-                },
-                errorDetails: function() {
-                    return details;
-                }
             }
         });
     };
-    this.showWellDoneDialog = function() {
+    this.showWellDoneDialog = function(title, message, params) {
         $uibModal.open({
             size: 'lg',
             keyboard: false,
             backdrop: 'static',
-            templateUrl: 'scripts/fragments/well-done-modal.html'
+            templateUrl: 'scripts/fragments/well-done-modal.html',
+            controller: 'ApiErrorCtrl',
+            resolve: {
+                data: function() {
+                    return {
+                        'title': title || 'REGISTRE_OK',
+                        'message': message || 'REGISTRE_OK_MSG',
+                        'params': params || {},
+                     };
+                },
+            },
         });
     };
 
