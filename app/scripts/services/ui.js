@@ -2,7 +2,7 @@
 
 angular.module('SomEnergiaWebForms')
 .controller('ApiErrorCtrl', function ($scope, $uibModalInstance, $log, data) {
-    $log.log('controller', data)
+    $log.log('controller', data);
     $scope.data = data;
     $scope.ok = function () {
         $uibModalInstance.close();
@@ -19,11 +19,9 @@ angular.module('SomEnergiaWebForms')
             templateUrl: 'scripts/fragments/api-error-modal.html',
             controller: 'ApiErrorCtrl',
             resolve: {
-                data: function() {
-                    return {
-                        errorMsg: msg,
-                        errorDetails: details,
-                    };
+                data: {
+                    errorMsg: msg,
+                    errorDetails: details,
                 }
             }
         });
@@ -35,12 +33,10 @@ angular.module('SomEnergiaWebForms')
             templateUrl: 'scripts/fragments/post-error-modal.html',
             controller: 'ApiErrorCtrl',
             resolve: {
-                data: function() {
-                    return {
-                        'title': title,
-                        'description': description,
-                        'details': details,
-                    };
+                data: {
+                    'title': title,
+                    'description': description,
+                    'details': details,
                 },
             }
         });
@@ -53,12 +49,10 @@ angular.module('SomEnergiaWebForms')
             templateUrl: 'scripts/fragments/well-done-modal.html',
             controller: 'ApiErrorCtrl',
             resolve: {
-                data: function() {
-                    return {
-                        'title': title || 'REGISTRE_OK',
-                        'message': message || 'REGISTRE_OK_MSG',
-                        'params': params || {},
-                     };
+                data: {
+                    'title': title || 'REGISTRE_OK',
+                    'message': message || 'REGISTRE_OK_MSG',
+                    'params': params || {},
                 },
             },
         });
