@@ -296,6 +296,15 @@ angular.module('SomEnergiaWebForms')
                             JSON.stringify(response.data, null,'  ')
                             );
                     }
+                    if (response.data.data.required_fields!==undefined) {
+                        var details = $scope.getHumanizedAPIResponse(response.data.data);
+                        return uiHandler.postError(
+                            $translate.instant('ERROR_POST_MODIFY'),
+                            $translate.instant('MODIFY_POTTAR_REQUIRED_FIELD'),
+                            details,
+                            JSON.stringify(response.data, null,'  ')
+                            );
+                    }
                     var errorMap = {
                         ongoingprocess: 'MODIFY_POTTAR_ONGOING_PROCESS',
                         inactivecontract: 'MODIFY_POTTAR_INACTIVE_CONTRACT',
