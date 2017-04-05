@@ -268,6 +268,7 @@ angular.module('SomEnergiaWebForms')
                     uiHandler.hideLoadingDialog();
                     $log.log('response received', response);
                     if (response.data.status !== cfg.STATUS_ONLINE) {
+                        // L'ERP està parat
                         return uiHandler.postError(
                             $translate.instant('ERROR_POST_MODIFY'),
                             $translate.instant('API_SERVER_OFFLINE'),
@@ -276,7 +277,7 @@ angular.module('SomEnergiaWebForms')
                             );
                     }
                     if (response.data.state === cfg.STATE_TRUE) {
-                        // Success!
+                        // Funciona!
                         $scope.successTitle = 'MODIFY_POTTAR_SUCCESS_TITTLE';
                         $scope.successMessage = 'MODIFY_POTTAR_SUCCESS_MESSAGE';
                         $scope.successParams = {
@@ -287,7 +288,16 @@ angular.module('SomEnergiaWebForms')
                     }
                     // error
                     $scope.submitReady = false;
+                    if (response.data.data === undefined){
+                        // Unexpected response format
+                        return uiHandler.postError(
+                            $translate.instant('ERROR_POST_MODIFY'),
+                            $translate.instant('MODIFY_POTTAR_UNEXPECTED'),
+                            $translate.instant('MODIFY_POTTAR_UNEXPECTED_DETAILS'),
+                            JSON.stringify(response.data, null,'  ')
+                            );                    }
                     if (response.data.data.invalid_fields!==undefined) {
+                        // Camp invalid
                         var details = $scope.getHumanizedAPIResponse(response.data.data);
                         return uiHandler.postError(
                             $translate.instant('ERROR_POST_MODIFY'),
@@ -297,6 +307,7 @@ angular.module('SomEnergiaWebForms')
                             );
                     }
                     if (response.data.data.required_fields!==undefined) {
+                        // Camp requerit
                         var details = $scope.getHumanizedAPIResponse(response.data.data);
                         return uiHandler.postError(
                             $translate.instant('ERROR_POST_MODIFY'),
@@ -306,13 +317,13 @@ angular.module('SomEnergiaWebForms')
                             );
                     }
                     var errorMap = {
-                        ongoingprocess: 'MODIFY_POTTAR_ONGOING_PROCESS',
-                        inactivecontract: 'MODIFY_POTTAR_INACTIVE_CONTRACT',
-                        notallowed: 'MODIFY_POTTAR_NOT_ALLOWED',
-                        badtoken: 'MODIFY_POTTAR_BAD_TOKEN',
+                        ongoingprocess: 'MODIFY_POTTAR_ONGOING_PROCESS', // Ja hi ha un cas obert a ERP
+                        inactivecontract: 'MODIFY_POTTAR_INACTIVE_CONTRACT', // Polissa en estat no actiu
+                        notallowed: 'MODIFY_POTTAR_NOT_ALLOWED', // Turbio
+                        badtoken: 'MODIFY_POTTAR_BAD_TOKEN', // Sessió expirada
                     };
-                    var errorString = errorMap[response.data.data.error] || 'MODIFY_POTTAR_UNEXPECTED';
-
+                    var errorString = errorMap[response.data.data.error]
+                        || 'MODIFY_POTTAR_UNEXPECTED'; // Error no esperat
                     uiHandler.postError(
                         $translate.instant('ERROR_POST_MODIFY'),
                         $translate.instant(errorString),
@@ -325,6 +336,7 @@ angular.module('SomEnergiaWebForms')
                     var rawReason = JSON.stringify(reason,null,'  ');
                     uiHandler.hideLoadingDialog();
                     if (reason.status === -1) {
+                        // Problemes amb CORS o API caiguda o xarxa
                         return uiHandler.postError(
                             $translate.instant('ERROR_POST_MODIFY'),
                             $translate.instant('API_SERVER_ERROR'),
