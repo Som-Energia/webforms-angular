@@ -13,11 +13,14 @@
         <div class="row no-margin-bottom" data-ng-show="hideButtons===undefined">
             <div class="col-xs-12 no-horitzontal-padding">
                 <button
+                    data-ng-if='prevPage || prevText'
+                    data-ng-hidden="prev === undefined"
                     data-ng-click="prev()"
                     class="btn btn-default pull-left previous-step-submit"
                     type="button"
                 >{{ prevText || 'PAS_ANTERIOR' | translate }}</button>
                 <button
+                    data-ng-if='nextPage || nextText'
                     data-ng-hidden="next === undefined"
                     data-ng-click="next()"
                     class="btn btn-default pull-right"

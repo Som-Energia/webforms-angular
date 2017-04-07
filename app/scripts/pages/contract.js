@@ -372,33 +372,34 @@ angular.module('SomEnergiaWebForms')
         };
 
         $scope.goToSociPage = function() {
-            $scope.setStepReady('dadesSociPage');
+            return $scope.setStepReady('dadesSociPage');
         };
 
         $scope.goToSupplyPointPage = function() {
-            $scope.setStepReady('supplyPointPage');
+            return $scope.setStepReady('supplyPointPage');
         };
 
         $scope.goToFarePage = function() {
-            $scope.setStepReady('farePage');
+            return $scope.setStepReady('farePage');
         };
 
         $scope.goToOwnerPage = function() {
-            $scope.setStepReady('ownerPage');
+            return $scope.setStepReady('ownerPage');
         };
 
         $scope.goToPayerPage = function() {
-            $scope.setStepReady('payerPage');
+            return $scope.setStepReady('payerPage');
         };
 
         $scope.goToConfirmationPage = function() {
-            $scope.setStepReady('confirmationPage');
+            return $scope.setStepReady('confirmationPage');
         };
         $scope.wizardPage = {};
 
         // COMMON MOVE STEPS LOGIC
         $scope.setStepReady = function(pageName) {
             $scope.wizardPage.current = pageName;
+            return pageName;
 //            $log.log(pageName);
         };
 
