@@ -52,21 +52,19 @@
             <div class="col-xs-12" data-ng-show="form.rate != '3.0A'">
                 <label>{{ 'POTENCIA_CONTRACTADA' | translate }}:</label><span>{{ form.power }} kW</span>
             </div>
-        </div>
-        <div data-ng-show="form.rate == '3.0A'">
-            <div class="col-xs-4">
-                <label>P1:</label><span>{{ form.power }} kW</span>
+            <div data-ng-show="form.rate == '3.0A'">
+                <div class="col-xs-4">
+                    <label>P1:</label><span>{{ form.power }} kW</span>
+                </div>
+                <div class="col-xs-4">
+                    <label>P2:</label><span>{{ form.power2 }} kW</span>
+                </div>
+                <div class="col-xs-4">
+                    <label>P3:</label><span>{{ form.power3 }} kW</span>
+                </div>
             </div>
-            <div class="col-xs-4">
-                <label>P2:</label><span>{{ form.power2 }} kW</span>
-            </div>
-            <div class="col-xs-4">
-                <label>P3:</label><span>{{ form.power3 }} kW</span>
-            </div>
-        </div>
-        <div data-ng-show="cadastreEditor.value">
-            <div class="col-xs-12">
-                <label>{{ 'REFERENCIA_CATASTRAL' | translate }}:</label><span>{{ cadastreEditor.value }}</span>
+            <div class="col-xs-12" data-ng-show="cadastreEditor.value">
+                <label>{{ 'REFERENCIA_CADASTRAL' | translate }}:</label><span>{{ cadastreEditor.value }}</span>
             </div>
         </div>
     </div>
