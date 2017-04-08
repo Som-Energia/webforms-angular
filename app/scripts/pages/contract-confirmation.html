@@ -2,13 +2,12 @@
     model="wizardPage"
     header="{{ 'REVISIO_CONFIRMACIO_DADES' | translate }}"
     page-name='confirmationPage'
-    prev-page="goToPayerPage()"
+    prev-page="'payerPage'"
     next-page="submitOrder(orderForm)"
     prev-text="{{ 'NO' | translate }}"
     next-text="{{ 'SI_TOT_CORRECTE' | translate }}"
     show-always='showAll'
     ready="true"
-    data-ng-show="wizardPage.current=='confirmationPage' || showAll"
 >
 <div class='confirm'>
     <div class="row extra-margin-top">

@@ -10,7 +10,6 @@
         model="wizardPage"
         header="{{ 'FORMULARI_CONTRACTACIO' | translate }}"
         page-name='dadesSociPage'
-        next-page="goToHaveLightPage()"
         show-always='showAll'
         ready="initForm.isReady()"
         hide-buttons
@@ -18,7 +17,7 @@
         <member-chooser
             button-text="{{'INICIAR_CONTRACTACIO' | translate }}"
             show-member-name="true"
-            onproceed="setOwnerAndPayerLanguage(initForm.soci); goToSupplyPointPage()"
+            onproceed="setOwnerAndPayerLanguage(initForm.soci); setPage('supplyPointPage')"
             model="initForm"
             formvalues="formsoci"
         ></member-chooser>
@@ -31,8 +30,8 @@
             model="wizardPage"
             page-name='supplyPointPage'
             header="1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}"
-            prev-page="goToSociPage()"
-            next-page="goToFarePage()"
+            prev-page="'dadesSociPage'"
+            next-page="'farePage'"
             show-always='showAll'
             ready="isSupplyPointPageComplete()"
         >
@@ -165,8 +164,8 @@
             model="wizardPage"
             page-name='farePage'
             header="2 {{ 'TARIFA_I_POTENCIA' | translate }}"
-            prev-page="goToSupplyPointPage()"
-            next-page="goToOwnerPage()"
+            prev-page="'supplyPointPage'"
+            next-page="'ownerPage'"
             show-always='showAll'
             ready="isFarePageComplete()"
         >
@@ -469,8 +468,8 @@
             model="wizardPage"
             page-name='ownerPage'
             header="3 {{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}"
-            prev-page="goToFarePage()"
-            next-page="goToPayerPage()"
+            prev-page="'farePage'"
+            next-page="'payerPage'"
             show-always='showAll'
             ready="isOwnerPageComplete()"
         >
@@ -543,8 +542,8 @@
             model="wizardPage"
             page-name='payerPage'
             header="4 {{ 'DADES_PAGAMENT' | translate }}"
-            prev-page="goToOwnerPage()"
-            next-page="goToConfirmationPage()"
+            prev-page="'ownerPage'"
+            next-page="'confirmationPage'"
             next-text="{{ 'CONFIRMAR_CONTRACTACIO' | translate }}"
             show-always='showAll'
             ready="isPayerPageComplete()"

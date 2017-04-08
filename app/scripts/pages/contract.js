@@ -367,39 +367,21 @@ angular.module('SomEnergiaWebForms')
             $scope.effectiveOwner = $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci : $scope.owner;
             $scope.effectivePayer = $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER ? $scope.payer :
                 $scope.form.choosepayer=== cfg.PAYER_TYPE_TITULAR ? $scope.effectiveOwner : $scope.initForm.soci;
-
-//            $scope.isPayerPageComplete();
+            //$scope.isPayerPageComplete();
         };
 
-        $scope.goToSociPage = function() {
-            return $scope.setPage('dadesSociPage');
-        };
-
-        $scope.goToSupplyPointPage = function() {
-            return $scope.setPage('supplyPointPage');
-        };
-
-        $scope.goToFarePage = function() {
-            return $scope.setPage('farePage');
-        };
-
-        $scope.goToOwnerPage = function() {
-            return $scope.setPage('ownerPage');
-        };
-
-        $scope.goToConfirmationPage = function() {
-            return $scope.setPage('confirmationPage');
-        };
+        // Wizard logic
         $scope.wizardPage = {};
 
-        // COMMON MOVE STEPS LOGIC
+        // TODO: This is duplicated from wizard page to be used from this scope
         $scope.setPage = function(pageName) {
-            $scope.wizardPage.current = pageName;
-            return pageName;
-//            $log.log(pageName);
+            //$log.log(pageName);
+            $scope.wizardPage.current=pageName;
+            window.scrollTo(0,0);
         };
 
-        $scope.goToSociPage();
+        $scope.setPage('dadesSociPage');
+
 
         // KLUDGE: how to translate params of a translation
         // DOUBLE: how to translate params of a translation and passing it to the child scopes
