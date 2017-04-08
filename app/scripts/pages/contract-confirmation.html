@@ -34,34 +34,26 @@
             <div class="col-xs-12">
                 <label>{{ 'ADRECA' | translate }}:</label><span>{{ form.address.value }}</span>
             </div>
-        </div>
-        <div class="row">
             <div class="col-xs-6">
                 <label>{{ 'POBLACIO' | translate }}:</label><span>{{ form.city.name }}</span>
             </div>
             <div class="col-xs-6">
                 <label>{{ 'PROVINCIA' | translate }}:</label><span>{{ form.province.name }}</span>
             </div>
-        </div>
-        <div class="row">
             <div class="col-xs-6">
                 <label>CUPS:</label><span>{{ cupsEditor.value }}</span>
             </div>
             <div class="col-xs-6">
                 <label>CNAE:</label><span>{{ cnaeEditor.value }}</span>
             </div>
-        </div>
-        <div class="row">
             <div class="col-xs-6">
                 <label>{{ 'TARIFA' | translate }}:</label><span>{{ form.rate }}</span>
             </div>
-        </div>
-        <div class="row" data-ng-show="form.rate != '3.0A'">
-            <div class="col-xs-12">
+            <div class="col-xs-12" data-ng-show="form.rate != '3.0A'">
                 <label>{{ 'POTENCIA_CONTRACTADA' | translate }}:</label><span>{{ form.power }} kW</span>
             </div>
         </div>
-        <div class="row" data-ng-show="form.rate == '3.0A'">
+        <div data-ng-show="form.rate == '3.0A'">
             <div class="col-xs-4">
                 <label>P1:</label><span>{{ form.power }} kW</span>
             </div>
@@ -72,7 +64,7 @@
                 <label>P3:</label><span>{{ form.power3 }} kW</span>
             </div>
         </div>
-        <div class="row" data-ng-show="cadastreEditor.value">
+        <div data-ng-show="cadastreEditor.value">
             <div class="col-xs-12">
                 <label>{{ 'REFERENCIA_CATASTRAL' | translate }}:</label><span>{{ cadastreEditor.value }}</span>
             </div>
@@ -84,31 +76,21 @@
             <div class="col-xs-12">
                 <h4>{{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}:</h4>
             </div>
-        </div>
-        <div class="row">
             <div class="col-xs-6">
                 <label>{{ 'NOM' | translate }}:</label><span>{{ form.ownerIsMember == 'yes' ? initForm.soci.nom : owner.name }}</span>
             </div>
             <div class="col-xs-6">
                 <label>{{ 'COGNOMS' | translate }}:</label><span>{{ form.ownerIsMember == 'yes' ? initForm.soci.cognom : owner.surname }}</span>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-6">
                 <label>NIF:</label><span>{{ form.ownerIsMember == 'yes' ? initForm.soci.dni : owner.dni }}</span>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-6">
                 <label>{{ 'IDIOMA' | translate}}:</label><span>{{ form.ownerIsMember == 'yes' ? initForm.soci.langname : owner.language.name }}</span>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-6">
                 <label>Email:</label><span>{{ form.ownerIsMember == 'yes' ? initForm.soci.email : owner.email1 }}</span>
             </div>
-        </div>
-        <div class="row">
             <div class="col-sm-3 col-xs-6">
                 <label>{{ 'TELEFON' | translate }}:</label><span>{{ form.ownerIsMember == 'yes' ? initForm.soci.tel : owner.phone1 }}</span>
             </div>
@@ -133,27 +115,19 @@
                 <div class="col-xs-6">
                     <label>{{ 'COGNOMS' | translate }}:</label><span>{{ initForm.soci.cognom }}</span>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-xs-6">
                     <label>NIF:</label><span>{{ initForm.soci.dni }}</span>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
+                <div class="col-xs-6">
                     <label>{{ 'IDIOMA' | translate}}:</label><span>{{ initForm.soci.langname }}</span>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-xs-6">
                     <label>Email:</label><span>{{ initForm.soci.email }}</span>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6">
+                <div class="col-sm-3 col-xs-6">
                     <label>{{ 'TELEFON' | translate }}:</label><span>{{ initForm.soci.tel }}</span>
                 </div>
-                <div data-ng-show="initForm.soci.tel2" class="col-xs-6">
+                <div data-ng-show="initForm.soci.tel2" class="col-sm-3 col-xs-6">
                     <label>{{ 'TELEFON' | translate }} 2:</label><span>{{ initForm.soci.tel2 }}</span>
                 </div>
             </div>
@@ -167,27 +141,19 @@
                 <div class="col-xs-6">
                     <label>{{ 'COGNOMS' | translate }}:</label><span>{{ owner.surname }}</span>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-xs-6">
                     <label>NIF:</label><span>{{ owner.dni }}</span>
                 </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        <label>{{ 'IDIOMA' | translate}}:</label><span>{{ owner.language.name }}</span>
-                    </div>
+                <div class="col-xs-6">
+                    <label>{{ 'IDIOMA' | translate}}:</label><span>{{ owner.language.name }}</span>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-xs-6">
                     <label>Email:</label><span>{{ owner.email1 }}</span>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6">
+                <div class="col-sm-3 col-xs-6">
                     <label>{{ 'TELEFON' | translate }}:</label><span>{{ owner.phone1 }}</span>
                 </div>
-                <div class="col-xs-6" data-ng-show="owner.phone2">
+                <div class="col-sm-3 col-xs-6" data-ng-show="owner.phone2">
                     <label>{{ 'TELEFON' | translate }}:</label><span>{{ owner.phone2 }}</span>
                 </div>
             </div>
@@ -203,8 +169,6 @@
                     <label>{{ 'COGNOMS' | translate }}:</label>
                         <span>{{ payer.surname }}</span>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-xs-6">
                     <label>NIF:</label>
                         <span>{{ payer.dni }}</span>
@@ -217,13 +181,11 @@
                     <label>{{ 'IDIOMA' | translate }}:</label>
                         <span>{{ payer.language.name }}</span>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6">
+                <div class="col-sm-3 col-xs-6">
                     <label>{{ 'TELEFON' | translate }}:</label>
                         <span>{{ payer.phone1 }}</span>
                 </div>
-                <div class="col-xs-6" data-ng-show="payer.phone2">
+                <div class="col-sm-3 col-xs-6" data-ng-show="payer.phone2">
                     <label>{{ 'TELEFON' | translate }} 2:</label>
                         <span>{{ payer.phone2 }}</span>
                 </div>
@@ -234,8 +196,6 @@
                 <label>{{ 'NUM_COMPTE' | translate }}:</label>
                     <span>{{ getCompleteIbanWithFormat() }}</span>
             </div>
-        </div>
-        <div class="row">
             <div class="col-xs-12">
                 <label>{{ 'DONATIU_VOLUNTARI' | translate }}:</label>
                     <span data-ng-show="form.voluntary == 'yes'" translate="SI"></span>
