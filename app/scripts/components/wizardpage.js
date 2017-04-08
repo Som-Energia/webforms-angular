@@ -17,6 +17,8 @@ angular.module('SomEnergiaWebForms')
             ready: '=', // enables next page
             prevText: '@?', // alternative text for the prev button
             nextText: '@?', // alternative text for the next button
+            //onPrev: '&?', // js to execute before swiching prev
+            //onNext: '&?', // js to execute before swiching prev
             hideButtons: '@?', // whether to hide the next/prev buttons
         },
         link: function(scope, element, attrs, wizardPageCtrl /*, $transclude*/) {
@@ -41,9 +43,12 @@ angular.module('SomEnergiaWebForms')
             console.log('Duplicated page on Wizard', $scope.pageName);
         }
         function goTo(page) {
-            $scope.model.current = page();
-            window.scrollTo(0,0);
+            $scope.model.setPage(page());
         }
+        $scope.model.setPage = function(page) {
+            $scope.model.current = page;
+            window.scrollTo(0,0);
+        };
         $scope.prev = function() {
             goTo($scope.prevPage);
         };

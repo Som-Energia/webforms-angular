@@ -23,7 +23,13 @@ angular.module('SomEnergiaWebForms')
         }
 
         // To false to debug one page completion state independently from the others
-        $scope.waitPreviousPages = false;
+        $scope.waitPreviousPages = true;
+        $scope.wizard = {};
+        $scope.wizard.current = 'initPage';
+        $scope.wizard.showAlways = false;
+
+        $scope.success=false; // Form succesfully submitted
+        $scope.backlink=$routeParams.backurl;
 
         $scope.form = {};
         $scope.form.phases = undefined;
@@ -37,6 +43,7 @@ angular.module('SomEnergiaWebForms')
         $scope.rate3AIsInvalid = false;
 
         $scope.farePageError = undefined;
+        $scope.contactPageError = undefined;
 
         $scope.formSubmitted = false;
         $scope.availablePowers = function() {
@@ -202,11 +209,18 @@ angular.module('SomEnergiaWebForms')
 
         $scope.isContactInfoComplete = function() {
             function error(message) {
-                if ($scope.farePageError !== message) {
-                    $scope.farePageError = message;
+                if ($scope.contactPageError !== message) {
+                    $scope.contactPageError = message;
                     //console.log(message);
                 }
                 return false;
+            }
+            $scope.contactPageError = undefined;
+
+            if ($scope.waitPreviousPages) {
+                if (!$scope.isFarePageComplete()) {
+                    return error('INCOMPLETE_PREVIOUS_STEP');
+                }
             }
             if ($scope.form.contact_name === undefined) {
                 return error('NO_NAME');
@@ -225,7 +239,7 @@ angular.module('SomEnergiaWebForms')
 
         $scope.formListener = function() {
             //console.log('listener');
-//            $scope.isPayerPageComplete();
+//            $scope.isContactInfoComplete();
         };
 
         // KLUDGE: how to translate params of a translation
@@ -243,8 +257,6 @@ angular.module('SomEnergiaWebForms')
         $scope.submit = function() {
             $scope.messages = null;
             $scope.formSubmitted = true;
-            $scope.overflowAttachFile = false;
-            uiHandler.showLoadingDialog();
             // Prepare request data
             var formData = new FormData();
             formData.append('proces', 'M1'); // TODO: Needed?
@@ -265,7 +277,7 @@ angular.module('SomEnergiaWebForms')
                 transformRequest: angular.identity
             }).then(
                 function(response) {
-                    uiHandler.hideLoadingDialog();
+                    $scope.formSubmitted=false;
                     $log.log('response received', response);
                     if (response.data.status !== cfg.STATUS_ONLINE) {
                         // L'ERP està parat
@@ -278,17 +290,11 @@ angular.module('SomEnergiaWebForms')
                     }
                     if (response.data.state === cfg.STATE_TRUE) {
                         // Funciona!
-                        return uiHandler.showWellDoneDialog(
-                            'MODIFY_POTTAR_SUCCESS_TITTLE',
-                            'MODIFY_POTTAR_SUCCESS_MESSAGE',
-                            {
-                                'backlink': 'MODIFY_POTTAR_SUCCESS_REDIRECT',
-                                'url': $routeParams.backurl,
-                            }
-                        );
+                        $scope.success=true;
+                        $scope.backlink=$routeParams.backurl;
+						return;
                     }
                     // error
-                    $scope.submitReady = false;
                     if (response.data.data === undefined){
                         // Unexpected response format
                         return uiHandler.postError(
@@ -333,7 +339,7 @@ angular.module('SomEnergiaWebForms')
                 function(reason) {
                     $log.error('Send POST failed', reason);
                     var rawReason = JSON.stringify(reason,null,'  ');
-                    uiHandler.hideLoadingDialog();
+                    $scope.formSubmitted=false;
                     if (reason.status === -1) {
                         // Problemes amb CORS o API caiguda o xarxa
                         return uiHandler.postError(

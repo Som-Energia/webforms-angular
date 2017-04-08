@@ -255,7 +255,11 @@ angular.module('SomEnergiaWebForms')
                 // Under development
 
                 CONTRACT_MODIFICATION_FORM: 'Modificacions de potència i/o tarifa',
+                MODIFY_POTTAR_INTRO_TITLE: 'Avís important',
+                MODIFY_POTTAR_INTRO: '<p>El cost regulat per una modificació contractual és de <b>10,94€</b> (IVA inclòs). En cas d’incrementar la potència contractada, serà de <b>44,86 € per kW d’augment</b>. Aquests imports els cobra, a través de la nostra factura, la <a target="_blank" href={{url}}>distribuïdora de la teva zona</a> l’encarregada de validar i implementar aquests canvis.</p> <p>És possible fer una modificació de potència i tarifa en una sola sol·licitud com la que esteu a punt de tramitar però tingueu en compte que la distribuïdora només està obligada a acceptar una modificació cada 12 mesos.</p>',
                 HELP_CONTACT_INFO: 'Les dades de contacte les utilitzarà la <a target="_blank" href="{{url}}">distribuïdora de la zona</a> per avisar-vos en cas que el tècnic encarregat necessiti accedir al comptador.',
+                MODIFY_POTTAR_SELECT_TITLE: 'Selecciona tarifa i potència',
+                MODIFY_POTTAR_CONTACT_TITLE: 'Dades de contacte, per accedir al comptador',
                 HELP_CONTACT_INFO_URL: 'http://ca.support.somenergia.coop/article/655-les-distribuidores-d-electricitat',
                 MODIFY_POTTAR_SUCCESS_TITTLE: 'Enhorabona. En breu rebràs un correu electrònic amb les dades de la teva sol·licitud.',
                 MODIFY_POTTAR_SUCCESS_MESSAGE: 'Enviarem la teva sol·licitud a la distribuïdora de la teva zona que s’encarregarà de validar-la i fer-la efectiva. En el cas que sigui necessari fer-nos arribar documentació relacionada amb aquesta tramitació, adjunta-la responent al e-mail de confirmació que rebràs en pocs minuts.',
@@ -277,6 +281,12 @@ angular.module('SomEnergiaWebForms')
                 API_SERVER_OFFLINE_DETAILS: 'És possible que estiguem fent tasques de manteniment. Torneu a provar-ho més tard. Perdoneu les molèsties.',
                 MODIFY_POTTAR_INVALID_FIELD: 'Les dades no són correctes.',
                 MODIFY_POTTAR_REQUIRED_FIELD: 'Falten dades.',
+                POTENCIA: 'Potència',
+                MODIFY_POTTAR: 'Petició de canvi de Tarifa i/o Potència',
+                CONTACT_PHONE: 'Telèfon de contacte per accedir al comptador',
+                ENVIAR: 'Enviar',
+                ENVIANT: 'Enviant',
+                
             })
         ;
     });

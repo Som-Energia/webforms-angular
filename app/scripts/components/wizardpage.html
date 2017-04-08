@@ -1,12 +1,12 @@
 <!-- Wizard Page -->
 <div ng-cloak>
-    <div ng-hidden="header===undefined" class="row no-margin-bottom">
+    <div ng-show="header!==undefined" class="row no-margin-bottom">
         <div class="col-xs-12 heading" data-ng-class="{active: model.current === pageName}">
             <h2 class="extra-margin">{{header}}</h2>
         </div>
     </div>
     <div
-        data-ng-show="model.current === pageName || showAlways"
+        data-ng-show="model.current === pageName || model.showAlways || showAlways"
         >
         <div ng-transclude>
         </div>

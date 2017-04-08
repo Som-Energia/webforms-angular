@@ -12,6 +12,27 @@
 
     <form name="orderForm" class="form-inline" role="form" enctype="multipart/form-data" novalidate>
 
+        <wizard-page
+            model="wizard"
+            page-name="initPage"
+            next-page="'farePage'"
+            ready="true"
+            header="{{'MODIFY_POTTAR_INTRO_TITLE'| translate}}"
+            >
+            <div class="row extra-margin-top">
+                <div class="col-xs-12">
+                    <div ng-bind-html="'MODIFY_POTTAR_INTRO' | translate: {url: t.HELP_CONTACT_INFO_URL}"></div>
+                </div>
+            </div>
+        </wizard-page>
+        <wizard-page
+            model="wizard"
+            header="{{'MODIFY_POTTAR_SELECT_TITLE' | translate }}"
+            prev-page="'initPage'"
+            page-name="farePage"
+            next-page="'contactPage'"
+            ready="isFarePageComplete()"
+            >
             <div data-ng-show="esAlta()">
                 <div class="row extra-margin-top">
                     <div class="col-xs-12">
@@ -302,6 +323,20 @@
                 </div>
             </div>
 
+            <div class="row extra-margin-top" data-ng-show="farePageError">
+                <div class="alert alert-danger" translate="{{farePageError}}"></div>
+            </div>
+
+        </wizard-page>
+
+        <wizard-page
+            model="wizard"
+            header="{{ 'MODIFY_POTTAR_CONTACT_TITLE' | translate }}"
+            prev-page="'farePage'"
+            page-name="contactPage"
+            next-page="'submitPage'"
+            ready="isFarePageComplete() && isContactInfoComplete()"
+            >
             <!-- Contact info -->
 
             <div class="row extra-margin-top">
@@ -347,23 +382,90 @@
                 </div>
             </div>
 
-
-
-            <div class="row extra-margin-top" data-ng-show="farePageError">
-                <div class="alert alert-danger" translate="{{farePageError}}"></div>
+            <div class="row extra-margin-top" data-ng-show="contactPageError">
+                <div class="alert alert-danger" translate="{{contactPageError}}"></div>
             </div>
 
-            <div class="row no-margin-bottom">
-                <div class="col-xs-12">
-                    <div class="wrapper-continue-process" data-ng-class="{ready: isFarePageComplete() && isContactInfoComplete()}">
-                        <button
-                            data-ng-disabled="!isFarePageComplete() || !isContactInfoComplete()"
-                            data-ng-click="submit()"
-                            class="btn btn-default transparent pull-right submit"
-                            type="button">{{ 'FINALITZA_PROCES' | translate }}</button>
+        </wizard-page>
+
+        <wizard-page
+            model="wizard"
+            header="{{ 'REVISIO_CONFIRMACIO_DADES' | translate }}"
+            prev-page="'contactPage'"
+            page-name="submitPage"
+            >
+            <div>.</div>
+            <div class="confirm well" data-ng-if="!success">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4 translate="MODIFY_POTTAR"></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <label>{{ 'TARIFA' | translate }}:</label>
+                        {{ form.rate }}
+                    </div>
+                    <div class="col-xs-8" data-ng-show="form.rate!=='3.0A'">
+                        <label>{{ 'POTENCIA' | translate}}:</label>
+                        {{ form.power }}&nbsp;kW
+                    </div>
+                    <div class="col-xs-8" data-ng-show="form.rate==='3.0A'">
+                        <label>{{ 'POTENCIA' | translate}} P1:</label>
+                        {{ form.power }}&nbsp;kW
+                    </div>
+                    <div class="col-xs-4" data-ng-show="form.rate==='3.0A'">
+                    </div>
+                    <div class="col-xs-8" data-ng-show="form.rate==='3.0A'">
+                        <label>{{ 'POTENCIA' | translate}} P2:</label>
+                        {{ form.power2 }}&nbsp;kW
+                    </div>
+                    <div class="col-xs-4" data-ng-show="form.rate==='3.0A'">
+                    </div>
+                    <div class="col-xs-8" data-ng-show="form.rate==='3.0A'">
+                        <label>{{ 'POTENCIA' | translate}} P3:</label>
+                        {{ form.power3 }}&nbsp;kW
+                    </div>
+                    <div class="col-xs-12">
+                        <label>{{ 'CONTACT_PHONE' | translate }}:</label>
+                        {{ form.contact_phone }} ( {{form.contact_surname}}, {{ form.contact_name }} )
                     </div>
                 </div>
             </div>
+
+            <div class="row no-margin-bottom" data-ng-if="!success">
+                <div class="col-xs-12">
+                    <div class="wrapper-continue-process" data-ng-class="{ready: !formSubmitted && isFarePageComplete() && isContactInfoComplete()}">
+                        <button
+                            data-ng-disabled="formSubmitted  || !isFarePageComplete() || !isContactInfoComplete()"
+                            data-ng-click="submit()"
+                            class="btn btn-default transparent pull-right submit"
+                            type="button"> 
+                                {{ (formSubmitted ? 'ENVIANT' : 'ENVIAR') | translate }}
+                                &nbsp;
+                                <span
+                                    data-ng-show="formSubmitted"
+                                    class="glyphicon glyphicon-cog spinning"
+                                ></span>
+                            </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="well" data-ng-if="success">
+                <div class="row">
+                    <h1 class="green"> 
+                        <div style="float:left; font-size: 50px; margin-right:10px;" class='green'>
+                            <span class="glyphicon glyphicon-ok" style="color:"></span>
+                        </div>
+                        {{'MODIFY_POTTAR_SUCCESS_TITTLE' | translate}}
+                    </h1>
+                </div>
+                <div class="row" ng-bind-html="'MODIFY_POTTAR_SUCCESS_MESSAGE' | translate"></div>
+                <div class="row" ng-bind-html="'MODIFY_POTTAR_SUCCESS_REDIRECT' | translate: {'url': backlink }"></div>
+            </div>
+
+        </wizard-page>
 
     </form>
 
