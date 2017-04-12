@@ -180,7 +180,6 @@ angular.module('SomEnergiaWebForms')
                 ESCULL_LA_POTENCIA_DE_CADA_PERIODE: 'Escolle a potencia de cada periodo',
                 HELP_POWER_30: 'Mais información sobre os <a target="_blank" href="{{url}}">periodos da 3.0</a>',
                 HELP_POWER_30_URL: 'http://es.support.somenergia.coop/article/176-que-horarios-tienen-los-periodos-de-la-tarifa-3-0a',
-                LA_TEVA_TARIFA_ES: 'A túa tarifa é',
                 HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Para evitar problemas de tramitación, poña <b>a mesma tarifa e potencia que aparece na factura actual</b>. Poderá solicitar o cambio de tarifa ou potencia unha vez teña o contrato activado con nos.',
                 HELP_TARIFA_ALTA: 'Para completar os campos seguintes recomendámosche premer nos botóns de axuda.',
                 DADES_TITULAR_NOU_CONTRACTE: 'Titular do contrato',
@@ -255,6 +254,7 @@ angular.module('SomEnergiaWebForms')
 
                 CONTRACT_MODIFICATION_FORM: 'Modificación contractual',
 
+                LA_TEVA_TARIFA_ES: 'A túa tarifa é',
             })
         ;
     });

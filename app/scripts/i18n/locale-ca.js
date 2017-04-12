@@ -180,7 +180,6 @@ angular.module('SomEnergiaWebForms')
                 ESCULL_LA_POTENCIA_DE_CADA_PERIODE: 'Escull la potència de cada període',
                 HELP_POWER_30: 'Més informació sobre els <a target="_blank" href="{{url}}">períodes de la 3.0</a>',
                 HELP_POWER_30_URL: 'http://ca.support.somenergia.coop/article/255-quins-horaris-tenen-els-periodes-de-la-tarifa-3-0a',
-                LA_TEVA_TARIFA_ES: 'La teva tarifa és',
                 HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Per evitar problemes de tramitació, poseu <b>la mateixa tarifa i potència que apareix a la factura actual</b>. Ens podreu sol·licitar canvis de tarifa o potència una vegada estigui el contracte activat amb nosaltres.',
                 HELP_TARIFA_ALTA: 'Per completar els següents camps us recomanem clicar als botons d\'ajuda.',
                 DADES_TITULAR_NOU_CONTRACTE: 'Titular del contracte',
@@ -255,7 +254,7 @@ angular.module('SomEnergiaWebForms')
 
                 CONTRACT_MODIFICATION_FORM: 'Modificacions de potència i/o tarifa',
                 MODIFY_POTTAR_INTRO_TITLE: 'Avís important',
-                MODIFY_POTTAR_INTRO: '<p>El cost regulat per una modificació contractual és de <b>10,94€</b> (IVA inclòs). En cas d’incrementar la potència contractada, serà de <b>44,86 € per kW d’augment</b>. Aquests imports els cobra, a través de la nostra factura, la <a target="_blank" href={{url}}>distribuïdora de la teva zona</a> l’encarregada de validar i implementar aquests canvis.</p> <p>És possible fer una modificació de potència i tarifa en una sola sol·licitud com la que esteu a punt de tramitar però tingueu en compte que la distribuïdora només està obligada a acceptar una modificació cada 12 mesos.</p>',
+                MODIFY_POTTAR_INTRO: '<p>El canvi de potència i/o tarifa el valida, aplica i cobra (a través de la nostra factura) la <a target="_blank" href={{url}}>distribuïdora de la teva zona</a>. El <b>cost regulat</b> és:</p><ul><li>10,94€ (IVA inclòs) per sol·licitud. Podeu canviar alhora de tarifa i potència en una sola sol·licitud.</li><li>En cas d\'<b>augmentar la potència</b>, 44,86€ per kW d\'increment.</li></ul><p>La distribuïdora només està obligada a acceptar <b>una sol·licitud de canvi cada 12 mesos</b>.</p>',
                 HELP_CONTACT_INFO: 'Les dades de contacte les utilitzarà la <a target="_blank" href="{{url}}">distribuïdora de la zona</a> per avisar-vos en cas que el tècnic encarregat necessiti accedir al comptador.',
                 MODIFY_POTTAR_SELECT_TITLE: 'Selecciona tarifa i potència',
                 MODIFY_POTTAR_CONTACT_TITLE: 'Dades de contacte, per accedir al comptador',
@@ -286,6 +285,7 @@ angular.module('SomEnergiaWebForms')
                 ENVIAR: 'Enviar',
                 ENVIANT: 'Enviant',
                 REVIEW_DATA_AND_CONFIRM: 'Reviseu les dades. Per confirmar-les, premeu el butó del final.',
+                LA_TEVA_TARIFA_ES: 'La teva tarifa serà',
                 
             })
         ;

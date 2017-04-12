@@ -150,7 +150,7 @@ angular.module('SomEnergiaWebForms')
                 AUTOPRODUCCIO_ANUAL: 'Autoekoizpena urteko',
                 PREVISIO_GENERATION_URL: 'http://es.support.somenergia.coop/article/589-que-representa-una-accion-energetica',
 
-// Added or changed since 1.3.2
+                // Added or changed since 1.3.2
 
                 CARREGANT_OPCIONS: 'Auerak kargatzen...',
                 OPCIONAL: 'Aukerakoa',
@@ -180,7 +180,6 @@ angular.module('SomEnergiaWebForms')
                 ESCULL_LA_POTENCIA_DE_CADA_PERIODE: 'Periodo bakoitzaren potentzia aukeratu',
                 HELP_POWER_30: '<a target="_blank" href="{{url}}">3.0 periodoei buruzko informazio gehiago</a>',
                 HELP_POWER_30_URL: 'http://es.support.somenergia.coop/article/176-que-horarios-tienen-los-periodos-de-la-tarifa-3-0a',
-                LA_TEVA_TARIFA_ES: 'Zure tarifa da',
                 HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Izapide-arazoak ekiditeko, ipini <b> oraingo fakturan agertzen diren tarifa eta potentzia berdinak </b>. Tarifa edo potentzia aldaketa eskatu ahal izango duzu behin kontratua gurekin aktibatuta.',
                 HELP_TARIFA_ALTA: 'Hurrengo eremuak betetzeko laguntza botoiak erabiltzea gomendatzen dizugu.',
                 DADES_TITULAR_NOU_CONTRACTE: 'Kontratuaren titularra',
@@ -257,6 +256,7 @@ angular.module('SomEnergiaWebForms')
 
                 CONTRACT_MODIFICATION_FORM: 'Modificación contractual',
 
+                LA_TEVA_TARIFA_ES: 'Zure tarifa da',
             })
         ;
     });
