@@ -88,9 +88,9 @@ angular.module('SomEnergiaWebForms')
             0.345,
             0.69,
             0.805,
+*/
             1.15,
             1.725,
-*/
             2.3,
             3.45,
             4.6,
@@ -106,9 +106,9 @@ angular.module('SomEnergiaWebForms')
 /*
             1.039,
             2.078,
+*/
             2.425,
             3.464,
-*/
             5.196,
             6.928,
             10.392,
