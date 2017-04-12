@@ -82,7 +82,6 @@ angular.module('SomEnergiaWebForms')
                 TARIFA: 'Tarifa',
                 POTENCIA_CONTRACTADA: 'Potentzia kontratatua',
                 NOM_O_RAO_SOCIAL: 'Enpresa izena edo izen soziala',
-                SI_LES_DADES_SON_CORRECTES: 'Datuak zuzenak badira klikatu bai kontratazio prozesua amaitzeko',
                 SI_TOT_CORRECTE: 'Bai, dena zuzena da',
 
                 HELP_POPOVER_SOCIA: 'Zure bazkidearen zenbakia ez duzu gogoratzen? Asma ezazu web orriaren "Datu pertsonalak" atalean <a target="_blank" href="https://oficinavirtual.somenergia.coop/">Bulego Birtuala</a>.',

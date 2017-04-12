@@ -82,7 +82,6 @@ angular.module('SomEnergiaWebForms')
                 TARIFA: 'Tarifa',
                 POTENCIA_CONTRACTADA: 'Potència contractada',
                 NOM_O_RAO_SOCIAL: 'Nom o raó social',
-                SI_LES_DADES_SON_CORRECTES: 'Si les dades són correctes premi Sí per finalitzar el procés de contractació',
                 SI_TOT_CORRECTE: 'Sí, tot correcte',
 
                 HELP_POPOVER_SOCIA: 'No recordes el teu número? El pots veure dins l\'apartat "Dades Personals" de l\'<a target="_blank" href="https://oficinavirtual.somenergia.coop/">Oficina Virtual</a>.',
@@ -286,6 +285,7 @@ angular.module('SomEnergiaWebForms')
                 CONTACT_PHONE: 'Telèfon de contacte per accedir al comptador',
                 ENVIAR: 'Enviar',
                 ENVIANT: 'Enviant',
+                REVIEW_DATA_AND_CONFIRM: 'Reviseu les dades. Per confirmar-les, premeu el butó del final.',
                 
             })
         ;

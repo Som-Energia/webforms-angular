@@ -82,7 +82,6 @@ angular.module('SomEnergiaWebForms')
                 TARIFA: 'Tarifa',
                 POTENCIA_CONTRACTADA: 'Potencia contratada',
                 NOM_O_RAO_SOCIAL: 'Nome ou razón social',
-                SI_LES_DADES_SON_CORRECTES: 'Se os datos son correctos preme Si para finalizar o proceso de contratación',
                 SI_TOT_CORRECTE: 'Si, todo correcto',
 
                 HELP_POPOVER_SOCIA: 'Non lembras o teu nº de socio/a? Búscao no apartado "Datos Persoais" da <a target="_blank" href="https://oficinavirtual.somenergia.coop/">Oficina Virtual</a>.',

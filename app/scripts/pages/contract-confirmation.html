@@ -11,6 +11,11 @@
 >
 <div class='confirm'>
     <div class="row extra-margin-top">
+        <div class="col-xs-12 text-center">
+            <span class="last-help-title">{{ 'REVIEW_DATA_AND_CONFIRM' | translate }}.</span>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-xs-12 col-md-6">
             <label>{{ 'SOCI_VINCULAT' | translate }}:</label>
             <span>{{ initForm.soci.nom + ' ' + initForm.soci.cognom }}</span>
@@ -198,12 +203,6 @@
                     <span data-ng-show="form.voluntary == 'yes'" translate="SI"></span>
                     <span data-ng-show="form.voluntary == 'no'" translate="NO"></span>
             </div>
-        </div>
-    </div>
-    <!--FINAL_BUTTONS-->
-    <div class="row">
-        <div class="col-xs-12 text-center">
-            <span class="last-help-title">{{ 'SI_LES_DADES_SON_CORRECTES' | translate }}.</span>
         </div>
     </div>
 </div>
