@@ -158,7 +158,7 @@ angular.module('SomEnergiaWebForms')
                 AVIS_CANVI_COMERCIALITZADORA: 'Sí que hi ha llum.<br/>Amb una altra comercialitzadora i vull canviar a Som Energia.',
                 AVIS_ALTA_DE_SERVEI: 'No hi ha llum.<br/>Vull donar-la d\'alta directament amb Som Energia.',
                 HELP_POPOVER_CUPS: 'Ho trobareu a la vostra factura actual. És un codi de l\'estil ES0031031321313W0F.',
-                HELP_POPOVER_CUPS_ALTA: 'És un codi que s\'indica a la factura, de l\'estil ES0031031321313W0F.<br/>Si no el tens, clica <a target="_blank" href="{{url}}">aquest enllaç</a>',
+                HELP_POPOVER_CUPS_ALTA: 'És un codi que s\'indica a la factura, de l\'estil ES0031031321313W0F.<br/>Si no el tens, cliqueu <a target="_blank" href="{{url}}">aquest enllaç</a>',
                 HELP_POPOVER_CUPS_ALTA_URL: 'http://ca.support.somenergia.coop/article/225-no-tinc-llum-actualment-puc-sol-licitar-un-nou-punt-de-consum',
                 REFERENCIA_CADASTRAL: 'Referència cadastral de l\'immoble',
                 HELP_POPOVER_REFERENCIA_CADASTRAL: 'És opcional, ens és útil per resoldre incongruències en les dades.<br/>Pots trobar-la aquí:<br/><a target="_blank" href="https://www1.sedecatastro.gob.es/OVCFrames.aspx?TIPO=CONSULTA">Espanya</a><br/><a target="_blank" href="http://www.bizkaia.net/home2/Temas/DetalleTema.asp?Tem_Codigo=5181&Idioma=CA">Bizkaia</a><br/><a target="_blank" href="http://catastroalava.tracasa.es/navegar/?lang=es">Araba</a><br/><a target="_blank" href="http://www4.gipuzkoa.net/ogasuna/catastro/presenta.asp">Guipuzkoa</a><br/><a target="_blank" href="https://catastro.navarra.es/">Navarra</a>',
@@ -181,7 +181,7 @@ angular.module('SomEnergiaWebForms')
                 HELP_POWER_30: 'Més informació sobre els <a target="_blank" href="{{url}}">períodes de la 3.0</a>',
                 HELP_POWER_30_URL: 'http://ca.support.somenergia.coop/article/255-quins-horaris-tenen-els-periodes-de-la-tarifa-3-0a',
                 HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Per evitar problemes de tramitació, poseu <b>la mateixa tarifa i potència que apareix a la factura actual</b>. Ens podreu sol·licitar canvis de tarifa o potència una vegada estigui el contracte activat amb nosaltres.',
-                HELP_TARIFA_ALTA: 'Per completar els següents camps us recomanem clicar als botons d\'ajuda.',
+                HELP_TARIFA_ALTA: 'Per completar els següents camps us recomanem que cliqueu els botons d\'ajuda.',
                 DADES_TITULAR_NOU_CONTRACTE: 'Titular del contracte',
                 VOLS_MANTENIR_EL_TITULAR: 'Es manté la persona titular de l\'actual contracte?',
                 NO_CANVI_DE_TITULAR: 'Si.<br/>No vull canviar el titular',
@@ -254,13 +254,13 @@ angular.module('SomEnergiaWebForms')
 
                 CONTRACT_MODIFICATION_FORM: 'Modificacions de potència i/o tarifa',
                 MODIFY_POTTAR_INTRO_TITLE: 'Avís important',
-                MODIFY_POTTAR_INTRO: '<p>El canvi de potència i/o tarifa el valida, aplica i cobra (a través de la nostra factura) la <a target="_blank" href={{url}}>distribuïdora de la teva zona</a>. El <b>cost regulat</b> és:</p><ul><li>10,94€ (IVA inclòs) per sol·licitud. Podeu canviar alhora de tarifa i potència en una sola sol·licitud.</li><li>En cas d\'<b>augmentar la potència</b>, 44,86€ per kW d\'increment.</li></ul><p>La distribuïdora només està obligada a acceptar <b>una sol·licitud de canvi cada 12 mesos</b>.</p>',
+                MODIFY_POTTAR_INTRO: '<p>El canvi de potència i/o tarifa el valida, l\'aplica i el cobra (a través de la nostra factura) la <a target="_blank" href={{url}}>distribuïdora de la teva zona</a>. El <b>cost regulat</b> és:</p><ul><li>10,94&nbsp;€ (IVA inclòs) per sol·licitud. Podeu canviar alhora de tarifa i potència en una sola sol·licitud.</li><li>En cas d\'<b>augmentar la potència</b>, 44,86&nbsp;€ per kW d\'increment.</li></ul><p>La distribuïdora només està obligada a acceptar <b>una sol·licitud de canvi cada 12 mesos</b>.</p>',
                 HELP_CONTACT_INFO: 'Les dades de contacte les utilitzarà la <a target="_blank" href="{{url}}">distribuïdora de la zona</a> per avisar-vos en cas que el tècnic encarregat necessiti accedir al comptador.',
                 MODIFY_POTTAR_SELECT_TITLE: 'Selecciona tarifa i potència',
                 MODIFY_POTTAR_CONTACT_TITLE: 'Dades de contacte, per accedir al comptador',
                 HELP_CONTACT_INFO_URL: 'http://ca.support.somenergia.coop/article/655-les-distribuidores-d-electricitat',
                 MODIFY_POTTAR_SUCCESS_TITTLE: 'Enhorabona. En breu rebràs un correu electrònic amb les dades de la teva sol·licitud.',
-                MODIFY_POTTAR_SUCCESS_MESSAGE: 'Enviarem la teva sol·licitud a la distribuïdora de la teva zona que s’encarregarà de validar-la i fer-la efectiva. En el cas que sigui necessari fer-nos arribar documentació relacionada amb aquesta tramitació, adjunta-la responent al e-mail de confirmació que rebràs en pocs minuts.',
+                MODIFY_POTTAR_SUCCESS_MESSAGE: 'Enviarem la teva sol·licitud a la distribuïdora de la teva zona que s’encarregarà de validar-la i fer-la efectiva. En el cas que sigui necessari fer-nos arribar documentació relacionada amb aquesta tramitació, adjunta-la responent al correu de confirmació que rebràs en pocs minuts.',
                 MODIFY_POTTAR_SUCCESS_REDIRECT: 'Pots tornar a la  <a target="_blank" href="{{url}}">llista de contractes</a>',
                 ERROR_POST_MODIFY: 'S\'ha detectat un error',
                 MODIFY_POTTAR_ONGOING_PROCESS: 'Aquest contracte té un altre procés pendent de resoldre.',
@@ -286,7 +286,6 @@ angular.module('SomEnergiaWebForms')
                 ENVIANT: 'Enviant',
                 REVIEW_DATA_AND_CONFIRM: 'Reviseu les dades. Per confirmar-les, premeu el butó del final.',
                 LA_TEVA_TARIFA_ES: 'La teva tarifa serà',
-                
             })
         ;
     });
