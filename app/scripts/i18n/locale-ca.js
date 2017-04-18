@@ -261,7 +261,7 @@ angular.module('SomEnergiaWebForms')
                 HELP_CONTACT_INFO_URL: 'http://ca.support.somenergia.coop/article/655-les-distribuidores-d-electricitat',
                 MODIFY_POTTAR_SUCCESS_TITTLE: 'Enhorabona. En breu rebràs un correu electrònic amb les dades de la teva sol·licitud.',
                 MODIFY_POTTAR_SUCCESS_MESSAGE: 'Enviarem la teva sol·licitud a la distribuïdora de la teva zona que s’encarregarà de validar-la i fer-la efectiva. En el cas que sigui necessari fer-nos arribar documentació relacionada amb aquesta tramitació, adjunta-la responent al correu de confirmació que rebràs en pocs minuts.',
-                MODIFY_POTTAR_SUCCESS_REDIRECT: 'Pots tornar a la  <a target="_blank" href="{{url}}">llista de contractes</a>',
+                MODIFY_POTTAR_SUCCESS_REDIRECT: 'Pots tornar a la  <a target="_parent" href="{{url}}">llista de contractes</a>',
                 ERROR_POST_MODIFY: 'S\'ha detectat un error',
                 MODIFY_POTTAR_ONGOING_PROCESS: 'Aquest contracte té un altre procés pendent de resoldre.',
                 MODIFY_POTTAR_ONGOING_PROCESS_DETAILS: 'No es poden començar nous processos fins que no es resolgui el pendent. Torna a intentar-ho un cop hagis rebut per correu la resolució del procés pendent.',
