@@ -29,7 +29,6 @@ angular.module('SomEnergiaWebForms')
         $scope.wizard.showAlways = false;
 
         $scope.success=false; // Form succesfully submitted
-        $scope.backlink=$routeParams.backurl;
 
         $scope.form = {};
         $scope.form.phases = undefined;
@@ -291,7 +290,6 @@ angular.module('SomEnergiaWebForms')
                     if (response.data.state === cfg.STATE_TRUE) {
                         // Funciona!
                         $scope.success=true;
-                        $scope.backlink=$routeParams.backurl;
 						return;
                     }
                     // error
