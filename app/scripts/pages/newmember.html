@@ -56,7 +56,7 @@
     </div>
     <div class="col-xs-12">
         <div class="wrapper-continue-process" data-ng-class="{ready: !formSubmitted && checkErrors()===true} ">
-            <button data-ng-disabled="submited || stopErrors!==undefined" data-ng-click="submit()" class="btn btn-default transparent pull-right submit" type="button">
+            <button data-ng-disabled="formSubmitted || stopErrors!==undefined" data-ng-click="submit()" class="btn btn-default transparent pull-right submit" type="button">
                 {{ 'FINALITZA_PROCES' | translate }}
                 &nbsp;
                 <span
