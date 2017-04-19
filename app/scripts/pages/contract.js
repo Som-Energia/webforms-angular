@@ -88,9 +88,9 @@ angular.module('SomEnergiaWebForms')
             0.345,
             0.69,
             0.805,
+*/
             1.15,
             1.725,
-*/
             2.3,
             3.45,
             4.6,
@@ -106,9 +106,9 @@ angular.module('SomEnergiaWebForms')
 /*
             1.039,
             2.078,
+*/
             2.425,
             3.464,
-*/
             5.196,
             6.928,
             10.392,
@@ -367,42 +367,21 @@ angular.module('SomEnergiaWebForms')
             $scope.effectiveOwner = $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci : $scope.owner;
             $scope.effectivePayer = $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER ? $scope.payer :
                 $scope.form.choosepayer=== cfg.PAYER_TYPE_TITULAR ? $scope.effectiveOwner : $scope.initForm.soci;
-
-//            $scope.isPayerPageComplete();
+            //$scope.isPayerPageComplete();
         };
 
-        $scope.goToSociPage = function() {
-            $scope.setStepReady('dadesSociPage');
-        };
-
-        $scope.goToSupplyPointPage = function() {
-            $scope.setStepReady('supplyPointPage');
-        };
-
-        $scope.goToFarePage = function() {
-            $scope.setStepReady('farePage');
-        };
-
-        $scope.goToOwnerPage = function() {
-            $scope.setStepReady('ownerPage');
-        };
-
-        $scope.goToPayerPage = function() {
-            $scope.setStepReady('payerPage');
-        };
-
-        $scope.goToConfirmationPage = function() {
-            $scope.setStepReady('confirmationPage');
-        };
+        // Wizard logic
         $scope.wizardPage = {};
 
-        // COMMON MOVE STEPS LOGIC
-        $scope.setStepReady = function(pageName) {
-            $scope.wizardPage.current = pageName;
-//            $log.log(pageName);
+        // TODO: This is duplicated from wizard page to be used from this scope
+        $scope.setPage = function(pageName) {
+            //$log.log(pageName);
+            $scope.wizardPage.current=pageName;
+            window.scrollTo(0,0);
         };
 
-        $scope.goToSociPage();
+        $scope.setPage('dadesSociPage');
+
 
         // KLUDGE: how to translate params of a translation
         // DOUBLE: how to translate params of a translation and passing it to the child scopes

@@ -302,6 +302,10 @@ div.wrapper-continue-process {
   &.ready {
 		background: url("../images/continue-process.png") no-repeat 100% 0;
 	  }
+  button.btn-default {
+    width: 270px;
+    text-align: right;
+  }
 }
 
 div.well.custom-ad-top {

@@ -10,7 +10,6 @@
         model="wizardPage"
         header="{{ 'FORMULARI_CONTRACTACIO' | translate }}"
         page-name='dadesSociPage'
-        next-page="goToHaveLightPage()"
         show-always='showAll'
         ready="initForm.isReady()"
         hide-buttons
@@ -18,7 +17,7 @@
         <member-chooser
             button-text="{{'INICIAR_CONTRACTACIO' | translate }}"
             show-member-name="true"
-            onproceed="setOwnerAndPayerLanguage(initForm.soci); goToSupplyPointPage()"
+            onproceed="setOwnerAndPayerLanguage(initForm.soci); setPage('supplyPointPage')"
             model="initForm"
             formvalues="formsoci"
         ></member-chooser>
@@ -31,8 +30,8 @@
             model="wizardPage"
             page-name='supplyPointPage'
             header="1 {{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}"
-            prev-page="goToSociPage()"
-            next-page="goToFarePage()"
+            prev-page="'dadesSociPage'"
+            next-page="'farePage'"
             show-always='showAll'
             ready="isSupplyPointPageComplete()"
         >
@@ -165,12 +164,12 @@
             model="wizardPage"
             page-name='farePage'
             header="2 {{ 'TARIFA_I_POTENCIA' | translate }}"
-            prev-page="goToSupplyPointPage()"
-            next-page="goToOwnerPage()"
+            prev-page="'supplyPointPage'"
+            next-page="'ownerPage'"
             show-always='showAll'
             ready="isFarePageComplete()"
         >
-            <div data-ng-show="esAlta() || (showAll && developing)">
+            <div data-ng-show="esAlta()">
                 <div class="row extra-margin-top">
                     <div class="col-xs-12">
                         <p class="lead" translate="HELP_TARIFA_ALTA"></p>
@@ -218,7 +217,7 @@
                                     value="{{power}}"
                                     style="background-color: {{power > 10? '#ae7':'#df9' }}"
                                     >{{power}} kW</option>
-                                <option ng-if="form.phases==='tri'" value='15'>{{ 'MES_GRAN_DE_15KW' | translate}}</option>
+                                <option ng-if="form.phases==='tri'" style="background-color:#9d6" value='15'>{{ 'MES_GRAN_DE_15KW' | translate}}</option>
                             </select>
                             <span class="form-control-feedback glyphicon "  data-ng-class="{
                                 'glyphicon-asterisk danger': form.newpower === undefined,
@@ -288,7 +287,7 @@
                             <div class="input-group has-feedback">
                                 <span class="input-group-addon">P2</span>
                                 <input type="text" class="input-lg form-control" data-ng-change="formListener()" required
-                                    name="power2" data-ng-model="form.power2" 
+                                    name="power2" data-ng-model="form.power2"
                                     />
                                 <span class="input-group-addon">kW</span>
                                 <span class="form-control-feedback glyphicon "  data-ng-class="{
@@ -334,8 +333,7 @@
                     </div>
                 </div>
             </div>
-            <hr data-ng-show="showAll && developing" />
-            <div data-ng-show="!esAlta() || (showAll && developing)">
+            <div data-ng-show="!esAlta()">
                 <div class="row extra-margin-top">
                     <div class="col-xs-12">
                         <p class="lead" translate="HELP_TARIFA_CANVI_COMERCIALITZADORA"></p>
@@ -421,7 +419,7 @@
                             <div class="input-group has-feedback">
                                 <span class="input-group-addon">P2</span>
                                 <input type="text" class="input-lg form-control" data-ng-change="formListener()" required
-                                    name="power2" data-ng-model="form.power2" 
+                                    name="power2" data-ng-model="form.power2"
                                     />
                                 <span class="input-group-addon">kW</span>
                                 <span class="form-control-feedback glyphicon "  data-ng-class="{
@@ -470,8 +468,8 @@
             model="wizardPage"
             page-name='ownerPage'
             header="3 {{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}"
-            prev-page="goToFarePage()"
-            next-page="goToPayerPage()"
+            prev-page="'farePage'"
+            next-page="'payerPage'"
             show-always='showAll'
             ready="isOwnerPageComplete()"
         >
@@ -544,9 +542,8 @@
             model="wizardPage"
             page-name='payerPage'
             header="4 {{ 'DADES_PAGAMENT' | translate }}"
-            prev-page="goToOwnerPage()"
-            next-page="goToConfirmationPage()"
-            next-text="{{ 'CONFIRMAR_CONTRACTACIO' | translate }}"
+            prev-page="'ownerPage'"
+            next-page="'confirmationPage'"
             show-always='showAll'
             ready="isPayerPageComplete()"
         >

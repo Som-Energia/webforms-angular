@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('SomEnergiaWebForms')
-.controller('ApiErrorCtrl', function ($scope, $uibModalInstance, errorMsg, errorDetails) {
-    $scope.errorMsg = errorMsg;
-    $scope.errorDetails = errorDetails;
+.controller('ApiErrorCtrl', function ($scope, $uibModalInstance, $log, data) {
+    $log.log('controller', data);
+    $scope.data = data;
     $scope.ok = function () {
         $uibModalInstance.close();
     };
@@ -19,22 +19,42 @@ angular.module('SomEnergiaWebForms')
             templateUrl: 'scripts/fragments/api-error-modal.html',
             controller: 'ApiErrorCtrl',
             resolve: {
-                errorMsg: function() {
-                    return msg;
-                },
-                errorDetails: function() {
-                    return details;
+                data: {
+                    errorMsg: msg,
+                    errorDetails: details,
                 }
             }
         });
     };
 
-    this.showWellDoneDialog = function() {
+    this.postError = function(title, description, details) {
+        console.log('API Error:', title, description, details);
+        $uibModal.open({
+            templateUrl: 'scripts/fragments/post-error-modal.html',
+            controller: 'ApiErrorCtrl',
+            resolve: {
+                data: {
+                    'title': title,
+                    'description': description,
+                    'details': details,
+                },
+            }
+        });
+    };
+    this.showWellDoneDialog = function(title, message, params) {
         $uibModal.open({
             size: 'lg',
             keyboard: false,
             backdrop: 'static',
-            templateUrl: 'scripts/fragments/well-done-modal.html'
+            templateUrl: 'scripts/fragments/well-done-modal.html',
+            controller: 'ApiErrorCtrl',
+            resolve: {
+                data: {
+                    'title': title || 'REGISTRE_OK',
+                    'message': message || 'REGISTRE_OK_MSG',
+                    'params': params || {},
+                },
+            },
         });
     };
 

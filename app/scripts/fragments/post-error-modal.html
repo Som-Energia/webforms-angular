@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <h4 class="modal-title text-danger">
+    <span class="error glyphicon glyphicon-exclamation-sign"></span>&nbsp;
+    {{ (data.title || 'FORMULARI_NO_DISPONIBLE') | translate }}</h4>
+</div>
+<div class="modal-body">
+    <h3 class='text-danger'>{{ data.description }}</h3>
+    <p ng-if="data.details" ng-bind-html="data.details"></p>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">{{ 'OK' | translate }}</button>
+</div>

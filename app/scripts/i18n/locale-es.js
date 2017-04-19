@@ -82,7 +82,6 @@ angular.module('SomEnergiaWebForms')
                 TARIFA: 'Tarifa',
                 POTENCIA_CONTRACTADA: 'Potencia contratada',
                 NOM_O_RAO_SOCIAL: 'Nombre o razón social',
-                SI_LES_DADES_SON_CORRECTES: 'Si los datos son correctos pulse Sí para finalizar el proceso de contratación',
                 SI_TOT_CORRECTE: 'Sí, todo correcto',
 
                 HELP_POPOVER_SOCIA: '¿No recuerdas tu nº de socio/a? Averígualo en el apartado "Datos Personales" de la <a target="_blank" href="https://oficinavirtual.somenergia.coop/">Oficina Virtual</a>.',
@@ -181,7 +180,6 @@ angular.module('SomEnergiaWebForms')
                 ESCULL_LA_POTENCIA_DE_CADA_PERIODE: 'Escoje la potencia de cada periodo',
                 HELP_POWER_30: 'Más información sobre los <a target="_blank" href="{{url}}">periodos de la 3.0</a>',
                 HELP_POWER_30_URL: 'http://es.support.somenergia.coop/article/176-que-horarios-tienen-los-periodos-de-la-tarifa-3-0a',
-                LA_TEVA_TARIFA_ES: 'Tu tarifa es',
                 HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Para evitar problemas de tramitación, ponga <b>la misma tarifa y potencia que aparece en la factura actual</b>. Podrá solicitar el cambio de tarifa o potencia una vez esté el contrato activado con nosotros.',
                 HELP_TARIFA_ALTA: 'Para completar los campos siguientes le recomendamos pulsar los botones de ayuda.',
                 DADES_TITULAR_NOU_CONTRACTE: 'Titular del contrato',
@@ -256,6 +254,7 @@ angular.module('SomEnergiaWebForms')
 
                 CONTRACT_MODIFICATION_FORM: 'Modificación contractual',
 
+                LA_TEVA_TARIFA_ES: 'Tu tarifa será',
             })
         ;
     });

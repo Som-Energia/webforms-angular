@@ -29,7 +29,7 @@ angular.module('SomEnergiaWebForms')
         $scope.stopErrors = undefined;
         $scope.ready = false;
 
-        $scope.submitted = false;
+        $scope.formSubmitted = false;
         $scope.messages = null;
 
         // Form error check
@@ -65,7 +65,7 @@ angular.module('SomEnergiaWebForms')
 
         // ON SUBMIT FORM
         $scope.submit = function() {
-            $scope.submitted = true;
+            $scope.formSubmitted = true;
             $scope.messages = null;
             $scope.newPartner.dniDuplicated = false;
             // Prepare request data
@@ -105,6 +105,7 @@ angular.module('SomEnergiaWebForms')
                         // error
                         $scope.modalTitle = $translate.instant('ERROR_POST_NOVASOCIA');
                         $scope.messages = $scope.getHumanizedAPIResponse(response.data);
+                        $scope.formSubmitted = false;
                         jQuery('#webformsGlobalMessagesModal').modal('show');
                     } else if (response.state === cfg.STATE_TRUE) {
                         if (response.data.endpoint === undefined) {
@@ -124,6 +125,7 @@ angular.module('SomEnergiaWebForms')
                 function (reason) {
                     $log.error('Post data failed', reason);
                     $scope.rawReason = JSON.stringify(reason,null,'  ');
+                    $scope.formSubmitted = false;
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
             );

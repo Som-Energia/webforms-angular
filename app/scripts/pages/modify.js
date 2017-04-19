@@ -22,9 +22,13 @@ angular.module('SomEnergiaWebForms')
             $translate.use($routeParams.locale);
         }
 
-        $scope.showAll = false;
         // To false to debug one page completion state independently from the others
-        $scope.waitPreviousPages = false;
+        $scope.waitPreviousPages = true;
+        $scope.wizard = {};
+        $scope.wizard.current = 'initPage';
+        $scope.wizard.showAlways = false;
+
+        $scope.success=false; // Form succesfully submitted
 
         $scope.form = {};
         $scope.form.phases = undefined;
@@ -33,14 +37,12 @@ angular.module('SomEnergiaWebForms')
         $scope.form.contact_surname = undefined;
         $scope.form.contact_phone = undefined;
 
-        $scope.showAllSteps = function() {
-            $scope.showAll = true;
-        };
         $scope.rate20IsInvalid = false;
         $scope.rate21IsInvalid = false;
         $scope.rate3AIsInvalid = false;
 
         $scope.farePageError = undefined;
+        $scope.contactPageError = undefined;
 
         $scope.formSubmitted = false;
         $scope.availablePowers = function() {
@@ -66,9 +68,9 @@ angular.module('SomEnergiaWebForms')
             0.345,
             0.69,
             0.805,
+*/
             1.15,
             1.725,
-*/
             2.3,
             3.45,
             4.6,
@@ -84,9 +86,9 @@ angular.module('SomEnergiaWebForms')
 /*
             1.039,
             2.078,
+*/
             2.425,
             3.464,
-*/
             5.196,
             6.928,
             10.392,
@@ -206,11 +208,18 @@ angular.module('SomEnergiaWebForms')
 
         $scope.isContactInfoComplete = function() {
             function error(message) {
-                if ($scope.farePageError !== message) {
-                    $scope.farePageError = message;
+                if ($scope.contactPageError !== message) {
+                    $scope.contactPageError = message;
                     //console.log(message);
                 }
                 return false;
+            }
+            $scope.contactPageError = undefined;
+
+            if ($scope.waitPreviousPages) {
+                if (!$scope.isFarePageComplete()) {
+                    return error('INCOMPLETE_PREVIOUS_STEP');
+                }
             }
             if ($scope.form.contact_name === undefined) {
                 return error('NO_NAME');
@@ -229,7 +238,7 @@ angular.module('SomEnergiaWebForms')
 
         $scope.formListener = function() {
             //console.log('listener');
-//            $scope.isPayerPageComplete();
+//            $scope.isContactInfoComplete();
         };
 
         // KLUDGE: how to translate params of a translation
@@ -241,15 +250,12 @@ angular.module('SomEnergiaWebForms')
         $scope.t.HELP_POWER_30_URL = $translate.instant('HELP_POWER_30_URL');
         $scope.t.HELP_POPOVER_CUPS_ALTA_URL = $translate.instant('HELP_POPOVER_CUPS_ALTA_URL');
         $scope.t.HELP_POPOVER_RATE_URL = $translate.instant('HELP_POPOVER_RATE_URL');
+        $scope.t.HELP_CONTACT_INFO_URL = $translate.instant('HELP_CONTACT_INFO_URL');
 
         // ON SUBMIT FORM
         $scope.submit = function() {
             $scope.messages = null;
             $scope.formSubmitted = true;
-            $scope.cupsIsDuplicated = false;
-            $scope.invalidAttachFileExtension = false;
-            $scope.overflowAttachFile = false;
-            uiHandler.showLoadingDialog();
             // Prepare request data
             var formData = new FormData();
             formData.append('proces', 'M1'); // TODO: Needed?
@@ -270,38 +276,82 @@ angular.module('SomEnergiaWebForms')
                 transformRequest: angular.identity
             }).then(
                 function(response) {
-                    uiHandler.hideLoadingDialog();
+                    $scope.formSubmitted=false;
                     $log.log('response received', response);
-                    if (response.data.status === cfg.STATUS_ONLINE) {
-                        if (response.data.state === cfg.STATE_TRUE) {
-                            // well done
-                            uiHandler.showWellDoneDialog();
-                            $window.top.location.href = $translate.instant('CONTRACT_OK_REDIRECT_URL');
-                        } else {
-                            // error
-                            $scope.modalTitle = $translate.instant('ERROR_POST_CONTRACTE');
-                            $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
-                            $scope.submitReady = false;
-                            $scope.rawReason = JSON.stringify(response.data, null,'  ');
-                            jQuery('#webformsGlobalMessagesModal').modal('show');
-                        }
-                    } else if (response.data.status === cfg.STATUS_OFFLINE) {
-                        uiHandler.showErrorDialog('API server status offline (ref.022-022)');
-                    } else {
-                        uiHandler.showErrorDialog('API server unknown status (ref.021-021)');
+                    if (response.data.status !== cfg.STATUS_ONLINE) {
+                        // L'ERP està parat
+                        return uiHandler.postError(
+                            $translate.instant('ERROR_POST_MODIFY'),
+                            $translate.instant('API_SERVER_OFFLINE'),
+                            $translate.instant('API_SERVER_OFFLINE_DETAILS'),
+                            JSON.stringify(response.data, null,'  ')
+                            );
                     }
+                    if (response.data.state === cfg.STATE_TRUE) {
+                        // Funciona!
+                        $scope.success=true;
+						return;
+                    }
+                    // error
+                    if (response.data.data === undefined){
+                        // Unexpected response format
+                        return uiHandler.postError(
+                            $translate.instant('ERROR_POST_MODIFY'),
+                            $translate.instant('MODIFY_POTTAR_UNEXPECTED'),
+                            $translate.instant('MODIFY_POTTAR_UNEXPECTED_DETAILS'),
+                            JSON.stringify(response.data, null,'  ')
+                            );
+                    }
+                    if (response.data.data.invalid_fields!==undefined) {
+                        // Camp invalid
+                        return uiHandler.postError(
+                            $translate.instant('ERROR_POST_MODIFY'),
+                            $translate.instant('MODIFY_POTTAR_INVALID_FIELD'),
+                            $scope.getHumanizedAPIResponse(response.data.data),
+                            JSON.stringify(response.data, null,'  ')
+                            );
+                    }
+                    if (response.data.data.required_fields!==undefined) {
+                        // Camp requerit
+                        return uiHandler.postError(
+                            $translate.instant('ERROR_POST_MODIFY'),
+                            $translate.instant('MODIFY_POTTAR_REQUIRED_FIELD'),
+                            $scope.getHumanizedAPIResponse(response.data.data),
+                            JSON.stringify(response.data, null,'  ')
+                            );
+                    }
+                    var errorMap = {
+                        ongoingprocess: 'MODIFY_POTTAR_ONGOING_PROCESS', // Ja hi ha un cas obert a ERP
+                        inactivecontract: 'MODIFY_POTTAR_INACTIVE_CONTRACT', // Polissa en estat no actiu
+                        notallowed: 'MODIFY_POTTAR_NOT_ALLOWED', // Turbio
+                        badtoken: 'MODIFY_POTTAR_BAD_TOKEN', // Sessió expirada
+                    };
+                    var errorString = errorMap[response.data.data.error] || 'MODIFY_POTTAR_UNEXPECTED'; // Error no esperat
+                    uiHandler.postError(
+                        $translate.instant('ERROR_POST_MODIFY'),
+                        $translate.instant(errorString),
+                        $translate.instant(errorString + '_DETAILS'),
+                        JSON.stringify(response.data, null,'  ')
+                        );
                 },
                 function(reason) {
                     $log.error('Send POST failed', reason);
-                    uiHandler.hideLoadingDialog();
-                    if (reason.status === 413) {
+                    var rawReason = JSON.stringify(reason,null,'  ');
+                    $scope.formSubmitted=false;
+                    if (reason.status === -1) {
+                        // Problemes amb CORS o API caiguda o xarxa
+                        return uiHandler.postError(
+                            $translate.instant('ERROR_POST_MODIFY'),
+                            $translate.instant('API_SERVER_ERROR'),
+                            $translate.instant('API_SERVER_ERROR_DETAILS'),
+                            rawReason
+                            );
+                    }
+                    else if (reason.status === 413) {
                         $scope.messages = 'ERROR 413';
                     } else {
                         $scope.messages = 'ERROR';
                     }
-                    $scope.overflowAttachFile = true;
-                    $scope.showAllSteps();
-                    $scope.rawReason = JSON.stringify(reason,null,'  ');
                     jQuery('#webformsGlobalMessagesModal').modal('show');
                 }
             );
@@ -314,13 +364,11 @@ angular.module('SomEnergiaWebForms')
             if (arrayResponse.invalid_fields !== undefined) {
                 for (var j = 0; j < arrayResponse.invalid_fields.length; j++) {
                     if (arrayResponse.invalid_fields[j].field === 'cups' && arrayResponse.invalid_fields[j].error === 'exist') {
-                        $scope.cupsIsDuplicated = true;
-                    } else if (arrayResponse.invalid_fields[j].field === 'fitxer' && arrayResponse.invalid_fields[j].error === 'bad_extension') {
-                        $scope.invalidAttachFileExtension = true;
+                    } else
+                    if (arrayResponse.invalid_fields[j].field === 'fitxer' && arrayResponse.invalid_fields[j].error === 'bad_extension') {
                     }
                 }
             }
-            $scope.showAllSteps();
             return ApiSomEnergia.humanizedResponse(arrayResponse);
         };
 
