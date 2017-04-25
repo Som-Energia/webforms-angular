@@ -263,7 +263,7 @@ angular.module('SomEnergiaWebForms')
                 MODIFY_POTTAR_SUCCESS_MESSAGE: 'Enviarem la teva sol·licitud a la distribuïdora de la teva zona que s’encarregarà de validar-la i fer-la efectiva. En el cas que sigui necessari fer-nos arribar documentació relacionada amb aquesta tramitació, adjunta-la responent al correu de confirmació que rebràs en pocs minuts.',
                 ERROR_POST_MODIFY: 'S\'ha detectat un error',
                 MODIFY_POTTAR_ONGOING_PROCESS: 'Aquest contracte té un altre procés pendent de resoldre.',
-                MODIFY_POTTAR_ONGOING_PROCESS_DETAILS: 'No es poden començar nous processos fins que no es resolgui el pendent. Torna a intentar-ho un cop hagis rebut per correu la resolució del procés pendent.',
+                MODIFY_POTTAR_ONGOING_PROCESS_DETAILS: 'No es poden començar nous processos si n\'hi ha cap de pendent. Torna a intentar-ho un cop hagis rebut per correu la resolució del procés pendent.',
                 MODIFY_POTTAR_NOT_ALLOWED: 'No estàs autoritzat a fer aquesta operació.',
                 MODIFY_POTTAR_NOT_ALLOWED_DETAILS: 'Vols venir a treballar amb nosaltres? ;-)',
                 MODIFY_POTTAR_INACTIVE_CONTRACT: 'El contracte a modificar no està d\'alta.',
