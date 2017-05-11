@@ -74,7 +74,7 @@ To deploy the on the testing environment,
 ensure:
 
 - You are in the devel branch
-- Your secret.json is pointing to `/home/somenergia/webforms2-devel`
+- Your secret.json is pointing to `/home/somenergia/webforms2`
 - Execute
 
     $ grunt build
@@ -94,7 +94,7 @@ Webforms are integrated in Wordpress in two ways:
 We deploy production from `master` branch.
 We should merge devel.
 
-***Ensure your secret.json is pointing to `/home/somenergia/webforms2`
+***Ensure your secret.json is pointing to `/home/somenergia/webforms2-prod`
 (without `-devel`)***
 
     $ git checkout master
