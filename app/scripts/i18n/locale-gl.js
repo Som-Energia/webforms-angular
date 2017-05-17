@@ -250,11 +250,43 @@ angular.module('SomEnergiaWebForms')
                 NEWMEMBER_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/pago-realizado/',
                 NEWMEMBER_KO_REDIRECT_URL: 'https://www.somenergia.coop/es/pago-cancelado/',
 
+                // After development (delete comment after deploy)
+
+                CONTRACT_MODIFICATION_FORM: 'Modificacións de potencia e/ou tarifa',
+                MODIFY_POTTAR_INTRO_TITLE: 'Aviso importante',
+                MODIFY_POTTAR_INTRO: '<p>A mudanza de potencia e/ou tarifa valídao, aplica e cobra (a través da nosa factura) a <a target="_blank" href={{url}}>distribuidora da túa zona</a>. O <b>custo regulado</b> é:</p><ul><li>10,94&nbsp;€ (IVE incluído) por solicitude. É posíbel mudar á vez a tarifa e a potencia nunha única solicitude.</li><li>No caso de <b>aumentar a potencia</b>, 44,86&nbsp;€ por kW de incremento.</li></ul><p>A distribuidora só está obrigada a aceptar <b>unha única solicitude de mudanza cada 12 meses</b>.</p>',
+                HELP_CONTACT_INFO: 'Os datos de contacto utilizaraos a <a target="_blank" href="{{url}}">distribuidora da zona</a> para avisarte no caso de que o técnico encargado precise acceder ao contador',
+                MODIFY_POTTAR_SELECT_TITLE: 'Escolle tarifa e potencia',
+                MODIFY_POTTAR_CONTACT_TITLE: 'Datos de contacto, para acceder ao contador',
+                HELP_CONTACT_INFO_URL: 'http://gl.support.somenergia.coop/article/658-las-distribuidoras-de-electricidad',
+                MODIFY_POTTAR_SUCCESS_TITTLE: 'Parabens. En breve recibirás un correo electrónico cos datos da túa solicitude.',
+                MODIFY_POTTAR_SUCCESS_MESSAGE: 'Enviaremos a túa solicitude á distribuidora da túa zona que se encargará de validala e facela efectiva. De ser preciso, fainos chegar a documentación relacionada con este trámite, achegándoa respondendo ao correo de confirmación que recibirás en poucos minutos',
+                ERROR_POST_MODIFY: 'Detectóuse un erro',
+                MODIFY_POTTAR_ONGOING_PROCESS: 'O contrato indicado ten outro proceso pendente de resolución',
+                MODIFY_POTTAR_ONGOING_PROCESS_DETAILS: 'Non se poden comezar novos procesos se existen casos pendentes. Volve tentalo unha vez que recibas por correo a resolución do proceso pendente.',
+                MODIFY_POTTAR_NOT_ALLOWED: 'Non estás autorizado/a para facer esta operación.',
+                MODIFY_POTTAR_NOT_ALLOWED_DETAILS: '¿Ves traballar connosco? ;-)',
+                MODIFY_POTTAR_INACTIVE_CONTRACT: 'O contrato a modificar non está dado de alta.',
+                MODIFY_POTTAR_INACTIVE_CONTRACT_DETAILS: 'Só se poden modificar contratos que estan dados de alta.',
+                MODIFY_POTTAR_BAD_TOKEN: 'A sesión rematou.',
+                MODIFY_POTTAR_BAD_TOKEN_DETAILS:'Recomendámosche tornar a acceder dende a lista de contratos e tentalo outra vez.',
+                MODIFY_POTTAR_UNEXPECTED: 'Produciuse un erro inesperado.',
+                MODIFY_POTTAR_UNEXPECTED_DETAILS: 'Ponte en contacto con modifica@somenergia.coop para que che podamos botar unha man. Para identificarte precisaremos do teu NIF e o número do contrato que queres modificar.',
+                API_SERVER_ERROR: 'Erro conectando ao servidor.',
+                API_SERVER_ERROR_DETAILS: 'O teu navegador ten problemas para conectarse á web de Som Energia. Comproba que a conexión a internet funcione correctamente. Se non fose ese o problema, contacta con Som Energia para verificar se se puido procesar o trámite correctamente.',
+                API_SERVER_OFFLINE: 'Os nosos servidores non responden.',
+                API_SERVER_OFFLINE_DETAILS: 'É posíbel que se estean facendo tarefas de mantemento. Téntao máis tarde. Perdoa as molestias.',
+                MODIFY_POTTAR_INVALID_FIELD: 'Os datos non son correctos.',
+                MODIFY_POTTAR_REQUIRED_FIELD: 'Faltan datos.',
+                POTENCIA: 'Potencia',
+                MODIFY_POTTAR: 'Petición de cambio de Tarifa e/ou Potencia',
+                CONTACT_PHONE: 'Teléfono de contacto para acceder ao contador',
+                ENVIAR: 'Enviar',
+                ENVIANT: 'Enviando',
+                REVIEW_DATA_AND_CONFIRM: 'Revisa os datos. Para confirmalos, preme o botón do final.',
+                LA_TEVA_TARIFA_ES: 'A túa tarifa será',
                 // Under development
 
-                CONTRACT_MODIFICATION_FORM: 'Modificación contractual',
-
-                LA_TEVA_TARIFA_ES: 'A túa tarifa é',
             })
         ;
     });
