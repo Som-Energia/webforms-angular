@@ -269,7 +269,7 @@ angular.module('SomEnergiaWebForms')
                 MODIFY_POTTAR_INACTIVE_CONTRACT: 'El contrato a modificar no está dado de alta.',
                 MODIFY_POTTAR_INACTIVE_CONTRACT_DETAILS: 'Sólo se pueden modificar contratos que estan dados de alta.',
                 MODIFY_POTTAR_BAD_TOKEN: 'La sesión ha expirado.',
-                MODIFY_POTTAR_BAD_TOKEN_DETAILS:'Te recomendados volver a acceder desde la lista de contratos e intentarlo otra vez.',
+                MODIFY_POTTAR_BAD_TOKEN_DETAILS:'Te recomendamos volver a acceder desde la lista de contratos e intentarlo otra vez.',
                 MODIFY_POTTAR_UNEXPECTED: 'Se ha producido un error inesperado.',
                 MODIFY_POTTAR_UNEXPECTED_DETAILS: 'Ponte en contacto con modifica@somenergia.coop para que te podamos echar una mano. Para identificarte necesitaremos tu NIF y el número del contrato que quieres modificar.',
                 API_SERVER_ERROR: 'Error conectando al servidor.',
