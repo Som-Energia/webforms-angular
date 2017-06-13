@@ -250,8 +250,6 @@ angular.module('SomEnergiaWebForms')
                 NEWMEMBER_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/pago-realizado/',
                 NEWMEMBER_KO_REDIRECT_URL: 'https://www.somenergia.coop/es/pago-cancelado/',
 
-                // Under development
-
                 CONTRACT_MODIFICATION_FORM: 'Modificaciones de potencia y/o tarifa',
                 MODIFY_POTTAR_INTRO_TITLE: 'Aviso importante',
                 MODIFY_POTTAR_INTRO: '<p>El cambio de potencia y/o tarifa lo valida, aplica y cobra (a través de nuestra factura) la <a target="_blank" href={{url}}>distribuidora de tu zona</a>. El <b>coste regulado</b> es:</p><ul><li>10,94&nbsp;€ (IVA incluído) por solicitud. Es posible cambiar a la vez la tarifa y la potencia en una única solicitud.</li><li>En caso de <b>aumentar la potencia</b>, 44,86&nbsp;€ por kW de incremento.</li></ul><p>La distribuidora sólo está obligada a aceptar <b>una sola solicitud de cambio cada 12 meses</b>.</p>',

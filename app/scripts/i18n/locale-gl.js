@@ -250,8 +250,6 @@ angular.module('SomEnergiaWebForms')
                 NEWMEMBER_OK_REDIRECT_URL: 'https://www.somenergia.coop/es/pago-realizado/',
                 NEWMEMBER_KO_REDIRECT_URL: 'https://www.somenergia.coop/es/pago-cancelado/',
 
-                // After development (delete comment after deploy)
-
                 CONTRACT_MODIFICATION_FORM: 'Modificacións de potencia e/ou tarifa',
                 MODIFY_POTTAR_INTRO_TITLE: 'Aviso importante',
                 MODIFY_POTTAR_INTRO: '<p>A mudanza de potencia e/ou tarifa valídao, aplica e cobra (a través da nosa factura) a <a target="_blank" href={{url}}>distribuidora da túa zona</a>. O <b>custo regulado</b> é:</p><ul><li>10,94&nbsp;€ (IVE incluído) por solicitude. É posíbel mudar á vez a tarifa e a potencia nunha única solicitude.</li><li>No caso de <b>aumentar a potencia</b>, 44,86&nbsp;€ por kW de incremento.</li></ul><p>A distribuidora só está obrigada a aceptar <b>unha única solicitude de mudanza cada 12 meses</b>.</p>',
@@ -285,8 +283,6 @@ angular.module('SomEnergiaWebForms')
                 ENVIANT: 'Enviando',
                 REVIEW_DATA_AND_CONFIRM: 'Revisa os datos. Para confirmalos, preme o botón do final.',
                 LA_TEVA_TARIFA_ES: 'A túa tarifa será',
-                // Under development
-
             })
         ;
     });
