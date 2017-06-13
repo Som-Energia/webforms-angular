@@ -430,9 +430,17 @@ angular.module('SomEnergiaWebForms')
             formData.append('tarifa', $scope.form.rate);
             formData.append('cups', $scope.cupsEditor.value);
             formData.append('consum', $scope.form.estimation || ''); // TODO: Remove this when it is clear is not used anymore
-            formData.append('potencia', Math.round($scope.form.power * cfg.THOUSANDS_CONVERSION_FACTOR));
-            formData.append('potencia_p2', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power2 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
-            formData.append('potencia_p3', $scope.form.rate === cfg.RATE_30A ? Math.round($scope.form.power3 * cfg.THOUSANDS_CONVERSION_FACTOR) : '');
+            function stringToPower(value) {
+                // TODO: this is already done in validation but it did not work in some browesers
+                value = ''+value; // ensure it is a string
+                value = value.replace(','.'.');
+                value = value.replace('\''.'.');
+                value = cfg.THOUSANDS_CONVERSION_FACTOR * value;
+                return Math.round(value);
+            }
+            formData.append('potencia', stringToPower($scope.form.power));
+            formData.append('potencia_p2', $scope.form.rate === cfg.RATE_30A ? stringToPower($scope.form.power2) : '');
+            formData.append('potencia_p3', $scope.form.rate === cfg.RATE_30A ? stringToPower($scope.form.power3) : '');
             formData.append('cnae', $scope.cnaeEditor.value || '');
             formData.append('cups_adreca', $scope.form.address.value);
             formData.append('cups_provincia', $scope.form.province.id);
