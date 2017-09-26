@@ -97,7 +97,7 @@ angular.module('SomEnergiaWebForms')
                 QUANT_VOLS_INVERTIR: 'Zenbat inbertitu <b>nahi duzu</b>? <br/> <small>kapital sozialerako borondatezko ekarpenetan?</small>',
                 RECORDA: 'Gogora ezazu: ',
                 AMOUNT_HELPER_MIN: 'Gutxienengo ekarpena 100€',
-                AMOUNT_HELPER_MAX: 'Gehienezko ekarpena 5.000€*',
+                AMOUNT_HELPER_MAX: 'Gehienezko ekarpena 5.000€, 100.000€ 25/10/17tix aurrera',
                 AMOUNT_HELPER_STEP: 'Ekarpena 100€-ko multiplo',
                 NUMERO_DE_COMPTE_FORMAT_IBAN: 'Kontu-korrontearen zenbakia IBAN formatuan. Adibide: ES11 2222 3333 4444 5555 6666',
                 CONFIRMO_CONDICIONS_INVERSIO: 'Kontu-korrontearen titularra naizela ziurtatzen dut, helbideratzea baimentzen dut eta onartzen ditut <a target="_blank" href="https://somenergia.coop/es/condiciones-generales-inversion">inbertsioaren baldintza-orokorrak</a> baita <a target="_blank" href="https://www.somenergia.coop/es/politica-de-privacidad-cookies-y-aviso-legal/">pribatutasun-politika ere</a>',
