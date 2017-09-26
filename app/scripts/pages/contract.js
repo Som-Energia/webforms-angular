@@ -433,8 +433,8 @@ angular.module('SomEnergiaWebForms')
             function stringToPower(value) {
                 // TODO: this is already done in validation but it did not work in some browesers
                 value = ''+value; // ensure it is a string
-                value = value.replace(','.'.');
-                value = value.replace('\''.'.');
+                value = value.replace(',','.');
+                value = value.replace('\'','.');
                 value = cfg.THOUSANDS_CONVERSION_FACTOR * value;
                 return Math.round(value);
             }
