@@ -100,7 +100,14 @@
             <div class="row">
                 <div class="col-sm-6 col-xs-6">
                     <div class="input-group">
-                    <input type="text" id="amount" name="amount" class="form-control input-lg" data-ng-model="form.amount" data-ng-change="formAmountListener()" required aria-describedby="amounthelp" ng-class="{'ng-invalid': amountAboveMax || amountNotHundred || amountUnderMin}"/>
+                    <input type="text"
+                           id="amount"
+                           name="amount"
+                           class="form-control input-lg"
+                           data-ng-model="form.amount"
+                           data-ng-change="formAmountListener()"
+                           required aria-describedby="amounthelp"
+                           ng-class="{'ng-invalid': amountAboveMax || amountNotHundred || amountUnderMin}"/>
                     <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>€</span>
                     </div>
                 </div>
@@ -114,6 +121,11 @@
                     <li><span ng-class="{'label-danger': amountNotHundred, label: amountNotHundred}">
                         {{ 'AMOUNT_HELPER_STEP' | translate }}</span>
                     </ul>
+                </div>
+                <div class="col-xs-12">
+                    <h6>
+                        {{ 'AMOUNT_HELPER_MAX_EXPLICATION' | translate}}
+                    </h6>
                 </div>
             </div>
 
