@@ -114,12 +114,14 @@
                 <div class="col-sm-6 col-xs-6 no-margin-top">
                     <b>{{ 'RECORDA' | translate}}</b>
                     <ul>
+                    <li><span ng-class="{'label-danger': amountNotHundred, label: amountNotHundred}">
+                        {{ 'AMOUNT_HELPER_STEP' | translate }}</span>
                     <li><span ng-class="{'label-danger': amountUnderMin, label: amountUnderMin}">
                         {{ 'AMOUNT_HELPER_MIN' | translate }}</span> </li>
                     <li><span ng-class="{'label-danger': amountAboveMax, label: amountAboveMax}">
                         {{ 'AMOUNT_HELPER_MAX' | translate }}</span></li>
-                    <li><span ng-class="{'label-danger': amountNotHundred, label: amountNotHundred}">
-                        {{ 'AMOUNT_HELPER_STEP' | translate }}</span>
+                    <span ng-class="{'label-danger': amountAboveMax, label: amountAboveMax}">
+                        {{ 'AMOUNT_HELPER_MAX_2' | translate }}</span>
                     </ul>
                 </div>
             </div>
