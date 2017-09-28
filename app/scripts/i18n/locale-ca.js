@@ -97,7 +97,8 @@ angular.module('SomEnergiaWebForms')
                 QUANT_VOLS_INVERTIR: 'Quant vols <b>invertir</b>?<br/><small>En aportació voluntària al capital social</small>',
                 RECORDA: 'Recorda: ',
                 AMOUNT_HELPER_MIN: 'Mínima aportació 100€',
-                AMOUNT_HELPER_MAX: 'Màxima aportació 25.000€',
+                AMOUNT_HELPER_MAX: 'Màxima aportació 5.000€',
+                AMOUNT_HELPER_MAX_2: 'A partir del 25/10/17: 100.000€',
                 AMOUNT_HELPER_STEP: 'Quantitat múltiple de 100€',
                 NUMERO_DE_COMPTE_FORMAT_IBAN: 'Número de compte en format IBAN. Exemple: ES11 2222 3333 4444 5555 6666',
                 CONFIRMO_CONDICIONS_INVERSIO: 'Confirmo que sóc titular del compte corrent, autoritzo la domiciliació i accepto les <a target="_blank" href="https://somenergia.coop/ca/condicions-generals-inversio">condicions generals de la inversió</a> i la <a target="_blank" href="https://www.somenergia.coop/ca/politica-de-privacitat-cookies-i-avis-legal/">política de privacitat</a>',
@@ -249,8 +250,6 @@ angular.module('SomEnergiaWebForms')
                 DIRECT_DEBIT: 'Rebut domiciliat',
                 NEWMEMBER_OK_REDIRECT_URL: 'https://www.somenergia.coop/ca/pagament-realitzat/',
                 NEWMEMBER_KO_REDIRECT_URL: 'https://www.somenergia.coop/ca/pagament-cancellat/',
-
-                // Under development
 
                 CONTRACT_MODIFICATION_FORM: 'Modificacions de potència i/o tarifa',
                 MODIFY_POTTAR_INTRO_TITLE: 'Avís important',

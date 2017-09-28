@@ -35,7 +35,7 @@ angular.module('SomEnergiaWebForms')
 
         // Configurable constants
         $scope.aportacioMinima = 100;
-        $scope.aportacioMaxima = 25000;
+        $scope.aportacioMaxima = 5000;
         $scope.aportacioSalts = 100;
         $scope.amountAboveMax = false;
         $scope.amountUnderMin = false;
