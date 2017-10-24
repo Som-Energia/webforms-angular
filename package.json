@@ -1,6 +1,6 @@
 {
   "name": "newsomenergiawebforms",
-  "version": "1.6.2",
+  "version": "1.7.1",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
