@@ -308,6 +308,9 @@ angular.module('SomEnergiaWebForms')
                     return error('OWNER_CHANGED_NOT_CHOSEN');
                 }
             }
+            if ($scope.form.ownerIsMember === undefined) {
+                return error('OWNER_IS_MEMBER_NOT_CHOSEN');
+            }
             if ($scope.form.ownerIsMember !== 'yes') {
                 if ($scope.owner.isReady === undefined || !$scope.owner.isReady()) {
                     return error($scope.owner.error);
