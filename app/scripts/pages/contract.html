@@ -506,17 +506,17 @@
                 </div>
             </div>
             <div class="row" ng-class="{'extra-margin-top': esAlta()}">
-                <div class="col-sm-7 col-xs-12">
+                <div class="col-sm-7 col-xs-12 has-feedback">
                     <label>{{ 'QUI_ES_LA_PERSONA_TITULAR' | translate }}</label>
                     <select class="form-control input-lg" data-ng-model="form.ownerIsMember" data-ng-change="formListener()">
-                        <option value='' selected>{{ 'SELECCIONA' | translate}}</option>
+                        <option value="" selected>{{ 'SELECCIONA' | translate}}</option>
                         <option value="yes">{{ initForm.soci.nom + ' ' + initForm.soci.cognom }} ({{ 'SOCI_SOM_ENERGIA' | translate }}) </option>
                         <option value="no">{{ 'ALTRA_PERSONA' | translate }}</option>
                     </select>
                     <span class="form-control-feedback glyphicon "  data-ng-class="{
-                        'glyphicon-asterisk danger': form.ownerIsMember === undefined,
-                        'glyphicon-ok success': form.ownerIsMember !== undefined,
-                    }" style="right:4em"></span>
+                        'glyphicon-asterisk danger': ! form.ownerIsMember,
+                        'glyphicon-ok success': form.ownerIsMember,
+                    }" style="right:2em"></span>
                 </div>
             </div>
             <div class="well" data-ng-show="form.ownerIsMember === 'no'">

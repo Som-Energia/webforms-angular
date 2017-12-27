@@ -24,10 +24,10 @@ angular.module('SomEnergiaWebForms')
 
         $scope.showAll = false;
         // To false to debug one page completion state independently from the others
-        $scope.waitPreviousPages = false;
+        $scope.waitPreviousPages = true;
 
         $scope.form = {};
-        $scope.form.ownerIsMember='yes';
+        $scope.form.ownerIsMember='';
         $scope.form.phases = undefined;
         $scope.form.discriminacio = undefined;
         $scope.form.choosepayer = cfg.PAYER_TYPE_TITULAR;
@@ -308,7 +308,7 @@ angular.module('SomEnergiaWebForms')
                     return error('OWNER_CHANGED_NOT_CHOSEN');
                 }
             }
-            if ($scope.form.ownerIsMember === undefined) {
+            if ($scope.form.ownerIsMember === undefined || $scope.form.ownerIsMember==="") {
                 return error('OWNER_IS_MEMBER_NOT_CHOSEN');
             }
             if ($scope.form.ownerIsMember !== 'yes') {
@@ -367,6 +367,7 @@ angular.module('SomEnergiaWebForms')
 
         $scope.formListener = function() {
             //console.log('listener');
+            // TODO: Remove these two lines?
             $scope.effectiveOwner = $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci : $scope.owner;
             $scope.effectivePayer = $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER ? $scope.payer :
                 $scope.form.choosepayer=== cfg.PAYER_TYPE_TITULAR ? $scope.effectiveOwner : $scope.initForm.soci;
