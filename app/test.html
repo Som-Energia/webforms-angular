@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app ng-init="idiom='ca'; page='modifica'">
+  <body ng-app ng-init="idiom='ca'; page='contractacio'">
 	<script type="text/javascript">
 		document.domain = 'somenergia.coop';
 	</script>
@@ -27,9 +27,9 @@
 		</select>
 		<div>Formulari {{page}}</div>
 		<select class='form-control' ng-model="page">
-			<option value='modifica' selected>Modificació Contractual</a>
-			<option value='soci'>Nou Soci/a</a>
 			<option value='contractacio'>Contractació</a>
+			<option value='modifica'>Modificació Contractual</a>
+			<option value='soci'>Nou Soci/a</a>
 			<option value='generationkwh'>Generation kWh</a>
 			<option value='aportacionsvoluntaries'>Aportacions volutaries</a>
 		</select>
