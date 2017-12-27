@@ -283,6 +283,9 @@ angular.module('SomEnergiaWebForms')
                 ENVIANT: 'Bidaltzen',
                 REVIEW_DATA_AND_CONFIRM: 'Birpasa itzazu datuak. Egiaztatzeko, klika ezazu azkeneko botoian.',
                 LA_TEVA_TARIFA_ES: 'Zure tarifa hauxe izango da',
+
+                // UNTRANSLATED
+               OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.'
             })
         ;
     });

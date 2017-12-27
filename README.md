@@ -71,52 +71,36 @@ This should be sample parameters to check the website while developing
 ### Deploy on testing
 
 To deploy the on the testing environment,
-ensure:
 
-- You are in the devel branch
-- Your secret.json is pointing to `/home/somenergia/webforms2`
+- Ensure you are in the `devel` branch
 - Execute
 
-    $ grunt build
-    $ grunt sftp
+    $ ./deploytest.sh
 
 It will be available at: http://testforms.somenergia.coop/
 
 ### Deploy on production
 
-Webforms are integrated in Wordpress in two ways:
-
-- As an iframe (most forms)
-	- rely on sftp upload
-- Embeding the index.html code (just `newpartner` form)
-	- relies on rawgit plus a version tag
-
 We deploy production from `master` branch.
-We should merge devel.
 
-***Ensure your secret.json is pointing to `/home/somenergia/webforms2-prod`
-(without `-devel`)***
+- Test it in local with `grunt serve`.
+- Upgrade version in `package.json`
+- We should merge devel.
 
     $ git checkout master
     $ git merge devel
     $ grunt build
 
-Test it in local with `grunt serve`.
+- Ensure you are in the `master` branch
+- Tag the release
 
     $ git push
     $ git tag v1.4.0 # change to the next version!!
     $ git push --tags
-    $ grunt sftp
 
-Update the version tag on the rawgit urls you find at:
+- Execute
 
-`~somenergia/www2/wp-content/themes/superior/footer-forms.php`
-
-And because this is a change at the file system level,
-WP does not realize it happened and
-you should invalidate the wp cache.
-
-WP Dashboard -> Page Cache -> Empty all caches
+    $ ./deployprod.sh
 
 
 It will be available at: http://www.somenergia.coop

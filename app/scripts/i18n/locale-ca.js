@@ -283,6 +283,9 @@ angular.module('SomEnergiaWebForms')
                 ENVIANT: 'Enviant',
                 REVIEW_DATA_AND_CONFIRM: 'Reviseu les dades. Per confirmar-les, premeu el butó del final.',
                 LA_TEVA_TARIFA_ES: 'La teva tarifa serà',
+
+                // UNTRANSLATED
+                OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicat quina persona serà la titular del contracte.'
             })
         ;
     });

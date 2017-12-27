@@ -283,6 +283,9 @@ angular.module('SomEnergiaWebForms')
                 ENVIANT: 'Enviando',
                 REVIEW_DATA_AND_CONFIRM: 'Revisa os datos. Para confirmalos, preme o botón do final.',
                 LA_TEVA_TARIFA_ES: 'A túa tarifa será',
+
+                // UNTRANSLATED
+               OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.'
             })
         ;
     });
