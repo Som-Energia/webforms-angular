@@ -183,9 +183,6 @@ angular.module('SomEnergiaWebForms')
                 HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Izapide-arazoak ekiditeko, ipini <b> oraingo fakturan agertzen diren tarifa eta potentzia berdinak </b>. Tarifa edo potentzia aldaketa eskatu ahal izango duzu behin kontratua gurekin aktibatuta.',
                 HELP_TARIFA_ALTA: 'Hurrengo eremuak betetzeko laguntza botoiak erabiltzea gomendatzen dizugu.',
                 DADES_TITULAR_NOU_CONTRACTE: 'Kontratuaren titularra',
-                VOLS_MANTENIR_EL_TITULAR: 'Oraingo kontratuaren titularrak jarraituko du?',
-                NO_CANVI_DE_TITULAR: 'Bai.<br/>Ez dut titularra aldatu nahi',
-                SI_CANVI_DE_TITULAR: 'Ez.<br/>Titularra aldatu nahi dut Som Energia-rako aldaketa baliatuta',
                 QUI_ES_LA_PERSONA_TITULAR: 'Nor izango da titularra?',
                 ALTRA_PERSONA: 'Beste pertsona bat',
                 ACCEPTO_CONDICIONS_GENERALS: 'Kontratuaren baldintza orokorrak onartzen ditut <strong><a target="_blank" href="{{url}}"> </a></strong>',
@@ -285,7 +282,10 @@ angular.module('SomEnergiaWebForms')
                 LA_TEVA_TARIFA_ES: 'Zure tarifa hauxe izango da',
 
                 // UNTRANSLATED
-               OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.'
+                OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.',
+                VOLS_MANTENIR_EL_TITULAR: 'Oraingo kontratuaren titularrak jarraituko du?',
+                NO_CANVI_DE_TITULAR: 'Bai.<br/>Ez dut titularra aldatu nahi',
+                SI_CANVI_DE_TITULAR: 'Ez.<br/>Titularra aldatu nahi dut Som Energia-rako aldaketa baliatuta'
             })
         ;
     });

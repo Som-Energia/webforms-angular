@@ -183,9 +183,6 @@ angular.module('SomEnergiaWebForms')
                 HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Para evitar problemas de tramitación, poña <b>a mesma tarifa e potencia que aparece na factura actual</b>. Poderá solicitar o cambio de tarifa ou potencia unha vez teña o contrato activado con nos.',
                 HELP_TARIFA_ALTA: 'Para completar os campos seguintes recomendámosche premer nos botóns de axuda.',
                 DADES_TITULAR_NOU_CONTRACTE: 'Titular do contrato',
-                VOLS_MANTENIR_EL_TITULAR: 'Manténse a persoa titular do actual contrato?',
-                NO_CANVI_DE_TITULAR: 'Si.<br/>Non quero mudar o titular',
-                SI_CANVI_DE_TITULAR: 'Non.<br/>Quero mudar a persoa titular aproveitando o cambio a Som Energia',
                 QUI_ES_LA_PERSONA_TITULAR: 'Quen será a persoa titular?',
                 ALTRA_PERSONA: 'Outra persona',
                 ACCEPTO_CONDICIONS_GENERALS: 'Acepto as <strong><a target="_blank" href="{{url}}">condicións xerais do contrato</a></strong>',
@@ -285,7 +282,10 @@ angular.module('SomEnergiaWebForms')
                 LA_TEVA_TARIFA_ES: 'A túa tarifa será',
 
                 // UNTRANSLATED
-               OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.'
+                OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.',
+                VOLS_MANTENIR_EL_TITULAR: 'Manténse a persoa titular do actual contrato?',
+                NO_CANVI_DE_TITULAR: 'Si.<br/>Non quero mudar o titular',
+                SI_CANVI_DE_TITULAR: 'Non.<br/>Quero mudar a persoa titular aproveitando o cambio a Som Energia'
             })
         ;
     });
