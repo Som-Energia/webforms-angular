@@ -10,15 +10,24 @@
         model="wizardPage"
         header="{{ 'FORMULARI_CONTRACTACIO' | translate }}"
         page-name='dadesSociPage'
+        next-page="'supplyPointPage'"
         show-always='showAll'
-        ready="initForm.isReady()"
-        hide-buttons
+        ready="tokenInfo.ready || tokenInfo.isReady()"
     >
+        <token-retriever
+            ng-if="token"
+            model="tokenInfo"
+            uri="intercoop/tokeninfo/contract/{{token}}"
+            token="{{token}}"
+            onready="setOwnerAndPayerLanguage(tokenInfo.soci);"
+        >
+        </token-retriever>
         <member-chooser
+            ng-if="!token"
             button-text="{{'INICIAR_CONTRACTACIO' | translate }}"
             show-member-name="true"
-            onproceed="setOwnerAndPayerLanguage(initForm.soci); setPage('supplyPointPage')"
-            model="initForm"
+            onproceed="setOwnerAndPayerLanguage(tokenInfo.soci); setPage('supplyPointPage')"
+            model="tokenInfo"
             formvalues="formsoci"
         ></member-chooser>
     </wizard-page>

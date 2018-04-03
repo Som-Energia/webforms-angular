@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('SomEnergiaWebForms')
-    .controller('OrderCtrl', function (cfg, ApiSomEnergia, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
+    .controller('IntercoopCtrl', function (cfg, ApiSomEnergia, ValidateHandler, uiHandler, $scope, $http, $routeParams, $translate, $timeout, $window, $log) {
 
         // INIT
         $scope.developing = cfg.DEVELOPMENT;
@@ -22,9 +22,11 @@ angular.module('SomEnergiaWebForms')
             $translate.use($routeParams.locale);
         }
 
-        $scope.showAll = true;
+        $scope.showAll = false;
         // To false to debug one page completion state independently from the others
         $scope.waitPreviousPages = true;
+
+        $scope.token = $routeParams.token;
 
         $scope.form = {};
         $scope.form.ownerIsMember='';
@@ -34,7 +36,7 @@ angular.module('SomEnergiaWebForms')
         $scope.form.address = {};
         $scope.form.invoice = {};
         $scope.form.documentation = {};
-        $scope.initForm = {};
+        $scope.tokenInfo = {soci:{}};
         $scope.formsoci = {};
         $scope.ibanEditor = {};
         $scope.cupsEditor = {};
@@ -168,11 +170,7 @@ angular.module('SomEnergiaWebForms')
 
         // CONTROL READY STEPS ON CHANGE FORM
         $scope.isPartnerPageComplete = function() {
-            return (
-                $scope.initForm !== undefined &&
-                $scope.initForm.isReady !== undefined &&
-                $scope.initForm.isReady()
-            );
+            return $scope.tokenInfo.ready;
         };
         $scope.setOwnerAndPayerLanguage=function(soci) {
             var language = soci.lang;
@@ -368,9 +366,9 @@ angular.module('SomEnergiaWebForms')
         $scope.formListener = function() {
             //console.log('listener');
             // TODO: Remove these two lines?
-            $scope.effectiveOwner = $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci : $scope.owner;
+            $scope.effectiveOwner = $scope.form.ownerIsMember === 'yes' ? $scope.tokenInfo.soci : $scope.owner;
             $scope.effectivePayer = $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER ? $scope.payer :
-                $scope.form.choosepayer=== cfg.PAYER_TYPE_TITULAR ? $scope.effectiveOwner : $scope.initForm.soci;
+                $scope.form.choosepayer=== cfg.PAYER_TYPE_TITULAR ? $scope.effectiveOwner : $scope.tokenInfo.soci;
             //$scope.isPayerPageComplete();
         };
 
@@ -409,8 +407,9 @@ angular.module('SomEnergiaWebForms')
             uiHandler.showLoadingDialog();
             // Prepare request data
             var formData = new FormData();
-            formData.append('id_soci', $scope.formsoci.socinumber);
-            formData.append('dni', $scope.formsoci.dni);
+            // TODO: Change formsoci
+            formData.append('id_soci', $scope.tokenInfo.soci.socinumber);
+            formData.append('dni', $scope.tokenInfo.soci.dni);
             formData.append('canvi_titular', $scope.form.changeowner === 'yes' ? 1 : 0);
             formData.append('proces', $scope.esAlta() ? 'A3' : $scope.form.changeowner === 'yes' ? 'C2': 'C1');
             var ownerIsMember = $scope.form.ownerIsMember==='yes';
@@ -420,17 +419,17 @@ angular.module('SomEnergiaWebForms')
             formData.append('tipus_persona', $scope.owner.usertype === 'person' ? 0 : 1);
             formData.append('representant_nom', $scope.owner.usertype === 'company' ? $scope.owner.representantname : '');
             formData.append('representant_dni', $scope.owner.usertype === 'company' ? $scope.owner.representantdni : '');
-            formData.append('titular_nom', ownerIsMember ? $scope.initForm.soci.nom : $scope.owner.name);
-            formData.append('titular_cognom', ownerIsMember ? $scope.initForm.soci.cognom : $scope.owner.surname || '');
-            formData.append('titular_dni', ownerIsMember ? $scope.initForm.soci.dni : $scope.owner.dni);
-            formData.append('titular_email', ownerIsMember ? $scope.initForm.soci.email : $scope.owner.email1);
-            formData.append('titular_tel', ownerIsMember ? $scope.initForm.soci.tel : $scope.owner.phone1);
-            formData.append('titular_tel2', ownerIsMember ? $scope.initForm.soci.tel2 : $scope.owner.phone2 || '');
-            formData.append('titular_adreca', ownerIsMember ? $scope.initForm.soci.adreca : $scope.owner.address);
-            formData.append('titular_municipi', ownerIsMember ? $scope.initForm.soci.municipi : $scope.owner.city.id);
-            formData.append('titular_cp', ownerIsMember ? $scope.initForm.soci.cp : $scope.owner.postalcode);
-            formData.append('titular_provincia', ownerIsMember ? $scope.initForm.soci.provincia : $scope.owner.province.id);
-            formData.append('titular_lang', ownerIsMember ? $scope.initForm.soci.lang : $scope.owner.language.code);
+            formData.append('titular_nom', ownerIsMember ? $scope.tokenInfo.soci.nom : $scope.owner.name);
+            formData.append('titular_cognom', ownerIsMember ? $scope.tokenInfo.soci.cognom : $scope.owner.surname || '');
+            formData.append('titular_dni', ownerIsMember ? $scope.tokenInfo.soci.dni : $scope.owner.dni);
+            formData.append('titular_email', ownerIsMember ? $scope.tokenInfo.soci.email : $scope.owner.email1);
+            formData.append('titular_tel', ownerIsMember ? $scope.tokenInfo.soci.tel : $scope.owner.phone1);
+            formData.append('titular_tel2', ownerIsMember ? $scope.tokenInfo.soci.tel2 : $scope.owner.phone2 || '');
+            formData.append('titular_adreca', ownerIsMember ? $scope.tokenInfo.soci.adreca : $scope.owner.address);
+            formData.append('titular_municipi', ownerIsMember ? $scope.tokenInfo.soci.municipi : $scope.owner.city.id);
+            formData.append('titular_cp', ownerIsMember ? $scope.tokenInfo.soci.cp : $scope.owner.postalcode);
+            formData.append('titular_provincia', ownerIsMember ? $scope.tokenInfo.soci.provincia : $scope.owner.province.id);
+            formData.append('titular_lang', ownerIsMember ? $scope.tokenInfo.soci.lang : $scope.owner.language.code);
             formData.append('tarifa', $scope.form.rate);
             formData.append('cups', $scope.cupsEditor.value);
             formData.append('consum', $scope.form.estimation || ''); // TODO: Remove this when it is clear is not used anymore

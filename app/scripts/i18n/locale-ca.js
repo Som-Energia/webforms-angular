@@ -285,7 +285,9 @@ angular.module('SomEnergiaWebForms')
                 OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicat quina persona serà la titular del contracte.',
                 VOLS_MANTENIR_EL_TITULAR: 'Vols canviar l\'actual persona titular del contracte?',
                 NO_CANVI_DE_TITULAR: 'No, no vull.',
-                SI_CANVI_DE_TITULAR: 'Sí, sí vull.'
+                SI_CANVI_DE_TITULAR: 'Sí, sí vull.',
+                CONVIDAT_PER: 'Convidat per {{soci.nom}} {{soci.cognom}}, soci/a de {{soci.peer}}',
+                INVALID_INTERCOOP_SESSION: 'Hem perdut l\'enllaç amb l\'origen.'
             })
         ;
     });

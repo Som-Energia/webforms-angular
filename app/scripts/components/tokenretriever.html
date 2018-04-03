@@ -1,0 +1,14 @@
+<div class='tokenretriever row'>
+<div class="col-xs-12">
+    <div ng-show='loading'>
+    {{ 'CARREGAR_DADES_SOCI_VINCULAT' | translate }}...
+    </div>
+    <div ng-show='model.ready'>
+    {{ 'CONVIDAT_PER' | translate: model }}
+    </div>
+    <div ng-show='!model.ready && !loading'>
+    {{ 'INVALID_INTERCOOP_SESSION' | translate }}
+    </div>
+
+</div>
+</div>
