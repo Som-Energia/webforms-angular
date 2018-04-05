@@ -6,7 +6,7 @@
     <div ng-show='model.ready'>
     {{ 'CONVIDAT_PER' | translate: model }}
     </div>
-    <div ng-show='!model.ready && !loading'>
+    <div ng-show='!model.ready && !loading' class="alert alert-danger">
     {{ 'INVALID_INTERCOOP_SESSION' | translate }}
     </div>
 
