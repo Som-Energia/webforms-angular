@@ -20,8 +20,6 @@ angular.module('SomEnergiaWebForms')
                 CODI_POSTAL: 'Código postal',
                 PROVINCIA: 'Provincia',
                 POBLACIO: 'Poboación',
-                ACCEPTO_POLITICA_PRIVACITAT: 'Acepto a <strong><a target="_blank" href="//www.somenergia.coop/gl/politica-de-privacidade-cookies-y-aviso-legal/">política de privacidade</a></strong> de Som Energia',
-                ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT: 'Acepto as <strong><a target="_blank" href="//www.somenergia.coop/gl/condicions-xerais-do-contrato-de-subministro-de-enerxia-electrica/">condicións xerais do contrato</a></strong> e a <strong><a target="_blank" href="//www.somenergia.coop/gl/politica-de-privacidade-cookies-y-aviso-legal/">política de privacidade</a></strong>',
                 METODE_PAGAMENT: 'Forma de pagamento',
                 REBUT_BANCARI: 'Recibo bancario',
                 TARGETA_CREDIT: 'Tarxeta de crédito',
@@ -183,13 +181,8 @@ angular.module('SomEnergiaWebForms')
                 HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Para evitar problemas de tramitación, poña <b>a mesma tarifa e potencia que aparece na factura actual</b>. Poderá solicitar o cambio de tarifa ou potencia unha vez teña o contrato activado con nos.',
                 HELP_TARIFA_ALTA: 'Para completar os campos seguintes recomendámosche premer nos botóns de axuda.',
                 DADES_TITULAR_NOU_CONTRACTE: 'Titular do contrato',
-                VOLS_MANTENIR_EL_TITULAR: 'Manténse a persoa titular do actual contrato?',
-                NO_CANVI_DE_TITULAR: 'Si.<br/>Non quero mudar o titular',
-                SI_CANVI_DE_TITULAR: 'Non.<br/>Quero mudar a persoa titular aproveitando o cambio a Som Energia',
                 QUI_ES_LA_PERSONA_TITULAR: 'Quen será a persoa titular?',
                 ALTRA_PERSONA: 'Outra persona',
-                ACCEPTO_CONDICIONS_GENERALS: 'Acepto as <strong><a target="_blank" href="{{url}}">condicións xerais do contrato</a></strong>',
-                ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/es/condiciones-del-contrato-de-som-energia/',
                 QUI_ES_TITULAR_COMPTE_BANCARI: 'A nome de quen está a conta onde se domiciliarán os recibos?',
                 ALGUN_DELS_TRES_PERIODES_MAJOR_QUE_15: 'Algún dos tres periodos debe ter mais de 15kW',
                 CUPS_EXISTENT: 'Xa temos un contrato con ese código CUPS',
@@ -283,9 +276,16 @@ angular.module('SomEnergiaWebForms')
                 ENVIANT: 'Enviando',
                 REVIEW_DATA_AND_CONFIRM: 'Revisa os datos. Para confirmalos, preme o botón do final.',
                 LA_TEVA_TARIFA_ES: 'A túa tarifa será',
+                ACCEPTO_CONDICIONS_GENERALS: 'Acepto as <strong><a target="_blank" href="{{url}}">condicións xerais do contrato</a></strong>',
+                ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/es/condiciones-del-contrato-de-som-energia/',
+                ACCEPTO_POLITICA_PRIVACITAT: 'Lin e acepto a <strong><a target="_blank" href="//www.somenergia.coop/gl/politica-de-privacidade-cookies-y-aviso-legal/">política de privacidade</a></strong> de Som Energia',
+                ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT: 'Lin e acepto as <strong><a target="_blank" href="//www.somenergia.coop/gl/condicions-xerais-do-contrato-de-subministro-de-enerxia-electrica/">condicións xeráis do contrato</a></strong> e a <strong><a target="_blank" href="//www.somenergia.coop/gl/politica-de-privacidade-cookies-y-aviso-legal/">política de privacidade</a></strong>',
 
                 // UNTRANSLATED
-               OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.'
+                OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.',
+                VOLS_MANTENIR_EL_TITULAR: '¿Quieres cambiar la actual persona titular del contrato?',
+                NO_CANVI_DE_TITULAR: 'No, no quiero.',
+                SI_CANVI_DE_TITULAR: 'Sí, sí quiero.'
             })
         ;
     });

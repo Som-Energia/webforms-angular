@@ -55,6 +55,10 @@ angular.module('SomEnergiaWebForms', [
                 templateUrl: 'scripts/pages/modify.html',
                 controller: 'ModifyCtrl'
             })
+            .when('/:locale/intercoop/contract', {
+                templateUrl: 'scripts/pages/intercoop.html',
+                controller: 'IntercoopCtrl'
+            })
             .otherwise({
 				// TODO: An error page, just to know we are doing something wrong
                 redirectTo: '/'

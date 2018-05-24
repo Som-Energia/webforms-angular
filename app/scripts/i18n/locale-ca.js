@@ -20,8 +20,6 @@ angular.module('SomEnergiaWebForms')
                 CODI_POSTAL: 'Codi postal',
                 PROVINCIA: 'Província',
                 POBLACIO: 'Municipi',
-                ACCEPTO_POLITICA_PRIVACITAT: 'Accepto la <strong><a target="_blank" href="//www.somenergia.coop/ca/politica-de-privacitat-cookies-i-avis-legal/">política de privacitat</a></strong> de Som Energia',
-                ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT: 'Accepto les <strong><a target="_blank" href="//www.somenergia.coop/ca/condicions-del-contracte-de-som-energia/">condicions generals del contracte</a></strong> i la <strong><a target="_blank" href="//www.somenergia.coop/ca/politica-de-privacitat-cookies-i-avis-legal/">política de privacidad</a></strong>',
                 METODE_PAGAMENT: 'Mètode de pagament',
                 REBUT_BANCARI: 'Rebut bancari',
                 TARGETA_CREDIT: 'Targeta de crèdit',
@@ -183,13 +181,8 @@ angular.module('SomEnergiaWebForms')
                 HELP_TARIFA_CANVI_COMERCIALITZADORA: 'Per evitar problemes de tramitació, poseu <b>la mateixa tarifa i potència que apareix a la factura actual</b>. Ens podreu sol·licitar canvis de tarifa o potència una vegada estigui el contracte activat amb nosaltres.',
                 HELP_TARIFA_ALTA: 'Per completar els següents camps us recomanem que cliqueu els botons d\'ajuda.',
                 DADES_TITULAR_NOU_CONTRACTE: 'Titular del contracte',
-                VOLS_MANTENIR_EL_TITULAR: 'Es manté la persona titular de l\'actual contracte?',
-                NO_CANVI_DE_TITULAR: 'Si.<br/>No vull canviar el titular',
-                SI_CANVI_DE_TITULAR: 'No.<br/>Vull canviar la persona titular aprofitant el canvi a Som Energia',
                 QUI_ES_LA_PERSONA_TITULAR: 'Qui serà la persona titular?',
                 ALTRA_PERSONA: 'Una altra persona',
-                ACCEPTO_CONDICIONS_GENERALS: 'Accepto les <strong><a target="_blank" href="{{url}}">condicions generals del contracte</a></strong>',
-                ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/ca/condicions-del-contracte-de-som-energia/',
                 QUI_ES_TITULAR_COMPTE_BANCARI: 'A nom de qui està el compte on es domiciliaran els rebuts?',
                 ALGUN_DELS_TRES_PERIODES_MAJOR_QUE_15: 'Algun dels tres periodes ha de tenir més de 15kW',
                 CUPS_EXISTENT: 'Ja tenim un contracte amb aquest codi CUPS',
@@ -283,9 +276,18 @@ angular.module('SomEnergiaWebForms')
                 ENVIANT: 'Enviant',
                 REVIEW_DATA_AND_CONFIRM: 'Reviseu les dades. Per confirmar-les, premeu el butó del final.',
                 LA_TEVA_TARIFA_ES: 'La teva tarifa serà',
+                ACCEPTO_CONDICIONS_GENERALS: 'He llegit i accepto les <strong><a target="_blank" href="{{url}}">condicions generals del contracte</a></strong>',
+                ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/ca/condicions-del-contracte-de-som-energia/',
+                ACCEPTO_POLITICA_PRIVACITAT: 'Accepto la <strong><a target="_blank" href="//www.somenergia.coop/ca/politica-de-privacitat-cookies-i-avis-legal/">política de privacitat</a></strong> de Som Energia',
+                ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT: 'He llegit i accepto les <strong><a target="_blank" href="//www.somenergia.coop/ca/condicions-del-contracte-de-som-energia/">condicions generals del contracte</a></strong> i la <strong><a target="_blank" href="//www.somenergia.coop/ca/politica-de-privacitat-cookies-i-avis-legal/">política de privacidad</a></strong>',
 
                 // UNTRANSLATED
-                OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicat quina persona serà la titular del contracte.'
+                OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicat quina persona serà la titular del contracte.',
+                VOLS_MANTENIR_EL_TITULAR: 'Vols canviar l\'actual persona titular del contracte?',
+                NO_CANVI_DE_TITULAR: 'No, no vull.',
+                SI_CANVI_DE_TITULAR: 'Sí, sí vull.',
+                CONVIDAT_PER: 'Convidat per {{soci.nom}} {{soci.cognom}}, soci/a de {{soci.peer}}',
+                INVALID_INTERCOOP_SESSION: 'Hem perdut l\'enllaç amb l\'origen.'
             })
         ;
     });
