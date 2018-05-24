@@ -20,8 +20,6 @@ angular.module('SomEnergiaWebForms')
                 CODI_POSTAL: 'Posta-kodea',
                 PROVINCIA: 'Probintzia',
                 POBLACIO: 'Herria',
-                ACCEPTO_POLITICA_PRIVACITAT: 'Som Energiaren <strong><a target="_blank" href="//www.somenergia.coop/eu/pribatutasun-politika-cookie-ak-eta-lege-oharra/">pribatutasun-politika</a></strong>onartzen dut',
-                ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT: 'Kontratuaren baldintza orokorrak <strong><a target="_blank" href="//www.somenergia.coop/eu/energia-elektriko-hornikuntzaren-kontratuko-baldintza-orokorrak/">onartzen ditut</a></strong> i la <strong><a target="_blank" href="//www.somenergia.coop/eu/pribatutasun-politika-cookie-ak-eta-lege-oharra/">pribatutasun-politika</a></strong>',
                 METODE_PAGAMENT: 'Ordainketa-era',
                 REBUT_BANCARI: 'Banku-ordainagiria',
                 TARGETA_CREDIT: 'Kreditu-txartela',
@@ -185,8 +183,6 @@ angular.module('SomEnergiaWebForms')
                 DADES_TITULAR_NOU_CONTRACTE: 'Kontratuaren titularra',
                 QUI_ES_LA_PERSONA_TITULAR: 'Nor izango da titularra?',
                 ALTRA_PERSONA: 'Beste pertsona bat',
-                ACCEPTO_CONDICIONS_GENERALS: 'Kontratuaren baldintza orokorrak onartzen ditut <strong><a target="_blank" href="{{url}}"> </a></strong>',
-                ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/es/condiciones-del-contrato-de-som-energia/',
                 QUI_ES_TITULAR_COMPTE_BANCARI: 'Noren izenean dago ordainagiriak pasatuko diren kontua?',
                 ALGUN_DELS_TRES_PERIODES_MAJOR_QUE_15: 'Hiru periodoetako batek 15kW baino gehiago izan behar du',
                 CUPS_EXISTENT: 'Dagoeneko badaukagu kontratua CUPS kode horrekin',
@@ -280,12 +276,16 @@ angular.module('SomEnergiaWebForms')
                 ENVIANT: 'Bidaltzen',
                 REVIEW_DATA_AND_CONFIRM: 'Birpasa itzazu datuak. Egiaztatzeko, klika ezazu azkeneko botoian.',
                 LA_TEVA_TARIFA_ES: 'Zure tarifa hauxe izango da',
+                ACCEPTO_CONDICIONS_GENERALS: 'Kontratuaren baldintza orokorrak onartzen ditut <strong><a target="_blank" href="{{url}}"> </a></strong>',
+                ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/es/condiciones-del-contrato-de-som-energia/',
+                ACCEPTO_POLITICA_PRIVACITAT: 'Som Energiaren <strong><a target="_blank" href="//www.somenergia.coop/eu/pribatutasun-politika-cookie-ak-eta-lege-oharra/">pribatutasun-politika</a></strong> irakurri eta onartzen dut',
+                ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT: 'Kontratuaren baldintza orokorrak <strong><a target="_blank" href="//www.somenergia.coop/eu/energia-elektriko-hornikuntzaren-kontratuko-baldintza-orokorrak/">onartzen ditut</a></strong> i la <strong><a target="_blank" href="//www.somenergia.coop/eu/pribatutasun-politika-cookie-ak-eta-lege-oharra/">pribatutasun-politika</a></strong>',
 
                 // UNTRANSLATED
                 OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.',
-                VOLS_MANTENIR_EL_TITULAR: 'Oraingo kontratuaren titularrak jarraituko du?',
-                NO_CANVI_DE_TITULAR: 'Bai.<br/>Ez dut titularra aldatu nahi',
-                SI_CANVI_DE_TITULAR: 'Ez.<br/>Titularra aldatu nahi dut Som Energia-rako aldaketa baliatuta'
+                VOLS_MANTENIR_EL_TITULAR: '¿Quieres cambiar la actual persona titular del contrato?',
+                NO_CANVI_DE_TITULAR: 'No, no quiero.',
+                SI_CANVI_DE_TITULAR: 'Sí, sí quiero.'
             })
         ;
     });
