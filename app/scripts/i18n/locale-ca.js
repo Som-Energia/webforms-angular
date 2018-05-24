@@ -278,8 +278,7 @@ angular.module('SomEnergiaWebForms')
                 LA_TEVA_TARIFA_ES: 'La teva tarifa serà',
                 ACCEPTO_CONDICIONS_GENERALS: 'He llegit i accepto les <strong><a target="_blank" href="{{url}}">condicions generals del contracte</a></strong>',
                 ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/ca/condicions-del-contracte-de-som-energia/',
-                ACCEPTO_POLITICA_PRIVACITAT: 'Accepto la <strong><a target="_blank" href="//www.somenergia.coop/ca/politica-de-privacitat-cookies-i-avis-legal/">política de privacitat</a></strong> de Som Energia',
-                ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT: 'He llegit i accepto les <strong><a target="_blank" href="//www.somenergia.coop/ca/condicions-del-contracte-de-som-energia/">condicions generals del contracte</a></strong> i la <strong><a target="_blank" href="//www.somenergia.coop/ca/politica-de-privacitat-cookies-i-avis-legal/">política de privacidad</a></strong>',
+                ACCEPTO_POLITICA_PRIVACITAT: 'He llegit i accepto la <strong><a target="_blank" href="//www.somenergia.coop/ca/politica-de-privacitat-cookies-i-avis-legal/">política de privacitat</a></strong> de Som Energia',
 
                 // UNTRANSLATED
                 OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicat quina persona serà la titular del contracte.',

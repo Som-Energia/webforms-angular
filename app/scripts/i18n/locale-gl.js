@@ -23,7 +23,7 @@ angular.module('SomEnergiaWebForms')
                 METODE_PAGAMENT: 'Forma de pagamento',
                 REBUT_BANCARI: 'Recibo bancario',
                 TARGETA_CREDIT: 'Tarxeta de crédito',
-                COST: 'custe para a cooperativa',
+                COST: 'custo para a cooperativa',
                 INFO_APORTACIO: 'A achega para ser socio/a é de 100€<br/>Os 100€ páganse unha soa vez, non hai cota anual e devólvense se te dás de baixa.',
                 FINALITZA_PROCES: 'Continuar o proceso',
                 FORMULARI_NO_DISPONIBLE: 'Formulario non dispoñible, desculpen as molestias.',
@@ -276,10 +276,9 @@ angular.module('SomEnergiaWebForms')
                 ENVIANT: 'Enviando',
                 REVIEW_DATA_AND_CONFIRM: 'Revisa os datos. Para confirmalos, preme o botón do final.',
                 LA_TEVA_TARIFA_ES: 'A túa tarifa será',
-                ACCEPTO_CONDICIONS_GENERALS: 'Acepto as <strong><a target="_blank" href="{{url}}">condicións xerais do contrato</a></strong>',
+                ACCEPTO_CONDICIONS_GENERALS: 'Lin e acepto as <strong><a target="_blank" href="{{url}}">condicións xerais do contrato</a></strong>',
                 ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/es/condiciones-del-contrato-de-som-energia/',
                 ACCEPTO_POLITICA_PRIVACITAT: 'Lin e acepto a <strong><a target="_blank" href="//www.somenergia.coop/gl/politica-de-privacidade-cookies-y-aviso-legal/">política de privacidade</a></strong> de Som Energia',
-                ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT: 'Lin e acepto as <strong><a target="_blank" href="//www.somenergia.coop/gl/condicions-xerais-do-contrato-de-subministro-de-enerxia-electrica/">condicións xeráis do contrato</a></strong> e a <strong><a target="_blank" href="//www.somenergia.coop/gl/politica-de-privacidade-cookies-y-aviso-legal/">política de privacidade</a></strong>',
 
                 // UNTRANSLATED
                 OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.',
