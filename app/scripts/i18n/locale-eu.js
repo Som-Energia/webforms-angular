@@ -276,10 +276,9 @@ angular.module('SomEnergiaWebForms')
                 ENVIANT: 'Bidaltzen',
                 REVIEW_DATA_AND_CONFIRM: 'Birpasa itzazu datuak. Egiaztatzeko, klika ezazu azkeneko botoian.',
                 LA_TEVA_TARIFA_ES: 'Zure tarifa hauxe izango da',
-                ACCEPTO_CONDICIONS_GENERALS: 'Kontratuaren baldintza orokorrak onartzen ditut <strong><a target="_blank" href="{{url}}"> </a></strong>',
+                ACCEPTO_CONDICIONS_GENERALS: '<strong><a target="_blank" href="{{url}}">Kontratuaren baldintza orokorrak</a> irakurri eta onartzen ditut</strong>',
                 ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/es/condiciones-del-contrato-de-som-energia/',
                 ACCEPTO_POLITICA_PRIVACITAT: 'Som Energiaren <strong><a target="_blank" href="//www.somenergia.coop/eu/pribatutasun-politika-cookie-ak-eta-lege-oharra/">pribatutasun-politika</a></strong> irakurri eta onartzen dut',
-                ACCEPTO_CONDICIONS_I_POLITICA_PRIVACITAT: 'Kontratuaren baldintza orokorrak <strong><a target="_blank" href="//www.somenergia.coop/eu/energia-elektriko-hornikuntzaren-kontratuko-baldintza-orokorrak/">onartzen ditut</a></strong> i la <strong><a target="_blank" href="//www.somenergia.coop/eu/pribatutasun-politika-cookie-ak-eta-lege-oharra/">pribatutasun-politika</a></strong>',
 
                 // UNTRANSLATED
                 OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.',
