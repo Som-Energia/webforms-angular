@@ -120,5 +120,5 @@ To upgrade/add a run-time dependency:
 To upgrade/add a development dependency:
 
 ```bash
-npm install <dependency>
+npm install -S <dependency>
 ```
