@@ -6,11 +6,11 @@ Forms for Som Energia web page.
 
 ### Install dependent packages
 ```bash
-	$ sudo apt-get install npm ruby-compass
-	$ sudo ln -s /usr/bin/nodejs /usr/bin/node
-	$ npm install
-	$ sudo npm install -g  bower grunt-cli
-	$ bower install
+$ sudo apt-get install npm ruby-compass
+$ sudo ln -s /usr/bin/nodejs /usr/bin/node
+$ npm install
+$ sudo npm install -g  bower grunt-cli
+$ bower install
 ```
 
 
@@ -20,43 +20,43 @@ Edit the following templates:
 #### app/scripts/debug.js
 This should be sample parameters to check the website while developing
 ```javascript
-	'use strict';
+'use strict';
 
-	angular.module('newSomEnergiaWebformsApp')
-		.constant('debugCfg', {
-			SOCI: '0000',
-			CIF: 'B12345678',
-			COMPANY: 'ACME',
-			DNI: '12345678Z',
-			NAME: 'Bugs',
-			SURNAME: 'Bunny',
-			EMAIL: 'bunny@acme.info',
-			PHONE: '555112233',
-			ADDRESS: 'Rue del Percebe 13',
-			POSTALCODE: '08080',
-			CUPS: 'ES001234567891234LE0F',
-			CNAE: '0520',
-			POWER: '5.5',
-			RATE: '2.0A',
-			ACCOUNT_BANK: '1491',
-			ACCOUNT_OFFICE: '0001',
-			ACCOUNT_CHECKSUM: '20',
-			ACCOUNT_NUMBER: '2012341234',
-			IBAN1: 'ES50',
-			IBAN2: '1491',
-			IBAN3: '0001',
-			IBAN4: '2020',
-			IBAN5: '1234',
-			IBAN6: '1234'
-		})
-	;
+angular.module('newSomEnergiaWebformsApp')
+	.constant('debugCfg', {
+		SOCI: '0000',
+		CIF: 'B12345678',
+		COMPANY: 'ACME',
+		DNI: '12345678Z',
+		NAME: 'Bugs',
+		SURNAME: 'Bunny',
+		EMAIL: 'bunny@acme.info',
+		PHONE: '555112233',
+		ADDRESS: 'Rue del Percebe 13',
+		POSTALCODE: '08080',
+		CUPS: 'ES001234567891234LE0F',
+		CNAE: '0520',
+		POWER: '5.5',
+		RATE: '2.0A',
+		ACCOUNT_BANK: '1491',
+		ACCOUNT_OFFICE: '0001',
+		ACCOUNT_CHECKSUM: '20',
+		ACCOUNT_NUMBER: '2012341234',
+		IBAN1: 'ES50',
+		IBAN2: '1491',
+		IBAN3: '0001',
+		IBAN4: '2020',
+		IBAN5: '1234',
+		IBAN6: '1234'
+	})
+;
 ```
 
 
 ### Launch the development server
 ```bash
-	$ grunt serve
-	$ firefox http://localhost:9000
+$ grunt serve
+$ firefox http://localhost:9000
 ```
 
 
@@ -66,7 +66,7 @@ To deploy the on the testing environment,
 - Ensure you are in the `devel` branch
 - Execute
 ```bash
-    $ ./deploytest.sh
+$ ./deploytest.sh
 ```
 It will be available at: http://testforms.somenergia.coop/
 
@@ -91,7 +91,7 @@ We deploy production from `master` branch.
 
 - Execute
 ```bash
-    $ ./deployprod.sh
+$ ./deployprod.sh
 ```
 
 It will be available at: http://www.somenergia.coop
