@@ -282,7 +282,7 @@ angular.module('SomEnergiaWebForms')
 
                 // UNTRANSLATED
                 OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.',
-                VOLS_MANTENIR_EL_TITULAR: '¿Quieres cambiar la actual persona titular del contrato?',
+                VOLS_MANTENIR_EL_TITULAR: 'Queres mudala persoa titular do contrato?',
                 NO_CANVI_DE_TITULAR: 'No, no quiero.',
                 SI_CANVI_DE_TITULAR: 'Sí, sí quiero.'
             })
