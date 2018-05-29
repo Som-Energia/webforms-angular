@@ -17,18 +17,6 @@ Forms for Som Energia web page.
 ### Generate untracked files
 Edit the following templates:
 
-#### secret.json
-This should be the parameters to upload the website:
-```json
-	{
-		"host" : "myhost",
-		"username" : "andrewrjones",
-		"password" : "**************",
-		"path": "/target/path"
-	}
-```
-
-
 #### app/scripts/debug.js
 This should be sample parameters to check the website while developing
 ```javascript
