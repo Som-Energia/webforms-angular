@@ -1,6 +1,15 @@
 'use strict';
 
-var developmentMode = true;
+const developmentMode = true;
+
+const localMode = false;
+
+const mode = developmentMode ? ( localMode ? 'local' : 'devel') : 'prod';
+const apiBase = {
+    'local': 'http://localhost:5001/',
+    'devel': 'https://testing.somenergia.coop/',
+    'prod':  'https://api.somenergia.coop/',
+}[mode]
 
 angular.module('SomEnergiaWebForms', [
         'ngCookies',
@@ -78,10 +87,7 @@ angular.module('SomEnergiaWebForms', [
     .constant('cfg', {
         DEVELOPMENT: developmentMode,
         BASE_DOMAIN: 'somenergia.coop',
-        API_BASE_URL: (developmentMode ?
-          // 'http://localhost:5001/': // development api
-          'https://testing.somenergia.coop/': // testing api
-          'https://api.somenergia.coop/'),  // production api
+        API_BASE_URL: apiBase,
         STATUS_OFFLINE: 'OFFLINE',
         STATUS_ONLINE: 'ONLINE',
         STATE_TRUE: true,
