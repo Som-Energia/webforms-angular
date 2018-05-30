@@ -282,9 +282,9 @@ angular.module('SomEnergiaWebForms')
 
                 // UNTRANSLATED
                 OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.',
-                VOLS_MANTENIR_EL_TITULAR: '¿Quieres cambiar la actual persona titular del contrato?',
-                NO_CANVI_DE_TITULAR: 'No, no quiero.',
-                SI_CANVI_DE_TITULAR: 'Sí, sí quiero.'
+                VOLS_MANTENIR_EL_TITULAR: 'Kontratuaren titularra aldatu nahi duzu?',
+                NO_CANVI_DE_TITULAR: 'Ez dut nahi.',
+                SI_CANVI_DE_TITULAR: 'Bai, nahi dut.'
             })
         ;
     });
