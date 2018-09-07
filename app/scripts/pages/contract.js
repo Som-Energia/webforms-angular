@@ -467,7 +467,7 @@ angular.module('SomEnergiaWebForms')
             formData.append('compte_municipi', noPayer ? '' : $scope.payer.city.id);
             formData.append('compte_email', noPayer ? '' : $scope.payer.email1);
             formData.append('compte_tel', noPayer ? '' : $scope.payer.phone1);
-            formData.append('compte_tel2', noPayer ? '' : $scope.payer.phone2);
+            formData.append('compte_tel2', noPayer ? '' : $scope.payer.phone2 || '');
             formData.append('compte_cp', noPayer ? '' : $scope.payer.postalcode);
             formData.append('compte_representant_nom', noPayer || $scope.payer.usertype !== 'company' ? '' : $scope.payer.representantname);
             formData.append('compte_representant_dni', noPayer || $scope.payer.usertype !== 'company' ? '' : $scope.payer.representantdni);

@@ -274,7 +274,7 @@ angular.module('SomEnergiaWebForms')
                 CONTACT_PHONE: 'Telèfon de contacte per accedir al comptador',
                 ENVIAR: 'Enviar',
                 ENVIANT: 'Enviant',
-                REVIEW_DATA_AND_CONFIRM: 'Reviseu les dades. Per confirmar-les, premeu el butó del final.',
+                REVIEW_DATA_AND_CONFIRM: 'Reviseu les dades. Per confirmar-les, premeu el botó del final.',
                 LA_TEVA_TARIFA_ES: 'La teva tarifa serà',
                 ACCEPTO_CONDICIONS_GENERALS: 'He llegit i accepto les <strong><a target="_blank" href="{{url}}">condicions generals del contracte</a></strong>',
                 ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/ca/condicions-del-contracte-de-som-energia/',
