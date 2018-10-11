@@ -176,7 +176,7 @@ angular.module('SomEnergiaWebForms')
         };
         $scope.setOwnerAndPayerLanguage=function(soci) {
             var language = soci.lang;
-            soci.langname = soci.lang==='ca_ES'?'Catalan':'Español';
+            soci.langname = soci.lang==='ca_ES'?'Català':'Español';
             $scope.payer.setLanguage(language);
             $scope.owner.setLanguage(language);
         };
