@@ -115,16 +115,17 @@ angular.module('SomEnergiaWebForms')
             $scope.formListener();
         });
         function recomputeFareFromAlta(/*oldvalue, newvalue*/) {
+            var newPower = parseFloat($scope.form.newpower);
             var newFare = (
-                $scope.form.newpower+0 < 10 ? '2.0' : (
-                $scope.form.newpower+0 < 15 ? '2.1' : (
-                $scope.form.newpower!==undefined ? '3.0' :
-                undefined)));
+                isNaN(newPower) ? undefined : (
+                newPower <= 10 ? '2.0' : (
+                newPower < 15 ? '2.1' : (
+                '3.0'))));
             if (newFare!=='3.0' && newFare !== undefined) {
-                $scope.form.power=$scope.form.newpower;
+                $scope.form.power=newPower;
             }
             if (newFare !== undefined) {
-                var discrimination = $scope.form.newpower+0<15 ? $scope.form.discriminacio : 'nodh';
+                var discrimination = newPower < 15 ? $scope.form.discriminacio : 'nodh';
                 if (discrimination===undefined) {
                     newFare = undefined;
                 } else {
