@@ -281,6 +281,7 @@ angular.module('SomEnergiaWebForms')
                 ACCEPTO_POLITICA_PRIVACITAT: 'Lin e acepto a <strong><a target="_blank" href="//www.somenergia.coop/gl/politica-de-privacidade-cookies-y-aviso-legal/">política de privacidade</a></strong> de Som Energia',
 
                 // UNTRANSLATED
+                POTENCIA_CUSTOM: 'Si quieres contratar una potencia distinta a estas, nos la puedes indicar respondiendo el correo electrónico que recibirás una vez rellenado el formulario',
                 OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.',
                 VOLS_MANTENIR_EL_TITULAR: 'Queres mudala persoa titular do contrato?',
                 NO_CANVI_DE_TITULAR: 'No, no quiero.',
