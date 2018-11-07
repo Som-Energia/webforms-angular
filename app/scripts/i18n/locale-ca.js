@@ -279,6 +279,7 @@ angular.module('SomEnergiaWebForms')
                 ACCEPTO_CONDICIONS_GENERALS: 'He llegit i accepto les <strong><a target="_blank" href="{{url}}">condicions generals del contracte</a></strong>',
                 ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/ca/condicions-del-contracte-de-som-energia/',
                 ACCEPTO_POLITICA_PRIVACITAT: 'He llegit i accepto la <strong><a target="_blank" href="//www.somenergia.coop/ca/politica-de-privacitat-cookies-i-avis-legal/">política de privacitat</a></strong> de Som Energia',
+                POTENCIA_CUSTOM: 'Si vols contractar una potencia diferent a aquestes, pots indicar-la tot responent el correu electrònic que rebrás un cop complimentat el formulari',
 
                 // UNTRANSLATED
                 OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicat quina persona serà la titular del contracte.',
