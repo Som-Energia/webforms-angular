@@ -54,6 +54,7 @@ angular.module('newSomEnergiaWebformsApp')
 
 
 ### Launch the development server
+- Ensure that `developmentMode` is true and `localMode` is true in `app.js`
 ```bash
 $ grunt serve
 $ firefox http://localhost:9000
@@ -64,6 +65,7 @@ $ firefox http://localhost:9000
 To deploy the on the testing environment,
 
 - Ensure you are in the `devel` branch
+- Ensure that `developmentMode` is true and `localMode` is false in `app.js`
 - Execute
 ```bash
 $ ./deploytest.sh
@@ -76,6 +78,7 @@ We deploy production from `master` branch.
 
 - Test it in local with `grunt serve`.
 - Upgrade version in `package.json`
+- Ensure that `developmentMode` is false and `localMode` is false in `app.js`
 - We should merge devel.
 
     $ git checkout master
