@@ -22,7 +22,7 @@ angular.module('SomEnergiaWebForms')
                 POBLACIO: 'Municipi',
                 METODE_PAGAMENT: 'Mètode de pagament',
                 REBUT_BANCARI: 'Rebut bancari',
-                TARGETA_CREDIT: 'Targeta de crèdit',
+                TARGETA_CREDIT: 'Targeta de crèdit/dèbit ',
                 COST: 'cost per a la cooperativa',
                 INFO_APORTACIO: 'L\'aportació per a esdevenir soci/a és de 100€<br/>Els 100€ es paguen una sola vegada, no hi ha quota anual i són retornables si et dones de baixa.',
                 FINALITZA_PROCES: 'Continuar el procés',
