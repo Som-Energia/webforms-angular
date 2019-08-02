@@ -369,8 +369,7 @@ angular.module('SomEnergiaWebForms')
             //console.log('listener');
             // TODO: Remove these two lines?
             $scope.effectiveOwner = $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci : $scope.owner;
-            $scope.effectivePayer = $scope.form.choosepayer === cfg.PAYER_TYPE_OTHER ? $scope.payer :
-                $scope.form.choosepayer=== cfg.PAYER_TYPE_TITULAR ? $scope.effectiveOwner : $scope.initForm.soci;
+            $scope.effectivePayer = $scope.effectiveOwner;
             //$scope.isPayerPageComplete();
         };
 

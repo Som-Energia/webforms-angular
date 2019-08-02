@@ -556,17 +556,7 @@
         >
             <div class="row extra-margin-top">
                 <div class="col-xs-12">
-                    <label>{{ 'QUI_ES_TITULAR_COMPTE_BANCARI' | translate }}</label>
-                </div>
-                <div class="col-xs-12">
-                    <select class="form-control input-lg" name="choosepayer" data-ng-model="form.choosepayer" data-ng-change="formListener()">
-                        <option value="titular">{{
-                            form.ownerIsMember === 'yes'?
-                                initForm.soci.nom + ' '+ initForm.soci.cognom:
-                                owner.name + ' ' + owner.surname
-}} ({{ 'TITULAR_CONTRACTE_ELECTRICITAT' | translate }})</option>
-                        <option value="soci" ng-hide="form.ownerIsMember==='yes'">{{ initForm.soci.nom + ' ' + initForm.soci.cognom }} ({{ 'SOCI_SOM_ENERGIA' | translate }})</option>
-                    </select>
+                    <label>{{ 'INDICAR_COMPTE_REBUTS' | translate }}</label>
                 </div>
             </div>
             <div class="well" data-ng-show="form.choosepayer === 'altre'">
