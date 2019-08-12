@@ -1,6 +1,6 @@
 {
   "name": "newsomenergiawebforms",
-  "version": "1.7.9",
+  "version": "1.8.0",
   "dependencies": {},
   "devDependencies": {
     "gifsicle": "^3.0.4",
