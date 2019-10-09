@@ -89,7 +89,7 @@ angular.module('SomEnergiaWebForms')
                 IDENTIFICANT_SOCIA: 'Identificant soci/sòcia...',
                 NIF_INVALID: 'Codi NIF invàlid.',
                 SERVER_ERROR: 'Error accedint al servidor:',
-                INICIAR_INVERSIO: 'Iniciar Aportació',
+                INICIAR_INVERSIO: 'Iniciar aportació',
                 FORMULARI_D_INVERSIO: 'Formulari d\'<b>aportació</b>',
                 BENVINGUDA: 'Benvingut/da, <b>{{name}}</b>!',
                 QUANT_VOLS_INVERTIR: 'Quant vols <b>aportar</b>?<br/><small>En aportació voluntària al capital social</small>',
@@ -124,7 +124,7 @@ angular.module('SomEnergiaWebForms')
                 GENERATION_RECOMANACIO_PERCENT: 'Pots autoproduir el que vulguis. La nostra <a href="{{ url }}" target="_blank">recomanació</a> és no superar el {{ percent }}% en segons quins casos.',
                 GENERATION_RECOMANACIO_PERCENT_URL: 'http://bit.ly/maxGkWh', // Points to: 'http://ca.support.somenergia.coop/article/584-hi-ha-una-quantitat-minima-o-maxima-a-aportar'
                 GENERATION_ACCEPTO_DOMICILIACIO: 'Confirmo que soc titular del compte corrent i autoritzo la domiciliació',
-                GENERATION_ACCEPTO_CONDICIONS: 'Accepto les <a target="_blank" href="{{url}}">condicions generals de la inversió</a>',
+                GENERATION_ACCEPTO_CONDICIONS: 'Accepto les <a target="_blank" href="{{url}}">condicions generals de l\'aportació</a>',
                 GENERATION_CONDICIONS_URL: 'http://www.generationkwh.org/wp-content/uploads/Condicions-Generals-Contracte-Autoproduccio-Col_lectiva-Generation-kWh_CA.pdf',
                 NO_HA_ESTAT_TROBAT: 'No ha estat trobat',
                 FENT_SERVIR_RESIDENCIA_MITJANA: 'S\'està fent servir com a referència l\'ús d\'electricitat d\'una residència mitjana',
