@@ -124,7 +124,7 @@ angular.module('SomEnergiaWebForms')
                 GENERATION_RECOMANACIO_PERCENT: 'Puedes autoproducir lo que quieras. Nuestra <a href="{{ url }}" target="_blank">recomendación</a> es no superar el {{ percent }}% en según qué casos.',
                 GENERATION_RECOMANACIO_PERCENT_URL: 'http://bit.ly/maxGkWhES', // Points to 'http://es.support.somenergia.coop/article/591-existe-una-cantidad-minima-y-maxima-a-aportar'
                 GENERATION_ACCEPTO_DOMICILIACIO: 'Confirmo que soy titular de la cuenta corriente y autorizo la domiciliación',
-                GENERATION_ACCEPTO_CONDICIONS: 'Acepto las <a target="_blank" href="{{url}}">condiciones generales de la inversión</a>',
+                GENERATION_ACCEPTO_CONDICIONS: 'Acepto las <a target="_blank" href="{{url}}">condiciones generales de la aportación</a>',
                 GENERATION_CONDICIONS_URL: 'http://www.generationkwh.org/wp-content/uploads/Condiciones-Generales-Contrato-Autoproduccion-Colectiva-Generation-kWh_ES.pdf',
                 NO_HA_ESTAT_TROBAT: 'No encontrado',
                 FENT_SERVIR_RESIDENCIA_MITJANA: 'Se esta usando a modo de referencia el uso de electricidad de una residencia media',
