@@ -7,7 +7,7 @@ const localMode = false;
 const mode = developmentMode ? ( localMode ? 'local' : 'devel') : 'prod';
 const apiBase = {
     'local': 'http://localhost:5001/',
-    'devel': 'https://testing.somenergia.coop/',
+    'devel': 'https://testapi.somenergia.coop:4433/',
     'prod':  'https://api.somenergia.coop/',
 }[mode]
 
