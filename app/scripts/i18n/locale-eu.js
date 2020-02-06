@@ -44,7 +44,7 @@ angular.module('SomEnergiaWebForms')
                 INICIAR_CONTRACTACIO: 'Kontratazioa hasi',
                 DADES_PUNT_SUBMINISTRAMENT: 'Hornidura-puntuaren datuak',
                 NUMERO_DE_CUPS: 'CUPS-en zenbakia',
-                HELP_POPOVER_CNAE: 'Etxebizitza izatekotan, jar ezazu: 9820. Enpresa izatekotan, jar ezazu zuen jarduera ekonomikoa.',
+                HELP_POPOVER_CNAE: 'Etxebizitzen kasuan 9820 da. Ohar garrantzitsua: etxebizitza ez bada, adierazi jarduera ekonomikoaren EJSN. Informazio gehiago ikusteko, jo <a target="_blank" href="https://eu.support.somenergia.coop/article/332-zein-da-nire-cnae-zenbakia">esteka honetara</a>.',
                 QUINA_POTENCIA_TENS_CONTRACTADA: 'Zer potentzia daukazu oraingo kontratuan?',
                 HELP_POPOVER_POWER: 'Idatz ezazu zure kontratuaren ORAINGO potentzia',
                 QUINA_TARIFA_TENS_CONTRACTADA: 'Zer tarifa daukazu oraingo kontratuan?',

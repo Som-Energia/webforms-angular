@@ -44,7 +44,7 @@ angular.module('SomEnergiaWebForms')
                 INICIAR_CONTRACTACIO: 'Iniciar contractació',
                 DADES_PUNT_SUBMINISTRAMENT: 'Dades del punt de subministrament',
                 NUMERO_DE_CUPS: 'Número de CUPS',
-                HELP_POPOVER_CNAE: 'En cas d\'habitatges: 9820. En cas d\'empreses el de la vostra activitat econòmica',
+                HELP_POPOVER_CNAE: 'En el cas d\'habitatges és el 9820. Important: si no és un habitatge, cal que introduïu el CNAE de la vostra activitat econòmica. Per a més informació, consulteu <a target="_blank" href="https://ca.support.somenergia.coop/article/232-quin-es-el-meu-numero-de-cnae">aquest enllaç</a>.',
                 QUINA_POTENCIA_TENS_CONTRACTADA: 'Quina potència tens contractada?',
                 HELP_POPOVER_POWER: 'Anota la potència ACTUAL del teu contracte',
                 QUINA_TARIFA_TENS_CONTRACTADA: 'Quina tarifa tens contractada?',
