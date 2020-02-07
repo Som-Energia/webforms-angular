@@ -56,6 +56,7 @@ angular.module('SomEnergiaWebForms')
         $scope.invalidAttachFileExtension = false;
         $scope.overflowAttachFile = false;
         $scope.accountIsInvalid = false;
+        $scope.invalidTitular = false;
 
         $scope.isPayerPageComplete = false;
         $scope.farePageError = undefined;
@@ -497,7 +498,12 @@ angular.module('SomEnergiaWebForms')
                             $scope.messages = $scope.getHumanizedAPIResponse(response.data.data);
                             $scope.submitReady = false;
                             $scope.rawReason = JSON.stringify(response.data, null,'  ');
-                            jQuery('#webformsGlobalMessagesModal').modal('show');
+                            if ($scope.invalidTitular) {
+                                jQuery('#webformsGlobalMessagesModal2').modal('show');
+                            }
+                            else {
+                                jQuery('#webformsGlobalMessagesModal').modal('show');
+                            }
                         }
                     } else if (response.data.status === cfg.STATUS_OFFLINE) {
                         uiHandler.showErrorDialog('API server status offline (ref.022-022)');
@@ -533,6 +539,9 @@ angular.module('SomEnergiaWebForms')
                     } else if (arrayResponse.invalid_fields[j].field === 'fitxer' && arrayResponse.invalid_fields[j].error === 'bad_extension') {
                         $scope.invalidAttachFileExtension = true;
                         $scope.orderForm.file.$setValidity('exist', false);
+                    }
+                    else if (arrayResponse.invalid_fields[j].field === 'titular_dni' && arrayResponse.invalid_fields[j].error === 'cant_hire') {
+                        $scope.invalidTitular = true;
                     }
                 }
             }

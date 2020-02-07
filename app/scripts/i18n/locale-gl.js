@@ -133,6 +133,7 @@ angular.module('SomEnergiaWebForms')
                 ERROR_POST_NOVASOCIA: 'Houbo un erro ao rexistrar o/a socio/a',
                 ERROR_REQUIRED_FIELD: 'Falta un parámetro requirido: {{field}}',
                 ERROR_INVALID_FIELD: 'Valor inválido do parámetro: {{field}}, motivo: {{reason}}',
+                ERROR_CANT_CONTRACT: 'Non é posíbel realizar a contratación.<p><p>Se desexas máis información, podes pórte en contacto con Som Energia mandando un correo a <a href="mailto:info@somenergia.coop" style="font-weight: bold;">info@somenergia.coop</a> ou chamando ao 872.202.550 de 9.00h a 14.00h de luns a venres, agás festivos.',
                 CARREC_ADICIONAL_NOVA_SOCIA: 'Importe total: {{total}}€ ({{ aportaciosoci }}€ + {{ costaccions }}€)',
                 JA_SOC_SOCIA: 'Xa son socio/a',
                 EM_VULL_FER_SOCIA: 'Quero ser socio/a',

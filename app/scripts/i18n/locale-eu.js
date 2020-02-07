@@ -133,6 +133,7 @@ angular.module('SomEnergiaWebForms')
                 ERROR_POST_NOVASOCIA: 'Akatsa gertatu da bazkidea erregistratzean',
                 ERROR_REQUIRED_FIELD: 'Beharrezko parametroa falta da: {{field}}',
                 ERROR_INVALID_FIELD: 'Parametroaren balio okerra: {{field}}, arrazoia: {{reason}}',
+                ERROR_CANT_CONTRACT: 'Ezin da kontratazioa egin.<p><p>Informazio gehiago jasotzeko, jar zaitez harremanetan Som Energiarekin <a href="mailto:info@somenergia.coop" style="font-weight: bold;">info@somenergia.coop</a> helbidera idatziz edo 872.202.550 zenbakira deituz, 9:00etatik 14:00etara astelehenetik ostiralera, jaiegunetan izan ezik.',
                 CARREC_ADICIONAL_NOVA_SOCIA: 'Zenbatekoa guztira: {{total}}€ ({{ aportaciosoci }}€ + {{ costaccions }}€)',
                 JA_SOC_SOCIA: 'Dagoeneko bazkidea naiz',
                 EM_VULL_FER_SOCIA: 'Bazkide izan nahi dut',

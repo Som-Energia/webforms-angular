@@ -185,10 +185,15 @@ angular.module('SomEnergiaWebForms')
             }
             if (response.invalid_fields !== undefined) {
                 for (var j = 0; j < response.invalid_fields.length; j++) {
-                    result += '<li>'+$translate.instant('ERROR_INVALID_FIELD', {
-                        field: response.invalid_fields[j].field,
-                        reason: response.invalid_fields[j].error
-                    })+'</li>';
+                    if (response.invalid_fields[j].error === "cant_hire") {
+                        result += $translate.instant('ERROR_CANT_CONTRACT');
+                    }
+                    else {
+                        result += '<li>'+$translate.instant('ERROR_INVALID_FIELD', {
+                            field: response.invalid_fields[j].field,
+                            reason: response.invalid_fields[j].error
+                        })+'</li>';
+                   }
                 }
             }
             if (result === '') {return '';} // TODO: Manage case
