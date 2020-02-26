@@ -118,7 +118,7 @@ angular.module('SomEnergiaWebForms')
                 },
                 function(reason) {
                     // TODO: Translate 'Unknown'
-                    $scope._isValid = reason.state !== cfg.STATE_FALSE;
+                    $scope._isValid = reason.state === cfg.STATE_TRUE;
                     if (reason.status === cfg.STATUS_OFFLINE){
                         $log.log('Server error:', reason);
                         $scope.model.serverError = reason || 'Unknown';
