@@ -101,7 +101,7 @@ angular.module('SomEnergiaWebForms')
                 $scope._lastPromise.abort();
             }
             var promise = ApiSomEnergia.getStateRequest(
-                $scope, cfg.API_BASE_URL +
+                $scope, cfg.APIV2_BASE_URL +
                 $scope.checkurl + $scope.model.value,
                 '017');
             $scope._lastPromise = promise;
