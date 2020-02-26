@@ -9,7 +9,13 @@ const apiBase = {
     'local': 'http://localhost:5001/',
     'devel': 'https://testapi.somenergia.coop:4433/',
     'prod':  'https://api.somenergia.coop/',
-}[mode]
+}[mode];
+
+const apiV2Base = {
+    'local': 'http://localhost:5001/',
+    'devel': 'https://testapi.somenergia.coop:4433/',
+    'prod':  'https://apiv2.somenergia.coop/',
+}[mode];
 
 angular.module('SomEnergiaWebForms', [
         'ngCookies',
@@ -88,6 +94,7 @@ angular.module('SomEnergiaWebForms', [
         DEVELOPMENT: developmentMode,
         BASE_DOMAIN: 'somenergia.coop',
         API_BASE_URL: apiBase,
+        APIV2_BASE_URL: apiV2Base,
         STATUS_OFFLINE: 'OFFLINE',
         STATUS_ONLINE: 'ONLINE',
         STATE_TRUE: true,

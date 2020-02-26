@@ -191,7 +191,7 @@ angular.module('SomEnergiaWebForms')
             $scope.submitButtonText = $translate.instant('SENDING');
             $http({
                 method: 'POST',
-                url: cfg.API_BASE_URL + 'form/inversio',
+                url: cfg.APIV2_BASE_URL + 'form/inversio',
                 headers: {'Content-Type': undefined},
                 data: formData,
                 transformRequest: angular.identity,
