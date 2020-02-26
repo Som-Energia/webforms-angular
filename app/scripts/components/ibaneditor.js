@@ -114,16 +114,15 @@ angular.module('SomEnergiaWebForms')
                     }
                     $scope._isValid = response.state !== cfg.STATE_FALSE;
                     $scope.model.data = response.data;
-                    if (response.data !== undefined && response.data.invalid_fields !== undefined) {
-                        $scope._isValid = false;
-                        $scope.model.error = response.data.invalid_fields[0].error;
-                    }
                     $scope.formListener();
                 },
                 function(reason) {
                     // TODO: Translate 'Unknown'
-                    $log.log('Server error:', reason);
-                    $scope.model.serverError = reason || 'Unknown';
+                    $scope._isValid = reason.state !== cfg.STATE_FALSE;
+                    if (reason.status === cfg.STATUS_OFFLINE){
+                        $log.log('Server error:', reason);
+                        $scope.model.serverError = reason || 'Unknown';
+                    }
                     $scope.formListener();
                 }
             );
