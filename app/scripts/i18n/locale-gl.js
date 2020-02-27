@@ -105,6 +105,7 @@ angular.module('SomEnergiaWebForms')
                 INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/gl/aportacion-realizada-correctamente/', // TODO: Translate url
                 CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/gl/contratacion-realizada/',
                 GENERATION_OK_REDIRECT_URL: 'https://www.generationkwh.org/gl/achega-realizada/',
+                MAX_INVESTMENT: 'Se ha superado la inversión máxima',
 
                 // Added or changed since 1.2.6
                 CODI_IBAN_DEL_COMPTE: 'Código IBAN da conta',

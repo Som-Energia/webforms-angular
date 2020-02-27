@@ -105,6 +105,7 @@ angular.module('SomEnergiaWebForms')
                 INVEST_OK_REDIRECT_URL: 'https://www.somenergia.coop/eu/aportacion-realizada-correctamente/', // TODO: Translate url
                 CONTRACT_OK_REDIRECT_URL: 'https://www.somenergia.coop/eu/contratacion-realizada/',
                 GENERATION_OK_REDIRECT_URL: 'https://www.generationkwh.org/eu/egindako-ekarpena/',
+                MAX_INVESTMENT: 'Se ha superado la inversión máxima',
 
                 // Added or changed since 1.2.6
                 CODI_IBAN_DEL_COMPTE: 'Kontu-korrontearen IBAN kodea',

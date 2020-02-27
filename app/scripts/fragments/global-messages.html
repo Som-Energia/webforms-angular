@@ -6,10 +6,17 @@
                 <h2 class="modal-title text-danger"><span class="glyphicon glyphicon-warning-sign"></span> {{ modalTitle }}</h2>
             </div>
             <div class="modal-body">
-                <p class="text-danger" ng-bind-html="messages"></p>
-            </div>
-            <div class="modal-footer" data-ng-show="rawReason">
-                <pre class="text-danger">{{ rawReason }}</pre>
+                <div class="text-danger">
+                    <p class="panel-title" ng-bind-html="messages"></p>
+                </div>
+                <uib-accordion>
+                    <div uib-accordion-group class="panel-default" style="margin-top: 25px">
+                        <uib-accordion-heading>
+                        Error details<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                        </uib-accordion-heading>
+                        <pre class="text-danger">{{ rawReason }}</pre>
+                    </div>
+                </uib-accordion>
             </div>
         </div>
     </div>
