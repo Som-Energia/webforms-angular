@@ -282,7 +282,7 @@ angular.module('SomEnergiaWebForms')
                 ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/es/condiciones-del-contrato-de-som-energia/',
                 ACCEPTO_POLITICA_PRIVACITAT: 'Som Energiaren <strong><a target="_blank" href="//www.somenergia.coop/eu/pribatutasun-politika-cookie-ak-eta-lege-oharra/">pribatutasun-politika</a></strong> irakurri eta onartzen dut',
 
-		INDICAR_COMPTE_REBUTS: 'Ordainagiriak helbideratzeko kontu zenbakia adierazi',
+                INDICAR_COMPTE_REBUTS: 'Ordainagiriak helbideratzeko kontu zenbakia adierazi',
 
                 // UNTRANSLATED
                 POTENCIA_CUSTOM: 'Si quieres contratar una potencia distinta a estas, nos la puedes indicar respondiendo el correo electrónico que recibirás una vez rellenado el formulario',
