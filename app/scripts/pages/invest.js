@@ -36,7 +36,7 @@ angular.module('SomEnergiaWebForms')
         // Configurable constants
         $scope.aportacioMinima = 100;
         $scope.aportacioMaxima = 100000; //100000
-        $scope.aportacioMaximaFormated = new Intl.NumberFormat("es-ES").format($scope.aportacioMaxima);
+        $scope.aportacioMaximaFormated = new Intl.NumberFormat('es-ES').format($scope.aportacioMaxima);
         $scope.aportacioSalts = 100;
         $scope.amountAboveMax = false;
         $scope.amountUnderMin = false;
@@ -224,9 +224,7 @@ angular.module('SomEnergiaWebForms')
                     if (reason.status === 413) {
                         $scope.messages = 'ERROR 413';
                     } else {
-                        $scope.messages = (reason.data && reason.data.data && reason.data.data.msg)
-                        ? $translate.instant(reason.data.data.code)
-                        : 'ERROR';
+                        $scope.messages = (reason.data && reason.data.data && reason.data.data.msg) ? $translate.instant(reason.data.data.code) : 'ERROR';
                     }
                     $scope.modalTitle = $translate.instant('ERROR_POST_INVERSIO');
                     $scope.rawReason = JSON.stringify(reason,null,'  ');

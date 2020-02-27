@@ -284,7 +284,7 @@ angular.module('SomEnergiaWebForms')
                 ACCEPTO_CONDICIONS_GENERALS_URL: '//www.somenergia.coop/es/condiciones-del-contrato-de-som-energia/',
                 ACCEPTO_POLITICA_PRIVACITAT: 'Lin e acepto a <strong><a target="_blank" href="//www.somenergia.coop/gl/politica-de-privacidade-cookies-y-aviso-legal/">política de privacidade</a></strong> de Som Energia',
 
-		INDICAR_COMPTE_REBUTS: 'Indica o número de conta onde se domiciliarán os recibos',
+                INDICAR_COMPTE_REBUTS: 'Indica o número de conta onde se domiciliarán os recibos',
 
                 // UNTRANSLATED
                 POTENCIA_CUSTOM: 'Si quieres contratar una potencia distinta a estas, nos la puedes indicar respondiendo el correo electrónico que recibirás una vez rellenado el formulario',
