@@ -140,7 +140,7 @@ angular.module('SomEnergiaWebForms')
                 JA_SOC_SOCIA: 'Xa son socio/a',
                 EM_VULL_FER_SOCIA: 'Quero ser socio/a',
                 GENERATION_REQUERIMENT_SER_SOCIA: 'Para participar neste investimento hai que ser de Som Energia. Cal é o teu caso?',
-                APORTACIO_REQUERIMENT_SER_SOCIA: 'Para participar neste investimento hai que ser de Som Energia. Cal é o teu caso?',
+                APORTACIO_REQUERIMENT_SER_SOCIA: '<p>Para participar neste investimento hai que ser de Som Energia.</p><h3>Cal é o teu caso?</h3>',
                 APORTACIO_CONDICIONS_URL: 'https://www.somenergia.coop/es/condiciones-generales-aportacion/',
                 DADES_ALTA: 'Datos de alta na cooperativa',
                 HELP_JURIDICA: 'Persoas xurídicas son as empresas, asociacións e outras entidades. As persoas físicas somos as persoas de carne e óso.',

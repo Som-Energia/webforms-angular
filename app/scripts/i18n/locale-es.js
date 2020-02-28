@@ -140,7 +140,7 @@ angular.module('SomEnergiaWebForms')
                 JA_SOC_SOCIA: 'Ya soy socio/a',
                 EM_VULL_FER_SOCIA: 'Quiero ser socio/a',
                 GENERATION_REQUERIMENT_SER_SOCIA: 'Para aportar en el Generation kWh hay que ser persona socia de Som Energia. ¿Cual es tu caso?',
-                APORTACIO_REQUERIMENT_SER_SOCIA: 'Para participar en esta aportación hay que ser persona socia de Som Energia. ¿Cual es tu caso?',
+                APORTACIO_REQUERIMENT_SER_SOCIA: '<p>Para participar en esta aportación hay que ser persona socia de Som Energia.</p><h3>¿Cual es tu caso?</h3>',
                 APORTACIO_CONDICIONS_URL: 'https://www.somenergia.coop/es/condiciones-generales-aportacion/',
                 DADES_ALTA: 'Datos del alta en la cooperativa',
                 HELP_JURIDICA: 'Personas jurídicas son las empresas, asociaciones y otras entidades. Las personas físicas somos las personas de carne y hueso.',
