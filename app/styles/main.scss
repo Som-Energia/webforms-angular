@@ -676,8 +676,10 @@ table.contractTable {
 
     .label-group {
         display: flex;
+        flex-wrap: wrap;
         label {
-            flex: 1 0 50%;
+            flex: 1 0 49%;
+            margin-bottom: 8px;
         }
     }
 
