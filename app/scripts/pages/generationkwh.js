@@ -98,8 +98,8 @@ angular.module('SomEnergiaWebForms')
             if ($scope.ibanEditor.isValid === undefined) {return false;}
             if (!$scope.ibanEditor.isValid()) {return false;}
             if (!$scope.energeticActionsCost()) {return false;}
-            if ($scope.form.acceptaccountowner === false) {return false;}
-            if ($scope.form.acceptcontract === false) {return false;}
+            if (!$scope.form.acceptaccountowner) {return false;}
+            if (!$scope.form.acceptcontract) {return false;}
             return true;
         };
 
@@ -128,7 +128,7 @@ angular.module('SomEnergiaWebForms')
 //            $scope.updateAnnualUse();
         };
 
-        // Backward with order.js  
+        // Backward with order.js
         $scope.formListener = function() {
         };
 
