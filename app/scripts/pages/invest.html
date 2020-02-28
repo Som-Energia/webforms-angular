@@ -3,51 +3,54 @@
 
 <div ng-if='developing' data-ng-include data-src="'scripts/fragments/responsive-display.html'"></div>
 
-<div>
+<div class="invest-form">
     <!--HEADER-->
     <div class="row">
         <div class="col-xs-12">
             <h1 class="green extra-margin" translate="FORMULARI_D_INVERSIO"></h1>
         </div>
     </div>
-    <div class="row" data-ng-show="isStep(0) || showAll">
-        <div class="col-xs-12"
-            translate="APORTACIO_REQUERIMENT_SER_SOCIA">
-        </div>
-    </div>
-    <div class="row" data-ng-show="isStep(0) || showAll">
-        <div class="form-group col-xs-12">
-            <div class="btn-group btn-group-justified">
-                <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-uib-btn-radio="true" >{{ 'JA_SOC_SOCIA' | translate }}</label>
-                <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-uib-btn-radio="false">{{ 'EM_VULL_FER_SOCIA' | translate }}</label>
+
+    <div class="well" data-ng-show="isStep(0) || showAll">
+        <div class="row" data-ng-show="isStep(0) || showAll">
+            <div class="col-xs-12 advise-partner-required"
+                translate="APORTACIO_REQUERIMENT_SER_SOCIA">
             </div>
         </div>
-    </div>
-    <member-chooser
-        button-text="{{'INICIAR_INVERSIO' | translate }}"
-        onproceed="initFormSubmited()"
-        model="initForm"
-        formvalues="formsoci"
-        data-ng-show="isStep(0) && isPartner===true"
-    ></member-chooser>
-
-    <div data-ng-show="isStep(0) && isPartner===false">
-        <div class="row">
-            <div class="col-xs-12">
-                <div
-                    class="alert alert-info"
-                    translate="ADDICIONAL_FERSE_SOCIA"
-                    >
+        <div class="row" data-ng-show="isStep(0) || showAll">
+            <div class="form-group col-xs-12">
+                <div class="label-group">
+                    <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-uib-btn-radio="true" >{{ 'JA_SOC_SOCIA' | translate }}</label>
+                    <label class="btn btn-default green btn-lg" data-ng-model="isPartner" data-uib-btn-radio="false">{{ 'EM_VULL_FER_SOCIA' | translate }}</label>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right">
-                <button
-                    class="btn btn-default btn-lg btn-block submit green"
-                    data-ng-click="newPartnerProceed()"
-                    type="button"
-                    >{{ 'SEGUENT_PAS' | translate }}</button>
+        <member-chooser
+            button-text="{{'INICIAR_INVERSIO' | translate }}"
+            onproceed="initFormSubmited()"
+            model="initForm"
+            formvalues="formsoci"
+            data-ng-show="isStep(0) && isPartner===true"
+        ></member-chooser>
+
+        <div data-ng-show="isStep(0) && isPartner===false">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div
+                        class="alert alert-info grey"
+                        translate="ADDICIONAL_FERSE_SOCIA"
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="row new-partner-btn">
+                <div class="col-xs-12">
+                    <button
+                        class="btn btn-default btn-lg btn-block submit green"
+                        data-ng-click="newPartnerProceed()"
+                        type="button"
+                        >{{ 'SEGUENT_PAS' | translate }}</button>
+                </div>
             </div>
         </div>
     </div>
@@ -64,8 +67,8 @@
         <personal-data
             model='newPartner'
         ></personal-data>
-        <div class="row">
-            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right">
+        <div class="row no-margin-bottom">
+            <div class="col-xs-12">
                 <button
                     class="btn btn-default btn-lg btn-block submit"
                     data-ng-disabled="!isNewPartnerReady()"
@@ -80,38 +83,36 @@
     <!-- BEGIN INVEST FORM-->
     <form name="investForm" class="form-inline" role="form" ng-show="isStep(1) || showAll" enctype="multipart/form-data" novalidate>
         <fieldset ng-disabled="submiting">
-        <div class="row">
-            <div class="col-xs-12 heading active">
-                <h1 translate="BENVINGUDA"
-                    translate-value-name="{{initForm.soci.nom}} {{initForm.soci.cognom}}"
-                    ></h1>
-            </div>
-        </div>
-        <div class='well'>
-            <div class="row">
+        <div class="well">
+            <div class="row no-margin-bottom">
                 <div class="col-xs-12">
-                    <h3 class="green">
+                    <p class="welcome-partner" translate="BENVINGUDA"
+                        translate-value-name="{{initForm.soci.nom}} {{initForm.soci.cognom}}"
+                    ></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-7 col-xs-7">
+                    <h3 class="green amount-title">
                         <label for="amount"
                             translate="QUANT_VOLS_INVERTIR">
                         </label>
                     </h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-xs-6">
+
                     <div class="input-group">
-                    <input type="text"
-                        id="amount"
-                        name="amount"
-                        class="form-control input-lg"
-                        data-ng-model="form.amount"
-                        data-ng-change="formAmountListener()"
-                        required aria-describedby="amounthelp"
-                        ng-class="{'ng-invalid': amountAboveMax || amountNotHundred || amountUnderMin}"/>
-                    <span class="input-group-addon" style='font-size: 200%; font-weight:bold; color: #9a7'>€</span>
+                        <input type="text"
+                            id="amount"
+                            name="amount"
+                            class="form-control input-lg"
+                            data-ng-model="form.amount"
+                            data-ng-change="formAmountListener()"
+                            required aria-describedby="amounthelp"
+                            ng-class="{'ng-invalid': amountAboveMax || amountNotHundred || amountUnderMin}"
+                        />
+                        <span class="input-group-addon euro-badget">€</span>
                     </div>
                 </div>
-                <div class="col-sm-6 col-xs-6 no-margin-top">
+                <div class="col-sm-5 col-xs-5 no-margin-top">
                     <b>{{ 'RECORDA' | translate}}</b>
                     <ul>
                         <li>
@@ -165,7 +166,9 @@
                     checkurl="check/iban/"
                 ></iban-editor>
                 <div class="col-xs-12">
-                    <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>{{ 'EXEMPLE_IBAN' | translate }}</div>
+                    <div class="help-block" id="accountbankibanHelp" for='accountbankiban'>
+                        <small>{{ 'EXEMPLE_IBAN' | translate }}</small>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -186,7 +189,7 @@
                 </div>
             </div>
             <div class="row no-margin-bottom">
-                <div class="col-xs-12 pull-right no-horitzontal-padding">
+                <div class="col-xs-12">
                     <button
                         data-ng-click="proceed()"
                         type="button"

@@ -35,7 +35,7 @@ angular.module('SomEnergiaWebForms')
 
         // Configurable constants
         $scope.aportacioMinima = 100;
-        $scope.aportacioMaxima = 100000; //100000
+        $scope.aportacioMaxima = 5000;
         $scope.aportacioMaximaFormated = new Intl.NumberFormat('es-ES').format($scope.aportacioMaxima);
         $scope.aportacioSalts = 100;
         $scope.amountAboveMax = false;
@@ -77,8 +77,8 @@ angular.module('SomEnergiaWebForms')
             if ($scope.amountUnderMin) {return false;}
             if ($scope.amountAboveMax) {return false;}
             if ($scope.amountNotHundred) {return false;}
-            if ($scope.form.acceptaccountowner === false) {return false;}
-            if ($scope.form.acceptcontract === false) {return false;}
+            if (!$scope.form.acceptaccountowner) {return false;}
+            if (!$scope.form.acceptcontract) {return false;}
             return true;
         };
 
@@ -239,7 +239,6 @@ angular.module('SomEnergiaWebForms')
         $scope.getHumanizedAPIResponse = function(arrayResponse) {
 			return ApiSomEnergia.humanizedResponse(arrayResponse);
         };
-
     });
 
 
