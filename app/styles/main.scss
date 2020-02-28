@@ -686,8 +686,8 @@ table.contractTable {
     label.btn.btn-default {
         font-weight: 400;
         &.green {
-            color: #ffffff99;
-            border-color: #ffffff99;
+            color: rgba(255, 255, 255, 0.6);
+            border-color: rgba(255, 255, 255, 0.6);
             &.active {
                 background-color: $green;
                 border-color: $green;
@@ -706,7 +706,7 @@ table.contractTable {
             color: $brown;
         }
         &.grey {
-            color: #ffffff99;
+            color: rgba(255, 255, 255, 0.6);
             background-color:$brown;
         }
     }
@@ -714,7 +714,7 @@ table.contractTable {
     div.alert-info.grey {
         background-color: #5F5E63;
         border-color: #5F5E63;
-        color: #ffffffcc;
+        color: rgba(255, 255, 255, 0.8);
     }
 
     .memberchooser-msg {
