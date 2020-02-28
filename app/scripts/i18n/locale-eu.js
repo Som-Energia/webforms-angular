@@ -141,7 +141,7 @@ angular.module('SomEnergiaWebForms')
                 JA_SOC_SOCIA: 'Dagoeneko bazkidea naiz',
                 EM_VULL_FER_SOCIA: 'Bazkide izan nahi dut',
                 GENERATION_REQUERIMENT_SER_SOCIA: 'Ekarpen honetan parte hartzeko Som Energiako bazkidea izan behar duzu. Zein da zure egoera?',
-                APORTACIO_REQUERIMENT_SER_SOCIA: 'Ekarpen honetan parte hartzeko Som Energiako bazkidea izan behar duzu. Zein da zure egoera?',
+                APORTACIO_REQUERIMENT_SER_SOCIA: '<p>Ekarpen honetan parte hartzeko Som Energiako bazkidea izan behar duzu.</p><h3>Zein da zure egoera?</h3>',
                 APORTACIO_CONDICIONS_URL: 'https://www.somenergia.coop/eu/condiciones-generales-aportacion/',
                 DADES_ALTA: 'Kooperatiban altan emandako datuak',
                 HELP_JURIDICA: 'Pertsona juridikoak entrepresa, elkarte eta bestelako erakundeak dira. Pertsona fisikoak hezur eta haragizkoak gara.',
