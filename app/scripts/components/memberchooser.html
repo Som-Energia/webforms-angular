@@ -40,7 +40,7 @@
                 <span class="label label-danger" style="position:absolute;" data-ng-show="isInvalidId()">{{ 'INVALID' | translate }}</span>
             </div>
         </div>
-        <div class="row">
+        <div class="row memberchooser-msg">
             <p
                 ng-if="isReady()"
                 class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-success"
@@ -78,9 +78,7 @@
                 style="margin-bottom:4ex; visibility:hidden"
                 class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
                 >PlaceholderMessage</p>
-
-            <div class="col-xs-2 col-md-4 col-lg-6 pull-right"></div>
-            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-right">
+            <div class="col-xs-12 col-sm-5 col-md-8 col-lg-9 pull-right">
                 <button class="btn btn-default btn-lg btn-block submit" data-ng-disabled="!isReady()" data-ng-class="{'green': isReady(), 'grey':!isReady()}" data-ng-click="proceed()" type="button"
 >{{ buttonText }}</button>
             </div>
