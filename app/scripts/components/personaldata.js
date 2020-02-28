@@ -27,7 +27,6 @@ angular.module('SomEnergiaWebForms')
     };
     $scope.form.error = undefined;
     $scope.form.isReady = function() {
-        console.log('personalData isReady');
         function error(message) {
             if ($scope.form.error !== message) {
                 console.log(message);

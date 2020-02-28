@@ -516,9 +516,225 @@ table.contractTable {
     display: block;
 }
 .btn-file input[readonly] {
-  color: white !important;
-  cursor: text !important;
+    color: white !important;
+    cursor: text !important;
 }
 
+.invest-form {
 
+    $green: #bac92a;
+    $red: #d9534f;
+    $brown: #4c4d4d;
+
+    font-family: 'Roboto';
+    color: $brown;
+
+    a {
+        color: $green;
+        font-weight: bold;
+    }
+
+    .well {
+        box-shadow: none;
+        border: 0;
+        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.1);
+    }
+
+    input, select {
+        background-color: #fff !important;
+    }
+
+    .input-group {
+
+        input[type=text] {
+            border-right: 0;
+        }
+
+        .ng-dirty {
+            &.ng-valid {
+                border: 2px solid $green;
+                border-right: 0;
+                & + .input-group-addon {
+                    border: 2px solid $green;
+                    border-left: 0;
+                }
+            }
+            &.ng-invalid {
+                border: 2px solid $red;
+                border-right: 0;
+                & + .input-group-addon {
+                    border: 2px solid $red;
+                    border-left: 0;
+                }
+            }
+        }
+    }
+
+    .row {
+        &.extra-margin-top {
+            margin-bottom: 0;
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding: 0.75rem 0 0 2rem;
+        font-size: 12px;
+    }
+
+    .text-success {
+        color: $green;
+    }
+
+    .text-info {
+        color: $brown;
+    }
+
+    .form-control {
+        box-shadow: none;
+    }
+
+    .form-control-feedback.danger {
+        color: $red;
+        font-size: 10px;
+    }
+
+    .help-block {
+        margin-top: 0;
+    }
+
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #8A8990;
+        opacity: 1; /* Firefox */
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: #8A8990;
+    }
+
+    ::-ms-input-placeholder { /* Microsoft Edge */
+        color: #8A8990;
+    }
+
+    .input-group-addon {
+        background-color: #fff;
+        &.euro-badget {
+            font-size: 150%;
+            font-weight:bold;
+            color: #8A8990;
+        }
+    }
+
+    .badge {
+        &.current {
+            background-color: #ccc;
+        }
+    }
+
+    h1 {
+        color: $green;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    h2 {
+        &.green {
+            color: $brown;
+            font-weight: bold;
+        }
+    }
+
+    h3 {
+        color: $brown;
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0;
+
+        &.green {
+            label {
+                font-weight: bold;
+            }
+        }
+
+        &.amount-title {
+            padding-bottom: 20px;
+        }
+    }
+
+    h4 {
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .advise-partner-required, .welcome-partner {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    p {
+        margin-bottom: 20px;
+    }
+
+    .label-group {
+        display: flex;
+        label {
+            flex: 1 0 50%;
+        }
+    }
+
+    label.btn.btn-default {
+        font-weight: 400;
+        &.green {
+            color: #ffffff99;
+            border-color: #ffffff99;
+            &.active {
+                background-color: $green;
+                border-color: $green;
+                box-shadow: none;
+                color: $brown;
+            }
+        }
+    }
+
+    button.btn.btn-default {
+        &.submit {
+            font-size: 21px;
+            font-weight: 700;
+        }
+        &.green {
+            color: $brown;
+        }
+        &.grey {
+            color: #ffffff99;
+            background-color:$brown;
+        }
+    }
+
+    div.alert-info.grey {
+        background-color: #5F5E63;
+        border-color: #5F5E63;
+        color: #ffffffcc;
+    }
+
+    .memberchooser-msg {
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .new-partner-btn {
+        margin-bottom: 10px;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+        background-color: #fff !important;
+        -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    }
+}
 

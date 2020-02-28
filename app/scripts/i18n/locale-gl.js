@@ -87,7 +87,7 @@ angular.module('SomEnergiaWebForms')
                 SOCIA_TROBADA: 'Socio/a encontrado/a',
                 VALIDANT_ID: 'A validar o documento de identificación...',
                 IDENTIFICANT_SOCIA: 'A identificar socio/a...',
-                NIF_INVALID: 'Código de NIF incorrecto.',
+                NIF_INVALID: 'Código de NIF incorrecto',
                 SERVER_ERROR: 'Houbo un erro ao acceder ao servidor:',
                 INICIAR_INVERSIO: 'Iniciar Achega',
                 FORMULARI_D_INVERSIO: 'Formulario de <b>achega</b>',

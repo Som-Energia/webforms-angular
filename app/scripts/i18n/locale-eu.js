@@ -87,7 +87,7 @@ angular.module('SomEnergiaWebForms')
                 SOCIA_TROBADA: 'Bazkide aurkituta',
                 VALIDANT_ID: 'Nortasun-agiria balioztatzen...',
                 IDENTIFICANT_SOCIA: 'Bazkidea identifikatzen...',
-                NIF_INVALID: 'Nortasun-agiriaren kode okerra.',
+                NIF_INVALID: 'Nortasun-agiriaren kode okerra',
                 SERVER_ERROR: 'Hutsegitea serbidorean sartzen:',
                 INICIAR_INVERSIO: 'Hasi zure ekarpena egiten',
                 FORMULARI_D_INVERSIO: 'Ekarpen-<b>formularioa</b>',
