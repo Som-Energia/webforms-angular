@@ -43,42 +43,42 @@
         <div class="row memberchooser-msg">
             <p
                 ng-if="isReady()"
-                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-success"
+                class="col-xs-12 text-success"
                 style="margin-bottom:4ex"
                 >{{ 'SOCIA_TROBADA' | translate }}{{ mostraNomSociTrobat ? ': ' + model.soci.nom+' '+model.soci.cognom :''}}</p>
             <p
                 ng-if='isValidatingId()'
                 style="margin-bottom:4ex"
-                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-info"
+                class="col-xs-12 text-info"
                 >{{ 'VALIDANT_ID'| translate}}</p>
             <p
                 ng-if='isValidatingMember()'
                 style="margin-bottom:4ex"
-                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-info"
+                class="col-xs-12 text-info"
                 >{{ 'IDENTIFICANT_SOCIA'| translate}}</p>
             <div
                 ng-if="isInvalidMember()"
                 style="margin-bottom:4ex"
-                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
+                class="col-xs-12 text-danger"
                 >{{ 'NO_TROBEM_CAP_SOCI_VINCULAT' | translate}}
                 <p data-ng-bind-html="'NO_ETS_SOCI_FES_TE_AQUI' | translate "></p>
                 </div>
             <p
                 ng-if="isInvalidId()"
                 style="margin-bottom:4ex"
-                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
+                class="col-xs-12 text-danger"
                 >{{ 'NIF_INVALID' | translate}}</p>
             <p
                 ng-if="isApiError()"
                 style="margin-bottom:4ex"
-                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
+                class="col-xs-12 text-danger"
                 >{{ 'SERVER_ERROR' | translate}} {{ apiError }}</p>
             <p
                 ng-if="isIdle()"
                 style="margin-bottom:4ex; visibility:hidden"
-                class="col-xs-12 col-sm-5 col-md-4 col-lg-3 text-danger"
+                class="col-xs-12 text-danger"
                 >PlaceholderMessage</p>
-            <div class="col-xs-12 col-sm-5 col-md-8 col-lg-9 pull-right">
+            <div class="col-xs-12">
                 <button class="btn btn-default btn-lg btn-block submit" data-ng-disabled="!isReady()" data-ng-class="{'green': isReady(), 'grey':!isReady()}" data-ng-click="proceed()" type="button"
 >{{ buttonText }}</button>
             </div>

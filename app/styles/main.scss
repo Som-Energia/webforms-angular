@@ -677,9 +677,17 @@ table.contractTable {
     .label-group {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         label {
-            flex: 1 0 49%;
+            margin-right:0;
             margin-bottom: 8px;
+            flex: 1 1 auto;
+            &:first-child {
+                margin-right: 4px;
+            }
+            &:last-child {
+                margin-left: 4px;
+            }
         }
     }
 
