@@ -87,6 +87,35 @@
                 </state-city>
             </div>
             <div class="row">
+                <div class="col-xs-12 form-group">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading" style="text-align:center">{{ 'ES_UN_HABITATGE' | translate }}
+                            <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
+                                'glyphicon-asterisk danger': form.ishousing === undefined,
+                            }" style="right:2em"></span>
+                        </div>
+                        <div class="panel-body" style="text-align:center">
+                            <div class="btn-group btn-group-justified">
+                                <label class="btn btn-default green"
+                                    style="white-space:normal"
+                                    data-ng-change="isHousing()"
+                                    data-ng-model="form.ishousing"
+                                    data-uib-btn-radio="true"
+                                    data-ng-bind-html="'SI' | translate"
+                                    ></label>
+                                <label class="btn btn-default green"
+                                    style="white-space:normal"
+                                    data-ng-change="isHousing()"
+                                    data-ng-model="form.ishousing"
+                                    data-uib-btn-radio="false"
+                                    data-ng-bind-html="'NO' | translate"
+                                    ></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <iban-editor
                     class="col-xs-12"
                     required

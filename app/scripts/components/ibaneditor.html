@@ -12,8 +12,8 @@
             ng-required="{{required}}"
             id="{{inputid}}"
             name="{{inputid}}"
+            ng-disabled="model.disabled"
             data-ng-model="model.value"
-            data-ng-change="onChange()"
             aria-describedby="{{help}}"
             ng-class="{
                 'input-lg': small===undefined,
