@@ -129,6 +129,10 @@ angular.module('SomEnergiaWebForms')
             );
             $scope.formListener();
         };
+
+        $scope.$watch('model.value', function() {
+            $scope.onChange();
+        });
     };
 });
 
