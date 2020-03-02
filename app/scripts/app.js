@@ -113,6 +113,7 @@ angular.module('SomEnergiaWebForms', [
         RATE_21DHA: '2.1DHA',
         RATE_21DHS: '2.1DHS',
         RATE_30A: '3.0A',
+        HOUSING_CNAE: '9820',
         DEFAULT_MILLISECONDS_DELAY: 1000,
         MAX_MB_FILE_SIZE: 10,
         THOUSANDS_CONVERSION_FACTOR: 1000
