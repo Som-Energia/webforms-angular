@@ -38,7 +38,7 @@ angular.module('SomEnergiaWebForms')
         $scope.formsoci = {};
         $scope.ibanEditor = {};
         $scope.cupsEditor = {};
-        $scope.cnaeEditor = {};
+        $scope.cnaeEditor = { disabled: true };
         $scope.cadastreEditor = {};
         $scope.owner = {};
         $scope.payer = {};
@@ -49,6 +49,7 @@ angular.module('SomEnergiaWebForms')
         $scope.showAllSteps = function() {
             $scope.showAll = true;
         };
+
         $scope.rate20IsInvalid = false;
         $scope.rate21IsInvalid = false;
         $scope.rate3AIsInvalid = false;
@@ -212,7 +213,15 @@ angular.module('SomEnergiaWebForms')
             if (!$scope.cupsEditor.isValid()) {
                 return error('INVALID_SUPPLY_POINT_CUPS');
             }
+
+            if ($scope.form.ishousing === undefined) {
+                return error('NO_IS_HOUSING');
+            }
+
             if (!$scope.cnaeEditor.isValid()) {
+                return error('INVALID_SUPPLY_POINT_CNAE');
+            }
+            if (!$scope.checkCnaeHousing()) {
                 return error('INVALID_SUPPLY_POINT_CNAE');
             }
             if ($scope.overflowAttachFile) {
@@ -366,11 +375,28 @@ angular.module('SomEnergiaWebForms')
             return true;
         };
 
+        $scope.isHousing = function() {
+            if($scope.form.ishousing) {
+                $scope.cnaeEditor.value = cfg.HOUSING_CNAE;
+                $scope.cnaeEditor.disabled = true;
+            }else {
+                $scope.cnaeEditor.value = '';
+                $scope.cnaeEditor.disabled = false;
+            }
+        }
+
+        $scope.checkCnaeHousing = function() {
+            return (!$scope.form.ishousing)
+            ? $scope.cnaeEditor.value !== cfg.HOUSING_CNAE
+            : true
+        }
+
         $scope.formListener = function() {
             //console.log('listener');
             // TODO: Remove these two lines?
             $scope.effectiveOwner = $scope.form.ownerIsMember === 'yes' ? $scope.initForm.soci : $scope.owner;
             $scope.effectivePayer = $scope.effectiveOwner;
+
             //$scope.isPayerPageComplete();
         };
 
