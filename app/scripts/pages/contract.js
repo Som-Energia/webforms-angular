@@ -222,7 +222,7 @@ angular.module('SomEnergiaWebForms')
                 return error('INVALID_SUPPLY_POINT_CNAE');
             }
             if (!$scope.checkCnaeHousing()) {
-                return error('INVALID_SUPPLY_POINT_CNAE');
+                return error('INVALID_CNAE_NO_HOUSING');
             }
             if ($scope.overflowAttachFile) {
                 return error('INVALID_SUPPLY_POINT_ATTACHMENT');
