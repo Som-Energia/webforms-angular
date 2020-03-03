@@ -210,6 +210,7 @@ angular.module('SomEnergiaWebForms')
                 NO_SUPPLY_POINT_CITY: 'Ez duzu hornidura-puntuaren <b>udalerria</b> zehaztu',
                 INVALID_SUPPLY_POINT_CUPS: 'Ez duzu hornidura-punturako <b>CUPS-en zenbaki</b> baliogarria zehaztu',
                 NO_IS_HOUSING: 'Ez duzu zehaztu helbidea etxebizitza batena ote den',
+                INVALID_CNAE_NO_HOUSING: 'El punto de suministro no és una vivienda, el CNAE no puede ser 9820',
                 INVALID_SUPPLY_POINT_CNAE: 'Ez duzu hornidura-punturako <b>CNAE kode</b> baliogarria zehaztu',
                 INVALID_SUPPLY_POINT_ATTACHMENT: 'Atxikitako artxiboa 10Mb baino handiagoa da',
                 NO_MONOPHASE_CHOICE: 'Ez duzu zehaztu instalazioa monofasikoa edo trifasikoa den ala ez',
