@@ -209,7 +209,7 @@ angular.module('SomEnergiaWebForms')
                 NO_SUPPLY_POINT_STATE: 'No has especificado la <b>provincia</b> del punto de suministro',
                 NO_SUPPLY_POINT_CITY: 'No has especificado el <b>municipio</b> del punto de suministro',
                 NO_IS_HOUSING: 'No has especificado si la dirección corresponde a una vivienda',
-                INVALID_CNAE_NO_HOUSING: 'El punto de suministro no és una vivienda, el CNAE no puede ser 9820',
+                INVALID_CNAE_NO_HOUSING: 'El punto de suministro no es una vivienda, el CNAE no puede ser 9820',
                 INVALID_SUPPLY_POINT_CUPS: 'No has especificado un <b>identificador CUPS</b> válido para el punto de suministro',
                 INVALID_SUPPLY_POINT_CNAE: 'No has especificado un <b>código CNAE</b> válido para el punto de suministro',
                 INVALID_SUPPLY_POINT_ATTACHMENT: 'El archivo adjunto supera el límite de 10Mbytes',
