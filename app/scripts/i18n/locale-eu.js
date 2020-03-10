@@ -293,7 +293,8 @@ angular.module('SomEnergiaWebForms')
                 OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.',
                 VOLS_MANTENIR_EL_TITULAR: 'Kontratuaren titularra aldatu nahi duzu?',
                 NO_CANVI_DE_TITULAR: 'Ez dut nahi.',
-                SI_CANVI_DE_TITULAR: 'Bai, nahi dut.'
+                SI_CANVI_DE_TITULAR: 'Bai, nahi dut.',
+                NIF: 'IFZ'
             })
         ;
     });
