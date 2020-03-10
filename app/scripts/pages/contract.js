@@ -132,6 +132,7 @@ angular.module('SomEnergiaWebForms')
         ValidateHandler.validatePower($scope, 'form.power');
         ValidateHandler.validatePower($scope, 'form.power2');
         ValidateHandler.validatePower($scope, 'form.power3');
+        ValidateHandler.validateNewPower($scope, 'form.newpower');
         ValidateHandler.validateInteger($scope, 'form.estimation');
 
         $scope.esAlta = function() {
@@ -147,16 +148,20 @@ angular.module('SomEnergiaWebForms')
             $scope.formListener();
         });
         function recomputeFareFromAlta(/*oldvalue, newvalue*/) {
-            var newFare = (
-                $scope.form.newpower+0 < 10 ? '2.0' : (
-                $scope.form.newpower+0 < 15 ? '2.1' : (
-                $scope.form.newpower!==undefined ? '3.0' :
-                undefined)));
-            if (newFare!=='3.0' && newFare !== undefined) {
+            var newPower = parseFloat($scope.form.newpower);
+            newPower = (isNaN(newPower)) ? undefined : newPower;
+
+            var newFare;
+            if (newPower < 10) { newFare = '2.0'; }
+            else if (newPower < 15) { newFare = '2.1'; }
+            else if (newPower >= 15) { newFare = '3.0'; }
+
+            if (newFare!=='3.0') {
                 $scope.form.power=$scope.form.newpower;
             }
+
             if (newFare !== undefined) {
-                var discrimination = $scope.form.newpower+0<15 ? $scope.form.discriminacio : 'nodh';
+                var discrimination = newPower<15 ? $scope.form.discriminacio : 'nodh';
                 if (discrimination===undefined) {
                     newFare = undefined;
                 } else {
@@ -376,20 +381,18 @@ angular.module('SomEnergiaWebForms')
         };
 
         $scope.isHousing = function() {
-            if($scope.form.ishousing) {
+            if ($scope.form.ishousing === true) {
                 $scope.cnaeEditor.value = cfg.HOUSING_CNAE;
                 $scope.cnaeEditor.disabled = true;
-            }else {
+            } else {
                 $scope.cnaeEditor.value = '';
                 $scope.cnaeEditor.disabled = false;
             }
-        }
+        };
 
         $scope.checkCnaeHousing = function() {
-            return (!$scope.form.ishousing)
-            ? $scope.cnaeEditor.value !== cfg.HOUSING_CNAE
-            : true
-        }
+            return (!$scope.form.ishousing) ? $scope.cnaeEditor.value !== cfg.HOUSING_CNAE : true;
+        };
 
         $scope.formListener = function() {
             //console.log('listener');

@@ -2,7 +2,7 @@
 <div ng-cloak>
     <div ng-show="header!==undefined" class="row no-margin-bottom">
         <div class="col-xs-12 heading" data-ng-class="{active: model.current === pageName}">
-            <h2 class="extra-margin">{{header}}</h2>
+            <h2 class="extra-margin" data-ng-bind-html="header"></h2>
         </div>
     </div>
     <div

@@ -21,9 +21,9 @@
                </div>
             </div>
             <div class="form-group col-xs-6 col-sm-5 col-md-4 col-lg-3" >
-                <label class="sr-only">NIF*</label>
+                <label class="sr-only">{{ 'NIF' | translate }}*</label>
                 <div class="input-group" style="width: 100%">
-                    <input type="text" name="dni" class="form-control input-lg" placeholder="NIF*" data-ng-model="formvalues.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': isInvalidId()}" required/>
+                    <input type="text" name="dni" class="form-control input-lg" placeholder="{{ 'NIF' | translate }}*" data-ng-model="formvalues.dni" data-ng-change="formListener()" data-ng-class="{'ng-invalid': isInvalidId()}" required/>
                     <a
                         role="button"
                         tabindex="-1"

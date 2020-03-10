@@ -1,4 +1,4 @@
-<div class="form-group has-feedback col-xs-6">
+<div class="form-group has-feedback col-xs-6 select-provinces">
     <label class="sr-only">{{ 'PROVINCIA' | translate }}:</label>
     <select
         class="form-control"
@@ -22,7 +22,7 @@
     <span class="pull-right label label-warning" data-ng-show="provinces.length===0">{{ 'CARREGANT_OPCIONS' | translate }}</span>
     <span class="pull-right label label-danger" data-ng-show="!quietlabels && provinces.length!=0 && stateModel===undefined">{{ 'OBLIGATORI' | translate }}</span>
 </div>
-<div class="form-group has-feedback col-xs-6">
+<div class="form-group has-feedback col-xs-6 select-cities">
     <label class="sr-only">{{ 'POBLACIO' | translate }}:</label>
     <select
         class="form-control"

@@ -6,23 +6,24 @@ $icon-font-path: "/fonts/";
 // endbower
 
 /* Variables */
-$red: #F00;
-$green: #AEC122;
+$green: #bac92a;
+$red: #d9534f;
 $white: #FFF;
 $grey-light: #DFDFE0;
 $grey: #8A8990;
 $grey-dark: #5F5E63;
 $grey-darkest: #49494D;
+$brown: #4c4d4d;
+
 $my-border-radius: 4px;
 
 /* Mixins */
 @mixin common-button-mixin {
-  border-radius: 0;
-  color: $white;
-  border-color: transparent;
-  font-size: 18px;
-  width: 174px;
-  height: 38px;
+    border-radius: 0;
+    color: $white;
+    border-color: transparent;
+    font-size: 18px;
+    height: 38px;
 }
 
 /* Browserhappy */
@@ -35,378 +36,539 @@ $my-border-radius: 4px;
 
 /* Space out content a bit */
 body {
-  color: $grey-dark;
-  /* padding-top: 20px; */
-  /* padding-bottom: 20px; */
+    color: $grey-dark;
+    /* padding-top: 20px; */
+    /* padding-bottom: 20px; */
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
-.header, .marketing, .footer {
+.header,
+.marketing,
+.footer {
     padding-left: 15px;
     padding-right: 15px;
 }
 
 /* Custom settings */
 .row {
-  margin-bottom: 20px;
-  &.no-margin-bottom {
-    margin-bottom: 0;
-    & > .heading {
-      border-top: solid 1px $grey;
-      &.active {
-        border-top: solid 1px $grey;
-      }
+    margin-bottom: 20px;
+
+    &.no-margin-bottom {
+        margin-bottom: 0;
+
+        &>.heading {
+            border-top: solid 1px rgba(255, 255, 255, 0.4);
+
+            h2 {
+                font-size: 18px;
+                color: rgba(76, 77, 77, 0.65);
+                text-transform: uppercase;
+
+                .round {
+                    width: 30px;
+                    height: 30px;
+                    background-color: rgba(255, 255, 255, 0.4);
+                    border-radius: 50%;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 17px;
+                    margin-right: 8px;
+                }
+            }
+
+            &.active {}
+        }
+
+        &>.heading.active {
+            h2 {
+                color: $brown;
+            }
+        }
+
+        &.last {
+            border-bottom: solid 1px $grey;
+        }
     }
-    &.last { border-bottom: solid 1px $grey; }
-  }
-  &.extra-margin-top { margin-top: 20px; }
-  div > div.wrapper {
-    width: 100%;
-    float: left;
-  }
+
+    &.extra-margin-top {
+        margin-top: 20px;
+    }
+
+    div>div.wrapper {
+        width: 100%;
+        float: left;
+    }
 }
 
 .popover {
-  background: $grey-darkest;
-  border-color: $grey-darkest;
-  color: $white;
-  border-radius: 0;
+    background: $grey-darkest;
+    border-color: $grey-darkest;
+    color: $white;
+    border-radius: 0;
 }
 
-.popover.top > .arrow:after {
-  border-top-color: $grey-darkest;
+.popover.top>.arrow:after {
+    border-top-color: $grey-darkest;
 }
 
-.popover.right > .arrow:after {
-  border-right-color: $grey-darkest;
+.popover.right>.arrow:after {
+    border-right-color: $grey-darkest;
 }
 
-.popover.left > .arrow:after {
-  border-left-color: $grey-darkest;
+.popover.left>.arrow:after {
+    border-left-color: $grey-darkest;
 }
 
-input[type="checkbox"] { margin-right: 5px; }
-
-input[type="text"], select {
-  width: 100% !important;
-  &.inherit-width    { width: inherit !important; }
-  &.width-30-percent { width: 30%     !important; }
-  &.width-40-percent { width: 40%     !important; }
-  &.width-50-percent { width: 50%     !important; }
-  &.width-60-percent { width: 60%     !important; }
-  &.width-70-percent { width: 70%     !important; }
-  &.width-80-percent { width: 80%     !important; float: left; margin-right: 5px; }
-  &.width-90-percent { width: 90%     !important; }
-}
-
-input, select {
-  background-color: $grey-light !important;
-  &.ng-dirty.ng-valid {
-    border-color: $green;
-  }
-  &.ng-dirty.ng-invalid {
-    border-color: $red;
-  }
-  &.combo-one-row {
-    float: left;
+input[type="checkbox"] {
     margin-right: 5px;
-  }
+}
+
+input[type="text"],
+select {
+    width: 100% !important;
+
+    &.inherit-width {
+        width: inherit !important;
+    }
+
+    &.width-30-percent {
+        width: 30% !important;
+    }
+
+    &.width-40-percent {
+        width: 40% !important;
+    }
+
+    &.width-50-percent {
+        width: 50% !important;
+    }
+
+    &.width-60-percent {
+        width: 60% !important;
+    }
+
+    &.width-70-percent {
+        width: 70% !important;
+    }
+
+    &.width-80-percent {
+        width: 80% !important;
+        float: left;
+        margin-right: 5px;
+    }
+
+    &.width-90-percent {
+        width: 90% !important;
+    }
+}
+
+input,
+select {
+    background-color: $grey-light !important;
+
+    &.ng-dirty.ng-valid {
+        border-color: $green;
+    }
+
+    &.ng-dirty.ng-invalid {
+        border-color: $red;
+    }
+
+    &.combo-one-row {
+        float: left;
+        margin-right: 5px;
+    }
 }
 
 .badge {
-  margin-left: 5px;
-  font-size: 30px;
-  border-radius: 2em;
-  width: 2em;
-  height: 2em;
-  display: table-cell;
-  vertical-align: middle;
-  &.current {
-    background-color: $green;
-  }
-  &.small {
-    font-size: 14px;
-    cursor: pointer;
-  }
+    margin-left: 5px;
+    font-size: 30px;
+    border-radius: 2em;
+    width: 2em;
+    height: 2em;
+    display: table-cell;
+    vertical-align: middle;
+
+    &.current {
+        background-color: $green;
+    }
+
+    &.small {
+        font-size: 14px;
+        cursor: pointer;
+    }
 }
 
 span {
-  &.img-badge {
-    width: 30px;
-    display: block;
-    color: transparent;
-  }
-  &.optional-info {
-    float: left;
-    margin-right: 10px;
-    font-weight: bold;
-    font-size: 20px;
-  }
-  &.combo-one-row {
-    margin-top: 5px;
-  }
-  &.combo-one-row-text {
-    float: left;
-    margin-top: 5px;
-  }
-  &.last-help-title {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  &.owner-swap {
-    text-align: left;
-    display: block;
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 0.9em;
-    a {
-      color: #FFF;
-      text-decoration: underline;
+    &.img-badge {
+        width: 30px;
+        display: block;
+        color: transparent;
     }
-  }
+
+    &.optional-info {
+        float: left;
+        margin-right: 10px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    &.combo-one-row {
+        margin-top: 5px;
+    }
+
+    &.combo-one-row-text {
+        float: left;
+        margin-top: 5px;
+    }
+
+    &.last-help-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    &.owner-swap {
+        text-align: left;
+        display: block;
+        margin-top: 10px;
+        padding: 10px;
+        font-size: 0.9em;
+
+        a {
+            color: #FFF;
+            text-decoration: underline;
+        }
+    }
 }
 
 .confirm {
+    font-size: 16px;
     label {
         font-weight: bold;
-        font-size: 15px;
-        color: $grey;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #999;
     }
+
     h4 {
-        font-size: 22px;
+        font-size: 16px;
         font-weight: bold;
-        border-bottom: solid 2px $grey-light;
-        padding-bottom: 5px;
+        color: $green;
+        text-transform: uppercase;
+        border-bottom: solid 1px $grey-light;
+        padding-bottom: 10px;
+    }
+
+    .well {
+        background-color: #fff;
+        box-shadow: none;
+        padding-bottom: 8px;
+        padding-top: 8px;
     }
 }
 
 button {
-  &.btn {
-    &.btn-default {
-      &.transparent {
-        color: $white;
-        background-color: transparent;
-        border-color: transparent;
-        margin-right: 20px;
-      }
-      &.green {
-        color: $white;
-        background-color: $green;
-        border-color: $green;
-      }
-      &.grey {
-        color: $white;
-        background-color: $grey-dark;
-        border-color: $grey;
-      }
-      &.submit {
-        font-size: 23px;
-      }
-      &.next-step-submit {
-        @include common-button-mixin;
-        text-align: left;
-        background: url("../images/next-step-right.png") no-repeat;
-      }
-      &.final-step-submit {
-        @include common-button-mixin;
-        width: 240px;
-        text-align: left;
-        background: url("../images/iniciar-contractacio.png") no-repeat;
-      }
-      &.previous-step-submit {
-        @include common-button-mixin;
-        text-align: right;
-        background: url("../images/next-step-left.png") no-repeat;
-      }
+    &.btn {
+        &.btn-default {
+            &.transparent {
+                color: $white;
+                background-color: transparent;
+                border-color: transparent;
+                margin-right: 20px;
+            }
+
+            &.green {
+                color: $white;
+                background-color: $green;
+                border-color: $green;
+            }
+
+            &.grey {
+                color: $white;
+                background-color: $grey-dark;
+                border-color: $grey;
+            }
+
+            &.submit {
+                font-size: 18px;
+            }
+
+            &.next-step-submit {
+                @include common-button-mixin;
+                text-align: left;
+                color: $brown;
+                background: $green;
+
+                &::after {
+                    content: '\203A';
+                    padding-left: 15px;
+                }
+            }
+
+            &.final-step-submit {
+                @include common-button-mixin;
+                width: 240px;
+                text-align: left;
+                color: $brown;
+                background: $green;
+            }
+
+            &.previous-step-submit {
+                @include common-button-mixin;
+                text-align: right;
+                color: $brown;
+                background: $green;
+
+                &::before {
+                    content: '\2039';
+                    padding-right: 15px;
+                }
+            }
+        }
     }
-  }
 }
 
 label {
-  font-weight: normal;
-  margin-right: 10px;
-  &.btn {
-    &:first-child:not(:last-child):not(.dropdown-toggle), &:last-child:not(:first-child):not(.dropdown-toggle) {
-      border-radius: $my-border-radius !important;
-    }
-    &.btn-default {
-      &.green {
-        font-weight: bold;
-        color: $white;
-        background-color: $grey-dark;
-        border-color: $grey;
-        &:hover {
-            opacity: 0.8;
+    font-weight: normal;
+    margin-right: 10px;
+
+    &.btn {
+
+        &:first-child:not(:last-child):not(.dropdown-toggle),
+        &:last-child:not(:first-child):not(.dropdown-toggle) {
+            border-radius: $my-border-radius !important;
         }
-        &.active {
-          background-color: $green;
-          border-color: $grey;
-            &:hover {
-              opacity: 0.8;
+
+        &.btn-default {
+            &.green {
+                font-weight: bold;
+                color: $white;
+                background-color: $grey-dark;
+                border-color: $grey;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+
+                &.active {
+                    background-color: $green;
+                    border-color: $grey;
+
+                    &:hover {
+                        opacity: 0.8;
+                    }
+                }
+
+                &:active {
+                    background-color: black;
+                    opacity: 0.8;
+                }
             }
         }
-        &:active {
-            background-color: black;
-            opacity: 0.8;
-        }
-      }
     }
-  }
 }
 
-h1 { font-size: 25px; }
+h1 {
+    font-size: 24px;
+}
 
-h2 { font-size: 25px; }
+h2 {
+    font-size: 24px;
+}
 
-h1, h2, h3, h4 {
-  &.green {
-    color: $green;
-    margin:0;
-  }
+h1,
+h2,
+h3,
+h4 {
+    &.green {
+        color: $green;
+        margin: 0;
+    }
 }
 
 hr {
-  border-top: 3px solid $grey-light;
-  &.green {
-    border-top: 3px solid $green;
-  }
-  &.dotted {
-    border-top: 1px dashed $grey-light;
-  }
-  &.continue-process {
-    margin-bottom: 0;
-  }
+    border-top: 3px solid $grey-light;
+
+    &.green {
+        border-top: 3px solid $green;
+    }
+
+    &.dotted {
+        border-top: 1px dashed $grey-light;
+    }
+
+    &.continue-process {
+        margin-bottom: 0;
+    }
 }
 
 a {
-  color: $green;
-  &:hover {
     color: $green;
-  }
+
+    &:hover {
+        color: $green;
+    }
 }
 
 div.alert {
-  &.alert-info {
-    &.grey {
-      color: $white;
-      background-color: $grey;
-      border-color: $grey;
+    &.alert-info {
+        &.grey {
+            color: $white;
+            background-color: $grey;
+            border-color: $grey;
+        }
     }
-  }
 }
 
 div.wrapper-continue-process {
-  background: url("../images/continue-process.png") no-repeat 100% -47px;
-  height: 47px;
-  margin-top: -3px;
-  &.ready {
-		background: url("../images/continue-process.png") no-repeat 100% 0;
-	  }
-  button.btn-default {
-    width: 270px;
-    text-align: right;
-  }
+    background: url("../images/continue-process.png") no-repeat 100% -47px;
+    height: 47px;
+    margin-top: -3px;
+
+    &.ready {
+        background: url("../images/continue-process.png") no-repeat 100% 0;
+    }
+
+    button.btn-default {
+        width: 270px;
+        text-align: right;
+    }
 }
 
 div.well.custom-ad-top {
-  border: none;
-  border-radius: 0;
-  border-top: solid 2px $green;
-  box-shadow: 0 0 10px $grey;
-  background-color: $white;
-  margin-bottom: 0;
-  h6 { font-size: 16px; }
-  h5 {
-    font-size: 30px;
-    color: $green;
-  }
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    background-color: $white;
+    margin-bottom: 0;
+
+    h6 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    h5 {
+        font-size: 21px;
+        color: $green;
+        margin-bottom: 0;
+    }
 }
 
 .custom-ad-bottom-left {
-  border: none;
-  border-radius: 0;
-  color: $white;
-  background-color: $green;
-  box-shadow: 0 3px 10px $grey;
-  padding-top: 15px;
-  label {
-    font-weight: bold;
-    font-size: 16px;
-  }
+    border: none;
+    border-radius: 0;
+    color: $brown;
+    background-color: $green;
+    box-shadow: none;
+    padding-top: 15px;
+
+    label {
+        font-weight: bold;
+        font-size: 16px;
+        padding-bottom: 10px;
+    }
 }
 
 .custom-ad-bottom-right {
-  border: none;
-  border-bottom: 2px solid $green;
-  border-radius: 0;
-  background-color: $white;
-  box-shadow: 0 3px 10px $grey;
-  padding-bottom: 10px;
-  p { font-weight: bold; }
+    border: none;
+    border-radius: 0;
+    background-color: $white;
+    box-shadow: none;
+    padding-bottom: 10px;
+
+    p {
+    }
 }
 
 .label-success {
-  background-color: $green;
+    background-color: $green;
 }
 
 .color-bg-green {
-  background-color: $green;
+    background-color: $green;
 }
 
 .color-fg-white {
-  color: $white;
+    color: $white;
 }
 
 .extra-margin {
-  margin-top: 20px;
-  margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .no-horitzontal-padding {
-  padding-left: 0;
-  padding-right: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .heading {
-  color: $grey;
-  background-color: $grey-light;
-  &.active {
-    color: $white;
-    background-color: $green;
-  }
+    color: $grey;
+    background-color: $grey-light;
+
+    &.active {
+        color: $white;
+        background-color: $green;
+    }
 }
 
 /* Placeholders color unified hack, don't group this rules together */
-.form-control[disabled]::-webkit-input-placeholder { color: $grey; }
-.form-control[disabled]:-moz-placeholder           { color: $grey; }
-.form-control[disabled]::-moz-placeholder          { color: $grey; }
-.form-control[disabled]:-ms-input-placeholder      { color: $grey; }
-.form-control::-webkit-input-placeholder { color: $grey-dark; }
-.form-control:-moz-placeholder           { color: $grey-dark; }
-.form-control::-moz-placeholder          { color: $grey-dark; }
-.form-control:-ms-input-placeholder      { color: $grey-dark; }
-select[disabled] { color: $grey; }
+.form-control[disabled]::-webkit-input-placeholder {
+    color: $grey;
+}
+
+.form-control[disabled]:-moz-placeholder {
+    color: $grey;
+}
+
+.form-control[disabled]::-moz-placeholder {
+    color: $grey;
+}
+
+.form-control[disabled]:-ms-input-placeholder {
+    color: $grey;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: $grey-dark;
+}
+
+.form-control:-moz-placeholder {
+    color: $grey-dark;
+}
+
+.form-control::-moz-placeholder {
+    color: $grey-dark;
+}
+
+.form-control:-ms-input-placeholder {
+    color: $grey-dark;
+}
+
+select[disabled] {
+    color: $grey;
+}
 
 /* Columns of same height styles */
 .container-xs-height {
-  display: table;
-  padding: 0 15px;
+    display: table;
 }
 
 .row-xs-height {
-  display: table-row;
+    display: table-row;
 }
 
 .col-xs-height {
-  display: table-cell;
-  float: none;
+    display: table-cell;
+    float: none;
 }
 
 /* Overload default bootstrap right alignment, was used for buttons, detailed error text is used here */
 .modal-footer {
-  pre {
-    text-align: left;
-  }
+    pre {
+        text-align: left;
+    }
 }
 
 /* Responsive: Portrait tablets and up */
@@ -414,6 +576,7 @@ select[disabled] { color: $grey; }
     .container {
         max-width: 730px;
     }
+
     /* Remove the padding we set earlier */
     .header,
     .marketing,
@@ -421,6 +584,7 @@ select[disabled] { color: $grey; }
         padding-left: 0;
         padding-right: 0;
     }
+
     /* Space out the masthead */
     .header {
         margin-bottom: 30px;
@@ -432,15 +596,19 @@ select[disabled] { color: $grey; }
 .form-control-feedback.primary {
     color: rgb(50, 118, 177);
 }
+
 .form-control-feedback.success {
     color: $green;
 }
+
 .form-control-feedback.info {
     color: rgb(57, 179, 215);
 }
+
 .form-control-feedback.warning {
     color: rgb(240, 173, 78);
 }
+
 .form-control-feedback.danger {
     color: rgb(200, 100, 100);
     color: $red;
@@ -462,9 +630,15 @@ select[disabled] { color: $grey; }
 .glyphicon.spinning {
     animation: spin 1s infinite linear;
 }
+
 @keyframes spin {
-    from { transform: scale(1) rotate(0deg);}
-    to { transform: scale(1) rotate(360deg);}
+    from {
+        transform: scale(1) rotate(0deg);
+    }
+
+    to {
+        transform: scale(1) rotate(360deg);
+    }
 }
 
 /* Electricity use by contract table */
@@ -474,21 +648,26 @@ table.contractTable {
         padding-right: 10px;
         color: $green;
     }
+
     tr:nth-child(odd) {
         background-color: #f8f8f8;
     }
+
     tr:nth-child(even) {
         background-color: #ffffff;
     }
+
     td {
         border: 1pt solid #eee;
         padding-right: 10px;
         vertical-align: top;
     }
+
     tr:first-child {
         th {
             white-space: nowrap;
         }
+
         th:nth-child(2) {
             width: 99%;
         }
@@ -500,6 +679,7 @@ table.contractTable {
     position: relative;
     overflow: hidden;
 }
+
 .btn-file input[type=file] {
     position: absolute;
     top: 0;
@@ -515,12 +695,13 @@ table.contractTable {
     cursor: inherit;
     display: block;
 }
+
 .btn-file input[readonly] {
     color: white !important;
     cursor: text !important;
 }
 
-.invest-form {
+body {
 
     $green: #bac92a;
     $red: #d9534f;
@@ -528,6 +709,7 @@ table.contractTable {
 
     font-family: 'Roboto';
     color: $brown;
+    background-color: #f5f5f5;
 
     a {
         color: $green;
@@ -535,45 +717,78 @@ table.contractTable {
     }
 
     .well {
+        padding: 20px;
         box-shadow: none;
         border: 0;
-        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.1);
+        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
     }
 
-    input, select {
+    .alert {
+        border-radius: 0;
+    }
+
+    input,
+    select {
         background-color: #fff !important;
+
+        &.ng-dirty.ng-valid {
+            border: 2px solid $green;
+        }
+
+        &.ng-invalid {
+            border: 2px solid $red;
+        }
+    }
+
+    .form-group, .input-group {
+
+        & .ng-valid,
+        & .ng-dirty.ng-valid {
+            border: 2px solid $green;
+            border-right: 2;
+
+            & ~ .input-group-addon {
+                border: 2px solid $green;
+                border-left: 0;
+            }
+        }
+
+        & .ng-invalid,
+        & .ng-dirty.ng-invalid {
+            border: 2px solid $red;
+            border-right: 2;
+
+            & ~ .input-group-addon {
+                border: 2px solid $red;
+                border-left: 0;
+            }
+        }
+
+        & .ng-empty,
+        & .ng-dirty.ng-empty {
+            border: 1px solid #ccc;
+
+            & ~ .input-group-addon {
+                border: 1px solid #ccc;
+                border-left: 0;
+            }
+
+            &::placeholder {
+                color: #999;
+            }
+        }
     }
 
     .input-group {
 
-        input[type=text] {
-            border-right: 0;
-        }
-
-        .ng-dirty {
-            &.ng-valid {
-                border: 2px solid $green;
-                border-right: 0;
-                & + .input-group-addon {
-                    border: 2px solid $green;
-                    border-left: 0;
-                }
-            }
-            &.ng-invalid {
-                border: 2px solid $red;
-                border-right: 0;
-                & + .input-group-addon {
-                    border: 2px solid $red;
-                    border-left: 0;
-                }
-            }
+        input[type=text],
+        select {
+            border-right: 1px solid #ccc;
         }
     }
 
-    .row {
-        &.extra-margin-top {
-            margin-bottom: 0;
-        }
+    .form-power-ps .input-group {
+        margin-bottom: 5px;
     }
 
     ul {
@@ -603,23 +818,29 @@ table.contractTable {
         margin-top: 0;
     }
 
-    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-        color: #8A8990;
-        opacity: 1; /* Firefox */
-    }
-    :-ms-input-placeholder { /* Internet Explorer 10-11 */
-        color: #8A8990;
+    ::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #ccc;
+        opacity: 1;
+        /* Firefox */
     }
 
-    ::-ms-input-placeholder { /* Microsoft Edge */
-        color: #8A8990;
+    :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: #ccc;
+    }
+
+    ::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: #ccc;
     }
 
     .input-group-addon {
         background-color: #fff;
+
         &.euro-badget {
             font-size: 150%;
-            font-weight:bold;
+            font-weight: bold;
             color: #8A8990;
         }
     }
@@ -637,16 +858,19 @@ table.contractTable {
     }
 
     h2 {
+        font-size: 22px;
+        color: $brown;
+
         &.green {
             color: $brown;
             font-weight: bold;
         }
     }
 
-    h3 {
+    h3,
+    .panel-chooser .panel-heading {
         color: $brown;
         font-size: 18px;
-        font-weight: 700;
         margin: 0;
 
         &.green {
@@ -660,12 +884,28 @@ table.contractTable {
         }
     }
 
+    .panel-chooser {
+        border-color: #ccc;
+        margin-bottom: 0;
+
+        .panel-heading {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .panel-body {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    }
+
     h4 {
         font-weight: 700;
         margin-bottom: 20px;
     }
 
-    .advise-partner-required, .welcome-partner {
+    .advise-partner-required,
+    .welcome-partner {
         font-size: 16px;
         font-weight: 500;
     }
@@ -674,17 +914,26 @@ table.contractTable {
         margin-bottom: 20px;
     }
 
+    .panel-chooser {
+        .panel-body {
+            background-color: #f5f5f5;
+        }
+    }
+
     .label-group {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: center;
+
         label {
-            margin-right:0;
+            margin-right: 0;
             margin-bottom: 8px;
             flex: 1 1 auto;
+
             &:first-child {
                 margin-right: 4px;
             }
+
             &:last-child {
                 margin-left: 4px;
             }
@@ -692,10 +941,11 @@ table.contractTable {
     }
 
     label.btn.btn-default {
-        font-weight: 400;
         &.green {
+            font-weight: normal;
             color: rgba(255, 255, 255, 0.6);
-            border-color: rgba(255, 255, 255, 0.6);
+            border-color: #5F5E63;
+
             &.active {
                 background-color: $green;
                 border-color: $green;
@@ -707,15 +957,17 @@ table.contractTable {
 
     button.btn.btn-default {
         &.submit {
-            font-size: 21px;
-            font-weight: 700;
+            font-size: 18px;
         }
+
         &.green {
             color: $brown;
         }
+
         &.grey {
             color: rgba(255, 255, 255, 0.6);
-            background-color:$brown;
+            background-color: $brown;
+            border-color: $brown;
         }
     }
 
@@ -727,12 +979,12 @@ table.contractTable {
 
     .memberchooser-msg {
         font-weight: 700;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 0;
+        margin-bottom: 20px;
     }
 
     .new-partner-btn {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
 
     input:-webkit-autofill,
@@ -749,3 +1001,8 @@ table.contractTable {
     }
 }
 
+@media (max-width: 480px) {
+    .col-xs-6 {
+        width: 100% !important;
+    }
+}

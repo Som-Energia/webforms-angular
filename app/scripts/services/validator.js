@@ -21,6 +21,23 @@ angular.module('SomEnergiaWebForms')
             });
         };
 
+        this.validateNewPower = function($scope, element) {
+            $scope.$watch(element, function(newValue, oldValue) {
+                if (newValue !== undefined) {
+                    var re = /^\d*([.,'])?\d?/g;
+                    var match = re.exec(newValue);
+                    var result = match[0].replace(',', '.');
+                    result = result.replace('\'', '.');
+                    result = (result === '.') ? undefined : result;
+                    //result = parseFloat(result);
+                    //result = isNaN(result) ? undefined : result;
+                    $scope.form.newpower = result;
+                } else {
+                    $scope.form.newpower = undefined;
+                }
+            });
+        };
+
         // POWER VALIDATOR
         this.validatePower = function($scope, element) {
             $scope.$watch(element, function(newValue, oldValue) {
@@ -71,7 +88,7 @@ angular.module('SomEnergiaWebForms')
                 $scope.formListener();
             });
         };
-        
+
         // DNI VALIDATOR
         this.validateDni = function($scope, element, timer) {
             $scope.$watch(element, function(newValue, oldValue) {
@@ -108,7 +125,7 @@ angular.module('SomEnergiaWebForms')
                 }, cfg.DEFAULT_MILLISECONDS_DELAY);
             });
         };
-        
+
         // EMAIL 1 VALIDATOR
         this.validateEmail1 = function($scope, element, timer) {
             $scope.$watch(element, function(newValue) {
@@ -211,13 +228,6 @@ angular.module('SomEnergiaWebForms')
         this.validateIban = function($scope, element) {
             $scope.$watch(element, function(newValue, oldValue) {
                 if (newValue !== undefined) {
-//                    $log.log('[IBAN validator] element = ' + element);
-//                    $log.log('[IBAN validator] old = ' + oldValue);
-//                    $log.log('[IBAN validator] new = ' + newValue);
-//                    $log.log('[IBAN validator] test = ' + ibanFirstFieldRE.test(newValue));
-//                    $log.log(element === 'form.accountbankiban1');
-//                    $log.log(ibanFirstFieldRE.test(newValue));
-//                    $log.log(newValue.length > 4);
                     if (element === 'form.accountbankiban1' && newValue.length > 4) {
                         $scope.form.accountbankiban1 = oldValue;
                     } else if (element === 'form.accountbankiban2' && newValue.length > 4) {
