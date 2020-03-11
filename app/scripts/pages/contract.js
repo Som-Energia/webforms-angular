@@ -215,12 +215,13 @@ angular.module('SomEnergiaWebForms')
             if ($scope.form.city === undefined) {
                 return error('NO_SUPPLY_POINT_CITY');
             }
-            if (!$scope.cupsEditor.isValid()) {
-                return error('INVALID_SUPPLY_POINT_CUPS');
-            }
 
             if ($scope.form.ishousing === undefined) {
                 return error('NO_IS_HOUSING');
+            }
+
+            if (!$scope.cupsEditor.isValid()) {
+                return error('INVALID_SUPPLY_POINT_CUPS');
             }
 
             if (!$scope.cnaeEditor.isValid()) {
