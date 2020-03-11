@@ -429,7 +429,7 @@ div.alert {
 div.wrapper-continue-process {
     height: 47px;
     position: absolute;
-    right: 0;    
+    right: -15px;
     z-index: 999;
     button.btn-default {
         @include common-button-mixin;
@@ -440,7 +440,7 @@ div.wrapper-continue-process {
         &::after {
             content: '\203A';
             padding-left: 15px;
-        }        
+        }
     }
 }
 
