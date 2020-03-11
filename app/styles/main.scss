@@ -63,6 +63,7 @@ body {
                 font-size: 18px;
                 color: rgba(76, 77, 77, 0.65);
                 text-transform: uppercase;
+                line-height: 30px;
 
                 .round {
                     width: 30px;
@@ -260,7 +261,11 @@ span {
         padding-bottom: 10px;
     }
 
-    .well {
+    &.well {
+        margin-top: 15px;
+    }
+
+    .well, &.well {
         background-color: #fff;
         box-shadow: none;
         padding-bottom: 8px;
@@ -422,17 +427,20 @@ div.alert {
 }
 
 div.wrapper-continue-process {
-    background: url("../images/continue-process.png") no-repeat 100% -47px;
     height: 47px;
-    margin-top: -3px;
-
-    &.ready {
-        background: url("../images/continue-process.png") no-repeat 100% 0;
-    }
-
+    position: absolute;
+    right: 0;    
+    z-index: 999;
     button.btn-default {
-        width: 270px;
+        @include common-button-mixin;
         text-align: right;
+        color: $brown;
+        background: $green;
+
+        &::after {
+            content: '\203A';
+            padding-left: 15px;
+        }        
     }
 }
 
@@ -720,7 +728,6 @@ body {
         padding: 20px;
         box-shadow: none;
         border: 0;
-        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
     }
 
     .alert {
@@ -793,8 +800,8 @@ body {
 
     ul {
         margin: 0;
-        padding: 0.75rem 0 0 2rem;
-        font-size: 12px;
+        padding: 0.75rem 0 2rem 2rem;
+        /* font-size: 12px; */
     }
 
     .text-success {
@@ -1004,5 +1011,11 @@ body {
 @media (max-width: 480px) {
     .col-xs-6 {
         width: 100% !important;
+    }
+
+    .modify, .power {
+        .col-xs-4, .col-xs-8, .col-xs-7, .col-xs-1 {
+            width: 100% !important;
+        }
     }
 }

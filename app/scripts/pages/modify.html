@@ -1,5 +1,5 @@
 <!--GLOBAL MESSAGES-->
-<div ng-cloak>
+<div class="modify" ng-cloak>
 <div class="row" data-ng-include data-src="'scripts/fragments/global-messages.html'"></div>
 
 <div ng-if='developing' data-ng-include data-src="'scripts/fragments/responsive-display.html'"></div>
@@ -191,7 +191,7 @@
                 </div>
                 <div class="row extra-margin-top" data-ng-show="form.rate !== undefined">
                     <div class="col-xs-12">
-                        <div class="well" style="text-align:center">
+                        <div class="" style="text-align:center">
                         <h4>{{ 'LA_TEVA_TARIFA_ES' | translate }} <span class="label label-success large">{{ form.rate }}</span></h4>
                         </div>
                     </div>
@@ -351,7 +351,7 @@
                     <input
                         type="text"
                         name="contact_name"
-                        class="form-control"
+                        class="form-control input-lg"
                         placeholder="{{ 'NOM' | translate }}"
                         data-ng-model="form.contact_name"
                         data-ng-change="formListener()"
@@ -364,7 +364,7 @@
                 </div>
                 <div class="col-xs-12 form-group has-feedback">
                     <label class="sr-only">{{ 'COGNOMS' | translate }}:</label>
-                    <input type="text" name="contact_surname" class="form-control" placeholder="{{ 'COGNOMS' | translate }}" data-ng-model="form.contact_surname" data-ng-change="formListener()" required/>
+                    <input type="text" name="contact_surname" class="form-control input-lg" placeholder="{{ 'COGNOMS' | translate }}" data-ng-model="form.contact_surname" data-ng-change="formListener()" required/>
                     <span class="label label-danger" data-ng-show="submitted && form.contact_surname.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     <span class="form-control-feedback glyphicon "  data-ng-class="{
                         'glyphicon-asterisk danger': form.contact_surname === undefined,
@@ -373,7 +373,7 @@
                 </div>
                 <div class="form-group col-xs-12 has-feedback">
                     <label class="sr-only">{{ 'TELEFON' | translate }}:</label>
-                    <input type="text" name="phone" class="form-control" placeholder="{{ 'TELEFON' | translate }}" data-ng-model="form.contact_phone" data-ng-change="formListener()" required/>
+                    <input type="text" name="phone" class="form-control input-lg" placeholder="{{ 'TELEFON' | translate }}" data-ng-model="form.contact_phone" data-ng-change="formListener()" required/>
                     <span class="label label-danger" data-ng-show="submitted && form.contact_phone.$error.required">{{ 'OBLIGATORI' | translate }}</span>
                     <span class="form-control-feedback glyphicon "  data-ng-class="{
                         'glyphicon-asterisk danger': form.contact_phone === undefined,
@@ -394,7 +394,6 @@
             prev-page="'contactPage'"
             page-name="submitPage"
             >
-            <div>.</div>
             <div class="confirm well" data-ng-if="!success">
                 <div class="row">
                     <div class="col-xs-12">
@@ -433,30 +432,30 @@
                 </div>
             </div>
 
-            <div class="row no-margin-bottom" data-ng-if="!success">
+            <div class="no-margin-bottom" data-ng-if="!success">
                 <div class="col-xs-12">
                     <div class="wrapper-continue-process" data-ng-class="{ready: !formSubmitted && isFarePageComplete() && isContactInfoComplete()}">
                         <button
-                            data-ng-disabled="formSubmitted  || !isFarePageComplete() || !isContactInfoComplete()"
+                            data-ng-disabled="formSubmitted || formLocked || !isFarePageComplete() || !isContactInfoComplete()"
                             data-ng-click="submit()"
-                            class="btn btn-default transparent pull-right submit"
-                            type="button"> 
+                            class="btn btn-default pull-right submit"
+                            type="button">
                                 {{ (formSubmitted ? 'ENVIANT' : 'ENVIAR') | translate }}
                                 &nbsp;
                                 <span
                                     data-ng-show="formSubmitted"
                                     class="glyphicon glyphicon-cog spinning"
                                 ></span>
-                            </button>
+                        </button>
                     </div>
                 </div>
             </div>
 
             <div class="well" data-ng-if="success">
                 <div class="row">
-                    <h1 class="green"> 
-                        <div style="float:left; font-size: 50px; margin-right:10px;" class='green'>
-                            <span class="glyphicon glyphicon-ok" style="color:"></span>
+                    <h1 class="green">
+                        <div style="float:left; font-size: 50px; margin-right:10px;" class="green">
+                            <span class="glyphicon glyphicon-ok"></span>
                         </div>
                         {{'MODIFY_POTTAR_SUCCESS_TITTLE' | translate}}
                     </h1>

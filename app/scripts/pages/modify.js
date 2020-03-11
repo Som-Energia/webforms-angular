@@ -45,6 +45,7 @@ angular.module('SomEnergiaWebForms')
         $scope.contactPageError = undefined;
 
         $scope.formSubmitted = false;
+        $scope.formLocked = false;
         $scope.availablePowers = function() {
             if ($scope.form.phases === undefined) {
                 return [];
@@ -249,6 +250,7 @@ angular.module('SomEnergiaWebForms')
         $scope.submit = function() {
             $scope.messages = null;
             $scope.formSubmitted = true;
+            $scope.formLocked = true;
             // Prepare request data
             var formData = new FormData();
             formData.append('proces', 'M1'); // TODO: Needed?
