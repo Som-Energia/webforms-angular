@@ -204,7 +204,7 @@
                         <p class="lead" translate="HELP_TARIFA_ALTA"></p>
                     </div>
                 </div>
-                <div class="row extra-margin-top form-group">
+                <div class="row extra-margin-top">
                     <div class="col-xs-4">
                         <label for="phases">{{ 'TIPUS_INSTALLACIO' | translate }}</label>
                     </div>
@@ -233,7 +233,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row extra-margin-top form-group">
+                <div class="row extra-margin-top">
                     <div class="col-xs-4">
                         <label>{{ 'POTENCIA_A_CONTRACTAR' | translate }}</label>
                     </div>
@@ -255,34 +255,6 @@
                                 <span class="badge current small">?</span>
                             </a>
                         </div>
-                        <!--
-                        <div class='input-group has-feedback'>
-                            <select class="input-lg form-control" required ng-model='form.newpower' >
-                                <option value='' selected>{{ 'SELECCIONA' | translate}}</option>
-                                <option
-                                    ng-repeat="power in availablePowers()"
-                                    value="{{power}}"
-                                    style="background-color: {{power > 10? '#ae7':'#df9' }}"
-                                    >{{power}} kW</option>
-                                <option ng-if="form.phases==='tri'" style="background-color:#9d6" value='15'>{{ 'MES_GRAN_DE_15KW' | translate}}</option>
-                            </select>
-                            <span class="form-control-feedback glyphicon "  data-ng-class="{
-                                'glyphicon-asterisk danger': form.newpower === undefined,
-                                'glyphicon-ok success': form.newpower !== undefined,
-                            }" style="right:4em"></span>
-                            <a
-                                role="button"
-                                tabindex="-1"
-                                class="btn btn-default input-group-addon"
-                                tooltip-append-to-body="true"
-                                tooltip-trigger="'focus'"
-                                tooltip-placement="left"
-                                uib-tooltip-html="'HELP_POTENCIA' | translate: {url: t.HELP_POTENCIA_URL }"
-                                >
-                                <span class="badge current small">?</span>
-                            </a>
-                        </div>
-                        -->
                     </div>
                 </div>
                 <div class="row extra-margin-top" data-ng-hide="form.newpower>=15">

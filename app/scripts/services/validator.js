@@ -29,8 +29,7 @@ angular.module('SomEnergiaWebForms')
                     var result = match[0].replace(',', '.');
                     result = result.replace('\'', '.');
                     result = (result === '.') ? undefined : result;
-                    //result = parseFloat(result);
-                    //result = isNaN(result) ? undefined : result;
+                    result = ($scope.form.phases == 'mono' && parseFloat(result) >= 15) ? oldValue : result;
                     $scope.form.newpower = result;
                 } else {
                     $scope.form.newpower = undefined;
@@ -42,7 +41,7 @@ angular.module('SomEnergiaWebForms')
         this.validatePower = function($scope, element) {
             $scope.$watch(element, function(newValue, oldValue) {
                 if (newValue !== undefined) {
-                    var re = /^\d*([.,'])?\d*/g;
+                    var re = /^\d*([.,'])?\d?/g;
                     var match = re.exec(newValue);
                     var result = match[0].replace(',', '.');
                     result = result.replace('\'', '.');
