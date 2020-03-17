@@ -416,7 +416,7 @@ a {
     }
 }
 
-div.alert {
+.alert {
     &.alert-info {
         &.grey {
             color: $white;
@@ -426,11 +426,16 @@ div.alert {
     }
 }
 
-div.wrapper-continue-process {
-    height: 47px;
-    position: absolute;
-    right: -15px;
-    z-index: 999;
+.modify {
+    .wrapper-continue-process {
+        height: 47px;
+        position: absolute;
+        right: -15px;
+        z-index: 999;
+    }
+}
+
+.wrapper-continue-process {
     button.btn-default {
         @include common-button-mixin;
         text-align: right;
@@ -444,7 +449,7 @@ div.wrapper-continue-process {
     }
 }
 
-div.well.custom-ad-top {
+.well.custom-ad-top {
     border: none;
     box-shadow: none;
     border-radius: 0;
@@ -969,6 +974,8 @@ body {
 
         &.green {
             color: $brown;
+            background-color: $green;
+            border-color: $green;
         }
 
         &.grey {
