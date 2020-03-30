@@ -42,7 +42,7 @@ angular.module('SomEnergiaWebForms')
                 NO_TROBEM_CAP_SOCI_VINCULAT: 'No trobem cap soci/a vinculat a aquestes dades!',
                 NO_ETS_SOCI_FES_TE_AQUI: 'No ets soci/a? Fes-te soci/a <a href="//www.somenergia.coop/ca/fes-te-soci-a/" target="_blank">aquí</a>!',
                 INICIAR_CONTRACTACIO: 'Iniciar contractació',
-                DADES_PUNT_SUBMINISTRAMENT: 'Dades del punt de subministrament',
+                DADES_PUNT_SUBMINISTRAMENT: 'Punt de subministrament',
                 NUMERO_DE_CUPS: 'Número de CUPS',
                 ES_UN_HABITATGE: 'És un habitatge?',
                 HELP_POPOVER_CNAE: 'En el cas d\'habitatges és el 9820. Important: si no és un habitatge, cal que introduïu el CNAE de la vostra activitat econòmica. Per a més informació, consulteu <a target="_blank" href="https://ca.support.somenergia.coop/article/232-quin-es-el-meu-numero-de-cnae">aquest enllaç</a>.',
@@ -253,7 +253,7 @@ angular.module('SomEnergiaWebForms')
                 MODIFY_POTTAR_INTRO_TITLE: 'Avís important',
                 MODIFY_POTTAR_INTRO: '<p>El canvi de potència i/o tarifa el valida, l\'aplica i el cobra (a través de la nostra factura) la <a target="_blank" href={{url}}>distribuïdora de la teva zona</a>. El <b>cost regulat</b> és:</p><ul><li>10,94&nbsp;€ (IVA inclòs) per sol·licitud. Podeu canviar alhora de tarifa i potència en una sola sol·licitud.</li><li>En cas d\'<b>augmentar la potència</b>, 44,86&nbsp;€ per kW d\'increment.</li><li>En el cas d\'haver baixat la potència contractada, durant els següents tres anys es podrà tornar augmentar fins el valor anteriorment contractat pagant 23,84 € per kW d\'augment, en comptes dels 44,86 € comentats anteriorment.</li></ul><p>La distribuïdora només està obligada a acceptar <b>una sol·licitud de canvi cada 12 mesos</b> excepte per augments de potència contractada. En aquest cas, per normativa, la distribuidora no podrà aplicar aquesta limitació.</p><p>En cas d\'augmentar la potència contractada la companyia distribuïdora pot demanar el butlletí o certificat de la instal·lació si aquest ja està caducat o si marca una potència inferior a la nova sol·licitada. Si fos així, t\'ho farem saber per correu electrònic.</p>',
                 HELP_CONTACT_INFO: 'Les dades de contacte les utilitzarà la <a target="_blank" href="{{url}}">distribuïdora de la zona</a> per avisar-vos en cas que el tècnic encarregat necessiti accedir al comptador.',
-                MODIFY_POTTAR_SELECT_TITLE: 'Selecciona tarifa i potència',
+                MODIFY_POTTAR_SELECT_TITLE: 'Selecciona la modificiació/modificacions que vols',
                 MODIFY_POTTAR_CONTACT_TITLE: 'Dades de contacte, per accedir al comptador',
                 HELP_CONTACT_INFO_URL: 'http://ca.support.somenergia.coop/article/655-les-distribuidores-d-electricitat',
                 MODIFY_POTTAR_SUCCESS_TITTLE: 'Enhorabona. En breu rebràs un correu electrònic amb les dades de la teva sol·licitud.',
@@ -295,7 +295,12 @@ angular.module('SomEnergiaWebForms')
                 NO_CANVI_DE_TITULAR: 'No, no vull.',
                 SI_CANVI_DE_TITULAR: 'Sí, sí vull.',
                 CONVIDAT_PER: 'Convidat per {{soci.nom}} {{soci.cognom}}, soci/a de {{soci.peer}}',
-                INVALID_INTERCOOP_SESSION: 'Hem perdut l\'enllaç amb l\'origen.'
+                INVALID_INTERCOOP_SESSION: 'Hem perdut l\'enllaç amb l\'origen.',
+
+                MODIFY_POTTAR_SELECT_TITLE: 'Selecciona la modificiació/modificacions que vols',
+                MODIFY_ANSWER_INSTAL_TYPE: 'Vols modificar la tensió?',
+                MODIFY_ANSWER_POWER: 'Vols modificar la poténcia?',
+                MODIFY_ANSWER_FARE: 'Vols modificar la tarifa?',
             })
         ;
     });

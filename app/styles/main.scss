@@ -61,7 +61,7 @@ body {
 
             h2 {
                 font-size: 18px;
-                color: rgba(76, 77, 77, 0.65);
+                color: rgba(76, 77, 77, 0.85);
                 text-transform: uppercase;
                 line-height: 30px;
 
@@ -342,15 +342,25 @@ label {
 
         &:first-child:not(:last-child):not(.dropdown-toggle),
         &:last-child:not(:first-child):not(.dropdown-toggle) {
-            border-radius: $my-border-radius !important;
+            border-radius: $my-border-radius;
+        }
+
+        &:first-child:not(:last-child):not(.dropdown-toggle) {
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        &:last-child:not(:first-child):not(.dropdown-toggle) {
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
         }
 
         &.btn-default {
             &.green {
                 font-weight: bold;
-                color: $white;
-                background-color: $grey-dark;
-                border-color: $grey;
+                color: rgba(76, 77, 77, 0.85);
+                background-color: $grey-light;
+                border: 1px solid rgba(76, 77, 77, 0.85);
 
                 &:hover {
                     opacity: 0.8;
@@ -419,9 +429,9 @@ a {
 .alert {
     &.alert-info {
         &.grey {
-            color: $white;
-            background-color: $grey;
-            border-color: $grey;
+            color: rgba(76, 77, 77, 0.85);
+            background-color: $grey-light;
+            border-color: #ccc;
         }
     }
 }
@@ -955,9 +965,8 @@ body {
     label.btn.btn-default {
         &.green {
             font-weight: normal;
-            color: rgba(255, 255, 255, 0.6);
-            border-color: #5F5E63;
-
+            color: rgba(76, 77, 77, 0.85);
+            border: 1px solid #ccc;
             &.active {
                 background-color: $green;
                 border-color: $green;
@@ -979,7 +988,7 @@ body {
         }
 
         &.grey {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.8);
             background-color: $brown;
             border-color: $brown;
         }

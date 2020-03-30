@@ -42,7 +42,7 @@ angular.module('SomEnergiaWebForms')
                 NO_TROBEM_CAP_SOCI_VINCULAT: 'Ez da datu hauetara inolako elkartutako bazkiderik aurkitu!',
                 NO_ETS_SOCI_FES_TE_AQUI: 'Oraindik ez zara bazkide? Egin zaitez bazkide <a href="//www.somenergia.coop/eu/izan-zaitez-bazkide/" target="_blank">hemen</a>!',
                 INICIAR_CONTRACTACIO: 'Kontratazioa hasi',
-                DADES_PUNT_SUBMINISTRAMENT: 'Hornidura-puntuaren datuak',
+                DADES_PUNT_SUBMINISTRAMENT: 'Hornidura-puntuaren',
                 NUMERO_DE_CUPS: 'CUPS-en zenbakia',
                 HELP_POPOVER_CNAE: 'Etxebizitzen kasuan 9820 da. Ohar garrantzitsua: etxebizitza ez bada, adierazi jarduera ekonomikoaren EJSN. Informazio gehiago ikusteko, jo <a target="_blank" href="https://eu.support.somenergia.coop/article/332-zein-da-nire-cnae-zenbakia">esteka honetara</a>.',
                 ES_UN_HABITATGE: 'Etxebizitza bat da?',

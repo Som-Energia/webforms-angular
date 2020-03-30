@@ -42,7 +42,7 @@ angular.module('SomEnergiaWebForms')
                 NO_TROBEM_CAP_SOCI_VINCULAT: 'Non se atopou ningún socio/a vinculado a estos datos!',
                 NO_ETS_SOCI_FES_TE_AQUI: 'Non es socio/a? Faite socio/a <a href="//www.somenergia.coop/gl/faite-socio-a/" target="_blank">aquí</a>!',
                 INICIAR_CONTRACTACIO: 'Iniciar contratación',
-                DADES_PUNT_SUBMINISTRAMENT: 'Datos do punto de subministro',
+                DADES_PUNT_SUBMINISTRAMENT: 'Punto de subministro',
                 NUMERO_DE_CUPS: 'Número de CUPS',
                 HELP_POPOVER_CNAE: 'No caso de vivendas é o 9820. Importante: se non é unha vivenda, deberedes introducir o CNAE da vosa actividade económica. Para máis información, consultade <a target="_blank" href="https://gl.support.somenergia.coop/article/392-cal-e-o-meu-numero-de-cnae">esta ligazón</a>.',
                 ES_UN_HABITATGE: 'É unha vivenda?',
