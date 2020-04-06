@@ -299,7 +299,7 @@ angular.module('SomEnergiaWebForms')
 
                 MODIFY_POTTAR_SELECT_TITLE: 'Selecciona la modificiació/modificacions que vols',
                 MODIFY_ANSWER_INSTAL_TYPE: 'Vols modificar la tensió?',
-                MODIFY_ANSWER_POWER: 'Vols modificar la poténcia?',
+                MODIFY_ANSWER_POWER: 'Vols modificar la potència?',
                 MODIFY_ANSWER_FARE: 'Vols modificar la tarifa?',
             })
         ;

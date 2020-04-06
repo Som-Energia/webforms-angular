@@ -44,15 +44,13 @@ angular.module('SomEnergiaWebForms')
         $scope.farePageError = undefined;
         $scope.contactPageError = undefined;
 
+        $scope.formChangeFare = false;
+        $scope.formChangePower = false;
+        $scope.formChangePhases = false;
+
         $scope.formSubmitted = false;
         $scope.formLocked = false;
         $scope.availablePowers = function() {
-            if ($scope.form.phases === undefined) {
-                return [];
-            }
-            if ($scope.form.phases === 'mono') {
-                return $scope.availablePowersMonophase;
-            }
             return $scope.availablePowersTriphase;
         };
         $scope.rates = [
@@ -115,6 +113,30 @@ angular.module('SomEnergiaWebForms')
             }
             $scope.formListener();
         });
+
+        $scope.formTogglePhases = function(){
+            $scope.formChangePhases = !$scope.formChangePhases;
+            if(!$scope.formChangePhases){
+                $scope.form.phases = undefined;
+            }
+        }
+
+        $scope.formTogglePower = function(){
+            $scope.formChangePower = !$scope.formChangePower;
+            if(!$scope.formChangePower){
+                $scope.form.power = undefined;
+                $scope.form.power2 = undefined;
+                $scope.form.power3 = undefined;
+            }
+        }
+
+        $scope.formToggleFare = function(){
+            $scope.formChangeFare = !$scope.formChangeFare;
+            if(!$scope.formChangeFare){
+                $scope.form.discriminacio = undefined;
+            }
+        }
+
         function recomputeFareFromAlta(/*oldvalue, newvalue*/) {
             var newPower = parseFloat($scope.form.newpower);
             var newFare = (
@@ -139,7 +161,6 @@ angular.module('SomEnergiaWebForms')
         $scope.$watch('form.discriminacio', recomputeFareFromAlta);
 
         $scope.isFarePageComplete = function() {
-            //console.log('- isFarePageComplete');
             function error(message) {
                 if ($scope.farePageError !== message) {
                     $scope.farePageError = message;
@@ -151,16 +172,16 @@ angular.module('SomEnergiaWebForms')
             $scope.farePageError = undefined;
 
             if ($scope.esAlta()===true) {
-                if ($scope.form.phases===undefined) {
+                if ($scope.formChangePhases && $scope.form.phases===undefined) {
                     return error('NO_MONOPHASE_CHOICE');
                 }
             }
             if ($scope.esAlta()===false) {
-                if ($scope.form.rate === undefined) {
+                if ($scope.formChangeFare && $scope.form.rate === undefined) {
                     return error('NO_FARE_CHOSEN');
                 }
             }
-            if ($scope.form.power === undefined) {
+            if ($scope.formChangePower && $scope.form.power === undefined) {
                 return error('NO_POWER_CHOSEN');
             }
             switch ($scope.form.rate) {
@@ -191,12 +212,19 @@ angular.module('SomEnergiaWebForms')
                     break;
             }
             if ($scope.esAlta()===true) {
-                if  ($scope.form.rate !== cfg.RATE_30A) {
+                if  ($scope.formChangeFare && $scope.form.rate !== cfg.RATE_30A) {
                     if ($scope.form.discriminacio===undefined) {
                         return error('NO_HOURLY_DISCRIMINATION_CHOSEN');
                     }
                 }
             }
+
+            if ( $scope.formChangeFare === false
+                && $scope.formChangePhases === false
+                && $scope.formChangePower === false ) {
+                    return false
+            }
+
             return true;
         };
 
@@ -221,7 +249,7 @@ angular.module('SomEnergiaWebForms')
             if ($scope.form.contact_surname === undefined) {
                 return error('NO_SURNAME');
             }
-            if ($scope.form.contact_phone === undefined) {
+            if ($scope.form.contact_phone === undefined || $scope.form.contact_phone.length < 9) {
                 return error('NO_PHONE');
             }
             return true;
@@ -251,6 +279,7 @@ angular.module('SomEnergiaWebForms')
             $scope.messages = null;
             $scope.formSubmitted = true;
             $scope.formLocked = true;
+
             // Prepare request data
             var formData = new FormData();
             formData.append('proces', 'M1'); // TODO: Needed?
