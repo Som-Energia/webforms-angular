@@ -41,7 +41,7 @@ angular.module('SomEnergiaWebForms')
         this.validatePower = function($scope, element) {
             $scope.$watch(element, function(newValue, oldValue) {
                 if (newValue !== undefined) {
-                    var re = /^\d*([.,'])?\d?/g;
+                    var re = /^\d*([.,'])?\d{0,3}/g;
                     var match = re.exec(newValue);
                     var result = match[0].replace(',', '.');
                     result = result.replace('\'', '.');
