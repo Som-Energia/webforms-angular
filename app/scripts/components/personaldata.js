@@ -48,7 +48,7 @@ angular.module('SomEnergiaWebForms')
         }
         if (!$scope.form.dniEditor.isValid()) {
             return error('NO_NIF');
-        } else if ($scope.denyccvv !== undefined && $scope.form.dniEditor.value.lastIndexOf('H', 0) === 0) {
+        } else if ($scope.denyccvv !== undefined && $scope.form.dniEditor.value.toUpperCase().lastIndexOf('H', 0) === 0) {
             return error('NIF_CCVV');
         }
         if ($scope.form.usertype === 'company') {
