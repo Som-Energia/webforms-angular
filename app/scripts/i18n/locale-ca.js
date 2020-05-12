@@ -253,7 +253,6 @@ angular.module('SomEnergiaWebForms')
                 MODIFY_POTTAR_INTRO_TITLE: 'Avís important',
                 MODIFY_POTTAR_INTRO: '<p>El canvi de potència i/o tarifa el valida, l\'aplica i el cobra (a través de la nostra factura) la <a target="_blank" href={{url}}>distribuïdora de la teva zona</a>. El <b>cost regulat</b> és:</p><ul><li>10,94&nbsp;€ (IVA inclòs) per sol·licitud. Podeu canviar alhora de tarifa i potència en una sola sol·licitud.</li><li>En cas d\'<b>augmentar la potència</b>, 44,86&nbsp;€ per kW d\'increment.</li><li>En el cas d\'haver baixat la potència contractada, durant els següents tres anys es podrà tornar augmentar fins el valor anteriorment contractat pagant 23,84 € per kW d\'augment, en comptes dels 44,86 € comentats anteriorment.</li></ul><p>La distribuïdora només està obligada a acceptar <b>una sol·licitud de canvi cada 12 mesos</b> excepte per augments de potència contractada. En aquest cas, per normativa, la distribuidora no podrà aplicar aquesta limitació.</p><p>En cas d\'augmentar la potència contractada la companyia distribuïdora pot demanar el butlletí o certificat de la instal·lació si aquest ja està caducat o si marca una potència inferior a la nova sol·licitada. Si fos així, t\'ho farem saber per correu electrònic.</p>',
                 HELP_CONTACT_INFO: 'Les dades de contacte les utilitzarà la <a target="_blank" href="{{url}}">distribuïdora de la zona</a> per avisar-vos en cas que el tècnic encarregat necessiti accedir al comptador.',
-                MODIFY_POTTAR_SELECT_TITLE: 'Selecciona la modificiació/modificacions que vols',
                 MODIFY_POTTAR_CONTACT_TITLE: 'Dades de contacte, per accedir al comptador',
                 HELP_CONTACT_INFO_URL: 'http://ca.support.somenergia.coop/article/655-les-distribuidores-d-electricitat',
                 MODIFY_POTTAR_SUCCESS_TITTLE: 'Enhorabona. En breu rebràs un correu electrònic amb les dades de la teva sol·licitud.',
@@ -288,6 +287,7 @@ angular.module('SomEnergiaWebForms')
                 POTENCIA_CUSTOM: 'Si vols contractar una potencia diferent a aquestes, pots indicar-la tot responent el correu electrònic que rebrás un cop complimentat el formulari',
 
                 INDICAR_COMPTE_REBUTS: 'Indica el compte bancari on es domiciliaran els rebuts',
+                NIF_CCVV: '<p>Malauradament, la llei catalana de cooperatives (Llei 12/2015, de 9 de juliol) no permet a les comunitats veïnals ser sòcies d\'una cooperativa. Per això, la comunitat no es pot associar a Som Energia.</p><p>Així doncs, per poder contractar la llum de la comunitat caldrà fer-ho utilitzant la invitació d\'una persona sòcia, ja sigui una membre de la comunitat o bé l\'administradora de finques.</p>',
 
                 // UNTRANSLATED
                 OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicat quina persona serà la titular del contracte.',

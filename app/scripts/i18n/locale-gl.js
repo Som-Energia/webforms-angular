@@ -287,6 +287,7 @@ angular.module('SomEnergiaWebForms')
                 ACCEPTO_POLITICA_PRIVACITAT: 'Lin e acepto a <strong><a target="_blank" href="//www.somenergia.coop/gl/politica-de-privacidade-cookies-y-aviso-legal/">política de privacidade</a></strong> de Som Energia',
 
                 INDICAR_COMPTE_REBUTS: 'Indica o número de conta onde se domiciliarán os recibos',
+                NIF_CCVV: '<p>Lamentabelmente, a lei catalá de cooperativas (Lei 12/2015, de 9 de xullo) non permite ás comunidades veciñais seren socias dunha cooperativa. Por isto, a comunidade non pode asociarse a Som Energia.</p><p>Daquela, para poder contratar a luz da comunidade será preciso facelo utilizando o convite dunha persoa socia, sexa membro da comunidade ou administradora de fincas.</p>',
 
                 // UNTRANSLATED
                 POTENCIA_CUSTOM: 'Si quieres contratar una potencia distinta a estas, nos la puedes indicar respondiendo el correo electrónico que recibirás una vez rellenado el formulario',

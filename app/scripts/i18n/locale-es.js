@@ -288,6 +288,7 @@ angular.module('SomEnergiaWebForms')
                 POTENCIA_CUSTOM: 'Si quieres contratar una potencia distinta a estas, nos la puedes indicar respondiendo el correo electrónico que recibirás una vez rellenado el formulario',
 
                 INDICAR_COMPTE_REBUTS: 'Indica la cuenta bancaria donde se domiciliarán los recibos',
+                NIF_CCVV: '<p>Lamentablemente, la ley catalana de cooperativas (Ley 12/2015, de 9 de julio) no permite a las comunidades vecinales ser socias de una cooperativa, por lo que la comunidad no puede asociarse a Som Energia.</p><p>Así pues, para poder contratar la luz de la comunidad será necesario hacerlo utilizando la invitación de una persona socia, ya sea miembro de la comunidad o bien administradora de fincas.</p>',
 
                 // UNTRANSLATED
                 OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.',

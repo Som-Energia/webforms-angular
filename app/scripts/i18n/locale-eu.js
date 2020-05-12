@@ -287,6 +287,7 @@ angular.module('SomEnergiaWebForms')
                 ACCEPTO_POLITICA_PRIVACITAT: 'Som Energiaren <strong><a target="_blank" href="//www.somenergia.coop/eu/pribatutasun-politika-cookie-ak-eta-lege-oharra/">pribatutasun-politika</a></strong> irakurri eta onartzen dut',
 
                 INDICAR_COMPTE_REBUTS: 'Ordainagiriak helbideratzeko kontu zenbakia adierazi',
+                NIF_CCVV: '<p>Zoritxarrez, Kataluniako Kooperatiben Legeari (uztailaren 9ko 12/2015 Legea) jarraikiz, auzo-komunitateak ezin dira izan kooperatiba bateko bazkide. Horregatik, komunitatea ezin da izan Som Energiako bazkide.</p><p>Beraz, komunitateko argia kontratatu ahal izateko bazkide baten, dela komunitateko kide baten dela finka-administratzailearen, gonbidapena erabili behar da.</p>',
 
                 // UNTRANSLATED
                 POTENCIA_CUSTOM: 'Si quieres contratar una potencia distinta a estas, nos la puedes indicar respondiendo el correo electrónico que recibirás una vez rellenado el formulario',

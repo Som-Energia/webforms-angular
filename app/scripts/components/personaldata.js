@@ -7,6 +7,7 @@ angular.module('SomEnergiaWebForms')
         scope: {
             form: '=model',
             onchanged: '&?',
+            denyccvv: '@?',
         },
         templateUrl: 'scripts/components/personaldata.html',
         controller: 'personalDataCtrl',
@@ -47,6 +48,8 @@ angular.module('SomEnergiaWebForms')
         }
         if (!$scope.form.dniEditor.isValid()) {
             return error('NO_NIF');
+        } else if ($scope.denyccvv !== undefined && $scope.form.dniEditor.value.lastIndexOf('H', 0) === 0) {
+            return error('NIF_CCVV');
         }
         if ($scope.form.usertype === 'company') {
             if ($scope.form.representantname === undefined) {
