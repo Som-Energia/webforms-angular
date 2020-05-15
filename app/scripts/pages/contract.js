@@ -32,6 +32,11 @@ angular.module('SomEnergiaWebForms')
         $scope.form.discriminacio = undefined;
         $scope.form.choosepayer = cfg.PAYER_TYPE_TITULAR;
         $scope.form.address = {};
+        $scope.form.addressNumber = {};
+        $scope.form.addressFloor = {};
+        $scope.form.addressDoor = {};
+        $scope.form.postalcode = undefined;
+        $scope.form.cupsAddress = '';
         $scope.form.invoice = {};
         $scope.form.documentation = {};
         $scope.initForm = {};
@@ -134,6 +139,9 @@ angular.module('SomEnergiaWebForms')
         ValidateHandler.validatePower($scope, 'form.power3');
         ValidateHandler.validateNewPower($scope, 'form.newpower');
         ValidateHandler.validateInteger($scope, 'form.estimation');
+        // POSTAL CODE VALIDATION
+        ValidateHandler.validatePostalCode($scope, 'form.postalcode', false);
+
 
         $scope.esAlta = function() {
             if ($scope.form.hasservice === undefined) { return undefined; }
@@ -209,6 +217,37 @@ angular.module('SomEnergiaWebForms')
             if ($scope.form.address.value === undefined) {
                 return error('NO_SUPPLY_POINT_ADDRESS');
             }
+            if ($scope.form.addressNumber.value === undefined) {
+                return error('NO_SUPPLY_POINT_ADDRESS_NUMBER');
+            }
+            /*
+            if ($scope.form.addressFloor.value === undefined) {
+                return error('NO_SUPPLY_POINT_ADDRESS_FLOOR');
+            }
+            if ($scope.form.addressDoor.value === undefined) {
+                return error('NO_SUPPLY_POINT_ADDRESS_DOOR');
+            }
+            */
+            if ($scope.form.postalcode === undefined || $scope.postalCodeIsInvalid!==false) {
+                return error('NO_POSTALCODE');
+            }
+
+            $scope.form.cupsAddress = $scope.form.address.value;
+            if ($scope.form.addressNumber.value !== undefined) {
+                $scope.form.cupsAddress += ', ' + $scope.form.addressNumber.value;
+            }
+            if ($scope.form.addressFloor.value !== undefined) {
+                $scope.form.cupsAddress += ', ' + $scope.form.addressFloor.value;
+            }
+
+            if ($scope.form.addressDoor.value !== undefined) {
+                $scope.form.cupsAddress += ', ' + $scope.form.addressDoor.value;
+            }
+
+            if ($scope.form.postalcode !== undefined) {
+                $scope.form.cupsAddress += ' - ' + $scope.form.postalcode;
+            }
+
             if ($scope.form.province === undefined) {
                 return error('NO_SUPPLY_POINT_STATE');
             }
@@ -476,7 +515,7 @@ angular.module('SomEnergiaWebForms')
             formData.append('potencia_p2', $scope.form.rate === cfg.RATE_30A ? stringToPower($scope.form.power2) : '');
             formData.append('potencia_p3', $scope.form.rate === cfg.RATE_30A ? stringToPower($scope.form.power3) : '');
             formData.append('cnae', $scope.cnaeEditor.value || '');
-            formData.append('cups_adreca', $scope.form.address.value);
+            formData.append('cups_adreca', $scope.form.cupsAddress);
             formData.append('cups_provincia', $scope.form.province.id);
             formData.append('cups_municipi', $scope.form.city.id);
             formData.append('referencia', $scope.cadastreEditor.value || '');

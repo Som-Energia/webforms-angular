@@ -29,7 +29,7 @@ angular.module('SomEnergiaWebForms')
                     var result = match[0].replace(',', '.');
                     result = result.replace('\'', '.');
                     result = (result === '.') ? undefined : result;
-                    result = ($scope.form.phases == 'mono' && parseFloat(result) >= 15) ? oldValue : result;
+                    result = ($scope.form.phases === 'mono' && parseFloat(result) >= 15) ? oldValue : result;
                     $scope.form.newpower = result;
                 } else {
                     $scope.form.newpower = undefined;

@@ -76,6 +76,58 @@
                     onchanged="formListener()"
                     >
                 </iban-editor>
+                <iban-editor
+                    class="col-xs-4"
+                    required
+                    inputid="address-num"
+                    placeholder="{{'NUMBER' | translate}}"
+                    help=""
+                    model="form.addressNumber"
+                    quietlabels='true'
+                    onchanged="formListener()"
+                    >
+                </iban-editor>
+                <iban-editor
+                    class="col-xs-4"
+                    inputid="address-floor"
+                    placeholder="{{'FLOOR' | translate}}"
+                    help=""
+                    model="form.addressFloor"
+                    quietlabels='true'
+                    onchanged="formListener()"
+                    >
+                </iban-editor>
+                <iban-editor
+                    class="col-xs-4"
+                    inputid="address-door"
+                    placeholder="{{'DOOR' | translate}}"
+                    help=""
+                    model="form.addressDoor"
+                    quietlabels='true'
+                    onchanged="formListener()"
+                    >
+                </iban-editor>
+                <div class="col-xs-12">
+                    <div class="form-group has-feedback">
+                        <label class="sr-only">{{ 'CODI_POSTAL' | translate }}:</label>
+                        <input
+                            type="text"
+                            name="postalcode"
+                            class="form-control  input-lg"
+                            placeholder="{{ 'CODI_POSTAL' | translate }}"
+                            data-ng-model="form.postalcode"
+                            data-ng-change="formListener()"
+                            required
+                            />
+                        <span class="form-control-feedback glyphicon "  data-ng-class="{
+                            'glyphicon-refresh spinning warning': validatingPostalCode,
+                            'glyphicon-remove danger': !validatingPostalCode && postalCodeIsInvalid,
+                            'glyphicon-asterisk danger': !validatingPostalCode && form.postalcode === undefined,
+                            'glyphicon-ok success': !validatingPostalCode && form.postalcode !== undefined && ! postalCodeIsInvalid,
+                        }" style="right:2em"></span>
+                        <span class="pull-right label label-danger" data-ng-show="postalCodeIsInvalid">{{ 'DIGITS_LENGTH_5' | translate }}</span>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <state-city
@@ -385,6 +437,7 @@
                                 <span class="badge current small">?</span>
                             </a>
                         </div>
+                        <span class="pull-right label label-warning" data-ng-show="form.rate">{{ 'CURRENT_RATE' | translate }}</span>
                     </div>
                 </div>
                 <!--3.0A power rate NOT selected-->
@@ -415,6 +468,7 @@
                         <span class="pull-right label label-danger" data-ng-show="rate20IsInvalid">{{ 'INVALID' | translate }}</span>
                         <span class="pull-right label label-danger" data-ng-show="rate21IsInvalid">{{ 'INVALID' | translate }}</span>
                         <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power.$error.required">{{ 'OBLIGATORI' | translate }}</span>
+                        <span class="pull-right label label-warning" data-ng-show="form.power">{{ 'HELP_POPOVER_POWER' | translate }}</span>
                     </div>
                 </div>
                 <!--3.0A power rate selected-->
@@ -462,6 +516,7 @@
                             </div>
                             <span class="pull-right label label-danger" data-ng-show="orderFormSubmitted && orderForm.power3.$error.required ">{{ 'OBLIGATORI' | translate }}</span>
                             <span class="pull-right label label-danger" data-ng-show="rate3AIsInvalid">{{ 'ALGUN_DELS_TRES_PERIODES_MAJOR_QUE_15' | translate }}</span>
+                            <span class="pull-right label label-warning" data-ng-show="form.power">{{ 'HELP_POPOVER_POWER' | translate }}</span>
                         </div>
                         <div class="col-xs-1">
                             <a
@@ -495,7 +550,7 @@
         >
             <div data-ng-hide='esAlta()' class="row extra-margin-top">
                 <div class="col-xs-12 form-group">
-                    <div class="panel panel-warning">
+                    <div class="panel panel-default panel-chooser">
                         <div class="panel-heading" style="text-align:center">{{ 'VOLS_MANTENIR_EL_TITULAR' | translate }}
                             <span class="form-control-feedback glyphicon pull-right"  data-ng-class="{
                                 'glyphicon-asterisk danger': form.changeowner === undefined,
