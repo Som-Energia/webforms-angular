@@ -144,7 +144,7 @@ angular.module('SomEnergiaWebForms')
             }
             $log.log('request postData', postData);
             // Send request data POST
-            var postPromise = ApiSomEnergia.postRequest($scope, cfg.APIV2_BASE_URL + 'form/soci/alta', postData, '004');
+            var postPromise = ApiSomEnergia.postRequest($scope, cfg.API_BASE_URL + 'form/soci/alta', postData, '004');
             postPromise.then(
                 function (response) {
                     if (response.state === cfg.STATE_TRUE) { // well done
