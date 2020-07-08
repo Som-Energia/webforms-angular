@@ -602,18 +602,15 @@ angular.module('SomEnergiaWebForms')
         $scope.getTariff = function() {
             const ownerIsMember = $scope.form.ownerIsMember==='yes';
             const vat = ownerIsMember ? $scope.initForm.soci.dni : $scope.owner.dni;
-            const cityId = $scope.form.city?.id || false;
+            const cityId = ($scope.form.city && $scope.form.city.id) ? $scope.form.city.id : false;
             const cnae = $scope.cnaeEditor.value || false;
             const tariff = $scope.form.rate || false;
 
             if( !(vat && cityId && cnae && tariff) ) {
-                console.log('falten dades per obtenir tarifes!', vat, cityId, cnae, tariff)
                 return false
             }
 
-            const urlParams = `data/prices?tariff=${tariff}&vat=${vat}&cnae=${cnae}&city_id=${cityId}`;
-            console.log(urlParams)
-
+            const urlParams = 'data/prices?tariff='+tariff+'&vat='+vat+'&cnae='+cnae+'&city_id='+cityId;
             ApiSomEnergia.getStateRequest(
                 $scope,
                 cfg.APIV2_BASE_URL + urlParams,
@@ -621,11 +618,9 @@ angular.module('SomEnergiaWebForms')
             )
             .then(
                 function(response) {
-                    console.log(response)
                     if (response.status === cfg.STATUS_ONLINE) {
                         if (response.state === cfg.STATE_TRUE) {
                             $scope.prices = response.data;
-                            console.log($scope.prices)
                         }
                     }
                 },
