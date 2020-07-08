@@ -15,23 +15,25 @@
             <span class="last-help-title">{{ 'REVIEW_DATA_AND_CONFIRM' | translate }}.</span>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-6">
-            <label>{{ 'SOCI_VINCULAT' | translate }}:</label>
-            <span>{{ initForm.soci.nom + ' ' + initForm.soci.cognom }}</span>
-        </div>
-        <div class="col-xs-12 col-md-6">
-            <label>{{ 'TIPUS_DE_CONTRACTACIO' | translate }}:</label>
-                <span data-ng-show="esAlta()===true">{{ 'ALTA' | translate}}</span>
-                <span data-ng-show="esAlta()===false && form.changeowner==='yes'">{{ 'CANVI_DE_COMERCIALITZADORA_I_TITULAR' | translate}}</span>
-                <span data-ng-show="esAlta()===false && form.changeowner==='no'">{{ 'CANVI_DE_COMERCIALITZADORA' | translate}}</span>
+    <div class="well">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <label>{{ 'TIPUS_DE_CONTRACTACIO' | translate }}:</label>
+                    <span data-ng-show="esAlta()===true">{{ 'ALTA' | translate}}</span>
+                    <span data-ng-show="esAlta()===false && form.changeowner==='yes'">{{ 'CANVI_DE_COMERCIALITZADORA_I_TITULAR' | translate}}</span>
+                    <span data-ng-show="esAlta()===false && form.changeowner==='no'">{{ 'CANVI_DE_COMERCIALITZADORA' | translate}}</span>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <label>{{ 'SOCI_VINCULAT' | translate }}:</label>
+                <span>{{ initForm.soci.nom + ' ' + initForm.soci.cognom }}</span>
+            </div>
         </div>
     </div>
     <!--DADES_PUNT_SUBMINISTRAMENT-->
     <div class="well">
         <div class="row">
             <div class="col-xs-12">
-                <h4>{{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}:</h4>
+                <h4>{{ 'DADES_PUNT_SUBMINISTRAMENT' | translate }}</h4>
             </div>
             <div class="col-xs-12">
                 <label>{{ 'ADRECA' | translate }}:</label><span>{{ form.cupsAddress }}</span>
@@ -74,7 +76,7 @@
     <div class="well">
         <div class="row">
             <div class="col-xs-12">
-                <h4>{{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}:</h4>
+                <h4>{{ 'DADES_TITULAR_NOU_CONTRACTE' | translate }}</h4>
             </div>
             <div class="col-xs-6">
                 <label>{{ 'NOM' | translate }}:</label><span>{{ form.ownerIsMember == 'yes' ? initForm.soci.nom : owner.name }}</span>
@@ -103,7 +105,7 @@
     <div class="well">
         <div class="row">
             <div class="col-xs-12">
-                <h4>{{ 'DADES_PAGAMENT' | translate }}:</h4>
+                <h4>{{ 'DADES_PAGAMENT' | translate }}</h4>
             </div>
         </div>
         <div data-ng-if="form.choosepayer == 'soci' || (form.choosepayer == 'titular' && form.ownerIsMember == 'yes')">
@@ -200,6 +202,40 @@
                 <label>{{ 'DONATIU_VOLUNTARI' | translate }}:</label>
                     <span data-ng-show="form.voluntary == 'yes'" translate="SI"></span>
                     <span data-ng-show="form.voluntary == 'no'" translate="NO"></span>
+            </div>
+        </div>
+    </div>
+    <!--TARIFES-->
+    <div class="well">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>{{ 'TARIFES' | translate }}</h4>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <label>{{ 'TERME_ENERGIA' | translate }}:</label>
+                <div data-ng-show="prices.te.P1">{{ prices.te.P1.value }} {{ prices.te.P1.uom }}</div>
+                <div data-ng-show="prices.te.P2">{{ prices.te.P2.value }} {{ prices.te.P2.uom }}</div>
+                <div data-ng-show="prices.te.P3">{{ prices.te.P3.value }} {{ prices.te.P3.uom }}</div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <label>{{ 'GENERATION' | translate }}:</label>
+                <div data-ng-show="prices.gkwh.P1">{{ prices.gkwh.P1.value }} {{ prices.gkwh.P1.uom }}</div>
+                <div data-ng-show="prices.gkwh.P2">{{ prices.gkwh.P2.value }} {{ prices.gkwh.P2.uom }}</div>
+                <div data-ng-show="prices.gkwh.P3">{{ prices.gkwh.P3.value }} {{ prices.gkwh.P3.uom }}</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <label>{{ 'TERME_POTENCIA' | translate }}:</label>
+                <div data-ng-show="prices.tp.P1">{{ prices.tp.P1.value }} {{ prices.tp.P1.uom }}</div>
+                <div data-ng-show="prices.tp.P2">{{ prices.tp.P2.value }} {{ prices.tp.P2.uom }}</div>
+                <div data-ng-show="prices.tp.P3">{{ prices.tp.P3.value }} {{ prices.tp.P3.uom }}</div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <label>{{ 'AUTOCONSUM' | translate }}:</label>
+                <div data-ng-show="prices.ac.P1">{{ prices.ac.P1.value }} {{ prices.ac.P1.uom }}</div>
+                <div data-ng-show="prices.ac.P2">{{ prices.ac.P2.value }} {{ prices.ac.P2.uom }}</div>
+                <div data-ng-show="prices.ac.P3">{{ prices.ac.P3.value }} {{ prices.ac.P3.uom }}</div>
             </div>
         </div>
     </div>

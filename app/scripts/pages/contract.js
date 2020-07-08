@@ -47,6 +47,7 @@ angular.module('SomEnergiaWebForms')
         $scope.cadastreEditor = {};
         $scope.owner = {};
         $scope.payer = {};
+        $scope.prices = {};
         $scope.maxfilesize = cfg.MAX_MB_FILE_SIZE;
         ApiSomEnergia.preloadStates();
         ApiSomEnergia.preloadLanguages();
@@ -597,6 +598,44 @@ angular.module('SomEnergiaWebForms')
 
             return true;
         };
+
+        $scope.getTariff = function() {
+            const ownerIsMember = $scope.form.ownerIsMember==='yes';
+            const vat = ownerIsMember ? $scope.initForm.soci.dni : $scope.owner.dni;
+            const cityId = $scope.form.city?.id || false;
+            const cnae = $scope.cnaeEditor.value || false;
+            const tariff = $scope.form.rate || false;
+
+            if( !(vat && cityId && cnae && tariff) ) {
+                console.log('falten dades per obtenir tarifes!', vat, cityId, cnae, tariff)
+                return false
+            }
+
+            const urlParams = `data/prices?tariff=${tariff}&vat=${vat}&cnae=${cnae}&city_id=${cityId}`;
+            console.log(urlParams)
+
+            ApiSomEnergia.getStateRequest(
+                $scope,
+                cfg.APIV2_BASE_URL + urlParams,
+                '007'
+            )
+            .then(
+                function(response) {
+                    console.log(response)
+                    if (response.status === cfg.STATUS_ONLINE) {
+                        if (response.state === cfg.STATE_TRUE) {
+                            $scope.prices = response.data;
+                            console.log($scope.prices)
+                        }
+                    }
+                },
+                function(reason) {
+                    console.log(reason)
+                }
+            )
+        }
+
+        $scope.$watch('form.acceptaccountowner', $scope.getTariff);
 
         // GET HUMANIZED API RESPONSE
         $scope.getHumanizedAPIResponse = function(arrayResponse) {
