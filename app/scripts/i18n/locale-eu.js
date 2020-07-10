@@ -299,7 +299,13 @@ angular.module('SomEnergiaWebForms')
                 VOLS_MANTENIR_EL_TITULAR: 'Kontratuaren titularra aldatu nahi duzu?',
                 NO_CANVI_DE_TITULAR: 'Ez dut nahi.',
                 SI_CANVI_DE_TITULAR: 'Bai, nahi dut.',
-                NIF: 'IFZ'
+                NIF: 'IFZ',
+
+                PREUS_AMB_IMPOSTOS: 'Precios con impuestos',
+                TERME_ENERGIA: 'Término de energía',
+                GENERATION: 'Generation kWh',
+                TERME_POTENCIA: 'Término de potencia',
+                AUTOCONSUM: 'Compensación Autoproducción'
             })
         ;
     });

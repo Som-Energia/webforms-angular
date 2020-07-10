@@ -298,7 +298,13 @@ angular.module('SomEnergiaWebForms')
                 OWNER_IS_MEMBER_NOT_CHOSEN: 'No has indicado qué persona será la titular del contrato.',
                 VOLS_MANTENIR_EL_TITULAR: '¿Quieres cambiar la actual persona titular del contrato?',
                 NO_CANVI_DE_TITULAR: 'No, no quiero.',
-                SI_CANVI_DE_TITULAR: 'Sí, sí quiero.'
+                SI_CANVI_DE_TITULAR: 'Sí, sí quiero.',
+
+                PREUS_AMB_IMPOSTOS: 'Precios con impuestos',
+                TERME_ENERGIA: 'Término de energía',
+                GENERATION: 'Generation kWh',
+                TERME_POTENCIA: 'Término de potencia',
+                AUTOCONSUM: 'Compensación Autoproducción'
             })
         ;
     });

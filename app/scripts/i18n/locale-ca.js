@@ -306,6 +306,12 @@ angular.module('SomEnergiaWebForms')
                 MODIFY_ANSWER_INSTAL_TYPE: 'Vols modificar la tensió?',
                 MODIFY_ANSWER_POWER: 'Vols modificar la poténcia?',
                 MODIFY_ANSWER_FARE: 'Vols modificar la tarifa?',
+
+                PREUS_AMB_IMPOSTOS: 'Preus amb impostos',
+                TERME_ENERGIA: 'Terme d’energia',
+                GENERATION: 'Generation kWh',
+                TERME_POTENCIA: 'Terme de potència',
+                AUTOCONSUM: 'Compensació Autoproducció'
             })
         ;
     });
