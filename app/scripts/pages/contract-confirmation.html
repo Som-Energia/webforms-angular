@@ -238,6 +238,21 @@
                 <div data-ng-show="prices.ac.P3">{{ prices.ac.P3.value }} {{ prices.ac.P3.uom }}</div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <label>{{ 'BO_SOCIAL' | translate }}</label>
+                <div data-ng-show="prices.bo_social.value">{{ prices.bo_social.value }} {{ prices.bo_social.uom }}</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {{ 'CONCEPTES_EXTRES' | translate }}
+                <ul>
+                    <li translate="EXTRA_REACTIVA"></li>
+                    <li translate="LLOGUER_COMPTADOR" translate-value-valor="{{ prices.comptador.value }}" translate-value-uom="{{ prices.comptador.uom }}"></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 </wizard-page>

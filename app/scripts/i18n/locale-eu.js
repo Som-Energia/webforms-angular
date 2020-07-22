@@ -305,7 +305,11 @@ angular.module('SomEnergiaWebForms')
                 TERME_ENERGIA: 'Término de energía',
                 GENERATION: 'Generation kWh',
                 TERME_POTENCIA: 'Término de potencia',
-                AUTOCONSUM: 'Compensación Autoproducción'
+                AUTOCONSUM: 'Compensación Autoproducción',
+                BO_SOCIAL: 'Bono social',
+                CONCEPTES_EXTRES: 'A estos precios se les debe sumar los siguientes conceptos:',
+                EXTRA_REACTIVA: 'En determinadas condiciones de la instalación en estos precios se puede añadir <b>un recargo por energía reactiva</b>',
+                LLOGUER_COMPTADOR: '<b>Alquiler contador</b>: Depende cada caso. En general, {{valor}} {{uom}} con impuestos'
             })
         ;
     });
