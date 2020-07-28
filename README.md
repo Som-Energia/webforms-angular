@@ -5,6 +5,7 @@ Forms for Som Energia web page.
 ## Development set-up (on Ubuntu)
 
 ### Install dependent packages
+
 ```bash
 $ sudo apt-get install npm ruby-compass
 $ sudo ln -s /usr/bin/nodejs /usr/bin/node
@@ -15,9 +16,11 @@ $ bower install
 
 
 ### Generate untracked files
+
 Edit the following templates:
 
 #### app/scripts/debug.js
+
 This should be sample parameters to check the website while developing
 ```javascript
 'use strict';
@@ -54,6 +57,7 @@ angular.module('newSomEnergiaWebformsApp')
 
 
 ### Launch the development server
+
 - Ensure that `developmentMode` is true and `localMode` is true in `app.js`
 ```bash
 $ grunt serve
@@ -62,6 +66,7 @@ $ firefox http://localhost:9000
 
 
 ### Deploy on testing
+
 To deploy the on the testing environment,
 
 - Ensure you are in the `devel` branch
@@ -74,6 +79,7 @@ It will be available at: http://testforms.somenergia.coop/
 
 
 ### Deploy on production
+
 We deploy production from `master` branch.
 
 - Test it in local with `grunt serve`.
@@ -101,6 +107,7 @@ It will be available at: http://www.somenergia.coop
 
 
 ### Development aids
+
 - **Development mode:**
 	- Development branch and main branch have different value in `developmentMode` var at `app.js`.
 	- Such value is accessible to the other modules through the `cfg.DEVELOPMENT`. And by convention set into every scope it needs it as `$scope.developing`.
@@ -115,6 +122,7 @@ It will be available at: http://www.somenergia.coop
 
 
 ### Dependencies management
+
 To upgrade/add a run-time dependency:
 
 - update the bower.json file
