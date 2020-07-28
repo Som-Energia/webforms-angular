@@ -1,6 +1,6 @@
 'use strict';
 
-const developmentMode = false;
+const developmentMode = true;
 
 const localMode = false;
 
@@ -13,8 +13,8 @@ const apiBase = {
 
 const apiV2Base = {
     'local': 'http://localhost:5001/',
-    'devel': 'https://testapiv2.somenergia.coop:4433/',
-    'prod':  'https://apiv2.somenergia.coop/',
+    'devel': 'https://testapi.somenergia.coop:4433/',
+    'prod':  'https://api.somenergia.coop/',
 }[mode];
 
 angular.module('SomEnergiaWebForms', [
