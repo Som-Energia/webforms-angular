@@ -1,6 +1,6 @@
 'use strict';
 
-const developmentMode = true;
+const developmentMode = false;
 
 const localMode = false;
 
