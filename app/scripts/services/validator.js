@@ -105,7 +105,7 @@ angular.module('SomEnergiaWebForms')
                 }
                 timer = $timeout(function() {
                     if (newValue !== undefined && makeApiAsyncCheck) {
-                        var dniPromise = ApiSomEnergia.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
+                        var dniPromise = ApiSomEnergia.getStateRequest($scope, cfg.API_BASE_URL + 'old/check/vat/' + newValue, '005');
                         dniPromise.then(
                             function (response) {
                                 if (element === 'form.dni' || element === 'formvalues.dni') {

@@ -115,7 +115,7 @@ angular.module('SomEnergiaWebForms')
                 $timeout.cancel(timeoutCheckDni);
             }
             timeoutCheckDni = $timeout(function() {
-                var dniPromise = ApiSomEnergia.getStateRequest($scope, cfg.API_BASE_URL + 'check/vat/' + newValue, '005');
+                var dniPromise = ApiSomEnergia.getStateRequest($scope, cfg.API_BASE_URL + 'old/check/vat/' + newValue, '005');
                 dniPromise.dni = newValue;
                 dniPromise.then(
                     function (response) {

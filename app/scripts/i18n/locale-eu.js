@@ -300,7 +300,17 @@ angular.module('SomEnergiaWebForms')
                 VOLS_MANTENIR_EL_TITULAR: 'Kontratuaren titularra aldatu nahi duzu?',
                 NO_CANVI_DE_TITULAR: 'Ez dut nahi.',
                 SI_CANVI_DE_TITULAR: 'Bai, nahi dut.',
-                NIF: 'IFZ'
+                NIF: 'IFZ',
+
+                PREUS_AMB_IMPOSTOS: 'Precios con impuestos',
+                TERME_ENERGIA: 'Término de energía',
+                GENERATION: 'Generation kWh',
+                TERME_POTENCIA: 'Término de potencia',
+                AUTOCONSUM: 'Compensación Autoproducción',
+                BO_SOCIAL: 'Bono social',
+                CONCEPTES_EXTRES: 'A estos precios se les debe sumar los siguientes conceptos:',
+                EXTRA_REACTIVA: 'En determinadas condiciones de la instalación en estos precios se puede añadir <b>un recargo por energía reactiva</b>',
+                LLOGUER_COMPTADOR: '<b>Alquiler contador</b>: Depende cada caso. En general, {{valor}} {{uom}} con impuestos'
             })
         ;
     });
