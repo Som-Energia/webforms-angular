@@ -56,7 +56,7 @@ function setCustomLocaleToStringBehaviour()
 {
     if (browserSupportsToLocaleString()) {
         Number.prototype.customToLocaleString = function() {
-            return this.toLocaleString('es-ES');
+            return this.toLocaleString('ca');
         }
     } else {
         Number.prototype.customToLocaleString = function() {
